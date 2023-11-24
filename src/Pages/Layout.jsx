@@ -5,6 +5,9 @@ import Home from './Home';
 import ContactBar from '../components/static/ContactBar';
 import { useEffect, useState } from 'react';
 import AdminLayout from '../Dashboard/Layout';
+import CategoriesPage from './CategoriesPage';
+import AdvertsPage from './AdvertsPage';
+import Footer from '../components/static/Footer';
 
 
 const Layout = () => {
@@ -26,8 +29,11 @@ const Layout = () => {
           { !isMobile ? <DesktopHeader /> : <MobileHeader />}
           <Routes>
                <Route index path='/' element={<Home />} />
-               <Route  path='/user-dashboard' element={<AdminLayout />} />
-          </Routes>     
+               <Route path="/categories/*" element={<CategoriesPage />} />
+               <Route  path='/user-dashboard/*' element={<AdminLayout />} />
+               <Route path='/ads/*' element={<AdvertsPage />} />
+          </Routes>   
+          <Footer />  
      </>
      )
 }

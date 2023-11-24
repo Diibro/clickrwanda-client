@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import InnerSectionContainer from './InnerSectionContainer';
 
 export const SectionContainer = ({content, title, sectionType}) => {
      return(
@@ -9,23 +10,6 @@ export const SectionContainer = ({content, title, sectionType}) => {
      )
 }
 
-SectionContainer.propTypes = {
-     content: PropTypes.any,
-     title: PropTypes.string,
-     sectionType: PropTypes.any
-}
-
-export const InnerSectionContainer = ({content}) => {
-     return(
-          <div className={"inner-container" }>
-               {content}
-          </div>
-     )
-}
-
-InnerSectionContainer.propTypes = {
-     content: PropTypes.any
-}
 
 const MainComponent = () => {
      return(
@@ -43,12 +27,7 @@ export const CategoryContainerSquare = ({image, title, ads_no }) => {
      )
 }
 
-CategoryContainerSquare.propTypes = {
-     image: PropTypes.string,
-     title: PropTypes.string,
-     ads_no: PropTypes.number
 
-}
 
 export const CategoryContainerRow = ({title, subCategories}) =>{
      return(
@@ -61,9 +40,25 @@ export const CategoryContainerRow = ({title, subCategories}) =>{
      )
 }
 
+SectionContainer.propTypes = {
+     content: PropTypes.any,
+     title: PropTypes.string,
+     sectionType: PropTypes.any
+}
+
+CategoryContainerSquare.propTypes = {
+     image: PropTypes.string,
+     title: PropTypes.string,
+     ads_no: PropTypes.number
+
+}
+
+
 CategoryContainerRow.propTypes = { 
      title: PropTypes.string,
      subCategories: PropTypes.array
 }
+
+
 
 export default MainComponent;
