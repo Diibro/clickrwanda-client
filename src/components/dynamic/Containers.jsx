@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import InnerSectionContainer from './InnerSectionContainer';
+import { useNavigate } from 'react-router-dom';
 
 export const SectionContainer = ({content, title, sectionType}) => {
      return(
@@ -17,9 +18,10 @@ const MainComponent = () => {
      )
 }
 
-export const CategoryContainerSquare = ({image, title, ads_no }) => {
+export const CategoryContainerSquare = ({image, title, ads_no, view }) => {
+     const navigate = useNavigate();
      return (
-          <div className="category-square">
+          <div className="category-square" onClick={() => navigate(view)}>
                <img src={image} alt={title} />
                <h3>{title}</h3>
                <p className='small-paragraph'>{ads_no}</p>
@@ -49,8 +51,8 @@ SectionContainer.propTypes = {
 CategoryContainerSquare.propTypes = {
      image: PropTypes.string,
      title: PropTypes.string,
-     ads_no: PropTypes.number
-
+     ads_no: PropTypes.any,
+     view: PropTypes.any
 }
 
 

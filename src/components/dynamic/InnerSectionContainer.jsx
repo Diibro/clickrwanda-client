@@ -42,6 +42,7 @@ export const InnerSection = ({children, type}) => {
      }else if(type === "title"){
           return(
                <div className='inner-container no-margin'><h3 className='section-title'>{children}</h3></div>
+               // <div className='inner-container no-margin'>{children}</div>
           )
      }else if(type === "pagination"){
           return(

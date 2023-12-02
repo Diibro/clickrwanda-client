@@ -19,7 +19,6 @@ export const AppProvider = ({children}) => {
                     const advertsData = await server.get('adverts');
                     const subCategoriesData = await server.get('sub categories');
                     const payPlansData = await server.get('payment plans');
-
                     setData((prev) => ({
                     ...prev,
                     categories: categoriesData,

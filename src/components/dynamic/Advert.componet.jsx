@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import FilterContext from '../../Contexts/FilterContext';
 
 
 const Advert = () => {
@@ -8,10 +9,10 @@ const Advert = () => {
   )
 }
 
-export const ProductSquare = ({image, title, price, plan, condition}) => {
+export const ProductSquare = ({image, title, price, plan, condition, action}) => {
      const [currency, setCurrency] = useState("Rwf");
      return(
-          <div className="product-square-container">
+          <div className="product-square-container" onClick={action}>
                <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
                <img className='ad-image' src={image} alt={title} />
                <h5>{title}</h5>
@@ -23,9 +24,9 @@ export const ProductSquare = ({image, title, price, plan, condition}) => {
      )
 }
 
-export const ServiceSquare = ({image, title, plan, description}) => {
+export const ServiceSquare = ({image, title, plan, description, action}) => {
      return(
-          <div className="service-square-container">
+          <div className="service-square-container" onClick={action}>
                <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
                <img className='ad-image' src={image} alt={title} />
                <h5>{title}</h5>
@@ -34,12 +35,41 @@ export const ServiceSquare = ({image, title, plan, description}) => {
      )
 }
 
+export const AdvertRenderer = ({item}) => {
+     const [,setFilter] = useContext(FilterContext);
+     const ViewAd = (ad) => {
+          setFilter((prev) => ({...prev, advertView: ad}));
+     } 
+     return(
+          item.ad_type === "product" ? <ProductSquare
+                         image={item.ad_image}
+                         title={item.ad_name}
+                         price={item.ad_price}
+                         plan={item.plan_name}
+                         condition="Best condition"
+                         action={() => ViewAd(item)}
+                         />
+                         : <ServiceSquare
+                              image={item.ad_image} 
+                              title={item.ad_name}
+                              plan={item.plan_name}
+                              description="best services  in the best town. Come now get served first. You delay, not our problem!"
+                              action={() => ViewAd(item)}
+                         />
+     )
+}
+
+AdvertRenderer.propTypes = {
+     item: PropTypes.object,
+}
+
 ServiceSquare.propTypes = {
      image: PropTypes.any,
      title: PropTypes.any,
      price: PropTypes.any,
      description: PropTypes.any,
-     plan: PropTypes.any
+     plan: PropTypes.any,
+     action: PropTypes.any
 }
 
 ProductSquare.propTypes = {
@@ -47,7 +77,8 @@ ProductSquare.propTypes = {
      title: PropTypes.any,
      price: PropTypes.any,
      condition: PropTypes.any,
-     plan: PropTypes.any
+     plan: PropTypes.any,
+     action: PropTypes.any
 }
 
 export default Advert

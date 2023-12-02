@@ -1,40 +1,33 @@
 import {Routes, Route} from 'react-router-dom';
 import DesktopHeader from '../components/static/Header';
-import { MobileHeader } from '../components/static/Header';
 import Home from './Home';
 import ContactBar from '../components/static/ContactBar';
-import { useEffect, useState } from 'react';
 import AdminLayout from '../Dashboard/Layout';
 import CategoriesPage from './CategoriesPage';
 import AdvertsPage from './AdvertsPage';
 import Footer from '../components/static/Footer';
+import { FilterProvider } from '../Contexts/FilterContext';
+import UserForms from '../components/static/UserForms';
+import UserLayout from '../Dashboard/Layout';
+import AdvertView from '../views/AdvertView';
 
 
 const Layout = () => {
-     const [isMobile, setIsMobile] = useState(false);
-     const updateMobile = () => {
-          if(window.innerWidth >= 768 ){
-               setIsMobile(false);
-          }else{
-               setIsMobile(true);
-          }
-     }
-     useEffect(()=> {
-          updateMobile();
-          window.addEventListener('resize', updateMobile);
-     }, [isMobile])
      return (
-     <>
+     <FilterProvider>
           <ContactBar />
-          { !isMobile ? <DesktopHeader /> : <MobileHeader />}
+          <DesktopHeader />
           <Routes>
                <Route index path='/' element={<Home />} />
                <Route path="/categories/*" element={<CategoriesPage />} />
                <Route  path='/user-dashboard/*' element={<AdminLayout />} />
                <Route path='/ads/*' element={<AdvertsPage />} />
-          </Routes>   
+               <Route path='/user-dashboard/*' element={<UserLayout />} />
+          </Routes> 
+          <AdvertView /> 
+          <UserForms /> 
           <Footer />  
-     </>
+     </FilterProvider>
      )
 }
 

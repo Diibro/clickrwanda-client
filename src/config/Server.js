@@ -1,5 +1,5 @@
 import endpoints from './Endpoints';
-import { fetchData, getUrl } from '../utils/serverFunctions';
+import { fetchData, getUrl, searchData } from '../utils/serverFunctions';
 
 
 const server = {
@@ -15,6 +15,15 @@ const server = {
                     return await fetchData(getUrl(endpoints.allPayPlans));
                default:
                     console.log("no end provided")
+                    return null;
+          }
+     },
+     searchAdverts: async (endpoint, params) => {
+          switch(endpoint){
+               case 'category':
+                    return await searchData(getUrl(endpoints.categoryAdverts), params);
+               default:
+                    console.log("no end provided");
                     return null;
           }
      }

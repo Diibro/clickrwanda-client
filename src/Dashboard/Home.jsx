@@ -1,7 +1,13 @@
-
+import { useContext } from "react"
+import UserContext from "../Contexts/UserContext"
 const Home = () => {
+  // const [user] = useContext(UserContext);
   return (
-    <div>Home</div>
+    <>
+      <div>
+        welcome back of beloved user
+      </div>
+    </>
   )
 }
 
