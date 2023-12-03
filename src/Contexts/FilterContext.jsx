@@ -14,7 +14,8 @@ export const FilterProvider = ({children}) => {
           date: "",
           adverts:[],
           subCategories: [],
-          advertView: false
+          advertView: false,
+          category_id: ""
      });
      const [category_id, setCategory_id] = useState("");
 
@@ -22,6 +23,16 @@ export const FilterProvider = ({children}) => {
           const options = {category_id};
           const fetchedAdverts = await server.searchAdverts('category',options);
           setFilter((prev) => ({...prev, adverts: fetchedAdverts}));
+     }
+
+     const resetFilter = () => {
+          setFilter((prev) => ({
+               ...prev,
+               price: 0,
+               adverts: adverts,
+               subCategories:[],
+               advertView: false
+          }));
      }
 
      useEffect(() => {

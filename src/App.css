@@ -20,7 +20,7 @@
      --featured-plan: #28C238;
      --white-text:#ffffff;
      --gray-text:#c0b6b6;
-     font-size: 14px;
+     font-size: 16px;
 }
 
 /* general styles */
@@ -982,7 +982,7 @@ a{
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
      :root{
-          font-size: 12px;
+          font-size: 14px;
      }
      .contact-bar .contact-info div p{
           display: inline;
@@ -992,7 +992,7 @@ a{
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
      :root{
-          font-size: 12px;
+          font-size: 16px;
      }
      .contact-bar .contact-info div p{
           display: none;
@@ -1006,6 +1006,9 @@ a{
      .home .hello-section img{
           display: none;
      }
+     .desktop-header h1{
+          font-size: 1.8rem;
+     }
 }
 
 
@@ -1016,7 +1019,7 @@ a{
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
      :root{
-          font-size: 10px;
+          font-size: 14px;
      }
      .contact-bar .contact-info div p{
           display: none;
