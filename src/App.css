@@ -667,13 +667,21 @@ a{
      cursor: pointer;
      box-shadow: 1px 1px 2px var(--text-color-para1);
 }
-.category-square img{
+.category-square .img{
      width: clamp(70px, 45%, 150px);
      padding: 15px;
      border-radius: 50%;
      aspect-ratio: 1/1;
      background-color: var(--back-color-gold1);
      mix-blend-mode: multiply;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+}
+
+.category-square .img img{
+     width: 80%;
 }
 .category-square h3{
      font-size: 0.8rem;

@@ -22,7 +22,9 @@ export const CategoryContainerSquare = ({image, title, ads_no, view }) => {
      const navigate = useNavigate();
      return (
           <div className="category-square" onClick={() => navigate(view)}>
-               <img src={image} alt={title} />
+               <div className="img">
+                    <img src={image} alt={title} />
+               </div>
                <h3>{title}</h3>
                <p className='small-paragraph'>{ads_no}</p>
           </div>
