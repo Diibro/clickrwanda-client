@@ -10,11 +10,13 @@ import { FilterProvider } from '../Contexts/FilterContext';
 import UserForms from '../components/static/UserForms';
 import UserLayout from '../Dashboard/Layout';
 import AdvertView from '../views/AdvertView';
+import { ViewProvider } from '../Contexts/ViewContext';
 
 
 const Layout = () => {
      return (
      <FilterProvider>
+          <ViewProvider>
           <ContactBar />
           <DesktopHeader />
           <Routes>
@@ -26,7 +28,9 @@ const Layout = () => {
           </Routes> 
           <AdvertView /> 
           <UserForms /> 
-          <Footer />  
+          <Footer /> 
+          </ViewProvider>
+           
      </FilterProvider>
      )
 }

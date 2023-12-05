@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import HelloImage from '../assets/images/helloImage.png'
 import { Adverts} from '../components/dynamic/Adverts.component';
 import Categories from '../components/dynamic/Categories';
 import { InnerSection } from '../components/dynamic/InnerSectionContainer';
 import SearchBar from '../components/static/SearchBar';
+import DeviceView from '../Contexts/ViewContext';
 
 const Home = () => {
+  const [deviceView] = useContext(DeviceView);
+  const {isMobile} = deviceView;
   return (
     <div className="page home">
       <div className="hello-section">
@@ -14,7 +18,7 @@ const Home = () => {
         </div>
         <img src={HelloImage} alt="hello section image" />
       </div>
-      <Categories limit={14} />
+      <Categories limit={isMobile ? 6 : 14} />
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
         Top picks for you
