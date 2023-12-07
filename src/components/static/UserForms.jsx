@@ -80,11 +80,11 @@ const LoginForm = () => {
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login"}} />
                <form onSubmit={handleSubmit(submitForm)}>
                     <div className="group">
-                         <label htmlFor="email">Email: </label>
+                         <label htmlFor="email_02">Email: </label>
                          <input type="email" name="email" id="email_02" {...register('email')} placeholder="User email..."  />
                     </div>
                     <div className="group">
-                         <label htmlFor="password">Password: </label>
+                         <label htmlFor="password_02">Password: </label>
                          <input type="password" name="password" id="password_02" {...register('password')} placeholder="User Password" />
                     </div>
                     <div className="group align-right">
@@ -155,28 +155,28 @@ const SignUpForm = () => {
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Sign Up"}} />
                <form onSubmit={handleSubmit(submitForm, onErrors)}>
                     <div className="group">
-                         <label htmlFor="name">Full name: </label>
+                         <label htmlFor="name_01">Full name: </label>
                          <input type="text" name="name" id="name_01" {...register('name', {required: true})} placeholder="Ex: Adms Johns..."  />
                     </div>
                     <div className="group">
-                         <label htmlFor="username">Username: </label>
+                         <label htmlFor="username_01">Username: </label>
                          <input type="text" name="username" id="username_01" {...register('username', {required: true})} placeholder="username..."  />
                     </div>
                     <div className="group">
-                         <label htmlFor="email">Email: </label>
+                         <label htmlFor="email_01">Email: </label>
                          <input type="email" name="email" id="email_01" {...register('email', {required: true})} placeholder="User email..."  />
                     </div>
                     <div className="group">
-                         <label htmlFor="name">Phone: </label>
+                         <label htmlFor="phone_01">Phone: </label>
                          <input type="phone" name="phone" id="phone_01" {...register('phone', {required: true})} placeholder="Ex: +25078..."  />
                     </div>
                     <div className="group">
                          <label htmlFor="password">Password: </label>
-                         <input type="password" name="password" {...register('password', {required: true, minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
+                         <input type="password" id="password" name="password" {...register('password', {required: true, minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
                     </div>
                     <p className="form-errors">{errors?.password && errors.password.message}</p>
                     <div className="group">
-                         <label htmlFor="location">Location: </label>
+                         <label htmlFor="location01">Location: </label>
                          <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  />
                     </div>
                     <div className="group align-right">
