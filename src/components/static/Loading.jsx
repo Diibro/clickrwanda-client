@@ -7,4 +7,12 @@ const Loading = () => {
   )
 }
 
+export const Loadingv2 = () => {
+  return(
+    <div className='loading loading-absolute'>
+      <img src={Loader} alt="loading gif" />
+    </div>
+  )
+}
+
 export default Loading

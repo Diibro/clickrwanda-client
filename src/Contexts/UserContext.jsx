@@ -1,6 +1,7 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import PropTypes from 'prop-types';
 import { useState } from "react";
+import Cookies from 'js-cookie';
 
 const UserContext = createContext();
 
@@ -12,6 +13,20 @@ export const UserProvider = ({children}) => {
           activeForm: '',
           loggedIn: false
      });
+     useEffect(() => {
+          const token = Cookies.get('token');
+          if(token){
+               const storedData = localStorage.getItem('userData');
+               if(storedData){
+                    const userData = JSON.parse(storedData);
+                    setUser((prev) => ({
+                    ...prev,
+                    userInfo: userData,
+                    loggedIn: true
+                    }))
+               }
+          }
+     }, [])
      return(
           <UserContext.Provider value={[user, setUser]} >{children}</UserContext.Provider>
      )

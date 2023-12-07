@@ -1,11 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SubmitButton } from "../dynamic/Buttons";
 import Title from "../dynamic/TitleComponents"
 import { textColors, titleSize } from "../styles"
 import UserContext from "../../Contexts/UserContext";
-import { ImCross } from "react-icons/im";
+import { ImCross, ImTicket } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import AppData from "../../Contexts/AppContext";
+import server from "../../config/Server";
+import { Loadingv2 } from "./Loading";
+import { TiTick } from "react-icons/ti";
 
 
 const UserForms = () => {
@@ -27,16 +31,45 @@ const UserForms = () => {
 
 const LoginForm = () => {
      const [,setUser] = useContext(UserContext);
+     const {register, handleSubmit,} = useForm();
+     const [,setData] = useContext(AppData);
+     const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
-     const submitForm = (e) => {
-          e.preventDefault();
-          console.log("submit form");
-          navigate('/user-dashboard');
-          setUser((prev) => ({
+     const raiseAlert = (type, message, icon) => {
+          setData((prev)=> ({
                ...prev,
-               loggedIn: true,
-               activeForm: ''
-          }))
+               alertView:{
+                    on: true,
+                    content: {type, message, icon}
+               }
+          }));
+     }
+     const submitForm = async (data) => {
+          try {
+               setLoading(true);
+               const formData = new FormData();
+               formData.append('email', data.email);
+               formData.append('password', data.password);
+               const res = await server.login(data);
+               if(res.status === "pass"){
+                    localStorage.setItem('userData', JSON.stringify(res.data));
+                    setUser((prev) => ({
+                         ...prev,
+                         userInfo: res.data,
+                         loggedIn: true,
+                         activeForm:''
+                    }));
+                    raiseAlert('success', `${res.message} as ${res.data.username}`, <TiTick />)
+                    return navigate('/user-dashboard');
+               }else{
+                    return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+               }
+          } catch (error) {
+               console.error('Error:', error);
+               return raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
+          }finally{
+               setLoading(false);
+          }
      }
      const closeForm = () => {
           setUser((prev) => ({...prev, activeForm:''}));
@@ -45,14 +78,14 @@ const LoginForm = () => {
           <div className="form-container">
                <i onClick={closeForm} className="close-icon"><ImCross/></i>
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login"}} />
-               <form onSubmit={submitForm}>
+               <form onSubmit={handleSubmit(submitForm)}>
                     <div className="group">
                          <label htmlFor="email">Email: </label>
-                         <input type="email" name="email" id="email_01" placeholder="User email..."  />
+                         <input type="email" name="email" id="email_01" {...register('email')} placeholder="User email..."  />
                     </div>
                     <div className="group">
                          <label htmlFor="password">Password: </label>
-                         <input type="password" name="password" placeholder="User Password" />
+                         <input type="password" name="password" {...register('password')} placeholder="User Password" />
                     </div>
                     <div className="group align-right">
                          <SubmitButton content={{title: "Log in", type: 'submit'}} />
@@ -60,19 +93,58 @@ const LoginForm = () => {
                </form>
                <div className="line-divider"><p>Or</p></div>
                <p className="other-link">Don&rsquo;t have account <b onClick={() => setUser((prev) => ({...prev, activeForm:'signup'}))}>Sign Up</b></p>
+               {loading ? <Loadingv2 /> : null}
           </div>
      )
 }
 
 const SignUpForm = () => {
-     const {register, handleSubmit} = useForm();
+     const {register, handleSubmit, formState: {errors}} = useForm();
      const [,setUser] = useContext(UserContext);
-     const submitForm = (data) => {
-          console.log("submit form", data.email);
+     const [,setData] = useContext(AppData);
+     const [loading, setLoading] = useState(false);
+
+     const raiseAlert = (type, message, icon) => {
+          setData((prev)=> ({
+               ...prev,
+               alertView:{
+                    on: true,
+                    content: {type, message, icon}
+               }
+          }));
+     }
+     const submitForm = async (data) => {
+          try {
+               setLoading(true); // Set loading to true when submitting
+               const formData = new FormData();
+               formData.append('name', data.name);
+               formData.append('username', data.username);
+               formData.append('email', data.email);
+               formData.append('phone', data.phone);
+               formData.append('userType', 'user');
+               formData.append('password', data.password);
+               formData.append('location', data.location);
+          
+               const res = await server.register(formData);
+          
+               if (res.status === "pass") {
+               raiseAlert('success', 'Successfully created the account', <ImTicket />);
+               setUser((prev) => ({ ...prev, activeForm: 'login' }));
+               } else {
+               raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+               }
+          } catch (error) {
+               console.error('Error:', error);
+               raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
+          } finally {
+            setLoading(false); // Set loading to false when the request is complete
+          }
      }
 
-     const onErrors = (errors) => {
-          console.log(errors);
+     const onErrors = (error) => {
+          if(error){
+               raiseAlert('fail', 'please check well your information', <ImCross />);
+          }
      }
      const closeForm = () => {
           setUser((prev) => ({...prev, activeForm:''}))
@@ -100,7 +172,12 @@ const SignUpForm = () => {
                     </div>
                     <div className="group">
                          <label htmlFor="password">Password: </label>
-                         <input type="password" name="password" {...register('password', {required: true, minLength: 8})} placeholder="User Password" />
+                         <input type="password" name="password" {...register('password', {required: true, minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
+                    </div>
+                    <p className="form-errors">{errors?.password && errors.password.message}</p>
+                    <div className="group">
+                         <label htmlFor="location">Location: </label>
+                         <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  />
                     </div>
                     <div className="group align-right">
                          <SubmitButton content={{title: "Sign Up", type: 'submit'}} />
@@ -108,6 +185,7 @@ const SignUpForm = () => {
                </form>
                <div className="line-divider"><p>Or</p></div>
                <p className="other-link">Have account <b onClick={() => setUser((prev) => ({...prev, activeForm:'login'}))}>Login</b></p>
+               {loading ? <Loadingv2 /> : null}
           </div>
      )
 }

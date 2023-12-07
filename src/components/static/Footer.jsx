@@ -39,7 +39,7 @@ const Footer = () => {
                     <p>Send us a direct message via:</p>
                     <a href="https://wa.me/+250727559173" rel="noreferrer" target="_blank"><i className="icon whatsapp-icon"><FaWhatsapp /></i> Whatsapp: +250727559173 </a>
                </div>
-               <ActionBtn title="Get Started" action={getStarted} />
+               {!loggedIn ? <ActionBtn title="Get Started" action={getStarted} /> : null } 
           </div>
           <div className="footer-col">
                <Title content={{color:textColors.white, size: titleSize.small, name: "Support & Links"}} />

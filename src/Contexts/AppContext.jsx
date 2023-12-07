@@ -11,6 +11,10 @@ export const AppProvider = ({children}) => {
           subCategories: [],
           payPlans: [],
           currency:"",
+          alertView: {
+               on: false,
+               content: {}
+          }
      });
      useEffect(() => {
           const fetchData = async () => {

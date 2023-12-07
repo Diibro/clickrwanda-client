@@ -47,7 +47,7 @@ export const ContentContainer = ({children}) => {
      )
 }
 NavContainer.propTypes = {
-     children: PropTypes.node.isRequired,
+     children: PropTypes.any,
 } 
 
 MainContainer.propTypes = {
@@ -55,7 +55,7 @@ MainContainer.propTypes = {
 }
 
 ContentContainer.propTypes = {
-     children: PropTypes.node.isRequired,
+     children: PropTypes.any,
 } 
 
 LinkContainer.propTypes = {

@@ -11,12 +11,18 @@ import UserForms from '../components/static/UserForms';
 import UserLayout from '../Dashboard/Layout';
 import AdvertView from '../views/AdvertView';
 import { ViewProvider } from '../Contexts/ViewContext';
+import { AlertView } from '../views/AlertsViews';
+import { useContext } from 'react';
+import AppData from '../Contexts/AppContext';
 
 
 const Layout = () => {
+     const [data] = useContext(AppData);
+     const {alertView} = data
      return (
      <FilterProvider>
           <ViewProvider>
+          <AlertView content={alertView.content} />
           <ContactBar />
           <DesktopHeader />
           <Routes>

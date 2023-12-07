@@ -22,8 +22,40 @@ export const searchData = async (url, params) => {
     return [];
   }
 }
+
+export const registerUser = async (url, params) => {
+  try {
+    const res = await axios.post(url, params);
+    const info = await res.data;
+    return info;
+  } catch (error) {
+    return false;
+  }
+}
+
+export const loginUser = async (url, params) => {
+  try {
+    const res = await axios.post(url, params, {withCredentials: true});
+    const info = await res.data;
+    return info;
+  } catch (error) {
+    return false;
+  }
+}
+
+export const logoutUser = async (url) => {
+  try {
+    const res = await axios.get(url, {withCredentials:true});
+    const info  = res.data;
+    return info;
+  } catch (error) {
+    return false;
+  }
+}
 export const getUrl = (endpoint) => {
       var url = `${serverUrl}/${endpoint}`;
       return url;
 }
+
+
 
