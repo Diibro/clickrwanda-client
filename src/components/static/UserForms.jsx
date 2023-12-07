@@ -81,11 +81,11 @@ const LoginForm = () => {
                <form onSubmit={handleSubmit(submitForm)}>
                     <div className="group">
                          <label htmlFor="email">Email: </label>
-                         <input type="email" name="email" id="email_01" {...register('email')} placeholder="User email..."  />
+                         <input type="email" name="email" id="email_02" {...register('email')} placeholder="User email..."  />
                     </div>
                     <div className="group">
                          <label htmlFor="password">Password: </label>
-                         <input type="password" name="password" {...register('password')} placeholder="User Password" />
+                         <input type="password" name="password" id="password_02" {...register('password')} placeholder="User Password" />
                     </div>
                     <div className="group align-right">
                          <SubmitButton content={{title: "Log in", type: 'submit'}} />
