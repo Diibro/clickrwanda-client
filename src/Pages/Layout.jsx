@@ -14,6 +14,7 @@ import { ViewProvider } from '../Contexts/ViewContext';
 import { AlertView } from '../views/AlertsViews';
 import { useContext } from 'react';
 import AppData from '../Contexts/AppContext';
+import NotFound from './NotFound';
 
 
 const Layout = () => {
@@ -31,6 +32,7 @@ const Layout = () => {
                <Route  path='/user-dashboard/*' element={<AdminLayout />} />
                <Route path='/ads/*' element={<AdvertsPage />} />
                <Route path='/user-dashboard/*' element={<UserLayout />} />
+               <Route element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 
           <UserForms /> 
