@@ -518,7 +518,7 @@ a{
 }
 .user-forms .form-container{
      position: relative;
-     width: clamp(370px, 30px, 800px);
+     width: clamp(360px, 40%, 1200px);
      background-color: var(--white-text);
      border-radius: 10px;
      padding: 10px;
@@ -536,23 +536,25 @@ a{
 }
 
 .user-forms .form-container form .group{
-     width: 90%;
+     width: 100%;
      display: flex;
-     flex-direction: row;
      flex-wrap: wrap;
+     flex-direction: row;
      align-items: center;
      justify-content: space-between;
-     margin: 5px auto;
+     margin: 10px auto;
 }
 
 .user-forms .form-container form .group label{
-     font-size: 1rem;
+     width: clamp(150px, 35%, 500px);
+     font-size: 1.2rem;
      color: var(--text-color-title);
      font-weight: bold;
+     margin: 5px auto;
 }
 
 .user-forms .form-container form .group input{
-     width: 60%;
+     width: clamp(250px, 60%, 800px);
      text-align: center;
      font-size: 0.8rem;
      outline: none;
@@ -560,6 +562,7 @@ a{
      padding: 2px 5px;
      border-radius: 2px;
      border-bottom: 1.5px solid var(--text-color-para1);
+     margin: 5px auto;
 }
 
 .user-forms .form-container form .group input:focus{
