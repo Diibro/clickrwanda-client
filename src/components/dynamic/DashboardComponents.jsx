@@ -4,8 +4,8 @@ import { MdAccountCircle, MdOutlinePayment } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 import { LiaAdversal } from "react-icons/lia";
 import { CiLogout } from "react-icons/ci";
-// import { useContext } from 'react';
-// import DeviceView from '../../Contexts/ViewContext';
+import { useContext } from 'react';
+import DeviceView from '../../Contexts/ViewContext';
 
 export const  MainContainer = ({children}) => {
      return(
@@ -17,7 +17,7 @@ export const  MainContainer = ({children}) => {
 
 const LinkContainer = ({content}) => {
      // const [deviceView] = useContext(DeviceView);
-     // const {isMobile} = deviceView;
+     // const {isMobile, isTablet} = deviceView;
      const location = useLocation();
      const dashboardUrl = '/user-dashboard';
      return(
@@ -28,13 +28,16 @@ const LinkContainer = ({content}) => {
 }
 
 export const NavContainer = () => {
+     const [deviceView] = useContext(DeviceView);
+     const {isMobile, isTablet} = deviceView;
+     let cond = isMobile || isTablet || false;
      return(
           <div className="dashboard-navbar">
-                    <LinkContainer content={{to:'/', name: 'Home', icon: <MdAccountCircle />}} />
-                    <LinkContainer content={{to:'/profile-settings', name: 'View Profile', icon: <IoSettings />}} />
-                    <LinkContainer content={{to:'/user-adverts', name: 'My Adverts', icon: <LiaAdversal />}} />
-                    <LinkContainer content={{to:'/payment-plans', name: 'Payment Plans', icon: <MdOutlinePayment />}} />
-                    <LinkContainer content={{to:'/logout', name: 'Log out', icon: <CiLogout />}} />
+                    <LinkContainer content={{to:'/', name: !cond ? 'Home' : '', icon: <MdAccountCircle />}} />
+                    <LinkContainer content={{to:'/profile-settings', name: !cond ?'View Profile' : '', icon: <IoSettings />}} />
+                    <LinkContainer content={{to:'/user-adverts', name: !cond ? 'My Adverts' : '', icon: <LiaAdversal />}} />
+                    <LinkContainer content={{to:'/payment-plans', name: !cond ? 'Payment Plans' : '', icon: <MdOutlinePayment />}} />
+                    <LinkContainer content={{to:'/logout', name: !cond ? 'Log out' : '', icon: <CiLogout />}} />
           </div>
      )
 }

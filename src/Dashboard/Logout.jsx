@@ -26,7 +26,6 @@ const Logout = () => {
     try {
       setLoading(true);
       const res = await server.logout();
-      console.log(res);
       if(res.status === "success"){
         localStorage.removeItem('userData');
 

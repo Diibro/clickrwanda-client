@@ -43,11 +43,11 @@ export const loginUser = async (url, params) => {
   }
 }
 
-export const logoutUser = async (url) => {
+export const logoutUser = async () => {
   try {
-    const res = await axios.get(url, {withCredentials:true});
-    const info  = res.data;
-    return info;
+    localStorage.removeItem('userData');
+    localStorage.removeItem('loginToken');
+    return {status: "success"};
   } catch (error) {
     return false;
   }

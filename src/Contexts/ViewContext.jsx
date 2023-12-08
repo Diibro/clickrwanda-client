@@ -6,12 +6,15 @@ const DeviceView = createContext();
 export const ViewProvider = ({children}) => {
      const [deviceView, setDeviceView] = useState({
           isMobile: false,
+          isTablet: false
      });
      const updateView = () => {
-          if(window.innerWidth >= 768){
-               setDeviceView((prev) => ({...prev,isMobile: false}));
-          }else{
+          if(window.innerWidth <= 768  ){
                setDeviceView((prev) => ({...prev,isMobile: true}));
+          }else if( window.innerWidth > 768 && window.innerWidth <= 992){
+               setDeviceView((prev) => ({...prev,isMobile: false, isTablet: true}));
+          }else{
+               setDeviceView((prev) => ({...prev, isMobile:false, isTablet: false}))
           }
      }
 

@@ -6,15 +6,12 @@ import Profile from "./Profile";
 import PayPlans from "./PayPlans";
 import MyAdverts from "./MyAdverts";
 import Logout from "./Logout";
-import { useContext, useEffect } from "react";
-import UserContext from "../Contexts/UserContext";
+import { useEffect } from "react";
 
 const UserLayout = () => {
-  const [user] = useContext(UserContext);
-  const {loggedIn} = user;
   const navigate = useNavigate();
     useEffect(() => {
-      if(!loggedIn){
+      if(!localStorage.getItem('loginToken')){
         navigate('/');
       }
 

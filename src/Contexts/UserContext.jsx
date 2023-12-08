@@ -1,7 +1,6 @@
 import { createContext, useEffect } from "react";
 import PropTypes from 'prop-types';
 import { useState } from "react";
-import Cookies from 'js-cookie';
 
 const UserContext = createContext();
 
@@ -14,7 +13,7 @@ export const UserProvider = ({children}) => {
           loggedIn: false
      });
      useEffect(() => {
-          const token = Cookies.get('clickrwanda-server-token');
+          const token = localStorage.getItem('loginToken') || null;
           console.log(token);
           if(token){
                const storedData = localStorage.getItem('userData');
@@ -28,7 +27,7 @@ export const UserProvider = ({children}) => {
                }
           }
      }, []);
-     
+
      return(
           <UserContext.Provider value={[user, setUser]} >{children}</UserContext.Provider>
      )
