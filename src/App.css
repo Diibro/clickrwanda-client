@@ -730,7 +730,9 @@ a{
      color: var(--back-color-gold2) !important;
 }
 
-
+.dashboard-link a i{
+     font-size: 1.5rem;
+}
 
 .dashboard-content{
      width: clamp(360px, 75%, 1200px);
@@ -1129,11 +1131,13 @@ a{
      }
      .dashboard-navbar{
           position: relative;
-          width: 90%;
+          width: 95%;
           flex-direction: row;
           align-items: center;
           justify-content: space-evenly;
           margin: 5px auto;
+          top: 0;
+          padding: 0 10px;
      }
 }
 
