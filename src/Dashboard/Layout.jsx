@@ -6,14 +6,15 @@ import Profile from "./Profile";
 import PayPlans from "./PayPlans";
 import MyAdverts from "./MyAdverts";
 import Logout from "./Logout";
-import { useEffect } from "react";
-import Cookies from 'js-cookie';
+import { useContext, useEffect } from "react";
+import UserContext from "../Contexts/UserContext";
 
 const UserLayout = () => {
+  const [user] = useContext(UserContext);
+  const {loggedIn} = user;
   const navigate = useNavigate();
     useEffect(() => {
-      const token = Cookies.get('token');
-      if(!token){ 
+      if(!loggedIn){
         navigate('/');
       }
 

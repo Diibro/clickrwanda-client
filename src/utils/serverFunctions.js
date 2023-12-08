@@ -35,7 +35,7 @@ export const registerUser = async (url, params) => {
 
 export const loginUser = async (url, params) => {
   try {
-    const res = await axios.post(url, params, {withCredentials: true});
+    const res = await axios.post(url, params, {withCredentials: true, credentials: true});
     const info = await res.data;
     return info;
   } catch (error) {
