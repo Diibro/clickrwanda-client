@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+
 import Layout from "./Pages/Layout"
 import './App.css';
 import { AppProvider } from "./Contexts/AppContext";
@@ -10,9 +10,7 @@ function App() {
     <AppProvider>
       <UserProvider>
         <ViewProvider>
-          <Routes>
-            <Route index path="/*" element={<Layout />} />
-          </Routes>
+        <Layout />
         </ViewProvider>
       </UserProvider>
     </AppProvider>
