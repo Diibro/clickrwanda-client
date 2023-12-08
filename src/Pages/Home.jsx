@@ -13,7 +13,7 @@ const Home = () => {
     <div className="page home">
       <div className="hello-section">
         <div className='col'>
-          <h1>Search anything in <br /> Rwanda</h1>
+          <h1>Sell, Buy, Rent and Advertise <br />in Rwanda</h1>
           <SearchBar />
         </div>
         <img src={HelloImage} alt="hello section image" />

@@ -14,7 +14,8 @@ export const UserProvider = ({children}) => {
           loggedIn: false
      });
      useEffect(() => {
-          const token = Cookies.get('token');
+          const token = Cookies.get('clickrwanda-server-token');
+          console.log(token);
           if(token){
                const storedData = localStorage.getItem('userData');
                if(storedData){
@@ -26,7 +27,8 @@ export const UserProvider = ({children}) => {
                     }))
                }
           }
-     }, [])
+     }, []);
+     
      return(
           <UserContext.Provider value={[user, setUser]} >{children}</UserContext.Provider>
      )
