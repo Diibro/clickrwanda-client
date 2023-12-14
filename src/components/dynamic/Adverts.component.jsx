@@ -54,7 +54,7 @@ export const AddAdvertForm = () => {
   const [data, setData] = useContext(AppData);
   const [, setUser] = useContext(UserContext);
   const [adInfo, setAdInfo] = useState({});
-  const [adDescription, setAdDescription] = useState({});
+  const [adDescription, setAdDescription] = useState("");
   const {categories, subCategories} = data; 
   const [loading, setLoading] = useState(false); 
   const closeForm = () => {
@@ -82,8 +82,8 @@ export const AddAdvertForm = () => {
       formData.append('ad_price', adInfo.ad_price);
       formData.append('image', adInfo.ad_image);
       if (adInfo.otherImages) {
-        for (let i = 0; i < adInfo.otherImages.length; i++) {
-          formData.append(`otherImage`, adInfo.otherImages[i]);
+        for (let i = 0; i < Array.from(adInfo.otherImages).length; i++) {
+          formData.append(`otherImage`, Array.from(adInfo.otherImages)[i]);
         }
       }
       formData.append('sub_category_id',adInfo.subCategory_id);
@@ -159,7 +159,7 @@ export const AddAdvertForm = () => {
             </div>
             <div className="col">
               <InputLabel htmlFor="description">Description:</InputLabel>
-              <TextField id="description" rows={4} name="description" onChange={(e) => setAdDescription((prev) => ({...prev, description: e.target.value} ))}>Ad description</TextField>
+              <TextField id="description" rows={4} name="description" onChange={(e) => setAdDescription(e.target.value)}>Ad description</TextField>
             </div>
           </div>
           <div className="row">

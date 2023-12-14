@@ -30,7 +30,7 @@ const ProductView = () => {
                     <p className="p-tag">Price: <b>Rwf {advertView.ad_price}</b></p>
                     <p className="p-tag">Category:  <b>{advertView.category_name}</b></p>
                     <p className="p-tag">Sub category: <b>{advertView.sub_name}</b></p>
-                    <p className="p-tag">Description: {"current no description"}</p>
+                    <p className="p-tag">Description: {advertView.description.desc}</p>
                     <div className="seller-info">
                          <h3>Owner:</h3>
                          <div className="row">
@@ -70,12 +70,12 @@ const ServiceView = () => {
                </div>
                <div className="product-view-content">
                     <h3>{advertView.ad_name}</h3>
-                    <p>Price: <b>{advertView.ad_price}</b></p>
-                    <p><i>Category:</i>  <b>{advertView.category_name}</b></p>
-                    <p><i>Sub category:</i> <b>{advertView.sub_name}</b></p>
-                    <p><i>Description:</i> {"current no description"}</p>
+                    <p className="p-tag">Price: <b>From {advertView.ad_price}</b></p>
+                    <p className="p-tag">Category:  <b>{advertView.category_name}</b></p>
+                    <p className="p-tag">Sub category: <b>{advertView.sub_name}</b></p>
+                    <p className="p-tag">Description:  {advertView.description.desc}</p>
                     <div className="seller-info">
-                         <p>Owner:</p>
+                         <h3>Owner:</h3>
                          <div className="row">
                               <img src={advertView.profile_image} alt="seller image" />
                               <span><b>{advertView.full_name}</b></span>
