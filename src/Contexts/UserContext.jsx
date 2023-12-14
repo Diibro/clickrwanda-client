@@ -14,7 +14,6 @@ export const UserProvider = ({children}) => {
      });
      useEffect(() => {
           const token = localStorage.getItem('loginToken') || null;
-          console.log(token);
           if(token){
                const storedData = localStorage.getItem('userData');
                if(storedData){

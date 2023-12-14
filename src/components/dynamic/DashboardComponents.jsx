@@ -15,6 +15,14 @@ export const  MainContainer = ({children}) => {
      )
 }
 
+export const DashboardContainer = ({children}) => {
+     return (
+          <div className='dashboard-container'>
+               {children}
+          </div>
+     )
+}
+
 const LinkContainer = ({content}) => {
      // const [deviceView] = useContext(DeviceView);
      // const {isMobile, isTablet} = deviceView;
@@ -49,6 +57,22 @@ export const ContentContainer = ({children}) => {
           </div>
      )
 }
+
+export const DashboardRow = ({children}) => {
+     return(
+          <div className="dashboard-row">
+               {children}
+          </div>
+     )
+}
+
+export const DashboardColumn = ({children}) => {
+     return(
+          <div className="dashboard-column">
+               {children}
+          </div>
+     )
+}
 NavContainer.propTypes = {
      children: PropTypes.any,
 } 
@@ -63,4 +87,16 @@ ContentContainer.propTypes = {
 
 LinkContainer.propTypes = {
      content: PropTypes.object
+}
+
+DashboardContainer.propTypes = {
+     children: PropTypes.any
+}
+
+DashboardRow.propTypes = {
+     children: PropTypes.any
+}
+
+DashboardColumn.propTypes = {
+     children: PropTypes.any
 }

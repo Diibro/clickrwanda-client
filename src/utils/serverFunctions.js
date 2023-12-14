@@ -33,6 +33,35 @@ export const registerUser = async (url, params) => {
   }
 }
 
+export const updateUser = async(url, params) => {
+  try {
+     const loginToken = localStorage.getItem('loginToken') || null;
+    const res = await axios.post(url, params,{
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': loginToken
+      }
+    });
+    const info = await res.data;
+    return info;
+  } catch (error) {
+    return false
+  }
+}
+
+export const searchUser = async (url) => {
+  try {
+    const loginToken = localStorage.getItem('loginToken') || null;
+    const res = await axios.get(url, {headers: {
+      'Authorization': loginToken
+    }});
+    const info = await res.data;
+    return info;
+  } catch (error) {
+    return false
+  }
+}
+
 export const loginUser = async (url, params) => {
   try {
     const res = await axios.post(url, params, {withCredentials: true, credentials: true});
@@ -43,6 +72,31 @@ export const loginUser = async (url, params) => {
   }
 }
 
+export const getUserAds = async (url) => {
+  try {
+    const loginToken = localStorage.getItem('loginToken') || null;
+    const res = await axios.get(url, {headers: {
+      'Authorization': loginToken
+    }});
+    const info = await res.data;
+    return info;
+  } catch (error) {
+    return false
+  }
+}
+
+export const addAdvert = async (url, params) => {
+  try {
+    const loginToken = localStorage.getItem('loginToken') || null;
+    const res = await axios.post(url, params, {headers: {
+      'Authorization': loginToken
+    }});
+    const info = await res.data;
+    return info;
+  } catch (error) {
+    return false;
+  }
+}
 export const logoutUser = async () => {
   try {
     localStorage.removeItem('userData');

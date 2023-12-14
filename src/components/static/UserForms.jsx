@@ -10,6 +10,7 @@ import AppData from "../../Contexts/AppContext";
 import server from "../../config/Server";
 import { Loadingv2 } from "./Loading";
 import { TiTick } from "react-icons/ti";
+import { AddAdvertForm } from "../dynamic/Adverts.component";
 
 
 const UserForms = () => {
@@ -18,7 +19,7 @@ const UserForms = () => {
      if(activeForm != '') {
           return (
                <div className="user-forms">
-                {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : null}
+                {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : null}
                </div>
              )
      }else{
@@ -66,7 +67,6 @@ const LoginForm = () => {
                     return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
                }
           } catch (error) {
-               console.error('Error:', error);
                return raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
           }finally{
                setLoading(false);

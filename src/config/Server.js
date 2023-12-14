@@ -1,5 +1,5 @@
 import endpoints from './Endpoints';
-import { fetchData, getUrl, loginUser, logoutUser, registerUser, searchData } from '../utils/serverFunctions';
+import { addAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, registerUser, searchData, searchUser, updateUser } from '../utils/serverFunctions';
 
 
 const server = {
@@ -35,6 +35,18 @@ const server = {
      },
      logout: async() => {
           return await logoutUser(getUrl(endpoints.logout));
+     },
+     updateUser: async (params) =>{
+          return await updateUser(getUrl(endpoints.updateUser), params);
+     },
+     getUserData: async() =>{
+          return await searchUser(getUrl(endpoints.searchUser));
+     },
+     getUserAdverts: async () => {
+          return await getUserAds(getUrl(endpoints.userAdverts));
+     },
+     addAdvert: async (params) => {
+          return await addAdvert(getUrl(endpoints.addAdvert), params);
      }
 
 }
