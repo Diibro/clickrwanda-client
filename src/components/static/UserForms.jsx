@@ -132,6 +132,7 @@ const SignUpForm = () => {
                raiseAlert('success', 'Successfully created the account', <ImTicket />);
                setUser((prev) => ({ ...prev, activeForm: 'login' }));
                } else {
+               if(res.error) console.log(res.error);
                raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
                }
           } catch (error) {

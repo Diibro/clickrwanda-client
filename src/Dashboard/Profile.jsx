@@ -58,7 +58,7 @@ const Profile = () => {
       if(data.name != "") newData.append('name', data.name);
       if(data.username != "") newData.append('username', data.username);
       if(data.phone != "") newData.append('phone', data.name);
-      const location = {location: data.location, street: data.street || userInfo.location?.street || userInfo.user_location.street};
+      const location = {location: data.location, street: data?.street || userInfo.location?.street || userInfo.user_location.street};
       if(data.location != "") newData.append('location', JSON.stringify(location));
       if(fileImage != "") newData.append('logo', fileImage);
       const res = await server.updateUser(newData);
