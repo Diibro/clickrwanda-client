@@ -519,7 +519,7 @@ a{
 }
 .user-forms .form-container{
      position: relative;
-     width: clamp(360px, 80%, 1600px);
+     width: clamp(360px, 40%, 1200px);
      background-color: var(--white-text);
      border-radius: 10px;
      padding: 10px;
