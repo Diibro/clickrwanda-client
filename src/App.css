@@ -963,8 +963,9 @@ a{
 
 
 .product-square-container {
-     background-color: var(--back-color-gold1);
-     box-shadow: 1px 1px 2px var(--text-color-title);
+     background-color: var(--white-text);
+     box-shadow: 1px 1px 5px var(--text-color-title);
+     margin: 0 0 20px;
 }
 
 .product-square-container h5{
@@ -972,7 +973,7 @@ a{
      font-weight: 600;
      color: var(--text-color-black);
      margin: 2px 0;
-     padding: 0 5px;
+     padding: 0;
      max-width: 95%;
      text-overflow: ellipsis;
      white-space: nowrap;
@@ -985,18 +986,19 @@ a{
      flex-direction: row;
      align-items: center;
      justify-content: space-between;
+     margin: 5px auto;
      padding:  4px 2.5px;
      flex-wrap: wrap;
 } 
 
 .product-square-container .content b{
      font-size: 1rem;
-     color: var(--back-color-gold2);
+     color: var(--back-color-red1);
 }
 .ad-image {
      width: 100%;
      margin: 0;
-     aspect-ratio: 10/8;
+     aspect-ratio: 10/10;
      border-radius: 5px;
 }
 
