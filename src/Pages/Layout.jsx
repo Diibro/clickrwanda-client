@@ -15,11 +15,13 @@ import { AlertView } from '../views/AlertsViews';
 import { useContext } from 'react';
 import AppData from '../Contexts/AppContext';
 import NotFound from './NotFound';
+import AdvertPage from './AdvertPage';
+import { Loadingv2 } from '../components/static/Loading';
 
 
 const Layout = () => {
      const [data] = useContext(AppData);
-     const {alertView} = data
+     const {alertView, loading} = data
      return (
      <FilterProvider>
           <ViewProvider>
@@ -32,10 +34,12 @@ const Layout = () => {
                <Route  path='/user-dashboard/*' element={<AdminLayout />} />
                <Route path='/ads/*' element={<AdvertsPage />} />
                <Route path='/user-dashboard/*' element={<UserLayout />} />
+               <Route path='/ad/:name' element={<AdvertPage />}/>
                <Route element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 
           <UserForms /> 
+          {loading ? <Loadingv2 /> : null}
           <Footer /> 
           </ViewProvider>
            

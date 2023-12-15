@@ -36,7 +36,7 @@ export const InnerSection = ({children, type}) => {
      if(type === "more"){
           return(
                <div className='inner-container view-more-container'>
-                    <p>{children}</p>
+                    <b>{children}</b>
                </div>
           );
      }else if(type === "title"){

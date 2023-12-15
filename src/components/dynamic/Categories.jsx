@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useContext } from "react";
 import AppData from "../../Contexts/AppContext";
-import Loading from "../static/Loading";
 import { Container } from "@mui/material";
 import { FaArrowRight } from "react-icons/fa";
 import { InnerSection } from './InnerSectionContainer';
@@ -14,7 +13,7 @@ const Categories = ({limit}) => {
      const {categories} = data;
      return(
           <>
-          {!categories ? <Loading /> : categories[0] ? (
+          {!categories ? null : categories[0] ? (
                <Container>
                <InnerSection type="content">
                     {Array.isArray(categories) && limit != 0 ? categories.map(
@@ -34,7 +33,7 @@ const Categories = ({limit}) => {
                               ads_no={item.total_adverts > 0 ?` ${item.total_adverts} ads`: 'no ads'}
                               />
                     )
-                    : <Loading />}
+                    : null}
                </InnerSection>
 
                {limit 
@@ -42,7 +41,7 @@ const Categories = ({limit}) => {
                     : <></>}
                </Container>
           
-          ) : categories.status ? <Loading /> : <Loading /> }
+          ) : categories.status ? null : null }
           </>
      )
 }

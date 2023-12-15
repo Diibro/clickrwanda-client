@@ -14,11 +14,13 @@ export const AppProvider = ({children}) => {
           alertView: {
                on: false,
                content: {}
-          }
+          },
+          loading: false
      });
      useEffect(() => {
           const fetchData = async () => {
                try {
+                    setData((prev) => ({...prev, loading: true}));
                     const categoriesData = await server.get('categories');
                     const advertsData = await server.get('adverts');
                     const subCategoriesData = await server.get('sub categories');
@@ -33,6 +35,8 @@ export const AppProvider = ({children}) => {
                     }));
                } catch (error) {
                  console.error('Error fetching data:', error);
+               }finally{
+                    setData((prev) => ({...prev, loading: false}));
                }
              };
          

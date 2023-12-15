@@ -3,6 +3,7 @@ import { Loadingv2 } from "../components/static/Loading";
 import { DashboardContainer, DashboardRow } from "../components/dynamic/DashboardComponents";
 import server from "../config/Server";
 import UserContext from "../Contexts/UserContext";
+import PropTypes from 'prop-types'
 
 const MyAdverts = () => {
   const [loading, setLoading] = useState(false);
@@ -25,11 +26,11 @@ const MyAdverts = () => {
     }
   }
   useEffect(() =>{
+    fetchAdverts();
     if(localStorage.getItem('userAds')){
-      setAdverts(JSON.parse(localStorage.getItem("userAds")));
-      
+      setAdverts(JSON.parse("Adverts Available"));
     }else{
-      fetchAdverts();
+      console.log("fetching")
     }
   }, [])
   return (
@@ -39,7 +40,7 @@ const MyAdverts = () => {
           <h2>My Adverts</h2>
         </DashboardRow>
         <DashboardRow>
-          {adverts}
+          {adverts != "no data found" ? <AllAdverts content={adverts} />  :"No adverts found"}
         </DashboardRow>
       </DashboardContainer>
       {loading ? <Loadingv2 /> : null}
@@ -47,4 +48,16 @@ const MyAdverts = () => {
   )
 }
 
+const AllAdverts = ({content}) => {
+  return(
+    <>
+      {JSON.stringify(content)}
+    </>
+  )
+}
+
 export default MyAdverts;
+
+AllAdverts.propTypes = {
+  content: PropTypes.any
+}

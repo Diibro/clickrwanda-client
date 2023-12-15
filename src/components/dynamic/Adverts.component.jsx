@@ -1,5 +1,4 @@
 import { Container, Input, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import Loading, { Loadingv2 } from "../static/Loading";
 import { InnerSection } from "./InnerSectionContainer";
 import AppData from "../../Contexts/AppContext";
 import { useContext, useState } from "react";
@@ -43,7 +42,6 @@ export const Adverts = ({limit}) => {
       }else{
         return(
           <Container>
-            <Loading />
           </Container>
         )
       }
@@ -55,8 +53,7 @@ export const AddAdvertForm = () => {
   const [, setUser] = useContext(UserContext);
   const [adInfo, setAdInfo] = useState({});
   const [adDescription, setAdDescription] = useState("");
-  const {categories, subCategories} = data; 
-  const [loading, setLoading] = useState(false); 
+  const {categories, subCategories} = data;  
   const closeForm = () => {
     setUser((prev) => ({...prev, activeForm:''}));
   }
@@ -74,7 +71,7 @@ export const AddAdvertForm = () => {
   const submitForm =async (event) => {
     event.preventDefault();
     try {
-      setLoading(true);
+      setData((prev) => ({...prev, loading:true}));
       const formData = new FormData();
       formData.append('ad_name', adInfo.ad_name);
       formData.append('description', adDescription);
@@ -98,7 +95,7 @@ export const AddAdvertForm = () => {
     } catch (error) {
       return raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
     }finally{
-      setLoading(false);
+      setData((prev) => ({...prev, loading:false}));
     }
     
   } 
@@ -119,7 +116,7 @@ export const AddAdvertForm = () => {
                 <MenuItem key={category.category_id} value={category.category_id}>
                   {category.category_name}
                 </MenuItem>
-              )): <Loading />}
+              )): null}
             </Select>
           </div>
           <div className="col">
@@ -135,7 +132,7 @@ export const AddAdvertForm = () => {
                 </MenuItem>
                 :
                 null
-              )): <Loading />}
+              )): null}
             </Select>
           </div>
         </div>
@@ -187,7 +184,6 @@ export const AddAdvertForm = () => {
           <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
         </div>
       </form>
-      {loading ? <Loadingv2 /> : null}
     </div>
   )
   
