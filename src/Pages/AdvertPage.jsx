@@ -45,30 +45,24 @@ const AdvertPage = () => {
     <div className="advert-page">
      <div className="advert-page-mainAdvert">
           <div className="col">
-               <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
-          </div>
-          <div className="col">
-               {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>${adViewed?.ad_price ? adViewed.ad_price : "-"}</b> </h3>}
-          </div>
-     </div>
-     <div className="advert-page-mainAdvert">
-          <div className="col">
                <div className="images">
                     <img src={mainImage} alt={adViewed?.ad_id} className="img" />
                </div>
-               <div className="content">
-                    {adViewed?.description && <h4>Description:</h4>}
-                    <p>
-                         {adViewed?.description.desc}
-                    </p>
-               </div>
-          </div>
-          <div className="col">
                <div className="images">
                     <div className="otherImages">
                          <img src={adViewed?.ad_image} alt={adViewed?.ad_name} onClick={() => setMainImage(adViewed.ad_image)} />
                          {images?.map((image, index) => < img src={image} alt={adViewed?.ad_name} key={index} onClick={() => setMainImage(image)} />)  }
                     </div>
+               </div>
+          </div>
+          <div className="col">
+               <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
+               {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? adViewed.ad_price : "-"}</b> </h3>}
+               <div className="content">
+                    {adViewed?.description && <h4>Description:</h4>}
+                    <p>
+                         {adViewed?.description.desc}
+                    </p>
                </div>
                <div className="vendor">
                     {adViewed?.full_name && <h4>Owner Information:</h4>}

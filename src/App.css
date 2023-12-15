@@ -1229,8 +1229,8 @@ a{
      transform: scale(1.1);
 }
 
-.advert-page-mainAdvert .col h3{
-     width: 95%;
+.advert-page-mainAdvert .col .advert-price{
+     width: 100%;
      margin: 10px auto;
      text-align: left;
      font-size: 1.5rem;
@@ -1263,7 +1263,7 @@ a{
 
 
 .advert-page-mainAdvert .col .vendor{
-     width: 95%;
+     width: 100%;
      margin: 10px auto;
      box-shadow: 1px 1px 5px var(--text-color-para1);
      border-radius: 10px;
