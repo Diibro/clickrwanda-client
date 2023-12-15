@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
-import FilterContext from '../../Contexts/FilterContext';
-import { jsonParserV1, jsonParserV2 } from '../../utils/jsonFunctions';
+import {  useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getItemUrl } from '../../utils/urlFunctions';
 
 
 const Advert = () => {
@@ -38,9 +38,9 @@ export const ServiceSquare = ({image, title, plan, price, action}) => {
 }
 
 export const AdvertRenderer = ({item}) => {
-     const [,setFilter] = useContext(FilterContext);
+     const navigate = useNavigate();
      const ViewAd = (ad) => {
-          setFilter((prev) => ({...prev, advertView: ad}));
+          navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
      }
      return(
           item.ad_type === "product" ? <ProductSquare

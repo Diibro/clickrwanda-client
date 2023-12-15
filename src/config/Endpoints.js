@@ -10,7 +10,8 @@ const endpoints = {
      updateUser: "api/users/3",
      searchUser: "api/users/4",
      userAdverts: "api/advert/get-user-adverts",
-     addAdvert: "api/advert/2"
+     addAdvert: "api/advert/2",
+     searchAdvert: "api/advert/4"
 }
 
 export default endpoints;

@@ -97,6 +97,16 @@ export const addAdvert = async (url, params) => {
     return false;
   }
 }
+
+export const searchAdvert = async(url, params ) => {
+  try {
+    const res = await axios.post(url, params);
+    const info = await res.data;
+    return info;
+  } catch (error) {
+    return false
+  }
+}
 export const logoutUser = async () => {
   try {
     localStorage.removeItem('userData');

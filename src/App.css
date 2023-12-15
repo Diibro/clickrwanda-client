@@ -1158,6 +1158,181 @@ a{
      height: 50px;
      border-radius: 50%;
 }
+
+.advert-page{
+     width: clamp(380px, 80%, 1600px);
+     margin: 10px auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 10px 0;
+}
+
+.advert-page-mainAdvert{
+     width: 97%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     margin: 5px auto;
+}
+
+.advert-page-mainAdvert .col{
+     width: clamp(370px, 48%, 1000px);
+}
+
+.advert-page-mainAdvert .col h2{
+     text-transform:capitalize;
+     font-weight: 800;
+     font-size: 2rem;
+     color: var(--text-color-black);
+}
+
+.advert-page-mainAdvert .col .images{
+     width: 100%;
+     margin: 5px auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 1px 1px 5px var(--back-color-gold2);
+     padding: 10px 0 10px;
+     border-radius: 10px;
+}
+
+.advert-page-mainAdvert .col .images .img{
+     width: 90%;
+     margin: 20px auto;
+     border-radius: 10px;
+     max-height: 400px;
+}
+
+.advert-page-mainAdvert .col .images .otherImages{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-evenly;
+     flex-wrap: wrap;
+}
+
+.advert-page-mainAdvert .col .images .otherImages img{
+     width: clamp(40px,20%, 80px);
+     border-radius: 5px;
+     margin: 2px 5px ;
+}
+
+.advert-page-mainAdvert .col .images .otherImages img:hover{
+     cursor: pointer;
+     transform: scale(1.1);
+}
+
+.advert-page-mainAdvert .col h3{
+     width: 95%;
+     margin: 10px auto;
+     text-align: left;
+     font-size: 1.5rem;
+     color: var(--back-color-red1);
+}
+
+.advert-page-mainAdvert .col h3 b{
+     margin: 0 0 0 20px;
+}
+
+.advert-page-mainAdvert .col .content{
+     width: 100%;
+     margin: 20px auto;
+}
+
+.advert-page-mainAdvert .col .content h4{
+     font-size: 1.2rem;
+     font-weight: 700;
+     color: var(--text-color-black);
+     margin: 5px 0;
+
+}
+
+.advert-page-mainAdvert .col .content p{
+     font-size: 0.9rem;
+     font-weight: 500;
+     width: 95%;
+     margin: 2px auto;
+}
+
+
+.advert-page-mainAdvert .col .vendor{
+     width: 95%;
+     margin: 10px auto;
+     box-shadow: 1px 1px 5px var(--text-color-para1);
+     border-radius: 10px;
+     padding: 10px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.advert-page-mainAdvert .col .vendor h4{
+     font-size: 1.1rem;
+     font-weight: 800;
+     color: var(--text-color-black);
+     margin: 5px 0;
+     width: 90%;
+}
+
+.advert-page-mainAdvert .col .vendor img{
+     width: clamp(30px, 40%, 100px);
+     border-radius: 50%;
+     margin: 5px auto;
+     border: 2px solid var(--back-color-gold2);
+     transition: all 0.4s;
+}
+
+.advert-page-mainAdvert .col .vendor img:hover{
+     cursor: pointer;
+     transform: scale(1.1);
+     border: 2px solid var(--featured-plan);
+}
+
+.advert-page-mainAdvert .col .vendor h5{
+     font-size: 1.1rem;
+     font-weight: 800;
+     color: var(--text-color-black);
+     margin: 5px 0;
+     width: 90%;
+     text-align: center;
+}
+
+.advert-page-mainAdvert .col .vendor .contact{
+     width: 90%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.advert-page-mainAdvert .col .vendor .contact p{
+     margin: 2.5px auto;
+     font-size: 0.9rem;
+     width: 80%;
+}
+
+.advert-page-mainAdvert .col .vendor .contact p a{
+     color: var(--text-color-para1);
+     font-weight: 600;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+}
+
+.advert-page-mainAdvert .col .vendor .contact p a i{
+     margin: 0 10px;
+     font-size: 1.2rem;
+     color: var(--back-color-gold2);
+}
+
 /* end of views styles */
 
 /* end dynamic components */
