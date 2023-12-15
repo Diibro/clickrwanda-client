@@ -18,7 +18,7 @@ const Home = () => {
         </div>
         <img src={HelloImage} alt="hello section image" />
       </div>
-      <Categories limit={isMobile ? 6 : 14} />
+      <Categories limit={isMobile ? 12 : 14} />
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
         Top picks for you
