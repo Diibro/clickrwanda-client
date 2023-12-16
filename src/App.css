@@ -1233,7 +1233,7 @@ a{
      background-color: var(--text-color-para2);
      border-radius: 2rem;
      padding: 4px 10px ;
-     margin: 0 20px 0 0;
+     margin: 5px 20px 5px 0;
 }
 .advert-page-mainAdvert .col h2{
      text-transform:capitalize;
