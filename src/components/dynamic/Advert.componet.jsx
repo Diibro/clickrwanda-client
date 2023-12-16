@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import {  useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getItemUrl } from '../../utils/urlFunctions';
+import { FaLocationDot } from "react-icons/fa6";
+import { capitalizeString } from '../../utils/otherFunctions';
+import { SubmitButton } from './Buttons';
 
 
 const Advert = () => {
@@ -10,28 +13,32 @@ const Advert = () => {
   )
 }
 
-export const ProductSquare = ({image, title, price, plan, action}) => {
+export const ProductSquare = ({image, title, price, plan, action, category, location}) => {
      const [currency, setCurrency] = useState("Rwf");
      return(
-          <div className="product-square-container" onClick={action}>
+          <div className="product-square-container">
                <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
                <img className='ad-image' src={image} alt={title} />
+               <p className='cat'>{category}</p>
                <div className='content'>
-                    <h5>{title}</h5>
-                    <b>{`${currency} ${price}`}</b>
+                    <h5 onClick={action}>{capitalizeString(title)}</h5>
+                    <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
+                    <b>{`${currency} ${price}`} <SubmitButton content={{title:"view ad", action}} /></b>
                </div>
           </div>
      )
 }
 
-export const ServiceSquare = ({image, title, plan, price, action}) => {
+export const ServiceSquare = ({image, title, plan, price, action, category, location}) => {
      return(
-          <div className="product-square-container" onClick={action}>
+          <div className="product-square-container">
                <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
-               <img className='ad-image' src={image} alt={title} />
+               <img className='ad-image' src={image} alt={capitalizeString(title)} />
+               <p className='cat'>{category}</p>
                <div className='content'>
-                    <h5>{title}</h5>
-                    <b>Rwf {price}</b>
+                    <h5 onClick={action}>{title}</h5>
+                    <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
+                    <b>Rwf {price} <SubmitButton content={{title:"view ad", action}} /></b>
                </div>
           </div>
      )
@@ -48,12 +55,16 @@ export const AdvertRenderer = ({item}) => {
                          title={item.ad_name}
                          price={item.ad_price}
                          plan={item.plan_name}
+                         category={item.category_name}
+                         location={item.user_location.location}
                          action={() => ViewAd(item)}
                          />
                          : <ServiceSquare
                               image={item.ad_image} 
                               title={item.ad_name}
                               plan={item.plan_name}
+                              category={item.category_name}
+                              location={item.user_location.location}
                               price={item.ad_price}
                               action={() => ViewAd(item)}
                          />
@@ -79,7 +90,9 @@ ServiceSquare.propTypes = {
      price: PropTypes.any,
      description: PropTypes.any,
      plan: PropTypes.any,
-     action: PropTypes.any
+     action: PropTypes.any,
+     location: PropTypes.any,
+     category: PropTypes.any
 }
 
 ProductSquare.propTypes = {
@@ -88,7 +101,9 @@ ProductSquare.propTypes = {
      price: PropTypes.any,
      condition: PropTypes.any,
      plan: PropTypes.any,
-     action: PropTypes.any
+     action: PropTypes.any,
+     location: PropTypes.any,
+     category: PropTypes.any
 }
 
 export default Advert

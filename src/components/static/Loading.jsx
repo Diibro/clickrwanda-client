@@ -1,4 +1,6 @@
+import { useContext} from 'react';
 import Loader from '../../assets/loader.gif';
+import AppData from '../../Contexts/AppContext';
 const Loading = () => {
   return (
     <div className='loading'>
@@ -8,11 +10,18 @@ const Loading = () => {
 }
 
 export const Loadingv2 = () => {
-  return(
-    <div className='loading loading-absolute'>
-      <img src={Loader} alt="loading gif" />
-    </div>
+  const [data] = useContext(AppData);
+  const {loading} = data
+
+  if(loading){
+    return(<div className='loading loading-absolute'>
+        <img src={Loader} alt="loading gif" />
+      </div>
   )
+  }else{
+    return null;
+  }
+  
 }
 
 export default Loading

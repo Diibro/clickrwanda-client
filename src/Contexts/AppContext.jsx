@@ -1,11 +1,14 @@
 import {useState, createContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import server from '../config/Server';
+import { useLocation } from 'react-router-dom';
 
 const AppData = createContext();
 
 export const AppProvider = ({children}) => {
+     const location = useLocation();
      const [data, setData] = useState({
+          fetchNow: false,
           categories:[],
           adverts: [],
           subCategories: [],
@@ -17,6 +20,8 @@ export const AppProvider = ({children}) => {
           },
           loading: false
      });
+
+     const {fetchNow} = data;
      useEffect(() => {
           const fetchData = async () => {
                try {
@@ -38,10 +43,19 @@ export const AppProvider = ({children}) => {
                }finally{
                     setData((prev) => ({...prev, loading: false}));
                }
-             };
-         
-             fetchData();
-     }, []);
+          };
+          if(!data.categories[0]){
+          if(location.pathname === '/' || fetchNow){
+               fetchData();
+               }
+          }
+
+          if(fetchNow){
+               setData((prev) => ({...prev, fetchNow:false}));
+          }
+             
+             
+     }, [location.pathname, fetchNow]);
      return(
           <AppData.Provider value={[data, setData]}>
                {children}

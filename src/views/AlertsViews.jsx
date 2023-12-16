@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { useContext, useEffect} from "react";
 import AppData from "../Contexts/AppContext";
 
-export const AlertView = ({content}) => {
+export const AlertView = () => {
      const [data, setData] = useContext(AppData);
      const {alertView} = data;
+     const content = alertView?.content;
      const {type} = content;
      useEffect(()=> {
           const timeoutId = setTimeout(() => {
@@ -23,8 +24,8 @@ export const AlertView = ({content}) => {
           <>
                {alertView.on ?
                <div className={`alert-view ${type}`}>
-                    <i>{content.icon}</i>
-                    <p>{content.message}</p>
+                    <i>{content?.icon}</i>
+                    <p>{content?.message}</p>
                </div>
                : <></>}
           </>

@@ -1,5 +1,5 @@
 import endpoints from './Endpoints';
-import { addAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, registerUser, searchData, searchUser, updateUser } from '../utils/serverFunctions';
+import { addAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, registerUser, searchAdvert, searchData, searchUser, updateUser } from '../utils/serverFunctions';
 
 
 const server = {
@@ -47,10 +47,9 @@ const server = {
      },
      addAdvert: async (params) => {
           return await addAdvert(getUrl(endpoints.addAdvert), params);
+     },
+     searchAd: async(params) => {
+          return await searchAdvert(getUrl(endpoints.searchAdvert), params);
      }
-
 }
-
-
-
 export default server;

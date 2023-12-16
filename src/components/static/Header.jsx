@@ -3,17 +3,20 @@ import UserContext from "../../Contexts/UserContext";
 import { ActionBtn } from "../dynamic/Buttons";
 import { Link } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
+import AppData from "../../Contexts/AppContext";
 const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png'
 
 
 const DesktopHeader = () => {
      const [user, setUser] = useContext(UserContext);
+     const [,setData] = useContext(AppData);
      const {loggedIn, userInfo} = user;
      const [deviceView] = useContext(DeviceView);
      const {isMobile} = deviceView;
 
      const activateForm = () =>{
           if(loggedIn){
+               setData((prev) => ({...prev, fetchNow: true}));
                return setUser((prev) => ({
                     ...prev, 
                     activeForm: 'add-advert'
