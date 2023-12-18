@@ -7,11 +7,13 @@ import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
+import { SimilarAds } from "../components/dynamic/Adverts.component";
 
 const AdvertPage = () => {
      const location = useLocation();
      const [loading, setLoading] = useState(false);
      const [adViewed, setAdViewed] = useState(null);
+     const [otherAds, setOtherAds] = useState(null);
      const adId = getItemUrlId(location.search);
      const images = jsonParserV1(adViewed?.ad_images || null);
      const [mainImage, setMainImage] = useState(null);
@@ -23,9 +25,12 @@ const AdvertPage = () => {
                let adData =  localStorage.getItem('adViewed');
                if(adData){
                     try {
-                         const ad = JSON.parse(adData);
+                         const adDatas = JSON.parse(adData);
+                         const ad = adDatas.adData;
                          if(ad && adId === ad.ad_id){
+                              const {sameCategory, sameSubCategory} = adDatas;
                               setAdViewed(ad);
+                              setOtherAds(sameSubCategory || sameCategory || null);
                               setMainImage(ad.ad_image);
                               check = 1;
                          }
@@ -39,8 +44,10 @@ const AdvertPage = () => {
                     setLoading(true);
                     const res = await server.searchAd({ad_id:adId});
                     localStorage.setItem("adViewed",JSON.stringify(res.data));
-                    setAdViewed(res.data);
-                    setMainImage(res.data.ad_image);
+                    const {adData, sameCategory, sameSubCategory} = res.data;
+                    setAdViewed(adData);
+                    setOtherAds(sameSubCategory || sameCategory || null);
+                    setMainImage(adData.ad_image);
                }
           } catch (error) {
                console.log(error);
@@ -96,7 +103,10 @@ const AdvertPage = () => {
                     </div>
                </div>
           </div>
-          <div className="advert-page-others"></div>
+          <div className="advert-page-others">
+               <h3>Similar ads</h3>
+               {otherAds ? <SimilarAds limit={10} adverts={otherAds} /> : <>no similarads</>}
+          </div>
           </>
           : <Loading/>
      }

@@ -48,6 +48,38 @@ export const Adverts = ({limit}) => {
     
 }
 
+export const SimilarAds = ({limit, adverts}) => {
+  if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
+    return(
+      <>
+        <InnerSection type="content">
+          {
+            adverts.map((item, index) => ( index <= limit ? (
+              <AdvertRenderer key={item.ad_id} item={item}/>
+            ) : null))
+          }
+        </InnerSection>
+        <InnerSection type="more" ><MoreLink content={{message: "all ads", dest: '/ads', icon: FaArrowRight}} /></InnerSection>
+      </>
+    )
+  }else if(limit === 0 && adverts && adverts[0] && adverts != "no data found" ){
+    return(
+        <InnerSection type="content">
+          {
+            adverts.map((item) => (
+              <AdvertRenderer key={item.ad_id} item={item}/>
+            ))
+          }
+        </InnerSection>
+    )
+  }else{
+    return(
+      <Container>
+      </Container>
+    )
+  }
+}
+ 
 export const AddAdvertForm = () => {
   const [data, setData] = useContext(AppData);
   const [, setUser] = useContext(UserContext);
@@ -191,4 +223,9 @@ export const AddAdvertForm = () => {
 
 Adverts.propTypes = {
      limit: PropTypes.number
+}
+
+SimilarAds.propTypes = {
+  limit: PropTypes.any,
+  adverts: PropTypes.any
 }
