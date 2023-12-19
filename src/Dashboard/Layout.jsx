@@ -11,7 +11,7 @@ import { useEffect } from "react";
 const UserLayout = () => {
   const navigate = useNavigate();
     useEffect(() => {
-      if(!localStorage.getItem('loginToken')){
+      if(!sessionStorage.getItem('loginToken')){
         navigate('/');
       }
 

@@ -27,7 +27,7 @@ const Logout = () => {
       setLoading(true);
       const res = await server.logout();
       if(res.status === "success"){
-        localStorage.removeItem('userData');
+        sessionStorage.removeItem('userData');
 
         setUser((prev) => ({
           ...prev,

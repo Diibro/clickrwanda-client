@@ -15,7 +15,7 @@ const MyAdverts = () => {
       setLoading(true);
       const res = await server.getUserAdverts();
       if(res.status === "pass") {
-        localStorage.setItem('userAds', JSON.stringify(res.data));
+        sessionStorage.setItem('userAds', JSON.stringify(res.data));
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') setUser((prev) => ({...prev, activeForm:'login'}));
       }
@@ -27,7 +27,7 @@ const MyAdverts = () => {
   }
   useEffect(() =>{
     fetchAdverts();
-    if(localStorage.getItem('userAds')){
+    if(sessionStorage.getItem('userAds')){
       setAdverts(JSON.parse("Adverts Available"));
     }else{
       console.log("fetching")

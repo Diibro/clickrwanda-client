@@ -140,7 +140,7 @@ a{
 
 .success{
      color: var(--featured-plan);
-     border: 2px solid var(--featured-plan);
+     border: 1.5px solid var(--featured-plan);
 }
 
 .succes i{
@@ -149,7 +149,7 @@ a{
 }
 
 .fail{
-     border: 2px solid var(--back-color-red1);
+     border: 1.5px solid var(--back-color-red1);
      color: var(--back-color-red1);
 }
 
@@ -1230,7 +1230,8 @@ a{
 }
 
 .advert-page-mainAdvert .col .cat span{
-     background-color: var(--text-color-para2);
+     background-color: var(--text-color-title);
+     color: var(--white-text);
      border-radius: 2rem;
      padding: 4px 10px ;
      margin: 5px 20px 5px 0;
@@ -1267,7 +1268,7 @@ a{
      display: flex;
      flex-direction: row;
      align-items: center;
-     justify-content: space-evenly;
+     justify-content: left;
      flex-wrap: nowrap;
      overflow-x: scroll;
 }
@@ -1279,7 +1280,8 @@ a{
 .advert-page-mainAdvert .col .images .otherImages img{
      width: clamp(40px,20%, 80px);
      border-radius: 5px;
-     margin: 2px 5px ;
+     margin: 5px 5px ;
+     box-shadow: 1px 1px 2px var(--text-color-para2);
 }
 
 .advert-page-mainAdvert .col .images .otherImages img:hover{
@@ -1327,9 +1329,25 @@ a{
      border-radius: 10px;
      padding: 10px;
      display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+}
+
+.advert-page-mainAdvert .col .vendor .vendor-col-left{
+     width: 35%;
+     display: flex;
      flex-direction: column;
      align-items: center;
-     justify-content: center;
+}
+
+.advert-page-mainAdvert .col .vendor .vendor-col-right{
+     align-items: flex-start;
+     width: 65%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
 }
 
 .advert-page-mainAdvert .col .vendor h4{
@@ -1391,8 +1409,49 @@ a{
      color: var(--back-color-gold2);
 }
 
+.advert-page-mainAdvert .col .vendor .contact .vendor-date, .advert-page-mainAdvert .col .vendor .contact .vendor-views{
+     font-size: 0.9rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+}
+
+.advert-page-mainAdvert .col .vendor .contact .vendor-views i{
+     margin: 0 3px;
+     display: flex;
+     align-items: center;
+}
+
+.advert-page-others{
+     width: 100%;
+     margin: 20px auto;
+}
+
+.advert-page-others h3{
+     font-size: 2rem;
+     color: var(--text-color-title);
+}
+
 /* end of views styles */
 
+/* rating styles */
+
+.rating {
+     width: 100px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+}
+
+.rating i{
+     font-size: 18px;
+     color: var(--back-color-gold2);
+     font-weight: 500;
+}
+/* end of rating styles */
 /* end dynamic components */
 
 /* overrider styles */

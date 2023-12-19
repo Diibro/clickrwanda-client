@@ -16,6 +16,7 @@ import NotFound from './NotFound';
 import AdvertPage from './AdvertPage';
 import { Loadingv2 } from '../components/static/Loading';
 import SearchPage from './SearchPage';
+import VendorPage from './VendorPage';
 
 
 const Layout = () => {
@@ -33,7 +34,8 @@ const Layout = () => {
                <Route path='/user-dashboard/*' element={<UserLayout />} />
                <Route path='/ad/:name' element={<AdvertPage />}/>
                <Route path='/search/:params' element={<SearchPage />} />
-               <Route element={<NotFound />}/>
+               <Route path='/vendor/:params'  element={<VendorPage/>}/>
+               <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 
           <UserForms /> 

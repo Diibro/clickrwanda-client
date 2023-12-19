@@ -26,18 +26,35 @@ export const AppProvider = ({children}) => {
           const fetchData = async () => {
                try {
                     setData((prev) => ({...prev, loading: true}));
-                    const categoriesData = await server.get('categories');
-                    const advertsData = await server.get('adverts');
-                    const subCategoriesData = await server.get('sub categories');
-                    const payPlansData = await server.get('payment plans');
-                    setData((prev) => ({
-                    ...prev,
-                    categories: categoriesData,
-                    adverts: advertsData,
-                    subCategories: subCategoriesData,
-                    payPlans: payPlansData,
-                    currency: "Frw"
-                    }));
+                    const sessionData = sessionStorage.getItem('appData');
+                    if (sessionData){
+                         const parsedSessionData = JSON.parse(sessionData);
+                         const {categoriesData, subCategoriesData, advertsData, payPlansData} = parsedSessionData;
+                         setData((prev) => ({
+                              ...prev,
+                              categories: categoriesData,
+                              adverts: advertsData,
+                              subCategories: subCategoriesData,
+                              payPlans: payPlansData,
+                              currency: "Frw"
+                         }));
+                    }else{
+                         const categoriesData = await server.get('categories');
+                         const advertsData = await server.get('adverts');
+                         const subCategoriesData = await server.get('sub categories');
+                         const payPlansData = await server.get('payment plans');
+                         const appData = {categoriesData, advertsData, subCategoriesData, payPlansData}
+                         sessionStorage.setItem('appData', JSON.stringify(appData));
+                         setData((prev) => ({
+                         ...prev,
+                         categories: categoriesData,
+                         adverts: advertsData,
+                         subCategories: subCategoriesData,
+                         payPlans: payPlansData,
+                         currency: "Frw"
+                         }));
+                    }
+                    
                } catch (error) {
                  console.error('Error fetching data:', error);
                }finally{
@@ -45,7 +62,7 @@ export const AppProvider = ({children}) => {
                }
           };
           if(!data.categories[0]){
-          if(location.pathname === '/' || fetchNow){
+               if(location.pathname === '/' || fetchNow){
                fetchData();
                }
           }

@@ -69,7 +69,7 @@ const Profile = () => {
         raiseAlert('success', `${res.message}`, <TiTick />);
         const responce = await server.getUserData();
         if(responce.status === "pass"){
-          localStorage.setItem('userData', JSON.stringify(responce.data));
+          sessionStorage.setItem('userData', JSON.stringify(responce.data));
         }
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') setUser((prev) => ({...prev, activeForm:'login'}));
@@ -168,7 +168,7 @@ const Profile = () => {
 export default Profile;
 
 // const temp ={
-//   if(localStorage.getItem('loginToken')) userData.loginToken = localStorage.getItem('loginToken');
+//   if(sessionStorage.getItem('loginToken')) userData.loginToken = sessionStorage.getItem('loginToken');
 //       if(data.name != "") userData.name = data.name;
 //       if(data.username != "") userData.username = data.username;
 //       if(data.phone != "") userData.phone = data.phone;

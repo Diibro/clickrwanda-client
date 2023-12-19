@@ -53,8 +53,8 @@ const LoginForm = () => {
                formData.append('password', data.password);
                const res = await server.login(data);
                if(res.status === "pass"){
-                    localStorage.setItem('loginToken', res.loginToken);
-                    localStorage.setItem('userData', JSON.stringify(res.data));
+                    sessionStorage.setItem('loginToken', res.loginToken);
+                    sessionStorage.setItem('userData', JSON.stringify(res.data));
                     setUser((prev) => ({
                          ...prev,
                          userInfo: res.data,

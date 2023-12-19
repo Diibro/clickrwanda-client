@@ -59,7 +59,7 @@ export const SimilarAds = ({limit, adverts}) => {
             ) : null))
           }
         </InnerSection>
-        <InnerSection type="more" ><MoreLink content={{message: "all ads", dest: '/ads', icon: FaArrowRight}} /></InnerSection>
+        <InnerSection type="more" ><MoreLink content={{message: "View All", dest: '/ads', icon: FaArrowRight}} /></InnerSection>
       </>
     )
   }else if(limit === 0 && adverts && adverts[0] && adverts != "no data found" ){

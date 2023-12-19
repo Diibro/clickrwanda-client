@@ -13,9 +13,9 @@ export const UserProvider = ({children}) => {
           loggedIn: false
      });
      useEffect(() => {
-          const token = localStorage.getItem('loginToken') || null;
+          const token = sessionStorage.getItem('loginToken') || null;
           if(token){
-               const storedData = localStorage.getItem('userData');
+               const storedData = sessionStorage.getItem('userData');
                if(storedData){
                     const userData = JSON.parse(storedData);
                     setUser((prev) => ({

@@ -37,7 +37,7 @@ export const registerUser = async (url, params) => {
 
 export const updateUser = async(url, params) => {
   try {
-     const loginToken = localStorage.getItem('loginToken') || null;
+     const loginToken = sessionStorage.getItem('loginToken') || null;
     const res = await axios.post(url, params,{
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -53,7 +53,7 @@ export const updateUser = async(url, params) => {
 
 export const searchUser = async (url) => {
   try {
-    const loginToken = localStorage.getItem('loginToken') || null;
+    const loginToken = sessionStorage.getItem('loginToken') || null;
     const res = await axios.get(url, {headers: {
       'Authorization': loginToken
     }});
@@ -76,7 +76,7 @@ export const loginUser = async (url, params) => {
 
 export const getUserAds = async (url) => {
   try {
-    const loginToken = localStorage.getItem('loginToken') || null;
+    const loginToken = sessionStorage.getItem('loginToken') || null;
     const res = await axios.get(url, {headers: {
       'Authorization': loginToken
     }});
@@ -89,7 +89,7 @@ export const getUserAds = async (url) => {
 
 export const addAdvert = async (url, params) => {
   try {
-    const loginToken = localStorage.getItem('loginToken') || null;
+    const loginToken = sessionStorage.getItem('loginToken') || null;
     const res = await axios.post(url, params, {headers: {
       'Authorization': loginToken
     }});
@@ -112,8 +112,8 @@ export const searchAdvert = async(url, params ) => {
 }
 export const logoutUser = async () => {
   try {
-    localStorage.removeItem('userData');
-    localStorage.removeItem('loginToken');
+    sessionStorage.removeItem('userData');
+    sessionStorage.removeItem('loginToken');
     return {status: "success"};
   } catch (error) {
     return false;

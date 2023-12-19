@@ -8,6 +8,11 @@ import { MdMail } from "react-icons/md";
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
 import { SimilarAds } from "../components/dynamic/Adverts.component";
+import UserRating from "../components/dynamic/Rating.component";
+import { dateFormatMonth } from "../utils/dateFunctions";
+import { RiAdvertisementFill } from "react-icons/ri";
+import { MdPageview } from "react-icons/md";
+
 
 const AdvertPage = () => {
      const location = useLocation();
@@ -22,7 +27,7 @@ const AdvertPage = () => {
      const updateAdViewed = async () => {
           let check = 0;
           try {
-               let adData =  localStorage.getItem('adViewed');
+               let adData =  sessionStorage.getItem('adViewed');
                if(adData){
                     try {
                          const adDatas = JSON.parse(adData);
@@ -43,7 +48,7 @@ const AdvertPage = () => {
                if(check === 0){
                     setLoading(true);
                     const res = await server.searchAd({ad_id:adId});
-                    localStorage.setItem("adViewed",JSON.stringify(res.data));
+                    sessionStorage.setItem("adViewed",JSON.stringify(res.data));
                     const {adData, sameCategory, sameSubCategory} = res.data;
                     setAdViewed(adData);
                     setOtherAds(sameSubCategory || sameCategory || null);
@@ -61,7 +66,7 @@ const AdvertPage = () => {
            if(!mainImage && adViewed){
                setMainImage(adViewed.ad_image);
            }
-     }, []);
+     }, [location.search]);
   return (
     <div className="advert-page">
      {
@@ -90,16 +95,25 @@ const AdvertPage = () => {
                          </p>
                     </div>
                     <div className="vendor">
-                         {adViewed?.full_name && <h4>Owner Information:</h4>}
-                         {adViewed?.profile_image && <img src={adViewed?.profile_image} alt={adViewed?.full_name} />}
-                         {adViewed?.full_name && <h5>{adViewed?.full_name}</h5>}
-                         {adViewed?.user_email && 
-                              <div className="contact" >
-                                   <p><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
-                                   <p><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
-                                   <p><a href={`https://www.google.com/maps/place/${adViewed.user_location.location}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {adViewed?.user_location.location}</a></p>
-                              </div>
-                         }
+                    {adViewed?.full_name && <h4>Seller Information:</h4>}
+                         <div className="vendor-col-left">
+                              {adViewed?.profile_image && <img src={adViewed?.profile_image} alt={adViewed?.full_name} />}
+                              {adViewed?.full_name && <h5>{adViewed?.full_name}</h5>}
+                              <UserRating rating={adViewed?.rating} />
+                         </div>
+                         <div className="vendor-col-right">
+                              {adViewed?.user_email && 
+                                   <div className="contact" >
+                                        <p className="vendor-date">Seller since {dateFormatMonth(adViewed?.reg_date)}</p>
+                                        <p className="vendor-views"><i><MdPageview /></i>  {adViewed?.totalViews} Total views</p>
+                                        <p className="vendor-views"><i><RiAdvertisementFill /></i>  {adViewed?.total_ads} Total Ads</p>
+                                        <p><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
+                                        <p><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
+                                        <p><a href={`https://www.google.com/maps/place/${adViewed.user_location.location}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {adViewed?.user_location.location}</a></p>
+                                   </div>
+                              }
+                         </div>
+                         
                     </div>
                </div>
           </div>
