@@ -188,7 +188,7 @@ export const AddAdvertForm = () => {
             </div>
             <div className="col">
               <InputLabel htmlFor="description">Description:</InputLabel>
-              <TextField id="description" rows={4} name="description" onChange={(e) => setAdDescription(e.target.value)}>Ad description</TextField>
+              <TextField id="description" multiline rows={4} name="description" fullWidth onChange={(e) => setAdDescription(e.target.value)}>Ad description</TextField>
             </div>
           </div>
           <div className="row">
