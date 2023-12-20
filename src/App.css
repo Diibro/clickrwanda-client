@@ -1081,6 +1081,11 @@ a{
 .product-square-container .content a{
      font-size: 0.9rem;
      text-transform: capitalize;
+     width: 100%;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     overflow: hidden;
+     margin: 3px auto;
 }
 .ad-image {
      width: 100%;
