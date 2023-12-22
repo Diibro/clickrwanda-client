@@ -1,7 +1,7 @@
-import { Link, useLocation } from "react-router-dom"
-import {  getItemUrlId } from "../utils/urlFunctions";
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import {  getItemUrl, getItemUrlId } from "../utils/urlFunctions";
 import {  useEffect, useState } from "react";
-import { capitalizeString } from "../utils/otherFunctions";
+import { capitalizeString, formatPrice } from "../utils/otherFunctions";
 import { jsonParserV1 } from "../utils/jsonFunctions";
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
@@ -86,8 +86,14 @@ const AdvertPage = () => {
                </div>
                <div className="col">
                     <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
-                    {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? adViewed.ad_price : "-"}</b> </h3>}
-                    <p className="cat"><span>{adViewed?.category_name}</span> <span>{adViewed?.sub_name}</span></p>
+                    {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
+                    {adViewed?.category_name && 
+                         <p className="cat">
+                              <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>
+                              <a href={`/sub-category/${getItemUrl(adViewed?.sub_name, adViewed?.sub_id)}`}><span>{adViewed?.sub_name}</span></a> 
+                         </p>
+                    } 
+                    
                     <div className="content">
                          {adViewed?.description && <h4>Description:</h4>}
                          <p>
@@ -97,7 +103,7 @@ const AdvertPage = () => {
                     <div className="vendor">
                     {adViewed?.full_name && <h4>Seller Information:</h4>}
                          <div className="vendor-col-left">
-                              {adViewed?.profile_image && <img src={adViewed?.profile_image} alt={adViewed?.full_name} />}
+                              {adViewed?.profile_image && <a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}><img src={adViewed?.profile_image} alt={adViewed?.full_name} /></a>}
                               {adViewed?.full_name && <h5>{adViewed?.full_name}</h5>}
                               <UserRating rating={adViewed?.rating} />
                          </div>

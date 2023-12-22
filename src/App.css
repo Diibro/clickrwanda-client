@@ -289,6 +289,10 @@ a{
      justify-content: flex-end;
 }
 
+.header-logo-image{
+     width: 10%;
+     min-width: 120px;
+}
 .desktop-header h1 a{
      color: white;
 }
@@ -447,7 +451,8 @@ a{
 }
 .categories-header{
      position: relative;
-     width: clamp(370px, 90%, 1600px);
+     width: 90%;
+     max-width: 1600px;
      display: flex;
      flex-direction: row;
      flex-wrap: wrap;
@@ -459,7 +464,12 @@ a{
      box-shadow: 1px 1px 4px var(--back-color-gold2);
      z-index: 8;
      background-color: var(--white-text);
-     max-height: 200px;
+     max-height: 120px;
+     overflow-y: scroll;
+}
+
+.categories-header::-webkit-scrollbar{
+     display: none;
 }
 
 .categories-header a{
@@ -992,7 +1002,7 @@ a{
 }
 
 .product-square-container{
-     width: clamp(180px, 17%, 300px);
+     width: clamp(175px, 17%, 300px);
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -1078,6 +1088,13 @@ a{
      align-items: center;
 }
 
+.product-square-container .content b span{
+     max-width:60%;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     overflow: hidden;
+}
+
 .product-square-container .content a{
      font-size: 0.9rem;
      text-transform: capitalize;
@@ -1092,6 +1109,73 @@ a{
      margin: 0;
      aspect-ratio: 10/10;
      border-radius: 5px;
+}
+
+.ad-image:hover{
+     cursor: pointer;
+}
+
+.category-page{
+     position: relative;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.category-page-content{
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     width: 90%;
+     flex-wrap: wrap;
+     padding: 20px 10px;
+     position: relative;
+}
+
+.category-page-header{
+     width: 20%;
+     display: flex;
+     flex-direction: column;
+     flex-wrap: wrap;
+     padding: 5px;
+     margin: 5px 0;
+
+}
+
+.category-adverts{
+     width: 80%;
+     min-width: 360px;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-evenly;
+     
+}
+
+.category-page-header span{
+     width: 90%;
+     margin: 5px auto;
+     border-bottom: 1px solid var(--text-color-title);
+     padding: 2px 5px;
+     font-size: 0.8rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+     border-radius: 5px;
+}
+
+.category-page-header span:hover{
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     cursor: pointer;
+}
+
+.active-sub{
+     background-color: var(--text-color-title);
+     color: var(--white-text) !important;
 }
 
 
@@ -1290,6 +1374,11 @@ a{
      padding: 4px 10px ;
      margin: 5px 20px 5px 0;
 }
+
+.advert-page-mainAdvert .col .cat span:hover{
+     background-color: var(--back-color-blue2);
+     cursor: pointer;
+}
 .advert-page-mainAdvert .col h2{
      text-transform:capitalize;
      font-weight: 800;
@@ -1412,6 +1501,14 @@ a{
      width: 90%;
 }
 
+.advert-page-mainAdvert .col .vendor .vendor-col-left a{
+     margin: 2px auto;
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+}
 .advert-page-mainAdvert .col .vendor img{
      width: clamp(30px, 40%, 100px);
      border-radius: 50%;
@@ -1567,6 +1664,31 @@ a{
           margin: 5px 0;
           font-size: 2.4rem;
      }
+     .category-page-header{
+          width: 95%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          overflow-x: scroll;
+
+     }
+
+     .category-page-header::-webkit-scrollbar{
+          display: none;
+     }
+
+     .category-page-header span{
+          border: none;
+          box-shadow: 1px 1px 3px var(--text-color-para1);
+          width: auto;
+          margin: 3px 5px;
+          /* text-overflow: ellipsis; */
+          white-space: nowrap;
+          /* overflow: hidden; */
+     }
+     .category-adverts{
+          width: 90%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -1617,6 +1739,10 @@ a{
      .view-more-container b{
           font-size: 20px;
      }
+     .categories-header{
+          overflow-y: scroll;
+     }
+
 }
 
 

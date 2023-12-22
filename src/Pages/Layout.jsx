@@ -17,6 +17,8 @@ import AdvertPage from './AdvertPage';
 import { Loadingv2 } from '../components/static/Loading';
 import SearchPage from './SearchPage';
 import VendorPage from './VendorPage';
+import CategoryPage from './CategoryPage';
+import SubCategoryPage from './SubCategoryPage';
 
 
 const Layout = () => {
@@ -35,6 +37,8 @@ const Layout = () => {
                <Route path='/ad/:name' element={<AdvertPage />}/>
                <Route path='/search/:params' element={<SearchPage />} />
                <Route path='/vendor/:params'  element={<VendorPage/>}/>
+               <Route path='/category/:params' element={<CategoryPage />} />
+               <Route path='/sub-category/:params' element={<SubCategoryPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

@@ -22,6 +22,10 @@ const server = {
           switch(endpoint){
                case 'category':
                     return await searchData(getUrl(endpoints.categoryAdverts), params);
+               case 'sub-category':
+                    return await searchData(getUrl(endpoints.subCategoryAdverts), params);
+               case 'user':
+                    return await searchData(getUrl(endpoints.searchUserAds), params);
                default:
                     console.log("no end provided");
                     return null;

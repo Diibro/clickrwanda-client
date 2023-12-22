@@ -6,7 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { InnerSection } from './InnerSectionContainer';
 import { CategoryContainerSquare } from './Containers';
 import { MoreLink } from './LinksComponents';
-import { dashReplacer } from '../../utils/otherFunctions';
+import { getItemUrl } from '../../utils/urlFunctions';
 
 const Categories = ({limit}) => {
      const [data] = useContext(AppData);
@@ -18,7 +18,7 @@ const Categories = ({limit}) => {
                <InnerSection type="content">
                     {Array.isArray(categories) && limit != 0 ? categories.map(
                     (item, index) => index < limit ? <CategoryContainerSquare
-                         view={`/categories/${dashReplacer(item.category_name)}`}
+                         view={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                          key={item.category_id} 
                          image={item.category_icon}
                          title={item.category_name}
@@ -26,7 +26,7 @@ const Categories = ({limit}) => {
                     )
                     :Array.isArray(categories) && limit === 0   ? categories.map(
                          (item) => <CategoryContainerSquare 
-                              view={`/categories/${dashReplacer(item.category_name)}`}
+                              view={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                               key={item.category_id} 
                               image={item.category_icon}
                               title={item.category_name}

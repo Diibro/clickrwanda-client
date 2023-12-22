@@ -21,6 +21,7 @@ export const searchData = async (url, params) => {
     const {data} = info;
     return data;
   } catch (error) {
+    console.log(error);
     return [];
   }
 }

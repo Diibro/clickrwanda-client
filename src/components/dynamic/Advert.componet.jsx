@@ -3,7 +3,7 @@ import {  useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getItemUrl } from '../../utils/urlFunctions';
 import { FaLocationDot } from "react-icons/fa6";
-import { capitalizeString } from '../../utils/otherFunctions';
+import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
 import { SubmitButton } from './Buttons';
 
 
@@ -18,12 +18,12 @@ export const ProductSquare = ({image, title, price, plan, action, category, loca
      return(
           <div className="product-square-container">
                <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
-               <img className='ad-image' src={image} alt={title} />
+               <img className='ad-image' src={image} alt={title} onClick={action} />
                <p className='cat'>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{capitalizeString(title)}</h5>
                     <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
-                    <b>{`${currency} ${price}`} <SubmitButton content={{title:"view ad", action}} /></b>
+                    <b><span>{`${currency} ${formatPrice(price)}`}</span> <SubmitButton content={{title:"view", action}} /></b>
                </div>
           </div>
      )
@@ -33,12 +33,12 @@ export const ServiceSquare = ({image, title, plan, price, action, category, loca
      return(
           <div className="product-square-container">
                <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
-               <img className='ad-image' src={image} alt={capitalizeString(title)} />
+               <img className='ad-image' src={image} alt={capitalizeString(title)} onClick={action} />
                <p className='cat'>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{title}</h5>
                     <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
-                    <b>Rwf {price} <SubmitButton content={{title:"view ad", action}} /></b>
+                    <b><span>Rwf {formatPrice(price)}</span> <SubmitButton content={{title:"view", action}} /></b>
                </div>
           </div>
      )

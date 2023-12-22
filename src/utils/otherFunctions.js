@@ -20,3 +20,15 @@ export const capitalizeString =(text) => {
      const result = capitalizedWords.join(' ');
      return result;
 }
+
+export const formatPrice = (price) => {
+     const priceString = price.toString();
+
+     const [integerPart, decimalPart] = priceString.split('.');
+
+     const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+     const formattedPrice = decimalPart ? `${formattedIntegerPart}.${decimalPart}` : formattedIntegerPart;
+
+     return formattedPrice;
+} 

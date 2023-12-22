@@ -33,6 +33,16 @@ export const AlertView = () => {
      )
 }
 
+export const AlertViewV1 = ({content}) => {
+     return (
+          <div className={`alert-view-v1 ${content.type}`}>{content.message}</div>
+     )
+}
+
 AlertView.propTypes = {
      content: PropTypes.object
+}
+
+AlertViewV1.propTypes = { 
+     content: PropTypes.any
 }

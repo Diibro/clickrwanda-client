@@ -221,11 +221,27 @@ export const AddAdvertForm = () => {
   
 }
 
+export const CategoryAdverts = ({adverts}) => {
+  return (
+    <div className="category-adverts">
+      {
+            adverts.map((item) => (
+              <AdvertRenderer key={item.ad_id} item={item}/>
+            ))
+          }
+    </div>
+  )
+}
+
 Adverts.propTypes = {
      limit: PropTypes.number
 }
 
 SimilarAds.propTypes = {
   limit: PropTypes.any,
+  adverts: PropTypes.any
+}
+
+CategoryAdverts.propTypes = {
   adverts: PropTypes.any
 }

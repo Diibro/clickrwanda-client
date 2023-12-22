@@ -4,7 +4,8 @@ import { ActionBtn } from "../dynamic/Buttons";
 import { Link } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
 import AppData from "../../Contexts/AppContext";
-const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png'
+const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png';
+import Logo from '../../assets/logo/clickrwanda.png';
 
 
 const DesktopHeader = () => {
@@ -31,7 +32,9 @@ const DesktopHeader = () => {
      }
      return (
           <header className="desktop-header">
-               <h1><Link to='/'>click Rwanda</Link></h1>
+               <Link to='/'><img src={Logo} alt="clickrwanda" className="header-logo-image" /></Link>
+               
+               {/* <h1><Link to='/'>click Rwanda</Link></h1> */}
                <div className="header-profile">
                     {loggedIn ? <Link to="/user-dashboard" className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
                     <ActionBtn action={activateForm} title={!isMobile ? "Post your ad" : 'Post' } />
