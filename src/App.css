@@ -1242,12 +1242,7 @@ a{
 
 .share-buttons button{
      margin: 4px;
-     transition: all 0.4s;
 } 
-
-.share-buttons button:hover{
-     transform: scale(1.05);
-}
 
 /* end of category container styles */
 
@@ -1820,6 +1815,19 @@ a{
           overflow-y: scroll;
      }
 
+     .product-share-icon{
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+     }
+     .share-buttons button{
+          width: 30px;
+          height: 30px;
+     }
+
+     .share-buttons button i{
+          font-size: 25px;
+     }
 }
 
 
