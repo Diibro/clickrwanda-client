@@ -21,6 +21,23 @@ export const capitalizeString =(text) => {
      return result;
 }
 
+export const formatPriceV1 = (price) => {
+     if (price < 1000) {
+       return price.toString(); 
+     } else {
+       if (price >= 1000 && price < 100000) {
+         return (price / 1000).toFixed(1) + 'K'; 
+       } else if (price >= 100000 && price < 1000000) {
+         return (price / 1000).toFixed(0) + 'K'; 
+       } else if (price >= 1000000 && price < 1000000000) {
+         return (price / 1000000).toFixed(1) + 'M'; 
+       } else if (price >= 1000000000) {
+         return (price / 1000000000).toFixed(1) + 'B'; 
+       }
+     }
+   };
+
+
 export const formatPrice = (price) => {
      const priceString = price.toString();
 

@@ -16,7 +16,7 @@ export const SubmitButton =({content}) => {
 
 ActionBtn.propTypes = {
      title: PropTypes.string.isRequired,
-     size: PropTypes.oneOf(["small", "medium", "large"]),
+     size: PropTypes.any,
      action: PropTypes.any
 }
 

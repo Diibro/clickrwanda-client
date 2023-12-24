@@ -110,6 +110,29 @@ a{
      padding: 2.5px 0;
 }
 
+.product-share-icon{
+     width: 20px;
+     height: 20px;
+     box-sizing: border-box;
+     border-radius: 50%;
+     background-color: var(--text-color-title);
+     color: var(--back-color-gold2);
+     position: absolute;
+     top: 5px;
+     right: 5px;
+     font-size: 14px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     transition: all 0.4s;
+}
+
+.product-share-icon:hover{
+     cursor: pointer;
+     transform: scale(1.1);
+}
+
 .alert-view{
      background-color: var(--back-color-gold1);
      width: clamp(300px, 20%, 400px);
@@ -359,6 +382,11 @@ a{
      cursor: pointer;
      box-shadow: 1px 1px 5px var(--text-color-para1);
      color: var(--back-color-gold2);
+}
+
+
+.small-text{
+     font-size: 0.7rem;
 }
 
 .search-bar-main{
@@ -1011,23 +1039,25 @@ a{
      border-radius: 5px;
      margin:0 2.5px 10px 2.5px;
      padding: 0 0 5px 0 ;
-     transition: all 0.1s;
+     transition: all 0.4s;
 }
 
 .product-square-container:hover{
-     box-shadow: 1px 1px 2px 1px var(--back-color-gold2);
-     transform: scale(1.01);
+     box-shadow: 1px 1px 1px var(--back-color-gold2);
+     /* transform: scale(1.05); */
 }
 
 
 .product-square-container {
      background-color: var(--white-text);
-     box-shadow: 1px 1px 5px var(--text-color-title);
+     border: 1px solid var(--gray-text);
+     /* box-shadow: 1px 1px 0px var(--text-color-title); */
      margin: 0 0 20px;
 }
 
 .product-square-container .cat{
      background-color: var(--text-color-para2);
+     color: var(--white-text);
      width: 90%;
      text-overflow: ellipsis;
      white-space: nowrap;
@@ -1064,7 +1094,7 @@ a{
      background-color: var(--text-color-title);
      color: var(--white-text);
      padding: 1px 3px;
-
+     max-width: auto;
 }
 
 .product-square-container .content{
@@ -1096,13 +1126,23 @@ a{
 }
 
 .product-square-container .content a{
-     font-size: 0.9rem;
+     font-size: 0.8rem;
      text-transform: capitalize;
      width: 100%;
      text-overflow: ellipsis;
      white-space: nowrap;
      overflow: hidden;
      margin: 3px auto;
+}
+
+.product-square-container .content .contact-no{
+     font-size: 0.8rem;
+     color: var(--text-color-title);
+     font-weight: 700;
+}
+
+.product-square-container .content .contact-no:hover{
+     color: var(--back-color-blue1);
 }
 .ad-image {
      width: 100%;
@@ -1167,6 +1207,12 @@ a{
      border-radius: 5px;
 }
 
+.category-page-header span i{
+     font-style: normal;
+     font-weight: 500;
+     font-size: 0.7rem;
+}
+
 .category-page-header span:hover{
      background-color: var(--text-color-title);
      color: var(--white-text);
@@ -1178,6 +1224,30 @@ a{
      color: var(--white-text) !important;
 }
 
+.share-buttons-container{
+     position: absolute;
+     top: 15px;
+     width: auto;
+     max-width: 75%;
+     background-color: var(--back-color-gold1);
+     right: 25px;
+     border-radius: 5px 0 5px 5px;
+     display: none;
+}
+
+.share-buttons{
+     width: 100%;
+     padding: 5px;
+}
+
+.share-buttons button{
+     margin: 4px;
+     transition: all 0.4s;
+} 
+
+.share-buttons button:hover{
+     transform: scale(1.05);
+}
 
 /* end of category container styles */
 
@@ -1629,6 +1699,9 @@ a{
 
 
 
+
+
+
 /* end of overriders */
 /* media queries */
 
@@ -1664,12 +1737,19 @@ a{
           margin: 5px 0;
           font-size: 2.4rem;
      }
+
+     .category-page{
+          width: 100%;
+     }
+
+     .category-page-content{
+          width: 100%;
+     }
      .category-page-header{
           width: 95%;
           display: flex;
           flex-direction: row;
-          flex-wrap: nowrap;
-          overflow-x: scroll;
+          flex-wrap:wrap;
 
      }
 
@@ -1682,9 +1762,6 @@ a{
           box-shadow: 1px 1px 3px var(--text-color-para1);
           width: auto;
           margin: 3px 5px;
-          /* text-overflow: ellipsis; */
-          white-space: nowrap;
-          /* overflow: hidden; */
      }
      .category-adverts{
           width: 90%;

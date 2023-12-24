@@ -12,17 +12,13 @@ const CategoriesPage = () => {
   const {view} = filter;
   return (
     <Container>
-      <CategoriesHeader />
-      {/* <Routes>
-        <Route path={`/categories`} element={<CategoryAdverts type={view} />} />
-      </Routes> */}
       <CategoryAdverts type={view} />
       <Categories limit={0} />
     </Container>
   )
 }
 
-const CategoriesHeader = () => {
+export const CategoriesHeader = () => {
   const [,setFilter] = useContext(FilterContext);
   const location = useLocation();
   const [data] = useContext(AppData);

@@ -1,6 +1,25 @@
 import PropTypes from 'prop-types';
 import InnerSectionContainer from './InnerSectionContainer';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import {
+     EmailShareButton,
+     FacebookShareButton,
+     InstapaperShareButton,
+     LinkedinShareButton,
+     PinterestShareButton,
+     TelegramShareButton,
+     TwitterShareButton,
+     WhatsappShareButton,
+     EmailIcon,
+     FacebookIcon,
+     InstapaperIcon,
+     LinkedinIcon,
+     PinterestIcon,
+     TelegramIcon,
+     TwitterIcon,
+     WhatsappIcon,
+   } from "react-share";
 
 export const SectionContainer = ({content, title, sectionType}) => {
      return(
@@ -44,6 +63,51 @@ export const CategoryContainerRow = ({title, subCategories}) =>{
      )
 }
 
+export const ShareButtons = ({url, name, image}) => {
+
+     return  (
+     <>
+          <Helmet>
+          <meta property="og:title" content={name} />
+          <meta property="og:image" content={image} />
+          <meta property="og:url" content={url} />
+          {/* Other necessary meta tags for Facebook */}
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={name} />
+          <meta name="twitter:image" content={image} />
+          {/* Other necessary meta tags for Twitter */}
+          </Helmet>
+          <div className="share-buttons">
+          <FacebookShareButton url={url} title={name}>
+               <FacebookIcon size={20} round />
+          </FacebookShareButton>
+          <EmailShareButton url={url} subject={name} body='check out this link:'>
+               <EmailIcon size={20} round />
+          </EmailShareButton>
+          <TwitterShareButton url={url} title={name}>
+               <TwitterIcon size={20} round />
+          </TwitterShareButton>
+          <WhatsappShareButton url={url} title={name}>
+               <WhatsappIcon size={20} round />
+          </WhatsappShareButton>
+          <InstapaperShareButton url={url} title={name}>
+               <InstapaperIcon size={20} round />
+          </InstapaperShareButton>
+          <PinterestShareButton url={url} media={image} description={name}>
+               <PinterestIcon size={20} round />
+          </PinterestShareButton>
+          <LinkedinShareButton url={url} title={name}>
+               <LinkedinIcon size={20} round />
+          </LinkedinShareButton>
+          <TelegramShareButton url={url} title={name}>
+               <TelegramIcon size={20} round />
+          </TelegramShareButton>
+          </div>
+     </>
+     ) ;
+}
+
 SectionContainer.propTypes = {
      content: PropTypes.any,
      title: PropTypes.string,
@@ -61,6 +125,12 @@ CategoryContainerSquare.propTypes = {
 CategoryContainerRow.propTypes = { 
      title: PropTypes.string,
      subCategories: PropTypes.array
+}
+
+ShareButtons.propTypes = {
+     url: PropTypes.string,
+     name: PropTypes.any,
+     image: PropTypes.any,
 }
 
 

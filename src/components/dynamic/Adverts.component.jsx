@@ -109,6 +109,7 @@ export const AddAdvertForm = () => {
       formData.append('description', adDescription);
       formData.append('ad_type', adInfo.ad_type);
       formData.append('ad_price', adInfo.ad_price);
+      formData.append('contact', adInfo.contact);
       formData.append('image', adInfo.ad_image);
       if (adInfo.otherImages) {
         for (let i = 0; i < Array.from(adInfo.otherImages).length; i++) {
@@ -181,35 +182,42 @@ export const AddAdvertForm = () => {
               <MenuItem value='product'>Product</MenuItem>
             </Select>
           </div>
-          <div className="row">
-            <div className="col">
-              <InputLabel htmlFor="price">Ad Price --Rwf:</InputLabel>
-              <Input name="ad_price" type="number" label="Ad Price" onChange={(e) => setAdInfo((prev) => ({...prev, ad_price: e.target.value}))} />
-            </div>
-            <div className="col">
-              <InputLabel htmlFor="description">Description:</InputLabel>
-              <TextField id="description" multiline rows={4} name="description" fullWidth onChange={(e) => setAdDescription(e.target.value)}>Ad description</TextField>
-            </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <InputLabel htmlFor="price">Ad Price --Rwf:</InputLabel>
+            <Input name="ad_price" type="number" label="Ad Price" onChange={(e) => setAdInfo((prev) => ({...prev, ad_price: e.target.value}))} />
           </div>
-          <div className="row">
-            <div className="col">
-              <InputLabel htmlFor="ad image">Ad Image: </InputLabel>
-              <Input type="file" name="ad image" onChange={(e) => setAdInfo((prev) => ({...prev, ad_image: e.target.files[0]}))} required />
-            </div>
-            <div className="col">
-              <InputLabel htmlFor="ad images">Other Images: </InputLabel>
-              <Input type="file" name="ad images" inputProps={{multiple: true}} onChange={(e) => setAdInfo((prev) => ({...prev, otherImages: e.target.files}))} required />
-            </div>
+          <div className="col">
+            <InputLabel htmlFor='contact'>Contact Number:</InputLabel>
+            <Input name="contact" type="text"  label="Contact Number" onChange={e => setAdInfo(prev => ({...prev, contact: e.target.value}))}/>
           </div>
-          <div className="row">
-            <div className="col">
-              {adInfo.ad_image ? <img src={URL.createObjectURL(adInfo.ad_image)} alt="" style={{width: 'clamp(50px, 95%, 100px)', borderRadius: "10px"}} /> : null}
-            </div>
-            <div className="col">
-              {adInfo.otherImages && adInfo.otherImages[0] ? 
-              Array.from(adInfo.otherImages).map(( image, index) => <img key={index} src={URL.createObjectURL(image)} style={{width: 'clamp(40px, 50%, 80px)', borderRadius: '5px'}} />)
-              : null }
-            </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <InputLabel htmlFor="description">Description:</InputLabel>
+            <TextField id="description" multiline rows={4} name="description" fullWidth onChange={(e) => setAdDescription(e.target.value)}>Ad description</TextField>
+          </div>
+          <div className="col"></div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <InputLabel htmlFor="ad image">Ad Image: </InputLabel>
+            <Input type="file" name="ad image" onChange={(e) => setAdInfo((prev) => ({...prev, ad_image: e.target.files[0]}))} required />
+          </div>
+          <div className="col">
+            <InputLabel htmlFor="ad images">Other Images: </InputLabel>
+            <Input type="file" name="ad images" inputProps={{multiple: true}} onChange={(e) => setAdInfo((prev) => ({...prev, otherImages: e.target.files}))} required />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            {adInfo.ad_image ? <img src={URL.createObjectURL(adInfo.ad_image)} alt="" style={{width: 'clamp(50px, 95%, 100px)', borderRadius: "10px"}} /> : null}
+          </div>
+          <div className="col">
+            {adInfo.otherImages && adInfo.otherImages[0] ? 
+            Array.from(adInfo.otherImages).map(( image, index) => <img key={index} src={URL.createObjectURL(image)} style={{width: 'clamp(40px, 50%, 80px)', borderRadius: '5px'}} />)
+            : null }
           </div>
         </div>
         <div className="row">

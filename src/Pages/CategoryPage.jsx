@@ -117,7 +117,7 @@ const CategoryHeader = ({subCategories, subViewed}) => {
   return(
     <div className="category-page-header">
       <span className={`${subViewed.id === "all" ? 'active-sub' : '' }`} onClick={() =>subViewed.action('all')}>All</span>
-      {subCategories.map((item) => <span className={`${subViewed.id === item.sub_id ? 'active-sub' : ''}`} key={item.sub_id} onClick={() => subViewed.action(item.sub_id)}>{item.sub_name}</span>)}
+      {subCategories.map((item) => <span className={`${subViewed.id === item.sub_id ? 'active-sub' : ''}`} key={item.sub_id} onClick={() => subViewed.action(item.sub_id)}>{item.sub_name} <i>({item.sub_ads} ads)</i> </span>)}
     </div>
   )
 }
