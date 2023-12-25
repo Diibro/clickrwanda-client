@@ -20,6 +20,9 @@ import {
      TwitterIcon,
      WhatsappIcon,
    } from "react-share";
+import { useContext, useEffect, useState } from 'react';
+import AppData from '../../Contexts/AppContext';
+import { ImCross } from 'react-icons/im';
 
 export const SectionContainer = ({content, title, sectionType}) => {
      return(
@@ -63,49 +66,69 @@ export const CategoryContainerRow = ({title, subCategories}) =>{
      )
 }
 
-export const ShareButtons = ({url, name, image}) => {
+export const ShareButtons = () => {
+     const [data, setData] = useContext(AppData);
+     const {shareAlert} = data;
+     const {url, name, image} = shareAlert.content;
+     const [showShare, setShowShare] = useState(false);
+     const closeShareButtons = () => {
+          setData(prev => ({
+               ...prev,
+               shareAlert: {
+                    on: false,
+                    content: {url: null, name: null, image: null}
+               }
+          }))
+     }
 
-     return  (
-     <>
-          <Helmet>
-          <meta property="og:title" content={name} />
-          <meta property="og:image" content={image} />
-          <meta property="og:url" content={url} />
-          {/* Other necessary meta tags for Facebook */}
+     useEffect(() => {
+          setShowShare(shareAlert.on);
+     }, [shareAlert.on]);
+     return showShare ?  (
+          <>
+               <Helmet>
+               <meta property="og:title" content={name} />
+               <meta property="og:image" content={image} />
+               <meta property="og:url" content={url} />
+               {/* Other necessary meta tags for Facebook */}
 
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={name} />
-          <meta name="twitter:image" content={image} />
-          {/* Other necessary meta tags for Twitter */}
-          </Helmet>
-          <div className="share-buttons">
-          <FacebookShareButton url={url} title={name}>
-               <FacebookIcon size={20} round />
-          </FacebookShareButton>
-          <EmailShareButton url={url} subject={name} body='check out this link:'>
-               <EmailIcon size={20} round />
-          </EmailShareButton>
-          <TwitterShareButton url={url} title={name}>
-               <TwitterIcon size={20} round />
-          </TwitterShareButton>
-          <WhatsappShareButton url={url} title={name}>
-               <WhatsappIcon size={20} round />
-          </WhatsappShareButton>
-          <InstapaperShareButton url={url} title={name}>
-               <InstapaperIcon size={20} round />
-          </InstapaperShareButton>
-          <PinterestShareButton url={url} media={image} description={name}>
-               <PinterestIcon size={20} round />
-          </PinterestShareButton>
-          <LinkedinShareButton url={url} title={name}>
-               <LinkedinIcon size={20} round />
-          </LinkedinShareButton>
-          <TelegramShareButton url={url} title={name}>
-               <TelegramIcon size={20} round />
-          </TelegramShareButton>
-          </div>
-     </>
-     ) ;
+               <meta name="twitter:card" content="summary_large_image" />
+               <meta name="twitter:title" content={name} />
+               <meta name="twitter:image" content={image} />
+               {/* Other necessary meta tags for Twitter */}
+               </Helmet>
+               <div className='share-buttons-container'>
+                    <i className='close-icon' onClick={closeShareButtons}><ImCross /></i>
+                    <div className="share-buttons">
+                         <FacebookShareButton url={url} title={name}>
+                              <FacebookIcon size={32} round />
+                         </FacebookShareButton>
+                         <EmailShareButton url={url} subject={name} body='check out this link:'>
+                              <EmailIcon size={32} round />
+                         </EmailShareButton>
+                         <TwitterShareButton url={url} title={name}>
+                              <TwitterIcon size={32} round />
+                         </TwitterShareButton>
+                         <WhatsappShareButton url={url} title={name}>
+                              <WhatsappIcon size={32} round />
+                         </WhatsappShareButton>
+                         <InstapaperShareButton url={url} title={name}>
+                              <InstapaperIcon size={32} round />
+                         </InstapaperShareButton>
+                         <PinterestShareButton url={url} media={image} description={name}>
+                              <PinterestIcon size={32} round />
+                         </PinterestShareButton>
+                         <LinkedinShareButton url={url} title={name}>
+                              <LinkedinIcon size={32} round />
+                         </LinkedinShareButton>
+                         <TelegramShareButton url={url} title={name}>
+                              <TelegramIcon size={32} round />
+                         </TelegramShareButton>
+                    </div>
+               </div> 
+          </>
+     
+     ) : null;
 }
 
 SectionContainer.propTypes = {
@@ -127,11 +150,7 @@ CategoryContainerRow.propTypes = {
      subCategories: PropTypes.array
 }
 
-ShareButtons.propTypes = {
-     url: PropTypes.string,
-     name: PropTypes.any,
-     image: PropTypes.any,
-}
+
 
 
 

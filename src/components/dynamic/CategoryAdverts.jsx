@@ -8,7 +8,6 @@ import FilterContext from '../../Contexts/FilterContext';
 const CategoryAdverts = () => {
      const [filter] = useContext(FilterContext);
      const {view, adverts} = filter;
-     console.log(adverts);
      const location = useLocation();
      if(view === "sub_category"){
           return (

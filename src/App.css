@@ -737,7 +737,7 @@ a{
      flex-wrap: wrap;
      flex-direction: row;
      align-items: flex-start;
-     justify-content: space-evenly;
+     justify-content: center;
      margin: 20px auto;
      padding:0 0 10px 0;
      max-width: 1600px;
@@ -1030,29 +1030,23 @@ a{
 }
 
 .product-square-container{
-     width: clamp(175px, 17%, 300px);
+     width: clamp(170px, 17%, 300px);
      display: flex;
      flex-direction: column;
      align-items: center;
      justify-content: flex-start;
      position: relative;
      border-radius: 5px;
-     margin:0 2.5px 10px 2.5px;
+     margin:0 5px 10px 5px;
      padding: 0 0 5px 0 ;
      transition: all 0.4s;
+     background-color: var(--white-text);
+     border: 1px solid var(--gray-text);
 }
 
 .product-square-container:hover{
      box-shadow: 1px 1px 1px var(--back-color-gold2);
      /* transform: scale(1.05); */
-}
-
-
-.product-square-container {
-     background-color: var(--white-text);
-     border: 1px solid var(--gray-text);
-     /* box-shadow: 1px 1px 0px var(--text-color-title); */
-     margin: 0 0 20px;
 }
 
 .product-square-container .cat{
@@ -1123,6 +1117,13 @@ a{
      text-overflow: ellipsis;
      white-space: nowrap;
      overflow: hidden;
+}
+
+.product-square-container .content b i{
+     font-style: normal; 
+     font-size: 0.75rem;
+     font-weight: 600;
+     color: var(--text-color-title);
 }
 
 .product-square-container .content a{
@@ -1225,23 +1226,29 @@ a{
 }
 
 .share-buttons-container{
-     position: absolute;
-     top: 15px;
-     width: auto;
-     max-width: 75%;
-     background-color: var(--back-color-gold1);
-     right: 25px;
-     border-radius: 5px 0 5px 5px;
-     display: none;
+     position: fixed;
+     width: 100vw;
+     height: 100vh;
+     top: 0;
+     background-color: var(--text-color-title-transparent);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     z-index: 100;
+     transition: all 0.5s;
 }
 
 .share-buttons{
-     width: 100%;
-     padding: 5px;
+     width: 20%;
+     min-width: 200px;
+     padding: 20px;
+     background-color: var(--back-color-gold1);
+     border-radius: 10px;
 }
 
 .share-buttons button{
-     margin: 4px;
+     margin: 10px;
 } 
 
 /* end of category container styles */

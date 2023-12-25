@@ -18,6 +18,7 @@ export const AppProvider = ({children}) => {
                on: false,
                content: {}
           },
+          shareAlert: {on: false, content: {}},
           loading: false
      });
 

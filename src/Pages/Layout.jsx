@@ -19,6 +19,7 @@ import SearchPage from './SearchPage';
 import VendorPage from './VendorPage';
 import CategoryPage from './CategoryPage';
 import SubCategoryPage from './SubCategoryPage';
+import { ShareButtons } from '../components/dynamic/Containers';
 
 
 const Layout = () => {
@@ -42,6 +43,7 @@ const Layout = () => {
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 
+          <ShareButtons />
           <UserForms /> 
           <Loadingv2 />
           <Footer /> 
