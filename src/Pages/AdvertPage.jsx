@@ -9,7 +9,7 @@ import Loading from "../components/static/Loading";
 import server from "../config/Server";
 import { SimilarAds } from "../components/dynamic/Adverts.component";
 import UserRating from "../components/dynamic/Rating.component";
-import { dateFormatMonth } from "../utils/dateFunctions";
+import {  formatTimeAgo } from "../utils/dateFunctions";
 import { RiAdvertisementFill } from "react-icons/ri";
 import { MdPageview } from "react-icons/md";
 import { ImageSlider } from "../components/dynamic/ImageSlider";
@@ -81,7 +81,7 @@ const AdvertPage = () => {
                     {adViewed?.category_name && 
                          <p className="cat">
                               <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>
-                              <a href={`/sub-category/${getItemUrl(adViewed?.sub_name, adViewed?.sub_id)}`}><span>{adViewed?.sub_name}</span></a> 
+                              <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.sub_name}</span></a> 
                          </p>
                     } 
                     
@@ -103,7 +103,7 @@ const AdvertPage = () => {
                          <div className="vendor-col-right">
                               {adViewed?.user_email && 
                                    <div className="contact" >
-                                        <p className="vendor-date">Seller since {dateFormatMonth(adViewed?.reg_date)}</p>
+                                        <p className="vendor-date">Joined:  {formatTimeAgo(adViewed?.reg_date)}</p>
                                         <p className="vendor-views"><i><MdPageview /></i>  {adViewed?.totalViews} Total views</p>
                                         <p className="vendor-views"><i><RiAdvertisementFill /></i>  {adViewed?.total_ads} Total Ads</p>
                                         <p><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>

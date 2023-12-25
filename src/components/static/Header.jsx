@@ -37,7 +37,7 @@ const DesktopHeader = () => {
                {/* <h1><Link to='/'>click Rwanda</Link></h1> */}
                <div className="header-profile">
                     {loggedIn ? <Link to="/user-dashboard" className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
-                    <ActionBtn action={activateForm} title={!isMobile ? "Post your ad" : 'Post' } />
+                    <ActionBtn action={activateForm} title={!isMobile ? "Add Free Ad" : 'Add' } />
                </div>
                
           </header>

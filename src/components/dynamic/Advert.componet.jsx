@@ -16,9 +16,10 @@ const Advert = () => {
   )
 }
 
-export const ProductSquare = ({image, title, price, plan, action, category, location, contact, views, link, adDate}) => {
+export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, views, link, adDate}) => {
      const [currency, setCurrency] = useState("Rwf");
      const [,setData] = useContext(AppData);
+     const navigate = useNavigate();
      const showButtons = (url, image, name) =>{
           console.log(url, name, image);
           setData(prev => ({
@@ -34,7 +35,7 @@ export const ProductSquare = ({image, title, price, plan, action, category, loca
                <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <img className='ad-image' src={image} alt={title} onClick={action} />
-               <p className='cat'>{category}</p>
+               <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{capitalizeString(title)}</h5>
                     <a className='contact-no' href={`tel:${contact}`}>{contact}</a>
@@ -46,8 +47,9 @@ export const ProductSquare = ({image, title, price, plan, action, category, loca
      )
 }
 
-export const ServiceSquare = ({image, title, plan, price, action, category, location, contact, views, link, adDate}) => {
+export const ServiceSquare = ({image, title, plan, price, action, category,categoryLink, location, contact, views, link, adDate}) => {
      const [,setData] = useContext(AppData);
+     const navigate = useNavigate();
      const showButtons = (url, image, name) =>{
           setData(prev => ({
                ...prev,
@@ -62,7 +64,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category, loca
                <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <img className='ad-image' src={image} alt={capitalizeString(title)} onClick={action} />
-               <p className='cat'>{category}</p>
+               <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{title}</h5>
                     <a className='contact-no' href={`tel:${contact}`}>{contact}</a>
@@ -90,6 +92,7 @@ export const AdvertRenderer = ({item}) => {
                          location={item.user_location.location}
                          views={item.ad_views}
                          adDate={item.ad_date}
+                         categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                          link={`https://clickrwanda.com/ad/${getItemUrl(item.ad_name, item.ad_id)}`}
                          action={() => ViewAd(item)}
                          />
@@ -103,6 +106,7 @@ export const AdvertRenderer = ({item}) => {
                               price={item.ad_price}
                               views={item.ad_views}
                               adDate={item.ad_date}
+                              categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                               link={`https://clickrwanda.com/ad/${getItemUrl(item.ad_name, item.ad_id)}`}
                               action={() => ViewAd(item)}
                          />
@@ -134,7 +138,8 @@ ServiceSquare.propTypes = {
      contact: PropTypes.any,
      views: PropTypes.any,
      link: PropTypes.any,
-     adDate: PropTypes.any
+     adDate: PropTypes.any,
+     categoryLink: PropTypes.any
 }
 
 ProductSquare.propTypes = {
@@ -149,7 +154,8 @@ ProductSquare.propTypes = {
      contact: PropTypes.any,
      views: PropTypes.any,
      link: PropTypes.any,
-     adDate: PropTypes.any
+     adDate: PropTypes.any,
+     categoryLink: PropTypes.any
 }
 
 export default Advert

@@ -23,7 +23,7 @@ const Home = () => {
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
         Top picks for you
       </InnerSection>
-      <Adverts limit={40} />
+      <Adverts limit={50} />
     </div>
   )
 }
