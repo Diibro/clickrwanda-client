@@ -13,7 +13,11 @@ const endpoints = {
      userAdverts: "api/advert/get-user-adverts",
      searchUserAds: "api/advert/get-user-ads",
      addAdvert: "api/advert/2",
-     searchAdvert: "api/advert/4"
+     searchAdvert: "api/advert/4",
+     adReviews: "api/review/ad",
+     adAdReview: "api/review/ad",
+     userReviews:"api/review/user",
+     addUserReview: "api/review/user"
 }
 
 export default endpoints;

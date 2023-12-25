@@ -12,6 +12,7 @@ import UserRating from "../components/dynamic/Rating.component";
 import { dateFormatMonth } from "../utils/dateFunctions";
 import { RiAdvertisementFill } from "react-icons/ri";
 import { MdPageview } from "react-icons/md";
+import { ImageSlider } from "../components/dynamic/ImageSlider";
 
 
 const AdvertPage = () => {
@@ -74,17 +75,7 @@ const AdvertPage = () => {
           <>
           <div className="advert-page-mainAdvert">
                <div className="col">
-                    <div className="images">
-                         <img src={mainImage} alt={adViewed?.ad_id} className="img" />
-                    </div>
-                    <div className="images">
-                         <div className="otherImages">
-                              <img src={adViewed?.ad_image} alt={adViewed?.ad_name} onClick={() => setMainImage(adViewed.ad_image)} />
-                              {images?.map((image, index) => < img src={image} alt={adViewed?.ad_name} key={index} onClick={() => setMainImage(image)} />)  }
-                         </div>
-                    </div>
-               </div>
-               <div className="col">
+                    <ImageSlider images={[mainImage, ...images]} />
                     <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
                     {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
                     {adViewed?.category_name && 
@@ -100,6 +91,8 @@ const AdvertPage = () => {
                               {adViewed?.description?.desc}
                          </p>
                     </div>
+               </div>
+               <div className="col">
                     <div className="vendor">
                     {adViewed?.full_name && <h4>Seller Information:</h4>}
                          <div className="vendor-col-left">
@@ -121,6 +114,8 @@ const AdvertPage = () => {
                          </div>
                          
                     </div>
+                    <div className="reviews"></div>
+                    <div className="safety-tips"></div>
                </div>
           </div>
           <div className="advert-page-others">
