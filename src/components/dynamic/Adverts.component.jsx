@@ -52,7 +52,7 @@ export const SimilarAds = ({limit, adverts}) => {
   if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
     return(
       <>
-        <InnerSection type="content">
+        <InnerSection type="full-width">
           {
             adverts.map((item, index) => ( index <= limit ? (
               <AdvertRenderer key={item.ad_id} item={item}/>

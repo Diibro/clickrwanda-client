@@ -20,6 +20,8 @@ import VendorPage from './VendorPage';
 import CategoryPage from './CategoryPage';
 import SubCategoryPage from './SubCategoryPage';
 import { ShareButtons } from '../components/dynamic/Containers';
+import TermsPage from './TermsPage';
+import PrivacyPage from './PrivacyPage';
 
 
 const Layout = () => {
@@ -35,6 +37,8 @@ const Layout = () => {
                <Route  path='/user-dashboard/*' element={<AdminLayout />} />
                <Route path='/ads/*' element={<AdvertsPage />} />
                <Route path='/user-dashboard/*' element={<UserLayout />} />
+               <Route path='/terms-&-conditions' element={<TermsPage />} />
+               <Route path='/privacy-policy' element={<PrivacyPage/>} />
                <Route path='/ad/:name' element={<AdvertPage />}/>
                <Route path='/search/:params' element={<SearchPage />} />
                <Route path='/vendor/:params'  element={<VendorPage/>}/>

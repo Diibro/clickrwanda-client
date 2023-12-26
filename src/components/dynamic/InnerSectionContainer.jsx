@@ -48,6 +48,10 @@ export const InnerSection = ({children, type}) => {
           return(
                <div className='inner-container pagination-container'>{children}</div>
           )
+     }else if(type === 'full-width'){
+          return(
+               <div className='inner-container full-width'>{children}</div>     
+          );
      }
 
      return(

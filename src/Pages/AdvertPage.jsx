@@ -115,7 +115,14 @@ const AdvertPage = () => {
                          
                     </div>
                     <div className="reviews"></div>
-                    <div className="safety-tips"></div>
+                    <div className="safety-tips">
+                         <h4>Safety Tips</h4>
+                         <div className="tips">
+                              <p><span>1</span> Meet in a public space to see the item and exchange the money.</p>
+                              <p><span>2</span> Never send the item before receiving the money.</p>
+                              <p><span>3</span> Never send or wire the money to sellers or buyers.</p>
+                         </div>
+                    </div>
                </div>
           </div>
           <div className="advert-page-others">

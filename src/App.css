@@ -200,6 +200,44 @@ a{
      justify-content: flex-start;
 }
 
+.static-page{
+     width: 80%;
+     min-width: 390px;
+     margin: 20px auto;
+     color: var(--text-color-title);
+}
+
+.static-page h2{
+     font-size: 2.2rem;
+     text-align: center;
+     font-weight: 800;
+     margin: 10px auto;
+}
+
+.static-page h3{
+     width: 95%;
+     margin: 10px auto;
+     font-size: 1.5rem;
+     font-weight: 700;
+}
+
+.static-page h4{
+     font-size: 1.2rem;
+     font-weight: 800;
+     margin: 10px auto 5px;
+     width: 90%;
+}
+
+.static-page p, .static-page i, .static-page ul{
+     width: 85%;
+     margin: 5px auto;
+     font-size: 0.9rem;
+}
+
+.static-page p{
+     text-align: justify;
+}
+
 .home .hello-section{
      width: 100%;
      background-color: var(--back-color-blue2);
@@ -1692,6 +1730,30 @@ a{
      align-items: center;
 }
 
+.advert-page-mainAdvert .col .safety-tips{
+     width: 100%;
+     padding: 10px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: var(--back-color-gold1);
+     color: var(--text-color-title);
+     border-radius: 10px;
+     box-shadow: 1px 1px 5px var(--text-color-para1);
+}
+
+.advert-page-mainAdvert .col .safety-tips h4{
+     font-size: 1.1rem;
+     font-weight: 900;
+     width: 95%;
+     margin: 5px auto;
+}
+
+.advert-page-mainAdvert .col .safety-tips .tips{
+     width: 90%;
+     font-weight: 600;
+}
+
 .advert-page-others{
      width: 100%;
      margin: 20px auto;
@@ -1742,6 +1804,10 @@ a{
 
 .urgent{
      background-color: var(--back-color-red1);
+}
+
+.full-width{
+     width: 100%;
 }
 
 
