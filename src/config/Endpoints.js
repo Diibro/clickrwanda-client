@@ -17,7 +17,8 @@ const endpoints = {
      adReviews: "api/review/ad",
      adAdReview: "api/review/ad",
      userReviews:"api/review/user",
-     addUserReview: "api/review/user"
+     addUserReview: "api/review/user",
+     deleteUserAdvert: "api/advert/5",
 }
 
 export default endpoints;

@@ -1154,54 +1154,75 @@ a{
 }
 
 .dash-advert-row{
-     width: 95%;
+     width: 20%;
+     min-width: 360px;
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
      align-items: center;
      justify-content: space-between;
      box-shadow: 1px 1px 5px var(--back-color-gold2);
      padding: 5px 10px;
      border-radius: 10px;
      margin: 5px auto;
+     position: relative;
 }
 
-.dash-advert-title{
+.dash-advert-row .row{
      width: 95%;
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: space-between;
-     padding: 5px 10px;
-     margin: 5px auto;
+     padding-bottom: 10px;
+}
+.dash-advert-row img{
+     width: 90%;
+}
+
+.dash-advert-row  .icons{
+     position: absolute;
+     top: 0;
+     right: 0;
+     width: 35%;
+     padding: 5px ;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-evenly;
+}
+
+.dash-advert-row  .icons span{
+     font-size: 18px;
+     background-color: var(--back-color-gold2);
+     color: var(--white-text);
+     width: 25%;
+     aspect-ratio: 1/1;
+     border-radius: 50%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     
+}
+
+.dash-advert-row  .icons span:hover{
+     transform: scale(1.1);
+     cursor: pointer;
+}
+
+.dash-advert-row .row span{
+     font-size: 0.9rem;
      color: var(--text-color-title);
-     font-weight: 700;
+     font-weight: 800;
 }
 
-.dash-advert-title .icons, .dash-advert-row .icons{
-     text-align: center;
-     width: 7.5%;
+.dash-advert-row .row p{
+     width: 60%;
+     font-size: 0.95rem;
+     font-weight: 800;
+     color: var(--text-color-para2);
 }
 
-.dash-advert-title .ad-title, .dash-advert-row .ad-title{
-     width: 40%;
-     color: var(--text-color-title);
-     font-weight: 700;
-}
-
-.dash-advert-title .price, .dash-advert-row .price{
-     text-align: center;
-     width: 10%;
-}
-
-.dash-advert-title .status, .dash-advert-row .status{
-     text-align: center;
-     width: 10%;
-}
-
-.dash-advert-title .date, .dash-advert-row .date{
-     text-align: center;
-     width: 20%;
-}
 /* end of user dashboard components */
 
 /* small container styles */

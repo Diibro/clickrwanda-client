@@ -120,6 +120,16 @@ export const logoutUser = async () => {
     return false;
   }
 }
+
+export const deleteAdvert =async (url,params) => {
+  try {
+    const loginToken = sessionStorage.getItem('loginToken') || null;
+    const res = await axios.delete(url, params, {headers: {'Authorization': loginToken}}) ;
+    return res;
+  } catch (error) {
+    return null;
+  }
+}
 export const getUrl = (endpoint) => {
       var url = `${serverUrl}/${endpoint}`;
       return url;

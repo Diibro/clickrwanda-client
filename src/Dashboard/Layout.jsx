@@ -24,7 +24,7 @@ const UserLayout = () => {
             <Route path="/*" element={<Home />}/>
             <Route path="/profile-settings" element={<Profile />} />
             <Route path='/payment-plans' element={<PayPlans />} />
-            <Route path="/user-adverts" element={<MyAdverts />} />
+            <Route path="/user-adverts/*" element={<MyAdverts />} />
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </ContentContainer>
