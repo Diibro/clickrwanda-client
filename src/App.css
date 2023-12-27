@@ -2119,4 +2119,7 @@ a{
      .inner-container{
           width: 99%;
      }
+     .vendor-page-header h1{
+          font-size: 1.8rem;
+     }
 }

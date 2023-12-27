@@ -18,8 +18,9 @@ const MyAdverts = () => {
     try {
       setLoading(true);
       const res = await server.getUserAdverts();
+      console.log(res);
       if(res.status === "pass") {
-        sessionStorage.setItem('userAds', JSON.stringify(res.data));
+        sessionStorage.setItem('userAds', res.data !== "no data found" ? JSON.stringify(res.data) : res.data);
         setAdverts(res.data);
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') setUser((prev) => ({...prev, activeForm:'login'}));
@@ -31,11 +32,19 @@ const MyAdverts = () => {
     }
   }
   useEffect(() =>{
-    fetchAdverts();
-    if(sessionStorage.getItem('userAds')){
-      setAdverts(JSON.parse(sessionStorage.getItem('userAds')));
-    }else{
+    try {
       fetchAdverts();
+      if(sessionStorage.getItem('userAds')){
+        if(sessionStorage.getItem('userAds') === "no adverts found"){
+          return setAdverts(sessionStorage.getItem('userAds'));
+        }else{
+          setAdverts(JSON.parse(sessionStorage.getItem('userAds')));
+        }
+      }else{
+        fetchAdverts();
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, [])
   return (
@@ -45,7 +54,7 @@ const MyAdverts = () => {
           <h2>My Adverts</h2>
         </DashboardRow>
         <DashboardRow>
-          {adverts != "no data found" ? <AllAdverts content={adverts} />  :"No adverts found"}
+          {adverts != "no adverts found" ? <AllAdverts content={adverts} />  : <p>No adverts found</p>}
         </DashboardRow>
       </DashboardContainer>
       {loading ? <Loadingv2 /> : null}

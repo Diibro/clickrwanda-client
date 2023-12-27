@@ -90,7 +90,7 @@ const VendorPage = () => {
                 </div>
                 <div className="row">
                   <span>Rating:</span>
-                  <p><UserRating rating={vendorInfo.rating}/></p>
+                  <div className='contact'><UserRating rating={vendorInfo.rating}/></div>
                   
                 </div>
                 <div className='row'>
