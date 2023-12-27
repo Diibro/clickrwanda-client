@@ -125,7 +125,7 @@ const VendorPage = () => {
 
 const VendorHeader = ({image, title}) => {
   return(
-    <div className="vendor-page-header" style={{backgroundImage: `url(${image})`}}>
+    <div className="vendor-page-header">
       <h1>{title}</h1>
       <img src={image} alt="vendor profile" />
     </div>
