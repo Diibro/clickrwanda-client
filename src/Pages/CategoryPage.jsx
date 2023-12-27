@@ -5,6 +5,7 @@ import server from "../config/Server";
 import PropTypes from 'prop-types'
 import Loading from "../components/static/Loading";
 import { CategoryAdverts} from "../components/dynamic/Adverts.component";
+import { getData, saveData } from "../utils/storageFunctions";
 
 const CategoryPage = () => {
   const [categoryAds, setCategoryAds] = useState(null);
@@ -21,9 +22,8 @@ const CategoryPage = () => {
         return;
       }
       let check = 0;
-      const subAdvertsStored = sessionStorage.getItem('subAdverts');
-      if(subAdvertsStored) {
-        let parsedData = JSON.parse(subAdvertsStored);
+      const parsedData = getData('subAdverts');
+      if(parsedData) {
         if(parsedData.sub_id === sub_id) {
           setCategoryAds(parsedData.adverts);
           check = 1;
@@ -38,7 +38,7 @@ const CategoryPage = () => {
         }
         setCategoryAds(res);
         const subAdverts = { sub_id, data: res};
-        sessionStorage.setItem('subAdverts', JSON.stringify(subAdverts));
+        saveData('subAdverts', subAdverts);
       }
     } catch (error) {
       console.log(error);

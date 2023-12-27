@@ -298,10 +298,11 @@ a{
 
 .vendor-page-header img{
      position: absolute;
-     width: 80px;
+     max-width: 80px;
      border-radius: 50%;
      bottom: -40px;
      border: 1.5px solid var(--back-color-gold2);
+     max-height: 80px;
 }
 
 .vendor-page-header h1{
@@ -324,6 +325,8 @@ a{
      font-size: 2rem;
      font-weight: 800;
      color: var(--text-color-title);
+     max-width: 80%;
+     text-wrap: wrap;
 }
 
 .vendor-page-title h3{

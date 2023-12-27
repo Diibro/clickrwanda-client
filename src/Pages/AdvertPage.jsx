@@ -13,6 +13,7 @@ import {  formatTimeAgo } from "../utils/dateFunctions";
 import { RiAdvertisementFill } from "react-icons/ri";
 import { MdPageview } from "react-icons/md";
 import { ImageSlider } from "../components/dynamic/ImageSlider";
+import { getData, saveData } from "../utils/storageFunctions";
 
 
 const AdvertPage = () => {
@@ -28,10 +29,9 @@ const AdvertPage = () => {
      const updateAdViewed = async () => {
           let check = 0;
           try {
-               let adData =  sessionStorage.getItem('adViewed');
-               if(adData){
+               let adDatas =  getData('adViewed');
+               if(adDatas){
                     try {
-                         const adDatas = JSON.parse(adData);
                          const ad = adDatas.adData;
                          if(ad && adId === ad.ad_id){
                               const {sameCategory, sameSubCategory} = adDatas;
@@ -49,7 +49,7 @@ const AdvertPage = () => {
                if(check === 0){
                     setLoading(true);
                     const res = await server.searchAd({ad_id:adId});
-                    sessionStorage.setItem("adViewed",JSON.stringify(res.data));
+                    saveData("adViewed",res.data, 180);
                     const {adData, sameCategory, sameSubCategory} = res.data;
                     setAdViewed(adData);
                     setOtherAds(sameSubCategory || sameCategory || null);

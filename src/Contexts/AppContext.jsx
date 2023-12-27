@@ -2,6 +2,7 @@ import {useState, createContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import server from '../config/Server';
 import { useLocation } from 'react-router-dom';
+import { getData, saveData } from '../utils/storageFunctions';
 
 const AppData = createContext();
 
@@ -27,10 +28,9 @@ export const AppProvider = ({children}) => {
           const fetchData = async () => {
                try {
                     setData((prev) => ({...prev, loading: true}));
-                    const sessionData = sessionStorage.getItem('appData');
+                    const sessionData = getData('appData');
                     if (sessionData){
-                         const parsedSessionData = JSON.parse(sessionData);
-                         const {categoriesData, subCategoriesData, advertsData, payPlansData} = parsedSessionData;
+                         const {categoriesData, subCategoriesData, advertsData, payPlansData} = sessionData;
                          setData((prev) => ({
                               ...prev,
                               categories: categoriesData,
@@ -45,7 +45,7 @@ export const AppProvider = ({children}) => {
                          const subCategoriesData = await server.get('sub categories');
                          const payPlansData = await server.get('payment plans');
                          const appData = {categoriesData, advertsData, subCategoriesData, payPlansData}
-                         sessionStorage.setItem('appData', JSON.stringify(appData));
+                         saveData('appData', appData, 180);
                          setData((prev) => ({
                          ...prev,
                          categories: categoriesData,

@@ -9,6 +9,7 @@ import UserRating from '../components/dynamic/Rating.component';
 import { SimilarAds } from '../components/dynamic/Adverts.component';
 import { IoMdCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
+import { getData, saveData } from '../utils/storageFunctions';
 
 const VendorPage = () => {
   const location = useLocation();
@@ -21,10 +22,10 @@ const VendorPage = () => {
     let check = 0;
     try {
       setLoading(true);
-      const storedVendor = sessionStorage.getItem('vendorInfo');
+      const storedVendor = getData('vendorInfo');
       if(storedVendor){
         try {
-          const info = JSON.parse(storedVendor);
+          const info = storedVendor;
           if(getItemUrlId(location.search) === info.vendorInfo.user_id){
               setVendorAds(info.ads);
             setVendorInfo(info.vendorInfo);
@@ -40,7 +41,7 @@ const VendorPage = () => {
         const res = await server.searchAdverts('user', {userId});
         setVendorInfo(res.vendorInfo);
         setVendorAds(res.ads);
-        sessionStorage.setItem('vendorInfo', JSON.stringify(res));
+        saveData('vendorInfo', res);
       }
     } catch (error) {
       console.log(error);
@@ -62,7 +63,7 @@ const VendorPage = () => {
           <>
             <VendorHeader title={vendorInfo.username} image={vendorInfo?.profile_image} />
             <div className='vendor-page-title'>
-              <h2>{vendorInfo.username}</h2>
+              <h2>{vendorInfo.full_name}</h2>
             </div>
             <div className="vendor-page-info">
               <div className="col">
