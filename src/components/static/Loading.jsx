@@ -1,5 +1,5 @@
 import { useContext} from 'react';
-import Loader from '../../assets/loader.gif';
+import Loader from '../../assets/loader2.gif';
 import AppData from '../../Contexts/AppContext';
 const Loading = () => {
   return (

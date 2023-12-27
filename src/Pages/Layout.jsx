@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useLocation} from 'react-router-dom';
 import DesktopHeader from '../components/static/Header';
 import Home from './Home';
 import ContactBar from '../components/static/ContactBar';
@@ -22,9 +22,14 @@ import SubCategoryPage from './SubCategoryPage';
 import { ShareButtons } from '../components/dynamic/Containers';
 import TermsPage from './TermsPage';
 import PrivacyPage from './PrivacyPage';
+import { useEffect } from 'react';
 
 
 const Layout = () => {
+     const location = useLocation();
+     useEffect(() => {
+          window.scrollTo(0,0);
+     },[location.pathname] )
      return (
      <FilterProvider>
           <ViewProvider>
