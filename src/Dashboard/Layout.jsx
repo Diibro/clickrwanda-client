@@ -14,7 +14,6 @@ const UserLayout = () => {
       if(!sessionStorage.getItem('loginToken')){
         navigate('/');
       }
-
     }, []);
     return (
       <MainContainer>

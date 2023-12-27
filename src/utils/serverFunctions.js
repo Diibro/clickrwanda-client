@@ -124,8 +124,11 @@ export const logoutUser = async () => {
 export const deleteAdvert =async (url,params) => {
   try {
     const loginToken = sessionStorage.getItem('loginToken') || null;
-    const res = await axios.delete(url, params, {headers: {'Authorization': loginToken}}) ;
-    return res;
+    const res = await axios.post(url, params,{headers: {
+      'Authorization': loginToken
+    }});
+    console.log(res);
+    return res.data;
   } catch (error) {
     return null;
   }

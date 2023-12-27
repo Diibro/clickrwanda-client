@@ -14,6 +14,9 @@ import AdEdit from "./AdEdit";
 import { getItemUrl } from "../utils/urlFunctions";
 import { getData, saveData } from "../utils/storageFunctions";
 import { MdDelete } from "react-icons/md";
+import AppData from "../Contexts/AppContext";
+import { TiTick } from "react-icons/ti";
+import { ImCross } from "react-icons/im";
 
 const MyAdverts = () => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +27,6 @@ const MyAdverts = () => {
     try {
       setLoading(true);
       const res = await server.getUserAdverts();
-      console.log(res);
       if(res.status === "pass") {
         saveData('userAds',res.data, 180);
         setAdverts(res.data);
@@ -81,10 +83,37 @@ const AllAdverts = ({content}) => {
 
 const DashAdvert = ({item}) => {
   const navigate = useNavigate();
+  const [,setData] = useContext(AppData);
+  const raiseAlert = (type, message, icon) => {
+    setData((prev)=> ({
+         ...prev,
+         alertView:{
+              on: true,
+              content: {type, message, icon}
+         }
+    }));
+}
   const deleteAd = async () => {
     const check =  window.confirm("Are you sure you want to delete the advert");
     if(check) {
-      window.alert("Your advert will deleted permanently");
+      if(window.confirm("Your advert will deleted permanently")){
+        const res = await server.deleteUserAd({ad_id:item.ad_id});
+        console.log(res);
+        if(res){
+          if(res.status === "pass"){
+            raiseAlert('success', `${res.message}`, <TiTick />)
+            sessionStorage.removeItem('userAds');
+            navigate('/user-dashboard/user-adverts');
+            return window.location.reload();
+
+          }else{
+            return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+          }
+        }else{
+          return raiseAlert('fail', "Network Error. Try again", <ImCross />);
+        }
+        
+      }
     }else{
       return;
     }
