@@ -254,6 +254,21 @@ a{
      margin: 10px auto;
 }
 
+.search-page .search-page-searchbar{
+     width: auto;
+     min-width: 340px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     align-self: flex-start;
+     padding: 5px 5px;
+     margin: 10px  5%;
+     background-color: var(--text-color-title-transparent);
+     border-radius: 10px;
+     
+}
+
 .home .hello-section{
      width: 100%;
      background-color: var(--back-color-blue2);

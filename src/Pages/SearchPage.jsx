@@ -6,6 +6,7 @@ import { AdvertRenderer } from "../components/dynamic/Advert.componet";
 import PropTypes  from 'prop-types';
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
+import SearchBar from "../components/static/SearchBar";
 
 const SearchPage = () => {
      const location = useLocation();
@@ -29,6 +30,9 @@ const SearchPage = () => {
 
      return (
      <div className="search-page">
+          <div className="search-page-searchbar">
+               <SearchBar />
+          </div>
           <h3>Showing search results for {searched}..</h3>
           {!loading ? 
                <SearchAdverts content={{ads}} />
