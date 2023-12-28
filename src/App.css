@@ -1313,7 +1313,7 @@ a{
 }
 
 .product-square-container{
-     width: clamp(170px, 17%, 300px);
+     width: clamp(150px, 17%, 300px);
      display: flex;
      flex-direction: column;
      align-items: center;
