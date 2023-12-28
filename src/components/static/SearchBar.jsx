@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import {FiSearch} from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import { getSearchUrl } from '../../utils/urlFunctions';
 const SearchBar = () => {
   const [searched, setSearched] = useState(null);
   const navigate = useNavigate();
   const submitSearch = () => {
     if(searched){
-      navigate(`/search/ads?=${searched}`);
+      navigate(`/search/ads?=${getSearchUrl(searched)}`);
     }
   }
   return (

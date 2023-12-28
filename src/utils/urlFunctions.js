@@ -1,8 +1,12 @@
-import { charAdder, charRemover, dashReplacer } from "./otherFunctions";
+import { charAdder, charRemover, dashRemover, dashReplacer } from "./otherFunctions";
 
 export const getItemUrl = (name, id) => {
      const newName = dashReplacer(name);
      return charAdder([newName, id], '?=');
+}
+
+export const getSearchUrl = (name) => {
+     return dashReplacer(name);
 }
 
 export const getItemUrlId = (url) => {
@@ -12,5 +16,6 @@ export const getItemUrlId = (url) => {
 
 export const getItemUrlName = (url) => {
      const names = charRemover(url, '?=');
-     return names[1];
+     const name = names[1];
+     return dashRemover(name);
 }

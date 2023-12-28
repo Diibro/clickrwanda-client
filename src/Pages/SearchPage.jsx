@@ -45,6 +45,17 @@ const SearchAdverts = ({content}) => {
                     content.ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} />)
                 : content.ads
                : null}
+               {content.sub ? 
+                content.sub[0] && typeof(content.sub) !== "string" ? 
+                    content.sub.map((item) => <AdvertRenderer key={item.ad_id} item={item} />)
+                : content.sub
+               : null}
+               {content.cat ? 
+                content.cat[0] && typeof(content.sub) !== "string" ? 
+                    content.cat.map((item) => <AdvertRenderer key={item.ad_id} item={item} />)
+                : content.cat
+               : null}
+               {!content.ads && !content.sub && !content.cat ? <p>No adverts found</p> : null }
           </InnerSection>
      )
 }
