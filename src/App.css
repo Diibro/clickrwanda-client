@@ -2177,4 +2177,7 @@ a{
      .vendor-page-header h1{
           font-size: 1.8rem;
      }
+     .product-square-container{
+          width: 47%;
+     }
 }
