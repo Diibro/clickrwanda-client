@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Title from "../dynamic/TitleComponents";
 import { textColors, titleSize } from "../styles";
 import { MdCall, MdEmail } from "react-icons/md";
@@ -11,10 +11,14 @@ import UserContext from "../../Contexts/UserContext";
 const Footer = () => {
      const [user, setUser] = useContext(UserContext);
      const{loggedIn} = user;
+     const navigate = useNavigate();
      const getStarted = () => {
           if(!loggedIn){
                setUser((prev) => ({...prev, activeForm: 'signup'}))
           }
+     }
+     const becomeAgent = () => {
+          return navigate('/hiring');
      }
      return (
      <div className='footer'>
@@ -40,6 +44,7 @@ const Footer = () => {
                     <a href="https://wa.me/+250727559173" rel="noreferrer" target="_blank"><i className="icon whatsapp-icon"><FaWhatsapp /></i> Whatsapp: +250727559173 </a>
                </div>
                {!loggedIn ? <ActionBtn title="Get Started" action={getStarted} /> : null } 
+               <ActionBtn title="Become Agent"  action={becomeAgent}/>
           </div>
           <div className="footer-col">
                <Title content={{color:textColors.white, size: titleSize.small, name: "Support & Links"}} />

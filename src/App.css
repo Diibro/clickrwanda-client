@@ -207,6 +207,33 @@ a{
      color: var(--text-color-title);
 }
 
+.static-page .language-row{
+     width: 90%;
+     margin: 10px auto;
+     padding: 5px;
+}
+
+.static-page .language-row span{
+     min-width: 50px;
+     border: 1px solid var(--back-color-gold2);
+     border-radius: 10px;
+     color: var(--text-color-title);
+     font-size: 0.9rem;
+     transition: all 0.4s;
+     padding: 5px;
+     margin: 5px 10px ;
+}
+
+.static-page .language-row span:hover{
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     cursor: pointer;
+}
+
+.static-page .language-row span.active{
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+}
 .static-page h2{
      font-size: 2.2rem;
      text-align: center;
@@ -232,6 +259,22 @@ a{
      width: 85%;
      margin: 5px auto;
      font-size: 0.9rem;
+}
+
+.hiring-page p{
+     font-size: 1rem;
+     margin: 10px 5%;
+     font-weight: 500;
+}
+.hiring-page ul li{
+     font-size: 0.95rem;
+     font-weight: 600;
+     margin: 2.5px auto;
+     color: var(--text-color-para1);
+}
+
+.hiring-page h4{
+     margin-top: 20px;
 }
 
 .static-page p{
@@ -613,6 +656,7 @@ a{
      letter-spacing: 0.56px;
      border: 1.5px solid var(--back-color-gold2);
      transition: all 0.9s;
+     margin: 5px 0;
 }
 
 .actionBtn:hover{

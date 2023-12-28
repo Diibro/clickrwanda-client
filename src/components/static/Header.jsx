@@ -34,7 +34,7 @@ const DesktopHeader = () => {
           <header className="desktop-header">
                <Link to='/'><img src={Logo} alt="clickrwanda" className="header-logo-image" /></Link>
                
-               <h1><Link to='/'>We are Hiring/Akazi</Link></h1>
+               <h1><Link to='/hiring'>We are Hiring/Akazi</Link></h1>
                <div className="header-profile">
                     {loggedIn ? <Link to="/user-dashboard" className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
                     <ActionBtn action={activateForm} title={!isMobile ? "Add Free Ad" : 'Add' } />

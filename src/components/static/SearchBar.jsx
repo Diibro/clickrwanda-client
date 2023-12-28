@@ -10,9 +10,15 @@ const SearchBar = () => {
       navigate(`/search/ads?=${getSearchUrl(searched)}`);
     }
   }
+
+  const handleKeyPress = (e) => {
+    if(e.key === "Enter"){
+      submitSearch(); 
+    }
+  }
   return (
     <div className="search-bar-main">
-      <input type="text" placeholder="Search anything..." onChange={(e) => setSearched(e.target.value)} />
+      <input type="text" placeholder="Search anything..." onChange={(e) => setSearched(e.target.value)} onKeyDown={handleKeyPress} />
       <i onClick={submitSearch}><FiSearch /></i>
     </div>
   )

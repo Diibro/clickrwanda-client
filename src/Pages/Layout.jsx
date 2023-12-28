@@ -23,6 +23,7 @@ import { ShareButtons } from '../components/dynamic/Containers';
 import TermsPage from './TermsPage';
 import PrivacyPage from './PrivacyPage';
 import { useEffect } from 'react';
+import HiringPage from './HiringPage';
 
 
 const Layout = () => {
@@ -49,6 +50,7 @@ const Layout = () => {
                <Route path='/vendor/:params'  element={<VendorPage/>}/>
                <Route path='/category/:params' element={<CategoryPage />} />
                <Route path='/sub-category/:params' element={<SubCategoryPage />} />
+               <Route path='/hiring' element={<HiringPage />}/>
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 
