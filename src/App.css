@@ -1313,7 +1313,7 @@ a{
 }
 
 .product-square-container{
-     width: clamp(150px, 17%, 300px);
+     width: clamp(170px, 17%, 300px);
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -2044,7 +2044,7 @@ a{
           display: inline;
      }
      .inner-container{
-          min-width: 90%;
+          min-width: 98%;
      }
      .inner-container .section-title{
           margin: 5px 0;
