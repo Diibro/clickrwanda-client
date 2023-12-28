@@ -127,16 +127,31 @@ export const deleteAdvert =async (url,params) => {
     const res = await axios.post(url, params,{headers: {
       'Authorization': loginToken
     }});
-    console.log(res);
     return res.data;
   } catch (error) {
     return null;
+  }
+}
+
+export const searchAds = async(url, params) => {
+  try {
+    const res = await axios.post(url, params);
+    const info = res.data;
+    if(info.status === "pass"){
+      return info.data;
+    }else{
+      return null;
+    }
+  } catch (error) {
+    return null
   }
 }
 export const getUrl = (endpoint) => {
       var url = `${serverUrl}/${endpoint}`;
       return url;
 }
+
+
 
 
 

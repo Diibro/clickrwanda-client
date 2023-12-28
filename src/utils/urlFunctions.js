@@ -9,3 +9,8 @@ export const getItemUrlId = (url) => {
      const names = charRemover(url, '?=');
      return names[1];
 }
+
+export const getItemUrlName = (url) => {
+     const names = charRemover(url, '?=');
+     return names[1];
+}
