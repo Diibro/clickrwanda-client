@@ -41,7 +41,7 @@ const HiringPage = () => {
                <p>If you are intereseted contact us via:</p>
                <ul>
                     <li>Call/Whatsapp: <a href="tel:+250 727 559 173">+250 727 559 173</a> / <a href="https://wa.me/+250732474510">+250732474510</a></li>
-                    <li>Email: <a href="mailto:clickrwanda@gmail.com">clickrwanda@gmail.com</a> clickrwanda@gmail.com</li>
+                    <li>Email: <a href="mailto:clickrwanda.huza@gmail.com">clickrwanda.huza@gmail.com</a></li>
                     <li>Office Location: Remera , Prince House 4th Floor,  Kigali, Rwanda</li>
                </ul>
           </>
@@ -72,7 +72,7 @@ const HiringPage = () => {
                <p>Ababishaka baduhamagara cyangwa bakatwandikira:</p>
                <ul>
                     <li>Guhamagara/Whatsapp: <a href="tel:+250 727 559 173">+250 727 559 173</a> / <a href="https://wa.me/+250732474510">+250732474510</a></li>
-                    <li>Email: <a href="mailto:clickrwanda@gmail.com">clickrwanda@gmail.com</a> clickrwanda@gmail.com</li>
+                    <li>Email: <a href="mailto:clickrwanda.huza@gmail.com">clickrwanda.huza@gmail.com</a></li>
                     <li>Aho dukorera: I Remera , Prince House Kuri Etage ya 4,  Kigali, Rwanda</li>
                </ul>
           </>
