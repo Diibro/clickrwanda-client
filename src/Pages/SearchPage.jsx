@@ -12,12 +12,17 @@ const SearchPage = () => {
      const location = useLocation();
      const [loading, setLoading] = useState(false);
      const [ads, setAds] = useState(null);
+     const [sub, setSub] = useState(null);
+     const [cat, setCat] = useState(null);
      const searched = getItemUrlName(location.search);
      const searchAds = async () => {
           try {
                setLoading(true);
                const res = await  server.searchAdverts('search', {searched});
                if(res.ads) setAds(res.ads);
+               if(res.sub) setSub(res.sub);
+               if(res.cat) setCat(res.cat);
+
           } catch (error) {
                console.log(error);
           }finally{
@@ -25,6 +30,9 @@ const SearchPage = () => {
           }
      }
      useEffect(() => {
+          setAds(null);
+          setSub(null);
+          setCat(null);
           (async () => await searchAds())();
      }, [location.search]);
 
@@ -35,7 +43,7 @@ const SearchPage = () => {
           </div>
           <h3>Showing search results for {searched}..</h3>
           {!loading ? 
-               <SearchAdverts content={{ads}} />
+               <SearchAdverts content={{ads, sub, cat}} />
           : <Loading />}
      </div>
      )
