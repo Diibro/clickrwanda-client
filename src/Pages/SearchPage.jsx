@@ -20,7 +20,6 @@ const SearchPage = () => {
           try {
                setLoading(true);
                const res = await  server.searchAdverts('search', {searched});
-               console.log(res);
                if(res.ads) setAds(res.ads);
                if(res.sub) setSub(res.sub);
                if(res.cat) setCat(res.cat);
@@ -35,6 +34,7 @@ const SearchPage = () => {
           setAds(null);
           setSub(null);
           setCat(null);
+          setUserAds(null);
           (async () => await searchAds())();
      }, [location.search]);
 
