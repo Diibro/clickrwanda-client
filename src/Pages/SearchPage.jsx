@@ -14,15 +14,17 @@ const SearchPage = () => {
      const [ads, setAds] = useState(null);
      const [sub, setSub] = useState(null);
      const [cat, setCat] = useState(null);
+     const [userAds, setUserAds] = useState(null)
      const searched = getItemUrlName(location.search);
      const searchAds = async () => {
           try {
                setLoading(true);
                const res = await  server.searchAdverts('search', {searched});
+               console.log(res);
                if(res.ads) setAds(res.ads);
                if(res.sub) setSub(res.sub);
                if(res.cat) setCat(res.cat);
-
+               if(res.user) setUserAds(res.user)
           } catch (error) {
                console.log(error);
           }finally{
@@ -43,7 +45,7 @@ const SearchPage = () => {
           </div>
           <h3>Showing search results for {searched}..</h3>
           {!loading ? 
-               <SearchAdverts content={{ads, sub, cat}} />
+               <SearchAdverts content={{ads, sub, cat, user: userAds}} />
           : <Loading />}
      </div>
      )
@@ -60,14 +62,19 @@ const SearchAdverts = ({content}) => {
                {content.sub ? 
                 content.sub[0] && typeof(content.sub) !== "string" ? 
                     content.sub.map((item) => <AdvertRenderer key={item.ad_id} item={item} />)
-                : content.sub
+                : null
                : null}
                {content.cat ? 
-                content.cat[0] && typeof(content.sub) !== "string" ? 
+                content.cat[0] && typeof(content.cat) !== "string" ? 
                     content.cat.map((item) => <AdvertRenderer key={item.ad_id} item={item} />)
-                : content.cat
+                : null
                : null}
-               {!content.ads && !content.sub && !content.cat ? <p>No adverts found</p> : null }
+               {content.user ? 
+                content.user[0] && typeof(content.user) !== "string" ? 
+                    content.user.map((item) => <AdvertRenderer key={item.ad_id} item={item} />)
+                : null
+               : null}
+               {!content.ads && !content.sub && !content.cat && !content.user ? <p>No adverts found</p> : null }
           </InnerSection>
      )
 }
