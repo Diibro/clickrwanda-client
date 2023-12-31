@@ -305,11 +305,11 @@ a{
      align-items: center;
      justify-content: center;
      align-self: flex-start;
-     padding: 5px 5px;
+     padding: 0;
      margin: 10px  5%;
      background-color: var(--text-color-title-transparent);
      border-radius: 10px;
-     
+     box-shadow: 1px 1px 5px var(--back-color-gold2-transparent);
 }
 
 .home .hello-section{
@@ -696,7 +696,7 @@ a{
 }
 
 .search-bar-main{
-     width: clamp(280px, 80%, 400px);
+     width: clamp(280px, 100%, 400px);
      background-color: aliceblue;
      position: relative;
      border-radius: 0.5rem;
