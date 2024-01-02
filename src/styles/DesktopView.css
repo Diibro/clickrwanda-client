@@ -1,0 +1,60 @@
+@import "./General.css";
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+     :root{
+          font-size: 14px;
+     }
+     .contact-bar .contact-info div p{
+          display: inline;
+     }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+     :root{
+          font-size: 14px;
+     }
+     .contact-bar .contact-info div p{
+          display: inline;
+     }
+     .inner-container{
+          min-width: 98%;
+     }
+     .inner-container .section-title{
+          margin: 5px 0;
+          font-size: 2.4rem;
+     }
+
+     .category-page{
+          width: 100%;
+     }
+
+     .category-page-content{
+          width: 100%;
+     }
+     .category-page-header{
+          width: 95%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap:wrap;
+
+     }
+
+     .category-page-header::-webkit-scrollbar{
+          display: none;
+     }
+
+     .category-page-header span{
+          border: none;
+          box-shadow: 1px 1px 3px var(--text-color-para1);
+          width: auto;
+          margin: 3px 5px;
+     }
+     .category-adverts{
+          width: 90%;
+     }
+     .vendor-page-header h1{
+          font-size: 2.5rem;
+     }
+}

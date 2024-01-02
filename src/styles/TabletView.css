@@ -1,0 +1,75 @@
+@import "./General.css";
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+     :root{
+          font-size: 16px;
+     }
+     .contact-bar .contact-info div p{
+          display: none;
+     }
+     .home .hello-section{
+          justify-content: center;
+     }
+     .home .hello-section .col{
+          border-radius: 10px;
+     }
+     .home .hello-section img{
+          display: none;
+     }
+     .desktop-header h1{
+          font-size: 1.1rem;
+     }
+     .home .hello-section .col h1{
+          font-size: 2.5rem;
+     }
+     .dashboard-main-container{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+     }
+     .dashboard-navbar{
+          position: relative;
+          width: 95%;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-evenly;
+          margin: 5px auto;
+          top: 0;
+          padding: 0 10px;
+     }
+     .inner-container{
+          min-width: 95%;
+     }
+     .view-more-container {
+          padding: 0 10px;
+     }
+
+     .view-more-container b{
+          font-size: 20px;
+     }
+     .categories-header{
+          overflow-y: scroll;
+     }
+
+     .product-share-icon{
+          width: 30px;
+          height: 30px;
+          font-size: 20px;
+     }
+     .share-buttons button{
+          width: 30px;
+          height: 30px;
+     }
+
+     .share-buttons button i{
+          font-size: 25px;
+     }
+
+     .image-slider img{
+          max-height: 50vw;
+     }
+     .vendor-page-header h1{
+          font-size: 2rem;
+     }
+}
