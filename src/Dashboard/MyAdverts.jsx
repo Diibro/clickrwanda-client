@@ -69,14 +69,9 @@ const MyAdverts = () => {
 }
 
 const AllAdverts = ({content}) => {
-  const [view, setView] = useState(window.innerWidth);
-  useEffect(() => {
-    setView(window.innerWidth);
-  }, [window.innerWidth]);
-
   return(
     <>
-      {content.map((item) => view > 768 ? <DashAdvert key={item.ad_id} item={item} /> : <AdvertRenderer key={item.ad_id} item={item} />)}
+      {content.map((item) =>  <DashAdvert key={item.ad_id} item={item} /> )}
     </>
   )
 }
