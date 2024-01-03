@@ -13,6 +13,7 @@ import server from "../../config/Server";
 import { TiTick } from "react-icons/ti";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
+import { useNavigate } from "react-router-dom";
 
 export const Adverts = ({limit}) => {
       const [data] = useContext(AppData);
@@ -42,13 +43,17 @@ export const Adverts = ({limit}) => {
         )
       }else if(limit === 0 && adverts && adverts[0] && adverts != "no data found" ){
         return(
-            <InnerSection type="content">
-              {
-                adverts.map((item) => (
-                  <AdvertRenderer key={item.ad_id} item={item}/>
-                ))
-              }
-            </InnerSection>
+            <>
+              <InnerSection type="content">
+                {
+                  adverts.map((item) => (
+                    <AdvertRenderer key={item.ad_id} item={item}/>
+                  ))
+                }
+              </InnerSection>
+              <AdvertsPagination/>
+            </>
+            
         )
       }else{
         return(
@@ -92,6 +97,7 @@ export const SimilarAds = ({limit, adverts}) => {
 }
  
 export const AddAdvertForm = () => {
+  const navigate  = useNavigate();
   const [data, setData] = useContext(AppData);
   const [, setUser] = useContext(UserContext);
   const [adInfo, setAdInfo] = useState({});
@@ -131,7 +137,9 @@ export const AddAdvertForm = () => {
       
       const res = await server.addAdvert(formData);
       if(res.status === "pass"){
-        raiseAlert('success', `${res.message} as ${adInfo.ad_name}`, <TiTick />)
+        raiseAlert('success', `${res.message} as ${adInfo.ad_name}`, <TiTick />);
+        navigate('user-dashboard/user-adverts');
+        setUser((prev) => ({...prev, activeForm:''}));
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') setUser((prev) => ({...prev, activeForm:'login'}));
         return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
