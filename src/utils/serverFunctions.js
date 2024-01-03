@@ -1,10 +1,14 @@
 import axios from "axios";
+import { saveData } from "./storageFunctions";
 const  serverUrl = import.meta.env.VITE_BASE_URL;
 
-export const fetchData = async (url) => {
+export const fetchData = async (url, params) => {
      try {
-          const res = await axios.get(url)
+          const res = params ?  await axios.post(url, params) : await axios.get(url);
           const info = await res.data;
+          if (info.totalAds) {
+            saveData('totalAds', info.totalAds, 180000);
+          }
           const data = info.data;
           return data;
           

@@ -20,7 +20,8 @@ export const AppProvider = ({children}) => {
                content: {}
           },
           shareAlert: {on: false, content: {}},
-          loading: false
+          loading: false,
+          changingPage: false
      });
 
      const {fetchNow} = data;
@@ -40,10 +41,10 @@ export const AppProvider = ({children}) => {
                               currency: "Frw"
                          }));
                     }else{
-                         const categoriesData = await server.get('categories');
-                         const advertsData = await server.get('adverts');
-                         const subCategoriesData = await server.get('sub categories');
-                         const payPlansData = await server.get('payment plans');
+                         const categoriesData = await server.get('categories',null);
+                         const advertsData = await server.get('adverts',{page: 1});
+                         const subCategoriesData = await server.get('sub categories',null);
+                         const payPlansData = await server.get('payment plans', null);
                          const appData = {categoriesData, advertsData, subCategoriesData, payPlansData}
                          saveData('appData', appData, 180);
                          setData((prev) => ({

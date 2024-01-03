@@ -654,7 +654,7 @@ a{
      letter-spacing: 0.56px;
      border: 1.5px solid var(--back-color-gold2);
      transition: all 0.9s;
-     margin: 5px 0;
+     margin:  5px 5px;
 }
 
 .actionBtn:hover{
@@ -1598,6 +1598,58 @@ a{
 
 /* end of category container styles */
 
+
+.pagination {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     margin: 5px auto 10px;
+}
+
+.pagination i{
+     width: 20px;
+     font-size: 1.2rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     height: 20px;
+     border-radius: 50%;
+     margin: 0 5px;
+}
+
+.pagination i:hover{
+     background-color: var(--back-color-gold2-transparent);
+     cursor: pointer;
+}
+
+.pagination span{
+     font-size: 0.9rem;
+     margin: 0 2px;
+     width: 18px;
+     height: 18px;
+     color: var(--text-color-para1);
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+}
+
+.pagination span:hover{
+     cursor: pointer;
+
+}
+
+.pagination .active-page{
+     width: 20px;
+     height: 20px;
+     background-color: var(--text-color-title);
+     color: white;
+}
 /* views styles */
 
 .advert-view{

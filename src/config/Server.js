@@ -3,16 +3,16 @@ import { addAdvert, deleteAdvert, fetchData, getUrl, getUserAds, loginUser, logo
 
 
 const server = {
-     get: async (endpoint) => {
+     get: async (endpoint, params) => {
           switch(endpoint) {
                case 'categories':
-                    return await fetchData(getUrl(endpoints.allCategories));
+                    return await fetchData(getUrl(endpoints.allCategories), params);
                case 'adverts':
-                    return await fetchData(getUrl(endpoints.allAdverts));
+                    return await fetchData(getUrl(endpoints.allAdverts), params);
                case 'sub categories' :
-                    return await fetchData(getUrl(endpoints.allSubCategories));
+                    return await fetchData(getUrl(endpoints.allSubCategories), params);
                case 'payment plans':
-                    return await fetchData(getUrl(endpoints.allPayPlans));
+                    return await fetchData(getUrl(endpoints.allPayPlans), params);
                default:
                     console.log("no end provided")
                     return null;

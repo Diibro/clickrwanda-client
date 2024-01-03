@@ -1,7 +1,7 @@
 import { Container, Input, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { InnerSection } from "./InnerSectionContainer";
 import AppData from "../../Contexts/AppContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 import { FaArrowRight } from "react-icons/fa";
 import { AdvertRenderer} from "./Advert.componet";
@@ -11,22 +11,33 @@ import UserContext from "../../Contexts/UserContext";
 import { ImCross } from "react-icons/im";
 import server from "../../config/Server";
 import { TiTick } from "react-icons/ti";
+import { AdvertsPagination } from "./Pagination";
+import Loading from "../static/Loading";
 
 export const Adverts = ({limit}) => {
       const [data] = useContext(AppData);
-      const {adverts} = data;
+      const {adverts, changingPage} = data;
+      const advertsRef = useRef(null);
 
+      useEffect(() => {
+        if (!changingPage && advertsRef.current) {
+          advertsRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, [changingPage]);
       if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
         return(
           <>
-            <InnerSection type="content">
+            {changingPage ? <Loading /> : 
+            <InnerSection ref={advertsRef} type="content">
               {
                 adverts.map((item, index) => ( index <= limit ? (
                   <AdvertRenderer key={item.ad_id} item={item}/>
                 ) : null))
               }
             </InnerSection>
-            <InnerSection type="more" ><MoreLink content={{message: "all ads", dest: '/ads', icon: FaArrowRight}} /></InnerSection>
+            }
+            <AdvertsPagination/>
+            {/* <InnerSection type="more" ><MoreLink content={{message: "all ads", dest: '/ads', icon: FaArrowRight}} /></InnerSection> */}
           </>
         )
       }else if(limit === 0 && adverts && adverts[0] && adverts != "no data found" ){
