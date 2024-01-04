@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import {  getItemUrl, getItemUrlId } from "../utils/urlFunctions";
 import {  useEffect, useState } from "react";
 import { capitalizeString, formatPrice } from "../utils/otherFunctions";
@@ -77,20 +77,22 @@ const AdvertPage = () => {
           <div className="advert-page-mainAdvert">
                <div className="col">
                     <ImageSlider images={[mainImage, ...images]} />
-                    <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
-                    {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
-                    {adViewed?.category_name && 
-                         <p className="cat">
-                              <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>
-                              <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.sub_name}</span></a> 
-                         </p>
-                    } 
-                    
-                    <div className="content">
-                         {adViewed?.description && <h4>Description:</h4>}
-                         <p>
-                              {adViewed?.description?.desc}
-                         </p>
+                    <div className="advert-page-info">
+                         <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
+                         {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
+                         {adViewed?.category_name && 
+                              <p className="cat">
+                                   <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>
+                                   <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.sub_name}</span></a> 
+                              </p>
+                         } 
+                         
+                         <div className="content">
+                              {adViewed?.description && <h4>Description:</h4>}
+                              <p>
+                                   {adViewed?.description?.desc}
+                              </p>
+                         </div>
                     </div>
                </div>
                <div className="col">

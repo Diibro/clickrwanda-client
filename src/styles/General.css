@@ -1934,6 +1934,16 @@ a{
      margin: 2px auto;
 }
 
+.advert-page-mainAdvert .col .advert-page-info{
+     width: 100%;
+     box-shadow: 1px 1px 5px var(--text-color-para1);
+     display: flex;
+     flex-direction: column;
+     padding: 10px;
+     margin: 10px auto;
+     border-radius: 10px;
+}
+
 
 .advert-page-mainAdvert .col .vendor{
      width: 100%;
