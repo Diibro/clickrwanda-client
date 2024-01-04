@@ -127,7 +127,7 @@ const VendorPage = () => {
 const VendorHeader = ({image, title}) => {
   return(
     <div className="vendor-page-header">
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1> */}
       <img src={image} alt="vendor profile" />
     </div>
   )

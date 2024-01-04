@@ -6,15 +6,13 @@ import Loading from "../static/Loading";
 import { FaStar } from "react-icons/fa";
 
 export const AdvertReview = ({item}) => {
-     const [active, setActive] = useState("");
+     const [active, setActive] = useState("message");
      return(
           <div className="advert-review-container">
-               {active === "" && <RateAdvert item={item} />}
                {active === "message" && <MessageReview item={item} />}
                {active === "comment" && <CommentReview item={item} />}
                {active === "report" && <ReportReview item={item} />}
                <div className="advert-review-footer">
-                    <span className={`${active === "" && 'active-review'}`} onClick={()=> setActive("")}>Rate Ad</span>
                     <span className={`${active === "message" && 'active-review'}`} onClick={()=> setActive("message")}>Message</span>
                     <span className={`${active === "comment" && 'active-review'}`} onClick={()=> setActive("comment")}>Comment</span>
                     <span className={`${active === "report" && 'active-review'}`} onClick={()=> setActive("report")}>Report Advert</span>
@@ -54,8 +52,8 @@ export const RateAdvert = ({item}) => {
      return(
           !responce ?
           <div className="message-review-container">
-               <div className="message-review-header">
-                    <h4>Rate this advert</h4>
+               <div className="rate-review-header">
+                    <h4>Rate {item.full_name}</h4>
                </div>
                {
                     !loading ?
@@ -67,7 +65,7 @@ export const RateAdvert = ({item}) => {
                                    <FaStar
                                         key={starValue}
                                         onClick={() => handleStarClick(starValue)}
-                                        style={{ cursor: 'pointer', color: starValue <= rating ? 'gold' : 'gray' }}
+                                        style={{ cursor: 'pointer', fontSize: "1.2rem",color: starValue <= rating ? '#E5931D' : 'gray' }}
                                    />
                                    ))}
                               </div>
@@ -120,7 +118,7 @@ export const MessageReview = ({item}) => {
           !responce ? 
           <div className="message-review-container">
                <div className="message-review-header">
-                    <h4>Contact {item.full_name}</h4>
+                    <h4>Chat with {item.full_name} now</h4>
                </div>
                {
                     !loading ? 
@@ -182,7 +180,7 @@ export const CommentReview = ({item}) => {
           !responce ?
           <div className="message-review-container">
                <div className="message-review-header">
-                    <h4>Leave a comment</h4>
+                    <h4>Add a comment</h4>
                </div>
                {
                     !loading ? 
@@ -243,7 +241,7 @@ export const ReportReview = ({item}) => {
           !responce ? 
           <div className="message-review-container">
                <div className="report-review-header">
-                    <h4>Report Ad -- {item.ad_name}</h4>
+                    <h4>Report this ad</h4>
                </div>
                {
                     !loading ? 

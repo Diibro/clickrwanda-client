@@ -2084,8 +2084,7 @@ a{
 }
 
 .advert-review-footer span{
-     max-width: 40%;
-     min-width: 15%;
+     width: 30%;
      background-color: var(--white-text);
      font-size: 0.9rem;
      border: 1px solid var(--text-color-title);
@@ -2123,6 +2122,21 @@ a{
      background-color: var(--back-color-red1);
      border-radius: 10px 10px 0 0 ;
      padding: 5px 10px;
+}
+
+.rate-review-header{
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 10px 0;
+}
+
+.rate-review-header h4{
+     max-width: 95%;
+     font-size: 1.2rem;
+     font-weight: 700;
+     color: var(--text-color-title);
 }
 
 .message-review-header h4, .report-review-header h4{
