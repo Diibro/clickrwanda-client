@@ -241,7 +241,7 @@ export const ReportReview = ({item}) => {
           !responce ? 
           <div className="message-review-container">
                <div className="report-review-header">
-                    <h4>Report this ad</h4>
+                    <h4>Report this ad -- {item.ad_name}</h4>
                </div>
                {
                     !loading ? 
