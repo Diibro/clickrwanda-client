@@ -13,9 +13,9 @@ export const AdvertReview = ({item}) => {
                {active === "comment" && <CommentReview item={item} />}
                {active === "report" && <ReportReview item={item} />}
                <div className="advert-review-footer">
-                    <span className={`${active === "message" && 'active-review'}`} onClick={()=> setActive("message")}>Message</span>
-                    <span className={`${active === "comment" && 'active-review'}`} onClick={()=> setActive("comment")}>Comment</span>
-                    <span className={`${active === "report" && 'active-review'}`} onClick={()=> setActive("report")}>Report Advert</span>
+                    <span className={`${active === "message" && 'active-review'}`} onClick={()=> setActive("message")}>Chat now</span>
+                    <span className={`${active === "comment" && 'active-review'}`} onClick={()=> setActive("comment")}>Add Comment</span>
+                    <span className={`${active === "report" && 'active-review'}`} onClick={()=> setActive("report")}>Report this Ad</span>
                </div>
           </div>
      )
@@ -118,7 +118,7 @@ export const MessageReview = ({item}) => {
           !responce ? 
           <div className="message-review-container">
                <div className="message-review-header">
-                    <h4>Chat with {item.full_name} now</h4>
+                    <h4>Chat with {item.full_name}</h4>
                </div>
                {
                     !loading ? 

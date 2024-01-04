@@ -1387,6 +1387,7 @@ a{
      transition: all 0.4s;
      background-color: var(--white-text);
      border: 1px solid var(--gray-text);
+     overflow: none;
 }
 
 .product-square-container:hover{
@@ -1491,9 +1492,11 @@ a{
      color: var(--back-color-blue1);
 }
 .ad-image {
-     width: 100%;
+     max-width: 100%;
      margin: 0;
-     aspect-ratio: 10/10;
+     min-height: 150px;
+     max-height: 150px;
+     /* aspect-ratio: 10/10; */
      border-radius: 5px;
 }
 
