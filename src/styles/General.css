@@ -1681,6 +1681,7 @@ a{
      position: relative;
 }
 
+
 .advert-view-container::-webkit-scrollbar{
      width: 10px;
 }
@@ -2021,6 +2022,10 @@ a{
      display: flex;
      flex-direction: row;
      align-items: center;
+     max-width: 100%;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     overflow: hidden;
 }
 
 .advert-page-mainAdvert .col .vendor .contact p a i{
@@ -2042,6 +2047,153 @@ a{
      margin: 0 3px;
      display: flex;
      align-items: center;
+}
+
+
+.advert-page-mainAdvert .col .reviews{
+     width: 100%;
+     margin: 10px auto;
+     box-shadow: 1px 1px 5px var(--text-color-para1);
+     border-radius: 10px;
+     padding: 0;
+     display: flex;
+}
+
+.advert-review-container{
+     width: 100%;
+}
+
+.advert-review-footer{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-evenly;
+     border-radius: 0 0 10px 10px;
+     padding: 5px 0;
+}
+
+.advert-review-footer span{
+     max-width: 40%;
+     min-width: 15%;
+     background-color: var(--white-text);
+     font-size: 0.9rem;
+     border: 1px solid var(--text-color-title);
+     color: var(--text-color-title);
+     text-align: center;
+     border-radius: 5px;
+     padding: 5px 7.5px;
+     transition: all 0.4s;
+}
+
+.advert-review-footer span:hover{
+     color: var(--white-text);
+     background-color: var(--text-color-title);
+     cursor: pointer;
+}
+.advert-review-footer span.active-review{
+     background-color: var(--text-color-title);
+     color: white;
+}
+
+.message-review-container{
+     width: 100%;
+     margin: 0 auto;
+}
+
+.message-review-header{
+     width: 100%;
+     background-color: var(--text-color-title);
+     border-radius: 10px 10px 0 0 ;
+     padding: 5px  10px;
+}
+
+.report-review-header{
+     width: 100%;
+     background-color: var(--back-color-red1);
+     border-radius: 10px 10px 0 0 ;
+     padding: 5px 10px;
+}
+
+.message-review-header h4, .report-review-header h4{
+     color: white;
+     font-size: 1.2rem;
+     text-align: center;
+}
+
+.message-review-body{
+     width: 90%;
+     margin: 5px auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.message-review-body p{
+     font-size: 0.9rem;
+     font-weight: 700;
+     margin: 20px auto;
+     color: var(--featured-plan);
+}
+
+.message-review-body .row{
+     width: 98%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: left;
+     flex-wrap: wrap;
+     margin: 5px auto;
+}
+
+.message-review-body .row label{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+     margin: 0 5px 0 0;
+     width: 20%;
+}
+
+.message-review-body .row input{
+     width: 75%;
+     padding: 5px 10px;
+     border-radius: 2px;
+     border: none;
+     border-bottom: 1px solid var(--text-color-para1);
+}
+
+.message-review-body .row input:focus{
+     border: none;
+     border-bottom: 2px solid var(--back-color-blue1);
+     outline: none;
+}
+.message-review-body .row textarea{
+     width: 100%;
+     margin: 2px auto;
+     padding: 10px;
+     max-height: 100px;
+     border: none;
+     border: 1.5px solid var(--gray-text);
+     border-radius: 5px;
+     resize: none;
+}
+
+.message-review-body .row textarea:focus{
+     border: 1.5px solid var(--back-color-blue2);
+     outline: none;
+}
+
+.message-review-body .row textarea::-webkit-scrollbar{
+     display: none;
+}
+
+.message-review-body .row .rating-div{
+     display: flex;
+     flex-direction: column;
+     width: 50%;
+     align-items: center;
+     justify-content: space-evenly;
 }
 
 .advert-page-mainAdvert .col .safety-tips{

@@ -155,6 +155,11 @@ export const getUrl = (endpoint) => {
       return url;
 }
 
+export const manipulateReview = async (url, params) => {
+  const res = await axios.post(url, params);
+  return res.data;
+}
+
 
 
 

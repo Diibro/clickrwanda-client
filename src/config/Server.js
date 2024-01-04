@@ -1,5 +1,5 @@
 import endpoints from './Endpoints';
-import { addAdvert, deleteAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, registerUser, searchAds, searchAdvert, searchData, searchUser, updateUser } from '../utils/serverFunctions';
+import { addAdvert, deleteAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, manipulateReview, registerUser, searchAds, searchAdvert, searchData, searchUser, updateUser } from '../utils/serverFunctions';
 
 
 const server = {
@@ -60,5 +60,22 @@ const server = {
      deleteUserAd: async (params) => {
           return await deleteAdvert(getUrl(endpoints.deleteUserAdvert), params);
      },
+     reviews: {
+          addAdReview: async (params) => {
+               return await manipulateReview(getUrl(endpoints.addAdReview), params);
+          },
+          addUserReview: async (params) => {
+               return await manipulateReview(getUrl(endpoints.addUserReview), params);
+          },
+          getUserReviews: async (params) => {
+               return await manipulateReview(getUrl(endpoints.getUserReviews), params);
+          },
+          getAdReviews: async (params) => {
+               return await manipulateReview(getUrl(endpoints.getAdReviews), params);
+          },
+          addRating: async(params) => {
+               return await manipulateReview(getUrl(endpoints.rateUser), params);
+          }
+     }
 }
 export default server;

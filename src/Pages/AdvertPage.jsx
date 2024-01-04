@@ -14,6 +14,7 @@ import { RiAdvertisementFill } from "react-icons/ri";
 import { MdPageview } from "react-icons/md";
 import { ImageSlider } from "../components/dynamic/ImageSlider";
 import { getData, saveData } from "../utils/storageFunctions";
+import { AdvertReview } from "../components/dynamic/Reviews.component";
 
 
 const AdvertPage = () => {
@@ -114,7 +115,9 @@ const AdvertPage = () => {
                          </div>
                          
                     </div>
-                    <div className="reviews"></div>
+                    <div className="reviews">
+                         {adViewed && <AdvertReview item={adViewed} />} 
+                    </div>
                     <div className="safety-tips">
                          <h4>Safety Tips</h4>
                          <div className="tips">
