@@ -14,7 +14,7 @@ import { ViewProvider } from '../Contexts/ViewContext';
 import { AlertView } from '../views/AlertsViews';
 import NotFound from './NotFound';
 import AdvertPage from './AdvertPage';
-import { LoadingV1, Loadingv2 } from '../components/static/Loading';
+import { LoadingV1 } from '../components/static/Loading';
 import SearchPage from './SearchPage';
 import VendorPage from './VendorPage';
 import CategoryPage from './CategoryPage';
@@ -24,6 +24,7 @@ import TermsPage from './TermsPage';
 import PrivacyPage from './PrivacyPage';
 import { useEffect } from 'react';
 import HiringPage from './HiringPage';
+import PasswordPage from './PasswordPage';
 
 
 const Layout = () => {
@@ -51,6 +52,7 @@ const Layout = () => {
                <Route path='/category/:params' element={<CategoryPage />} />
                <Route path='/sub-category/:params' element={<SubCategoryPage />} />
                <Route path='/hiring' element={<HiringPage />}/>
+               <Route path='/accounts/:params' element={<PasswordPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

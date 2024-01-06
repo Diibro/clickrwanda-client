@@ -140,7 +140,7 @@ a{
      align-self: center;
      margin: 10px auto;
      right: 2%;
-     z-index: 100;
+     z-index: 150;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -148,7 +148,7 @@ a{
 }
 
 .alert-view i{
-     font-size: 1.2rem;
+     font-size: 1.4rem;
      margin:auto 10px ;
      width: 30px;
      display: flex;
@@ -159,9 +159,14 @@ a{
      border-radius: 50%;
 }
 
+.alert-view p{
+     font-size: 0.8rem;
+     font-weight: 600;
+}
+
 .success{
      color: var(--featured-plan);
-     border: 1.5px solid var(--featured-plan);
+     border: 0.5px solid var(--featured-plan);
 }
 
 .succes i{
@@ -170,7 +175,7 @@ a{
 }
 
 .fail{
-     border: 1.5px solid var(--back-color-red1);
+     border: 0.5px solid var(--back-color-red1);
      color: var(--back-color-red1);
 }
 
@@ -310,6 +315,94 @@ a{
      box-shadow: 1px 1px 7px 2px var(--text-color-para1);
 }
 
+.password-reset-page{
+     background-color: var(--text-color-title);
+     width: 100%;
+     height: 60vh;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+}
+
+.password-reset-container{
+     width: 50%;
+     min-width: 350px;
+     padding: 20px 0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: var(--back-color-gold1);
+     border-radius: 5px;
+}
+
+.password-reset-container h2{
+     text-align: center;
+     font-size: 1.3rem;
+     color: var(--text-color-title);
+}
+
+.password-reset-container p{
+     font-size: 0.9rem;
+     font-weight: 600;
+}
+
+.password-reset-container .reset-form{
+     width: 90%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     margin: 10px auto;
+}
+
+.password-reset-container .reset-form p{
+     font-size: 0.9rem;
+     color: var(--text-color-para1);
+}
+
+.password-reset-container .reset-form .group{
+     width: 70%;
+     min-width: 300px;
+     margin: 5px auto;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     flex-direction: wrap;
+}
+
+.password-reset-container .reset-form .group label{
+     font-size: 0.85rem;
+     font-weight: 600;
+}
+
+.password-reset-container .reset-form .group input{
+     width: 60%;
+     border: 1px solid var(--text-color-para1);
+     outline: none;
+     padding: 4px 10px;
+     border-radius: 5px;
+}
+
+
+.password-reset-container .reset-form .group input:focus{
+     outline: none;
+     border: 1px solid var(--text-color-title);
+}
+
+.password-reset-container .reset-form .group .row{
+     width: 80%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+}
+
+.password-reset-container .reset-form .group .row input{
+     width: auto;
+     margin: 0 5px 0 0;
+}
 .home .hello-section{
      width: 100%;
      background-color: var(--back-color-blue2);
@@ -1145,6 +1238,19 @@ a{
      font-size: 1rem;
      font-weight: 600;
      transition: all 0.3s;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     width: auto;
+}
+
+.dashboard-link a i{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     margin: 0 5px 0 0 ;
 }
 .dashboard-link a:hover{
      padding: 0 0 0 10px;
@@ -2303,6 +2409,26 @@ a{
      width: 100%;
 }
 
+.forgot-password-para{
+     font-size: 0.8rem;
+     color: var(--text-color-para1);
+     cursor: pointer;
+     font-weight: 600;
+}
 
+.forgot-password-para:hover{
+     color: var(--back-color-red1);
+}
+
+.pass-reset-responce{
+     margin: 10px auto;
+     font-size: 0.85rem;
+     color: var(--text-color-para1);
+     text-align: center;
+}
+
+.pass-reset-responce b{
+     color: var(--back-color-gold2);
+}
 /* end of overriders */
 /* media queries */

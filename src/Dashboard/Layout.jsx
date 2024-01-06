@@ -7,6 +7,7 @@ import PayPlans from "./PayPlans";
 import MyAdverts from "./MyAdverts";
 import Logout from "./Logout";
 import { useEffect } from "react";
+import { UserReviews } from "./Reviews";
 
 const UserLayout = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const UserLayout = () => {
             <Route path="/profile-settings" element={<Profile />} />
             <Route path='/payment-plans' element={<PayPlans />} />
             <Route path="/user-adverts/*" element={<MyAdverts />} />
+            <Route path="/user-reviews" element={<UserReviews />} />
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </ContentContainer>

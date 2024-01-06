@@ -1,5 +1,5 @@
 import endpoints from './Endpoints';
-import { addAdvert, deleteAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, manipulateReview, registerUser, searchAds, searchAdvert, searchData, searchUser, updateUser } from '../utils/serverFunctions';
+import { addAdvert, deleteAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, manipulateReview, registerUser, resetPassword, searchAds, searchAdvert, searchData, searchUser, updateUser } from '../utils/serverFunctions';
 
 
 const server = {
@@ -75,6 +75,25 @@ const server = {
           },
           addRating: async(params) => {
                return await manipulateReview(getUrl(endpoints.rateUser), params);
+          }
+     },
+     resetPassword: async (endpoint,params) => {
+          let url = "";
+          switch(endpoint){
+               case 'request-reset': 
+                    url = endpoints.requestPasswordReset;
+                    break;
+               case 'check-password-reset':
+                    url = endpoints.checkPasswordReset;
+                    break;
+               case 'reset-password':
+                    url = endpoints.resetPassword;
+                    break;
+               default:
+                    url = "";
+          }
+          if(url !== ""){
+               return await resetPassword(getUrl(url), params);
           }
      }
 }

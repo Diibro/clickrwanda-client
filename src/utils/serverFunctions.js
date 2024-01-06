@@ -160,6 +160,11 @@ export const manipulateReview = async (url, params) => {
   return res.data;
 }
 
+export const resetPassword = async (url, params) => {
+  const res = await axios.post(url, params);
+  return res.data;
+}
+
 
 
 

@@ -19,3 +19,9 @@ export const getItemUrlName = (url) => {
      const name = names[1];
      return dashRemover(name);
 }
+
+export const getItemUrlToken = (url) => {
+     const names = charRemover(url, '?=');
+     const name = names[1];
+     return name;
+}

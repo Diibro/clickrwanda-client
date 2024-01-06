@@ -20,7 +20,10 @@ const endpoints = {
      addUserReview: "api/review/add-user-review",
      getAdReviews: "api/review/get-ad-reviews",
      getUserReviews:"api/review/get-user-reviews",
-     rateUser: "api/users/rate-user"
+     rateUser: "api/users/rate-user",
+     requestPasswordReset: "api/users/request-password-reset",
+     resetPassword: "api/users/reset-password",
+     checkPasswordReset: "api/users/get-reset-email"
 }
 
 export default endpoints;

@@ -95,14 +95,15 @@ export const MessageReview = ({item}) => {
           if(message.contact && message.message) {
                try {
                     setLoading(true);
-                    const formData = new FormData();
-                    formData.append('name', message.contact);
-                    formData.append('message', message.message);
-                    formData.append('user_id', item.user_id);
-                    formData.append('ad_id', item.ad_id);
-                    formData.append('review_type', "message");
+                    const data = {
+                         name: message.contact,
+                         message: message.message,
+                         user_id: item.user_id,
+                         ad_id: item.ad_id,
+                         review_type: "message"
+                    }
 
-                    const info = await server.reviews.addAdReview(formData);
+                    const info = await server.reviews.addAdReview(data);
                     if(info.status === "pass"){
                          setResponce(true);
                     }
@@ -157,14 +158,15 @@ export const CommentReview = ({item}) => {
           if(message.contact && message.message) {
                try {
                     setLoading(true);
-                    const formData = new FormData();
-                    formData.append('name', message.contact);
-                    formData.append('message', message.message);
-                    formData.append('user_id', item.user_id);
-                    formData.append('ad_id', item.ad_id);
-                    formData.append('review_type', "comment");
+                    const data = {
+                         name: message.contact,
+                         message: message.message,
+                         user_id: item.user_id,
+                         ad_id: item.ad_id,
+                         review_type: "comment"
+                    }
 
-                    const info = await server.reviews.addAdReview(formData);
+                    const info = await server.reviews.addAdReview(data);
                     if(info.status === "pass"){
                          setResponce(true);
                     }
@@ -218,14 +220,15 @@ export const ReportReview = ({item}) => {
           if(message.contact && message.message) {
                try {
                     setLoading(true);
-                    const formData = new FormData();
-                    formData.append('name', message.contact);
-                    formData.append('message', message.message);
-                    formData.append('user_id', item.user_id);
-                    formData.append('ad_id', item.ad_id);
-                    formData.append('review_type', "report");
+                    const data = {
+                         name: message.contact,
+                         message: message.message,
+                         user_id: item.user_id,
+                         ad_id: item.ad_id,
+                         review_type: "report"
+                    }
 
-                    const info = await server.reviews.addAdReview(formData);
+                    const info = await server.reviews.addAdReview(data);
                     if(info.status === "pass"){
                          setResponce(true);
                     }

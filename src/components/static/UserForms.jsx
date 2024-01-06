@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
-import { SubmitButton } from "../dynamic/Buttons";
+import { ActionBtn, SubmitButton } from "../dynamic/Buttons";
 import Title from "../dynamic/TitleComponents"
 import { textColors, titleSize } from "../styles"
 import UserContext from "../../Contexts/UserContext";
 import { ImCross, ImTicket } from "react-icons/im";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AppData from "../../Contexts/AppContext";
 import server from "../../config/Server";
-import { Loadingv2 } from "./Loading";
+import Loading, { Loadingv2 } from "./Loading";
 import { TiTick } from "react-icons/ti";
 import { AddAdvertForm } from "../dynamic/Adverts.component";
 
@@ -19,7 +19,7 @@ const UserForms = () => {
      if(activeForm != '') {
           return (
                <div className="user-forms">
-                {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : null}
+                {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : null}
                </div>
              )
      }else{
@@ -35,6 +35,7 @@ const LoginForm = () => {
      const {register, handleSubmit,} = useForm();
      const [,setData] = useContext(AppData);
      const [loading, setLoading] = useState(false);
+     const [email, setEmail] = useState("");
      const navigate = useNavigate();
      const raiseAlert = (type, message, icon) => {
           setData((prev)=> ({
@@ -62,7 +63,7 @@ const LoginForm = () => {
                          activeForm:''
                     }));
                     raiseAlert('success', `${res.message} as ${res.data.username}`, <TiTick />)
-                    return navigate('/user-dashboard');
+                    return  navigate('/user-dashboard');
                }else{
                     return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
                }
@@ -72,17 +73,41 @@ const LoginForm = () => {
                setLoading(false);
           }
      }
+
+     const requestPasswordReset = async() => {
+          try {
+               setLoading(true);
+               if(email != ""){
+                    const res = await server.resetPassword('request-reset',{email});
+                    if(res.status === "pass") {
+                         // raiseAlert('success', `${res.message}`, <TiTick />);
+                         setUser((prev) => ({...prev, activeForm:'reset-password', userInfo: {email}}));
+                    }else{
+                         return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+                    }
+               }
+          } catch (error) {
+               console.log(error);
+               return raiseAlert('fail', `Error .Try again`, <ImCross />);
+          }finally{
+               setLoading(false);
+          }
+          
+     }
      const closeForm = () => {
           setUser((prev) => ({...prev, activeForm:''}));
      }
+
      return(
           <div className="form-container">
                <i onClick={closeForm} className="close-icon"><ImCross/></i>
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login"}} />
-               <form onSubmit={handleSubmit(submitForm)}>
+               {!loading ?
+               <>
+                    <form onSubmit={handleSubmit(submitForm)}>
                     <div className="group">
                          <label htmlFor="email_02">Email: </label>
-                         <input type="email" name="email" id="email_02" {...register('email')} placeholder="User email..."  />
+                         <input type="email" name="email" id="email_02" {...register('email')} onChange={(e) => setEmail(e.target.value)} placeholder="User email..."  />
                     </div>
                     <div className="group">
                          <label htmlFor="password_02">Password: </label>
@@ -91,10 +116,15 @@ const LoginForm = () => {
                     <div className="group align-right">
                          <SubmitButton content={{title: "Log in", type: 'submit'}} />
                     </div>
+                    <div className="group align-right">
+                         <p onClick={requestPasswordReset} className="forgot-password-para">Forgot Password</p>
+                    </div>
                </form>
                <div className="line-divider"><p>Or</p></div>
                <p className="other-link">Don&rsquo;t have account <b onClick={() => setUser((prev) => ({...prev, activeForm:'signup'}))}>Sign Up</b></p>
-               {loading ? <Loadingv2 /> : null}
+               </>
+               
+                :<Loading />}
           </div>
      )
 }
@@ -191,5 +221,25 @@ const SignUpForm = () => {
           </div>
      )
 }
+
+const PasswordResetResponce = () => {
+     const [user, setUser] = useContext(UserContext);
+     const {email } = user.userInfo;
+     const closeForm = () => {
+          setUser({activeForm:'', userInfo:{}});
+     }
+     return (
+          <div className="form-container">
+               <p className="pass-reset-responce">An email containing the password reset link has been sent to the email <b>{email}</b> .</p>
+               <p className="pass-reset-responce">Check the email to reset your password</p>
+               <div className="group align-right">
+                    <ActionBtn title="Close" action={closeForm} />
+               </div>
+               
+          </div>
+     )
+}
+
+
 
 export default UserForms;

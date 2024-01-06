@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import { MdAccountCircle, MdOutlinePayment } from "react-icons/md";
+import { MdAccountCircle, MdOutlinePayment, MdRateReview } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 import { LiaAdversal } from "react-icons/lia";
 import { CiLogout } from "react-icons/ci";
@@ -44,6 +44,7 @@ export const NavContainer = () => {
                     <LinkContainer content={{to:'/', name: !cond ? 'Home' : '', icon: <MdAccountCircle />}} />
                     <LinkContainer content={{to:'/profile-settings', name: !cond ?'View Profile' : '', icon: <IoSettings />}} />
                     <LinkContainer content={{to:'/user-adverts', name: !cond ? 'My Adverts' : '', icon: <LiaAdversal />}} />
+                    <LinkContainer content={{to:'/user-reviews', name: !cond ? 'Reviews' : '', icon: <MdRateReview />}} />
                     <LinkContainer content={{to:'/payment-plans', name: !cond ? 'Payment Plans' : '', icon: <MdOutlinePayment />}} />
                     <LinkContainer content={{to:'/logout', name: !cond ? 'Log out' : '', icon: <CiLogout />}} />
           </div>
