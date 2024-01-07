@@ -41,7 +41,7 @@ const VendorPage = () => {
         const res = await server.searchAdverts('user', {userId});
         setVendorInfo(res.vendorInfo);
         setVendorAds(res.ads);
-        saveData('vendorInfo', res);
+        saveData('vendorInfo', res, 30);
       }
     } catch (error) {
       console.log(error);

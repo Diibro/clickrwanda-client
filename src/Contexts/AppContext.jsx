@@ -46,7 +46,7 @@ export const AppProvider = ({children}) => {
                          const subCategoriesData = await server.get('sub categories',null);
                          const payPlansData = await server.get('payment plans', null);
                          const appData = {categoriesData, advertsData, subCategoriesData, payPlansData}
-                         saveData('appData', appData, 180);
+                         saveData('appData', appData, 30);
                          setData((prev) => ({
                          ...prev,
                          categories: categoriesData,

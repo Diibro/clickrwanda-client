@@ -38,7 +38,7 @@ const CategoryPage = () => {
         }
         setCategoryAds(res);
         const subAdverts = { sub_id, data: res};
-        saveData('subAdverts', subAdverts);
+        saveData('subAdverts', subAdverts, 30);
       }
     } catch (error) {
       console.log(error);

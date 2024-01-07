@@ -50,7 +50,7 @@ const AdvertPage = () => {
                if(check === 0){
                     setLoading(true);
                     const res = await server.searchAd({ad_id:adId});
-                    saveData("adViewed",res.data, 180);
+                    saveData("adViewed",res.data, 5);
                     const {adData, sameCategory, sameSubCategory} = res.data;
                     setAdViewed(adData);
                     setOtherAds(sameSubCategory || sameCategory || null);
