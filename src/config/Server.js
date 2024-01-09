@@ -95,6 +95,12 @@ const server = {
           if(url !== ""){
                return await resetPassword(getUrl(url), params);
           }
+     },
+     searchUserAd: async(params) => {
+          return await searchAdvert(getUrl(endpoints.searchUserAd), params);
+     },
+     updateUserAd: async(params) => {
+          return await updateUser(getUrl(endpoints.updateUserAd), params);
      }
 }
 export default server;

@@ -1203,8 +1203,8 @@ a{
      margin: 5px auto;
      padding: 5px 10px;
      position: relative;
-     max-height: 80vh;
-     overflow: scroll;
+     min-height: 50vh;
+     /* overflow: scroll; */
 }
 
 .dashboard-main-container::-webkit-scrollbar{
@@ -1375,7 +1375,9 @@ a{
      padding-bottom: 10px;
 }
 .dash-advert-row img{
-     width: 90%;
+     min-height: 200px;
+     max-height: 200px;
+     max-width: 95%;
 }
 
 .dash-advert-row  .icons{
@@ -1422,6 +1424,156 @@ a{
      color: var(--text-color-para2);
 }
 
+.advert-edit-page{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.advert-edit-page .edit-title{
+     font-size: 1.2rem;
+     color: var(--text-color-title);
+     width: 95%;
+     margin: 5px auto 10px;
+}
+
+.advert-edit-page .edit-form{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     align-items: flex-start;
+     justify-content: flex-start;
+}
+
+.advert-edit-page .edit-form .group{
+     width: 45%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     border-radius: 5px;
+     padding: 5px;
+     margin: 10px auto;
+     min-width: 340px;
+     flex-wrap: wrap;
+}
+.advert-edit-page .edit-form .group .image-edit{
+     max-width: 60%;
+     min-width: 50%;
+}
+
+.advert-edit-page .edit-form .group .image-edit img{
+     width: 100%;
+     border-radius: 10px;
+}
+
+.advert-edit-page .edit-form .group label{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+     min-width: 30%;
+}
+
+.advert-edit-page .edit-form .group input, .advert-edit-page .edit-form .group select{
+     max-width: 60%;
+     min-width: 50%;
+     color: var(--text-color-title);
+     font-size: 0.85rem;
+     font-weight: 500;
+     margin: 0 10px;
+
+}
+
+.advert-edit-page .edit-form .group input,  .advert-edit-page .edit-form .group select{
+     outline: none;
+     border: none;
+     border-bottom: 1px solid var(--back-color-gold2);
+}
+
+.advert-edit-page .edit-form .group textarea{
+     min-width: none;
+     width: 90%;
+     border: 1px solid var(--back-color-gold2);
+     resize: none;
+     padding: 5px;
+     border-radius: 5px;
+     margin: 5px 0;
+}
+
+.advert-edit-page .edit-form .group textarea::-webkit-scrollbar{
+     display: none;
+}
+
+.advert-edit-page .edit-form .group .image-edit input{
+     max-width: 100%;
+}
+
+.advert-edit-page .edit-form .full-width{
+     width: 95%;
+}
+
+.dash-advert-view-page{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.dash-advert-view-page .row{
+     width: 98%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     margin: 10px auto;
+     flex-wrap: wrap;
+}
+
+.dash-advert-view-page .row .group{
+     width: 45%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+}
+
+.dash-advert-view-page .row .group h4, .dash-advert-view-page .row h4{
+     color: var(--text-color-title);
+     font-size: 0.85rem;
+     font-weight: 500;
+     margin: 0px 10px;
+}
+
+.dash-advert-view-page .row .group b{
+     font-size: 0.9rem;
+     color: var(--text-color-title);
+}
+
+.dash-advert-view-page .row .main-img{
+     width: 60%;
+     max-height: 400px;
+}
+
+.dash-advert-view-page .row p{
+     font-size: 0.85rem;
+     color: var(--text-color-para2);
+
+}
+
+.dash-advert-view-page .otherImages{
+     width: 30%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     flex-wrap: wrap;
+     justify-content: flex-start;
+}
+
+.dash-advert-view-page .other-images img{
+     min-width: 20%;
+     max-height: 80px;
+     margin: 5px;
+}
 /* end of user dashboard components */
 
 /* small container styles */

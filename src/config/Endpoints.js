@@ -23,7 +23,9 @@ const endpoints = {
      rateUser: "api/users/rate-user",
      requestPasswordReset: "api/users/request-password-reset",
      resetPassword: "api/users/reset-password",
-     checkPasswordReset: "api/users/get-reset-email"
+     checkPasswordReset: "api/users/get-reset-email",
+     searchUserAd: "api/advert/search-user-ad",
+     updateUserAd: "api/advert/3"
 }
 
 export default endpoints;

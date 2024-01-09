@@ -25,7 +25,6 @@ export const searchData = async (url, params) => {
     const {data} = info;
     return data;
   } catch (error) {
-    console.log(error);
     return [];
   }
 }
@@ -108,7 +107,6 @@ export const addAdvert = async (url, params) => {
 export const searchAdvert = async(url, params ) => {
   try {
     const res = await axios.post(url, params);
-    console.log(res);
     const info = await res.data;
     return info;
   } catch (error) {

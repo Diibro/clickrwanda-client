@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { MdVisibility } from "react-icons/md";
 import { dateFormatMonth } from "../utils/dateFunctions";
 import { FaEdit } from "react-icons/fa";
-import { AdvertRenderer } from "../components/dynamic/Advert.componet";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AdPreview from "./AdPreview";
 import AdEdit from "./AdEdit";
