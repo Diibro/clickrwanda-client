@@ -102,6 +102,7 @@ export const AddAdvertForm = () => {
   const [, setUser] = useContext(UserContext);
   const [adInfo, setAdInfo] = useState({});
   const [adDescription, setAdDescription] = useState("");
+  const [loading, setLoading] = useState(false);
   const {categories, subCategories} = data;  
   const closeForm = () => {
     setUser((prev) => ({...prev, activeForm:''}));
@@ -120,7 +121,7 @@ export const AddAdvertForm = () => {
   const submitForm =async (event) => {
     event.preventDefault();
     try {
-      setData((prev) => ({...prev, loading:true}));
+      setLoading(true);
       const formData = new FormData();
       formData.append('ad_name', adInfo.ad_name);
       formData.append('description', adDescription);
@@ -147,7 +148,7 @@ export const AddAdvertForm = () => {
     } catch (error) {
       return raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
     }finally{
-      setData((prev) => ({...prev, loading:false}));
+      setLoading(false);
     }
     
   } 
@@ -155,7 +156,9 @@ export const AddAdvertForm = () => {
   return(
     <div className="advert-form-container">
       <i onClick={closeForm} className="close-icon"><ImCross/></i>
-      <form onSubmit={submitForm}>
+      {
+        loading ? <Loading /> :
+        <form onSubmit={submitForm}>
         <div className="row">
           <h2>Add New Ad</h2>
         </div>
@@ -243,6 +246,7 @@ export const AddAdvertForm = () => {
           <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
         </div>
       </form>
+      }
     </div>
   )
   
