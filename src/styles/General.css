@@ -2294,15 +2294,17 @@ a{
      flex-direction: row;
      align-items: center;
      max-width: 100%;
-     text-overflow: ellipsis;
-     white-space: nowrap;
-     overflow: hidden;
+     white-space: wrap;
 }
 
 .advert-page-mainAdvert .col .vendor .contact p a i{
      margin: 0 10px;
      font-size: 1.2rem;
      color: var(--back-color-gold2);
+}
+
+.advert-page-mainAdvert .col .vendor .contact p .vendor-views i{
+     color: var(--text-color-title);
 }
 
 .advert-page-mainAdvert .col .vendor .contact .vendor-date, .advert-page-mainAdvert .col .vendor .contact .vendor-views{
@@ -2584,3 +2586,24 @@ a{
 }
 /* end of overriders */
 /* media queries */
+
+/*
+hide scroll bars
+*/
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.hide-scroll::-webkit-scrollbar {
+     display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.hide-scroll {
+     scrollbar-width: none; 
+     -ms-overflow-style: none;/* Firefox 64-bit version 64.0 and later */
+}
+
+.hide-scroll::-moz-scrollbar {
+     display: none; /* Firefox 63 and earlier */
+}
+.hide-scroll::-ms-scrollbar {
+     display: none;
+}

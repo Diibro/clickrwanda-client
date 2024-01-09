@@ -12,6 +12,7 @@ export const AppProvider = ({children}) => {
           fetchNow: false,
           categories:[],
           adverts: [],
+          boosted: [],
           subCategories: [],
           payPlans: [],
           currency:"",
@@ -31,21 +32,22 @@ export const AppProvider = ({children}) => {
                     setData((prev) => ({...prev, loading: true}));
                     const sessionData = getData('appData');
                     if (sessionData){
-                         const {categoriesData, subCategoriesData, advertsData, payPlansData} = sessionData;
+                         const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted} = sessionData;
                          setData((prev) => ({
                               ...prev,
                               categories: categoriesData,
                               adverts: advertsData,
+                              boostedAds:boosted,
                               subCategories: subCategoriesData,
                               payPlans: payPlansData,
                               currency: "Frw"
                          }));
                     }else{
                          const categoriesData = await server.get('categories',null);
-                         const advertsData = await server.get('adverts',{page: 1});
+                         const {generalAds:advertsData, boostedAds:boosted} = await server.get('adverts',{page: 1, boost: 20});
                          const subCategoriesData = await server.get('sub categories',null);
                          const payPlansData = await server.get('payment plans', null);
-                         const appData = {categoriesData, advertsData, subCategoriesData, payPlansData}
+                         const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted}
                          saveData('appData', appData, 30);
                          setData((prev) => ({
                          ...prev,
@@ -53,8 +55,10 @@ export const AppProvider = ({children}) => {
                          adverts: advertsData,
                          subCategories: subCategoriesData,
                          payPlans: payPlansData,
+                         boosted: boosted,
                          currency: "Frw"
                          }));
+                         console.log(data.boosted);
                     }
                     
                } catch (error) {

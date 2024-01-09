@@ -8,7 +8,7 @@ import {  useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AppData from "../../Contexts/AppContext";
 import server from "../../config/Server";
-import Loading, { Loadingv2 } from "./Loading";
+import Loading from "./Loading";
 import { TiTick } from "react-icons/ti";
 import { AddAdvertForm } from "../dynamic/Adverts.component";
 
@@ -18,7 +18,7 @@ const UserForms = () => {
      const {activeForm} = user;
      if(activeForm != '') {
           return (
-               <div className="user-forms">
+               <div className="user-forms hide-scroll">
                 {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : null}
                </div>
              )
@@ -99,7 +99,7 @@ const LoginForm = () => {
      }
 
      return(
-          <div className="form-container">
+          <div className="form-container hide-scroll">
                <i onClick={closeForm} className="close-icon"><ImCross/></i>
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login"}} />
                {!loading ?
@@ -157,7 +157,6 @@ const SignUpForm = () => {
                formData.append('location', data.location);
           
                const res = await server.register(formData);
-          
                if (res.status === "pass") {
                raiseAlert('success', 'Successfully created the account', <ImTicket />);
                setUser((prev) => ({ ...prev, activeForm: 'login' }));
@@ -182,42 +181,44 @@ const SignUpForm = () => {
           setUser((prev) => ({...prev, activeForm:''}))
      }
      return(
-          <div className="form-container">
+          <div className="form-container hide-scroll">
                <i onClick={closeForm} className="close-icon"><ImCross/></i>
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Sign Up"}} />
+               {loading ? <Loading /> : 
                <form onSubmit={handleSubmit(submitForm, onErrors)}>
-                    <div className="group">
-                         <label htmlFor="name_01">Full name: </label>
-                         <input type="text" name="name" id="name_01" {...register('name', {required: true})} placeholder="Ex: Adms Johns..."  />
-                    </div>
-                    <div className="group">
-                         <label htmlFor="username_01">Username: </label>
-                         <input type="text" name="username" id="username_01" {...register('username', {required: true})} placeholder="username..."  />
-                    </div>
-                    <div className="group">
-                         <label htmlFor="email_01">Email: </label>
-                         <input type="email" name="email" id="email_01" {...register('email', {required: true})} placeholder="User email..."  />
-                    </div>
-                    <div className="group">
-                         <label htmlFor="phone_01">Phone: </label>
-                         <input type="phone" name="phone" id="phone_01" {...register('phone', {required: true})} placeholder="Ex: +25078..."  />
-                    </div>
-                    <div className="group">
-                         <label htmlFor="password">Password: </label>
-                         <input type="password" id="password" name="password" {...register('password', {required: true, minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
-                    </div>
-                    <p className="form-errors">{errors?.password && errors.password.message}</p>
-                    <div className="group">
-                         <label htmlFor="location01">Location: </label>
-                         <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  />
-                    </div>
-                    <div className="group align-right">
-                         <SubmitButton content={{title: "Sign Up", type: 'submit'}} />
-                    </div>
-               </form>
+               <div className="group">
+                    <label htmlFor="name_01">Full name: </label>
+                    <input type="text" name="name" id="name_01" {...register('name', {required: true})} placeholder="Ex: Adms Johns..."  />
+               </div>
+               <div className="group">
+                    <label htmlFor="username_01">Username: </label>
+                    <input type="text" name="username" id="username_01" {...register('username', {required: true})} placeholder="username..."  />
+               </div>
+               <div className="group">
+                    <label htmlFor="email_01">Email: </label>
+                    <input type="email" name="email" id="email_01" {...register('email', {required: true})} placeholder="User email..."  />
+               </div>
+               <div className="group">
+                    <label htmlFor="phone_01">Phone: </label>
+                    <input type="phone" name="phone" id="phone_01" {...register('phone', {required: true})} placeholder="Ex: +25078..."  />
+               </div>
+               <div className="group">
+                    <label htmlFor="password">Password: </label>
+                    <input type="password" id="password" name="password" {...register('password', {required: true, minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
+               </div>
+               <p className="form-errors">{errors?.password && errors.password.message}</p>
+               <div className="group">
+                    <label htmlFor="location01">Location: </label>
+                    <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  />
+               </div>
+               <div className="group align-right">
+                    <SubmitButton content={{title: "Sign Up", type: 'submit'}} />
+               </div>
+          </form>
+               }
                <div className="line-divider"><p>Or</p></div>
                <p className="other-link">Have account <b onClick={() => setUser((prev) => ({...prev, activeForm:'login'}))}>Login</b></p>
-               {loading ? <Loadingv2 /> : null}
+               
           </div>
      )
 }
@@ -229,7 +230,7 @@ const PasswordResetResponce = () => {
           setUser({activeForm:'', userInfo:{}});
      }
      return (
-          <div className="form-container">
+          <div className="form-container hide-scroll">
                <p className="pass-reset-responce">An email containing the password reset link has been sent to the email <b>{email}</b> .</p>
                <p className="pass-reset-responce">Check the email to reset your password</p>
                <div className="group align-right">

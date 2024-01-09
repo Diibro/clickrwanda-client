@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import HelloImage from '../assets/images/helloImage.png'
-import { Adverts} from '../components/dynamic/Adverts.component';
+import { Adverts, BoostedAds} from '../components/dynamic/Adverts.component';
 import Categories from '../components/dynamic/Categories';
 import { InnerSection } from '../components/dynamic/InnerSectionContainer';
 import SearchBar from '../components/static/SearchBar';
@@ -19,6 +19,11 @@ const Home = () => {
         <img src={HelloImage} alt="hello section image" />
       </div>
       <Categories limit={isMobile ? 12 : 14} />
+      <InnerSection type="title" >
+        {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
+        Boosted Ads
+      </InnerSection>
+      <BoostedAds />
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
         Top picks for you

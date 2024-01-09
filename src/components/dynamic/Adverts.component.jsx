@@ -264,6 +264,21 @@ export const CategoryAdverts = ({adverts}) => {
   )
 }
 
+export const BoostedAds = () => {
+  const [data] = useContext(AppData);
+  console.log(data);
+  const {boosted} = data;
+
+  return(
+    <InnerSection type="content">
+    {
+      boosted.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+      )
+    }
+  </InnerSection>
+  )
+}
+
 Adverts.propTypes = {
      limit: PropTypes.number
 }
