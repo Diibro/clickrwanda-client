@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Loadingv2 } from "../components/static/Loading";
+import Loading, { Loadingv2 } from "../components/static/Loading";
 import { DashboardContainer, DashboardRow } from "../components/dynamic/DashboardComponents";
 import server from "../config/Server";
 import UserContext from "../Contexts/UserContext";
@@ -56,21 +56,24 @@ const MyAdverts = () => {
           <h2>My Adverts</h2>
         </DashboardRow>
         <Routes>
-          <Route path="/"  element={<DashboardRow>{adverts != "no adverts found" ? <AllAdverts content={adverts} />  : <p>No adverts found</p>}</DashboardRow>}/>
+          <Route path="/"  element={<DashboardRow>{adverts != "no adverts found" ? <AllAdverts content={{adverts, loading}} />  : <p>No adverts found</p>}</DashboardRow>}/>
           <Route path="/preview/:params" element={<AdPreview />} />
           <Route path="/edit/:params" element={<AdEdit />} />
         </Routes>
         
       </DashboardContainer>
-      {loading ? <Loadingv2 /> : null}
     </>
   )
 }
 
 const AllAdverts = ({content}) => {
+  const {loading, adverts} = content;
   return(
     <>
-      {content.map((item) =>  <DashAdvert key={item.ad_id} item={item} /> )}
+      {loading ? <Loading /> :
+      adverts.map((item) =>  <DashAdvert key={item.ad_id} item={item} /> )
+      }
+      
     </>
   )
 }

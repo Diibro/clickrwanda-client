@@ -59,7 +59,6 @@ export const AppProvider = ({children}) => {
                          boosted: boosted,
                          currency: "Frw"
                          }));
-                         console.log(data.boosted);
                     }
                     
                } catch (error) {

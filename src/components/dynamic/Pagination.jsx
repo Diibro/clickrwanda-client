@@ -19,7 +19,7 @@ export const AdvertsPagination = () => {
           if(num <= pages && num > 0){
                try {
                     setData((prev) => ({...prev, changingPage: true}));
-                    const newAds = await server.get('adverts', {page: num});
+                    const {generalAds:newAds} = await server.get('adverts', {page: num});
                     setData((prev) => ({...prev, adverts:newAds}));
                     setCurrentPage(num);
                } catch (error) {

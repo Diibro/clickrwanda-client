@@ -26,7 +26,7 @@ const Home = () => {
       <BoostedAds />
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
-        Top picks for you
+        New Ads
       </InnerSection>
       <Adverts limit={50} />
     </div>
