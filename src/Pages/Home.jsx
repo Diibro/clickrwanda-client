@@ -22,7 +22,7 @@ const Home = () => {
       <BoostedSellers />
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
-        Sponsored Ads
+        Sponsored Deals
       </InnerSection>
       <BoostedAds />
       <InnerSection type="title" >
