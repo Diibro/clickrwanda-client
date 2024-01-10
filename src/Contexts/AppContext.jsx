@@ -13,6 +13,7 @@ export const AppProvider = ({children}) => {
           categories:[],
           adverts: [],
           boosted: [],
+          bestSellers: [],
           subCategories: [],
           payPlans: [],
           currency:"",

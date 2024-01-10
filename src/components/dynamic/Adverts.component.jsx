@@ -11,6 +11,7 @@ import UserContext from "../../Contexts/UserContext";
 import { ImCross } from "react-icons/im";
 import server from "../../config/Server";
 import { TiTick } from "react-icons/ti";
+import { MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
 import { useNavigate } from "react-router-dom";
@@ -266,16 +267,27 @@ export const CategoryAdverts = ({adverts}) => {
 
 export const BoostedAds = () => {
   const [data] = useContext(AppData);
-  console.log(data);
+  const adsRef = useRef(null);
   const {boosted} = data;
 
-  return(
-    <InnerSection type="content">
-    {
-      boosted.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
-      )
+  const scrollHandle = (check) => {
+    if(check === 1){
+      adsRef.current.scrollBy({left: 200, behavior: 'smooth'});
+    }else if(check === -1){
+      adsRef.current.scrollBy({left: -200, behavior: 'smooth'})
     }
-  </InnerSection>
+  }
+  return(
+    <div className="home-boosted-ads " >
+      <div className="ads-container hide-scroll" ref={adsRef}>
+        {
+          boosted.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+          )
+        }
+      </div>
+    <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i>
+    <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i>
+  </div>
   )
 }
 
