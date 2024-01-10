@@ -30,6 +30,16 @@ const BesterSellerCard = ({item}) => {
      )
 }
 
+export const TopDealsCard = () => {
+     const url = "vendor/Click-Rwanda?=0e17d862-80c9-451c-974c-1eac88ddcc77";
+     const navigate = useNavigate();
+     return(
+          <div onClick={() => navigate(url)} className="category-square top-deals-card">
+               <h3>Top <br /> Deals</h3>
+          </div>
+     )
+}
+
 BesterSellerCard.propTypes = {
      item: PropTypes.any
 }

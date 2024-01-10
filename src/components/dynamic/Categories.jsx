@@ -7,6 +7,7 @@ import { InnerSection } from './InnerSectionContainer';
 import { CategoryContainerSquare } from './Containers';
 import { MoreLink } from './LinksComponents';
 import { getItemUrl } from '../../utils/urlFunctions';
+import { TopDealsCard } from './Special.components';
 
 const Categories = ({limit}) => {
      const [data] = useContext(AppData);
@@ -16,8 +17,9 @@ const Categories = ({limit}) => {
           {!categories ? null : categories[0] ? (
                <Container>
                <InnerSection type="content">
+                    {Array.isArray(categories) && <TopDealsCard />}
                     {Array.isArray(categories) && limit != 0 ? categories.map(
-                    (item, index) => index < limit ? <CategoryContainerSquare
+                    (item, index) => index < limit - 1 ? <CategoryContainerSquare
                          view={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                          key={item.category_id} 
                          image={item.category_icon}

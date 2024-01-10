@@ -20,12 +20,17 @@ const Home = () => {
         <img src={HelloImage} alt="hello section image" />
       </div>
       <BoostedSellers />
-      <Categories limit={isMobile ? 12 : 14} />
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
-        Boosted Ads
+        Today deals
       </InnerSection>
       <BoostedAds />
+      <InnerSection type="title" >
+        {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
+        Our top categories
+      </InnerSection>
+      <Categories limit={isMobile ? 12 : 14} />
+      
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
         New Ads

@@ -1,0 +1,10 @@
+@import "./General.css";
+
+@keyframes topDealsLighter {
+     from{
+          background-color: var(--back-color-blue1);
+     }
+     to{
+          background-color: var(--white);
+     }
+}

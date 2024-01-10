@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 
+
 :root{
 
      /*colors */
@@ -23,6 +24,17 @@
 
 /* general styles */
 
+@keyframes topDealsLighter {
+     0%{
+          background-color: var(--text-color-title);
+     }
+     50%{
+          background-color: var(--text-color-para2);
+     }
+     100%{
+          background-color: var(--back-color-blue1);
+     }
+}
 html{
      scroll-behavior: smooth;
      width: 100%;
@@ -634,6 +646,7 @@ a{
      flex-wrap: nowrap;
      overflow-x: hidden;
      padding: 0 3%;
+     margin: 10px auto;
 }
 
 .home-boosted-ads .ads-container{
@@ -681,7 +694,7 @@ a{
      overflow: hidden;
      padding: 0;
      background-color: var(--text-color-para1);
-     margin: 5px auto;
+     margin: 20px auto;
      border-radius: 15px 20px 20px 15px;
 }
 
@@ -1735,6 +1748,26 @@ a{
      font-size: 0.7rem;
      color: var(--text-color-para1);
      font-weight: 600;
+}
+
+.top-deals-card{
+     background-color: var(--back-color-blue2);
+     color: var(--white-text);
+     aspect-ratio: 1/1;
+     border-radius: 50%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     animation-name: topDealsLighter;
+     animation-duration: 3s;
+     animation-iteration-count: infinite;
+}
+
+.top-deals-card h3{
+     color: var(--white-text);
+     font-size: 1.5rem;
+     text-align: center;
 }
 
 .product-square-container{
