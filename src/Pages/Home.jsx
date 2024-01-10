@@ -34,7 +34,7 @@ const Home = () => {
       <Categories limit={isMobile ? 12 : 14} />
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
-        Boosted Ads
+        Sponsored Ads
       </InnerSection>
       <BoostedAds />
       <InnerSection type="title" >
