@@ -25,17 +25,17 @@ const Home = () => {
         Boosted Ads
       </InnerSection>
       <BoostedAds />
-      <InnerSection type="title" >
-        {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
-        Today Deals
-      </InnerSection>
-      <BoostedAds />
+      
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
         Our top categories
       </InnerSection>
       <Categories limit={isMobile ? 12 : 14} />
-      
+      <InnerSection type="title" >
+        {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
+        Today Deals
+      </InnerSection>
+      <BoostedAds />
       <InnerSection type="title" >
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
         New Ads
