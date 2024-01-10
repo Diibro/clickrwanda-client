@@ -272,9 +272,9 @@ export const BoostedAds = () => {
 
   const scrollHandle = (check) => {
     if(check === 1){
-      adsRef.current.scrollBy({left: 200, behavior: 'smooth'});
+      adsRef.current.scrollBy({left: 300, behavior: 'smooth'});
     }else if(check === -1){
-      adsRef.current.scrollBy({left: -200, behavior: 'smooth'})
+      adsRef.current.scrollBy({left: -300, behavior: 'smooth'})
     }
   }
   return(

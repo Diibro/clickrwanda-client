@@ -644,7 +644,7 @@ a{
      justify-content: left;
      position: relative;
      flex-wrap: nowrap;
-     overflow-x: hidden;
+     overflow-x: scroll;
 }
 
 .home-boosted-ads .nav-icon{
