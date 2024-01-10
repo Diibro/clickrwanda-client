@@ -33,7 +33,7 @@ export const AppProvider = ({children}) => {
                     setData((prev) => ({...prev, loading: true}));
                     const sessionData = getData('appData');
                     if (sessionData){
-                         const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted} = sessionData;
+                         const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted, boostedSellers} = sessionData;
                          setData((prev) => ({
                               ...prev,
                               categories: categoriesData,
@@ -41,14 +41,15 @@ export const AppProvider = ({children}) => {
                               boostedAds:boosted,
                               subCategories: subCategoriesData,
                               payPlans: payPlansData,
+                              bestSellers:boostedSellers,
                               currency: "Frw"
                          }));
                     }else{
                          const categoriesData = await server.get('categories',null);
-                         const {generalAds:advertsData, boostedAds:boosted} = await server.get('adverts',{page: 1, boost: 20});
+                         const {generalAds:advertsData, boostedAds:boosted, bestSellers:boostedSellers} = await server.get('adverts',{page: 1, boost: 20, boostSellers: true});
                          const subCategoriesData = await server.get('sub categories',null);
                          const payPlansData = await server.get('payment plans', null);
-                         const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted}
+                         const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers}
                          saveData('appData', appData, 30);
                          setData((prev) => ({
                          ...prev,
@@ -57,6 +58,7 @@ export const AppProvider = ({children}) => {
                          subCategories: subCategoriesData,
                          payPlans: payPlansData,
                          boosted: boosted,
+                         bestSellers:boostedSellers,
                          currency: "Frw"
                          }));
                     }
