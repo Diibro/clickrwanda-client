@@ -26,13 +26,16 @@
 
 @keyframes topDealsLighter {
      0%{
-          background-color: var(--text-color-title);
+          background-color: var(--text-color-para2);
+          box-shadow: none;
      }
      50%{
-          background-color: var(--text-color-para2);
+          background-color: var(--text-color-para1);
+          box-shadow: 1px 1px 8px 4px var(--back-color-gold2);
      }
      100%{
-          background-color: var(--back-color-blue1);
+          background-color: var(--text-color-para2);
+          box-shadow: none;
      }
 }
 html{
@@ -1696,7 +1699,9 @@ a{
 
 /* small container styles */
 .category-square{
-     width: clamp(100px,13%, 300px);
+     width:13%;
+     min-width: 100px;
+     max-width: 300px;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -1760,8 +1765,10 @@ a{
      align-items: center;
      justify-content: center;
      animation-name: topDealsLighter;
-     animation-duration: 3s;
+     animation-duration: 6s;
      animation-iteration-count: infinite;
+     width: 13%;
+     margin: 0 5px;
 }
 
 .top-deals-card h3{
