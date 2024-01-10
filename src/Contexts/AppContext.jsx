@@ -38,7 +38,7 @@ export const AppProvider = ({children}) => {
                               ...prev,
                               categories: categoriesData,
                               adverts: advertsData,
-                              boostedAds:boosted,
+                              boosted:boosted,
                               subCategories: subCategoriesData,
                               payPlans: payPlansData,
                               bestSellers:boostedSellers,
