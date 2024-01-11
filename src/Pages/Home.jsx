@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import HelloImage from '../assets/images/helloImage.png'
-import { Adverts, BoostedAds} from '../components/dynamic/Adverts.component';
+import { Adverts, BoostedAds, TodayDeals} from '../components/dynamic/Adverts.component';
 import Categories from '../components/dynamic/Categories';
 import { InnerSection } from '../components/dynamic/InnerSectionContainer';
 import SearchBar from '../components/static/SearchBar';
@@ -24,7 +24,7 @@ const Home = () => {
         {/* <Title content={{type: "medium", name: "Top picks for you", color: textColors.darkBlue, size: titleSize.medium}} /> */}
         Today Deals
       </InnerSection>
-      <BoostedAds />
+      <TodayDeals />
       
       
       <InnerSection type="title" >

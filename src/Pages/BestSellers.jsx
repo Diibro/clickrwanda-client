@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import Loading from '../components/static/Loading';
 import server from '../config/Server';
-const BestCup = "https://res.cloudinary.com/dyjahjf1p/image/upload/v1704971692/clickrwanda/logos/best-sellers-cup-rb_yhgkq9.png";
+import {  SubmitButton } from '../components/dynamic/Buttons';
+import { useNavigate } from 'react-router-dom';
+import { getItemUrl } from '../utils/urlFunctions';
+// const BestCup = "https://res.cloudinary.com/dyjahjf1p/image/upload/v1704971692/clickrwanda/logos/best-sellers-cup-rb_yhgkq9.png";
 
 const BestSellers = () => {
      return (
@@ -29,7 +32,7 @@ const BestSellerBody = () => {
      const fetchData =async () => {
           try {
                setLoading(true);
-               const {bestSellers} = await server.get('adverts',{boostSellers: true});
+               const {bestSellers} = await server.get('adverts',{boostSellers: true, boostNum: 1000});
                if(bestSellers ){
                     setContent(bestSellers);
                }
@@ -46,16 +49,33 @@ const BestSellerBody = () => {
      return(
           <div className="best-sellers-body">
                {loading ? <Loading/> :
-               content.map(item => <BestSellerSquare key={item.user_id} item={item} />) 
+               content.map((item, index) =>  {
+                    item.rank = index + 1;
+                    return(<BestSellerSquare key={item.user_id} item={item} />)
+                     
+                    }) 
                }
           </div>
      )
 }
 
 const BestSellerSquare = ({item}) => {
+     const navigate = useNavigate();
+     const viewVendor = () => {
+          return navigate(`/vendor/${getItemUrl(item.full_name, item.user_id)}`)
+     }
      return(
           <div className="best-seller-square">
-               <h2>{item.username}</h2>
+               <span className='seller-ranking'>{item.rank}</span>
+               <div onClick={viewVendor} className='seller-img' style={{backgroundImage: `url(${item.profile_image})`}}>  </div>
+               {/* <img className='seller-img' onClick={viewVendor} src={item.profile_image} /> */}
+               <h4>{item.username}</h4>
+               <div className="content">
+                    <p>Total ads: {item.total_ads}</p>
+                    <p>Ad Views: {item.total_views}</p>
+                    <p><SubmitButton content={{title:'view Shop', action: () => viewVendor(), size:"small-text"}} /></p>
+               </div>
+               
           </div>
      )
 }

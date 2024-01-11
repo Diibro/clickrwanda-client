@@ -191,7 +191,7 @@ const SignUpForm = () => {
                     <input type="text" name="name" id="name_01" {...register('name', {required: true})} placeholder="Ex: Adms Johns..."  />
                </div>
                <div className="group">
-                    <label htmlFor="username_01">Username: </label>
+                    <label htmlFor="username_01">Business: </label>
                     <input type="text" name="username" id="username_01" {...register('username', {required: true})} placeholder="username..."  />
                </div>
                <div className="group">

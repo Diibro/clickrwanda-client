@@ -13,7 +13,7 @@ const DesktopHeader = () => {
      const [,setData] = useContext(AppData);
      const {loggedIn, userInfo} = user;
      const [deviceView] = useContext(DeviceView);
-     const {isMobile} = deviceView;
+     const {isTablet} = deviceView;
 
      const activateForm = () =>{
           if(loggedIn){
@@ -38,7 +38,7 @@ const DesktopHeader = () => {
                <div className="header-profile">
                     {!loggedIn ? <ActionBtn action={activateForm} title="Login" /> : null}
                     {loggedIn ? <Link to="/user-dashboard" className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
-                    <ActionBtn action={activateForm} title={!isMobile ? "Add Free Ads" : 'Add' } />
+                    <ActionBtn action={activateForm} title={!isTablet ? "Add Free Ads" : 'Add' } />
                </div>
                
           </header>

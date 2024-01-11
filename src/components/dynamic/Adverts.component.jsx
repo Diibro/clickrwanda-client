@@ -291,6 +291,32 @@ export const BoostedAds = () => {
   )
 }
 
+
+export const TodayDeals = () => {
+  const [data] = useContext(AppData);
+  const {todayDeals} = data;
+  const adsRef = useRef(null);
+  const scrollHandle = (check) => {
+    if(check === 1){
+      adsRef.current.scrollBy({left: 300, behavior: 'smooth'});
+    }else if(check === -1){
+      adsRef.current.scrollBy({left: -300, behavior: 'smooth'})
+    }
+  }
+  return Array.isArray(todayDeals) && todayDeals[0] ? (
+    <div className="home-boosted-ads " >
+      <div className="ads-container hide-scroll" ref={adsRef}>
+          {
+            todayDeals.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+            )
+          }
+      </div>
+      <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i>
+      <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i>
+    </div>
+  ) : null
+}
+
 Adverts.propTypes = {
      limit: PropTypes.number
 }

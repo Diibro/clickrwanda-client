@@ -1,5 +1,18 @@
 @import "./General.css";
 
+@media only screen and (max-width: 820px){
+     .desktop-header{
+          width: 100%;
+          padding: 5px 5%;
+     }
+     .best-sellers-body{
+          width: 95%;
+     }
+     .best-seller-square{
+          width: 30%;
+     }
+}
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
      :root{
@@ -71,5 +84,11 @@
      }
      .vendor-page-header h1{
           font-size: 2rem;
+     }
+     .best-sellers-body{
+          width: 90%;
+     }
+     .best-seller-square{
+          width: 46%;
      }
 }

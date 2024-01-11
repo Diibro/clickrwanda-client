@@ -16,7 +16,7 @@ const Advert = () => {
   )
 }
 
-export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, views, link, adDate}) => {
+export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, views, link, adDate, discount}) => {
      const [currency, setCurrency] = useState("Rwf");
      const [,setData] = useContext(AppData);
      const navigate = useNavigate();
@@ -32,7 +32,8 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
      }
      return(
           <div className="product-square-container">
-               <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
+               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
+               {discount ? <span className='advert-discount'>{discount}% Discount</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <img className='ad-image' src={image} alt={title} onClick={action} />
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
@@ -47,7 +48,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
      )
 }
 
-export const ServiceSquare = ({image, title, plan, price, action, category,categoryLink, location, contact, views, link, adDate}) => {
+export const ServiceSquare = ({image, title, plan, price, action, category,categoryLink, location, contact, views, link, adDate, discount}) => {
      const [,setData] = useContext(AppData);
      const navigate = useNavigate();
      const showButtons = (url, image, name) =>{
@@ -61,7 +62,8 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
      }
      return(
           <div className="product-square-container">
-               <i className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</i>
+               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
+               {discount ? <span className='advert-discount'>{discount}% off</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <img className='ad-image' src={image} alt={capitalizeString(title)} onClick={action} />
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
@@ -92,6 +94,7 @@ export const AdvertRenderer = ({item}) => {
                          location={item.user_location.location}
                          views={item.ad_views}
                          adDate={item.ad_date}
+                         discount={item.ad_discount}
                          categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                          link={`https://clickrwanda.com/ad/${getItemUrl(item.ad_name, item.ad_id)}`}
                          action={() => ViewAd(item)}
@@ -106,6 +109,7 @@ export const AdvertRenderer = ({item}) => {
                               price={item.ad_price}
                               views={item.ad_views}
                               adDate={item.ad_date}
+                              discount={item.ad_discount}
                               categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                               link={`https://clickrwanda.com/ad/${getItemUrl(item.ad_name, item.ad_id)}`}
                               action={() => ViewAd(item)}
@@ -139,7 +143,8 @@ ServiceSquare.propTypes = {
      views: PropTypes.any,
      link: PropTypes.any,
      adDate: PropTypes.any,
-     categoryLink: PropTypes.any
+     categoryLink: PropTypes.any,
+     discount: PropTypes.any
 }
 
 ProductSquare.propTypes = {
@@ -155,7 +160,8 @@ ProductSquare.propTypes = {
      views: PropTypes.any,
      link: PropTypes.any,
      adDate: PropTypes.any,
-     categoryLink: PropTypes.any
+     categoryLink: PropTypes.any,
+     discount: PropTypes.any
 }
 
 export default Advert

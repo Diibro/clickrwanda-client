@@ -10,6 +10,7 @@
      --back-color-gold1: #FFF6E8;
      --back-color-gold2: #E5931D;
      --back-color-gold2-transparent: #e5921d50;
+     --back-gold-color-v1: #925602;
      --back-color-red1: #FA3C53;
      --text-color-para1: #444444;
      --text-color-title: #12394F;
@@ -117,10 +118,23 @@ a{
      text-align: center;
      color: var(--back-color-gold1);
      background-color: var(--text-color-para1);
-     font-size: 0.8rem;
+     font-size: 0.9rem;
      font-weight: 600;
      border-radius: 5px 0 5px 0;
      padding: 2.5px 0;
+}
+
+.advert-discount{
+     width: auto;
+     padding: 5px 5px;
+     position: absolute;
+     top: 120px;
+     left: 0;
+     background-color: var(--text-color-para1);
+     border-radius: 0 5px 5px 0;
+     color: var(--white-text);
+     font-size: 0.9rem;
+     font-weight: 700;
 }
 
 .product-share-icon{
@@ -870,6 +884,7 @@ a{
      border: 1.5px solid var(--back-color-gold2);
      transition: all 0.9s;
      margin:  5px 5px;
+     width: auto;
 }
 
 .actionBtn:hover{
@@ -1228,6 +1243,7 @@ a{
      flex-direction: column;
      align-items: center;
      justify-content: center;
+     box-sizing: border-box;
 }
 
 .best-sellers-header h2{
@@ -1240,6 +1256,7 @@ a{
      font-weight: 600;
      color: var(--gray-text);
      margin: 10px auto;
+     max-width: 90%;
 }
 /* end of static components */
 
@@ -1933,6 +1950,90 @@ a{
      cursor: pointer;
 }
 
+.best-sellers-body {
+     width: 85%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: center;
+     flex-wrap: wrap;
+     padding: 30px 0;
+     box-sizing: border-box;
+}
+
+.best-seller-square{
+     width: 20%;
+     min-width: 150px;
+     max-width: 300px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     position: relative;
+     margin: 0 5px 20px;
+     background-color: var(--back-color-gold1);
+     border-radius: 5px;
+     border: 1px solid var(--text-color-para1);
+     overflow: hidden;
+}
+
+.best-seller-square .seller-ranking{
+     position: absolute;
+     width: 30px;
+     height: 30px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     top: 0;
+     left: 0;
+     background-color: var(--text-color-title);
+     border-radius: 1px 50% 50% 50%;
+     color: var(--white-text);
+     font-size: 0.7rem;
+}
+
+.best-seller-square .seller-img{
+     width: auto;
+     margin: 0;
+     min-height: 150px;
+     max-height: 150px;
+     /* aspect-ratio: 10/10; */
+     border-radius: 5px;
+     background-size: 100%;
+     cursor: pointer;
+}
+
+.best-seller-square .content{
+     width: 95%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     flex-wrap: wrap;
+     background-color: var(--white-text);
+     margin: 3px auto;
+     border-radius: 10px;
+     padding: 4px 4px;
+}
+
+.best-seller-square h4{
+     font-size: 0.9rem;
+     color: var(--text-color-title);
+     white-space: nowrap;
+     overflow: hidden;
+     max-width: 90%;
+     text-overflow: ellipsis;
+     margin: 2px auto;
+     font-weight: 700;
+}
+
+.best-seller-square .content p{
+     width: 47%;
+     display: inline;
+     font-size: 0.8rem;
+     color: var(--text-color-para2);
+     font-weight: 600;
+     margin-bottom: 4px;
+}
 .category-page{
      position: relative;
      width: 100%;
@@ -2723,7 +2824,7 @@ a{
 }
 
 .featured{
-     background-color: var(--back-color-blue1);
+     background-color: var(--back-gold-color-v1);
 }
 
 .urgent{
