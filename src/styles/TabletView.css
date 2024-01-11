@@ -11,6 +11,9 @@
      .best-seller-square{
           width: 30%;
      }
+     .home-boosted-ads{
+          width: 90%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -90,5 +93,8 @@
      }
      .best-seller-square{
           width: 46%;
+     }
+     .home-boosted-ads{
+          width: 95%;
      }
 }
