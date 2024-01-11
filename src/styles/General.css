@@ -279,6 +279,7 @@ a{
      font-size: 0.9rem;
 }
 
+
 .hiring-page p{
      font-size: 1rem;
      margin: 10px 5%;
@@ -1216,6 +1217,29 @@ a{
      color: var(--text-color-title);
      font-size: 1.2rem;
      padding: 0 2px;
+}
+
+.best-sellers-header{
+     width: 100%;
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     padding: 20px 0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.best-sellers-header h2{
+     font-size: 2rem;
+     font-weight: 800;
+}
+
+.best-sellers-header p{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--gray-text);
+     margin: 10px auto;
 }
 /* end of static components */
 

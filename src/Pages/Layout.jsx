@@ -25,6 +25,7 @@ import PrivacyPage from './PrivacyPage';
 import { useEffect } from 'react';
 import HiringPage from './HiringPage';
 import PasswordPage from './PasswordPage';
+import BestSellers from './BestSellers';
 
 
 const Layout = () => {
@@ -52,6 +53,8 @@ const Layout = () => {
                <Route path='/category/:params' element={<CategoryPage />} />
                <Route path='/sub-category/:params' element={<SubCategoryPage />} />
                <Route path='/hiring' element={<HiringPage />}/>
+               {/**special pages */}
+               <Route path='/best-sellers' element={<BestSellers/>} />
                <Route path='/accounts/:params' element={<PasswordPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
