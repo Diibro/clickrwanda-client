@@ -33,7 +33,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
      return(
           <div className="product-square-container">
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
-               {discount ? <span className='advert-discount'>{discount}% Discount</span> : null}
+               {discount ? <span className='advert-discount'>- {discount}%</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <img className='ad-image' src={image} alt={title} onClick={action} />
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
