@@ -271,7 +271,7 @@ export const BoostedAds = () => {
   const [data] = useContext(AppData);
   const adsRef = useRef(null);
   const {boosted} = data;
-  const [scrollPos, setScrollPos] = useState({atLeft: true});
+  const [scrollPos, setScrollPos] = useState({atLeft: false});
 
   const scrollHandle = (check) => {
     if(check === 1){
@@ -283,25 +283,23 @@ export const BoostedAds = () => {
 
   
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
-      setScrollPos({
-        atLeft: scrollLeft === 0,
-        atRight: scrollLeft + clientWidth >= scrollWidth,
-      });
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
+  //     setScrollPos({
+  //       atLeft: scrollLeft === 0,
+  //       atRight: scrollLeft + clientWidth >= scrollWidth,
+  //     });
+  //   };
 
-    handleScroll();
+  //   const currentRef = adsRef.current;
+  //   currentRef.addEventListener('scroll', handleScroll);
 
-    const currentRef = adsRef.current;
-    currentRef.addEventListener('scroll', handleScroll);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      currentRef.removeEventListener('scroll', handleScroll);
-    };
-  }, [boosted]);
+  //   // Clean up the event listener on component unmount
+  //   return () => {
+  //     currentRef.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [boosted]);
   return(
     <div className="home-boosted-ads " >
       <div className="ads-container hide-scroll" ref={adsRef}>
@@ -321,7 +319,7 @@ export const TodayDeals = () => {
   const [data] = useContext(AppData);
   const {todayDeals} = data;
   const adsRef = useRef(null);
-  const [scrollPos, setScrollPos] = useState({atLeft: true});
+  const [scrollPos, setScrollPos] = useState({atLeft: false});
 
   const scrollHandle = (check) => {
     if(check === 1){
@@ -331,23 +329,20 @@ export const TodayDeals = () => {
     }
   }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
-      setScrollPos({
-        atLeft: scrollLeft === 0,
-        atRight: scrollLeft + clientWidth >= scrollWidth,
-      });
-    };
-
-    handleScroll();
-
-    const currentRef = adsRef.current;
-    currentRef.addEventListener('scroll', handleScroll);
-    return () => {
-      currentRef.removeEventListener('scroll', handleScroll);
-    };
-  }, [todayDeals]);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
+  //     setScrollPos({
+  //       atLeft: scrollLeft === 0,
+  //       atRight: scrollLeft + clientWidth >= scrollWidth,
+  //     });
+  //   };
+  //   const currentRef = adsRef.current;
+  //   currentRef.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     currentRef.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [todayDeals]);
   return Array.isArray(todayDeals) && todayDeals[0] ? (
     <div className="home-boosted-ads " >
       <div className="ads-container hide-scroll" ref={adsRef}>
