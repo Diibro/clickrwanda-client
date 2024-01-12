@@ -789,30 +789,30 @@ a{
 .home-best-sellers{
      width: 80%;
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
      align-items: center;
      justify-content: flex-start;
      overflow: hidden;
      padding: 0;
-     background-color: var(--text-color-para1);
+     background-color: var(--back-color-gold1);
      margin: 20px auto;
-     border-radius: 15px 20px 20px 15px;
+     border-radius: 10px;
 }
 
 .home-best-sellers .best-sellers-title{
-     background-color: var(--text-color-para1);
-     color: var(--white-text);
+     background-color: var(--back-color-gold1);
+     color: var(--text-color-title);
      font-size: 0.9rem;
      font-weight: 700;
      display: flex;
      flex-direction: row;
      align-items: center;
-     justify-content: center;
+     justify-content: flex-start;
      border-radius: 15px;
      height: 100%;
      padding: 5px 4px;
      cursor: pointer;
-     width: 10%;
+     width: 95%;
      min-width: 100px;
 }
 
@@ -821,23 +821,21 @@ a{
      flex-direction: row;
      align-items: center;
      justify-content: flex-start;
-     width: 90%;
+     width: 95%;
      padding: 5px 5px;
      overflow-x: scroll;
-     background-color: var(--white-text);
-     border-radius: 20px;
-     border: 1px solid var(--text-color-para1);
+     background-color: var(--back-color-gold1);
 }
 
 .best-seller-card{
      width: auto;
      padding: 5px 15px;
      margin: 0 5px;
-     background-color: var(--text-color-para2);
+     background-color: var(--text-color-title);
      color: var(--white-text);
      font-size: 0.85rem;
      font-weight: 600;
-     border-radius: 15px;
+     border-radius: 5px;
      cursor: pointer;
      white-space: nowrap;
 }
