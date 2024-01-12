@@ -10,12 +10,14 @@
      }
      .inner-container{
           width: 95%;
+          justify-content: space-evenly;
      }
      .vendor-page-header h1{
           font-size: 1.8rem;
      }
      .product-square-container{
           width: 47%;
+          margin: 0 2px 20px;
      }
      .desktop-header{
           padding: 5px 2%;
@@ -30,4 +32,7 @@
      .best-sellers-body{
           width: 95%;
      }
+     /* .home-get-started-sec .row-title h3{
+          font-size: 1.2rem;
+     } */
 }

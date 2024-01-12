@@ -14,6 +14,9 @@
      .home-boosted-ads{
           width: 90%;
      }
+     .home-get-started-sec{
+          width: 90%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -95,6 +98,9 @@
           width: 46%;
      }
      .home-boosted-ads{
+          width: 95%;
+     }
+     .home-get-started-sec{
           width: 95%;
      }
 }

@@ -5,7 +5,7 @@ import Categories from '../components/dynamic/Categories';
 import { InnerSection } from '../components/dynamic/InnerSectionContainer';
 import SearchBar from '../components/static/SearchBar';
 import DeviceView from '../Contexts/ViewContext';
-import { BoostedSellers } from '../components/dynamic/Special.components';
+import { BoostedSellers, GetStartedV1 } from '../components/dynamic/Special.components';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -42,6 +42,7 @@ const Home = () => {
         New Ads
       </InnerSection>
       <Adverts limit={50} />
+      <GetStartedV1 />
     </div>
   )
 }

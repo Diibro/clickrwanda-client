@@ -345,6 +345,7 @@ a{
      box-shadow: 1px 1px 7px 2px var(--text-color-para1);
 }
 
+
 .password-reset-page{
      background-color: var(--text-color-title);
      width: 100%;
@@ -465,6 +466,88 @@ a{
      bottom: 5%;
      left: 55%;
      width: clamp(370px, 35%, 800px);
+}
+
+.home-get-started-sec{
+     width: 80%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     background-color: var(--text-color-title);
+     color: white;
+     border-radius: 5px;
+     margin: 20px auto;
+     padding: 20px 0;
+}
+
+.home-get-started-sec .row-title{
+     width: 85%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     flex-wrap: wrap;
+}
+.home-get-started-sec .row-title h3{
+     width: auto;
+     display: inline;
+     font-size: 1.6rem;
+     text-align: left;
+     font-weight: 900;
+     margin: 0 5px 0 0;
+}
+
+.home-get-started-sec .row-title p{
+     width: auto;
+     margin: 0;
+     font-weight: 600;
+     font-size: 1.3rem;
+     color:var(--back-color-gold2);
+}
+.home-get-started-sec p{
+     font-size: 0.9rem;
+     color: var(--gray-text);
+     width: 80%;
+     text-align: left;
+}
+
+.home-get-started-sec .benefits{
+     width: 80%;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 10px;
+     padding: 10px;
+     margin: 20px auto;
+}
+
+.home-get-started-sec .benefits  h4{
+     width: 100%;
+}
+
+.home-get-started-sec .benefits .row{
+     width: 45%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-evenly;
+}
+
+.home-get-started-sec .benefits .row span{
+     width: 20px;
+     height: 20px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     background-color: var(--back-color-gold1);
+     color: var(--text-color-title);
+     border-radius: 50%;
+     font-size: 0.7rem;
+     font-weight: 600;
+}
+
+.home-get-started-sec .benefits .row p{
+     font-size: 0.75rem;
 }
 
 .vendor-page{
