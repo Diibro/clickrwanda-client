@@ -44,6 +44,11 @@
      .home .hello-section .col h1{
           font-size: 1.6rem;
      }
+
+     .inner-container .section-title {
+          font-size: 1.8rem;
+          margin: 2px 0;
+     }
      /* .home-get-started-sec .row-title h3{
           font-size: 1.2rem;
      } */

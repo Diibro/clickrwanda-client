@@ -20,6 +20,7 @@ const Home = () => {
         <RequestQuoteHeader />
         {/* <img src={HelloImage} alt="hello section image" /> */}
       </div>
+      <InnerSection type="title">Our Best Sellers</InnerSection>
       <BoostedSellers />
       <InnerSection type="title" >
         Today Deals

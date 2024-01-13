@@ -820,13 +820,11 @@ a{
      justify-content: flex-start;
      overflow: hidden;
      padding: 0;
-     background-color: var(--back-color-gold1);
-     margin: 20px auto;
+     margin: 2.5px auto 5px;
      border-radius: 10px;
 }
 
 .home-best-sellers .best-sellers-title{
-     background-color: var(--back-color-gold1);
      color: var(--text-color-title);
      font-size: 0.9rem;
      font-weight: 700;
@@ -857,7 +855,6 @@ a{
      width: 95%;
      padding: 5px 2.5px;
      overflow-x: scroll;
-     background-color: var(--back-color-gold1);
 }
 
 .best-seller-card{
@@ -1432,7 +1429,7 @@ a{
      align-items: flex-start;
      justify-content: center;
      margin: 20px auto;
-     padding:0 0 10px 0;
+     padding:5px 0 5px ;
      max-width: 1600px;
 }
 
