@@ -13,7 +13,8 @@ export const BoostedSellers = () => {
 
      return(
           <div className="home-best-sellers">
-               <span className="best-sellers-title">Best Sellers</span>
+               <span className="best-sellers-title">Our Best Sellers</span>
+               <p className="best-seller-para">Discover which sellers have been ranked best for the best products, services and deals.</p>
                <div className="sellers-container hide-scroll">
                     {bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
                     <span className="best-seller-card" onClick={() => navigate('/best-sellers')} >More...</span>
