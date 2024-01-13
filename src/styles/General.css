@@ -507,14 +507,26 @@ a{
      padding: 20px 0;
 }
 
-.home-get-started-sec .row-title{
+.get-started-sec{
+     width: 80%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     color: var(--text-color-title);
+     border-radius: 5px;
+     margin: 20px auto;
+     padding: 20px 0;
+}
+
+.home-get-started-sec .row-title, .get-started-sec .row-title{
      width: 85%;
      display: flex;
      flex-direction: row;
      align-items: center;
      flex-wrap: wrap;
 }
-.home-get-started-sec .row-title h3{
+.home-get-started-sec .row-title h3, .get-started-sec .row-title h3{
      width: auto;
      display: inline;
      font-size: 1.6rem;
@@ -530,6 +542,14 @@ a{
      font-size: 1.3rem;
      color:var(--back-color-gold2);
 }
+
+.get-started-sec .row-title p{
+     width: auto;
+     margin: 0;
+     font-weight: 600;
+     font-size: 1.3rem;
+     color: var(--back-color-gold2);
+}
 .home-get-started-sec p{
      font-size: 0.9rem;
      color: var(--gray-text);
@@ -537,7 +557,14 @@ a{
      text-align: left;
 }
 
-.home-get-started-sec .benefits{
+.get-started-sec p{
+     font-size: 0.9rem;
+     color: var(--text-color-para1);
+     width: 80%;
+     text-align: left;
+}
+
+.home-get-started-sec .benefits, .get-started-sec .benefits{
      width: 80%;
      display: flex;
      flex-wrap: wrap;
@@ -546,11 +573,11 @@ a{
      margin: 20px auto;
 }
 
-.home-get-started-sec .benefits  h4{
+.home-get-started-sec .benefits  h4, .get-started-sec .benefits  h4{
      width: 100%;
 }
 
-.home-get-started-sec .benefits .row{
+.home-get-started-sec .benefits .row, .get-started-sec .benefits .row{
      width: 45%;
      display: flex;
      flex-direction: row;
@@ -572,7 +599,21 @@ a{
      font-weight: 600;
 }
 
-.home-get-started-sec .benefits .row p{
+.get-started-sec .benefits .row span{
+     width: 20px;
+     height: 20px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     background-color: var(--text-color-title);
+     color: var(--back-color-gold1);
+     border-radius: 50%;
+     font-size: 0.7rem;
+     font-weight: 600;
+}
+
+.home-get-started-sec .benefits .row p, .get-started-sec .benefits .row p{
      font-size: 0.75rem;
 }
 
@@ -861,7 +902,7 @@ a{
      width: auto;
      padding: 5px 15px;
      margin: 0 5px;
-     background-color: var(--text-color-title);
+     background-color: var(--back-color-blue1);
      color: var(--white-text);
      font-size: 0.85rem;
      font-weight: 600;
@@ -2489,6 +2530,10 @@ a{
      margin: 5px 20px 5px 0;
 }
 
+.advert-page-mainAdvert .col .cat a{
+     margin: 2px 2px;
+}
+
 .advert-page-mainAdvert .col .cat span:hover{
      background-color: var(--back-color-blue2);
      cursor: pointer;
@@ -2697,6 +2742,19 @@ a{
      display: flex;
      flex-direction: row;
      align-items: center;
+}
+
+.advert-page-mainAdvert .col .vendor .contact .vendor-ads{
+     font-size: 0.9rem;
+     font-weight: 800;
+     color: var(--back-color-blue1);
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+}
+
+.advert-page-mainAdvert .col .vendor .contact .vendor-ads{
+     color: var(--back-color-blue1);
 }
 
 .advert-page-mainAdvert .col .vendor .contact .vendor-views i{

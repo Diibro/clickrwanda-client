@@ -108,7 +108,7 @@ const AdvertPage = () => {
                                    <div className="contact" >
                                         <p className="vendor-date">Joined:  {formatTimeAgo(adViewed?.reg_date)}</p>
                                         <p className="vendor-views"><i><MdPageview /></i>  {adViewed?.totalViews} Total views</p>
-                                        <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views"><i><RiAdvertisementFill /></i>  {adViewed?.total_ads} Total Ads</a></p>
+                                        <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {adViewed?.total_ads} Total Ads</a></p>
                                         <p><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
                                         <p><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
                                         <p><a href={`https://www.google.com/maps/place/${adViewed.user_location.location}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {adViewed?.user_location.location}</a></p>

@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import AppData from "../../Contexts/AppContext"
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getItemUrl } from "../../utils/urlFunctions";
 import PropTypes from 'prop-types';
 import { ActionBtn } from "./Buttons";
@@ -46,13 +46,14 @@ export const TopDealsCard = () => {
 
 export const GetStartedV1 = () => {
      const [,setUser] = useContext(UserContext);
+     const location = useLocation();
      const getStarted = () => {
           return setUser(prev => ({
                ...prev, activeForm: "signup"
           }))
      }
      return(
-          <div className="home-get-started-sec">
+          <div className={location.pathname === '/' ? 'home-get-started-sec' : 'get-started-sec'}>
                <div className="row-title">
                     <h3>Open a shop --</h3>
                     <p> simple, fast and free</p>
