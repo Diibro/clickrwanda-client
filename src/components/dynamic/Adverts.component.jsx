@@ -1,7 +1,7 @@
 import { Container, Input, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { InnerSection } from "./InnerSectionContainer";
 import AppData from "../../Contexts/AppContext";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 import { FaArrowRight } from "react-icons/fa";
 import { AdvertRenderer} from "./Advert.componet";
@@ -16,23 +16,15 @@ import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
 import { useNavigate } from "react-router-dom";
 
-export const Adverts = ({limit}) => {
+export const Adverts = ({eleId,limit}) => {
       const [data] = useContext(AppData);
       const {adverts, changingPage} = data;
-      const advertsRef = useRef(null);
 
-      useEffect(() => {
-        if (!changingPage && advertsRef.current) {
-          setTimeout(() => {
-            advertsRef.current.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
-        }
-      }, [changingPage]);
       if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
         return(
           <>
             {changingPage ? <Loading /> : 
-            <InnerSection ref={advertsRef} type="content">
+            <InnerSection eleId={eleId} type="content">
               {
                 adverts.map((item, index) => ( index <= limit ? (
                   <AdvertRenderer key={item.ad_id} item={item}/>
@@ -358,7 +350,8 @@ export const TodayDeals = () => {
 }
 
 Adverts.propTypes = {
-     limit: PropTypes.number
+     limit: PropTypes.number,
+     eleId: PropTypes.any
 }
 
 SimilarAds.propTypes = {

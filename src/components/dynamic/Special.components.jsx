@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import AppData from "../../Contexts/AppContext"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getItemUrl } from "../../utils/urlFunctions";
 import PropTypes from 'prop-types';
 import { ActionBtn } from "./Buttons";
@@ -29,7 +29,7 @@ const BesterSellerCard = ({item}) => {
      } 
      return(
           <span onClick={handleClick} className="best-seller-card">
-               {item.username}
+               {item.full_name}
           </span>
      )
 }
@@ -102,6 +102,19 @@ export const GetStartedV1 = () => {
                </div>
                <p>Click on the below link and follow the instructions to open your shop and start selling for free.</p>
                <ActionBtn title="Get Started" action={getStarted} />
+          </div>
+     )
+}
+
+export const RequestQuoteHeader = () => {
+     return(
+          <div className="home-request-quote-header hide-scroll">
+               <Link to="/get-started">Open a shop</Link>
+               <Link to="/send-request?=request-quotation" >Request Quotation</Link>
+               <Link to="/send-request?=find-room">Find a room</Link>
+               <Link to="/send-request?=buy-house">Buy a house</Link>
+               <Link to="/send-request?=buy-car">Buy a car</Link>
+               <Link to="/send-request?=find-job">Find a job</Link>
           </div>
      )
 }

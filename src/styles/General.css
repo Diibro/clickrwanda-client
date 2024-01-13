@@ -439,18 +439,18 @@ a{
      background-color: var(--back-color-blue2);
      position: relative;
      display: flex;
-     flex-direction: row;
-     justify-content: flex-start;
-     padding: 40px 10% 100px 5%;
+     flex-direction: column;
+     justify-content: center;
+     padding: 20px 10% 25px 5%;
 }
 
 .home .hello-section .col{
      display: flex;
      flex-direction: column;
-     border-radius: 30px;
-     padding: 05% 0% 5% 5%  ;
+     border-radius: 15px;
+     padding: 01% 0% 2% 2%  ;
      background-color: var(--back-color-red1);
-     width: clamp(370px, 70%, 1600px);
+     width: 70%;
 }
 
 .home .hello-section .col h1{
@@ -458,7 +458,33 @@ a{
      font-size: 3rem;
      font-weight: 800;
      margin: 0 0 10px;
-}    
+} 
+
+.home-request-quote-header{
+     width: 70%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     margin: 10px 0 0;
+     overflow-x: scroll;
+}
+
+.home-request-quote-header a{
+     background-color: var(--back-color-gold1);
+     color: var(--back-color-blue1);
+     border-radius: 2.5px;
+     padding: 2px 5px;
+     font-size: 0.8rem;
+     white-space: nowrap;
+     margin: 0 5px;
+     font-weight: 600;
+}
+
+.home-request-quote-header a:hover{
+     background-color: var(--text-color-para2);
+     color: var(--white-text);
+}
 
 .home .hello-section img{
      background: transparent;

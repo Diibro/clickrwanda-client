@@ -29,12 +29,19 @@
      }
      .home .hello-section{
           justify-content: center;
+          padding: 20px 2.5% 50px 2.5%;
      }
      .home .hello-section .col{
           border-radius: 10px;
+          width: 90%;
      }
      .home .hello-section img{
           display: none;
+     }
+
+     .home-request-quote-header{
+          width: 95%;
+          margin: 10px 0px 0;
      }
      .desktop-header h1{
           font-size: 1.1rem;

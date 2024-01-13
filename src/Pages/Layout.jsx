@@ -26,6 +26,8 @@ import { useEffect } from 'react';
 import HiringPage from './HiringPage';
 import PasswordPage from './PasswordPage';
 import BestSellers from './BestSellers';
+import OpenShopPage from './OpenShopPage';
+import QuotationPage from './QuotationPage';
 
 
 const Layout = () => {
@@ -56,6 +58,8 @@ const Layout = () => {
                {/**special pages */}
                <Route path='/best-sellers' element={<BestSellers/>} />
                <Route path='/accounts/:params' element={<PasswordPage />} />
+               <Route path='/get-started' element={<OpenShopPage />} />
+               <Route path='/send-request' element={<QuotationPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

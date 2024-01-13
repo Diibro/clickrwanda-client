@@ -32,6 +32,15 @@
      .best-sellers-body{
           width: 95%;
      }
+     .home .hello-section{
+          justify-content: center;
+          padding: 20px 1% 50px 2%;
+     }
+     .home .hello-section .col{
+          border-radius: 10px;
+          width: 95%;
+          padding:10px 10px 20px;
+     }
      /* .home-get-started-sec .row-title h3{
           font-size: 1.2rem;
      } */

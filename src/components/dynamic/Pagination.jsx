@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getData } from "../../utils/storageFunctions";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import AppData from "../../Contexts/AppContext";
@@ -32,6 +32,13 @@ export const AdvertsPagination = () => {
           }
           
      } 
+
+     useEffect(() => {
+          if(currentPage !== 1){
+               const ele = document.getElementById("home-adverts");
+               window.scrollTo({top: ele.offsetTop, behavior:'smooth'});
+          }
+     },[currentPage])
      return (
           <div className="pagination">
                <i onClick={ async() =>await changePage(currentPage - 1)} className="nav"><GrFormPrevious /></i>

@@ -32,7 +32,7 @@ const InnerSectionContainer = ({content, type}) => {
   )
 }
 
-export const InnerSection = ({children, type}) => {
+export const InnerSection = ({children, type, eleId}) => {
      if(type === "more"){
           return(
                <div className='inner-container view-more-container'>
@@ -55,13 +55,14 @@ export const InnerSection = ({children, type}) => {
      }
 
      return(
-               <div className='inner-container'>{children}</div>     
+               <div id={eleId} className='inner-container'>{children}</div>     
           );
 }
 
 InnerSection.propTypes = {
      children: PropTypes.any,
-     type: PropTypes.string
+     type: PropTypes.string,
+     eleId: PropTypes.any,
 }
 
 InnerSectionContainer.propTypes = {
