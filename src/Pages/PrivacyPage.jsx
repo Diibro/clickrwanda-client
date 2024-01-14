@@ -1,7 +1,13 @@
+import { Helmet } from "react-helmet"
 
 const PrivacyPage = () => {
   return (
-    <div className="static-page">
+     <>
+     <Helmet>
+          <meta name="description" content="Click Rwanda privacy policy" />
+          <title>Privacy Policy | Click Rwanda</title>
+     </Helmet>
+     <div className="static-page">
      <h2>PRIVACY POLICY</h2>
      <h3>SCOPE AND CONSENT</h3>
      <p>This Privacy Notice describes:</p>
@@ -137,7 +143,7 @@ const PrivacyPage = () => {
      <p>For questions about this Privacy Notice or our privacy practices, you can contact us by emailing <a href="mailto:info@clickrwanda.com">info@clickrwanda.com</a> or writing to Huza 250 Ltd</p>
      <p>For any other questions or complaints please contact Customer Service.</p>
     </div>
-
+     </>
   )
 }
 

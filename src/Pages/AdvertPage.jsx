@@ -15,6 +15,7 @@ import { MdPageview } from "react-icons/md";
 import { ImageSlider } from "../components/dynamic/ImageSlider";
 import { getData, saveData } from "../utils/storageFunctions";
 import { AdvertReview, RateAdvert } from "../components/dynamic/Reviews.component";
+import { Helmet } from "react-helmet";
 
 
 const AdvertPage = () => {
@@ -53,7 +54,7 @@ const AdvertPage = () => {
                     saveData("adViewed",res.data, 5);
                     const {adData, sameCategory, sameSubCategory} = res.data;
                     setAdViewed(adData);
-                    setOtherAds(sameSubCategory || sameCategory || null);
+                    setOtherAds([...sameSubCategory, ...sameCategory]);
                     setMainImage(adData.ad_image);
                }
           } catch (error) {
@@ -74,6 +75,11 @@ const AdvertPage = () => {
      {
           !loading ?
           <>
+          <Helmet>
+               <meta name="description" content={`${adViewed?.description?.desc}`} />
+               <meta name="keywords" content={`${adViewed?.ad_name}, buy or sell in Rwanda`} />
+               <title>{`${adViewed?.ad_name || 'Advert'}`} | Click Rwanda</title>
+          </Helmet>
           <div className="advert-page-mainAdvert">
                <div className="col">
                     <ImageSlider images={[mainImage, ...images]} />

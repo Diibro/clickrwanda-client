@@ -505,6 +505,7 @@ a{
      border-radius: 5px;
      margin: 20px auto;
      padding: 20px 0;
+     box-sizing: border-box;
 }
 
 .get-started-sec{
@@ -517,6 +518,7 @@ a{
      border-radius: 5px;
      margin: 20px auto;
      padding: 20px 0;
+     box-sizing: border-box;
 }
 
 .home-get-started-sec .row-title, .get-started-sec .row-title{
@@ -722,6 +724,7 @@ a{
      font-size: 1.1rem;
      font-weight: 600;
      color: var(--text-color-para2);
+     max-width: 30%;
 }
 
 .vendor-page-info .col .row p{
@@ -729,6 +732,8 @@ a{
      font-size: 0.95rem;
      font-weight: 800;
      color: var(--text-color-title);
+     max-width: 70%;
+     overflow: visible;
 }
 
 .vendor-page-info .col .row .contact{

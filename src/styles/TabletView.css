@@ -107,7 +107,11 @@
      .home-boosted-ads{
           width: 95%;
      }
-     .home-get-started-sec{
+     .home-get-started-sec, .get-started-sec{
+          width: 95%;
+     }
+
+     .home-get-started-sec .benefits, .get-started-sec .benefits{
           width: 95%;
      }
 }

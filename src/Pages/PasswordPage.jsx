@@ -7,6 +7,7 @@ import { ActionBtn } from "../components/dynamic/Buttons";
 import AppData from "../Contexts/AppContext";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import { Helmet } from "react-helmet";
 
 const PasswordPage = () => {
      const location = useLocation();
@@ -82,7 +83,11 @@ const PasswordPage = () => {
           (async() => await getTokenEmail())();
      }, [location.search]);
   return (
-    <div className="password-reset-page">
+     <>
+     <Helmet>
+          <title>Recover Your Password | Click Rwanda</title>
+     </Helmet>
+     <div className="password-reset-page">
      {!loading ? 
      validity ? 
      <div className="password-reset-container">
@@ -117,6 +122,8 @@ const PasswordPage = () => {
      : <Loading /> }
      
     </div>
+     </>
+    
   )
 }
 

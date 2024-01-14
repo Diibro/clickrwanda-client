@@ -6,15 +6,23 @@ import { Link, useLocation } from "react-router-dom";
 import { dashReplacer} from "../utils/otherFunctions";
 import CategoryAdverts from "../components/dynamic/CategoryAdverts";
 import FilterContext from "../Contexts/FilterContext";
+import { Helmet } from "react-helmet";
 
 const CategoriesPage = () => {
   const [filter] = useContext(FilterContext);
   const {view} = filter;
   return (
-    <Container>
-      <CategoryAdverts type={view} />
-      <Categories limit={0} />
-    </Container>
+    <>
+      <Helmet>
+        <meta name="description" content="Discover the categories of products and services most sold in Rwanda." />
+        <title>Categories | Click Rwanda</title>
+      </Helmet>
+      <Container>
+        <CategoryAdverts type={view} />
+        <Categories limit={0} />
+      </Container>
+    </>
+    
   )
 }
 

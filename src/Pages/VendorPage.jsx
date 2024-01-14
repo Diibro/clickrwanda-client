@@ -10,6 +10,7 @@ import { SimilarAds } from '../components/dynamic/Adverts.component';
 import { IoMdCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { getData, saveData } from '../utils/storageFunctions';
+import { Helmet } from 'react-helmet';
 
 const VendorPage = () => {
   const location = useLocation();
@@ -55,7 +56,12 @@ const VendorPage = () => {
     fetchData();
   }, [location.search]);
   return (
-    <div className="vendor-page">
+    <>
+      <Helmet>
+        <meta name='description' content={`Products and services of ${vendorInfo?.full_name}. Contact: Phone -- ${vendorInfo.user_phone}`} /> 
+        <title>{`${vendorInfo?.full_name || 'Vendor'} | Click Rwanda `}</title>
+      </Helmet>
+      <div className="vendor-page">
       {loading ? <Loading/>
       :
       <>
@@ -121,6 +127,8 @@ const VendorPage = () => {
 
       }
     </div>
+    </>
+    
   )
 }
 

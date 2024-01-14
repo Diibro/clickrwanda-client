@@ -7,6 +7,7 @@ import PropTypes  from 'prop-types';
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
 import SearchBar from "../components/static/SearchBar";
+import { Helmet } from "react-helmet";
 
 const SearchPage = () => {
      const location = useLocation();
@@ -39,15 +40,21 @@ const SearchPage = () => {
      }, [location.search]);
 
      return (
-     <div className="search-page">
-          <div className="search-page-searchbar">
-               <SearchBar />
+          <>
+          <Helmet>
+               <title>{`${searched}... | Click Rwanda`}</title>
+          </Helmet>
+          <div className="search-page">
+               <div className="search-page-searchbar">
+                    <SearchBar />
+               </div>
+               <h3>Showing search results for {searched}..</h3>
+               {!loading ? 
+                    <SearchAdverts content={{ads, sub, cat, user: userAds}} />
+               : <Loading />}
           </div>
-          <h3>Showing search results for {searched}..</h3>
-          {!loading ? 
-               <SearchAdverts content={{ads, sub, cat, user: userAds}} />
-          : <Loading />}
-     </div>
+          </>
+     
      )
 }
 

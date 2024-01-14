@@ -5,14 +5,23 @@ import server from '../config/Server';
 import {  SubmitButton } from '../components/dynamic/Buttons';
 import { useNavigate } from 'react-router-dom';
 import { getItemUrl } from '../utils/urlFunctions';
+import { Helmet } from 'react-helmet';
 // const BestCup = "https://res.cloudinary.com/dyjahjf1p/image/upload/v1704971692/clickrwanda/logos/best-sellers-cup-rb_yhgkq9.png";
 
 const BestSellers = () => {
      return (
-     <div className="page">
-          <BestSellersHeader />
-          <BestSellerBody />
-     </div>
+          <>
+          <Helmet>
+               <meta name="description" content='Discover which sellers have been ranked best for the best products, services and deals in Rwanda.' />
+               <meta name='keyword' content='best sellers in Rwanda, best sellers on clickrwanda, buy and sell in rwanda, advertise in Rwanda' />
+               <title>Best Sellers in Rwanda | Click Rwanda</title>
+          </Helmet>
+          <div className="page">
+               <BestSellersHeader />
+               <BestSellerBody />
+          </div>
+          </>
+     
      )
 }
 

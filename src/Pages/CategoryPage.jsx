@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import Loading from "../components/static/Loading";
 import { CategoryAdverts} from "../components/dynamic/Adverts.component";
 import { getData, saveData } from "../utils/storageFunctions";
+import { Helmet } from "react-helmet";
 
 const CategoryPage = () => {
   const [categoryAds, setCategoryAds] = useState(null);
@@ -101,15 +102,23 @@ const CategoryPage = () => {
   },[location.search] );
 
   return (
-    <div className="category-page">
-      {!loading ? <>
-        <div className="category-page-content">
-          {subCategories ? <CategoryHeader subViewed={{id: subViewed.id, action: viewSubCategory}} subCategories={subCategories} /> : null }
-          {categoryAds ? <CategoryAdverts adverts={categoryAds} /> : null}
-        </div>
-      </> : <Loading />}
-     
-    </div>
+    <>
+      <Helmet>
+        <meta name="keywords" content={`${category?.category_name} in Rwanda`} />
+        <meta name="description" content={`Best and trusted ${category?.category_name} in Rwanda`} />
+        <title>{`${category?.category_name || 'Category'}`} | Click Rwanda</title>
+      </Helmet>
+      <div className="category-page">
+        {!loading ? <>
+          <div className="category-page-content">
+            {subCategories ? <CategoryHeader subViewed={{id: subViewed.id, action: viewSubCategory}} subCategories={subCategories} /> : null }
+            {categoryAds ? <CategoryAdverts adverts={categoryAds} /> : null}
+          </div>
+        </> : <Loading />}
+      
+      </div>
+    </>
+    
   )
 }
 
