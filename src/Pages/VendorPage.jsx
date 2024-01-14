@@ -58,7 +58,7 @@ const VendorPage = () => {
   return (
     <>
       <Helmet>
-        <meta name='description' content={`Products and services of ${vendorInfo?.full_name}. Contact: Phone -- ${vendorInfo.user_phone}`} /> 
+        <meta name='description' content={`Products and services of ${vendorInfo?.full_name}. Contact: Phone -- ${vendorInfo?.user_phone}`} /> 
         <title>{`${vendorInfo?.full_name || 'Vendor'} | Click Rwanda `}</title>
       </Helmet>
       <div className="vendor-page">
