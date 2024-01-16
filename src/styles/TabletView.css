@@ -119,5 +119,11 @@
           background-color: transparent;
           box-shadow: none;
      }
-     
+     .quotation-page-body form .group{
+          width: 95%;
+     }
+
+     .quotation-page-body form .group .input{
+          width: 95%;
+     }
 }
