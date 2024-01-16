@@ -49,6 +49,10 @@
           font-size: 1.8rem;
           margin: 2px 0;
      }
+     .search-page .search-page-searchbar{
+          width: 95%;
+          margin: 10px auto;
+     }
      /* .home-get-started-sec .row-title h3{
           font-size: 1.2rem;
      } */

@@ -342,10 +342,94 @@ a{
      margin: 10px  5%;
      background-color: var(--text-color-title-transparent);
      border-radius: 10px;
-     box-shadow: 1px 1px 7px 2px var(--text-color-para1);
 }
 
+.quotation-page-header{
+     width: 80%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     margin: 20px auto;
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     padding: 30px;
+     border-radius: 10px;
+}
 
+.quotation-page-header h2{
+     font-size: 2rem;
+     font-weight: 800;
+     margin: 10px auto;
+
+}
+
+.quotation-page-header p{
+     color: var(--gray-text);
+     font-size: 0.9rem;
+}
+
+.quotation-page-body {
+     width: 80%;
+}
+
+.quotation-page-body p {
+     font-size: 0.9rem;
+     color: var(--text-color-title);
+     font-weight: 500;
+     margin: 5px 0;
+}
+.quotation-page-body .form-submitted{
+     color: var(--featured-plan);
+     margin: 50px auto;
+     text-align: center;
+     font-size: 0.9rem;
+     font-weight: 600;
+}
+
+.quotation-page-body form{
+     width: 98%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     margin: 20px auto;
+     box-shadow: 1px 1px 5px var(--text-color-para2);
+     /* background-color: #6E8794; */
+     border-radius: 10px;
+     padding: 20px 0;
+}
+
+.quotation-page-body form .group{
+     width: 80%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: center;
+     margin: 5px auto;
+
+}
+
+.quotation-page-body form .group label{
+     font-size: 1.1rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
+
+.quotation-page-body form .group .input{
+     width: 80%;
+     resize: none;
+     padding: 7.5px 10px;
+     border: 1px solid var(--back-gold-color-v1);
+     border-radius: 5px;
+     margin: 5px 0;
+
+}
+
+.quotation-page-body form .group .input:focus{
+     outline: none;
+     border: 1.2px solid var(--back-color-gold2);
+}
 .password-reset-page{
      background-color: var(--text-color-title);
      width: 100%;
@@ -1081,46 +1165,61 @@ a{
 }
 
 .search-bar-main{
-     width: clamp(280px, 100%, 400px);
-     background-color: aliceblue;
+     width: clamp(280px, 100%, 600px);
      position: relative;
      border-radius: 0.5rem;
      display: flex;
      flex-direction: row;
+     border-radius: 5px;
+     overflow: hidden;
+     border: 1.5px solid var(--back-color-gold2);
 }
 
 .search-bar-main input{
-     width: 100%;
+     width: 42%;
      padding: 10px 6% 10px 2%;
      border: none;
-     border-radius: 0.5rem;
+     border-radius: 0px;
+     border-right: 1.5px solid var(--gray-text);
+     border-left: 1.5px solid var(--gray-text);
 }
 
 .search-bar-main input:focus{
      outline: none;
-     border: none;
+
 }
 
 .search-bar-main i{
-     position: absolute;
-     right: 1%;
-     border-radius: 0.5rem;
-     color: var(--back-color-gold2);
-     top: 10%;
+     position: relative;
+     color: var(--white-text);
+     background-color: var(--back-color-gold2);
      font-size: 1.2rem;
      width: 8%;
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: center;
-     aspect-ratio: 1/1;
      align-self: center;
      transition: all 1s;
+     padding: 10px 0;
 }
 
 .search-bar-main i:hover{
      cursor: pointer;
      background-color: var(--back-color-gold1);
+     color: var(--back-color-gold2);
+}
+
+.search-bar-main select{
+     width: 30%;
+     cursor: pointer;
+     border-radius:0;
+     border: none;
+}
+
+.search-bar-main select:focus{
+     outline: none;
+     border: none;
 }
 
 .footer{
@@ -1288,7 +1387,7 @@ a{
      margin: 5px auto;
 }
 
-.user-forms .form-container form .group input{
+.user-forms .form-container form .group input, .user-forms .form-container form .group select{
      width: clamp(250px, 60%, 800px);
      text-align: center;
      font-size: 0.8rem;
@@ -1300,7 +1399,7 @@ a{
      margin: 5px auto;
 }
 
-.user-forms .form-container form .group input:focus{
+.user-forms .form-container form .group input:focus, .user-forms .form-container form .group select:focus{
      border-bottom: 1.5px solid var(--back-color-gold2);
 }
 .user-forms .form-container form .group input::placeholder{

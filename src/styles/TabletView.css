@@ -98,7 +98,7 @@
      .vendor-page-header h1{
           font-size: 2rem;
      }
-     .best-sellers-body{
+     .best-sellers-body, .quotation-page-header, .quotation-page-body{
           width: 90%;
      }
      .best-seller-square{
@@ -114,4 +114,10 @@
      .home-get-started-sec .benefits, .get-started-sec .benefits{
           width: 95%;
      }
+     .search-page .search-page-searchbar{
+          width: 80%;
+          background-color: transparent;
+          box-shadow: none;
+     }
+     
 }

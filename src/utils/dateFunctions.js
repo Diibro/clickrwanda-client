@@ -88,3 +88,9 @@ export const formatTimeAgo = (dateString) => {
      return years === 1 ? 'a year ago' : `${years} years ago`;
      }
 }
+
+export const getTimeNow = () => {
+     const currentDate = new Date();
+     const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+     return formattedDate;
+}

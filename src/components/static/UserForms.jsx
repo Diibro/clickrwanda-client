@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ActionBtn, SubmitButton } from "../dynamic/Buttons";
 import Title from "../dynamic/TitleComponents"
 import { textColors, titleSize } from "../styles"
@@ -11,6 +11,7 @@ import server from "../../config/Server";
 import Loading from "./Loading";
 import { TiTick } from "react-icons/ti";
 import { AddAdvertForm } from "../dynamic/Adverts.component";
+import { getLocations } from "../../utils/locations";
 
 
 const UserForms = () => {
@@ -133,6 +134,7 @@ const SignUpForm = () => {
      const {register, handleSubmit, formState: {errors}} = useForm();
      const [,setUser] = useContext(UserContext);
      const [,setData] = useContext(AppData);
+     const [locations, setLocations] = useState([]);
      const [loading, setLoading] = useState(false);
 
      const raiseAlert = (type, message, icon) => {
@@ -180,6 +182,15 @@ const SignUpForm = () => {
      const closeForm = () => {
           setUser((prev) => ({...prev, activeForm:''}))
      }
+
+     useEffect(() => {
+          (async() => {
+               const {districts} = await getLocations();
+               // const {data} = districts;
+               // setLocations(data);
+               setLocations(districts.data);
+             })()
+     }, [])
      return(
           <div className="form-container hide-scroll">
                <i onClick={closeForm} className="close-icon"><ImCross/></i>
@@ -209,7 +220,12 @@ const SignUpForm = () => {
                <p className="form-errors">{errors?.password && errors.password.message}</p>
                <div className="group">
                     <label htmlFor="location01">Location: </label>
-                    <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  />
+                    {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
+                    <select name="location" id="location01"  {...register('location', {required: true})}>
+                         {locations[0] ? <option value="" selected  >Business location</option> : null}
+                         {locations[0] ? <option value="Kigali" >Kigali</option> : null}
+                         {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
+                    </select>
                </div>
                <div className="group align-right">
                     <SubmitButton content={{title: "Sign Up", type: 'submit'}} />

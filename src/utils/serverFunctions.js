@@ -163,6 +163,16 @@ export const resetPassword = async (url, params) => {
   return res.data;
 }
 
+export const postData = async (url, params) => {
+  try {
+    const res = await axios.post(url, params);
+    const info = await res.data;
+    return info;
+  } catch (error) {
+    return [];
+  }
+}
+
 
 
 

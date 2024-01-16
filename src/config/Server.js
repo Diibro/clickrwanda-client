@@ -1,5 +1,5 @@
 import endpoints from './Endpoints';
-import { addAdvert, deleteAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, manipulateReview, registerUser, resetPassword, searchAds, searchAdvert, searchData, searchUser, updateUser } from '../utils/serverFunctions';
+import { addAdvert, deleteAdvert, fetchData, getUrl, getUserAds, loginUser, logoutUser, manipulateReview, postData, registerUser, resetPassword, searchAds, searchAdvert, searchData, searchUser, updateUser } from '../utils/serverFunctions';
 
 
 const server = {
@@ -101,6 +101,9 @@ const server = {
      },
      updateUserAd: async(params) => {
           return await updateUser(getUrl(endpoints.updateUserAd), params);
+     },
+     addQuotation: async(params) => {
+          return await postData(getUrl(endpoints.addQuote), params);
      }
 }
 export default server;

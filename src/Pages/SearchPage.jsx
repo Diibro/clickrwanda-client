@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"
-import { getItemUrlName } from "../utils/urlFunctions";
+import { getItemUrlName, getSearchParams } from "../utils/urlFunctions";
 import { InnerSection } from "../components/dynamic/InnerSectionContainer";
 import { AdvertRenderer } from "../components/dynamic/Advert.componet";
 import PropTypes  from 'prop-types';
@@ -16,11 +16,12 @@ const SearchPage = () => {
      const [sub, setSub] = useState(null);
      const [cat, setCat] = useState(null);
      const [userAds, setUserAds] = useState(null)
-     const searched = getItemUrlName(location.search);
+     const searched = getSearchParams(location.search);
      const searchAds = async () => {
           try {
                setLoading(true);
-               const res = await  server.searchAdverts('search', {searched});
+
+               const res = await  server.searchAdverts('search', {searched:searched.search});
                if(res.ads) setAds(res.ads);
                if(res.sub) setSub(res.sub);
                if(res.cat) setCat(res.cat);
@@ -42,13 +43,13 @@ const SearchPage = () => {
      return (
           <>
           <Helmet>
-               <title>{`${searched}... | Click Rwanda`}</title>
+               <title>{`Search | Click Rwanda`}</title>
           </Helmet>
           <div className="search-page">
                <div className="search-page-searchbar">
                     <SearchBar />
                </div>
-               <h3>Showing search results for {searched}..</h3>
+               <h3>Showing search results for {searched.search || "All"}..</h3>
                {!loading ? 
                     <SearchAdverts content={{ads, sub, cat, user: userAds}} />
                : <Loading />}

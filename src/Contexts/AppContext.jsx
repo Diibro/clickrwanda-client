@@ -24,7 +24,7 @@ export const AppProvider = ({children}) => {
           },
           shareAlert: {on: false, content: {}},
           loading: false,
-          changingPage: false
+          changingPage: false,
      });
 
      const {fetchNow} = data;
