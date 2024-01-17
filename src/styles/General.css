@@ -367,6 +367,7 @@ a{
 .quotation-page-header p{
      color: var(--gray-text);
      font-size: 0.9rem;
+     text-align: center;
 }
 
 .quotation-page-body {
