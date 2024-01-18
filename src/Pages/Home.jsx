@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 // import HelloImage from '../assets/images/helloImage.png';
-import { Adverts, BoostedAds, TodayDeals} from '../components/dynamic/Adverts.component';
+import { AdWebsites, Adverts, BoostedAds, TodayDeals} from '../components/dynamic/Adverts.component';
 import Categories from '../components/dynamic/Categories';
 import { InnerSection } from '../components/dynamic/InnerSectionContainer';
 import SearchBar from '../components/static/SearchBar';
@@ -47,7 +47,11 @@ const Home = () => {
           New Ads
         </InnerSection>
         <Adverts eleId={"home-adverts"} limit={50} />
-        <GetStartedV1 />
+        <InnerSection type="title" >
+          Ads with Websites
+        </InnerSection>
+        <AdWebsites />
+        {/* <GetStartedV1 /> */}
       </div>
     </>
     

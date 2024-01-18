@@ -4,7 +4,7 @@ import AppData from "../../Contexts/AppContext";
 import { useContext, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 import { FaArrowRight } from "react-icons/fa";
-import { AdvertRenderer} from "./Advert.componet";
+import { AdvertRenderer, AdvertRow} from "./Advert.componet";
 import { MoreLink } from "./LinksComponents";
 import { SubmitButton } from "./Buttons";
 import UserContext from "../../Contexts/UserContext";
@@ -345,6 +345,18 @@ export const TodayDeals = () => {
       </div>
       {!scrollPos.atLeft ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
       {!scrollPos.atRight ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
+    </div>
+  ) : null
+}
+
+export const AdWebsites = () => {
+  const [data] = useContext(AppData);
+  const {websiteAds } = data;
+  return Array.isArray(websiteAds) && websiteAds[0] ? (
+    <div className="home-ad-websites">
+      {
+        websiteAds.map((ad) => <AdvertRow key={ad.ad_id} item={ad} />)
+      }
     </div>
   ) : null
 }

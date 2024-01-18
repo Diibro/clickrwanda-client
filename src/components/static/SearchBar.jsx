@@ -13,7 +13,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const submitSearch = () => {
     if(searched.location || searched.category || searched.search){
-      return navigate(`/search/ads?=${getSearchUrl(searched)}`);
+      return navigate(`/search?=${getSearchUrl(searched)}`);
     }
   }
 

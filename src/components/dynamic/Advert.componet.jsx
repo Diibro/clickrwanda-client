@@ -5,7 +5,7 @@ import { getItemUrl } from '../../utils/urlFunctions';
 import { FaLocationDot } from "react-icons/fa6";
 import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
 import { SubmitButton } from './Buttons';
-import { FaShareAlt } from "react-icons/fa";
+import { FaShareAlt, FaLongArrowAltRight } from "react-icons/fa";
 import AppData from '../../Contexts/AppContext';
 import { formatTimeAgo } from '../../utils/dateFunctions';
 
@@ -126,6 +126,33 @@ export const DashAdvert = ({item}) => {
      )
 }
 
+export const AdvertRow = ({item}) => {
+     return(
+          <div className="advert-row">
+               <p className='ad-plan'>{item.plan_name !== "freemium" ? item.plan_name : null}</p>
+               <div className="row">
+                    <img src={item.ad_image} alt={item.ad_name} />
+                    <div className='col'>
+                         <h3>{item.ad_name}</h3>
+                         <p className='website'>
+                              <a href={item.ad_website} target='_blank' rel="noreferrer" >{item.ad_website}</a>
+                         </p>
+                         <p className='contact'>
+                              <span>Tel: <b><a href={`tel: ${item.contact || item.user_phone}`}>{item.contact || item.user_phone}</a></b> </span>
+                              <span>Price: <b>Rwf {item.ad_price}</b></span>
+                              <span>Category: <b>{item.sub_name}</b></span>
+                         </p>
+                    </div>
+               </div>
+               <p className='desc'>
+                    <span>{item?.description?.desc}</span>
+                    <span><b>For more...</b> <a href={item.ad_website} target='_blank' rel="noreferrer" > Visit Website <i><FaLongArrowAltRight /></i> </a></span>
+                    
+               </p>
+          </div>
+     )
+}
+
 AdvertRenderer.propTypes = {
      item: PropTypes.object,
 }
@@ -162,6 +189,10 @@ ProductSquare.propTypes = {
      adDate: PropTypes.any,
      categoryLink: PropTypes.any,
      discount: PropTypes.any
+}
+
+AdvertRow.propTypes = {
+     item: PropTypes.any
 }
 
 export default Advert

@@ -1608,6 +1608,16 @@ a{
      justify-content: space-evenly;
      margin: 20px auto;
 }
+
+.home-ad-websites{
+     width: 80%;
+     padding: 20px 0;
+     margin: 10px auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
 /* end of section container styles */
 
 /* user dashboard components */
@@ -2205,6 +2215,85 @@ a{
 
 .ad-image:hover{
      cursor: pointer;
+}
+
+.advert-row{
+     width: 98%;
+     display: flex;
+     flex-direction: column;
+     padding: 5px;
+     box-shadow: 1px 1px 2.5px 1px var(--text-color-para1);
+     border-radius: 5px;
+}
+
+.advert-row .row{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+}
+
+.advert-row .row img{
+     width: 7.5%;
+     min-width: 50px;
+}
+.advert-row .row .col{
+     width: 90%;
+}
+
+.advert-row .row .col h3{
+     font-size: 0.95rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+}
+.advert-row .row .col .contact{
+     font-size: 0.8rem;
+}
+
+.advert-row .row .col .contact span{
+     padding: 0 5px;
+     border-radius: 4px;
+     margin: 0 5px;
+}
+
+.advert-row .row .col .contact span b{
+     color: var(--text-color-title);
+}
+
+.advert-row .row .col .website{
+     font-size: 0.81rem;
+}
+
+.advert-row .desc{
+     width: 90%;
+     font-size: 0.8rem;
+     color: var(--text-color-para1);
+     margin: 0 5px;
+}
+
+.advert-row .desc span{
+     display: -webkit-box;
+     -webkit-line-clamp: 2;
+     -webkit-box-orient: vertical;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+
+.advert-row .desc span a{
+     padding: 0 5px ;
+     font-size: 0.95rem;
+     margin: 0 5px;
+     font-weight: 700;
+     color: var(--back-color-gold2);
+     display: inline-flex;
+     flex-direction: row;
+     align-items: center;
+}
+
+.advert-row .desc span a:hover{
+     color: var(--back-color-blue2);
+     text-decoration: underline;
 }
 
 .best-sellers-body {

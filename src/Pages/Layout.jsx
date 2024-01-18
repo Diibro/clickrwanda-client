@@ -28,6 +28,7 @@ import PasswordPage from './PasswordPage';
 import BestSellers from './BestSellers';
 import OpenShopPage from './OpenShopPage';
 import QuotationPage from './QuotationPage';
+import PaymentPlans from './PaymentPlans';
 
 
 const Layout = () => {
@@ -50,7 +51,7 @@ const Layout = () => {
                <Route path='/terms-&-conditions' element={<TermsPage />} />
                <Route path='/privacy-policy' element={<PrivacyPage/>} />
                <Route path='/ad/:name' element={<AdvertPage />}/>
-               <Route path='/search/:params' element={<SearchPage />} />
+               <Route path='/search' element={<SearchPage />} />
                <Route path='/vendor/:params'  element={<VendorPage/>}/>
                <Route path='/category/:params' element={<CategoryPage />} />
                <Route path='/sub-category/:params' element={<SubCategoryPage />} />
@@ -60,6 +61,7 @@ const Layout = () => {
                <Route path='/accounts/:params' element={<PasswordPage />} />
                <Route path='/get-started' element={<OpenShopPage />} />
                <Route path='/send-request' element={<QuotationPage />} />
+               <Route path='/payment-plans' element={<PaymentPlans />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

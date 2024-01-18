@@ -17,6 +17,7 @@ export const AppProvider = ({children}) => {
           todayDeals:[],
           subCategories: [],
           payPlans: [],
+          websiteAds:[],
           currency:"",
           alertView: {
                on: false,
@@ -34,7 +35,7 @@ export const AppProvider = ({children}) => {
                     setData((prev) => ({...prev, loading: true}));
                     const sessionData = getData('appData');
                     if (sessionData){
-                         const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted, boostedSellers, discounted} = sessionData;
+                         const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted, boostedSellers, discounted, adWebsites} = sessionData;
                          setData((prev) => ({
                               ...prev,
                               categories: categoriesData,
@@ -44,14 +45,15 @@ export const AppProvider = ({children}) => {
                               payPlans: payPlansData,
                               bestSellers:boostedSellers,
                               todayDeals:discounted,
+                              websiteAds: adWebsites,
                               currency: "Frw"
                          }));
                     }else{
                          const categoriesData = await server.get('categories',null);
-                         const {generalAds:advertsData, boostedAds:boosted, bestSellers:boostedSellers, discounted} = await server.get('adverts',{page: 1, boost: 20, boostSellers: true,boostNum:10, todayDeals:50});
+                         const {generalAds:advertsData, boostedAds:boosted, bestSellers:boostedSellers, discounted, adWebsites} = await server.get('adverts',{page: 1, boost: 20, boostSellers: true,boostNum:10, todayDeals:50, website:50});
                          const subCategoriesData = await server.get('sub categories',null);
                          const payPlansData = await server.get('payment plans', null);
-                         const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted}
+                         const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted, adWebsites}
                          saveData('appData', appData, 30);
                          setData((prev) => ({
                          ...prev,
@@ -62,6 +64,7 @@ export const AppProvider = ({children}) => {
                          boosted: boosted,
                          todayDeals:discounted,
                          bestSellers:boostedSellers,
+                         websiteAds: adWebsites,
                          currency: "Frw"
                          }));
                     }

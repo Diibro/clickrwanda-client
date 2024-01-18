@@ -17,8 +17,9 @@ const Footer = () => {
                setUser((prev) => ({...prev, activeForm: 'signup'}))
           }
      }
-     const becomeAgent = () => {
-          return navigate('/hiring');
+     const viewPlans = () => {
+          return navigate('/');
+          // return navigate('/payment-plans');
      }
      return (
      <div className='footer'>
@@ -44,16 +45,17 @@ const Footer = () => {
                     <a href="https://wa.me/+250727559173" rel="noreferrer" target="_blank"><i className="icon whatsapp-icon"><FaWhatsapp /></i> Whatsapp: +250727559173 </a>
                </div>
                {!loggedIn ? <ActionBtn title="Get Started" action={getStarted} /> : null } 
-               <ActionBtn title="Become Agent"  action={becomeAgent}/>
+               <ActionBtn title="Our Plans"  action={viewPlans}/>
           </div>
           <div className="footer-col">
                <Title content={{color:textColors.white, size: titleSize.small, name: "Support & Links"}} />
                <div className="footer-content">
-                    <Link>Help Center</Link>
-                    <Link>Contact Us</Link>
+                    <Link to="/">Help Center</Link>
+                    <Link to="/">Contact Us</Link>
                     <Link to="/privacy-policy">Privacy Policy</Link>
                     <Link to='/terms-&-conditions'>Terms & Conditions</Link>
-                    <Link>About us</Link>
+                    <Link to="/">About us</Link>
+                    <Link to="/hiring">Become an Agent</Link>
                </div>
           </div>
      </div>
