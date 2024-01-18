@@ -137,11 +137,6 @@ export const AdvertRow = ({item}) => {
                          <p className='website'>
                               <a href={item.ad_website} target='_blank' rel="noreferrer" >{item.ad_website}</a>
                          </p>
-                         <p className='contact'>
-                              <span>Tel: <b><a href={`tel: ${item.contact || item.user_phone}`}>{item.contact || item.user_phone}</a></b> </span>
-                              <span>Price: <b>Rwf {item.ad_price}</b></span>
-                              <span>Category: <b>{item.sub_name}</b></span>
-                         </p>
                     </div>
                </div>
                <p className='desc'>

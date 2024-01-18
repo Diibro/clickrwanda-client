@@ -1,7 +1,7 @@
 import { Container, Input, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { InnerSection } from "./InnerSectionContainer";
 import AppData from "../../Contexts/AppContext";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 import { FaArrowRight } from "react-icons/fa";
 import { AdvertRenderer, AdvertRow} from "./Advert.componet";
@@ -259,11 +259,12 @@ export const CategoryAdverts = ({adverts}) => {
   )
 }
 
-export const BoostedAds = () => {
+export const BoostedAds = ({params}) => {
   const [data] = useContext(AppData);
   const adsRef = useRef(null);
   const {boosted} = data;
   const [scrollPos, setScrollPos] = useState({atLeft: false});
+  const ads = params?.ads || boosted;
 
   const scrollHandle = (check) => {
     if(check === 1){
@@ -273,45 +274,45 @@ export const BoostedAds = () => {
     }
   }
 
-  
+  const handleScroll = () => {
+    const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
+    setScrollPos({
+      atLeft: scrollLeft === 0,
+      atRight: scrollLeft + clientWidth >= scrollWidth,
+    });
+  };
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
-  //     setScrollPos({
-  //       atLeft: scrollLeft === 0,
-  //       atRight: scrollLeft + clientWidth >= scrollWidth,
-  //     });
-  //   };
+  useEffect(() => {
+    
 
-  //   const currentRef = adsRef.current;
-  //   currentRef.addEventListener('scroll', handleScroll);
+    const currentRef = adsRef.current;
+    currentRef && currentRef.addEventListener('scroll', handleScroll);
 
-  //   // Clean up the event listener on component unmount
-  //   return () => {
-  //     currentRef.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [boosted]);
+    return () => {
+      currentRef ? currentRef.removeEventListener('scroll', handleScroll) : null;
+    };
+  }, [boosted]);
   return(
     <div className="home-boosted-ads " >
-      <div className="ads-container hide-scroll" ref={adsRef}>
+      <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
         {
-          boosted.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+          ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
           )
         }
       </div>
-    {!scrollPos.atLeft ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
-    {!scrollPos.atRight ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
+    {!scrollPos.atLeft && !params?.wrap  ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
+    {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
   </div>
   )
 }
 
 
-export const TodayDeals = () => {
+export const TodayDeals = ({params}) => {
   const [data] = useContext(AppData);
   const {todayDeals} = data;
   const adsRef = useRef(null);
   const [scrollPos, setScrollPos] = useState({atLeft: false});
+  const ads = params?.ads || todayDeals;
 
   const scrollHandle = (check) => {
     if(check === 1){
@@ -321,30 +322,30 @@ export const TodayDeals = () => {
     }
   }
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
-  //     setScrollPos({
-  //       atLeft: scrollLeft === 0,
-  //       atRight: scrollLeft + clientWidth >= scrollWidth,
-  //     });
-  //   };
-  //   const currentRef = adsRef.current;
-  //   currentRef.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     currentRef.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [todayDeals]);
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
+      setScrollPos({
+        atLeft: scrollLeft === 0,
+        atRight: scrollLeft + clientWidth >= scrollWidth,
+      });
+    };
+    const currentRef = adsRef.current;
+    currentRef &&  currentRef.addEventListener('scroll', handleScroll);
+    return () => {
+      currentRef ?  currentRef.removeEventListener('scroll', handleScroll) : null;
+    };
+  }, [todayDeals]);
   return Array.isArray(todayDeals) && todayDeals[0] ? (
     <div className="home-boosted-ads " >
-      <div className="ads-container hide-scroll" ref={adsRef}>
+      <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
           {
-            todayDeals.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+            ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
             )
           }
       </div>
-      {!scrollPos.atLeft ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
-      {!scrollPos.atRight ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
+      {!scrollPos.atLeft && !params?.wrap ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
+      {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
     </div>
   ) : null
 }
@@ -373,4 +374,12 @@ SimilarAds.propTypes = {
 
 CategoryAdverts.propTypes = {
   adverts: PropTypes.any
+}
+
+BoostedAds.propTypes = {
+  params: PropTypes.any
+}
+
+TodayDeals.propTypes = {
+  params: PropTypes.any
 }

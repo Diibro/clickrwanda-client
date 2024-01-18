@@ -7,6 +7,7 @@ import SearchBar from '../components/static/SearchBar';
 import DeviceView from '../Contexts/ViewContext';
 import { BoostedSellers, GetStartedV1, RequestQuoteHeader } from '../components/dynamic/Special.components';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -31,6 +32,7 @@ const Home = () => {
         <BoostedSellers />
         <InnerSection type="title" >
           Today Deals
+          <Link to='/top-deals'>View All</Link>
         </InnerSection>
         <TodayDeals />
         
@@ -41,6 +43,7 @@ const Home = () => {
         <Categories limit={isMobile ? 12 : 14} />
         <InnerSection type="title" >
           Sponsored Ads
+          <Link to='/sponsored-ads'>View All</Link>
         </InnerSection>
         <BoostedAds />
         <InnerSection type="title" >

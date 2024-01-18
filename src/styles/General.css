@@ -1591,14 +1591,28 @@ a{
 
 .section-title{
      color: var(--text-color-title);
-     font-size: 1.8rem;
+     font-size: 1.5rem;
      font-weight: 800;
      width: 100%;
      text-align: left;
-     margin: 0;
+     margin: 10px 0 0;
      padding: 0;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
 }
 
+.section-title a{
+     font-size: 0.9rem;
+     margin: 0 20px;
+     font-weight: 600;
+     color: var(--back-color-gold2);
+}
+
+
+.section-title a:hover{
+     color: var(--back-color-blue2);
+}
 .side-ads-view{
      width: clamp(350px, 70%, 1600px);
      display: flex;
@@ -1611,8 +1625,8 @@ a{
 
 .home-ad-websites{
      width: 80%;
-     padding: 20px 0;
-     margin: 10px auto;
+     padding: 5px 0 20px;
+     margin: 0px auto 10px;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -2247,19 +2261,6 @@ a{
      font-weight: 800;
      color: var(--text-color-title);
 }
-.advert-row .row .col .contact{
-     font-size: 0.8rem;
-}
-
-.advert-row .row .col .contact span{
-     padding: 0 5px;
-     border-radius: 4px;
-     margin: 0 5px;
-}
-
-.advert-row .row .col .contact span b{
-     color: var(--text-color-title);
-}
 
 .advert-row .row .col .website{
      font-size: 0.81rem;
@@ -2274,7 +2275,7 @@ a{
 
 .advert-row .desc span{
      display: -webkit-box;
-     -webkit-line-clamp: 2;
+     -webkit-line-clamp: 3;
      -webkit-box-orient: vertical;
      overflow: hidden;
      text-overflow: ellipsis;
@@ -3241,4 +3242,9 @@ hide scroll bars
 }
 .hide-scroll::-ms-scrollbar {
      display: none;
+}
+
+.wrap-scroll{
+     flex-wrap: wrap !important;
+     overflow-x: visible;
 }

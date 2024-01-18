@@ -29,6 +29,8 @@ import BestSellers from './BestSellers';
 import OpenShopPage from './OpenShopPage';
 import QuotationPage from './QuotationPage';
 import PaymentPlans from './PaymentPlans';
+import TopDealsPage from './TopDealsPage';
+import BoostedAdsPage from './BoostedAdsPage';
 
 
 const Layout = () => {
@@ -62,6 +64,8 @@ const Layout = () => {
                <Route path='/get-started' element={<OpenShopPage />} />
                <Route path='/send-request' element={<QuotationPage />} />
                <Route path='/payment-plans' element={<PaymentPlans />} />
+               <Route path='/top-deals' element={<TopDealsPage />} />
+               <Route path='/sponsored-ads' element={<BoostedAdsPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

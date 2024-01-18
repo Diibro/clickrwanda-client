@@ -77,7 +77,7 @@ export const AppProvider = ({children}) => {
           };
           if(!data.categories[0]){
                if(location.pathname === '/' || fetchNow){
-               fetchData();
+               (async () => await fetchData())();
                }
           }
 
