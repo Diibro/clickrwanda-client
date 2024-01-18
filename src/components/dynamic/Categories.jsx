@@ -8,6 +8,7 @@ import { CategoryContainerSquare } from './Containers';
 import { MoreLink } from './LinksComponents';
 import { getItemUrl } from '../../utils/urlFunctions';
 // import { TopDealsCard } from './Special.components';
+// import MoreIcon from "../../assets/morecat.png";
 
 const Categories = ({limit}) => {
      const [data] = useContext(AppData);
@@ -36,6 +37,7 @@ const Categories = ({limit}) => {
                               />
                     )
                     : null}
+                    {/* {limit !== 0 && <CategoryContainerSquare view={`/categories`} image={MoreIcon} title={`All Categories`} /> } */}
                </InnerSection>
 
                {limit 

@@ -1574,7 +1574,7 @@ a{
      flex-direction: row;
      align-items: flex-start;
      justify-content: center;
-     margin: 20px auto;
+     margin: 5px auto 20px;
      padding:5px 0 5px ;
      max-width: 1600px;
 }
@@ -1586,7 +1586,7 @@ a{
 .view-more-container a{
      align-items: center;
      color: var(--text-color-para1);
-     font-size: 0.8rem;
+     font-size: 1rem;
 }
 
 .section-title{
@@ -1595,7 +1595,7 @@ a{
      font-weight: 800;
      width: 100%;
      text-align: left;
-     margin: 10px 0 0;
+     margin: 20px 2.5% 0;
      padding: 0;
      display: flex;
      flex-direction: row;
@@ -1606,12 +1606,20 @@ a{
      font-size: 0.9rem;
      margin: 0 20px;
      font-weight: 600;
-     color: var(--back-color-gold2);
+     color: var(--featured-plan);
+     display: inline-flex;
+     justify-content: flex-end;
 }
 
 
 .section-title a:hover{
      color: var(--back-color-blue2);
+}
+
+.section-title a::before{
+     content: "";
+     width: 20px;
+     border-bottom: 1px solid var(--text-color-para2);
 }
 .side-ads-view{
      width: clamp(350px, 70%, 1600px);
@@ -2028,7 +2036,7 @@ a{
      flex-direction: column;
      align-items: center;
      justify-content: flex-start;
-     margin: 10px 0;
+     margin: 0px 0 10px;
      padding: 5px 0;
      border-radius: 10px;
      transition: all 0.5s;
@@ -2275,7 +2283,7 @@ a{
 
 .advert-row .desc span{
      display: -webkit-box;
-     -webkit-line-clamp: 3;
+     -webkit-line-clamp:  3;
      -webkit-box-orient: vertical;
      overflow: hidden;
      text-overflow: ellipsis;

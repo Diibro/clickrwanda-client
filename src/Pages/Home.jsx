@@ -28,7 +28,10 @@ const Home = () => {
           <RequestQuoteHeader />
           {/* <img src={HelloImage} alt="hello section image" /> */}
         </div>
-        <InnerSection type="title">Our Best Sellers</InnerSection>
+        <InnerSection type="title">
+          Our Best Sellers
+          <Link to='/best-sellers'>View All</Link>
+        </InnerSection>
         <BoostedSellers />
         <InnerSection type="title" >
           Today Deals
@@ -42,7 +45,7 @@ const Home = () => {
         </InnerSection>
         <Categories limit={isMobile ? 12 : 14} />
         <InnerSection type="title" >
-          Sponsored Ads
+          Featured Ads
           <Link to='/sponsored-ads'>View All</Link>
         </InnerSection>
         <BoostedAds />
@@ -51,7 +54,7 @@ const Home = () => {
         </InnerSection>
         <Adverts eleId={"home-adverts"} limit={50} />
         <InnerSection type="title" >
-          Ads with Websites
+        Sponsored Ads
         </InnerSection>
         <AdWebsites />
         {/* <GetStartedV1 /> */}

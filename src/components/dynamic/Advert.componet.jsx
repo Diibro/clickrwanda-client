@@ -141,7 +141,7 @@ export const AdvertRow = ({item}) => {
                </div>
                <p className='desc'>
                     <span>{item?.description?.desc}</span>
-                    <span><b>For more...</b> <a href={item.ad_website} target='_blank' rel="noreferrer" > Visit Website <i><FaLongArrowAltRight /></i> </a></span>
+                    <span><a href={item.ad_website} target='_blank' rel="noreferrer" > Visit Website <i><FaLongArrowAltRight /></i> </a></span>
                     
                </p>
           </div>
