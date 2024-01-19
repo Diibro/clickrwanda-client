@@ -105,7 +105,7 @@ export const AdvertRenderer = ({item}) => {
                               plan={item.plan_name}
                               category={item.category_name}
                               contact={item.contact || item.user_phone}
-                              location={item.user_location.location}
+                              location={item?.user_location?.location}
                               price={item.ad_price}
                               views={item.ad_views}
                               adDate={item.ad_date}

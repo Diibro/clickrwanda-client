@@ -264,7 +264,7 @@ export const BoostedAds = ({params}) => {
   const adsRef = useRef(null);
   const {boosted} = data;
   const [scrollPos, setScrollPos] = useState({atLeft: false});
-  const ads = params?.ads || boosted;
+  const ads  = params?.ads || boosted;
 
   const scrollHandle = (check) => {
     if(check === 1){
@@ -283,8 +283,6 @@ export const BoostedAds = ({params}) => {
   };
 
   useEffect(() => {
-    
-
     const currentRef = adsRef.current;
     currentRef && currentRef.addEventListener('scroll', handleScroll);
 
@@ -292,11 +290,12 @@ export const BoostedAds = ({params}) => {
       currentRef ? currentRef.removeEventListener('scroll', handleScroll) : null;
     };
   }, [boosted]);
+
   return(
     <div className="home-boosted-ads " >
       <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
         {
-          ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+          ads !== null && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
           )
         }
       </div>
@@ -336,18 +335,19 @@ export const TodayDeals = ({params}) => {
       currentRef ?  currentRef.removeEventListener('scroll', handleScroll) : null;
     };
   }, [todayDeals]);
-  return Array.isArray(todayDeals) && todayDeals[0] ? (
+
+  return (
     <div className="home-boosted-ads " >
       <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
           {
-            ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+            ads !== null && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
             )
           }
       </div>
       {!scrollPos.atLeft && !params?.wrap ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
       {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
     </div>
-  ) : null
+  ) 
 }
 
 export const AdWebsites = () => {

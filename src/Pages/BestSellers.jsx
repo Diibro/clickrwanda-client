@@ -68,14 +68,14 @@ const BestSellerBody = () => {
      )
 }
 
-const BestSellerSquare = ({item}) => {
+export const BestSellerSquare = ({item}) => {
      const navigate = useNavigate();
      const viewVendor = () => {
           return navigate(`/vendor/${getItemUrl(item.full_name, item.user_id)}`)
      }
      return(
           <div className="best-seller-square">
-               <span className='seller-ranking'>{item.rank}</span>
+               {item.rank && <span className='seller-ranking'>{item.rank}</span>}
                <div onClick={viewVendor} className='seller-img' style={{backgroundImage: `url(${item.profile_image})`}}>  </div>
                {/* <img className='seller-img' onClick={viewVendor} src={item.profile_image} /> */}
                <h4>{item.username}</h4>
