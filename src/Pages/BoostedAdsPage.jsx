@@ -24,8 +24,8 @@ const BoostedAdsPage = () => {
   return (
     <div className="page">
           <div className="best-sellers-header">
-               <h3>Sponsered Ads</h3>
-               <p>Discover the best ads choosen for you on Click Rwana</p>
+               <h3>Featured Ads</h3>
+               <p>Discover the best ads choosen for you on Click Rwanda</p>
           </div>
           <>
                {loading ? <Loading /> : 

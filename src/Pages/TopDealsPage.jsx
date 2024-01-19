@@ -24,7 +24,7 @@ const TopDealsPage = () => {
   return (
     <div className="page">
           <div className="best-sellers-header">
-               <h3>Top Deals</h3>
+               <h3>Today Deals</h3>
                <p>Discover the best deals on Click Rwanda.</p>
           </div>
           <>
