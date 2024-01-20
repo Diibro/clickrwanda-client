@@ -117,6 +117,16 @@ export const AdvertRenderer = ({item}) => {
      )
 }
 
+export const AdvertImage = ({images}) => {
+     const others = images.more ? images.more : null;
+     return(
+          <>
+               <img src={images.main} alt={images.name} loading='lazy' className='search-page-image' />
+               {others && others.map((image, index) =><img key={index} src={image} alt={images.name} loading='lazy' className='search-page-image' /> ) }
+          </>
+     )
+}
+
 export const DashAdvert = ({item}) => {
      if (!item) return null;
      return(
@@ -188,6 +198,10 @@ ProductSquare.propTypes = {
 
 AdvertRow.propTypes = {
      item: PropTypes.any
+}
+
+AdvertImage.propTypes = {
+     images: PropTypes.any
 }
 
 export default Advert

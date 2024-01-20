@@ -126,4 +126,9 @@
      .quotation-page-body form .group .input{
           width: 95%;
      }
+
+     .search-page-image{
+          max-height: 150px;
+          margin: 5px;
+     }
 }

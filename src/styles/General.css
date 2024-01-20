@@ -377,6 +377,13 @@ a{
      padding: 2px 15px;
 }
 
+.search-page-image{
+     height: 30vh;
+     border-radius: 5px;
+     margin: 5px 10px;
+     box-shadow: 1px 1px 2px var(--text-color-para2);
+}
+
 .quotation-page-header{
      width: 80%;
      display: flex;

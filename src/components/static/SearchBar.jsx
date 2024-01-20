@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { getSearchUrl } from '../../utils/urlFunctions';
 import AppData from '../../Contexts/AppContext';
 import { getLocations } from '../../utils/locations';
+import server from '../../config/Server';
 // import server from '../../config/Server';
 const SearchBar = () => {
   const [searched, setSearched] = useState({category: "All", location: "Rwanda"});
-  const [data, setData] = useContext(AppData);
+  const [data] = useContext(AppData);
   const [locations, setLocations] = useState([]);
-  const {categories} = data;
+  const [category, setCategory] = useState([]);
   const navigate = useNavigate();
   const submitSearch = () => {
     if(searched.location || searched.category || searched.search){
@@ -23,14 +24,19 @@ const SearchBar = () => {
     }
   }
 
-  useEffect(() => {
-    if(!categories[0]){
-      setData(prev => ({...prev, fetchNow:true}));
+  const getCategories = async () => {
+    if(data.categories && data?.categories[0]){
+      setCategory(data.categories);
+    }else{
+      const categoriesData = await server.get('categories',null);
+      setCategory(categoriesData);
     }
+  }
+
+  useEffect(() => {
     (async() => {
+      await getCategories();
       const {districts} = await getLocations();
-      // const {data} = districts;
-      // setLocations(data);
       setLocations(districts.data);
     })()
     
@@ -38,8 +44,8 @@ const SearchBar = () => {
   return (
     <div className="search-bar-main" onKeyDown={handleKeyPress}>
       <select name="category" id="categories-id" className='hide-scroll' defaultValue={'Category'}  onChange={e => setSearched(prev => ({...prev, category:e.target.value}))}>
-        {categories[0] ? <option value="All"  selected>All Categories</option> : null}
-        {categories[0] ? categories.map((item) => <option key={item.category_id} value={item.category_id}>{item.category_name}</option>) : <option value="">Loading...</option>}
+        {category[0] ? <option value="All"  selected>All Categories</option> : null}
+        {category[0] ? category.map((item) => <option key={item.category_id} value={item.category_id}>{item.category_name}</option>) : <option value="">Loading...</option>}
       </select>
       <input type="text" placeholder="Search anything..." onChange={e => setSearched(prev => ({...prev, search:e.target.value}))} onKeyDown={handleKeyPress} />
       <select name="locations" id="locations-02" defaultValue={'Location'} className='hide-scroll' onChange={e => setSearched(prev => ({...prev, location:e.target.value}))} >
