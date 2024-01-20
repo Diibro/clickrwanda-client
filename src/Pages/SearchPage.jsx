@@ -77,7 +77,7 @@ const SearchAdverts = ({content}) => {
           <InnerSection type="content">
                {content.ads ? 
                 content.ads[0] && typeof(content.ads) !== "string" ? 
-                    content.ads.map((item) => option === "websites" ? <AdvertRow key={item.ad_id} item={item}/> : option === "vendors" ? <BestSellerSquare key={item.user_id} item={item} />  : option === "images" ? <AdvertImage images={{main: item.ad_image, more: item.ad_images}}  /> :<AdvertRenderer key={item.ad_id} item={item} />)
+                    content.ads.map((item) => option === "websites" ? <AdvertRow key={item.ad_id} item={item}/> : option === "vendors" ? <BestSellerSquare key={item.user_id} item={item} />  : option === "images" ? <AdvertImage images={{main: item.ad_image, more: item.ad_images, id:item.ad_id, name: item.ad_name}}  /> :<AdvertRenderer key={item.ad_id} item={item} />)
                 : content.ads
                : null}
                {ads && ads[0] ? null : <p>No adverts found</p>  }

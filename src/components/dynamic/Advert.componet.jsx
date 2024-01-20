@@ -35,7 +35,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
                {discount ? <span className='advert-discount'>- {discount}%</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
-               <img className='ad-image' src={image} alt={title} onClick={action} />
+               <img className='ad-image' src={image} alt={title} onClick={action} loading='lazy' />
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{capitalizeString(title)}</h5>
@@ -65,7 +65,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
                {discount ? <span className='advert-discount'>{discount}% off</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
-               <img className='ad-image' src={image} alt={capitalizeString(title)} onClick={action} />
+               <img className='ad-image' src={image} alt={capitalizeString(title)} onClick={action} loading='lazy'/>
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{title}</h5>
@@ -119,10 +119,14 @@ export const AdvertRenderer = ({item}) => {
 
 export const AdvertImage = ({images}) => {
      const others = images.more ? images.more : null;
+     const navigate = useNavigate();
+     const showAd = () => {
+          return navigate(`/ad/${getItemUrl(images.name, images.id)}`)
+     }
      return(
           <>
-               <img src={images.main} alt={images.name} loading='lazy' className='search-page-image' />
-               {others && others.map((image, index) =><img key={index} src={image} alt={images.name} loading='lazy' className='search-page-image' /> ) }
+               <img src={images.main} alt={images.name} loading='lazy' className='search-page-image' onClick={showAd} />
+               {others && others.map((image, index) =><img key={index} src={image} alt={images.name} loading='lazy' className='search-page-image' onClick={showAd} /> ) }
           </>
      )
 }
@@ -141,7 +145,7 @@ export const AdvertRow = ({item}) => {
           <div className="advert-row">
                <p className='ad-plan'>{item.plan_name !== "freemium" ? item.plan_name : null}</p>
                <div className="row">
-                    <img src={item.ad_image} alt={item.ad_name} />
+                    <img src={item.ad_image} alt={item.ad_name} loading='lazy' />
                     <div className='col'>
                          <h3>{item.ad_name}</h3>
                          <p className='website'>

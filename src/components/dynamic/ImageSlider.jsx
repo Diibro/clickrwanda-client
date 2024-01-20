@@ -17,7 +17,7 @@ export const ImageSlider = ({images}) => {
      return(
           <div className="image-slider">
                <i className="left-arrow" onClick={() => changeImage(-1)} style={{display: imageCount === 0 ? 'none' : 'flex'}}><FaArrowLeft /></i>
-               <img src={inView} alt="advert images" />
+               <img src={inView} alt="advert images" loading="lazy" />
                <i className="right-arrow" onClick={() => changeImage(1)} style={{display: imageCount === images.length - 1 ? 'none' : 'flex'}}><FaArrowRight /></i>
           </div>
      )
