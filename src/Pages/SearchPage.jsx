@@ -1,5 +1,5 @@
 import {  useEffect, useState } from "react";
-import { useLocation } from "react-router-dom"
+import { useLocation} from "react-router-dom"
 import { getItemUrlName, getSearchParams } from "../utils/urlFunctions";
 import { InnerSection } from "../components/dynamic/InnerSectionContainer";
 import { AdvertImage, AdvertRenderer, AdvertRow } from "../components/dynamic/Advert.componet";

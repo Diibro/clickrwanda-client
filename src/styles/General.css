@@ -1454,12 +1454,23 @@ a{
      text-align: right;
      width: 90%;
      margin: 5px auto;
-     font-size: 0.8rem;
+     font-size: 0.9rem;
+}
+
+.user-forms .form-container .other-link b{
+     font-size: 1.1rem;
+     background-color: var(--text-color-title);
+     color: var(--back-color-gold1);
+     border-radius: 15px;
+     padding: 0 10px;
+     transition: all 0.4s;
 }
 
 .user-forms .form-container .other-link b:hover{
      cursor: pointer;
      color: var(--back-color-gold2);
+     border: 1px solid var(--text-color-title);
+     background-color: var(--back-color-gold1);
 }
 
 .advert-form-container{
