@@ -994,6 +994,7 @@ a{
      padding: 0;
      margin: 2.5px auto 5px;
      border-radius: 10px;
+     position: relative;
 }
 
 .home-best-sellers .best-sellers-title{
@@ -1027,8 +1028,34 @@ a{
      width: 95%;
      padding: 5px 2.5px;
      overflow-x: scroll;
+     position: relative;
 }
 
+.home-best-sellers .nav-icon{
+     position: absolute;
+     width: 20px;
+     height: 20px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     font-size: 1.2rem;
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     border-radius: 50%;
+     align-self: flex-end;
+     bottom: 20%;
+     cursor: pointer;
+}
+
+.home-best-sellers .icon-left{
+     left:10px;
+     
+}
+
+.home-best-sellers .icon-right{
+     right:0px;
+}
 .best-seller-card{
      width: auto;
      padding: 5px 15px;

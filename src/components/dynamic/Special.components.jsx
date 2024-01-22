@@ -5,19 +5,52 @@ import { getItemUrl } from "../../utils/urlFunctions";
 import PropTypes from 'prop-types';
 import { ActionBtn } from "./Buttons";
 import UserContext from "../../Contexts/UserContext";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { useState } from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 export const BoostedSellers = () => {
      const [data] = useContext(AppData);
      const {bestSellers } = data;
      const navigate = useNavigate();
+     const adsRef = useRef(null);
+     const [scrollPos, setScrollPos] = useState({atLeft: false});
 
+     const scrollHandle = (check) => {
+          if(check === 1){
+            adsRef.current.scrollBy({left: 300, behavior: 'smooth'});
+          }else if(check === -1){
+            adsRef.current.scrollBy({left: -300, behavior: 'smooth'})
+          }
+        }
+      
+        const handleScroll = () => {
+          const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
+          setScrollPos({
+            atLeft: scrollLeft === 0,
+            atRight: scrollLeft + clientWidth >= scrollWidth,
+          });
+        };
+      
+        useEffect(() => {
+          const currentRef = adsRef.current;
+          currentRef && currentRef.addEventListener('scroll', handleScroll);
+      
+          return () => {
+            currentRef ? currentRef.removeEventListener('scroll', handleScroll) : null;
+          };
+        }, [bestSellers]);
      return(
           <div className="home-best-sellers">
                <p className="best-seller-para">Discover which sellers have been ranked best for the best products, services and deals.</p>
-               <div className="sellers-container hide-scroll">
+               <div ref={adsRef} className="sellers-container hide-scroll">
                     {bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
                     <span className="best-seller-card" onClick={() => navigate('/best-sellers')} >More...</span>
                </div>
+               {!scrollPos.atLeft ? <i  onClick={()=>scrollHandle(-1)} className="nav-icon icon-left"><MdNavigateBefore/></i> : null}
+               {!scrollPos.atRight ? <i  onClick={()=>scrollHandle(1)} className="nav-icon icon-right"><MdNavigateNext /></i> : null }
+               
           </div>
      )
 }

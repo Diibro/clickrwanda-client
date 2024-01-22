@@ -131,4 +131,10 @@
           max-height: 150px;
           margin: 5px;
      }
+     .home-best-sellers .nav-icon{
+          bottom: 12.5%;
+     }
+     .home-best-sellers .icon-left{
+          left: 0px;
+     }
 }
