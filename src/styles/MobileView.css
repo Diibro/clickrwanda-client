@@ -53,6 +53,10 @@
           width: 95%;
           margin: 10px auto;
      }
+
+     .payment-plan-card{
+          width: 80%;
+     }
      /* .home-get-started-sec .row-title h3{
           font-size: 1.2rem;
      } */

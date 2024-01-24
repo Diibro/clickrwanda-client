@@ -472,6 +472,125 @@ a{
      outline: none;
      border: 1.2px solid var(--back-color-gold2);
 }
+
+.payment-plans-page-header{
+     width: 80%;
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     display: flex;
+     flex-direction: column;
+     align-items: center ;
+     justify-content: center;
+     padding: 10px 0;
+     margin: 10px auto;
+     border-radius: 5px;
+     box-sizing: border-box;
+}
+
+.payment-plans-page-body{
+     width: 80%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.pay-plans-container {
+     display: flex;
+     flex-direction: column;
+     width: 100%;
+     align-items: center;
+     justify-content: center;
+}
+
+.pay-plans-container  .row{
+     width: 98%;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     align-items: flex-start;
+     justify-content: center;
+     margin: 10px 0 20px 0;
+}
+
+.pay-plans-container  .row h3{
+     width: 100%;
+     border-radius: 5px;
+     color: var(--back-color-gold2);
+     padding: 2.5px 10px;
+     font-size: 1.6rem;
+     font-weight: 800;
+     border-bottom: 1.5px solid var(--back-color-gold2-transparent);
+}
+
+.payment-plan-card{
+     width: 22%;
+     margin: 10px;
+     box-shadow: 0.1px 0.1px 3px  var(--back-gold-color-v1);
+     padding: 5px;
+     border-radius: 5px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background-color: var(--white-text);
+}
+
+.payment-plan-card .head, .payment-plan-card .body, .payment-plan-card.foot{
+     width: 95%;
+}
+
+.payment-plan-card .head .title{  
+     font-size: 1.1rem;
+     font-weight: 800;
+     color: var(--back-color-gold2);
+     text-align: center;
+     margin: 5px auto;
+}
+
+.payment-plan-card .head .price{
+     font-size: 0.95rem;
+     color: var(--text-color-title);
+     font-weight: 800;
+     text-align: center;
+     margin: 5px auto;
+}
+
+.payment-plan-card .body{
+     margin: 5px auto;
+}
+
+.payment-plan-card .body ul{
+     list-style-type: none;
+     width: 100%;
+}
+
+.payment-plan-card .body ul li{
+     width: 96%;
+     margin: 2.5px auto;
+     font-size: 0.8rem;
+     color: var(--text-color-para1);
+     font-weight: 600;
+     /* text-align: center; */
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+}
+
+.gray-back{
+     background-color:var(--back-color-gold1) ;
+}
+.payment-plans-page-header h3{
+     font-size: 1.5rem;
+     font-weight: 800;
+     margin:  5px auto;
+}
+
+.payment-plans-page-header p{
+     color: var(--gray-text);
+     font-size: 0.85rem;
+}
 .password-reset-page{
      background-color: var(--text-color-title);
      width: 100%;
@@ -3306,6 +3425,18 @@ a{
 
 .pass-reset-responce b{
      color: var(--back-color-gold2);
+}
+
+.crossed-text{
+     text-decoration: line-through;
+     text-decoration-thickness: 1.5px;
+     color: var(--text-color-para2) !important;
+
+}
+
+.small-icon{
+     width: 18px;
+     margin: 0 2px;
 }
 /* end of overriders */
 /* media queries */

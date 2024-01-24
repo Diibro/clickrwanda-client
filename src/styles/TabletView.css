@@ -17,6 +17,9 @@
      .home-get-started-sec{
           width: 90%;
      }
+     .payment-plan-card{
+          width: 30%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -136,5 +139,14 @@
      }
      .home-best-sellers .icon-left{
           left: 0px;
+     }
+
+     .payment-plans-page-body, .payment-plans-page-header{
+          width: 95%;
+          margin: 10px auto;
+     }
+
+     .payment-plan-card{
+          width: 45%;
      }
 }

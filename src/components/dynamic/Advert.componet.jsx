@@ -81,7 +81,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
 export const AdvertRenderer = ({item}) => {
      const navigate = useNavigate();
      const ViewAd = (ad) => {
-          navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
+          navigate(`/ad/${getItemUrl("advert", ad.ad_id)}`);
      }
      return(
           item.ad_type === "product" ? <ProductSquare
@@ -96,7 +96,7 @@ export const AdvertRenderer = ({item}) => {
                          adDate={item.ad_date}
                          discount={item.ad_discount}
                          categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
-                         link={`https://clickrwanda.com/ad/${getItemUrl(item.ad_name, item.ad_id)}`}
+                         link={`https://clickrwanda.com/ad/${getItemUrl("", item.ad_id)}`}
                          action={() => ViewAd(item)}
                          />
                          : <ServiceSquare
@@ -111,7 +111,7 @@ export const AdvertRenderer = ({item}) => {
                               adDate={item.ad_date}
                               discount={item.ad_discount}
                               categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
-                              link={`https://clickrwanda.com/ad/${getItemUrl(item.ad_name, item.ad_id)}`}
+                              link={`https://clickrwanda.com/ad/${getItemUrl("", item.ad_id)}`}
                               action={() => ViewAd(item)}
                          />
      )
@@ -121,7 +121,7 @@ export const AdvertImage = ({images}) => {
      const others = images.more ? images.more : null;
      const navigate = useNavigate();
      const showAd = () => {
-          return navigate(`/ad/${getItemUrl(images.name, images.id)}`)
+          return navigate(`/ad/${getItemUrl("advert", images.id)}`)
      }
      return(
           <>

@@ -18,8 +18,8 @@ const Footer = () => {
           }
      }
      const viewPlans = () => {
-          return navigate('/');
-          // return navigate('/payment-plans');
+          // return navigate('/');
+          return navigate('/payment-plans');
      }
      return (
      <div className='footer'>
