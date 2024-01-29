@@ -745,7 +745,7 @@ a{
      display: flex;
      flex-direction: column;
      align-items: center;
-     justify-content: center;
+     justify-content: flex-start;
 }
 
 .home-get-started-sec{
@@ -777,11 +777,9 @@ a{
      display: flex;
      flex-direction: row;
      align-items: flex-start;
-     justify-content: center;
-     position: sticky;
-     padding: 10px 0;
-     top: 70px;
-
+     justify-content: flex-start;
+     position: relative;
+     padding: 5px;
 }
 
 .page-content{
@@ -3423,14 +3421,13 @@ a{
 
 .hero-section-banner{
      width: 95%;
-     background: var(--text-color-title);
      color: var(--white-text);
      border-radius: 5px;
      overflow: hidden;
      display: flex;
      flex-direction: column;
      align-items: center;
-     padding: 30x 0;
+     padding: 0;
      box-sizing: border-box;
 }
 
@@ -3440,7 +3437,8 @@ a{
      display: flex;
      flex-direction: column;
      align-items: center;
-     justify-content: center;
+     justify-content: flex-start;
+     gap: 10px;
 }
 
 .hero-banner-container img{
@@ -3454,35 +3452,33 @@ a{
      flex-direction: column;
      align-items: center;
      justify-content: center;
-     background-color: var(--text-color-title);
+     background-color: var(--white-text);
      color: var(--white-text);
-     border-radius:5px;
-     overflow: hidden;
-     max-height: 80vh;
+     border-radius:2px;
+     gap: 10px;
 }
 
 .banner img{
      width: 100%;
      cursor: pointer;
      transition: opacity 0.5s ease-in-out;
+     box-shadow: 0.3px 0.3px 4px var(--text-color-black);
 }
 
 .horizontal-banner{
      width: 95%;
      display: flex;
-     flex-direction: column;
-     justify-content: center;
+     flex-direction: row;
+     justify-content: space-evenly;
      align-items: center;
      overflow: hidden;
      border-radius: 5px;
-     background-color: var(--text-color-title);
      color: var(--white-text);
      margin: 10px auto;
 }
 
 .horizontal-banner img{
-     width: 100%;
-     aspect-ratio: 800/150;
+     width: 49%;
 }
 /*End of Banner styles */ 
 

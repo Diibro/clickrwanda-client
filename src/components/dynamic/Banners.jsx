@@ -8,15 +8,20 @@ import HeroBanner from "../../assets/samples/2.jpg"
 import HeroBanner3 from "../../assets/samples/3.jpg"
 import HeroBanner4 from "../../assets/samples/4.jpg"
 import HeroBanner5 from "../../assets/samples/5.jpg"
-import AskaSide from "../../assets/samples/Aska sidebanner.png"
-import ConectHr from "../../assets/samples/connect-real-hr-banner.png";
+import RealSide from "../../assets/samples/side-1.png"
+import AskaSide from "../../assets/samples/side-2.png"
+import ConectHr from "../../assets/samples/hr-1.png";
+import AskaHr from "../../assets/samples/hr-2.png";
+import AdSide from "../../assets/samples/adHereSide.png"
+
+// const HeroBanners = [
+//      {banner_image: HeroBanner},
+//      {banner_image: HeroBanner3},
+//      {banner_image: HeroBanner4},
+//      {banner_image: HeroBanner5}]
 
 const HeroBanners = [
-     {banner_image: HeroBanner},
-     {banner_image: HeroBanner3},
-     {banner_image: HeroBanner4},
-     {banner_image: HeroBanner5}]
-
+          {banner_image: ConectHr}, {banner_image: AskaHr}]
 
 export const LeftBanner = ({items}) => {
      // const [active, setActive] = useState({});
@@ -32,6 +37,11 @@ export const LeftBanner = ({items}) => {
                {/* <h3>Advertise Here</h3>
                <ActionBtn title="Get Started"/> */}
                <img src={AskaSide} alt="sample-banner" />
+               <img src={RealSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
           </div>
      )
 }
@@ -49,7 +59,13 @@ export const RightBanner = ({items}) => {
           <div className="banner side-banner">
                {/* <h3>Advertise Here</h3>
                <ActionBtn title="Get Started"/> */}
+               <img src={RealSide} alt="sample-banner" />
                <img src={AskaSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
+
           </div>
      )
 }
@@ -67,6 +83,7 @@ export const HorizontalBanner = ({items}) => {
           <div className="banner horizontal-banner">
                {/* <h3>Advertise Here</h3>
                <ActionBtn title="Get Started"/> */}
+               <img src={AskaHr} alt="Horizontal gif" />
                <img src={ConectHr} alt="Horizontal gif" />
           </div>
      )
@@ -101,7 +118,8 @@ export const HeroSectionBanner = ({items}) => {
                <div className="hero-banner-container">
                     {/* <h3>Advertise Here</h3>
                     <ActionBtn title="Get Started"/> */}
-                    <img src={active.image} alt="banner" />
+                    <img src={ConectHr} alt="banner" />
+                    <img src={AskaHr} alt="banner" />
                </div>
                
           </div>
