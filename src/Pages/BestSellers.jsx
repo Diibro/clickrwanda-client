@@ -6,6 +6,7 @@ import {  SubmitButton } from '../components/dynamic/Buttons';
 import { useNavigate } from 'react-router-dom';
 import { getItemUrl } from '../utils/urlFunctions';
 import { Helmet } from 'react-helmet';
+import { LeftBanner, RightBanner } from '../components/dynamic/Banners';
 // const BestCup = "https://res.cloudinary.com/dyjahjf1p/image/upload/v1704971692/clickrwanda/logos/best-sellers-cup-rb_yhgkq9.png";
 
 const BestSellers = () => {
@@ -19,11 +20,15 @@ const BestSellers = () => {
           <div className="page">
                <BestSellersHeader />
                <div className="page-main">
-                    <div className="side"></div>
+                    <div className="side">
+                         <LeftBanner />
+                    </div>
                     <div className="page-content">
                          <BestSellerBody />
                     </div>
-                    <div className="side"></div>
+                    <div className="side">
+                         <RightBanner />
+                    </div>
                </div>
                
           </div>

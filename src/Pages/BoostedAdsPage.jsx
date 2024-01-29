@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import server from "../config/Server";
 import Loading from "../components/static/Loading";
 import { BoostedAds } from "../components/dynamic/Adverts.component";
+import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
 
 const BoostedAdsPage = () => {
      const [ads, setAds] = useState([]);
@@ -28,13 +29,17 @@ const BoostedAdsPage = () => {
                <p>Discover the best ads choosen for you on Click Rwanda</p>
           </div>
           <div className="page-main">
-               <div className="side"></div>
+               <div className="side">
+                    <LeftBanner />
+               </div>
                <div className="page-content">
                     {loading ? <Loading /> : 
                     <BoostedAds params={{wrap: true, ads}} />
                     }
                </div>
-               <div className="side"></div>
+               <div className="side">
+                    <RightBanner />
+               </div>
           </div>
     </div>
   )

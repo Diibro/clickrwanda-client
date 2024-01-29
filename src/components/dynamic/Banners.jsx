@@ -36,8 +36,8 @@ export const LeftBanner = ({items}) => {
           <div className="banner side-banner">
                {/* <h3>Advertise Here</h3>
                <ActionBtn title="Get Started"/> */}
-               <img src={AskaSide} alt="sample-banner" />
-               <img src={RealSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
+               <img src={AdSide} alt="sample-banner" />
                <img src={AdSide} alt="sample-banner" />
                <img src={AdSide} alt="sample-banner" />
                <img src={AdSide} alt="sample-banner" />

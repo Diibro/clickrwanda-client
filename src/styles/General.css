@@ -3471,7 +3471,6 @@ a{
      flex-direction: row;
      justify-content: space-evenly;
      align-items: center;
-     overflow: hidden;
      border-radius: 5px;
      color: var(--white-text);
      margin: 10px auto;
@@ -3479,6 +3478,7 @@ a{
 
 .horizontal-banner img{
      width: 49%;
+     box-shadow: 0.3px 0.3px 4px var(--text-color-black);
 }
 /*End of Banner styles */ 
 
