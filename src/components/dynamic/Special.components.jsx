@@ -45,7 +45,7 @@ export const BoostedSellers = () => {
           <div className="home-best-sellers">
                <p className="best-seller-para">Discover which sellers have been ranked best for the best products, services and deals.</p>
                <div ref={adsRef} className="sellers-container hide-scroll">
-                    {bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
+                    {bestSellers && bestSellers[0] && bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
                     <span className="best-seller-card" onClick={() => navigate('/best-sellers')} >More...</span>
                </div>
                {!scrollPos.atLeft ? <i  onClick={()=>scrollHandle(-1)} className="nav-icon icon-left"><MdNavigateBefore/></i> : null}

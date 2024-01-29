@@ -27,11 +27,15 @@ const BoostedAdsPage = () => {
                <h3>Featured Ads</h3>
                <p>Discover the best ads choosen for you on Click Rwanda</p>
           </div>
-          <>
-               {loading ? <Loading /> : 
-               <BoostedAds params={{wrap: true, ads}} />
-               }
-          </>
+          <div className="page-main">
+               <div className="side"></div>
+               <div className="page-content">
+                    {loading ? <Loading /> : 
+                    <BoostedAds params={{wrap: true, ads}} />
+                    }
+               </div>
+               <div className="side"></div>
+          </div>
     </div>
   )
 }

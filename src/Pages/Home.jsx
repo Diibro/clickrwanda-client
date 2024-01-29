@@ -8,6 +8,7 @@ import DeviceView from '../Contexts/ViewContext';
 import { BoostedSellers, GetStartedV1, RequestQuoteHeader } from '../components/dynamic/Special.components';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { HeroSectionBanner, HorizontalBanner, LeftBanner, RightBanner } from '../components/dynamic/Banners';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -21,43 +22,56 @@ const Home = () => {
       </Helmet>
       <div className="page home">
         <div className="hello-section">
-          <div className='col'>
-            <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1>
-            <SearchBar />
+          <div className="sec-1">
+            <div className='col'>
+              <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1>
+              <SearchBar />
+            </div>
+            <RequestQuoteHeader />
           </div>
-          <RequestQuoteHeader />
+          <div className="sec-banner">
+              {isMobile ? null : <HeroSectionBanner />}
+          </div>
           {/* <img src={HelloImage} alt="hello section image" /> */}
         </div>
-        <InnerSection type="title">
-          Our Best Sellers
-          <Link to='/best-sellers'>View All</Link>
-        </InnerSection>
-        <BoostedSellers />
-        <InnerSection type="title" >
-          Today Deals
-          <Link to='/top-deals'>View All</Link>
-        </InnerSection>
-        <TodayDeals />
-        
-        
-        <InnerSection type="title" >
-          Our top categories
-        </InnerSection>
-        <Categories limit={isMobile ? 12 : 14} />
-        <InnerSection type="title" >
-          Featured Ads
-          <Link to='/sponsored-ads'>View All</Link>
-        </InnerSection>
-        <BoostedAds />
-        <InnerSection type="title" >
-          New Ads
-        </InnerSection>
-        <Adverts eleId={"home-adverts"} limit={50} />
-        <InnerSection type="title" >
-        Sponsored Ads
-        </InnerSection>
-        <AdWebsites />
-        {/* <GetStartedV1 /> */}
+        <div className="page-main">
+          <div className="side"><LeftBanner /></div>
+          <div className="page-content">
+          <InnerSection type="title">
+            Our Best Sellers
+            <Link to='/best-sellers'>View All</Link>
+          </InnerSection>
+          <BoostedSellers />
+          <HorizontalBanner />
+          <InnerSection type="title" >
+            Today Deals
+            <Link to='/top-deals'>View All</Link>
+          </InnerSection>
+          <TodayDeals />
+          
+          
+          <InnerSection type="title" >
+            Our top categories
+          </InnerSection>
+          <Categories limit={isMobile ? 12 : 14} />
+          <InnerSection type="title" >
+            Featured Ads
+            <Link to='/sponsored-ads'>View All</Link>
+          </InnerSection>
+          <BoostedAds />
+          <HorizontalBanner />
+          <InnerSection type="title" >
+            New Ads
+          </InnerSection>
+          <Adverts eleId={"home-adverts"} limit={50} />
+          <InnerSection type="title" >
+          Sponsored Ads
+          </InnerSection>
+          <AdWebsites />
+          {/* <GetStartedV1 /> */}
+          </div>
+          <div className="side right-side"><RightBanner/></div>
+        </div>
       </div>
     </>
     

@@ -1,5 +1,6 @@
 @import "./styles/General.css";
 @import "./styles/DesktopView.css";
 @import "./styles/DesktopView.css";
+@import "./styles/SpecialDevices.css";
 @import "./styles/TabletView.css";
 @import "./styles/MobileView.css";

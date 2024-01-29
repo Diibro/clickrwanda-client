@@ -23,6 +23,7 @@
      font-size: 16px;
 }
 
+
 /* general styles */
 
 @keyframes topDealsLighter {
@@ -684,9 +685,17 @@ a{
      background-color: var(--back-color-blue2);
      position: relative;
      display: flex;
-     flex-direction: column;
+     flex-direction: row;
      justify-content: center;
-     padding: 20px 10% 25px 5%;
+     padding: 20px 1% 25px 1%;
+}
+
+.home .hello-section .sec-1{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     width: 60%;
 }
 
 .home .hello-section .col{
@@ -695,7 +704,7 @@ a{
      border-radius: 15px;
      padding: 01% 0% 2% 2%  ;
      background-color: var(--back-color-red1);
-     width: 70%;
+     width: 100%;
 }
 
 .home .hello-section .col h1{
@@ -706,7 +715,7 @@ a{
 } 
 
 .home-request-quote-header{
-     width: 70%;
+     width: 100%;
      display: flex;
      flex-direction: row;
      align-items: center;
@@ -731,12 +740,12 @@ a{
      color: var(--white-text);
 }
 
-.home .hello-section img{
-     background: transparent;
-     position: absolute;
-     bottom: 5%;
-     left: 55%;
-     width: clamp(370px, 35%, 800px);
+.home .hello-section .sec-banner{
+     width: 40%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
 }
 
 .home-get-started-sec{
@@ -751,6 +760,37 @@ a{
      margin: 20px auto;
      padding: 20px 0;
      box-sizing: border-box;
+}
+
+.page-main{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     position: relative;
+}
+
+
+.page-main .side{
+     width: 10%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: center;
+     position: sticky;
+     padding: 10px 0;
+     top: 70px;
+
+}
+
+.page-content{
+     width: 80%;
+     position: relative;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
 }
 
 .get-started-sec{
@@ -1055,7 +1095,7 @@ a{
 }
 
 .home-boosted-ads{
-     width: 80%;
+     width: 100%;
      display: flex;
      flex-direction: row;
      align-items: center;
@@ -1104,7 +1144,7 @@ a{
 }
 
 .home-best-sellers{
-     width: 80%;
+     width: 100%;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -1766,7 +1806,7 @@ a{
 
 /* section container styles */
 .inner-container {
-     width: 80%;
+     width: 100%;
      display: flex;
      flex-wrap: wrap;
      flex-direction: row;
@@ -2504,7 +2544,7 @@ a{
 }
 
 .best-sellers-body {
-     width: 85%;
+     width: 100%;
      display: flex;
      flex-direction: row;
      align-items: flex-start;
@@ -3378,6 +3418,73 @@ a{
 }
 /* end of rating styles */
 /* end dynamic components */
+
+/*Banner styles */ 
+
+.hero-section-banner{
+     width: 95%;
+     background: var(--text-color-title);
+     color: var(--white-text);
+     border-radius: 5px;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     padding: 30x 0;
+     box-sizing: border-box;
+}
+
+.hero-banner-container{
+     width: 100%;
+     padding:0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.hero-banner-container img{
+     max-height: 250px;
+}
+
+
+.side-banner{
+     width: 96%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     border-radius:5px;
+     overflow: hidden;
+     max-height: 80vh;
+}
+
+.banner img{
+     width: 100%;
+     cursor: pointer;
+     transition: opacity 0.5s ease-in-out;
+}
+
+.horizontal-banner{
+     width: 95%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+     border-radius: 5px;
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     margin: 10px auto;
+}
+
+.horizontal-banner img{
+     width: 100%;
+     aspect-ratio: 800/150;
+}
+/*End of Banner styles */ 
 
 /* overrider styles */
 .no-margin{

@@ -12,13 +12,32 @@
           width: 30%;
      }
      .home-boosted-ads{
-          width: 90%;
+          width: 95%;
+          padding: 0 1%;
      }
      .home-get-started-sec{
           width: 90%;
      }
      .payment-plan-card{
           width: 30%;
+     }
+
+     .home .hello-section .sec-1 {
+          width: 100%;
+          justify-content: center;
+     }
+
+     .home .hello-section .sec-banner {
+          
+          display: none;
+     }
+
+     .vendor-page-info {
+          width: 90%;
+     }
+
+     .advert-page {
+          width: 95%;
      }
 }
 

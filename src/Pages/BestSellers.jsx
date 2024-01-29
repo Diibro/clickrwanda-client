@@ -18,7 +18,14 @@ const BestSellers = () => {
           </Helmet>
           <div className="page">
                <BestSellersHeader />
-               <BestSellerBody />
+               <div className="page-main">
+                    <div className="side"></div>
+                    <div className="page-content">
+                         <BestSellerBody />
+                    </div>
+                    <div className="side"></div>
+               </div>
+               
           </div>
           </>
      

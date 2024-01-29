@@ -15,10 +15,15 @@ import { MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
 import { useNavigate } from "react-router-dom";
+import { HorizontalBanner } from "./Banners";
+import DeviceView from "../../Contexts/ViewContext";
 
 export const Adverts = ({eleId,limit}) => {
       const [data] = useContext(AppData);
+      const [deviceView] = useContext(DeviceView)
+      const { isMobile, isTablet} = deviceView
       const {adverts, changingPage} = data;
+      let adLimit = isTablet || isMobile ? 19 : 24;
 
       if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
         return(
@@ -27,7 +32,11 @@ export const Adverts = ({eleId,limit}) => {
             <InnerSection eleId={eleId} type="content">
               {
                 adverts.map((item, index) => ( index <= limit ? (
-                  <AdvertRenderer key={item.ad_id} item={item}/>
+                  <>
+                    <AdvertRenderer key={item.ad_id} item={item}/>
+                  {index === adLimit ? <HorizontalBanner /> : null}
+                  </>
+                  
                 ) : null))
               }
             </InnerSection>
@@ -295,7 +304,7 @@ export const BoostedAds = ({params}) => {
     <div className="home-boosted-ads " >
       <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
         {
-          ads !== null && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+          ads && ads[0] && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
           )
         }
       </div>
@@ -340,7 +349,7 @@ export const TodayDeals = ({params}) => {
     <div className="home-boosted-ads " >
       <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
           {
-            ads !== null && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+            ads && ads[0]  && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
             )
           }
       </div>

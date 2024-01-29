@@ -16,6 +16,7 @@ export const PaymentPlansContainer = () => {
                     <UrgentPlan/>
                     <TopDealsPlan />
                     <TopSellersPlan />
+                    <BannersPlan />
                </div>
           </div>
      )
@@ -196,6 +197,33 @@ export const TopSellersPlan = () => {
                          <li><TickIcon/>Listed in “Our Top Sellers”</li>
                          <li><TickIcon/>Positon on top of the website</li>
                          <li><TickIcon/>Promotion Power: 15x Ad Views</li>
+                         <li><TickIcon/>Adress & Contact Visibility</li>
+                         <li><TickIcon/>Ads Promoted: All Ads</li>
+                         <li><TickIcon/>Personal Support Manager</li>
+                         <li><TickIcon/>Email & Social Media promotion</li>
+                         <li><TickIcon/>Social Media/Website Link inclusion</li>
+                         <li><TickIcon/>Youtube Video Promotion</li>
+                    </ul>
+               </div>
+               <div className="foot">
+                    <ActionBtn title="Choose Package" />
+               </div>
+          </div>
+     )
+}
+
+export const BannersPlan = () => {
+     return (
+          <div className="payment-plan-card">
+               <div className="head">
+                    <h2 className="title">Banners</h2>
+                    <p className="price">Rwf 75,000 /Month</p>
+               </div>
+               <div className="body">
+                    <ul>
+                         <li><TickIcon/>Listed in “Our Banners”</li>
+                         <li><TickIcon/>Positon on top of the website</li>
+                         <li><TickIcon/>Promotion Power: 20x Ad Views</li>
                          <li><TickIcon/>Adress & Contact Visibility</li>
                          <li><TickIcon/>Ads Promoted: All Ads</li>
                          <li><TickIcon/>Personal Support Manager</li>

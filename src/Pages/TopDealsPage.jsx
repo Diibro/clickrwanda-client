@@ -27,11 +27,16 @@ const TopDealsPage = () => {
                <h3>Today Deals</h3>
                <p>Discover the best deals on Click Rwanda.</p>
           </div>
-          <>
-               {loading ? <Loading /> : 
-               <TodayDeals params={{wrap: true, ads}} />
-               }
-          </>
+          <div className="page-main">
+               <div className="side"></div>
+               <div className="page-content">
+                    {loading ? <Loading /> : 
+                    <TodayDeals params={{wrap: true, ads}} />
+                    }
+               </div>
+               
+               <div className="side"></div>
+          </div>
     </div>
   )
 }
