@@ -35,7 +35,10 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
                {discount ? <span className='advert-discount'>- {discount}%</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
-               <img className='ad-image' src={image} alt={title} onClick={action} loading='lazy' />
+               <div className="ad-image">
+               <div className='background-img' style={{backgroundImage:`url(${image})`}} ></div>
+                    <img src={image} alt={title} onClick={action} loading='lazy' />
+               </div>
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{capitalizeString(title)}</h5>
@@ -65,7 +68,10 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
                {discount ? <span className='advert-discount'>{discount}% off</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
-               <img className='ad-image' src={image} alt={capitalizeString(title)} onClick={action} loading='lazy'/>
+               <div className="ad-image" >
+                    <div className='background-img' style={{backgroundImage:`url(${image})`}} ></div>
+                    <img src={image} alt={capitalizeString(title)} onClick={action} loading='lazy'/>
+               </div>
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{title}</h5>

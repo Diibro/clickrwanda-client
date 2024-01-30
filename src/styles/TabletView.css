@@ -37,7 +37,14 @@
      }
 
      .advert-page {
-          width: 95%;
+          width: 100%;
+     }
+     .advert-page-mainAdvert{
+          justify-content: center;
+          margin: 0;
+     }
+     .advert-page-mainAdvert .col{
+          width: 100%;
      }
 }
 
