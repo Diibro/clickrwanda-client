@@ -154,7 +154,7 @@ a{
      align-items: center;
      justify-content: center;
      transition: all 0.4s;
-     z-index: 11;
+     z-index: 2;
 }
 
 .product-share-icon:hover{
@@ -783,8 +783,11 @@ a{
      padding: 5px;
 }
 
+.page-main .side:first-of-type{
+     width: 0;
+}
 .page-content{
-     width: 80%;
+     width: 85%;
      position: relative;
      display: flex;
      flex-direction: column;
@@ -1131,7 +1134,7 @@ a{
      font-size: 1.3rem;
      border-radius: 50%;
      cursor: pointer;
-     z-index: 20;
+     z-index: 1;
      top: 150px;
 }
 
