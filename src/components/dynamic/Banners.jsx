@@ -8,11 +8,11 @@ import HeroBanner from "../../assets/samples/2.jpg"
 import HeroBanner3 from "../../assets/samples/3.jpg"
 import HeroBanner4 from "../../assets/samples/4.jpg"
 import HeroBanner5 from "../../assets/samples/5.jpg"
-import RealSide from "../../assets/samples/side-1.png"
-import AskaSide from "../../assets/samples/side-2.png"
+import RealSide from "../../assets/samples/real-vr.png"
+import AskaSide from "../../assets/samples/aska-vr.png"
 import ConectHr from "../../assets/samples/real-hr.png";
 import AskaHr from "../../assets/samples/aska-hr.png";
-import AdSide from "../../assets/samples/adHereSide.png"
+import AdSide from "../../assets/samples/asideAd.png"
 
 // const HeroBanners = [
 //      {banner_image: HeroBanner},
