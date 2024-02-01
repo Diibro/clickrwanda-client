@@ -2783,7 +2783,7 @@ a{
 }
 
 .pagination span{
-     font-size: 0.9rem;
+     font-size: 0.82rem;
      margin: 0 2px;
      width: 18px;
      height: 18px;
@@ -2797,15 +2797,24 @@ a{
 
 .pagination span:hover{
      cursor: pointer;
+     background-color: var(--back-color-gold2-transparent);
+}
 
+.pagination p{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
 }
 
 .pagination .active-page{
-     width: 20px;
-     height: 20px;
-     background-color: var(--text-color-title);
-     color: white;
+     /* width: 20px;
+     height: 20px; */
+     color: var(--text-color-title);
+     font-weight: 700;
+     font-size: 0.95rem;
 }
+
 /* views styles */
 
 .advert-view{
@@ -3498,10 +3507,10 @@ a{
 }
 
 .horizontal-banner{
-     width: 95%;
+     width: 90%;
      display: flex;
      flex-direction: row;
-     justify-content: space-evenly;
+     justify-content: space-between;
      align-items: center;
      border-radius: 5px;
      color: var(--white-text);
@@ -3510,7 +3519,7 @@ a{
 
 .horizontal-banner img{
      width: 49%;
-     box-shadow: 0.3px 0.3px 4px var(--text-color-black);
+     box-shadow: 0.3px 0.3px 1px 0.3px var(--text-color-black) ;
 }
 /*End of Banner styles */ 
 
