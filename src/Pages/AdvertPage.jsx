@@ -12,7 +12,7 @@ import UserRating from "../components/dynamic/Rating.component";
 import {  formatTimeAgo } from "../utils/dateFunctions";
 import { RiAdvertisementFill } from "react-icons/ri";
 import { MdPageview } from "react-icons/md";
-import { ImageSlider } from "../components/dynamic/ImageSlider";
+import {  ImageViewer } from "../components/dynamic/ImageSlider";
 import { getData, saveData } from "../utils/storageFunctions";
 import { AdvertReview, RateAdvert } from "../components/dynamic/Reviews.component";
 import { Helmet } from "react-helmet";
@@ -87,7 +87,7 @@ const AdvertPage = () => {
                          <>
                          <div className="advert-page-mainAdvert">
                               <div className="col">
-                                   <ImageSlider images={[mainImage, ...images]} />
+                                   <ImageViewer images={[mainImage, ...images]} />
                                    <div className="advert-page-info">
                                         <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
                                         {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}

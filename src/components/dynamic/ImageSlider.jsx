@@ -38,6 +38,49 @@ export const ImageSlider = ({images}) => {
      )
 }
 
+
+export const ImageViewer = ({images}) => {
+     const [inView, setInView] = useState(images[0]);
+     const [imageCount, setImageCount] = useState(0);
+     const [,setData] = useContext(AppData);
+     const location = useLocation();
+     
+     const urlLink = "https://clickrwanda.com"+ location.pathname + location.search
+     const changeImage = image => {
+          setInView(image);
+     }
+     const showButtons = (url, image, name) =>{
+          setData(prev => ({
+               ...prev,
+               shareAlert: {
+                    on: true,
+                    content: {url, image, name}
+               }
+          }))
+     }
+
+     useEffect(() => {
+          setInView(images[imageCount]);
+     }, [imageCount, images]);
+
+     return(
+          <div className="image-viewer">
+               <div className="side-images hide-scroll">
+                    {images.map((image, index) => <img key={index} src={image} loading="lazy" className={image === inView ? "active-image" : null} onMouseEnter={() => changeImage(image)} />)}
+               </div>
+               <div className="main-image">
+                    <i className='product-share-icon' onClick={() => showButtons(urlLink,images[0], "Advert")}><FaShareAlt/></i>
+                    <img src={inView} alt="advert images" loading="lazy" />
+               </div>
+               
+          </div>
+     )
+}
+
 ImageSlider.propTypes = {
+     images: PropTypes.any
+}
+
+ImageViewer.propTypes = {
      images: PropTypes.any
 }

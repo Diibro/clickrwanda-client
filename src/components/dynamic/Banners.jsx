@@ -2,12 +2,6 @@ import { useState, useEffect} from "react";
 import PropTypes from 'prop-types';
 import {  } from "react";
 import { ActionBtn } from "./Buttons";
-import SideBanner from "../../assets/samples/side-advertise.gif";
-import HorizontalGif from "../../assets/samples/clickrwanda-banner.png"
-import HeroBanner from "../../assets/samples/2.jpg"
-import HeroBanner3 from "../../assets/samples/3.jpg"
-import HeroBanner4 from "../../assets/samples/4.jpg"
-import HeroBanner5 from "../../assets/samples/5.jpg"
 import RealSide from "../../assets/samples/real-vr.png"
 import AskaSide from "../../assets/samples/aska-vr.png"
 import ConectHr from "../../assets/samples/real-hr.png";
