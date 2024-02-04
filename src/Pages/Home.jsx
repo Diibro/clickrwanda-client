@@ -60,7 +60,7 @@ const Home = () => {
           </InnerSection>
           <BoostedAds />
           <HorizontalBanner />
-          <InnerSection type="title" >
+          <InnerSection type="title" eleId={"home-new-ads"} >
             New Ads
           </InnerSection>
           <Adverts eleId={"home-adverts"} limit={50} />

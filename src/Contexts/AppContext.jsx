@@ -85,7 +85,7 @@ export const AppProvider = ({children}) => {
           if(fetchNow){
                setData((prev) => ({...prev, fetchNow:false}));
           }
-             
+          console.log("Am run")  
              
      }, [location.pathname, fetchNow]);
      return(

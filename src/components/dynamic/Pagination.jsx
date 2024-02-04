@@ -20,6 +20,8 @@ export const AdvertsPagination = () => {
      const changePage = async (num) =>{
           if(num <= pages && num > 0){
                try {
+                    const ele = document.getElementById("home-new-ads");
+                    window.scrollTo({top: ele.offsetTop, behavior:'smooth'});
                     setData((prev) => ({...prev, changingPage: true}));
                     const {generalAds:newAds} = await server.get('adverts', {page: num});
                     setData((prev) => ({...prev, adverts:newAds}));
@@ -35,12 +37,6 @@ export const AdvertsPagination = () => {
           
      } 
 
-     useEffect(() => {
-          if(currentPage !== 1){
-               const ele = document.getElementById("home-adverts");
-               window.scrollTo({top: ele.offsetTop, behavior:'smooth'});
-          }
-     },[currentPage])
      return (
           <div className="pagination">
                <i onClick={ async() =>await changePage(currentPage - 1)} className="nav"><GrFormPrevious /></i>

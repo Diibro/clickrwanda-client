@@ -232,8 +232,8 @@ export const AddAdvertForm = () => {
             <Input type="file" name="ad image" onChange={(e) => setAdInfo((prev) => ({...prev, ad_image: e.target.files[0]}))} required />
           </div>
           <div className="col">
-            <InputLabel htmlFor="ad images">Other Images: </InputLabel>
-            <Input type="file" name="ad images" inputProps={{multiple: true}} onChange={(e) => setAdInfo((prev) => ({...prev, otherImages: e.target.files}))} required />
+            <InputLabel htmlFor="ad images">Other Images --<i>optional</i>: </InputLabel>
+            <Input type="file" name="ad images" inputProps={{multiple: true}} onChange={(e) => setAdInfo((prev) => ({...prev, otherImages: e.target.files}))} />
           </div>
         </div>
         <div className="row">
