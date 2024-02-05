@@ -1,6 +1,6 @@
 @import "./General.css";
 
-@media only screen and (max-width: 820px){
+@media only screen and (max-width: 992px){
      .desktop-header{
           width: 100%;
           padding: 5px 5%;
@@ -46,6 +46,47 @@
      .advert-page-mainAdvert .col{
           width: 100%;
      }
+
+     .dashboard-main-container{
+          width: 95%;
+          justify-content: center;
+          padding: 5px;
+          margin:  0 auto;
+          position: relative;
+     }
+     
+     .dashboard-navbar{
+          position: fixed;
+          display: flex;
+          width: 50%;
+          max-width: 300px;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          margin:0;
+          padding: 10vh 5px;
+          background-color: #3c3636dd;
+          top: 0;
+          left: -55%;
+          height: 100vh;
+          z-index: 100;
+          color: var(--white-text);
+          transition: all 0.3s;
+     }
+     .dashboard-content{
+          width: 100%;
+     }
+
+     .dashboard-link{
+          width: 90%;
+          border-radius: 5px;
+          background-color: var(--text-color-title);
+          padding: 10px 5px;
+     }
+
+     .dashboard-link a{
+          color: var(--white-text);
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -77,21 +118,6 @@
      }
      .home .hello-section .col h1{
           font-size: 2.5rem;
-     }
-     .dashboard-main-container{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-     }
-     .dashboard-navbar{
-          position: relative;
-          width: 95%;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-evenly;
-          margin: 5px auto;
-          top: 0;
-          padding: 0 10px;
      }
      .inner-container{
           min-width: 95%;

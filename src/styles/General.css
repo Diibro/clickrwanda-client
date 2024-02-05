@@ -123,6 +123,7 @@ a{
      font-weight: 600;
      border-radius: 5px 0 5px 0;
      padding: 2.5px 0;
+     z-index: 2;
 }
 
 .advert-discount{
@@ -136,6 +137,7 @@ a{
      color: var(--white-text);
      font-size: 0.9rem;
      font-weight: 700;
+     z-index: 2;
 }
 
 .product-share-icon{
@@ -1761,6 +1763,12 @@ a{
      margin:5px auto;
 }
 
+.advert-form-container form .col p{
+     width: 90%;
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--back-color-blue2);
+}
 .line-divider {
      width: 90%;
      position: relative;
@@ -2008,17 +2016,12 @@ a{
 }
 
 .dashboard-content{
-     width: clamp(360px, 75%, 1200px);
+     width: 75%;
      display: flex;
      flex-direction: column;
      align-items: center;
      justify-content: center;
-}
-
-.dashboard-container{
-     width: 96%;
      margin: 5px auto;
-     
 }
 
 .dashboard-row{
@@ -3571,6 +3574,19 @@ a{
 /*End of Banner styles */ 
 
 /* overrider styles */
+
+.mobile-header-toggler{
+     font-size: 30px;
+     width: 35px;
+     height: 35px;
+     border-radius: 50%;
+     background-color: var(--back-color-gold2);
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     margin: 4px;
+}
 .no-margin{
      margin: 0;
      padding: 0;

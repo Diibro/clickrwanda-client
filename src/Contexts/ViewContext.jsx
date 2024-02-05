@@ -6,7 +6,7 @@ const DeviceView = createContext();
 export const ViewProvider = ({children}) => {
      const [deviceView, setDeviceView] = useState({
           isMobile: false,
-          isTablet: false
+          isTablet: false,
      });
      const updateView = () => {
           if(window.innerWidth <= 768  ){

@@ -234,6 +234,7 @@ export const AddAdvertForm = () => {
           <div className="col">
             <InputLabel htmlFor="ad images">Other Images --<i>optional</i>: </InputLabel>
             <Input type="file" name="ad images" inputProps={{multiple: true}} onChange={(e) => setAdInfo((prev) => ({...prev, otherImages: e.target.files}))} />
+            <p>Add up to 4 images</p>
           </div>
         </div>
         <div className="row">
