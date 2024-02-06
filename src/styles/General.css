@@ -3591,12 +3591,17 @@ a{
 
 .dashboard-nav-toogler{
      position: absolute;
-     top: 30vh;
-     right: -80px;
+     top: 40vh;
+     right: -50px;
      border-radius: 50%;
-     font-size: 80px;
+     font-size: 50px;
      color: var(--back-color-gold2);
      z-index: 101;
+     display:flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     padding: 0;
 }
 .no-margin{
      margin: 0;
