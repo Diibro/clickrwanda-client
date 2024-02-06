@@ -59,7 +59,7 @@
           position: fixed;
           display: flex;
           width: 50%;
-          max-width: 300px;
+          /* max-width: 300px; */
           flex-direction: column;
           align-items: center;
           justify-content: flex-start;
@@ -67,7 +67,7 @@
           padding: 10vh 5px;
           background-color: #3c3636dd;
           top: 0;
-          left: -55%;
+          left: -50%;
           height: 100vh;
           z-index: 100;
           color: var(--white-text);

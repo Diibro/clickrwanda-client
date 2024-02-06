@@ -3592,10 +3592,10 @@ a{
 .dashboard-nav-toogler{
      position: absolute;
      top: 30vh;
-     right: -60px;
+     right: -80px;
      border-radius: 50%;
      font-size: 80px;
-     color: var(--text-color-para1);
+     color: var(--back-color-gold2);
      z-index: 101;
 }
 .no-margin{

@@ -48,7 +48,7 @@ export const NavContainer = () => {
           if(loggedIn && (isMobile || isTablet)){
                if(navOn){
                     
-                    navbar.style.left = "-55%";
+                    navbar.style.left = "-50%";
                     setNavOn(false);
                }else{
                     navbar.style.left = "0%";
