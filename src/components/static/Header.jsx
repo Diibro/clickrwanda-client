@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import UserContext from "../../Contexts/UserContext";
 import { ActionBtn } from "../dynamic/Buttons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
 import AppData from "../../Contexts/AppContext";
 const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png';
@@ -15,6 +15,7 @@ const DesktopHeader = () => {
      const [deviceView] = useContext(DeviceView);
      const {isTablet,isMobile} = deviceView;
      const [navOn, setNavOn] = useState(false);
+     const location = useLocation();
 
      const activateForm = () =>{
           if(loggedIn){
@@ -52,7 +53,7 @@ const DesktopHeader = () => {
                {/* {!loggedIn ? <h1><Link to='/hiring'>We are Hiring/Akazi</Link></h1> : null} */}
                <div className="header-profile">
                     {!loggedIn ? <ActionBtn action={activateForm} title="Login" /> : null}
-                    {loggedIn ? <Link onClick={showHeader} to="/user-dashboard" className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
+                    {loggedIn ? <Link onClick={showHeader} to={ location.pathname === "/user-dashboard" ? "/user-dashboard" : null} className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
                     {/* {loggedIn && (isMobile || isTablet) ? <i className="mobile-header-toggler"><BiMenu /></i> : null} */}
                     <ActionBtn action={activateForm} title={isTablet || isMobile ? "Add" : 'Add Free Ads' } />
                </div>

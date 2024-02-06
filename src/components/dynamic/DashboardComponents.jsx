@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import { MdAccountCircle, MdOutlinePayment, MdRateReview } from "react-icons/md";
+import { MdAccountCircle, MdNavigateNext, MdOutlinePayment, MdRateReview } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 import { LiaAdversal } from "react-icons/lia";
 import { CiLogout } from "react-icons/ci";
-// import { useContext } from 'react';
-// import DeviceView from '../../Contexts/ViewContext';
+import { useContext, useState } from 'react';
+import UserContext from '../../Contexts/UserContext';
+import DeviceView from '../../Contexts/ViewContext';
+import { MdNavigateBefore } from "react-icons/md";
 
 export const  MainContainer = ({children}) => {
      return(
@@ -36,9 +38,24 @@ const LinkContainer = ({content}) => {
 }
 
 export const NavContainer = () => {
-     // const [deviceView] = useContext(DeviceView);
-     // const {isMobile, isTablet} = deviceView;
-     // let cond = isMobile || isTablet || false;
+     const [user] = useContext(UserContext);
+     const {loggedIn} = user;
+     const [deviceView] = useContext(DeviceView);
+     const {isTablet,isMobile} = deviceView;
+     const [navOn, setNavOn] = useState(false);
+     const showHeader = () => {
+          let navbar = document.getElementById("dashboard-nav-bar");
+          if(loggedIn && (isMobile || isTablet)){
+               if(navOn){
+                    
+                    navbar.style.left = "-55%";
+                    setNavOn(false);
+               }else{
+                    navbar.style.left = "0%";
+                    setNavOn(true);
+               }
+          }
+     }
      return(
           <div className="dashboard-navbar" id="dashboard-nav-bar">
                     <LinkContainer content={{to:'/', name: 'Home', icon: <MdAccountCircle />}} />
@@ -47,14 +64,37 @@ export const NavContainer = () => {
                     <LinkContainer content={{to:'/user-reviews', name:  'Reviews', icon: <MdRateReview />}} />
                     <LinkContainer content={{to:'/payment-plans', name: 'Payment Plans', icon: <MdOutlinePayment />}} />
                     <LinkContainer content={{to:'/logout', name:'Log out', icon: <CiLogout />}} />
+                    {(isTablet || isMobile) && navOn && <i className='dashboard-nav-toogler' onClick={showHeader}><MdNavigateBefore /></i>}
+                    {(isTablet || isMobile) && !navOn && <i className='dashboard-nav-toogler' onClick={showHeader}><MdNavigateNext /></i>}
           </div>
      )
 }
 
 export const ContentContainer = ({children}) => {
+     const [user] = useContext(UserContext);
+     const {loggedIn} = user;
+     const [deviceView] = useContext(DeviceView);
+     const {isTablet,isMobile} = deviceView;
+     const [navOn, setNavOn] = useState(false);
+
+     const showHeader = (event) => {
+          event.stopPropagation();
+          let navbar = document.getElementById("dashboard-nav-bar");
+          if(loggedIn && (isMobile || isTablet)){
+               if(navOn){
+                    
+                    navbar.style.left = "-55%";
+                    setNavOn(false);
+               }else{
+                    navbar.style.left = "0%";
+                    setNavOn(true);
+               }
+          }
+     }
      return(
-          <div className='dashboard-content'>
+          <div className='dashboard-content' onClick={showHeader}>
                {children}
+               
           </div>
      )
 }

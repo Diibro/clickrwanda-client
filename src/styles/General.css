@@ -1969,6 +1969,7 @@ a{
      box-shadow: 1px 1px 4px var(--back-color-gold2-transparent);
      border-radius: 5px;
      padding: 10px 0;
+     position: relative;
 }
 
 .dashboard-link{
@@ -3586,6 +3587,16 @@ a{
      align-items: center;
      justify-content: center;
      margin: 4px;
+}
+
+.dashboard-nav-toogler{
+     position: absolute;
+     top: 30vh;
+     right: -60px;
+     border-radius: 50%;
+     font-size: 80px;
+     color: var(--text-color-para1);
+     z-index: 101;
 }
 .no-margin{
      margin: 0;
