@@ -63,7 +63,7 @@ const Layout = () => {
                <Route path='/accounts/:params' element={<PasswordPage />} />
                <Route path='/get-started' element={<OpenShopPage />} />
                <Route path='/send-request' element={<QuotationPage />} />
-               <Route path='/payment-plans' element={<PaymentPlans />} />
+               <Route path='/payment-plans/*' element={<PaymentPlans />} />
                <Route path='/top-deals' element={<TopDealsPage />} />
                <Route path='/sponsored-ads' element={<BoostedAdsPage />} />
                <Route path='*' element={<NotFound />}/>

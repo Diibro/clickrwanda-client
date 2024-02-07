@@ -540,7 +540,12 @@ a{
      background-color: var(--white-text);
 }
 
-.payment-plan-card .head, .payment-plan-card .body, .payment-plan-card.foot{
+
+.payment-plan-card .head{
+     width: 100%;
+     background-color: var(--text-color-title);
+}
+.payment-plan-card .body{
      width: 95%;
 }
 
@@ -554,7 +559,7 @@ a{
 
 .payment-plan-card .head .price{
      font-size: 0.95rem;
-     color: var(--text-color-title);
+     color: var(--back-color-gold1);
      font-weight: 800;
      text-align: center;
      margin: 5px auto;
@@ -580,6 +585,51 @@ a{
      flex-direction: row;
      align-items: flex-start;
      justify-content: flex-start;
+}
+
+.payment-plan-card .body .image{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     margin: 10px auto;
+     align-self: center;
+}
+
+.payment-plan-card .body .image img{
+     width: 90%;
+     border-radius: 5px;
+     border: 1.6px solid var(--back-color-gold2);
+     cursor: pointer;
+     transition: all 0.3s ;
+}
+
+.payment-plan-card .body .image img:hover{
+     transform: scale(2.5);
+     border-color: var(--featured-plan);
+}
+
+.payment-plan-card .foot{
+     width: 100%;
+     display: flex;
+     justify-content: center;
+}
+
+.payment-plan-card .foot p{
+     font-size: 1rem;
+     color: var(--text-color-para1);
+     font-weight: 600;
+     margin: 5px auto;
+}
+
+.payment-plan-choice{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     min-height: 50vh;
+
 }
 
 .gray-back{

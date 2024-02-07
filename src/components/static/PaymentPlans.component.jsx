@@ -1,6 +1,14 @@
 import { ActionBtn } from "../dynamic/Buttons";
 import { TickIcon } from "./Icons";
 
+import Sponsored from "../../assets/plansLocations/sponsoredAds.png"
+import Featured from "../../assets/plansLocations/featuredAds.png"
+import BestSellers from "../../assets/plansLocations/bestSellers.png"
+import NewAds from "../../assets/plansLocations/newAds.png"
+import TopDeals from "../../assets/plansLocations/topDeals.png"
+import BannerImage from "../../assets/plansLocations/banners.png"
+import { useLocation, useNavigate } from "react-router-dom";
+
 export const PaymentPlansContainer = () => {
      return (
           <div className="pay-plans-container">
@@ -42,15 +50,20 @@ export const FreePlan = () => {
                          <li className="crossed-text">Social Media/Website Link inclusion</li>
                          <li className="crossed-text">Youtube Video Promotion</li>
                     </ul>
+                    <div className="image">
+                         <img src={NewAds} loading="lazy" alt="news ads images" />
+                    </div>
                </div>
                <div className="foot">
-                    <ActionBtn title="Choose Package" />
+                    {/* <ActionBtn title="Choose Package" /> */}
+                    <p>Default Package</p>
                </div>
           </div>
      )
 }
 
 export const BasicPlan = () => {
+     const navigate = useNavigate()
      return (
           <div className="payment-plan-card">
                <div className="head">
@@ -69,15 +82,19 @@ export const BasicPlan = () => {
                          <li className="crossed-text">Social Media/Website Link inclusion</li>
                          <li className="crossed-text">Youtube Video Promotion</li>
                     </ul>
+                    <div className="image">
+                         <img src={Featured} alt="featured ads" loading="lazy" onClick={() => navigate("/payment-plans/basic-plan")} />
+                    </div>
                </div>
                <div className="foot">
-                    <ActionBtn title="Choose Package" />
+                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/basic-plan")} />
                </div>
           </div>
      )
 }
 
 export const PremiumPlan = () => {
+     const navigate = useNavigate()
      return (
           <div className="payment-plan-card">
                <div className="head">
@@ -96,15 +113,19 @@ export const PremiumPlan = () => {
                          <li>Youtube Video Promotion</li>
                          <li className="crossed-text">Social Media/Website Link inclusion</li>
                     </ul>
+                    <div className="image">
+                         <img src={Featured} alt="featured ads" loading="lazy" onClick={() => navigate("/payment-plans/premium-plan")} />
+                    </div>
                </div>
                <div className="foot">
-                    <ActionBtn title="Choose Package" />
+                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/premium-plan")} />
                </div>
           </div>
      )
 }
 
 export const SponseredPlan = () => {
+     const navigate = useNavigate()
      return (
           <div className="payment-plan-card">
                <div className="head">
@@ -123,15 +144,19 @@ export const SponseredPlan = () => {
                          <li><TickIcon/>Social Media/Website Link inclusion</li>
                          <li><TickIcon/>Youtube Video Promotion</li>
                     </ul>
+                    <div className="image">
+                         <img src={Sponsored} alt="sponsered ads" loading="lazy" onClick={() => navigate("/payment-plans/sponsored-plan")}/>
+                    </div>
                </div>
                <div className="foot">
-                    <ActionBtn title="Choose Package" />
+                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/sponsored-plan")} />
                </div>
           </div>
      )
 }
 
 export const UrgentPlan = () => {
+     const navigate = useNavigate()
      return (
           <div className="payment-plan-card">
                <div className="head">
@@ -150,15 +175,19 @@ export const UrgentPlan = () => {
                          <li><TickIcon/>Youtube Video Promotion</li>
                          <li className="crossed-text">Social Media/Website Link inclusion</li>
                     </ul>
+                    <div className="image">
+                         <img src={Featured} alt="featured ads" loading="lazy" onClick={() => navigate("/payment-plans/urgent-plan")} />
+                    </div>
                </div>
                <div className="foot">
-                    <ActionBtn title="Choose Package" />
+                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/urgent-plan")} />
                </div>
           </div>
      )
 }
 
 export const TopDealsPlan = () => {
+     const navigate = useNavigate()
      return (
           <div className="payment-plan-card">
                <div className="head">
@@ -177,15 +206,19 @@ export const TopDealsPlan = () => {
                          <li><TickIcon/>Youtube Video Promotion</li>
                          <li className="crossed-text">Social Media/Website Link inclusion</li>
                     </ul>
+                    <div className="image">
+                         <img src={TopDeals} alt="top Deals ads" loading="lazy" onClick={() => navigate("/payment-plans/top-deals-plan")} />
+                    </div>
                </div>
                <div className="foot">
-                    <ActionBtn title="Choose Package" />
+                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/top-deals-plan")} />
                </div>
           </div>
      )
 }
 
 export const TopSellersPlan = () => {
+     const navigate = useNavigate()
      return (
           <div className="payment-plan-card">
                <div className="head">
@@ -204,15 +237,19 @@ export const TopSellersPlan = () => {
                          <li><TickIcon/>Social Media/Website Link inclusion</li>
                          <li><TickIcon/>Youtube Video Promotion</li>
                     </ul>
+                    <div className="image">
+                         <img src={BestSellers} alt="best sellers" loading="lazy" onClick={() => navigate("/payment-plans/top-sellers-plan")} />
+                    </div>
                </div>
                <div className="foot">
-                    <ActionBtn title="Choose Package" />
+                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/top-sellers-plan")} />
                </div>
           </div>
      )
 }
 
 export const BannersPlan = () => {
+     const navigate = useNavigate()
      return (
           <div className="payment-plan-card">
                <div className="head">
@@ -231,11 +268,27 @@ export const BannersPlan = () => {
                          <li><TickIcon/>Social Media/Website Link inclusion</li>
                          <li><TickIcon/>Youtube Video Promotion</li>
                     </ul>
+                    <div className="image">
+                         <img src={BannerImage} alt="banners"  loading="lazy" onClick={() => navigate('/payment-plans/banners') }/>
+                    </div>
                </div>
                <div className="foot">
-                    <ActionBtn title="Choose Package" />
+                    <ActionBtn title="Choose Package" action={() => navigate('/payment-plans/banners') } />
                </div>
           </div>
      )
 }
 
+export const PaymentPlanChoice = () => {
+     // const location = useLocation()
+     // const {pathname} = location
+     // const pathSegments = pathname.split("/")
+     // let currentPath = pathSegments[pathSegments.length - 1]
+     return(
+          <div className="payment-plan-choice">
+               {/* <h2>{currentPath}</h2> */}
+               <div><p>Not Available</p></div>
+          </div>
+     )
+     
+}
