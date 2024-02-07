@@ -83,7 +83,7 @@ export const BasicPlan = () => {
                          <li className="crossed-text">Youtube Video Promotion</li>
                     </ul>
                     <div className="image">
-                         <img src={Featured} alt="featured ads" loading="lazy" onClick={() => navigate("/payment-plans/basic-plan")} />
+                         <img src={Featured} alt="featured ads" loading="lazy" />
                     </div>
                </div>
                <div className="foot">
@@ -114,7 +114,7 @@ export const PremiumPlan = () => {
                          <li className="crossed-text">Social Media/Website Link inclusion</li>
                     </ul>
                     <div className="image">
-                         <img src={Featured} alt="featured ads" loading="lazy" onClick={() => navigate("/payment-plans/premium-plan")} />
+                         <img src={Featured} alt="featured ads" loading="lazy" />
                     </div>
                </div>
                <div className="foot">
@@ -145,7 +145,7 @@ export const SponseredPlan = () => {
                          <li><TickIcon/>Youtube Video Promotion</li>
                     </ul>
                     <div className="image">
-                         <img src={Sponsored} alt="sponsered ads" loading="lazy" onClick={() => navigate("/payment-plans/sponsored-plan")}/>
+                         <img src={Sponsored} alt="sponsered ads" loading="lazy" />
                     </div>
                </div>
                <div className="foot">
@@ -176,7 +176,7 @@ export const UrgentPlan = () => {
                          <li className="crossed-text">Social Media/Website Link inclusion</li>
                     </ul>
                     <div className="image">
-                         <img src={Featured} alt="featured ads" loading="lazy" onClick={() => navigate("/payment-plans/urgent-plan")} />
+                         <img src={Featured} alt="featured ads" loading="lazy" />
                     </div>
                </div>
                <div className="foot">
@@ -207,7 +207,7 @@ export const TopDealsPlan = () => {
                          <li className="crossed-text">Social Media/Website Link inclusion</li>
                     </ul>
                     <div className="image">
-                         <img src={TopDeals} alt="top Deals ads" loading="lazy" onClick={() => navigate("/payment-plans/top-deals-plan")} />
+                         <img src={TopDeals} alt="top Deals ads" loading="lazy"  />
                     </div>
                </div>
                <div className="foot">
@@ -238,7 +238,7 @@ export const TopSellersPlan = () => {
                          <li><TickIcon/>Youtube Video Promotion</li>
                     </ul>
                     <div className="image">
-                         <img src={BestSellers} alt="best sellers" loading="lazy" onClick={() => navigate("/payment-plans/top-sellers-plan")} />
+                         <img src={BestSellers} alt="best sellers" loading="lazy" />
                     </div>
                </div>
                <div className="foot">
@@ -269,7 +269,7 @@ export const BannersPlan = () => {
                          <li><TickIcon/>Youtube Video Promotion</li>
                     </ul>
                     <div className="image">
-                         <img src={BannerImage} alt="banners"  loading="lazy" onClick={() => navigate('/payment-plans/banners') }/>
+                         <img src={BannerImage} alt="banners"  loading="lazy"/>
                     </div>
                </div>
                <div className="foot">
