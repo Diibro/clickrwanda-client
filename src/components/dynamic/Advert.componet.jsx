@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {  useContext, useState } from 'react';
+import {  useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getItemUrl } from '../../utils/urlFunctions';
 import { FaLocationDot } from "react-icons/fa6";
@@ -17,7 +17,7 @@ const Advert = () => {
 }
 
 export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, views, link, adDate, discount}) => {
-     const [currency, setCurrency] = useState("Rwf");
+     const currency= "Rwf";
      const [,setData] = useContext(AppData);
      const navigate = useNavigate();
      const showButtons = (url, image, name) =>{
@@ -32,7 +32,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
      }
      return(
           <div className="product-square-container">
-               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
+               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "enterprise" ? "pay-plan enterprise" : "free-plan"}>{capitalizeString(plan)}</span>
                {discount ? <span className='advert-discount'>- {discount}%</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <div className="ad-image">
@@ -65,7 +65,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
      }
      return(
           <div className="product-square-container">
-               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "featured" ? "pay-plan featured" : "free-plan"}>{plan}</span>
+               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "enterprise" ? "pay-plan enterprise" : "free-plan"}>{capitalizeString(plan)}</span>
                {discount ? <span className='advert-discount'>{discount}% off</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <div className="ad-image" >
@@ -212,6 +212,10 @@ AdvertRow.propTypes = {
 
 AdvertImage.propTypes = {
      images: PropTypes.any
+}
+
+DashAdvert.propTypes ={
+     item: PropTypes.any
 }
 
 export default Advert

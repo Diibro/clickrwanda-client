@@ -62,14 +62,12 @@ const AdvertPage = () => {
                console.log(error);
           }finally {
                setLoading(false);
+               
           }
           
      }
      useEffect(() => {
-           updateAdViewed();
-           if(!mainImage && adViewed){
-               setMainImage(adViewed.ad_image);
-           }
+               updateAdViewed();
      }, [location.search]);
   return (
      <>
@@ -146,7 +144,7 @@ const AdvertPage = () => {
                          </div>
                          <div className="advert-page-others">
                               <h3>Similar ads</h3>
-                              {otherAds ? <SimilarAds limit={10} adverts={otherAds} /> : <>no similarads</>}
+                              {otherAds ? <SimilarAds limit={50} adverts={otherAds} /> : <>no similarads</>}
                          </div>
                          </>
                          : <Loading/>

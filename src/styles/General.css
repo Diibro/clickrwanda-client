@@ -115,14 +115,14 @@ a{
      position: absolute;
      top: 0;
      left: 0;
-     width: 40%;
+     width: auto;
      text-align: center;
      color: var(--back-color-gold1);
      background-color: var(--text-color-para1);
      font-size: 0.9rem;
      font-weight: 600;
      border-radius: 5px 0 5px 0;
-     padding: 2.5px 0;
+     padding: 2.5px 10px;
      z-index: 2;
 }
 
@@ -623,15 +623,112 @@ a{
 }
 
 .payment-plan-choice{
-     width: 100%;
+     width: 60%;
+     border: 2px solid var(--back-color-gold2);
+     border-radius: 10px;
      display: flex;
      flex-direction: column;
      align-items: center;
-     justify-content: center;
+     justify-content: flex-start;
      min-height: 50vh;
+     margin: 30px auto;
+     background-color: var(--white-text);
+     padding-bottom: 20px;
 
 }
 
+.payment-plan-choice .header{
+     width: 90%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     padding: 5px 0;
+     border-radius: 20px;
+     background-color: var(--white-text);
+     margin: 10px auto;
+}
+
+.payment-plan-choice .header h2{
+     font-size: 1.6rem;
+     color: var(--text-color-title);
+     /* color: var(--back-color-gold1); */
+     font-weight: 900;
+}
+
+.payment-plan-choice .content{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-evenly;
+     flex-wrap: wrap;
+}
+
+.payment-plan-choice .content .features{
+     width: 40%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     padding: 10px;
+     border-radius: 10px;
+     background-color: var(--white-text);
+}
+
+.payment-plan-choice .content .features h3, .payment-plan-choice .content .membership h3{
+     width: 90%;
+     font-size: 1.4rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+     margin: 10px auto;
+}
+.payment-plan-choice .content .features ul{
+     width: 90%;
+     list-style-type:none;
+     margin: 0 auto;
+}
+
+.payment-plan-choice .content .features ul li{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+     margin: 0 0 10px 0;
+}
+
+.payment-plan-choice .content .membership{
+     width: 50%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.payment-plan-choice .content .membership .durations{
+     width: 100%;
+}
+
+.payment-plan-choice .content .membership .durations .membership-duration-row{
+     width: 95%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-evenly;
+     padding: 0 0 2px 0;
+     border-radius: 10px;
+     border: 1.5px solid var(--text-color-para1);
+     transition: all 0.3s;
+     margin: 0 auto 10px;
+}
+
+.payment-plan-choice .content .membership .durations .membership-duration-row span{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
+
+.payment-plan-choice .content .membership .durations .membership-duration-row .price{
+     font-weight: 700;
+
+}
 .gray-back{
      background-color:var(--back-color-gold1) ;
 }
@@ -2450,9 +2547,9 @@ a{
 }
 
 .product-square-container{
-     width: 17%;
-     min-width: 170px;
-     max-width: 300px;
+     min-width: 18%;
+     width: 20%;
+     max-width: 21%;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -2465,6 +2562,7 @@ a{
      background-color: var(--white-text);
      border: 1px solid var(--gray-text);
      overflow: none;
+     flex: 1;
 }
 
 .product-square-container:hover{
@@ -3666,12 +3764,16 @@ a{
      background-color: var(--featured-plan);
 }
 
-.featured{
-     background-color: var(--back-gold-color-v1);
+.basic{
+     background-color: var(--back-color-gold2);
 }
 
 .urgent{
      background-color: var(--back-color-red1);
+}
+
+.enterprise{
+     background-color: var(--back-color-blue2);
 }
 
 .full-width{

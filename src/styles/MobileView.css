@@ -16,7 +16,9 @@
           font-size: 1.8rem;
      }
      .product-square-container{
+          min-width: 45%;
           width: 45%;
+          max-width: 45%;
           margin: 0 0.5% 20px;
      }
      .desktop-header{
@@ -84,7 +86,9 @@
           font-size: 1.8rem;
      }
      .product-square-container{
+          min-width: 85%;
           width: 90%;
+          max-width: 90%;
           margin: 0 0.5% 20px;
      }
      .desktop-header{
@@ -114,7 +118,7 @@
      }
 
      .inner-container .section-title {
-          font-size: 1.8rem;
+          font-size: 1.4rem;
           margin: 2px 0;
      }
      .search-page .search-page-searchbar{

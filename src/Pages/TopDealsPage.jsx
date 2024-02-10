@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import server from "../config/Server";
 import Loading from "../components/static/Loading";
 import { TodayDeals } from "../components/dynamic/Adverts.component";
+import { RightBanner } from "../components/dynamic/Banners";
 
 const TopDealsPage = () => {
      const [ads, setAds] = useState([]);
@@ -35,7 +36,7 @@ const TopDealsPage = () => {
                     }
                </div>
                
-               <div className="side"></div>
+               <div className="side"><RightBanner /></div>
           </div>
     </div>
   )

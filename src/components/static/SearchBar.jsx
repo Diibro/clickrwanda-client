@@ -7,6 +7,7 @@ import { getLocations } from '../../utils/locations';
 import server from '../../config/Server';
 // import server from '../../config/Server';
 const SearchBar = () => {
+  const location = useLocation();
   const [searched, setSearched] = useState({category: "All", location: "Rwanda"});
   const [data] = useContext(AppData);
   const [locations, setLocations] = useState([]);
@@ -25,6 +26,10 @@ const SearchBar = () => {
   }
 
   const getCategories = async () => {
+    if(location.pathname === "/"){
+      setCategory(data?.categories);
+      return;
+    }
     if(data.categories && data?.categories[0]){
       setCategory(data.categories);
     }else{
@@ -39,7 +44,7 @@ const SearchBar = () => {
       const {districts} = await getLocations();
       setLocations(districts.data);
     })()
-  },[])
+  },[data.categories]);
   return (
     <div className="search-bar-main" onKeyDown={handleKeyPress}>
       <select name="category" id="search-category-01" className='hide-scroll' defaultValue={'Category'}  onChange={e => setSearched(prev => ({...prev, category:e.target.value}))}>

@@ -5,7 +5,7 @@ import Categories from '../components/dynamic/Categories';
 import { InnerSection } from '../components/dynamic/InnerSectionContainer';
 import SearchBar from '../components/static/SearchBar';
 import DeviceView from '../Contexts/ViewContext';
-import { BoostedSellers, GetStartedV1, RequestQuoteHeader } from '../components/dynamic/Special.components';
+import { BoostedSellers, RequestQuoteHeader } from '../components/dynamic/Special.components';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { HeroSectionBanner, HorizontalBanner, LeftBanner, RightBanner } from '../components/dynamic/Banners';
@@ -55,7 +55,7 @@ const Home = () => {
           </InnerSection>
           <Categories limit={isMobile ? 12 : 14} />
           <InnerSection type="title" >
-            Featured Ads
+            Premium Ads
             <Link to='/sponsored-ads'>View All</Link>
           </InnerSection>
           <BoostedAds />

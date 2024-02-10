@@ -1,294 +1,117 @@
 import { ActionBtn } from "../dynamic/Buttons";
 import { TickIcon } from "./Icons";
-
-import Sponsored from "../../assets/plansLocations/sponsoredAds.png"
-import Featured from "../../assets/plansLocations/featuredAds.png"
-import BestSellers from "../../assets/plansLocations/bestSellers.png"
-import NewAds from "../../assets/plansLocations/newAds.png"
-import TopDeals from "../../assets/plansLocations/topDeals.png"
-import BannerImage from "../../assets/plansLocations/banners.png"
+import PropTypes from "prop-types"
 import { useLocation, useNavigate } from "react-router-dom";
+import { ExtraBoostPlans, MainPaymentPlansInfo } from "../../config/payPlans";
+import { useContext, useEffect, useState } from "react";
+import { formatPrice } from "../../utils/otherFunctions";
+import UserContext from "../../Contexts/UserContext";
+import { ImCross } from "react-icons/im";
+
+export const PaymentPlanCard = ({item}) => {
+     const features = item.allowed;
+     const navigate = useNavigate()
+     return (
+          <div className="payment-plan-card">
+               <div className="head">
+                    <h2 className="title">{item.title}</h2>
+                    <p className="price">{item.price}</p>
+               </div>
+               <div className="body">
+                    <ul>
+                         {features.map((feature, index) => feature.allowed ? <li key={index}><TickIcon />{feature.name}</li>  : <li key={index} className={!feature.allowed ? "crossed-text" : ''} >{feature.name}</li>   )}
+                    </ul>
+                    <div className="image">
+                         <img src={item.location} alt={item.title} />
+                    </div>
+               </div>
+               <div className="foot">
+                    {item.action ? <ActionBtn title="Choose Package" action={() => navigate(item.action)} /> : <p>Default Package</p>}
+               </div>
+          </div>
+     )
+}
+
 
 export const PaymentPlansContainer = () => {
      return (
           <div className="pay-plans-container">
                <div className="row">
                     <h3>General Packages</h3>
-                    <FreePlan />
-                    <BasicPlan />
-                    <PremiumPlan />
-                    <SponseredPlan />
+                    {MainPaymentPlansInfo.map(plan => <PaymentPlanCard item={plan} key={plan.title} />)}
                </div>
                <div className="row">
                     <h3>Extra Boost Packages</h3>
-                    <UrgentPlan/>
-                    <TopDealsPlan />
-                    <TopSellersPlan />
-                    <BannersPlan />
-               </div>
-          </div>
-     )
-}
-
-
-export const FreePlan = () => {
-     return (
-          <div className="payment-plan-card">
-               <div className="head">
-                    <h2 className="title">Free Package</h2>
-                    <p className="price">Free</p>
-               </div>
-               <div className="body">
-                    <ul>
-                         <li><TickIcon/> Listed in New Ads</li>
-                         <li><TickIcon/>Ads allowed: 10ads</li>
-                         <li><TickIcon/>Limited Ad Views</li>
-                         <li><TickIcon/>Adress & Contact Visibility</li>
-                         <li className="crossed-text">Promotion For selected Ads</li>
-                         <li className="crossed-text">Personal Support Manager</li>
-                         <li className="crossed-text">Email & Social Media promotion</li>
-                         <li className="crossed-text">Social Media/Website Link inclusion</li>
-                         <li className="crossed-text">Youtube Video Promotion</li>
-                    </ul>
-                    <div className="image">
-                         <img src={NewAds} loading="lazy" alt="news ads images" />
-                    </div>
-               </div>
-               <div className="foot">
-                    {/* <ActionBtn title="Choose Package" /> */}
-                    <p>Default Package</p>
-               </div>
-          </div>
-     )
-}
-
-export const BasicPlan = () => {
-     const navigate = useNavigate()
-     return (
-          <div className="payment-plan-card">
-               <div className="head">
-                    <h2 className="title">Basic Package</h2>
-                    <p className="price">Rwf 17,500 /Month</p>
-               </div>
-               <div className="body">
-                    <ul>
-                         <li><TickIcon/>Listed in Featured Ads</li>
-                         <li><TickIcon/>Ads allowed: 100ads</li>
-                         <li><TickIcon/>Promotion Power: 2x Ad Views</li>
-                         <li><TickIcon/>Adress & Contact Visibility</li>
-                         <li><TickIcon/>Ads Promoted: 15ads</li>
-                         <li><TickIcon/>Personal Support Manager</li>
-                         <li className="crossed-text">Email & Social Media promotion</li>
-                         <li className="crossed-text">Social Media/Website Link inclusion</li>
-                         <li className="crossed-text">Youtube Video Promotion</li>
-                    </ul>
-                    <div className="image">
-                         <img src={Featured} alt="featured ads" loading="lazy" />
-                    </div>
-               </div>
-               <div className="foot">
-                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/basic-plan")} />
-               </div>
-          </div>
-     )
-}
-
-export const PremiumPlan = () => {
-     const navigate = useNavigate()
-     return (
-          <div className="payment-plan-card">
-               <div className="head">
-                    <h2 className="title">Premium Package</h2>
-                    <p className="price">Rwf 45,000 /Month</p>
-               </div>
-               <div className="body">
-                    <ul>
-                         <li><TickIcon/>Listed in Featured Ads</li>
-                         <li><TickIcon/>Ads allowed: 100ads</li>
-                         <li><TickIcon/>Promotion Power: 10x Ad Views</li>
-                         <li><TickIcon/>Adress & Contact Visibility</li>
-                         <li><TickIcon/>Ads Promoted: 15ads</li>
-                         <li><TickIcon/>Personal Support Manager</li>
-                         <li><TickIcon/>Email & Social Media promotion</li>
-                         <li>Youtube Video Promotion</li>
-                         <li className="crossed-text">Social Media/Website Link inclusion</li>
-                    </ul>
-                    <div className="image">
-                         <img src={Featured} alt="featured ads" loading="lazy" />
-                    </div>
-               </div>
-               <div className="foot">
-                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/premium-plan")} />
-               </div>
-          </div>
-     )
-}
-
-export const SponseredPlan = () => {
-     const navigate = useNavigate()
-     return (
-          <div className="payment-plan-card">
-               <div className="head">
-                    <h2 className="title">Sponsored Package</h2>
-                    <p className="price">Rwf 50,000 /Month</p>
-               </div>
-               <div className="body">
-                    <ul>
-                         <li><TickIcon/>Position on the bottom of the website </li>
-                         <li><TickIcon/>Ads allowed: 100ads</li>
-                         <li><TickIcon/>Promotion Power: 15x Ad Views</li>
-                         <li><TickIcon/>Adress & Contact Visibility</li>
-                         <li><TickIcon/>Ads Promoted: 1ad</li>
-                         <li><TickIcon/>Personal Support Manager</li>
-                         <li><TickIcon/>Email & Social Media promotion</li>
-                         <li><TickIcon/>Social Media/Website Link inclusion</li>
-                         <li><TickIcon/>Youtube Video Promotion</li>
-                    </ul>
-                    <div className="image">
-                         <img src={Sponsored} alt="sponsered ads" loading="lazy" />
-                    </div>
-               </div>
-               <div className="foot">
-                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/sponsored-plan")} />
-               </div>
-          </div>
-     )
-}
-
-export const UrgentPlan = () => {
-     const navigate = useNavigate()
-     return (
-          <div className="payment-plan-card">
-               <div className="head">
-                    <h2 className="title">Urgent Package</h2>
-                    <p className="price">Rwf 10,000 /Month</p>
-               </div>
-               <div className="body">
-                    <ul>
-                         <li><TickIcon/>Listed in Featured Ads</li>
-                         <li><TickIcon/>Ads allowed: 100ads</li>
-                         <li><TickIcon/>Promotion Power: 10x Ad Views</li>
-                         <li><TickIcon/>Adress & Contact Visibility</li>
-                         <li><TickIcon/>Ads Promoted: 1ad</li>
-                         <li><TickIcon/>Personal Support Manager</li>
-                         <li><TickIcon/>Email & Social Media promotion</li>
-                         <li><TickIcon/>Youtube Video Promotion</li>
-                         <li className="crossed-text">Social Media/Website Link inclusion</li>
-                    </ul>
-                    <div className="image">
-                         <img src={Featured} alt="featured ads" loading="lazy" />
-                    </div>
-               </div>
-               <div className="foot">
-                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/urgent-plan")} />
-               </div>
-          </div>
-     )
-}
-
-export const TopDealsPlan = () => {
-     const navigate = useNavigate()
-     return (
-          <div className="payment-plan-card">
-               <div className="head">
-                    <h2 className="title">Top Deals</h2>
-                    <p className="price">Rwf 15,000 /Month</p>
-               </div>
-               <div className="body">
-                    <ul>
-                         <li><TickIcon/>Listed in Top Deals</li>
-                         <li><TickIcon/>Positon on top of the website</li>
-                         <li><TickIcon/>Promotion Power: 15x Ad Views</li>
-                         <li><TickIcon/>Adress & Contact Visibility</li>
-                         <li><TickIcon/>Ads Promoted: 1ad</li>
-                         <li><TickIcon/>Personal Support Manager</li>
-                         <li><TickIcon/>Email & Social Media promotion</li>
-                         <li><TickIcon/>Youtube Video Promotion</li>
-                         <li className="crossed-text">Social Media/Website Link inclusion</li>
-                    </ul>
-                    <div className="image">
-                         <img src={TopDeals} alt="top Deals ads" loading="lazy"  />
-                    </div>
-               </div>
-               <div className="foot">
-                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/top-deals-plan")} />
-               </div>
-          </div>
-     )
-}
-
-export const TopSellersPlan = () => {
-     const navigate = useNavigate()
-     return (
-          <div className="payment-plan-card">
-               <div className="head">
-                    <h2 className="title">Top Sellers</h2>
-                    <p className="price">Rwf 50,000 /Month</p>
-               </div>
-               <div className="body">
-                    <ul>
-                         <li><TickIcon/>Listed in “Our Top Sellers”</li>
-                         <li><TickIcon/>Positon on top of the website</li>
-                         <li><TickIcon/>Promotion Power: 15x Ad Views</li>
-                         <li><TickIcon/>Adress & Contact Visibility</li>
-                         <li><TickIcon/>Ads Promoted: All Ads</li>
-                         <li><TickIcon/>Personal Support Manager</li>
-                         <li><TickIcon/>Email & Social Media promotion</li>
-                         <li><TickIcon/>Social Media/Website Link inclusion</li>
-                         <li><TickIcon/>Youtube Video Promotion</li>
-                    </ul>
-                    <div className="image">
-                         <img src={BestSellers} alt="best sellers" loading="lazy" />
-                    </div>
-               </div>
-               <div className="foot">
-                    <ActionBtn title="Choose Package" action={() => navigate("/payment-plans/top-sellers-plan")} />
-               </div>
-          </div>
-     )
-}
-
-export const BannersPlan = () => {
-     const navigate = useNavigate()
-     return (
-          <div className="payment-plan-card">
-               <div className="head">
-                    <h2 className="title">Banners</h2>
-                    <p className="price">Rwf 75,000 /Month</p>
-               </div>
-               <div className="body">
-                    <ul>
-                         <li><TickIcon/>Listed in “Our Banners”</li>
-                         <li><TickIcon/>Positon on top of the website</li>
-                         <li><TickIcon/>Promotion Power: 20x Ad Views</li>
-                         <li><TickIcon/>Adress & Contact Visibility</li>
-                         <li><TickIcon/>Ads Promoted: All Ads</li>
-                         <li><TickIcon/>Personal Support Manager</li>
-                         <li><TickIcon/>Email & Social Media promotion</li>
-                         <li><TickIcon/>Social Media/Website Link inclusion</li>
-                         <li><TickIcon/>Youtube Video Promotion</li>
-                    </ul>
-                    <div className="image">
-                         <img src={BannerImage} alt="banners"  loading="lazy"/>
-                    </div>
-               </div>
-               <div className="foot">
-                    <ActionBtn title="Choose Package" action={() => navigate('/payment-plans/banners') } />
+                    {ExtraBoostPlans.map(plan => <PaymentPlanCard item={plan} key={plan.title} />)}
                </div>
           </div>
      )
 }
 
 export const PaymentPlanChoice = () => {
-     // const location = useLocation()
-     // const {pathname} = location
-     // const pathSegments = pathname.split("/")
-     // let currentPath = pathSegments[pathSegments.length - 1]
+     const [,setUser] = useContext(UserContext)
+     const location = useLocation()
+     const {pathname} = location;
+     const [planInView, setPlanInView] = useState({});
+     const plans = [...MainPaymentPlansInfo, ...ExtraBoostPlans];
+     const updatePlanViewed = () => {
+          console.log(plans);
+          const filteredPlans = plans.filter(plan => plan.action === pathname);
+          console.log(filteredPlans);
+          setPlanInView(filteredPlans[0]);
+     }
+
+     const proceedPayment = (amount, duration) => {
+          return setUser((prev) => ({
+               ...prev, 
+               activeForm: 'payment-plan-form', 
+               payInfo: {plan_id: planInView.plan_id, plan_name: planInView.title, amount, duration }
+          }))
+     }
+     useEffect(() => {
+          updatePlanViewed();
+     },[])
      return(
           <div className="payment-plan-choice">
-               {/* <h2>{currentPath}</h2> */}
-               <div><p>Not Available</p></div>
+               <div className="header">
+                    <h2>{planInView?.title}</h2>
+               </div>
+               <div className="content">
+                    <div className="features">
+                         <h3>Features:</h3>
+                         <ul>
+                              {planInView?.allowed?.filter(feature => feature.allowed).map(feature => <li key={feature.name}><TickIcon />{feature.name}</li>)}
+                         </ul>
+                    </div>
+                    <div className="membership">
+                         <h3>Membership Period:</h3>
+                         <div className="durations">
+                              {planInView?.memberShipDuration?.map(duration => <div className="membership-duration-row" key={duration.months}>
+                                   <span className="months">Months: {duration.months}</span> <span className="price">Price: Rwf {formatPrice(planInView.mainPrice * duration.months)}</span> <ActionBtn title="Select" action={() => proceedPayment(planInView.mainPrice * duration.months, duration.months)} />
+                              </div>)}
+                         </div>
+                    </div>
+               </div>
           </div>
      )
      
+}
+
+export const PaymentPlanForm = () => {
+     const [user,setUser] =useContext(UserContext);
+     const {payInfo} = user;
+
+     const closeForm = () => {
+          setUser((prev) => ({...prev, activeForm:''}));
+     }
+     return(
+          <div className="form-container hide-scroll">
+          <i onClick={closeForm} className="close-icon"><ImCross/></i>
+               <h2>Sorry, something went wrong... </h2>
+          </div>
+     )
+}
+
+PaymentPlanCard.propTypes = {
+     item: PropTypes.any
 }

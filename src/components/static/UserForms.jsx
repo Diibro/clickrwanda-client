@@ -12,6 +12,7 @@ import Loading from "./Loading";
 import { TiTick } from "react-icons/ti";
 import { AddAdvertForm } from "../dynamic/Adverts.component";
 import { getLocations } from "../../utils/locations";
+import { PaymentPlanForm } from "./PaymentPlans.component";
 
 
 const UserForms = () => {
@@ -20,7 +21,7 @@ const UserForms = () => {
      if(activeForm != '') {
           return (
                <div className="user-forms hide-scroll">
-                {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : null}
+                {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : activeForm === "payment-plan-form" ? <PaymentPlanForm /> : null}
                </div>
              )
      }else{

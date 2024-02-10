@@ -9,9 +9,7 @@ export const AdvertsPagination = () => {
      const totalAds = getData('totalAds');
      const [currentPage, setCurrentPage] = useState(1);
      let pages = totalAds / 50;
-     console.log(pages)
      if(totalAds % 50 !== 0) pages = Math.floor(pages + 1);
-     console.log(pages)
      const pageArr = [];
      for(let i = 1; i <= pages; i++){
           pageArr.push(i);
