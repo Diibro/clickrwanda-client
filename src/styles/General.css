@@ -21,6 +21,7 @@
      --white-text:#ffffff;
      --gray-text:#c0b6b6;
      font-size: 16px;
+     --basic-plan-color: #4515ad;
 }
 
 
@@ -3766,7 +3767,7 @@ a{
 }
 
 .basic{
-     background-color: var(--back-color-gold2);
+     background-color: var(--basic-plan-color);
 }
 
 .urgent{
