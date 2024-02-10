@@ -64,6 +64,14 @@
           margin: 0 auto;
           padding: 0;
      }
+
+     .payment-plan-choice, .payment-plan-choice .content .membership .durations .membership-duration-row {
+          width: 95%;
+     }
+
+     .payment-plan-choice .content .membership .durations .membership-duration-row span{
+          font-size: 0.9rem;
+     }
      /* .home-get-started-sec .row-title h3{
           font-size: 1.2rem;
      } */

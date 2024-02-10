@@ -206,4 +206,15 @@
           width: 40%;
           max-width: 40%;
      }
+
+     .payment-plan-choice, .payment-plan-choice .content .membership .durations .membership-duration-row{
+          width: 80%;
+     }
+     .payment-plan-choice .content .features, .payment-plan-choice .content .membership{
+          width: 100%;
+     }
+
+     .payment-plan-choice .content .features ul li, .payment-plan-choice .content .membership .durations .membership-duration-row span{
+          font-size: 1.2rem;
+     }
 }
