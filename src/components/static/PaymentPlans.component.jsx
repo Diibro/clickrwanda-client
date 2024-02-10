@@ -107,7 +107,7 @@ export const PaymentPlanForm = () => {
      return(
           <div className="form-container hide-scroll">
           <i onClick={closeForm} className="close-icon"><ImCross/></i>
-               <h2>Sorry, something went wrong... </h2>
+               <h2>commin soon... </h2>
           </div>
      )
 }
