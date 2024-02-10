@@ -31,7 +31,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
           }))
      }
      return(
-          <div className="product-square-container">
+          <div className={`product-square-container ${plan}-ad`}>
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "enterprise" ? "pay-plan enterprise" : "free-plan"}>{capitalizeString(plan)}</span>
                {discount ? <span className='advert-discount'>- {discount}%</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
@@ -64,7 +64,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
           }))
      }
      return(
-          <div className="product-square-container">
+          <div className={`product-square-container ${plan}-ad`}>
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "enterprise" ? "pay-plan enterprise" : "free-plan"}>{capitalizeString(plan)}</span>
                {discount ? <span className='advert-discount'>{discount}% off</span> : null}
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>

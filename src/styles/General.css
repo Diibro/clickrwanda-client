@@ -122,7 +122,7 @@ a{
      background-color: var(--text-color-para1);
      font-size: 0.9rem;
      font-weight: 600;
-     border-radius: 5px 0 5px 0;
+     border-radius: 0 0 5px 0;
      padding: 2.5px 10px;
      z-index: 2;
 }
@@ -2563,7 +2563,7 @@ a{
      transition: all 0.4s;
      background-color: var(--white-text);
      border: 1px solid var(--gray-text);
-     overflow: none;
+     overflow: hidden;
      flex: 1;
 }
 
@@ -3766,16 +3766,51 @@ a{
      background-color: var(--featured-plan);
 }
 
+.premium-ad{
+     border: 1.8px solid var(--featured-plan);
+     border-radius: 5px;
+}
+
+.premium-ad:hover{
+     box-shadow: 1.5px 1.5px var(--featured-plan);
+}
+
 .basic{
      background-color: var(--basic-plan-color);
+}
+
+.basic-ad{
+     border: 1.8px solid var(--basic-plan-color);
+     border-radius: 5px;
+}
+
+.basic-ad:hover{
+     box-shadow: 1.5px 1.5px var(--basic-plan-color);
 }
 
 .urgent{
      background-color: var(--back-color-red1);
 }
 
+.urgent-ad:hover{
+     box-shadow: 1.5px 1.5px var(--back-color-red1);
+}
+
+.urgent-ad{
+     border: 1.8px solid var(--back-color-red1);
+     border-radius: 5px;
+}
+
 .enterprise{
      background-color: var(--back-color-blue2);
+}
+.enterprise-ad{
+     border: 1.8px solid var(--back-color-blue2);
+     border-radius: 5px;
+}
+
+.enterprise-ad:hover{
+     box-shadow: 1.5px 1.5px var(--back-color-blue2);
 }
 
 .full-width{
@@ -3815,6 +3850,7 @@ a{
      width: 18px;
      margin: 0 2px;
 }
+
 /* end of overriders */
 /* media queries */
 
