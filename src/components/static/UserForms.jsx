@@ -4,7 +4,7 @@ import Title from "../dynamic/TitleComponents"
 import { textColors, titleSize } from "../styles"
 import UserContext from "../../Contexts/UserContext";
 import { ImCross, ImTicket } from "react-icons/im";
-import {  useNavigate } from "react-router-dom";
+import {  useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AppData from "../../Contexts/AppContext";
 import server from "../../config/Server";
@@ -16,14 +16,21 @@ import { PaymentPlanForm } from "./PaymentPlans.component";
 
 
 const UserForms = () => {
-     const [user] = useContext(UserContext);
-     const {activeForm} = user;
+     // const [user] = useContext(UserContext);
+     // const {activeForm} = user;
+     const location = useLocation()
+     const {pathname} = location
+     const activeForm = pathname.split("/")[2];
+     useEffect(() => {
+          console.log(pathname.split('/'))
+     },[])
+     
      if(activeForm != '') {
           return (
                <div className="user-forms hide-scroll">
-                {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : activeForm === "payment-plan-form" ? <PaymentPlanForm /> : null}
+                    {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : activeForm === "payment-plan-form" ? <PaymentPlanForm /> : null}
                </div>
-             )
+          )
      }else{
           return(
                <></>
@@ -83,7 +90,7 @@ const LoginForm = () => {
                     const res = await server.resetPassword('request-reset',{email});
                     if(res.status === "pass") {
                          // raiseAlert('success', `${res.message}`, <TiTick />);
-                         setUser((prev) => ({...prev, activeForm:'reset-password', userInfo: {email}}));
+                         navigate("/forms/reset-password")
                     }else{
                          return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
                     }
@@ -123,7 +130,7 @@ const LoginForm = () => {
                     </div>
                </form>
                <div className="line-divider"><p>Or</p></div>
-               <p className="other-link">Don&rsquo;t have account <b onClick={() => setUser((prev) => ({...prev, activeForm:'signup'}))}>Sign Up</b></p>
+               <p className="other-link">Don&rsquo;t have account <b onClick={() => navigate("/forms/signup")}>Sign Up</b></p>
                </>
                
                 :<Loading />}
@@ -137,6 +144,7 @@ const SignUpForm = () => {
      const [,setData] = useContext(AppData);
      const [locations, setLocations] = useState([]);
      const [loading, setLoading] = useState(false);
+     const navigate = useNavigate();
 
      const raiseAlert = (type, message, icon) => {
           setData((prev)=> ({
@@ -162,7 +170,7 @@ const SignUpForm = () => {
                const res = await server.register(formData);
                if (res.status === "pass") {
                raiseAlert('success', 'Successfully created the account', <ImTicket />);
-               setUser((prev) => ({ ...prev, activeForm: 'login' }));
+               navigate("/forms/login")
                } else {
                if(res.error) console.log(res.error);
                raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
@@ -234,24 +242,25 @@ const SignUpForm = () => {
           </form>
                }
                <div className="line-divider"><p>Or</p></div>
-               <p className="other-link">Have account <b onClick={() => setUser((prev) => ({...prev, activeForm:'login'}))}>Login</b></p>
+               <p className="other-link">Have account <b onClick={() => navigate("/forms/login")}>Login</b></p>
                
           </div>
      )
 }
 
 const PasswordResetResponce = () => {
-     const [user, setUser] = useContext(UserContext);
+     const navigate = useNavigate();
+     const [user] = useContext(UserContext);
      const {email } = user.userInfo;
      const closeForm = () => {
-          setUser({activeForm:'', userInfo:{}});
+          navigate("/forms/login")
      }
      return (
           <div className="form-container hide-scroll">
                <p className="pass-reset-responce">An email containing the password reset link has been sent to the email <b>{email}</b> .</p>
                <p className="pass-reset-responce">Check the email to reset your password</p>
                <div className="group align-right">
-                    <ActionBtn title="Close" action={closeForm} />
+                    <ActionBtn title="Login" action={closeForm} />
                </div>
                
           </div>

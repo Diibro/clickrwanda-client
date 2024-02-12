@@ -9,12 +9,12 @@ import { useContext } from "react";
 import UserContext from "../../Contexts/UserContext";
 
 const Footer = () => {
-     const [user, setUser] = useContext(UserContext);
+     const [user] = useContext(UserContext);
      const{loggedIn} = user;
      const navigate = useNavigate();
      const getStarted = () => {
           if(!loggedIn){
-               setUser((prev) => ({...prev, activeForm: 'signup'}))
+               return navigate("/forms/signup")
           }
      }
      const viewPlans = () => {

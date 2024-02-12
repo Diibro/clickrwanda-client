@@ -49,7 +49,7 @@ export const PaymentPlansContainer = () => {
 }
 
 export const PaymentPlanChoice = () => {
-     const [,setUser] = useContext(UserContext)
+     const navigate = useNavigate();
      const location = useLocation()
      const {pathname} = location;
      const [planInView, setPlanInView] = useState({});
@@ -61,12 +61,8 @@ export const PaymentPlanChoice = () => {
           setPlanInView(filteredPlans[0]);
      }
 
-     const proceedPayment = (amount, duration) => {
-          return setUser((prev) => ({
-               ...prev, 
-               activeForm: 'payment-plan-form', 
-               payInfo: {plan_id: planInView.plan_id, plan_name: planInView.title, amount, duration }
-          }))
+     const proceedPayment = () => {
+          return navigate("/forms/payment-plan-form")
      }
      useEffect(() => {
           updatePlanViewed();
@@ -87,7 +83,7 @@ export const PaymentPlanChoice = () => {
                          <h3>Membership Period:</h3>
                          <div className="durations">
                               {planInView?.memberShipDuration?.map(duration => <div className="membership-duration-row" key={duration.months}>
-                                   <span className="months">Months: {duration.months}</span> <span className="price">Price: Rwf {formatPrice(planInView.mainPrice * duration.months)}</span> <ActionBtn title="Select" action={() => proceedPayment(planInView.mainPrice * duration.months, duration.months)} />
+                                   <span className="months">Months: {duration.months}</span> <span className="price">Price: Rwf {formatPrice(planInView.mainPrice * duration.months)}</span> <ActionBtn title="Select" action={() => proceedPayment()} />
                               </div>)}
                          </div>
                     </div>
@@ -99,7 +95,6 @@ export const PaymentPlanChoice = () => {
 
 export const PaymentPlanForm = () => {
      const [user,setUser] =useContext(UserContext);
-     const {payInfo} = user;
 
      const closeForm = () => {
           setUser((prev) => ({...prev, activeForm:''}));

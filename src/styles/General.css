@@ -1740,17 +1740,15 @@ a{
 
 
 .user-forms{
-     z-index: 20;
-     position: fixed;
+     position: relative;
      top: 0;
      width: 100vw;
-     height: 100vh;
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: center;
-     background-color: var(--text-color-title-transparent);
-     backdrop-filter: blur(20px);
+     background-color: var(--white-text);
+     padding: 50px 0;
 }
 
 .close-icon{
@@ -1785,6 +1783,7 @@ a{
      align-items: center;
      max-height: 80%;
      overflow-y: scroll;
+     box-shadow: 1px 0.5px 5px var(--gray-text);
 }
 
 .user-forms .form-container::-webkit-scrollbar{
@@ -1872,6 +1871,7 @@ a{
      max-height: 80%;
      overflow-y: scroll;
      color: var(--text-color-title);
+     box-shadow: 1px 0.5px 5px var(--gray-text);
 }
 
 .advert-form-container .close-icon {
@@ -1901,6 +1901,12 @@ a{
      margin: 10px auto;
 }
 
+.advert-form-container form .row h2{
+     font-size: 1.8rem;
+     font-weight: 700;
+     width: auto;
+     margin: 10px auto;
+}
 .advert-form-container form .col{
      width: 45%;
      display: flex;

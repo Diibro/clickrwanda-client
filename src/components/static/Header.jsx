@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import UserContext from "../../Contexts/UserContext";
 import { ActionBtn } from "../dynamic/Buttons";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
 import AppData from "../../Contexts/AppContext";
 const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png';
@@ -16,19 +16,14 @@ const DesktopHeader = () => {
      const {isTablet,isMobile} = deviceView;
      const [navOn, setNavOn] = useState(false);
      const location = useLocation();
+     const navigate = useNavigate();
 
      const activateForm = () =>{
           if(loggedIn){
                setData((prev) => ({...prev, fetchNow: true}));
-               return setUser((prev) => ({
-                    ...prev, 
-                    activeForm: 'add-advert'
-               }))
+               return navigate('/forms/add-advert')
           }else{
-               return setUser((prev) => ({
-                    ...prev, 
-                    activeForm: 'login'
-               }))
+               return navigate('/forms/login')
           }
           
      }

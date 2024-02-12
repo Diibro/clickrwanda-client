@@ -66,11 +66,11 @@ const Layout = () => {
                <Route path='/payment-plans/*' element={<PaymentPlans />} />
                <Route path='/top-deals' element={<TopDealsPage />} />
                <Route path='/sponsored-ads' element={<BoostedAdsPage />} />
+               <Route path="/forms/:params" element={<UserForms /> } />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 
           <ShareButtons />
-          <UserForms /> 
           {/* <Loadingv2 /> */}
           <LoadingV1 />
           <Footer /> 

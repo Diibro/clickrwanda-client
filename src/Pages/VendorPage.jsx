@@ -114,12 +114,12 @@ const VendorPage = () => {
 
         {
           vendorAds && vendorAds !== "no data found" ? 
-            <>
+            <div className='page'>
               <div className="vendor-page-title">
                 <h3>Vendor Adverts ({`${vendorAds.length} ad${vendorAds.length > 1 ?'s': ''}`})</h3>
               </div>
               <SimilarAds limit={0} adverts={vendorAds}/>
-            </>
+            </div>
           : 
           <div><p>No adverts found for this vendor</p></div>
         }

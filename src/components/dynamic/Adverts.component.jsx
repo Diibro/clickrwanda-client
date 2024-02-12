@@ -144,9 +144,8 @@ export const AddAdvertForm = () => {
       if(res.status === "pass"){
         raiseAlert('success', `${res.message} as ${adInfo.ad_name}`, <TiTick />);
         navigate('user-dashboard/user-adverts');
-        setUser((prev) => ({...prev, activeForm:''}));
       }else{
-        if(res.message === "No Authentication Token" || res.message === 'Authentication Error') setUser((prev) => ({...prev, activeForm:'login'}));
+        if(res.message === "No Authentication Token" || res.message === 'Authentication Error') navigate("/forms/login");
         return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
       }
     } catch (error) {
