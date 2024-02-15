@@ -144,11 +144,11 @@ export const RequestQuoteHeader = () => {
      return(
           <div className="home-request-quote-header hide-scroll">
                <Link to="/get-started">Open a shop</Link>
-               <Link to="/send-request?=request-quotation" >Request Quotation</Link>
-               <Link to="/send-request?=find-room">Find a room</Link>
                <Link to="/send-request?=buy-house">Buy a house</Link>
                <Link to="/send-request?=buy-car">Buy a car</Link>
                <Link to="/send-request?=find-job">Find a job</Link>
+               <Link to="/send-request?=request-quotation" >Request Quotation</Link>
+               <Link to="/send-request?=find-room">Find a room</Link>
           </div>
      )
 }
