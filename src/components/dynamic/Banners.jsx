@@ -8,11 +8,10 @@ import ConectHr from "../../assets/samples/real-hr.png";
 import AskaHr from "../../assets/samples/aska-hr.png";
 import AdSide from "../../assets/samples/asideAd.png"
 
-// const HeroBanners = [
-//      {banner_image: HeroBanner},
-//      {banner_image: HeroBanner3},
-//      {banner_image: HeroBanner4},
-//      {banner_image: HeroBanner5}]
+const banners = [
+     {name: "Real VR", imgSrc: RealSide},
+     {name: "Aska VR", imgSrc: AskaSide},
+]
 
 const HeroBanners = [
           {banner_image: ConectHr}, {banner_image: AskaHr}]

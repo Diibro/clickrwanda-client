@@ -3,10 +3,10 @@ import { TickIcon } from "./Icons";
 import PropTypes from "prop-types"
 import { useLocation, useNavigate } from "react-router-dom";
 import { ExtraBoostPlans, MainPaymentPlansInfo } from "../../config/payPlans";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { formatPrice } from "../../utils/otherFunctions";
-import UserContext from "../../Contexts/UserContext";
-import { ImCross } from "react-icons/im";
+// import UserContext from "../../Contexts/UserContext";
+import { MdCall, MdEmail } from "react-icons/md";
 
 export const PaymentPlanCard = ({item}) => {
      const features = item.allowed;
@@ -94,15 +94,20 @@ export const PaymentPlanChoice = () => {
 }
 
 export const PaymentPlanForm = () => {
-     const [user,setUser] =useContext(UserContext);
-
-     const closeForm = () => {
-          setUser((prev) => ({...prev, activeForm:''}));
-     }
+     // const [user,setUser] =useContext(UserContext);
      return(
           <div className="form-container hide-scroll">
-          <i onClick={closeForm} className="close-icon"><ImCross/></i>
-               <h2>comming soon... </h2>
+               <div className="plan-form">
+                    <h2 className="title">Contact Sales</h2>
+                    <div className="row">
+                         <p>Please contact us to complete your payment plan. We are here to assist you!</p>
+                         <p>After completing payment, your membership plan is activated with in 24rs only.</p>
+                    </div>
+                    <div className="row">
+                         <a href="tel:+250727559173"><MdCall /></a>
+                         <a href="mailto:clickrwandaltd@gmail.com"><MdEmail /></a>
+                    </div>
+               </div>
           </div>
      )
 }

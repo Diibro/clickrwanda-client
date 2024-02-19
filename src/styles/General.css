@@ -1797,6 +1797,7 @@ a{
      align-items: center;
 }
 
+
 .user-forms .form-container form .group{
      width: 100%;
      display: flex;
@@ -1859,6 +1860,53 @@ a{
      background-color: var(--back-color-gold1);
 }
 
+.user-forms .form-container .plan-form{
+     width: 90%;
+     margin: 20px auto;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.user-forms .form-container .plan-form .title{
+     font-size: 1.8rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+}
+
+.user-forms .form-container .plan-form .row{
+     width: 90%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     flex-wrap: wrap;
+}
+
+.user-forms .form-container .plan-form .row p{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+     width: 90%;
+     margin: 10px auto;
+}
+
+.user-forms .form-container .plan-form .row a {
+     color: var(--white-text);
+     background-color: var(--back-color-blue1);
+     border-radius: 5px;
+     padding: 7.5px 20px;
+     border: 1.5px solid var(--back-color-blue1);
+     cursor: pointer;
+     transition: all 0.4s;
+     margin:  0 20px;
+     font-size: 25px;
+}
+
+.user-forms .form-container .plan-form .row a:hover{
+     color: var(--back-color-blue1);
+     background-color: var(--white-text);
+}
 .advert-form-container{
      position: relative;
      width: clamp(360px, 80%, 1600px);
