@@ -49,3 +49,12 @@ export const formatPrice = (price) => {
 
      return formattedPrice;
 } 
+
+export const getArrayOfNums = (num) => {
+  const arr = [];
+  for(let i = 0; i < num; i++) {
+    arr[i] = i;
+  }
+
+  return arr;
+}

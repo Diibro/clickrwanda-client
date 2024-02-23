@@ -8,6 +8,8 @@ import { SubmitButton } from './Buttons';
 import { FaShareAlt, FaLongArrowAltRight } from "react-icons/fa";
 import AppData from '../../Contexts/AppContext';
 import { formatTimeAgo } from '../../utils/dateFunctions';
+import { LoadingImage } from './LoadinComponents';
+import { CImage } from '../static/Image';
 
 
 const Advert = () => {
@@ -37,7 +39,8 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <div className="ad-image">
                <div className='background-img' style={{backgroundImage:`url(${image})`}} ></div>
-                    <img src={image} alt={title} onClick={action} loading='lazy' />
+                    {/* <img src={image} alt={title} onClick={action} loading='lazy' /> */}
+                    <CImage image={{src:image, alt:title, action}}  />
                </div>
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
@@ -70,7 +73,8 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
                <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
                <div className="ad-image" >
                     <div className='background-img' style={{backgroundImage:`url(${image})`}} ></div>
-                    <img src={image} alt={capitalizeString(title)} onClick={action} loading='lazy'/>
+                    {/* {image ? <img src={image} alt={capitalizeString(title)} onClick={action} loading='lazy'/> : <LoadingImage />} */}
+                    <CImage image={{src:image, alt:title, action}}  />
                </div>
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>

@@ -3,6 +3,7 @@ import { FaArrowRight, FaArrowLeft, FaShareAlt } from "react-icons/fa";
 import PropTypes from 'prop-types';
 import AppData from "../../Contexts/AppContext";
 import { useLocation } from "react-router-dom";
+import { CImage } from "../static/Image";
 
 export const ImageSlider = ({images}) => {
      const [inView, setInView] = useState(images[0]);
@@ -70,7 +71,8 @@ export const ImageViewer = ({images}) => {
                </div>
                <div className="main-image">
                     <i className='product-share-icon' onClick={() => showButtons(urlLink,images[0], "Advert")}><FaShareAlt/></i>
-                    <img src={inView} alt="advert images" loading="lazy" />
+                    {/* <img src={inView} alt="advert images" loading="lazy" /> */}
+                    <CImage image={{src:inView}} />
                </div>
                
           </div>

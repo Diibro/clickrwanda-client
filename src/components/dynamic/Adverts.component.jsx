@@ -17,6 +17,8 @@ import Loading from "../static/Loading";
 import { useNavigate } from "react-router-dom";
 import { HorizontalBanner } from "./Banners";
 import DeviceView from "../../Contexts/ViewContext";
+import { LoadingAd } from "./LoadinComponents";
+import { getArrayOfNums } from "../../utils/otherFunctions";
 
 export const Adverts = ({eleId,limit}) => {
       const [data] = useContext(AppData);
@@ -62,6 +64,9 @@ export const Adverts = ({eleId,limit}) => {
       }else{
         return(
           <Container>
+            <InnerSection>
+              {getArrayOfNums(10).map(item => <LoadingAd key={item} />)}
+            </InnerSection>
           </Container>
         )
       }
