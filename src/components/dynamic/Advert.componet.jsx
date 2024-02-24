@@ -12,7 +12,7 @@ import { LoadingImage } from './LoadinComponents';
 import { CImage } from '../static/Image';
 
 
-const Advert = () => {
+export const Advert = () => {
   return (
     <div>Advert</div>
   )
@@ -88,7 +88,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
      )
 }
 
-export const AdvertRenderer = ({item}) => {
+ const AdvertRenderer = ({item}) => {
      const navigate = useNavigate();
      const ViewAd = (ad) => {
           navigate(`/ad/${getItemUrl("advert", ad.ad_id)}`);
@@ -222,4 +222,4 @@ DashAdvert.propTypes ={
      item: PropTypes.any
 }
 
-export default Advert
+export default AdvertRenderer;

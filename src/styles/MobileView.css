@@ -145,4 +145,8 @@
      /* .home-get-started-sec .row-title h3{
           font-size: 1.2rem;
      } */
+
+     .search-bar-main .search-inputs select, .search-bar-main .search-inputs{
+          width: 90%;
+     }
 }

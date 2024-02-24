@@ -1,8 +1,8 @@
 import {  useEffect, useState } from "react";
 import { useLocation} from "react-router-dom"
-import { getItemUrlName, getSearchParams } from "../utils/urlFunctions";
+import {  getSearchParams } from "../utils/urlFunctions";
 import { InnerSection } from "../components/dynamic/InnerSectionContainer";
-import { AdvertImage, AdvertRenderer, AdvertRow } from "../components/dynamic/Advert.componet";
+import AdvertRenderer,{ AdvertImage,  AdvertRow } from "../components/dynamic/Advert.componet";
 import PropTypes  from 'prop-types';
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
@@ -49,22 +49,26 @@ const SearchPage = () => {
           <Helmet>
                <title>{`Search | Click Rwanda`}</title>
           </Helmet>
-          <div className="search-page">
-               <div className="search-page-searchbar">
-                    <SearchBar />
+          <div className="page-main search-page">
+               <div className="side left-side"></div>
+               <div className="page-content">
+                    <div className="search-page-searchbar">
+                         <SearchBar />
+                    </div>
+                    <div className="search-page-options hide-scroll">
+                         <span className={`${option === 'all' ? 'active' : ''}`} onClick={() => setOption('all')}>All</span>
+                         <span className={`${option === 'images' ? 'active' : ''}`} onClick={() => option === "vendors" ?  setFetch(true) : setOption("images")}>Images</span>
+                         <span className={`${option === 'websites' ? 'active' : ''}`} onClick={() => setOption('websites')}>Websites</span>
+                         <span className={`${option === 'vendors' ? 'active' : ''}`} onClick={() => setOption('vendors')}>Shops</span>
+                         <span className={`${option === 'deals' ? 'active' : ''}`} onClick={() => setOption('deals')}>Deals</span>
+                         <span className={`${option === 'featured' ? 'active' : ''}`} onClick={() => setOption('featured')}>Featured</span>
+                    </div>
+                    <h3>Showing search results for {searched.search || "All"}..</h3>
+                    {!loading ? 
+                         <SearchAdverts content={{ads, option}} />
+                    : <Loading />}
                </div>
-               <div className="search-page-options hide-scroll">
-                    <span className={`${option === 'all' ? 'active' : ''}`} onClick={() => setOption('all')}>All</span>
-                    <span className={`${option === 'images' ? 'active' : ''}`} onClick={() => option === "vendors" ?  setFetch(true) : setOption("images")}>Images</span>
-                    <span className={`${option === 'websites' ? 'active' : ''}`} onClick={() => setOption('websites')}>Websites</span>
-                    <span className={`${option === 'vendors' ? 'active' : ''}`} onClick={() => setOption('vendors')}>Shops</span>
-                    <span className={`${option === 'deals' ? 'active' : ''}`} onClick={() => setOption('deals')}>Deals</span>
-                    <span className={`${option === 'featured' ? 'active' : ''}`} onClick={() => setOption('featured')}>Featured</span>
-               </div>
-               <h3>Showing search results for {searched.search || "All"}..</h3>
-               {!loading ? 
-                    <SearchAdverts content={{ads, option}} />
-               : <Loading />}
+               <div className="side right-side" ></div>
           </div>
           </>
      

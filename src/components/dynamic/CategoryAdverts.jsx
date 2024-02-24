@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import { AdvertRenderer} from './Advert.componet';
+import  AdvertRenderer from './Advert.componet';
 import { useLocation } from 'react-router-dom';
 import { dashReplacer } from '../../utils/otherFunctions';
 import FilterContext from '../../Contexts/FilterContext';

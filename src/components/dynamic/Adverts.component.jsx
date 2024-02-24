@@ -1,10 +1,11 @@
 import { Container, Input, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { InnerSection } from "./InnerSectionContainer";
 import AppData from "../../Contexts/AppContext";
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 import { FaArrowRight } from "react-icons/fa";
-import { AdvertRenderer, AdvertRow} from "./Advert.componet";
+import { AdvertRow} from "./Advert.componet";
+const AdvertRenderer = React.lazy(() => import("./Advert.componet"))
 import { MoreLink } from "./LinksComponents";
 import { SubmitButton } from "./Buttons";
 import UserContext from "../../Contexts/UserContext";
@@ -53,7 +54,10 @@ export const Adverts = ({eleId,limit}) => {
               <InnerSection type="content">
                 {
                   adverts.map((item) => (
-                    <AdvertRenderer key={item.ad_id} item={item}/>
+                    // <AdvertRenderer key={item.ad_id} item={item}/>
+                    <React.Suspense key={item.ad_id}  fallback={<LoadingAd />}>
+                      <AdvertRenderer item={item} />
+                    </React.Suspense>
                   ))
                 }
               </InnerSection>
@@ -80,7 +84,9 @@ export const SimilarAds = ({limit, adverts}) => {
         <InnerSection type="full-width">
           {
             adverts.map((item, index) => ( index <= limit ? (
-              <AdvertRenderer key={item.ad_id} item={item}/>
+              <React.Suspense key={item.ad_id}  fallback={<LoadingAd />}>
+                <AdvertRenderer item={item} />
+              </React.Suspense>
             ) : null))
           }
         </InnerSection>
@@ -266,7 +272,10 @@ export const CategoryAdverts = ({adverts}) => {
     <div className="category-adverts">
       {
             adverts.map((item) => (
-              <AdvertRenderer key={item.ad_id} item={item}/>
+              // <AdvertRenderer key={item.ad_id} item={item}/>
+              <React.Suspense key={item.ad_id}  fallback={<LoadingAd />}>
+                <AdvertRenderer item={item} />
+              </React.Suspense>
             ))
           }
     </div>
@@ -309,7 +318,7 @@ export const BoostedAds = ({params}) => {
     <div className="home-boosted-ads " >
       <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
         {
-          ads && ads[0] && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+          ads && ads[0] && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item}/>
           )
         }
       </div>

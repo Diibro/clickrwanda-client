@@ -217,4 +217,24 @@
      .payment-plan-choice .content .features ul li, .payment-plan-choice .content .membership .durations .membership-duration-row span{
           font-size: 1.2rem;
      }
+
+     .search-bar-main .search-inputs input{
+          width: 95%;
+          margin: 5px;
+     }
+
+     .search-bar-main:hover .search-inputs select{
+          display: inline-flex;
+
+     }
+     .search-bar-main .search-inputs select{
+          width: 45%;
+          display: none;
+     }
+     .search-page .search-page-searchbar{
+          margin: 10px auto;
+          width: 95%;
+          padding: 0 10px;
+     }   
+     
 }
