@@ -72,6 +72,17 @@
      .payment-plan-choice .content .membership .durations .membership-duration-row span{
           font-size: 0.9rem;
      }
+     .header-profile{
+          width: 60%;
+     }
+
+     .desktop-header > a {
+          width: 30%;
+     }
+
+     .actionBtn {
+          border-radius: 5px;
+     }
      /* .home-get-started-sec .row-title h3{
           font-size: 1.2rem;
      } */

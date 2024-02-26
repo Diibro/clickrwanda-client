@@ -237,4 +237,12 @@
           padding: 0 10px;
      }   
      
+     .loading-ad {
+          width: 47%;
+     }
+
+     .actionBtn {
+          border-radius: 10px;
+          padding: 5px 10px;
+     }
 }
