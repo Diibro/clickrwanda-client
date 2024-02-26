@@ -65,65 +65,73 @@ const VendorPage = () => {
       {loading ? <Loading/>
       :
       <>
-        {vendorInfo ? 
-          <>
-            <VendorHeader title={vendorInfo.username} image={vendorInfo?.profile_image} />
-            <div className='vendor-page-title'>
-              <h2>{vendorInfo.full_name}</h2>
-            </div>
-            <div className="vendor-page-info">
-              <div className="col">
-                <div className="row">
-                  <span>Business: </span>
-                  <p>{vendorInfo.full_name}</p>
+        {vendorInfo ? <VendorHeader title={vendorInfo.username} image={vendorInfo?.profile_image} /> : null}
+        <div className='page-main'>
+          <div className="side left-side"></div>
+          <div className="page-content">
+            {vendorInfo ? 
+              <>
+                <div className='vendor-page-title'>
+                  <h2>Welcome to the {vendorInfo.full_name} Shop</h2>
                 </div>
-                <div className="row">
-                  <span>Email: </span>
-                  <p>{vendorInfo.user_email}</p>
-                </div>
-                <div className="row">
-                  <span>Phone: </span>
-                  <p>{vendorInfo.user_phone}</p>
-                </div>
-                <div className="row">
-                  <span>Joined Date:</span>
-                  <p>{dateFormatMonth(vendorInfo.reg_date)}</p>
-                </div>
-              </div>
-              <div className="col">
-                <div className='row'>
-                  <span>Location:</span>
-                  <p>{vendorInfo.user_location.location}</p>
-                </div>
-                <div className="row">
-                  <span>Rating:</span>
-                  <div className='contact'><UserRating rating={vendorInfo.rating}/></div>
-                  
-                </div>
-                <div className='row'>
-                  <span>Contact:</span>
-                  <div className='contact'>
-                    <a href={`tel:${vendorInfo.user_phone}`}><i><IoMdCall /></i></a>
-                    <a href={`mailto:${vendorInfo.user_email}`}><i><MdEmail /></i></a>
+                <div className="vendor-page-info">
+                  <div className="col">
+                    <div className="row">
+                      <span>Business: </span>
+                      <p>{vendorInfo.full_name}</p>
+                    </div>
+                    <div className="row">
+                      <span>Email: </span>
+                      <p>{vendorInfo.user_email}</p>
+                    </div>
+                    <div className="row">
+                      <span>Phone: </span>
+                      <p>{vendorInfo.user_phone}</p>
+                    </div>
+                    <div className="row">
+                      <span>Joined Date:</span>
+                      <p>{dateFormatMonth(vendorInfo.reg_date)}</p>
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className='row'>
+                      <span>Location:</span>
+                      <p>{vendorInfo.user_location.location}</p>
+                    </div>
+                    <div className="row">
+                      <span>Rating:</span>
+                      <div className='contact'><UserRating rating={vendorInfo.rating}/></div>
+                      
+                    </div>
+                    <div className='row'>
+                      <span>Contact:</span>
+                      <div className='contact'>
+                        <a href={`tel:${vendorInfo.user_phone}`}><i><IoMdCall /></i></a>
+                        <a href={`mailto:${vendorInfo.user_email}`}><i><MdEmail /></i></a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </>
-        : null}
+              </>
+            : null}
 
-        {
-          vendorAds && vendorAds !== "no data found" ? 
-            <div className='page'>
-              <div className="vendor-page-title">
-                <h3>Vendor Adverts ({`${vendorAds.length} ad${vendorAds.length > 1 ?'s': ''}`})</h3>
-              </div>
-              <SimilarAds limit={0} adverts={vendorAds}/>
-            </div>
-          : 
-          <div><p>No adverts found for this vendor</p></div>
-        }
+            {
+              vendorAds && vendorAds !== "no data found" ? 
+                <div className='page'>
+                  <div className="vendor-page-title">
+                    <h3>Vendor Adverts ({`${vendorAds.length} ad${vendorAds.length > 1 ?'s': ''}`})</h3>
+                  </div>
+                  <SimilarAds limit={0} adverts={vendorAds}/>
+                </div>
+              : 
+              <div><p>No adverts found for this vendor</p></div>
+            }
+          </div>
+          <div className='side'></div>
+        </div>
+
       </>
+      
 
       }
     </div>

@@ -154,7 +154,7 @@ export const AddAdvertForm = () => {
       const res = await server.addAdvert(formData);
       if(res.status === "pass"){
         raiseAlert('success', `${res.message} as ${adInfo.ad_name}`, <TiTick />);
-        navigate('user-dashboard/user-adverts');
+        navigate('/user-dashboard/user-adverts');
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') navigate("/forms/login");
         return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
@@ -240,6 +240,7 @@ export const AddAdvertForm = () => {
           <div className="col">
             <InputLabel htmlFor="ad image">Ad Image: </InputLabel>
             <Input type="file" name="ad image" onChange={(e) => setAdInfo((prev) => ({...prev, ad_image: e.target.files[0]}))} required />
+            <p>Main ad image</p>
           </div>
           <div className="col">
             <InputLabel htmlFor="ad images">Other Images --<i>optional</i>: </InputLabel>
