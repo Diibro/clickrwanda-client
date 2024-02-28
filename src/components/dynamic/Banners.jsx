@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect, useRef} from "react";
 import PropTypes from 'prop-types';
 import {  } from "react";
 import { openNewTab } from "../../utils/otherFunctions";
@@ -61,8 +61,41 @@ export const RightBanner = ({items}) => {
 }
 
 export const HorizontalBanner = ({items}) => {
+     const bannerRef = useRef(null);
+     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+     
+     const scrollBanner = async () => {
+          let counter = 1;
+          let check = true;
+          let loopInf = true;
+          const scrollWidth = bannerRef.current?.scrollWidth / items.length;
+          while(loopInf){
+               await delay(10000);
+               if(counter === items.length){
+                    check = false;
+               }else if(counter === 1){
+                    check = true;
+               }
+               if(check) {
+                    console.log("moved");
+                    counter++;
+                    bannerRef.current.scrollBy({left: scrollWidth, behavior: 'smooth'});
+                    
+               }else{
+                    counter--;
+                    bannerRef.current.scrollBy({left: -scrollWidth, behavior: 'smooth'});
+               }
+               
+               
+          }
+     }
+     // useEffect(()=> {
+     //      scrollBanner();
+     // },[]);
+
+     (async() => await scrollBanner())();
      return(
-          <div className="banner horizontal-banner">
+          <div className="banner horizontal-banner hide-scroll" ref={bannerRef}>
                {items?.map((banner, index) => (
                     <div className="hr-banner" key={index} onClick={() => openNewTab(banner.link)}>
                          <div className="hover-content">
