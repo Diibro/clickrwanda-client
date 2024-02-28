@@ -3,6 +3,7 @@ import server from "../config/Server";
 import Loading from "../components/static/Loading";
 import { BoostedAds } from "../components/dynamic/Adverts.component";
 import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
+import { Banners } from "../config/banners";
 
 const BoostedAdsPage = () => {
      const [ads, setAds] = useState([]);
@@ -30,7 +31,7 @@ const BoostedAdsPage = () => {
           </div>
           <div className="page-main">
                <div className="side">
-                    <LeftBanner />
+                    <LeftBanner items={Banners} />
                </div>
                <div className="page-content">
                     {loading ? <Loading /> : 
@@ -38,7 +39,7 @@ const BoostedAdsPage = () => {
                     }
                </div>
                <div className="side">
-                    <RightBanner />
+                    <RightBanner items={Banners} />
                </div>
           </div>
     </div>

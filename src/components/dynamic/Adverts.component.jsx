@@ -20,6 +20,7 @@ import { HorizontalBanner } from "./Banners";
 import DeviceView from "../../Contexts/ViewContext";
 import { LoadingAd } from "./LoadinComponents";
 import { getArrayOfNums } from "../../utils/otherFunctions";
+import { Banners } from "../../config/banners";
 
 export const Adverts = ({eleId,limit}) => {
       const [data] = useContext(AppData);
@@ -37,7 +38,7 @@ export const Adverts = ({eleId,limit}) => {
                 adverts.map((item, index) => ( index <= limit ? (
                   <>
                     <AdvertRenderer key={item.ad_id} item={item}/>
-                  {index === adLimit ? <HorizontalBanner /> : null}
+                  {index === adLimit ? <HorizontalBanner items={Banners} /> : null}
                   </>
                   
                 ) : null))

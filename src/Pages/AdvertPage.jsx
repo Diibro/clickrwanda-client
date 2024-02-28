@@ -17,6 +17,7 @@ import { getData, saveData } from "../utils/storageFunctions";
 import { AdvertReview, RateAdvert } from "../components/dynamic/Reviews.component";
 import { Helmet } from "react-helmet";
 import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
+import { Banners } from "../config/banners";
 
 
 const AdvertPage = () => {
@@ -77,7 +78,7 @@ const AdvertPage = () => {
                <title>{`${adViewed?.ad_name || 'Advert'}`} | Click Rwanda</title>
           </Helmet>
           <div className="page-main">
-               <div className="side"><LeftBanner /></div>
+               <div className="side"><LeftBanner items={Banners} /></div>
                <div className="page-content">
                     <div className="advert-page">
                     {
@@ -152,7 +153,7 @@ const AdvertPage = () => {
                     
                     </div>
                </div>
-               <div className="side"><RightBanner /></div>
+               <div className="side"><RightBanner items={Banners} /></div>
           </div>
     </>
   )

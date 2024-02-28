@@ -9,6 +9,7 @@ import { BoostedSellers, RequestQuoteHeader } from '../components/dynamic/Specia
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { HeroSectionBanner, HorizontalBanner, LeftBanner, RightBanner } from '../components/dynamic/Banners';
+import { Banners } from '../config/banners';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -30,19 +31,19 @@ const Home = () => {
             <RequestQuoteHeader />
           </div>
           <div className="sec-banner">
-              {isMobile ? null : <HeroSectionBanner />}
+              {isMobile ? null : <HeroSectionBanner items={Banners} />}
           </div>
           {/* <img src={HelloImage} alt="hello section image" /> */}
         </div>
         <div className="page-main">
-          <div className="side"><LeftBanner /></div>
+          <div className="side"><LeftBanner items={Banners} /></div>
           <div className="page-content">
           <InnerSection type="title">
             Our Best Sellers
             <Link to='/best-sellers'>View All</Link>
           </InnerSection>
           <BoostedSellers />
-          <HorizontalBanner />
+          <HorizontalBanner items={Banners} />
           <InnerSection type="title" >
             Today Deals
             <Link to='/top-deals'>View All</Link>
@@ -59,7 +60,7 @@ const Home = () => {
             <Link to='/sponsored-ads'>View All</Link>
           </InnerSection>
           <BoostedAds />
-          <HorizontalBanner />
+          <HorizontalBanner items={Banners} />
           <InnerSection type="title" eleId={"home-new-ads"} >
             New Ads
           </InnerSection>
@@ -70,7 +71,7 @@ const Home = () => {
           <AdWebsites />
           {/* <GetStartedV1 /> */}
           </div>
-          <div className="side right-side"><RightBanner/></div>
+          <div className="side right-side"><RightBanner items={Banners}/></div>
         </div>
       </div>
     </>

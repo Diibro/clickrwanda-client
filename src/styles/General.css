@@ -842,7 +842,8 @@ a{
 }
 .home .hello-section{
      width: 100%;
-     background-color: var(--back-color-blue2);
+     /* background-color: var(--back-color-blue2); */
+     background-color: var(--text-color-title);
      position: relative;
      display: flex;
      flex-direction: row;
@@ -1489,7 +1490,8 @@ a{
      display: flex;
      flex-direction: row;
      align-items: center;
-     background-color: var(--back-color-blue1);
+     /* background-color: var(--back-color-blue1); */
+     background-color: var(--text-color-title);
      padding: 5px 10%;
      justify-content: space-between;
      color: white;
@@ -1497,6 +1499,7 @@ a{
      top: 0;
      z-index: 10;
      max-height: 150px;
+     border-bottom: 0.5px solid var(--text-color-para1);
 }
 
 .desktop-header h1{
@@ -2079,6 +2082,11 @@ a{
      box-shadow: 0.4px 0.5px 4px var(--text-color-para1);
      min-height: 300px;
      border-radius: 5px;
+}
+
+.loading-seller{
+     width: 18%;
+
 }
 
 .loading-image{
@@ -3764,7 +3772,7 @@ a{
 .hero-section-banner{
      width: 95%;
      color: var(--white-text);
-     border-radius: 5px;
+     border-radius: 2.5px;
      overflow: hidden;
      display: flex;
      flex-direction: column;
@@ -3781,10 +3789,17 @@ a{
      align-items: center;
      justify-content: flex-start;
      gap: 10px;
+     position: relative;
+     margin: 4px auto;
+     cursor: pointer;
+}
+
+.hero-banner-container:hover .hover-content{
+     display: flex;
 }
 
 .hero-banner-container img{
-     max-height: 250px;
+     max-height: 100px;
 }
 
 
@@ -3798,6 +3813,26 @@ a{
      color: var(--white-text);
      border-radius:2px;
      gap: 10px;
+}
+
+.side-banner .vr-banner{
+     width: 100%;
+     height: 220px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin: 10px 0;
+     position: relative;
+     cursor: pointer;
+}
+
+.side-banner .vr-banner img{
+     width: 100%;
+     height: 100%;
+}
+
+.side-banner .vr-banner:hover .hover-content{
+     display: flex;
 }
 
 .banner img{
@@ -3816,10 +3851,50 @@ a{
      border-radius: 5px;
      color: var(--white-text);
      margin: 10px auto;
+     flex-wrap: nowrap;
 }
 
-.horizontal-banner img{
+.horizontal-banner .hr-banner{
      width: 49%;
+     position: relative;
+     height: 120px;
+     cursor: pointer;
+}
+
+.horizontal-banner .hr-banner:hover .hover-content{
+     display: flex;
+}
+
+.hover-content{
+     width: 100%;
+     position: absolute;
+     top: 0;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     height: 100%;
+     background: var(--text-color-title-transparent);
+     display: none;
+}
+
+.hover-content a{
+     padding: 5px 10px;
+     background-color: var(--text-color-title);
+     color:var(--back-color-gold1);
+     border-radius: 10px;
+     font-size: 0.85rem;
+     font-weight: 700;
+}
+
+.hover-content a:hover{
+     border: 1.5px solid var(--text-color-title);
+     color: var(--text-color-title);
+     background-color: var(--white-text);
+}
+.horizontal-banner img{
+     width: 100%;
+     height: 100%;
      box-shadow: 0.3px 0.3px 1px 0.3px var(--text-color-black) ;
 }
 /*End of Banner styles */ 
@@ -3958,6 +4033,7 @@ a{
 hide scroll bars
 */
 /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+
 .hide-scroll::-webkit-scrollbar {
      display: none;
 }
