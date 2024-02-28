@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
 import AppData from "../../Contexts/AppContext";
 const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png';
-import Logo from '../../assets/logo/clickrwanda.png';
+import Logo from '../../assets/logo/click-logo-rb.png';
 // import { BiMenu } from "react-icons/bi";
 
 const DesktopHeader = () => {
