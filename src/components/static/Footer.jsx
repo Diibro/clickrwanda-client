@@ -32,7 +32,7 @@ const Footer = () => {
           <div className="footer-col">
                <Title content={{color:textColors.white, size: titleSize.small, name: "Our Address"}} />
                <div className="footer-content">
-                    <a href="tel:+250727559173" rel="noreferrer" target="_blank"><i className="icon call-icon"><MdCall /></i> Call us: +250 727 559 173 </a>
+                    <a href="tel:+250 787260494" rel="noreferrer" target="_blank"><i className="icon call-icon"><MdCall /></i> Call us: +250787260494 </a>
                     <p><i className="icon"><FaLocationArrow /> </i> Location: Kigali, Rwanda </p>
                     <a href="mailto:info@clickrwanda.com" rel="noreferrer" target="_blank"><i className="icon"><MdEmail /></i> Email: info@clickrwanda.com</a>
                </div>
@@ -42,7 +42,7 @@ const Footer = () => {
                <div className="footer-content">
                     <p>Advertise your business with us</p>
                     <p>Send us a direct message via:</p>
-                    <a href="https://wa.me/+250727559173" rel="noreferrer" target="_blank"><i className="icon whatsapp-icon"><FaWhatsapp /></i> Whatsapp: +250727559173 </a>
+                    <a href="https://wa.me/+250 787260494" rel="noreferrer" target="_blank"><i className="icon whatsapp-icon"><FaWhatsapp /></i> Whatsapp: +250787260494 </a>
                </div>
                {!loggedIn ? <ActionBtn title="Get Started" action={getStarted} /> : null } 
                <ActionBtn title="Our Plans"  action={viewPlans}/>
