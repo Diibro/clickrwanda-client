@@ -47,7 +47,10 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
                     <h5 onClick={action}>{capitalizeString(title)}</h5>
                     <a className='contact-no' href={`tel:${contact}`}>{contact}</a>
                     <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
-                    <b><i>{formatTimeAgo(adDate)}</i><SubmitButton content={{title:`${views} view${views > 1 ? 's' : '' }`, action, size:'small-text'}} /></b>
+                    <b>
+                         <i>{formatTimeAgo(adDate)}</i>
+                         {/* <SubmitButton content={{title:`${views} view${views > 1 ? 's' : '' }`, action, size:'small-text'}} /> */}
+                    </b>
                     <b><span>{`${currency} ${formatPrice(price)}`}</span> </b>
                </div>
           </div>
@@ -81,7 +84,10 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
                     <h5 onClick={action}>{title}</h5>
                     <a className='contact-no' href={`tel:${contact}`}>{contact}</a>
                     <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
-                    <b><i>{formatTimeAgo(adDate)}</i> <SubmitButton content={{title:`${views} view${views > 1 ? 's' : '' }`, action, size:'small-text'}} /></b>
+                    <b>
+                         <i>{formatTimeAgo(adDate)}</i> 
+                         {/* <SubmitButton content={{title:`${views} view${views > 1 ? 's' : '' }`, action, size:'small-text'}} /> */}
+                    </b>
                     <b><span>Rwf {formatPrice(price)}</span></b>
                </div>
           </div>

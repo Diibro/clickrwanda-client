@@ -38,18 +38,13 @@ const Home = () => {
         <div className="page-main">
           <div className="side"><LeftBanner items={Banners} /></div>
           <div className="page-content">
-          <InnerSection type="title">
-            Our Best Sellers
-            <Link to='/best-sellers'>View All</Link>
-          </InnerSection>
-          <BoostedSellers />
-          <HorizontalBanner items={Banners} />
+          
           <InnerSection type="title" >
             Today Deals
             <Link to='/top-deals'>View All</Link>
           </InnerSection>
           <TodayDeals />
-          
+          <HorizontalBanner items={Banners} />
           
           <InnerSection type="title" >
             Our top categories
@@ -65,6 +60,11 @@ const Home = () => {
             New Ads
           </InnerSection>
           <Adverts eleId={"home-adverts"} limit={50} />
+          <InnerSection type="title">
+            Our Best Sellers
+            <Link to='/best-sellers'>View All</Link>
+          </InnerSection>
+          <BoostedSellers />
           <InnerSection type="title" >
           Sponsored Ads
           </InnerSection>
