@@ -848,7 +848,7 @@ a{
      display: flex;
      flex-direction: row;
      justify-content: center;
-     padding: 20px 1% 25px 1%;
+     padding: 10px 1% 25px 1%;
 }
 
 .home .hello-section .sec-1{
@@ -863,7 +863,7 @@ a{
      display: flex;
      flex-direction: column;
      border-radius: 15px;
-     padding: 01% 0% 1% 2%  ;
+     padding: 0% 0% 1% 2%  ;
      /* background-color: var(--back-color-red1); */
 
      width: 100%;
@@ -871,7 +871,7 @@ a{
 
 .home .hello-section .col h1{
      color: white;
-     font-size: 3rem;
+     font-size: 2.5rem;
      font-weight: 800;
      margin: 0 0 10px;
 } 
@@ -1323,7 +1323,7 @@ a{
      display: flex;
      flex-direction: row;
      align-items: center;
-     justify-content: left;
+     justify-content: center;
      position: relative;
      flex-wrap: nowrap;
      overflow-x: scroll;

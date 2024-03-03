@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { getItemUrl } from '../../utils/urlFunctions';
 import { FaLocationDot } from "react-icons/fa6";
 import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
-import { SubmitButton } from './Buttons';
+// import { SubmitButton } from './Buttons';
 import { FaShareAlt, FaLongArrowAltRight } from "react-icons/fa";
 import AppData from '../../Contexts/AppContext';
 import { formatTimeAgo } from '../../utils/dateFunctions';
-import { LoadingImage } from './LoadinComponents';
+// import { LoadingImage } from './LoadinComponents';
 import { CImage } from '../static/Image';
 
 
