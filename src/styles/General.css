@@ -1323,7 +1323,7 @@ a{
      display: flex;
      flex-direction: row;
      align-items: center;
-     justify-content: center;
+     justify-content: left;
      position: relative;
      flex-wrap: nowrap;
      overflow-x: scroll;
@@ -2633,7 +2633,9 @@ a{
 }
 .category-square p{
      font-size: 0.7rem;
-     color: var(--text-color-para1);
+     /* color: var(--text-color-para1); */
+     color: var(--back-color-blue2);
+     letter-spacing: 0.45px;
      font-weight: 600;
 }
 
@@ -4060,4 +4062,5 @@ hide scroll bars
 .wrap-scroll{
      flex-wrap: wrap !important;
      overflow-x: visible;
+     justify-content: center !important;
 }

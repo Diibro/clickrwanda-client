@@ -261,4 +261,10 @@
           height: 100px;
           margin-right: 10px;
      }
+
+     .category-square{
+          min-width: 18%;
+          width: 18%;
+          margin: 0 2% 10px;
+     }
 }
