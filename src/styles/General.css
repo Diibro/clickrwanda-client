@@ -2625,11 +2625,11 @@ a{
      color: var(--text-color-black);
      font-weight: 700;
      margin-top:5px;
-     max-width: 85%;
+     max-width: 95%;
      text-align: center;
      /* text-overflow: ellipsis; */
      white-space: wrap;
-     overflow: hidden;
+     /* overflow: hidden; */
 }
 .category-square p{
      font-size: 0.7rem;

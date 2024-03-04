@@ -49,7 +49,7 @@ const Home = () => {
           <InnerSection type="title" >
             Our top categories
           </InnerSection>
-          <Categories limit={isMobile ? 12 : 14} />
+          <Categories limit={0} />
           <InnerSection type="title" >
             Premium Ads
             <Link to='/sponsored-ads'>View All</Link>

@@ -13,6 +13,7 @@ import { getItemUrl } from '../../utils/urlFunctions';
 const Categories = ({limit}) => {
      const [data, setData] = useContext(AppData);
      const {categories} = data;
+     const cond = false;
      useEffect(() => {
           if(!categories[0]){
                setData((prev) => ({...prev, fetchNow:true}));
@@ -24,7 +25,7 @@ const Categories = ({limit}) => {
                <>
                <InnerSection type="content">
                     {/* {Array.isArray(categories) && <TopDealsCard />} */}
-                    {Array.isArray(categories) && limit != 0 ? categories.map(
+                    {Array.isArray(categories) && limit != 0  ? categories.map(
                     (item, index) => index < limit && item.category_id !== "d5bc3430-c1ce-4802-be23-b243a40229e3d5bc3430-c1ce-4802-be23-b243a40229e3" ? <CategoryContainerSquare
                          view={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                          key={item.category_id} 
