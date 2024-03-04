@@ -70,7 +70,7 @@ export const getParagraphs = (text, wordsPerParagraph) => {
   let currentParagraph = '';
 
   words.forEach(word => {
-    if (currentParagraph.split(/\s+/).length >= wordsPerParagraph) {
+    if (currentParagraph.split(/\s+/).length > wordsPerParagraph) {
       paragraphs.push(currentParagraph.trim());
       currentParagraph = ''; 
     }
