@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import {  getItemUrl, getItemUrlId } from "../utils/urlFunctions";
 import {  useEffect, useState } from "react";
-import { capitalizeString, formatPrice } from "../utils/otherFunctions";
+import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunctions";
 import { jsonParserV1 } from "../utils/jsonFunctions";
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
@@ -99,9 +99,14 @@ const AdvertPage = () => {
                                         
                                         <div className="content">
                                              {adViewed?.description && <h4>Description:</h4>}
-                                             <p>
-                                                  {adViewed?.description?.desc}
-                                             </p>
+                                             {
+                                                  adViewed?.description ? 
+                                                       getParagraphs(adViewed?.description?.desc, 16).map((item, index) => 
+                                                            <p key={index}>{item}</p>
+                                                       )
+                                                       
+                                                  : null
+                                             }
                                         </div>
                                    </div>
                               </div>

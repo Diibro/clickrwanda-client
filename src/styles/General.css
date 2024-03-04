@@ -3411,10 +3411,12 @@ a{
 }
 
 .advert-page-mainAdvert .col .content p{
-     font-size: 0.9rem;
-     font-weight: 500;
+     font-size: 0.85rem;
+     font-weight: 600;
      width: 95%;
      margin: 2px auto;
+     margin-bottom: 10px;
+     text-align: justify;
 }
 
 .advert-page-mainAdvert .col .advert-page-info{

@@ -62,3 +62,25 @@ export const getArrayOfNums = (num) => {
 export const openNewTab = (url) => {
   window.open(url, "_blank", "noopener, noreferrer")
 }
+
+export const getParagraphs = (text, wordsPerParagraph) => {
+  let words = text.split(/\s+/);
+
+  let paragraphs = [];
+  let currentParagraph = '';
+
+  words.forEach(word => {
+    if (currentParagraph.split(/\s+/).length >= wordsPerParagraph) {
+      paragraphs.push(currentParagraph.trim());
+      currentParagraph = ''; 
+    }
+
+    currentParagraph += word + ' ';
+  });
+
+  if (currentParagraph.trim() !== '') {
+    paragraphs.push(currentParagraph.trim());
+  }
+
+  return paragraphs;
+}
