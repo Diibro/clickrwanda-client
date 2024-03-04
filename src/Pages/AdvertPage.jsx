@@ -68,6 +68,7 @@ const AdvertPage = () => {
           
      }
      useEffect(() => {
+               window.scrollTo(0,0);
                updateAdViewed();
      }, [location.search]);
   return (
