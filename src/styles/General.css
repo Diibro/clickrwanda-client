@@ -3317,7 +3317,7 @@ a{
      flex-wrap: wrap;
 }
 
-.advert-page-mainAdvert .col .cat span{
+.advert-page-mainAdvert .col .cat a{
      background-color: var(--text-color-title);
      color: var(--white-text);
      border-radius: 2rem;
@@ -3329,7 +3329,7 @@ a{
      margin: 2px 2px;
 }
 
-.advert-page-mainAdvert .col .cat span:hover{
+.advert-page-mainAdvert .col .cat a:hover{
      background-color: var(--back-color-blue2);
      cursor: pointer;
 }

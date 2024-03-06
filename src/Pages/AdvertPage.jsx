@@ -92,10 +92,10 @@ const AdvertPage = () => {
                                         <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
                                         {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
                                         {adViewed?.category_name && 
-                                             <p className="cat">
+                                             <div className="cat">
                                                   <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>
                                                   <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.sub_name}</span></a> 
-                                             </p>
+                                             </div>
                                         } 
                                         
                                         <div className="content">
