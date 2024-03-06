@@ -2808,9 +2808,10 @@ a{
 
 .ad-image img{
      max-width: 100%;
-     margin: 0;
+     /* margin: 0;
      min-height: 150px;
-     max-height: 150px;
+     max-height: 150px; */
+     max-height: 100%;
      /* aspect-ratio: 10/10; */
      border-radius: 0px;
      backdrop-filter: blur(15px);
