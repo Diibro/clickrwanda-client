@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from "react";
+import { useState, useEffect} from "react";
 import PropTypes from 'prop-types';
 import {  } from "react";
 import { openNewTab } from "../../utils/otherFunctions";
@@ -95,7 +95,7 @@ export const HorizontalBanner = ({items}) => {
 
      // (async() => await scrollBanner())();
      return(
-          <div className="banner horizontal-banner hide-scroll" ref={bannerRef}>
+          <div className="banner horizontal-banner hide-scroll">
                {items?.map((banner, index) => (
                     <div className="hr-banner" key={index} onClick={() => openNewTab(banner.link)}>
                          <div className="hover-content">
