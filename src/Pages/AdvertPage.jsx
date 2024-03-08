@@ -102,7 +102,7 @@ const AdvertPage = () => {
                                              {adViewed?.description && <h4>Description:</h4>}
                                              {
                                                   adViewed?.description ? 
-                                                       getParagraphs(adViewed?.description?.desc, 20).map((item, index) => 
+                                                       getParagraphs(adViewed?.description?.desc, 50).map((item, index) => 
                                                             <p key={index}>{item}</p>
                                                        )
                                                        
