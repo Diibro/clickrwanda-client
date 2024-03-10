@@ -5,7 +5,7 @@ export const Banners = [
                hr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1708778557/clickrwanda/banners/real-hr_wijfms.png",
                vr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1708778557/clickrwanda/banners/real-vr_vlhode.png"
           },
-          link: "https://www.clickrwanda.com/ad/advert?=d6abf473-5b89-4df4-8b1d-2028f6df4c1f"
+          link: "https://wa.me/+250784336340"
      },
      {
           name:"Aska Logistics",
