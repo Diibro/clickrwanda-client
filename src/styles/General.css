@@ -2686,14 +2686,15 @@ a{
 }
 
 .product-square-container .cat{
-     background-color: var(--text-color-para2);
+     background-color: var(--back-color-blue1);
      color: var(--white-text);
-     width: 90%;
+     max-width: 90%;
+     width: auto;
      text-overflow: ellipsis;
      white-space: nowrap;
      overflow: hidden;
-     margin: 5px auto 1px;
-     padding: 3px 10px;
+     margin: 10px auto 1px;
+     padding: 1px 10px;
      font-size: 0.9rem;
      border-radius: 2rem;
      transition: all 0.3s;
@@ -2784,8 +2785,7 @@ a{
 .ad-image {
      width: 100%;
      margin: 0;
-     min-height: 150px;
-     max-height: 150px;
+     height: 150px;
      border-radius: 0px;
      display: flex;
      flex-direction: row;
@@ -2801,20 +2801,15 @@ a{
 .ad-image .background-img{
      width: 100%;
      z-index: 0;
-     filter: blur(12px);
+     filter: blur(8px);
      position: absolute;
      height: 100%;
 }
 
 .ad-image img{
-     max-width: 100%;
-     /* margin: 0;
-     min-height: 150px;
-     max-height: 150px; */
      max-height: 100%;
-     /* aspect-ratio: 10/10; */
+     max-width: 100%;
      border-radius: 0px;
-     backdrop-filter: blur(15px);
      box-shadow: 0.2px 0.2px 3px var(--text-color-para1);
 }
 
