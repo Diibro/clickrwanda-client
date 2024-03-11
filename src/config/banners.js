@@ -10,7 +10,7 @@ export const Banners = [
      {
           name:"Aska Logistics",
           images:{
-               hr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1708778557/clickrwanda/banners/aska-hr_ayn3qy.png",
+               hr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1710139167/clickrwanda/banners/ask-hr-800-200_ka4ssq.gif",
                vr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1708778557/clickrwanda/banners/aska-vr_lmt8s8.png"
           },
           link: "https://askalogistics.com/"

@@ -13,7 +13,9 @@ import { Banners } from '../config/banners';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
-  const {isMobile} = deviceView;
+  const {isMobile, isTablet} = deviceView;
+  const smallDevice = isMobile || isTablet;
+
   return (
     <>
       <Helmet>
@@ -44,7 +46,7 @@ const Home = () => {
             <Link to='/top-deals'>View All</Link>
           </InnerSection>
           <TodayDeals />
-          <HorizontalBanner items={Banners} />
+          <HorizontalBanner items={Banners} upper={smallDevice ? 0 : 1} lower={0} />
           
           <InnerSection type="title" >
             Our top categories
@@ -55,7 +57,7 @@ const Home = () => {
             <Link to='/sponsored-ads'>View All</Link>
           </InnerSection>
           <BoostedAds />
-          <HorizontalBanner items={Banners} />
+          <HorizontalBanner items={Banners} upper={smallDevice ? 1 : 1} lower={smallDevice ? 1 : 0} />
           <InnerSection type="title" eleId={"home-new-ads"} >
             New Ads
           </InnerSection>

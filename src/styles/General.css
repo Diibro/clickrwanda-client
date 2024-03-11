@@ -3860,7 +3860,6 @@ a{
      color: var(--white-text);
      margin: 10px auto;
      overflow-y: hidden;
-     overflow-x: scroll;
 
 }
 
