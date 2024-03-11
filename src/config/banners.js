@@ -2,7 +2,7 @@ export const Banners = [
      {
           name:"Real Connect React Solutions",
           images:{
-               hr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1708778557/clickrwanda/banners/real-hr_wijfms.png",
+               hr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1710137281/clickrwanda/banners/ConnectHR-800-200_czdibo.gif",
                vr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1708778557/clickrwanda/banners/real-vr_vlhode.png"
           },
           link: "https://wa.me/+250784336340"
