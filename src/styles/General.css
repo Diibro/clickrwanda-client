@@ -49,6 +49,19 @@
           box-shadow: none;
      }
 }
+
+@keyframes movingBorder {
+     0% {
+          border-color: var(--back-color-gold2);
+     }
+     50% {
+          border-color: var(--basic-plan-color);
+     }
+     100% {
+          border-color: var(--back-color-red1);
+     }
+}
+
 html{
      scroll-behavior: smooth;
      width: 100%;
@@ -891,10 +904,13 @@ a{
      color: var(--back-color-blue1);
      border-radius: 2.5px;
      padding: 2px 5px;
-     font-size: 0.8rem;
+     font-size: 0.85rem;
      white-space: nowrap;
      margin: 0 5px;
      font-weight: 600;
+     border: 1.5px solid var(--featured-plan);
+     animation: movingBorder 2s infinite linear;
+     border-radius: 5px;
 }
 
 .home-request-quote-header a:hover{
