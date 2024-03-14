@@ -1,4 +1,65 @@
-@media only screen and (min-width: 1400px){
+@media only screen and (min-width: 2000px){
+     :root{
+          font-size: 25px;
+     }
+     .home .hello-section .sec-1 {
+          width: 54%;
+     }
+
+     .home .hello-section .sec-banner {
+          width: 46%;
+     }
+
+     .home .hello-section .col h1{
+          font-size:3rem;
+     }
+
+     .hero-banner-container img {
+          max-height: 200px;
+     }
+
+     .home-request-quote-header a {
+          font-size: 1rem;
+     }
+
+     .search-bar-main .search-inputs input, .search-bar-main .search-inputs select {
+          font-size: 1rem;
+     }
+}
+
+@media only screen and (max-width: 2000px){
+     :root{
+          font-size: 22px;
+     }
+     .home .hello-section .sec-1 {
+          width: 52%;
+     }
+
+     .home .hello-section .sec-banner {
+          width: 48%;
+     }
+
+     .home .hello-section .col h1{
+          font-size:3rem;
+     }
+
+     .hero-banner-container img {
+          max-height: 200px;
+     }
+
+     .home-request-quote-header a {
+          font-size: 1rem;
+     }
+
+     .search-bar-main .search-inputs input, .search-bar-main .search-inputs select {
+          font-size: 1rem;
+     }
+}
+
+@media only screen and (max-width: 1800px){
+     :root{
+          font-size: 20px;
+     }
      .home .hello-section .sec-1 {
           width: 50%;
      }
@@ -6,15 +67,84 @@
      .home .hello-section .sec-banner {
           width: 50%;
      }
+
+     .home .hello-section .col h1{
+          font-size:2.8rem;
+     }
+
+     .hero-banner-container img {
+          max-height: 150px;
+     }
+
+     .home-request-quote-header a {
+          font-size: 1rem;
+     }
+
+     .search-bar-main .search-inputs input, .search-bar-main .search-inputs select {
+          font-size: 1rem;
+     }
 }
 
-@media only screen and (max-width: 1200px){
+@media only screen and (max-width: 1600px){
+     :root{
+          font-size: 18px;
+     }
      .home .hello-section .sec-1 {
           width: 55%;
      }
 
      .home .hello-section .sec-banner {
           width: 45%;
+     }
+
+     .home .hello-section .col h1{
+          font-size:3rem;
+     }
+
+     .hero-banner-container img {
+          max-height: 150px;
+     }
+
+     .home-request-quote-header a {
+          font-size: 1rem;
+     }
+
+     .search-bar-main .search-inputs input, .search-bar-main .search-inputs select {
+          font-size: 1rem;
+     }
+}
+
+@media only screen and (max-width: 1400px){
+     /* :root{
+          font-size: 16px;
+     } */
+     .home .hello-section .sec-1 {
+          width: 57.5%;
+     }
+
+     .home .hello-section .sec-banner {
+          width: 42.5%;
+     }
+
+     .home .hello-section .col h1{
+          font-size:2.6rem;
+     }
+}
+
+@media only screen and (max-width: 1200px){
+     :root{
+          font-size: 16px;
+     }
+     .home .hello-section .sec-1 {
+          width: 55%;
+     }
+
+     .home .hello-section .sec-banner {
+          width: 45%;
+     }
+
+     .home .hello-section .col h1{
+          font-size:2.4rem;
      }
 }
 
@@ -41,5 +171,8 @@
           min-width: 20%;
           width: 20%;
           max-width: 21%;
+     }
+     .home .hello-section .col h1{
+          font-size:2.2rem;
      }
 }

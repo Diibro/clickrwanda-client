@@ -1,6 +1,9 @@
 @import "./General.css";
 
 @media only screen and (max-width: 992px){
+     :root{
+          font-size: 18px;
+     }
      .desktop-header{
           width: 100%;
           padding: 5px 5%;
@@ -27,9 +30,17 @@
           justify-content: center;
      }
 
+     .home .hello-section .col h1{
+          font-size:2.6rem;
+     }
+
      .home .hello-section .sec-banner {
           
           display: none;
+     }
+
+     .horizontal-banner .hr-banner{
+          width: 100%;
      }
 
      .vendor-page-info {
@@ -103,7 +114,7 @@
      }
      .home .hello-section .col{
           border-radius: 10px;
-          width: 90%;
+          width: 100%;
      }
      .home .hello-section img{
           display: none;
@@ -223,6 +234,12 @@
           margin: 5px;
      }
 
+     .search-bar-main:hover{
+          padding: 5px;
+          border-radius: 5px;
+          border: none;
+     }
+
      .search-bar-main:hover .search-inputs select{
           display: inline-flex;
 
@@ -258,7 +275,7 @@
 
      .horizontal-banner .hr-banner{
           min-width: 97%;
-          height: 100px;
+          /* height: 100px; */
           margin-right: 10px;
      }
 
