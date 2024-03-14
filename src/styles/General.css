@@ -856,7 +856,7 @@ a{
      flex-direction: column;
      align-items: center;
      justify-content: flex-start;
-     width: 60%;
+     width: 50%;
 }
 
 .home .hello-section .col{
@@ -903,7 +903,7 @@ a{
 }
 
 .home .hello-section .sec-banner{
-     width: 40%;
+     width: 50%;
      display: flex;
      flex-direction: column;
      align-items: center;

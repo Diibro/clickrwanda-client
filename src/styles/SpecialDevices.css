@@ -1,23 +1,33 @@
-@media only screen and (max-width: 1200px){
+@media only screen and (min-width: 1400px){
      .home .hello-section .sec-1 {
-          width: 70%;
+          width: 50%;
      }
 
      .home .hello-section .sec-banner {
-          width: 28%;
+          width: 50%;
+     }
+}
+
+@media only screen and (max-width: 1200px){
+     .home .hello-section .sec-1 {
+          width: 55%;
+     }
+
+     .home .hello-section .sec-banner {
+          width: 45%;
      }
 }
 
 @media only screen and (max-width: 1024px){
 
      .home .hello-section .sec-1 {
-          width: 65%;
+          width: 50%;
      }
      .desktop-header{
           padding: 10px 5%;
      }
      .home .hello-section .sec-banner {
-          width: 35%;
+          width: 50%;
      }
 
      .page-main .side{
