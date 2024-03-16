@@ -87,7 +87,7 @@
 
 @media only screen and (max-width: 1600px){
      :root{
-          font-size: 18px;
+          font-size: 16px;
      }
      .home .hello-section .sec-1 {
           width: 55%;

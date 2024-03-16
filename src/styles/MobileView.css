@@ -3,7 +3,7 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
      :root{
-          font-size: 14px;
+          font-size: 12px;
      }
      .contact-bar .contact-info div p{
           display: none;
@@ -44,7 +44,7 @@
           padding:5px 10px 10px;
      }
      .home .hello-section .col h1{
-          font-size: 1.6rem;
+          font-size: 1.4rem;
      }
 
      .inner-container .section-title {
