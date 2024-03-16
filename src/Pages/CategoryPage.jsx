@@ -84,7 +84,7 @@ const CategoryPage = () => {
     if(categoryViewStored && categoryViewStored !== 'no data found') {
       const categoryDataStored =  JSON.parse(categoryViewStored);
       const {categoryData} = categoryDataStored;
-      if(categoryData.category_id === categoryId){
+      if(categoryData?.category_id === categoryId){
         const {subCategories, adverts} = categoryDataStored
         setCategoryAds(adverts);
         setSubCategories(subCategories);
