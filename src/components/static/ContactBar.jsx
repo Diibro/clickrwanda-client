@@ -13,8 +13,8 @@ const ContactBar = () => {
                <p>+250 787260494</p>
           </div>
           <div>
-               <a href="#"><i><MdEmail /></i></a>
-               <p>contact@clickrwanda.com</p>
+               <a href="mailto:clickrwandaltd@gmail.com"><i><MdEmail /></i></a>
+               <p>clickrwandaltd@gmail.com</p>
           </div>
           <a href="https://facebook.com" target="_blank" rel="noreferrer"><i><BsFacebook /></i></a>
           <a href="https://twitter.com" target="_blank" rel="noreferrer"><i><BsTwitter /></i></a>
