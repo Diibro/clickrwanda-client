@@ -2812,6 +2812,7 @@ a{
      background-size: cover;
      position: relative;
      overflow: hidden;
+     box-shadow: 0.5px 0 4px var(--text-color-para1);
 }
 
 .ad-image .background-img{
@@ -2820,13 +2821,15 @@ a{
      filter: blur(8px);
      position: absolute;
      height: 100%;
+     display: none;
 }
 
 .ad-image img{
      max-height: 100%;
      max-width: 100%;
      border-radius: 0px;
-     box-shadow: 0.2px 0.2px 3px var(--text-color-para1);
+     /* box-shadow: 0.2px 0.2px 3px var(--text-color-para1); */
+
 }
 
 .ad-image:hover{
