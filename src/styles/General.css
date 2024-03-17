@@ -903,11 +903,11 @@ a{
      background-color: var(--back-color-gold1);
      color: var(--back-color-blue1);
      border-radius: 2.5px;
-     padding: 2px 5px;
-     font-size: 0.85rem;
+     padding: 2.5px 5px;
+     font-size: 0.7rem;
      white-space: nowrap;
      margin: 0 5px;
-     font-weight: 600;
+     font-weight: 500;
      border: 1.5px solid var(--featured-plan);
      animation: movingBorder 2s infinite linear;
      border-radius: 5px;
@@ -2711,7 +2711,7 @@ a{
      overflow: hidden;
      margin: 10px auto 1px;
      padding: 1px 10px;
-     font-size: 0.9rem;
+     font-size: 0.8rem;
      border-radius: 2rem;
      transition: all 0.3s;
 }
@@ -2723,7 +2723,7 @@ a{
 }
 
 .product-square-container h5{
-     font-size: 1rem;
+     font-size: 0.9rem;
      font-weight: 800;
      color: var(--text-color-title);
      margin: 2px 0;
