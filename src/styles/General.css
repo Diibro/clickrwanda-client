@@ -20,6 +20,7 @@
      --featured-plan: #28C238;
      --white-text:#ffffff;
      --gray-text:#c0b6b6;
+     --light-gray: #eaeeef;
      font-size: 16px;
      --basic-plan-color: #4515ad;
 }
@@ -256,6 +257,7 @@ a{
      flex-direction: column;
      align-items: center;
      justify-content: flex-start;
+     background-color: var(--light-gray);
 }
 
 .static-page{
@@ -462,10 +464,11 @@ a{
      align-items: center;
      justify-content: center;
      margin: 20px auto;
-     box-shadow: 1px 1px 5px var(--text-color-para2);
+     /* box-shadow: 1px 1px 5px var(--text-color-para2); */
      /* background-color: #6E8794; */
      border-radius: 10px;
      padding: 20px 0;
+     background-color: var(--white-text);
 }
 
 .quotation-page-body form .group{
@@ -947,6 +950,7 @@ a{
      align-items: flex-start;
      justify-content: space-between;
      position: relative;
+     background-color: var(--light-gray);
 }
 
 
@@ -1089,6 +1093,7 @@ a{
      flex-direction: column;
      align-items: center;
      justify-content: flex-start;
+     background-color: var(--light-gray);
 }
 
 .vendor-page-header{
@@ -1124,7 +1129,7 @@ a{
 }
 
 .vendor-page-title{
-     width: 80%;
+     width: 100%;
      border-radius: 10px;
      padding: 10px;
      display: flex;
@@ -1153,7 +1158,7 @@ a{
 }
 
 .vendor-page-info{
-     width: 80%;
+     width: 100%;
      min-width: 380px;
      display: flex;
      flex-direction: row;
@@ -1172,6 +1177,7 @@ a{
      box-shadow: 1px 1px 2px var(--text-color-para2);
      border-radius: 10px;
      padding: 10px;
+     background-color: var(--white-text);
 }
 .vendor-page-info .col .row{
      width: 90%;
@@ -1282,9 +1288,11 @@ a{
      align-items: flex-start;
      justify-content: space-between;
      /* border: 1px solid var(--back-color-gold2); */
-     box-shadow: 0.5px 0.5px 3px var(--text-color-para1);
+     /* box-shadow: 0.5px 0.5px 3px var(--text-color-para1); */
      padding:0;
-     border-radius: 2px;
+     border-radius: 5px;
+     overflow: hidden;
+     background-color: var(--white-text);
 }
 
 .image-viewer .side-images{
@@ -2608,6 +2616,8 @@ a{
      padding: 5px 0;
      border-radius: 10px;
      transition: all 0.5s;
+     margin: 5px 3px;
+     background-color: var(--white-text);
 }
 
 .category-square:hover{
@@ -2694,6 +2704,7 @@ a{
      border: 1px solid var(--gray-text);
      overflow: hidden;
      flex: 1;
+     border-radius: 5px;
 }
 
 .product-square-container:hover{
@@ -2812,7 +2823,7 @@ a{
      background-size: cover;
      position: relative;
      overflow: hidden;
-     box-shadow: 0.5px 0 4px var(--text-color-para1);
+     box-shadow: 0.5px 0 2px var(--text-color-para1);
 }
 
 .ad-image .background-img{
@@ -2841,8 +2852,9 @@ a{
      display: flex;
      flex-direction: column;
      padding: 5px;
-     box-shadow: 1px 1px 2.5px 1px var(--text-color-para1);
+     box-shadow: 0.5px 0.5px 2.5px 1px var(--gray-text);
      border-radius: 5px;
+     background-color: var(--white-text);
 }
 
 .advert-row .row{
@@ -2993,6 +3005,7 @@ a{
      flex-direction: column;
      align-items: center;
      justify-content: center;
+     background-color: var(--light-gray);
 }
 
 .category-page-content{
@@ -3011,8 +3024,10 @@ a{
      display: flex;
      flex-direction: column;
      flex-wrap: wrap;
-     padding: 5px;
+     padding: 10px 5px;
      margin: 5px 0;
+     background-color: var(--white-text);
+     border-radius: 10px;
 
 }
 
@@ -3042,6 +3057,7 @@ a{
      font-style: normal;
      font-weight: 500;
      font-size: 0.7rem;
+     color: var(--back-color-blue2);
 }
 
 .category-page-header span:hover{
@@ -3353,6 +3369,8 @@ a{
      font-size: 2rem;
      color: var(--text-color-title);
      margin: 20px auto 5px;
+     text-align: left;
+     width: 100%;
 }
 
 .advert-page-mainAdvert .col .images{
@@ -3436,19 +3454,20 @@ a{
 
 .advert-page-mainAdvert .col .advert-page-info{
      width: 100%;
-     box-shadow: 1px 1px 5px var(--text-color-para1);
+     /* box-shadow: 1px 1px 5px var(--text-color-para1); */
      display: flex;
      flex-direction: column;
      padding: 10px;
      margin: 10px auto;
      border-radius: 5px;
+     background-color: var(--white-text);
 }
 
 
 .advert-page-mainAdvert .col .vendor{
      width: 100%;
      margin: 10px auto;
-     box-shadow: 1px 1px 5px var(--text-color-para1);
+     /* box-shadow: 1px 1px 5px var(--text-color-para1); */
      border-radius: 10px;
      padding: 10px;
      display: flex;
@@ -3456,6 +3475,7 @@ a{
      align-items: center;
      justify-content: space-between;
      flex-wrap: wrap;
+     background-color: var(--white-text);
 }
 
 .advert-page-mainAdvert .col .vendor .vendor-col-left{
@@ -3578,10 +3598,11 @@ a{
 .advert-page-mainAdvert .col .reviews{
      width: 100%;
      margin: 10px auto;
-     box-shadow: 1px 1px 5px var(--text-color-para1);
+     /* box-shadow: 1px 1px 5px var(--text-color-para1); */
      border-radius: 10px;
      padding: 0;
      display: flex;
+     background-color: var(--white-text);
 }
 
 .advert-review-container{
