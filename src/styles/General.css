@@ -2617,7 +2617,7 @@ a{
      border-radius: 10px;
      transition: all 0.5s;
      margin: 5px 3px;
-     background-color: var(--white-text);
+     /* background-color: var(--white-text); */
 }
 
 .category-square:hover{
@@ -2823,7 +2823,7 @@ a{
      background-size: cover;
      position: relative;
      overflow: hidden;
-     box-shadow: 0.5px 0 2px var(--text-color-para1);
+     /* box-shadow: 0.5px 0 2px var(--text-color-para1); */
 }
 
 .ad-image .background-img{
