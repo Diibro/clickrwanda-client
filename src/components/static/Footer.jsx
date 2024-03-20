@@ -7,7 +7,6 @@ import { FaWhatsapp } from "react-icons/fa";
 import { ActionBtn } from "../dynamic/Buttons";
 import { useContext } from "react";
 import UserContext from "../../Contexts/UserContext";
-import WebUse from "./WebUse";
 
 const Footer = () => {
      const [user] = useContext(UserContext);
@@ -57,10 +56,10 @@ const Footer = () => {
                     <Link to='/terms-&-conditions'>Terms & Conditions</Link>
                     <Link to="/">About us</Link>
                     <Link to="/hiring">Become an Agent</Link>
+                    <Link to="/website-visits" >Our Visitors</Link>
                </div>
           </div>
           
-          <WebUse />
      </div>
      )
 }

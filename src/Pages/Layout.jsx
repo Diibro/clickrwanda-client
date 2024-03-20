@@ -31,6 +31,7 @@ import QuotationPage from './QuotationPage';
 import PaymentPlans from './PaymentPlans';
 import TopDealsPage from './TopDealsPage';
 import BoostedAdsPage from './BoostedAdsPage';
+import WebsitesVisitors from './WebsitesVisitors';
 
 
 const Layout = () => {
@@ -65,6 +66,7 @@ const Layout = () => {
                <Route path='/send-request' element={<QuotationPage />} />
                <Route path='/payment-plans/*' element={<PaymentPlans />} />
                <Route path='/top-deals' element={<TopDealsPage />} />
+               <Route path='/website-visits' element={<WebsitesVisitors />} />
                <Route path='/sponsored-ads' element={<BoostedAdsPage />} />
                <Route path="/forms/:params" element={<UserForms /> } />
                <Route path='*' element={<NotFound />}/>
