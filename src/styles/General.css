@@ -4102,18 +4102,25 @@ a{
      width: 40%;
      border-radius: 5px;
      background-color: var(--light-gray);
-     padding: 30px 5px;
+     padding: 20px 5px;
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
      justify-content: center;
-     color: var(--back-color-gold2);
+     align-items: center;
+     color: var(--text-color-para1);
      margin: 10px auto;
      box-shadow: 2px 2px var(--gray-text);
 }
 
 .web-usage-container .visits h3{
      font-size: 1.2rem;
-     font-weight: 700;
+     font-weight: 800;
+}
+
+.web-usage-container .visits p{
+     color: var(--back-gold-color-v1);
+     font-size: 1.6rem;
+     font-weight: 900;
 }
 /* end of overriders */
 /* media queries */
