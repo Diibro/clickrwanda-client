@@ -284,4 +284,19 @@
           width: 22%;
           margin: 0 2px 10px;
      }
+     .web-usage-container{
+          width: 90%;
+     }
+     .web-usage-container h2{
+          font-size: 1.4rem;
+          width: 90%;
+          margin: 10px auto;
+     }
+     .web-usage-container .visits{
+          width: auto;
+     }
+
+     .web-usage-container .visits h3{
+          font-size: 1rem;
+     }
 }
