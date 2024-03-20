@@ -294,9 +294,10 @@
      }
      .web-usage-container .visits{
           width: auto;
+          margin: 5px auto;
      }
 
      .web-usage-container .visits h3{
-          font-size: 1rem;
+          font-size: 0.9rem;
      }
 }

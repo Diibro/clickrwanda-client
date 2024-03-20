@@ -111,6 +111,10 @@
           top: 10%;
           right: 5%;
      }
+     .web-usage-container .visits{
+          width: 40%;
+          margin: 5px auto;
+     }
 
 }
 

@@ -31,7 +31,6 @@ import QuotationPage from './QuotationPage';
 import PaymentPlans from './PaymentPlans';
 import TopDealsPage from './TopDealsPage';
 import BoostedAdsPage from './BoostedAdsPage';
-import WebUse from '../components/static/WebUse';
 
 
 const Layout = () => {
@@ -74,7 +73,6 @@ const Layout = () => {
           <ShareButtons />
           {/* <Loadingv2 /> */}
           <LoadingV1 />
-          <WebUse />
           <Footer /> 
           </ViewProvider>
            
