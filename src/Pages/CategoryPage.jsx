@@ -109,12 +109,15 @@ const CategoryPage = () => {
         <title>{`${category?.category_name || 'Category'}`} | Click Rwanda</title>
       </Helmet>
       <div className="category-page">
-        {!loading ? <>
+        
           <div className="category-page-content">
-            {subCategories ? <CategoryHeader subViewed={{id: subViewed.id, action: viewSubCategory}} subCategories={subCategories} /> : null }
+            
+            {subCategories ? <CategoryHeader subViewed={{id: subViewed.id, action: viewSubCategory}} /> : null }
+            {!loading ? <>
             {categoryAds ? <CategoryAdverts adverts={categoryAds} /> : null}
+            </> : <Loading />}
           </div>
-        </> : <Loading />}
+        
       
       </div>
     </>
@@ -122,17 +125,57 @@ const CategoryPage = () => {
   )
 }
 
-const CategoryHeader = ({subCategories, subViewed}) => {
+const CategoryHeader = ({subViewed}) => {
+  const [subCategories, setSubCategories] = useState(null);
+
+  const fetchData = async(id) => {
+    try {
+      const categoryDatas = await server.searchAdverts('category', {category_id: id});
+      if(categoryDatas !== "no data found"){
+        console.log("these are the datas found");
+        console.log(categoryDatas)
+        const {subCategories} = categoryDatas;
+        setSubCategories(subCategories);
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }finally{
+      // 
+    }
+    
+    console.log("no data found");
+
+    
+  }
+
+  useEffect(() => {
+    const categoryId = getItemUrlId(location.search);
+    (async () => {
+      await fetchData(categoryId);
+    })()
+  })
   return(
     <div className="category-page-header">
-      <span className={`${subViewed.id === "all" ? 'active-sub' : '' }`} onClick={() =>subViewed.action('all')}>All</span>
-      {subCategories.map((item) => <span className={`${subViewed.id === item.sub_id ? 'active-sub' : ''}`} key={item.sub_id} onClick={() => subViewed.action(item.sub_id)}>{item.sub_name} <i>({item.sub_ads} ads)</i> </span>)}
+      <h3>Filter....</h3>
+      <div className="filter-content">
+        <div className="row">
+          <h4>Sub-Category</h4>
+          <select name="sub-category" id="sub-category" onChange={(event) => subViewed.action(event.target.value)}>
+            <option value="all">All</option>
+            {subCategories && subCategories[0] ? subCategories.map((item) => <option key={item.sub_id} value={item.sub_id} >{item.sub_name} {`(${item.sub_ads} ads)`}</option>) : null}
+          </select>
+          {/* <span className={`${subViewed.id === "all" ? 'active-sub' : '' }`} onClick={() =>subViewed.action('all')}>All</span>
+          {subCategories.map((item) => <span className={`${subViewed.id === item.sub_id ? 'active-sub' : ''}`} key={item.sub_id} onClick={() => subViewed.action(item.sub_id)}>{item.sub_name} <i>({item.sub_ads} ads)</i> </span>)} */}
+        </div>
+        
+      </div>
+      
     </div>
   )
 }
 
 CategoryHeader.propTypes = {
-  subCategories : PropTypes.arrayOf(PropTypes.object).isRequired,
   subViewed: PropTypes.any
 }
 

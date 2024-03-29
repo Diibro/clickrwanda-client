@@ -15,7 +15,7 @@ import { TiTick } from "react-icons/ti";
 import { MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HorizontalBanner } from "./Banners";
 import DeviceView from "../../Contexts/ViewContext";
 import { LoadingAd } from "./LoadinComponents";
@@ -32,6 +32,9 @@ export const Adverts = ({eleId,limit}) => {
       if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
         return(
           <>
+          <InnerSection type="title" eleId={"home-new-ads"} >
+            New Ads
+          </InnerSection>
             {changingPage ? <Loading /> : 
             <InnerSection eleId={eleId} type="content">
               {
@@ -317,16 +320,23 @@ export const BoostedAds = ({params}) => {
   }, [boosted]);
 
   return(
-    <div className="home-boosted-ads " >
-      <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
-        {
-          ads && ads[0] && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item}/>
-          )
-        }
+    <>
+      <InnerSection type="title" >
+            Premium Ads
+            <Link to='/sponsored-ads'>View All</Link>
+      </InnerSection>
+      <div className="home-boosted-ads " >
+          <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
+            {
+              ads && ads[0] && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item}/>
+              )
+            }
+          </div>
+        {!scrollPos.atLeft && !params?.wrap  ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
+        {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
       </div>
-    {!scrollPos.atLeft && !params?.wrap  ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
-    {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
-  </div>
+    </>
+    
   )
 }
 
@@ -362,7 +372,12 @@ export const TodayDeals = ({params}) => {
   }, [todayDeals]);
 
   return (
-    <div className="home-boosted-ads " >
+    <>
+      <InnerSection type="title" >
+            Today Deals
+            <Link to='/top-deals'>View All</Link>
+      </InnerSection>
+      <div className="home-boosted-ads " >
       <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
           {
             ads && ads[0]  && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
@@ -372,6 +387,8 @@ export const TodayDeals = ({params}) => {
       {!scrollPos.atLeft && !params?.wrap ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
       {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
     </div>
+    </>
+    
   ) 
 }
 
@@ -379,11 +396,16 @@ export const AdWebsites = () => {
   const [data] = useContext(AppData);
   const {websiteAds } = data;
   return Array.isArray(websiteAds) && websiteAds[0] ? (
-    <div className="home-ad-websites">
-      {
-        websiteAds.map((ad) => <AdvertRow key={ad.ad_id} item={ad} />)
-      }
-    </div>
+    <>
+          <InnerSection type="title" >
+            Sponsored Ads
+          </InnerSection>
+          <div className="home-ad-websites">
+            {
+              websiteAds.map((ad) => <AdvertRow key={ad.ad_id} item={ad} />)
+            }
+          </div>
+    </>
   ) : null
 }
 

@@ -9,6 +9,7 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { InnerSection } from "./InnerSectionContainer";
 
 export const BoostedSellers = () => {
      const [data] = useContext(AppData);
@@ -42,16 +43,23 @@ export const BoostedSellers = () => {
           };
         }, [bestSellers]);
      return(
-          <div className="home-best-sellers">
-               <p className="best-seller-para">Discover which sellers have been ranked best for the best products, services and deals.</p>
-               <div ref={adsRef} className="sellers-container hide-scroll">
-                    {bestSellers && bestSellers[0] && bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
-                    <span className="best-seller-card" onClick={() => navigate('/best-sellers')} >More...</span>
+          <>
+               <InnerSection type="title">
+                    Our Best Sellers
+                    <Link to='/best-sellers'>View All</Link>
+               </InnerSection>
+               <div className="home-best-sellers">
+                    <p className="best-seller-para">Discover which sellers have been ranked best for the best products, services and deals.</p>
+                    <div ref={adsRef} className="sellers-container hide-scroll">
+                         {bestSellers && bestSellers[0] && bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
+                         <span className="best-seller-card" onClick={() => navigate('/best-sellers')} >More...</span>
+                    </div>
+                    {!scrollPos.atLeft ? <i  onClick={()=>scrollHandle(-1)} className="nav-icon icon-left"><MdNavigateBefore/></i> : null}
+                    {!scrollPos.atRight ? <i  onClick={()=>scrollHandle(1)} className="nav-icon icon-right"><MdNavigateNext /></i> : null }
+                    
                </div>
-               {!scrollPos.atLeft ? <i  onClick={()=>scrollHandle(-1)} className="nav-icon icon-left"><MdNavigateBefore/></i> : null}
-               {!scrollPos.atRight ? <i  onClick={()=>scrollHandle(1)} className="nav-icon icon-right"><MdNavigateNext /></i> : null }
-               
-          </div>
+          </>
+          
      )
 }
 

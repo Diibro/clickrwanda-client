@@ -1,13 +1,10 @@
 import { useContext } from 'react';
-// import HelloImage from '../assets/images/helloImage.png';
 import { AdWebsites, Adverts, BoostedAds, TodayDeals} from '../components/dynamic/Adverts.component';
 import Categories from '../components/dynamic/Categories';
-import { InnerSection } from '../components/dynamic/InnerSectionContainer';
 import SearchBar from '../components/static/SearchBar';
 import DeviceView from '../Contexts/ViewContext';
 import { BoostedSellers, RequestQuoteHeader } from '../components/dynamic/Special.components';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
 import { HeroSectionBanner, HorizontalBanner, LeftBanner, RightBanner } from '../components/dynamic/Banners';
 import { Banners } from '../config/banners';
 
@@ -40,39 +37,32 @@ const Home = () => {
         <div className="page-main">
           <div className="side"><LeftBanner items={Banners} /></div>
           <div className="page-content">
-          
-          <InnerSection type="title" >
-            Today Deals
-            <Link to='/top-deals'>View All</Link>
-          </InnerSection>
+            {/** top deals section */}
           <TodayDeals />
+
+          {/* first banner */}
           <HorizontalBanner items={Banners} upper={smallDevice ? 0 : 1} lower={0} />
-          
-          <InnerSection type="title" >
-            Our top categories
-          </InnerSection>
+
+          {/* Categories section */}
           <Categories limit={0} />
-          <InnerSection type="title" >
-            Premium Ads
-            <Link to='/sponsored-ads'>View All</Link>
-          </InnerSection>
+
+          {/* Premium ads section */}
           <BoostedAds />
+
+          {/* Second home page banner */}
           <HorizontalBanner items={Banners} upper={smallDevice ? 1 : 1} lower={smallDevice ? 1 : 0} />
-          <InnerSection type="title" eleId={"home-new-ads"} >
-            New Ads
-          </InnerSection>
+
+          {/* new ads section */}
           <Adverts eleId={"home-adverts"} limit={50} />
-          <InnerSection type="title">
-            Our Best Sellers
-            <Link to='/best-sellers'>View All</Link>
-          </InnerSection>
+
+          {/* best sellers section */}
           <BoostedSellers />
-          <InnerSection type="title" >
-          Sponsored Ads
-          </InnerSection>
+
+          {/* ads websites section */}
           <AdWebsites />
           {/* <GetStartedV1 /> */}
           </div>
+
           <div className="side right-side"><RightBanner items={Banners}/></div>
         </div>
       </div>

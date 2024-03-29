@@ -23,6 +23,9 @@ const Categories = ({limit}) => {
           <>
           {!categories ? null : categories[0] ? (
                <>
+               <InnerSection type="title" >
+                    Our top categories
+               </InnerSection>
                <InnerSection type="content">
                     {/* {Array.isArray(categories) && <TopDealsCard />} */}
                     {Array.isArray(categories) && limit != 0  ? categories.map(
