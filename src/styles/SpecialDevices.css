@@ -76,12 +76,9 @@
           max-height: 150px;
      }
 
-     .home-request-quote-header a {
-          font-size: 1rem;
-     }
 
      .search-bar-main .search-inputs input, .search-bar-main .search-inputs select {
-          font-size: 1rem;
+          font-size: 0.8rem;
      }
 }
 
@@ -106,11 +103,11 @@
      }
 
      .home-request-quote-header a {
-          font-size: 1rem;
+          font-size: 0.9rem;
      }
 
      .search-bar-main .search-inputs input, .search-bar-main .search-inputs select {
-          font-size: 1rem;
+          font-size: 0.9rem;
      }
 }
 
@@ -127,7 +124,7 @@
      }
 
      .home .hello-section .col h1{
-          font-size:2.6rem;
+          font-size:3rem;
      }
 }
 

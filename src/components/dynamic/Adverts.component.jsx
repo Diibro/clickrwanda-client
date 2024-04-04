@@ -3,10 +3,8 @@ import { InnerSection } from "./InnerSectionContainer";
 import AppData from "../../Contexts/AppContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
-import { FaArrowRight } from "react-icons/fa";
 import { AdvertRow} from "./Advert.componet";
 const AdvertRenderer = React.lazy(() => import("./Advert.componet"))
-import { MoreLink } from "./LinksComponents";
 import { SubmitButton } from "./Buttons";
 import UserContext from "../../Contexts/UserContext";
 import { ImCross } from "react-icons/im";
@@ -21,6 +19,7 @@ import DeviceView from "../../Contexts/ViewContext";
 import { LoadingAd } from "./LoadinComponents";
 import { getArrayOfNums } from "../../utils/otherFunctions";
 import { Banners } from "../../config/banners";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 export const Adverts = ({eleId,limit}) => {
       const [data] = useContext(AppData);
@@ -49,7 +48,6 @@ export const Adverts = ({eleId,limit}) => {
             </InnerSection>
             }
             <AdvertsPagination/>
-            {/* <InnerSection type="more" ><MoreLink content={{message: "all ads", dest: '/ads', icon: FaArrowRight}} /></InnerSection> */}
           </>
         )
       }else if(limit === 0 && adverts && adverts[0] && adverts != "no data found" ){
@@ -58,7 +56,6 @@ export const Adverts = ({eleId,limit}) => {
               <InnerSection type="content">
                 {
                   adverts.map((item) => (
-                    // <AdvertRenderer key={item.ad_id} item={item}/>
                     <React.Suspense key={item.ad_id}  fallback={<LoadingAd />}>
                       <AdvertRenderer item={item} />
                     </React.Suspense>
@@ -84,18 +81,9 @@ export const Adverts = ({eleId,limit}) => {
 export const SimilarAds = ({limit, adverts}) => {
   if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
     return(
-      <>
-        <InnerSection type="full-width">
-          {
-            adverts.map((item, index) => ( index <= limit ? (
-              <React.Suspense key={item.ad_id}  fallback={<LoadingAd />}>
-                <AdvertRenderer item={item} />
-              </React.Suspense>
-            ) : null))
-          }
-        </InnerSection>
-        <InnerSection type="more" ><MoreLink content={{message: "View All", dest: '/ads', icon: FaArrowRight}} /></InnerSection>
-      </>
+      <div className="container" id="others-ads-container-id">
+        <VerticalAds ads={adverts} adsNo={20} eleId={"others-ads-container-id"}/>
+      </div>
     )
   }else if(limit === 0 && adverts && adverts[0] && adverts != "no data found" ){
     return(
@@ -274,15 +262,8 @@ export const AddAdvertForm = () => {
 
 export const CategoryAdverts = ({adverts}) => {
   return (
-    <div className="category-adverts">
-      {
-            adverts.map((item) => (
-              // <AdvertRenderer key={item.ad_id} item={item}/>
-              <React.Suspense key={item.ad_id}  fallback={<LoadingAd />}>
-                <AdvertRenderer item={item} />
-              </React.Suspense>
-            ))
-          }
+    <div className="category-adverts" id="category_Ads-container-001">
+          <VerticalAds ads={adverts} adsNo={50} eleId={"category_Ads-container-001"}/>
     </div>
   )
 }
@@ -320,7 +301,7 @@ export const BoostedAds = ({params}) => {
   }, [boosted]);
 
   return(
-    <>
+    <div className="container">
       <InnerSection type="title" >
             Premium Ads
             <Link to='/sponsored-ads'>View All</Link>
@@ -335,11 +316,79 @@ export const BoostedAds = ({params}) => {
         {!scrollPos.atLeft && !params?.wrap  ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
         {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
       </div>
-    </>
+    </div>
     
   )
 }
 
+export const VerticalAds = ({ ads, adsNo, eleId }) => {
+  const [adsViewed, setAdsViewed] = useState([...ads.slice(0,adsNo)]);
+  const [loading, setLoading] = useState(false);
+
+  let pages = ads.length / adsNo;
+  if (ads.length % adsNo !== 0) pages = Math.floor(pages + 1);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const pageArr = [];
+  for (let i = 1; i <= pages; i++) {
+    pageArr.push(i);
+  }
+
+  const changePage = (num) => {
+    if (num <= pages && num > 0) {
+      try {
+        setLoading(true);
+        let newAds = ads.slice((num - 1) * adsNo, (num - 1) * adsNo + adsNo);
+        if (JSON.stringify(newAds) !== JSON.stringify(adsViewed)) {
+          if(eleId){
+            const ele = document.getElementById(eleId);
+            window.scrollTo({top: ele.offsetTop, behavior:'smooth'});
+          }
+          console.log(newAds);
+          setAdsViewed(newAds);
+          setCurrentPage(num);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      return;
+    }
+  };
+
+  return (
+    <div className="ads-container">
+      {adsViewed && adsViewed[0] && !loading ? (
+        <>
+          {adsViewed.map(item => (
+            <React.Suspense key={item.ad_id} fallback={<LoadingAd />}>
+              <AdvertRenderer item={item} />
+            </React.Suspense>
+          ))}
+          <div className="pagination">
+            <i onClick={() => changePage(currentPage - 1)} className="nav">
+              <GrFormPrevious />
+            </i>
+            {pageArr.map((item) => item < 7 ? <span onClick={() => changePage(item)} className={`${currentPage === item ? 'active-page disabled-page' : ''}`} key={item}>{item}</span> : null)}
+            <p>.. {currentPage >= 7 && currentPage < pages ? <span className="active-page">{currentPage}</span> : null} .</p>
+            <span className={`${currentPage === pages ? 'active-page disabled-page' : ''}`} onClick={() => changePage(pages)}>{pages}</span>
+            <i onClick={() => changePage(currentPage + 1)} ><GrFormNext /></i>
+          </div>
+        </>
+      ) : <Loading />}
+    </div>
+  );
+};
+
+// export const RowAds = ({adsInfo}) => {
+//   return (
+//     <div className="row-adverts">
+
+//     </div>
+//   )
+// }
 
 export const TodayDeals = ({params}) => {
   const [data] = useContext(AppData);
@@ -372,7 +421,7 @@ export const TodayDeals = ({params}) => {
   }, [todayDeals]);
 
   return (
-    <>
+    <div className="container">
       <InnerSection type="title" >
             Today Deals
             <Link to='/top-deals'>View All</Link>
@@ -387,7 +436,7 @@ export const TodayDeals = ({params}) => {
       {!scrollPos.atLeft && !params?.wrap ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
       {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
     </div>
-    </>
+    </div>
     
   ) 
 }
@@ -396,7 +445,7 @@ export const AdWebsites = () => {
   const [data] = useContext(AppData);
   const {websiteAds } = data;
   return Array.isArray(websiteAds) && websiteAds[0] ? (
-    <>
+    <div className="container">
           <InnerSection type="title" >
             Sponsored Ads
           </InnerSection>
@@ -405,7 +454,7 @@ export const AdWebsites = () => {
               websiteAds.map((ad) => <AdvertRow key={ad.ad_id} item={ad} />)
             }
           </div>
-    </>
+    </div>
   ) : null
 }
 
@@ -429,4 +478,10 @@ BoostedAds.propTypes = {
 
 TodayDeals.propTypes = {
   params: PropTypes.any
+}
+
+VerticalAds.propTypes = {
+  ads: PropTypes.any,
+  adsNo: PropTypes.number,
+  eleId: PropTypes.any
 }

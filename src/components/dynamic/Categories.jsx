@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect } from "react";
 import AppData from "../../Contexts/AppContext";
-import { Container } from "@mui/material";
+// import { Container } from "@mui/material";
 import { FaArrowRight } from "react-icons/fa";
 import { InnerSection } from './InnerSectionContainer';
 import { CategoryContainerSquare } from './Containers';
@@ -13,14 +13,14 @@ import { getItemUrl } from '../../utils/urlFunctions';
 const Categories = ({limit}) => {
      const [data, setData] = useContext(AppData);
      const {categories} = data;
-     const cond = false;
+     // const cond = false;
      useEffect(() => {
           if(!categories[0]){
                setData((prev) => ({...prev, fetchNow:true}));
           }
      },[])
      return(
-          <>
+          <div className='container'>
           {!categories ? null : categories[0] ? (
                <>
                <InnerSection type="title" >
@@ -55,7 +55,7 @@ const Categories = ({limit}) => {
                </>
           
           ) : categories.status ? null : null }
-          </>
+          </div>
      )
 }
 

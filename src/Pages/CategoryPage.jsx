@@ -53,7 +53,6 @@ const CategoryPage = () => {
     setSubViewed((prev) => ({...prev, id}));
     (async () => await fetchSubAdverts(id) )();
   }
-
   
   useEffect(() => {
     const categoryId = getItemUrlId(location.search);
@@ -118,7 +117,6 @@ const CategoryPage = () => {
             </> : <Loading />}
           </div>
         
-      
       </div>
     </>
     
@@ -153,8 +151,9 @@ const CategoryHeader = ({subViewed}) => {
     const categoryId = getItemUrlId(location.search);
     (async () => {
       await fetchData(categoryId);
-    })()
-  })
+    })();
+  }, []);
+
   return(
     <div className="category-page-header">
       <h3>Filter....</h3>

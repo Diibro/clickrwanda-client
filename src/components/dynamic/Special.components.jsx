@@ -43,7 +43,7 @@ export const BoostedSellers = () => {
           };
         }, [bestSellers]);
      return(
-          <>
+          <div className="container">
                <InnerSection type="title">
                     Our Best Sellers
                     <Link to='/best-sellers'>View All</Link>
@@ -58,7 +58,7 @@ export const BoostedSellers = () => {
                     {!scrollPos.atRight ? <i  onClick={()=>scrollHandle(1)} className="nav-icon icon-right"><MdNavigateNext /></i> : null }
                     
                </div>
-          </>
+          </div>
           
      )
 }

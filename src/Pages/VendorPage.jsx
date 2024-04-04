@@ -6,7 +6,7 @@ import server from '../config/Server';
 import { getItemUrlId } from '../utils/urlFunctions';
 import { dateFormatMonth } from '../utils/dateFunctions';
 import UserRating from '../components/dynamic/Rating.component';
-import { SimilarAds } from '../components/dynamic/Adverts.component';
+import { SimilarAds, VerticalAds } from '../components/dynamic/Adverts.component';
 import { IoMdCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { getData, saveData } from '../utils/storageFunctions';
@@ -118,10 +118,11 @@ const VendorPage = () => {
             {
               vendorAds && vendorAds !== "no data found" ? 
                 <div className='page'>
-                  <div className="vendor-page-title">
+                  <div className="vendor-page-title" id='vendor-page-title-id'>
                     <h3>Vendor Adverts ({`${vendorAds.length} ad${vendorAds.length > 1 ?'s': ''}`})</h3>
                   </div>
-                  <SimilarAds limit={0} adverts={vendorAds}/>
+                  <div id="vendor-page-view-id"></div>
+                  <VerticalAds ads={vendorAds} adsNo={50} eleId={"vendor-page-view-id"} />
                 </div>
               : 
               <div><p>No adverts found for this vendor</p></div>
