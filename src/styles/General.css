@@ -2188,7 +2188,7 @@ a{
      border-right: 4px solid var(--back-color-gold2);
      border-bottom: 4px solid #a1c1d433;
      z-index: 99;
-     animation: 0.4s rotateLoader linear infinite;
+     animation: 0.8s rotateLoader linear infinite;
 }
 
 .initial-loader img{
