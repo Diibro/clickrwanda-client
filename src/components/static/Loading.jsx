@@ -14,7 +14,7 @@ const Loading = () => {
 export const LoadingV1 = () => {
   const [data] = useContext(AppData);
   const {loading} = data;
-  if(!loading){
+  if(loading){
     return(
       <div className="initial-loader">
         <div className="loader-container">
