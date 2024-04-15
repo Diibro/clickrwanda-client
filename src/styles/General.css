@@ -63,6 +63,15 @@
      }
 }
 
+@keyframes rotateLoader {
+     from{
+          transform: rotate(0deg);
+     }
+     to{
+          transform: rotate(360deg);
+     }
+}
+
 html{
      scroll-behavior: smooth;
      width: 100%;
@@ -1567,8 +1576,8 @@ a{
 }
 
 .header-logo-image{
-     width: 10%;
-     min-width: 120px;
+     width: 20%;
+     min-width: 150px;
 }
 .desktop-header h1 a{
      color: white;
@@ -2120,8 +2129,6 @@ a{
 
 .loading-comp{
      margin: 20px 1%;
-     animation: loadingComp 1s  infinite;
-
      border-radius: 16px;
      width: 450px;
      height: 250px;
@@ -2160,10 +2167,34 @@ a{
      justify-content: center;
 }
 
+.initial-loader .loader-container{
+     width: 15%;
+     min-width: 150px;
+     aspect-ratio: 1/1;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     padding: 10px;
+     position: relative;
+}
+.initial-loader .loader-container .loading-gif{
+     width: 30%;
+     aspect-ratio: 1/1;
+     position: absolute;
+     border-radius: 50%;
+     border-left: 4px solid var(--back-color-gold2);
+     border-top: 4px solid #a1c1d433;
+     border-right: 4px solid var(--back-color-gold2);
+     border-bottom: 4px solid #a1c1d433;
+     z-index: 99;
+     animation: 0.4s rotateLoader linear infinite;
+}
+
 .initial-loader img{
-     width: 20%;
-     min-width: 200px;
-     max-height: 70vh;
+     width: 100%;
+     position: relative;
+     z-index: 0;
 }
 
 /* end of fixed components */

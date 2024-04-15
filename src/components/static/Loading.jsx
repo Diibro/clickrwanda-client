@@ -1,7 +1,7 @@
 import { useContext} from 'react';
 import Loader from '../../assets/loader2.gif';
 import AppData from '../../Contexts/AppContext';
-import Loader2 from '../../assets/loader3.gif';
+import Loader2 from '../../assets/logo/click-rwanda-logo-flat.png';
 
 const Loading = () => {
   return (
@@ -14,10 +14,13 @@ const Loading = () => {
 export const LoadingV1 = () => {
   const [data] = useContext(AppData);
   const {loading} = data;
-  if(loading){
+  if(!loading){
     return(
       <div className="initial-loader">
-        <img src={Loader2} alt="clickrwanda loader" />
+        <div className="loader-container">
+          <div className="loading-gif"></div>
+          <img src={Loader2} alt="clickrwanda loader" />
+        </div>
       </div>
     )
   }else{

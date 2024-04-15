@@ -53,7 +53,7 @@ const CategoryPage = () => {
     setSubViewed((prev) => ({...prev, id}));
     (async () => await fetchSubAdverts(id) )();
   }
-  
+
   useEffect(() => {
     const categoryId = getItemUrlId(location.search);
     const categoryViewStored = sessionStorage.getItem('categoryViewed');
@@ -166,6 +166,16 @@ const CategoryHeader = ({subViewed}) => {
           </select>
           {/* <span className={`${subViewed.id === "all" ? 'active-sub' : '' }`} onClick={() =>subViewed.action('all')}>All</span>
           {subCategories.map((item) => <span className={`${subViewed.id === item.sub_id ? 'active-sub' : ''}`} key={item.sub_id} onClick={() => subViewed.action(item.sub_id)}>{item.sub_name} <i>({item.sub_ads} ads)</i> </span>)} */}
+        </div>
+        <div className="row">
+          <h4>Price</h4>
+          <select name="price-filter" id="price-filter" >
+            <option value="" >{`< 110,000 rwf`}</option>
+            <option value="" >{`> 110,000 rwf`}</option>
+            <option value="" >{`> 210,000 rwf`}</option>
+            <option value="" >{`> 310,000 rwf`}</option>
+            <option value="" >{`> 410,000 rwf`}</option>
+          </select>
         </div>
         
       </div>
