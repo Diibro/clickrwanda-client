@@ -68,9 +68,8 @@ export const RateAdvert = ({item}) => {
                                         style={{ cursor: 'pointer', fontSize: "1.2rem",color: starValue <= rating ? '#E5931D' : 'gray' }}
                                    />
                                    ))}
+                                   <b> : {`${rating}/5`}</b>
                               </div>
-                              
-                              <b>Your Rating: {`${rating}/5`}</b>
                          </div>
                               <ActionBtn action={async() => await submitRating()} title="Rate Ad"/>
                          </div>

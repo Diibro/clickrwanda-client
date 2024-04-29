@@ -1542,7 +1542,7 @@ a{
      align-items: center;
      /* background-color: var(--back-color-blue1); */
      background-color: var(--text-color-title);
-     padding: 5px 10%;
+     padding: 5px 2.5%;
      justify-content: space-between;
      color: white;
      position: sticky;
@@ -3064,6 +3064,38 @@ a{
      background-color: var(--light-gray);
 }
 
+.category-page .category-page-nav{
+     width: 90%;
+     padding: 5px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+     margin-top: 10px;
+}
+
+.category-page .category-page-nav .name {
+     padding: 5px 10px;
+     font-size: 0.86rem;
+     font-weight: 700;
+     background-color: var(--white-text);
+     border-radius: 15px;
+     cursor: pointer;
+     transition: ease 0.5s;
+}
+
+.category-page .category-page-nav .name a {
+     color: var(--text-color-title);
+}
+.category-page .category-page-nav .name:hover {
+     background-color: var(--text-color-title);
+     color: var(--light-gray);
+}
+
+.category-page .category-page-nav .name:hover a {
+     color: var(--light-gray);
+}
 .category-page-content{
      display: flex;
      flex-direction: row;
@@ -3071,7 +3103,7 @@ a{
      justify-content: space-between;
      width: 90%;
      flex-wrap: wrap;
-     padding: 20px 10px;
+     padding: 1px 10px 10px;
      position: relative;
 }
 
@@ -3080,20 +3112,23 @@ a{
      display: flex;
      flex-direction: column;
      flex-wrap: wrap;
-     padding: 10px 5px;
+     padding-bottom: 10px;
      margin: 5px 0;
      background-color: var(--white-text);
      border-radius: 10px;
+     overflow: hidden;
 
 }
 
 .category-page-header h3{
-     width: 90%;
+     width: 100%;
      font-size: 1.1rem;
      font-weight: 800;
-     color: var(--text-color-title);
-     margin: 10px 0 5px;
+     color: var(--back-color-gold1);
+     margin:0;
      display: flex;
+     background-color: var(--text-color-title);
+     padding: 5px;
 }
 
 .category-page-header .filter-content{
@@ -3105,7 +3140,8 @@ a{
 }
 
 .category-page-header .filter-content .row{
-     width: 98%;
+     width: 95%;
+     margin: 5px auto 10px;
 }
 
 .category-page-header .filter-content .row h4{
@@ -3444,7 +3480,7 @@ a{
 }
 
 .advert-page-mainAdvert .col .cat{
-     margin: 0px auto 5px;
+     margin: 0px auto 2.5px;
      width: 100%;
      display: flex;
      flex-direction: row;
@@ -3460,6 +3496,7 @@ a{
 }
 
 .advert-page-mainAdvert .col .cat a{
+     font-size: 0.8rem;
      margin: 2px 2px;
 }
 
@@ -3470,9 +3507,9 @@ a{
 .advert-page-mainAdvert .col h2{
      text-transform:capitalize;
      font-weight: 800;
-     font-size: 2rem;
+     font-size: 1.5rem;
      color: var(--text-color-title);
-     margin: 10px auto 5px;
+     margin: 5px auto 2px;
      text-align: left;
      width: 100%;
 }
@@ -3524,9 +3561,9 @@ a{
 
 .advert-page-mainAdvert .col .advert-price{
      width: 100%;
-     margin: 5px auto;
+     margin: 2px auto;
      text-align: left;
-     font-size: 1.5rem;
+     font-size: 1.2rem;
      color: var(--back-color-red1);
 }
 
@@ -3536,7 +3573,7 @@ a{
 
 .advert-page-mainAdvert .col .content{
      width: 100%;
-     margin: 20px auto;
+     margin: 5px auto 10px;
 }
 
 .advert-page-mainAdvert .col .content h4{
@@ -3573,13 +3610,14 @@ a{
      margin: 0px auto 10px;
      /* box-shadow: 1px 1px 5px var(--text-color-para1); */
      border-radius: 10px;
-     padding: 10px;
+     padding-bottom: 10px;
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: space-between;
      flex-wrap: wrap;
      background-color: var(--white-text);
+     border: 1px solid var(--text-color-title);
 }
 
 .advert-page-mainAdvert .col .vendor .vendor-col-left{
@@ -3597,12 +3635,23 @@ a{
      align-items: flex-start;
 }
 
-.advert-page-mainAdvert .col .vendor h4{
-     font-size: 1.1rem;
+.advert-page-mainAdvert .col .vendor .vendor-info-header{
+     width: 100%;
+     padding: 10px auto;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     border-radius: 10px 10px 0 0 ;
+     background-color:var(--text-color-title) ;
+}
+
+.advert-page-mainAdvert .col .vendor .vendor-info-header h4{
+     font-size: 1.2rem;
      font-weight: 800;
-     color: var(--text-color-title);
-     margin: 5px 0;
-     width: 90%;
+     color: var(--light-gray);
+     margin:0 0 10px 0;
+     text-align: center;
 }
 
 .advert-page-mainAdvert .col .vendor .vendor-col-left a{
@@ -3640,64 +3689,42 @@ a{
      width: 90%;
      display: flex;
      flex-direction: column;
-     align-items: center;
-     justify-content: center;
+     align-items: flex-start;
+     justify-content: flex-start;
+     padding: 5px 10px;
+     gap: 5px;
 }
 
-.advert-page-mainAdvert .col .vendor .contact p{
-     margin: 2.5px auto;
+.advert-page-mainAdvert .col .vendor .contact  .vendor-date{
      font-size: 0.9rem;
-     width: 80%;
+     color: var(--text-color-title);
+     font-weight: 800;
 }
 
-.advert-page-mainAdvert .col .vendor .contact p a{
-     color: var(--text-color-para1);
-     font-weight: 600;
+.advert-page-mainAdvert .col .vendor .contact .row{
+     width: 95%;
      display: flex;
      flex-direction: row;
      align-items: center;
-     max-width: 100%;
-     white-space: wrap;
+     justify-content: flex-start;
+     gap: 15px;
 }
 
-.advert-page-mainAdvert .col .vendor .contact p a i{
-     margin: 0 10px;
-     font-size: 1.2rem;
+.advert-page-mainAdvert .col .vendor .contact p i {
+     font-size: 0.8rem;
      color: var(--back-color-gold2);
 }
 
-.advert-page-mainAdvert .col .vendor .contact p .vendor-views i{
-     color: var(--text-color-title);
-}
-
-.advert-page-mainAdvert .col .vendor .contact .vendor-date, .advert-page-mainAdvert .col .vendor .contact .vendor-views{
-     font-size: 0.9rem;
-     font-weight: 800;
+.advert-page-mainAdvert .col .vendor .contact p, .advert-page-mainAdvert .col .vendor .contact p a {
+     font-size: 0.85rem;
+     font-weight: 700;
      color: var(--text-color-title);
      display: flex;
      flex-direction: row;
+     gap: 5px;
      align-items: center;
+     justify-content: flex-start;
 }
-
-.advert-page-mainAdvert .col .vendor .contact .vendor-ads{
-     font-size: 0.9rem;
-     font-weight: 800;
-     color: var(--back-color-blue1);
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-}
-
-.advert-page-mainAdvert .col .vendor .contact .vendor-ads{
-     color: var(--back-color-blue1);
-}
-
-.advert-page-mainAdvert .col .vendor .contact .vendor-views i{
-     margin: 0 3px;
-     display: flex;
-     align-items: center;
-}
-
 
 .advert-page-mainAdvert .col .reviews{
      width: 100%;
@@ -3707,6 +3734,7 @@ a{
      padding: 0;
      display: flex;
      background-color: var(--white-text);
+     border: 1px solid var(--text-color-para2);
 }
 
 .advert-review-container{
@@ -3770,13 +3798,15 @@ a{
      align-items: center;
      justify-content: center;
      padding: 10px 0;
+     background-color: var(--text-color-title);
+     border-radius: 10px 10px 0 0;
 }
 
 .rate-review-header h4{
      max-width: 95%;
      font-size: 1.2rem;
      font-weight: 700;
-     color: var(--text-color-title);
+     color: var(--light-gray);
 }
 
 .message-review-header h4, .report-review-header h4{
@@ -3858,6 +3888,11 @@ a{
      width: 50%;
      align-items: center;
      justify-content: space-evenly;
+}
+
+.message-review-body .row .rating-div b {
+     color: var(--text-color-title);
+     font-size: 1.1rem;
 }
 
 .advert-page-mainAdvert .col .safety-tips{

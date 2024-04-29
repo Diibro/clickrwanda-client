@@ -3,7 +3,7 @@ import {  getItemUrl, getItemUrlId } from "../utils/urlFunctions";
 import {  useEffect, useState } from "react";
 import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunctions";
 import { jsonParserV1 } from "../utils/jsonFunctions";
-import { FaLocationDot, FaPhone } from "react-icons/fa6";
+import { FaEye, FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
@@ -11,7 +11,6 @@ import { SimilarAds } from "../components/dynamic/Adverts.component";
 import UserRating from "../components/dynamic/Rating.component";
 import {  formatTimeAgo } from "../utils/dateFunctions";
 import { RiAdvertisementFill } from "react-icons/ri";
-import { MdPageview } from "react-icons/md";
 import {  ImageViewer } from "../components/dynamic/ImageSlider";
 import { getData, saveData } from "../utils/storageFunctions";
 import { AdvertReview, RateAdvert } from "../components/dynamic/Reviews.component";
@@ -113,7 +112,7 @@ const AdvertPage = () => {
                               </div>
                               <div className="col">
                                    <div className="vendor">
-                                   {adViewed?.full_name && <h4>Seller Information:</h4>}
+                                   {adViewed?.full_name && <div className="vendor-info-header"><h4>Seller Information</h4></div>}
                                         <div className="vendor-col-left">
                                              {adViewed?.profile_image && <a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}><img src={adViewed?.profile_image} alt={adViewed?.full_name} /></a>}
                                              {adViewed?.full_name && <h5>{adViewed?.full_name}</h5>}
@@ -122,12 +121,14 @@ const AdvertPage = () => {
                                         <div className="vendor-col-right">
                                              {adViewed?.user_email && 
                                                   <div className="contact" >
-                                                       <p className="vendor-date">Joined:  {formatTimeAgo(adViewed?.reg_date)}</p>
-                                                       <p className="vendor-views"><i><MdPageview /></i>  {adViewed?.totalViews} Total views</p>
-                                                       <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {adViewed?.total_ads} Total Ads</a></p>
-                                                       <p><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
-                                                       <p><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
-                                                       <p><a href={`https://www.google.com/maps/place/${adViewed.user_location.location}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {adViewed?.user_location.location}</a></p>
+                                                       <p className="vendor-date">Joined  {formatTimeAgo(adViewed?.reg_date)}</p>
+                                                       <div className="row">
+                                                            <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {adViewed?.total_ads} Ads</a></p>
+                                                            <p className="vendor-views"><i><FaEye /></i>  {adViewed?.totalViews} views</p>
+                                                       </div>
+                                                       <p className="vendor-views"><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
+                                                       <p className="vendor-views"><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
+                                                       <p className="vendor-views"><a href={`https://www.google.com/maps/place/${adViewed.user_location.location}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {adViewed?.user_location.location}</a></p>
                                                   </div>
                                              }
                                         </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import { getItemUrlId } from "../utils/urlFunctions";
 import server from "../config/Server";
 import PropTypes from 'prop-types'
@@ -7,12 +7,16 @@ import Loading from "../components/static/Loading";
 import { CategoryAdverts} from "../components/dynamic/Adverts.component";
 import { getData, saveData } from "../utils/storageFunctions";
 import { Helmet } from "react-helmet";
+import { filterByPrice, filterPrices } from "../utils/filterFunctions";
+import { formatPrice } from "../utils/otherFunctions";
 
 const CategoryPage = () => {
   const [categoryAds, setCategoryAds] = useState(null);
+  const [ads, setAds] = useState(null);
   const [subCategories, setSubCategories] = useState(null);
   const [category, setCategory] = useState(null);
   const [subViewed, setSubViewed] = useState({id: 'all'}); 
+  const [subCategory, setSubCategory] = useState(null);
   const location = useLocation();
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +31,9 @@ const CategoryPage = () => {
       if(parsedData) {
         if(parsedData.sub_id === sub_id) {
           setCategoryAds(parsedData.adverts);
+          setAds(parsedData.adverts);
           check = 1;
+          return;
         }
       }
 
@@ -38,6 +44,7 @@ const CategoryPage = () => {
           return;
         }
         setCategoryAds(res);
+        setAds(res);
         const subAdverts = { sub_id, data: res};
         saveData('subAdverts', subAdverts, 30);
       }
@@ -48,10 +55,21 @@ const CategoryPage = () => {
     }
   }
   
-  const viewSubCategory = (id) => {
-    console.log(id);
-    setSubViewed((prev) => ({...prev, id}));
-    (async () => await fetchSubAdverts(id) )();
+  const viewSubCategory = (item) => {
+    setSubCategory(item);
+    setSubViewed((prev) => ({...prev, id: item.sub_id}));
+    (async () => await fetchSubAdverts(item.sub_id) )();
+  }
+
+  const viewAdsByPrice = (filterData) => {
+    try {
+      console.log(filterData.max);
+      const filteredAds = filterByPrice(categoryAds, filterData);
+      setCategoryAds([...filteredAds]);
+      console.log(categoryAds);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
@@ -66,6 +84,7 @@ const CategoryPage = () => {
           const {categoryData, subCategories, adverts} = categoryDatas
           sessionStorage.setItem('categoryViewed', JSON.stringify(categoryDatas));
           setCategoryAds(adverts);
+          setAds(adverts);
           setSubCategories(subCategories);
           setCategory(categoryData)
           return;
@@ -86,6 +105,7 @@ const CategoryPage = () => {
       if(categoryData?.category_id === categoryId){
         const {subCategories, adverts} = categoryDataStored
         setCategoryAds(adverts);
+        setAds(adverts);
         setSubCategories(subCategories);
         setCategory(categoryData)
         check = 1;
@@ -97,7 +117,6 @@ const CategoryPage = () => {
         await fetchData(categoryId);
       })(); 
     }
-    console.log(categoryAds);
   },[location.search] );
 
   return (
@@ -108,15 +127,24 @@ const CategoryPage = () => {
         <title>{`${category?.category_name || 'Category'}`} | Click Rwanda</title>
       </Helmet>
       <div className="category-page">
-        
+          <div className="category-page-nav">
+            <div className="name" onClick={() => window.location.reload()}>
+              {category?.category_name}
+            </div>
+            {!subCategory ? null : 
+            <div className="name">
+              {subCategory?.sub_name || ""}
+            </div>
+            }
+          </div>
           <div className="category-page-content">
-            
-            {subCategories ? <CategoryHeader subViewed={{id: subViewed.id, action: viewSubCategory}} /> : null }
+            {subCategories ? <CategoryHeader subViewed={
+              {id: subViewed.id, action: viewSubCategory, data: ads, filterByPrice: viewAdsByPrice}
+              } /> : null }
             {!loading ? <>
             {categoryAds ? <CategoryAdverts adverts={categoryAds} /> : null}
             </> : <Loading />}
           </div>
-        
       </div>
     </>
     
@@ -125,13 +153,12 @@ const CategoryPage = () => {
 
 const CategoryHeader = ({subViewed}) => {
   const [subCategories, setSubCategories] = useState(null);
+  const [filteredPrices, setFilteredPrices] = useState([]);
 
   const fetchData = async(id) => {
     try {
       const categoryDatas = await server.searchAdverts('category', {category_id: id});
       if(categoryDatas !== "no data found"){
-        console.log("these are the datas found");
-        console.log(categoryDatas)
         const {subCategories} = categoryDatas;
         setSubCategories(subCategories);
         return;
@@ -141,10 +168,6 @@ const CategoryHeader = ({subViewed}) => {
     }finally{
       // 
     }
-    
-    console.log("no data found");
-
-    
   }
 
   useEffect(() => {
@@ -154,27 +177,36 @@ const CategoryHeader = ({subViewed}) => {
     })();
   }, []);
 
+  useEffect(() => {
+    setFilteredPrices(filterPrices(subViewed.data));
+}, [subViewed.data]);
+
+useEffect(() => {
+    document.getElementById("price-filter").selectedIndex = 0;
+}, [filteredPrices]);
+
   return(
     <div className="category-page-header">
       <h3>Filter....</h3>
       <div className="filter-content">
         <div className="row">
           <h4>Sub-Category</h4>
-          <select name="sub-category" id="sub-category" onChange={(event) => subViewed.action(event.target.value)}>
+          <select name="sub-category" id="sub-category" onChange={(event) => subViewed.action(JSON.parse(event.target.value))}>
             <option value="all">All</option>
-            {subCategories && subCategories[0] ? subCategories.map((item) => <option key={item.sub_id} value={item.sub_id} >{item.sub_name} {`(${item.sub_ads} ads)`}</option>) : null}
+            {subCategories && subCategories[0] ? subCategories.map((item) => <option key={item.sub_id} value={JSON.stringify(item)} >{item.sub_name} {`(${item.sub_ads} ads)`}</option>) : null}
           </select>
           {/* <span className={`${subViewed.id === "all" ? 'active-sub' : '' }`} onClick={() =>subViewed.action('all')}>All</span>
           {subCategories.map((item) => <span className={`${subViewed.id === item.sub_id ? 'active-sub' : ''}`} key={item.sub_id} onClick={() => subViewed.action(item.sub_id)}>{item.sub_name} <i>({item.sub_ads} ads)</i> </span>)} */}
         </div>
+
         <div className="row">
           <h4>Price</h4>
-          <select name="price-filter" id="price-filter" >
-            <option value="" >{`< 110,000 rwf`}</option>
-            <option value="" >{`> 110,000 rwf`}</option>
-            <option value="" >{`> 210,000 rwf`}</option>
-            <option value="" >{`> 310,000 rwf`}</option>
-            <option value="" >{`> 410,000 rwf`}</option>
+          <select onChange={(e) => subViewed.filterByPrice(JSON.parse(e.target.value))}  
+            name="price-filter" id="price-filter" >
+            <option value="" disabled selected>Price range..</option>
+            {filteredPrices.map((price,index) => 
+            <option value={JSON.stringify({min:price, max:filterPrices[index + 1]})} key={index}>{formatPrice(price)} - {index < 5 ? formatPrice(filteredPrices[index + 1]): "Above"} </option>
+          )}
           </select>
         </div>
         

@@ -34,7 +34,7 @@ const Footer = () => {
                <div className="footer-content">
                     <a href="tel:+250 787260494" rel="noreferrer" target="_blank"><i className="icon call-icon"><MdCall /></i> Call us: +250787260494 </a>
                     <p><i className="icon"><FaLocationArrow /> </i> Location: Kigali, Rwanda </p>
-                    <a href="mailto:info@clickrwanda.com" rel="noreferrer" target="_blank"><i className="icon"><MdEmail /></i> Email: info@clickrwanda.com</a>
+                    <a href="mailto:clickrwandaltd@gmail.com" rel="noreferrer" target="_blank"><i className="icon"><MdEmail /></i> Email: clickrwandaltd@gmail.com</a>
                </div>
           </div>
           <div className="footer-col">
