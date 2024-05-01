@@ -39,7 +39,7 @@ export const Adverts = ({eleId,limit}) => {
               {
                 adverts.map((item, index) => ( index <= limit ? (
                   <>
-                    <AdvertRenderer key={item.ad_id} item={item}/>
+                    <AdvertRenderer key={eleId + item.ad_id} item={item}/>
                   {index === adLimit ? <HorizontalBanner items={Banners} /> : null}
                   </>
                   

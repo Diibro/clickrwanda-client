@@ -966,6 +966,7 @@ a{
      position: relative;
      background-color: var(--light-gray);
      padding-inline: 1%;
+     height: auto;
 }
 
 
@@ -975,8 +976,9 @@ a{
      flex-direction: row;
      align-items: flex-start;
      justify-content: flex-start;
-     position: relative;
      padding: 5px;
+     position: static;
+     bottom: 0;
 }
 
 .page-main .side:first-of-type{
