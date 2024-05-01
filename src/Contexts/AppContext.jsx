@@ -32,7 +32,7 @@ export const AppProvider = ({children}) => {
 
      const fetchData = async () => {
           try {
-               setData((prev) => ({...prev, loading: true}));
+               // setData((prev) => ({...prev, loading: false}));
                const sessionData = getData('appData');
                if (sessionData){
                     const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted, boostedSellers, discounted, adWebsites} = sessionData;
