@@ -20,15 +20,15 @@ export const getData = (key) => {
 }
 
 export const getDataLocal = (key) => {
-     const storedData = sessionStorage.getItem(key);
+     const storedData = localStorage.getItem(key);
      if (storedData) {
           const { value, expiryTime } = JSON.parse(storedData);
           const now = new Date().getTime();
-     if (now < expiryTime) {
-          return {value, expired: false};
-     } else {
-          return {value, expired: true};
-     }
+          if (now < expiryTime) {
+               return {value, expired: false};
+          } else {
+               return {value, expired: true};
+          }
      }
 
      return null;

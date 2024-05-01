@@ -10,6 +10,7 @@ export const AppProvider = ({children}) => {
      const location = useLocation();
      const [data, setData] = useState({
           fetchNow: false,
+          appOnline:true,
           categories:[],
           adverts: [],
           boosted: [],
@@ -31,33 +32,43 @@ export const AppProvider = ({children}) => {
      const {fetchNow} = data;
 
      const fetchFromServer = async () => {
-          const categoriesData = await server.get('categories',null);
-          const resData = await server.get('adverts',{page: 1, boost: 20, boostSellers: true,boostNum:10, todayDeals:50, website:50});
-          const {generalAds:advertsData, boostedAds:boosted, bestSellers:boostedSellers, discounted, adWebsites} = resData?.adWebsites ? resData : {};
-          const subCategoriesData = await server.get('sub categories',null);
-          const payPlansData = await server.get('payment plans', null);
-          const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted, adWebsites}
-          setData((prev) => ({
-          ...prev,
-          categories: categoriesData,
-          adverts: advertsData,
-          subCategories: subCategoriesData,
-          payPlans: payPlansData,
-          boosted: boosted,
-          todayDeals:discounted,
-          bestSellers:boostedSellers,
-          websiteAds: adWebsites,
-          currency: "Frw"
-          }));
-          saveData('appData', appData, 30);
+          try{
+               const categoriesData = await server.get('categories',null);
+               const resData = await server.get('adverts',{page: 1, boost: 20, boostSellers: true,boostNum:10, todayDeals:50, website:50});
+               const {generalAds:advertsData, boostedAds:boosted, bestSellers:boostedSellers, discounted, adWebsites} = resData?.adWebsites ? resData : {};
+               const subCategoriesData = await server.get('sub categories',null);
+               const payPlansData = await server.get('payment plans', null);
+               const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted, adWebsites}
+               
+               if(appData && appData.categoriesData && appData.categoriesData[0]){
+                    setData((prev) => ({
+                         ...prev,
+                         categories: categoriesData,
+                         adverts: advertsData,
+                         subCategories: subCategoriesData,
+                         payPlans: payPlansData,
+                         boosted: boosted,
+                         todayDeals:discounted,
+                         bestSellers:boostedSellers,
+                         websiteAds: adWebsites,
+                         currency: "Frw"
+                    }));
+                    saveData('appData', appData, 30);
+               }
+          }catch(error){
+               console.log(error);
+          }
+          
      }
 
      const fetchData = async () => {
           try {
-               // setData((prev) => ({...prev, loading: true}));
+               setData((prev) => ({...prev, loading: true}));
                const localData = getDataLocal("appData");
+               console.log(localData);
                if(localData ){
                     const {value: sessionData} = localData;
+                    console.log(localData);
                     if (sessionData){
                          const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted, boostedSellers, discounted, adWebsites} = sessionData;
                          setData((prev) => ({
@@ -72,6 +83,7 @@ export const AppProvider = ({children}) => {
                               websiteAds: adWebsites,
                               currency: "Frw"
                          }));
+                         setData((prev) => ({...prev, loading: false}));
                     }
                }
                
