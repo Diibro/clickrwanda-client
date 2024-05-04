@@ -63,9 +63,9 @@ const CategoryPage = () => {
 
   const viewAdsByPrice = (filterData) => {
     try {
-      console.log(filterData.max);
-      const filteredAds = filterByPrice(categoryAds, filterData);
-      setCategoryAds([...filteredAds]);
+      let maxPrice = +filterData.min + +filterData.change;
+      const filteredAds = filterByPrice(ads, {min:filterData.min, max: maxPrice});
+      setCategoryAds(filteredAds);
       console.log(categoryAds);
     } catch (error) {
       console.error(error);
@@ -117,7 +117,7 @@ const CategoryPage = () => {
         await fetchData(categoryId);
       })(); 
     }
-  },[location.search] );
+  },[location.search]);
 
   return (
     <>
@@ -195,17 +195,15 @@ useEffect(() => {
             <option value="all">All</option>
             {subCategories && subCategories[0] ? subCategories.map((item) => <option key={item.sub_id} value={JSON.stringify(item)} >{item.sub_name} {`(${item.sub_ads} ads)`}</option>) : null}
           </select>
-          {/* <span className={`${subViewed.id === "all" ? 'active-sub' : '' }`} onClick={() =>subViewed.action('all')}>All</span>
-          {subCategories.map((item) => <span className={`${subViewed.id === item.sub_id ? 'active-sub' : ''}`} key={item.sub_id} onClick={() => subViewed.action(item.sub_id)}>{item.sub_name} <i>({item.sub_ads} ads)</i> </span>)} */}
         </div>
 
         <div className="row">
           <h4>Price</h4>
-          <select onChange={(e) => subViewed.filterByPrice(JSON.parse(e.target.value))}  
+          <select onChange={(e) => subViewed.filterByPrice({min:e.target.value, change:filteredPrices[1]})}  
             name="price-filter" id="price-filter" >
             <option value="" disabled selected>Price range..</option>
             {filteredPrices.map((price,index) => 
-            <option value={JSON.stringify({min:price, max:filterPrices[index + 1]})} key={index}>{formatPrice(price)} - {index < 5 ? formatPrice(filteredPrices[index + 1]): "Above"} </option>
+            <option value={filteredPrices[index]} key={index}>{formatPrice(price)} - {index < 5 ? formatPrice(filteredPrices[index + 1]): "Above"} </option>
           )}
           </select>
         </div>

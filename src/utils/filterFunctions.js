@@ -1,46 +1,4 @@
-// export const filterPrices = (arr) => {
-//      const total_Ads = arr.length;
-//      const sortedArr = conditionalSort(arr, "ad_price");
-//      let min_price = sortedArr[0].ad_price;
-//      let max_price = sortedArr[total_Ads - 1].ad_price;
 
-//      let priceDiff = (max_price - min_price) / 5;
-
-//      let filteredPrices = [];
-
-//      let price = min_price;
-//      for (let i = 0; i < 5; i++){
-//           filteredPrices.push(Math.ceil(price / 1000) * 1000);
-//           price +=  priceDiff;
-//      }
-
-//      return filteredPrices;
-// }
-
-export const filterPrices = (arr) => {
-     const total_Ads = arr.length;
-     const sortedArr = conditionalSort(arr, "ad_price");
-     let min_price = sortedArr[0].ad_price;
-     let max_price = sortedArr[total_Ads - 1].ad_price;
- 
-     let priceDiff = max_price - min_price;
-     let numIntervals = 5; // Number of intervals you want
- 
-     // Determine the increment value based on the difference
-     let increment = Math.ceil(priceDiff / numIntervals);
- 
-     // Round down the min_price to the nearest increment value
-     let startingPrice = Math.floor(min_price / increment) * increment;
- 
-     let filteredPrices = [];
- 
-     // Generate the price range based on the number of intervals
-     for (let i = 0; i <= numIntervals; i++) {
-         filteredPrices.push(startingPrice + i * increment);
-     }
- 
-     return filteredPrices;
- }
 export const conditionalSort = (arr, cond) => {
      return arr.sort((a,b) => {
           if(a[cond] < b[cond]){
@@ -54,6 +12,42 @@ export const conditionalSort = (arr, cond) => {
      })
 }
 
+export const filterPrices =  (arr) => {
+     const totalAds = arr.length;
+     const sortedArr = conditionalSort(arr, 'ad_price');
+     let maxPrice = sortedArr[totalAds - 1].ad_price;
+     switch(true){
+          case maxPrice <= 100000:
+               maxPrice = 100000;
+               break;
+          case maxPrice > 100000 && maxPrice <= 1000000:
+               maxPrice = 1000000;
+               break;
+          case maxPrice > 1000000 && maxPrice <= 10000000:
+               maxPrice = 10000000;
+               break;
+          case maxPrice > 10000000 && maxPrice <= 100000000:
+               maxPrice = 100000000;
+               break;
+          case maxPrice > 100000000 && maxPrice <= 1000000000:
+               maxPrice = 1000000000;
+               break;
+          case maxPrice > 1000000000 && maxPrice <= 10000000000:
+               maxPrice = 10000000000;
+               break;
+          default:
+               break;
+     }
+     let increment = maxPrice / 5;
+     let startingPrice = 0;
+
+     let filteredPrices = [];
+     
+     for (let i = 0; i <= 5; i++) {
+         filteredPrices.push(startingPrice + i * increment);
+     }
+     return filteredPrices;
+}
 export const filterByPrice = (ads,filterData) => {
      if(filterData.max !== undefined && filterData.max !== 0){
           return ads.filter((item) => item.ad_price >= filterData.min && item.ad_price <= filterData.max);

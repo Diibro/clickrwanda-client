@@ -2307,7 +2307,7 @@ a{
      justify-content: flex-start;
      position: sticky;
      top: 10px;
-     box-shadow: 1px 1px 4px var(--back-color-gold2-transparent);
+     background-color: var(--white-text);
      border-radius: 5px;
      padding: 10px 0;
      position: relative;
@@ -2359,11 +2359,15 @@ a{
 
 .dashboard-content{
      width: 75%;
+     /* height: 95%; */
      display: flex;
      flex-direction: column;
      align-items: center;
      justify-content: center;
      margin: 5px auto;
+     background-color: var(--white-text);
+     min-height: 50vh;
+     border-radius: 10px;
 }
 
 .dashboard-row{
