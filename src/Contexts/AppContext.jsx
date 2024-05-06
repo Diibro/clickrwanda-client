@@ -68,7 +68,6 @@ export const AppProvider = ({children}) => {
                console.log(localData);
                if(localData ){
                     const {value: sessionData} = localData;
-                    console.log(localData);
                     if (sessionData){
                          const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted, boostedSellers, discounted, adWebsites} = sessionData;
                          setData((prev) => ({

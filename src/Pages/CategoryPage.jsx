@@ -181,9 +181,9 @@ const CategoryHeader = ({subViewed}) => {
     setFilteredPrices(filterPrices(subViewed.data));
 }, [subViewed.data]);
 
-useEffect(() => {
-    document.getElementById("price-filter").selectedIndex = 0;
-}, [filteredPrices]);
+// useEffect(() => {
+//     document.getElementById("price-filter").selectedIndex = 0;
+// }, [filteredPrices]);
 
   return(
     <div className="category-page-header">
@@ -197,7 +197,7 @@ useEffect(() => {
           </select>
         </div>
 
-        <div className="row">
+        {/* <div className="row">
           <h4>Price</h4>
           <select onChange={(e) => subViewed.filterByPrice({min:e.target.value, change:filteredPrices[1]})}  
             name="price-filter" id="price-filter" >
@@ -206,7 +206,7 @@ useEffect(() => {
             <option value={filteredPrices[index]} key={index}>{formatPrice(price)} - {index < 5 ? formatPrice(filteredPrices[index + 1]): "Above"} </option>
           )}
           </select>
-        </div>
+        </div> */}
         
       </div>
       
