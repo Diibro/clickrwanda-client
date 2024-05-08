@@ -65,9 +65,13 @@ export const openNewTab = (url) => {
 
 export const getParagraphs = (text, wordsPerParagraph) => {
   let words = text.split(/\s+/);
+  let sentences = text.split(". ");
+
 
   let paragraphs = [];
+  let paragraphs2 =[];
   let currentParagraph = '';
+  let currentParagraph2 = '';
 
   words.forEach(word => {
     if (currentParagraph.split(/\s+/).length > wordsPerParagraph) {
@@ -78,9 +82,21 @@ export const getParagraphs = (text, wordsPerParagraph) => {
     currentParagraph += word + ' ';
   });
 
+  sentences.forEach(sentence => {
+    if(currentParagraph2.split(". ").length > 4){
+      paragraphs2.push(currentParagraph2);
+      currentParagraph2 = "";
+    }
+    currentParagraph2 += sentence + ". ";
+  })
+
   if (currentParagraph.trim() !== '') {
     paragraphs.push(currentParagraph.trim());
   }
 
-  return paragraphs;
+  if (currentParagraph2.trim() !== '') {
+    paragraphs2.push(currentParagraph2);
+  }
+
+  return paragraphs2;
 }
