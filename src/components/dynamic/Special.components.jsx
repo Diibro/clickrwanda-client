@@ -10,8 +10,11 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { InnerSection } from "./InnerSectionContainer";
+import { useTranslation } from "react-i18next";
 
 export const BoostedSellers = () => {
+     const {t} = useTranslation("global");
+     const content = t("homePage.bestSellersSection", {returnObjects:true});
      const [data] = useContext(AppData);
      const {bestSellers } = data;
      const navigate = useNavigate();
@@ -45,11 +48,11 @@ export const BoostedSellers = () => {
      return(
           <div className="container">
                <InnerSection type="title">
-                    Our Best Sellers
-                    <Link to='/best-sellers'>View All</Link>
+                    {content.title}
+                    <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
                </InnerSection>
                <div className="home-best-sellers">
-                    <p className="best-seller-para">Discover which sellers have been ranked best for the best products, services and deals.</p>
+                    <p className="best-seller-para">{content.message}</p>
                     <div ref={adsRef} className="sellers-container hide-scroll">
                          {bestSellers && bestSellers[0] && bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
                          <span className="best-seller-card" onClick={() => navigate('/best-sellers')} >More...</span>
@@ -149,14 +152,11 @@ export const GetStartedV1 = () => {
 }
 
 export const RequestQuoteHeader = () => {
+     const {t} = useTranslation("global");
+     const content = t("homePage.heroSection.buttons", {returnObjects:true});
      return(
           <div className="home-request-quote-header hide-scroll">
-               <Link to="/get-started">Open a shop</Link>
-               <Link to="/send-request?=buy-house">Buy a house</Link>
-               <Link to="/send-request?=buy-car">Buy a car</Link>
-               <Link to="/send-request?=find-job">Find a job</Link>
-               <Link to="/send-request?=request-quotation" >Request Quotation</Link>
-               <Link to="/send-request?=find-room">Find a room</Link>
+               {content.map((item,index) => <Link to={item.link} key={`hero-btn-${index}`}>{item.name}</Link>)}
           </div>
      )
 }

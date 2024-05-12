@@ -7,10 +7,13 @@ import { InnerSection } from './InnerSectionContainer';
 import { CategoryContainerSquare } from './Containers';
 import { MoreLink } from './LinksComponents';
 import { getItemUrl } from '../../utils/urlFunctions';
+import { useTranslation } from 'react-i18next';
 // import { TopDealsCard } from './Special.components';
 // import MoreIcon from "../../assets/morecat.png";
 
 const Categories = ({limit}) => {
+     const {t} = useTranslation("global");
+     const content = t("homePage.categoriesSection", {returnObjects:true});
      const [data, setData] = useContext(AppData);
      const {categories} = data;
      // const cond = false;
@@ -24,7 +27,7 @@ const Categories = ({limit}) => {
           {!categories ? null : categories[0] ? (
                <>
                <InnerSection type="title" >
-                    Our top categories
+                    {content.title}
                </InnerSection>
                <InnerSection type="content">
                     {/* {Array.isArray(categories) && <TopDealsCard />} */}

@@ -20,8 +20,11 @@ import { LoadingAd } from "./LoadinComponents";
 import { getArrayOfNums } from "../../utils/otherFunctions";
 import { Banners } from "../../config/banners";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { useTranslation } from "react-i18next";
 
 export const Adverts = ({eleId,limit}) => {
+      const {t} = useTranslation("global");
+      const content = t("homePage.newAdsSection", {returnObjects:true});
       const [data] = useContext(AppData);
       const [deviceView] = useContext(DeviceView)
       const { isMobile, isTablet} = deviceView
@@ -32,14 +35,14 @@ export const Adverts = ({eleId,limit}) => {
         return(
           <>
           <InnerSection type="title" eleId={"home-new-ads"} >
-            New Ads
+            {content.title}
           </InnerSection>
             {changingPage ? <Loading /> : 
             <InnerSection eleId={eleId} type="content">
               {
                 adverts.map((item, index) => ( index <= limit ? (
                   <>
-                    <AdvertRenderer key={eleId + item.ad_id} item={item}/>
+                    <AdvertRenderer key={`home_ads-${eleId + item.ad_id}`} item={item}/>
                   {index === adLimit ? <HorizontalBanner items={Banners} /> : null}
                   </>
                   
@@ -269,6 +272,8 @@ export const CategoryAdverts = ({adverts}) => {
 }
 
 export const BoostedAds = ({params}) => {
+  const {t} = useTranslation("global");
+  const content = t("homePage.premiumAdsSection", {returnObjects:true})
   const [data] = useContext(AppData);
   const adsRef = useRef(null);
   const {boosted} = data;
@@ -303,8 +308,8 @@ export const BoostedAds = ({params}) => {
   return(
     <div className="container">
       <InnerSection type="title" >
-            Premium Ads
-            <Link to='/sponsored-ads'>View All</Link>
+            { content.title }
+            <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
       </InnerSection>
       <div className="home-boosted-ads " >
           <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
@@ -391,6 +396,8 @@ export const VerticalAds = ({ ads, adsNo, eleId }) => {
 // }
 
 export const TodayDeals = ({params}) => {
+  const {t} = useTranslation("global");
+  const content = t("homePage.topDealsSection", {returnObjects:true});
   const [data] = useContext(AppData);
   const {todayDeals} = data;
   const adsRef = useRef(null);
@@ -423,8 +430,8 @@ export const TodayDeals = ({params}) => {
   return (
     <div className="container">
       <InnerSection type="title" >
-            Today Deals
-            <Link to='/top-deals'>View All</Link>
+            {content.title}
+            <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
       </InnerSection>
       <div className="home-boosted-ads " >
       <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
@@ -442,12 +449,14 @@ export const TodayDeals = ({params}) => {
 }
 
 export const AdWebsites = () => {
+  const {t} = useTranslation("global");
+  const content = t("homePage.sponsoredAdsSection", {returnObjects:true});
   const [data] = useContext(AppData);
   const {websiteAds } = data;
   return Array.isArray(websiteAds) && websiteAds[0] ? (
     <div className="container">
           <InnerSection type="title" >
-            Sponsored Ads
+            {content.title}
           </InnerSection>
           <div className="home-ad-websites">
             {

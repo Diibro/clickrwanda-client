@@ -10,7 +10,7 @@ useEffect(() => {
   return (
     <DashboardContainer>
       <DashboardRow>
-        <h2>welcome back  {userInfo.name}</h2>
+        <h2>welcome  {userInfo.name}</h2>
       </DashboardRow>
       <DashboardRow>
 

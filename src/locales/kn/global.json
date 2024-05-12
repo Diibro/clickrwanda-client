@@ -1,0 +1,138 @@
+{
+     "header": {
+          "buttons": [
+               {
+                    "name":"Konti",
+                    "link":"/forms/login"
+               },
+               {
+                    "name": "Shyiraho Itangazo",
+                    "link": "/forms/add-advert"
+               }
+          ]
+     },
+     "footer": {
+          "platforms":{
+               "title": "Imbuga Zacu"
+          },
+          "address": {
+               "title": "Aho Dukorera",
+               "callUs": "Duhamagare",
+               "email": "Imeli Yacu",
+               "location": "Aho Waduhasanga"
+          },
+          "advertiseHere": {
+               "title":"Amamaza Hano",
+               "message1": "Amamaza natwe",
+               "message2":"Twoherereze ubutumwa bugufi:",
+               "plansButton": {
+                    "name":"Ibiciro",
+                    "link": "/payment-plans"
+               },
+               "getStarted": {
+                    "name":"Akazi",
+                    "link": "/forms/signup"
+               }
+          },
+          "supportLinks":{
+               "title": "Menya Byinshi",
+               "links":[
+                    {
+                         "title":"Ubufasha",
+                         "link": "/"
+                    },
+                    {
+                         "title":"Tuvugishe",
+                         "link": "/"
+                    },
+                    {
+                         "title":"Itegeko Ku Makuru Bwite",
+                         "link": "/privacy-policy"
+                    },
+                    {
+                         "title":"ibitangiriro",
+                         "link": "/terms-&-conditions"
+                    },
+                    {
+                         "title":"Abo Turibo",
+                         "link": "/"
+                    },
+                    {
+                         "title":"Korana Natwe",
+                         "link": "/hiring"
+                    },
+                    {
+                         "title":"Abadusura",
+                         "link": "/website-visits"
+                    }
+               ]
+          }
+     },
+     "homePage":{
+          "heroSection":{
+               "heroMessage": "Gurisha, Gura, Kodesha Unamamaze mu Rwanda",
+               "searchBar":{
+                    "search":"Ishakiro...",
+                    "category": "Ibyiciro byose",
+                    "location": "Mu Rwanda hose"
+               },
+               "buttons":[
+                    {
+                         "name":"Fungura Iduka",
+                         "link":"/get-started"
+                    },
+                    {
+                         "name":"Gura Inzu",
+                         "link":"/send-request?=buy-house"
+                    },
+                    {
+                         "name":"Gura Imodoka",
+                         "link":"/send-request?=buy-car"
+                    },
+                    {
+                         "name":"Shaka Akazi",
+                         "link":"/send-request?=find-job"
+                    },
+                    {
+                         "name":"aka poroforoma",
+                         "link":"/send-request?=request-quotation"
+                    },
+                    {
+                         "name":"Shaka icyumba",
+                         "link":"/send-request?=find-room"
+                    }
+               ]
+          },
+          "topDealsSection":{
+               "title":"Amatangaza yihuse",
+               "viewAllLink":{
+                    "title":"Reba byose",
+                    "link":"/top-deals"
+               }
+          },
+          "categoriesSection":{
+               "title":"Ibyiciro"
+          },
+          "premiumAdsSection": {
+               "title":"Amatangazo yizewe",
+               "viewAllLink":{
+                    "title":"Reba byose",
+                    "link":"/sponsored-ads"
+               }
+          },
+          "newAdsSection": {
+               "title":"Amatangazo Mashya"
+          },
+          "bestSellersSection": {
+               "title":"Abacuruza bambere beza",
+               "message":"Menya abacuruzi bambere beza bafite ibicuruzwa byiza na serivisi nziza inogeye.",
+               "viewAllLink":{
+                    "title":"Reba byose",
+                    "link":"/best-sellers"
+               }
+          },
+          "sponsoredAdsSection":{
+               "title":"Andi Matangazo"
+          }
+     }
+}

@@ -7,8 +7,10 @@ import { getDataLocal, saveData } from '../utils/storageFunctions';
 const AppData = createContext();
 
 export const AppProvider = ({children}) => {
+     
      const location = useLocation();
      const [data, setData] = useState({
+          language:"en",
           fetchNow: false,
           appOnline:true,
           categories:[],
@@ -65,7 +67,6 @@ export const AppProvider = ({children}) => {
           try {
                setData((prev) => ({...prev, loading: true}));
                const localData = getDataLocal("appData");
-               console.log(localData);
                if(localData ){
                     const {value: sessionData} = localData;
                     if (sessionData){
@@ -96,7 +97,8 @@ export const AppProvider = ({children}) => {
           }
      };
      useEffect(() => {
-          
+
+
           if(!data.categories[0]){
                if(location.pathname === '/' || fetchNow){
                (async () => await fetchData())();

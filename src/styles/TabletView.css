@@ -127,6 +127,11 @@
      .desktop-header h1{
           font-size: 1.1rem;
      }
+
+     .header-logo-image{
+          width: 70px;
+          min-width: 20px;
+     }
      .home .hello-section .col h1{
           font-size: 2.5rem;
      }

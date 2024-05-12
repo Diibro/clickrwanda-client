@@ -7,11 +7,15 @@ import { BoostedSellers, RequestQuoteHeader } from '../components/dynamic/Specia
 import { Helmet } from 'react-helmet';
 import { HeroSectionBanner, HorizontalBanner, LeftBanner, RightBanner } from '../components/dynamic/Banners';
 import { Banners } from '../config/banners';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
   const {isMobile, isTablet} = deviceView;
   const smallDevice = isMobile || isTablet;
+
+  const [t] = useTranslation("global");
+  const content = t("homePage", {returnObjects:true});
 
   return (
     <>
@@ -24,7 +28,8 @@ const Home = () => {
         <div className="hello-section">
           <div className="sec-1">
             <div className='col'>
-              <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1>
+              {/* <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1> */}
+              <h1>{content.heroSection.heroMessage}</h1>
               <SearchBar />
             </div>
             <RequestQuoteHeader />

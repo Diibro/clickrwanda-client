@@ -1,0 +1,284 @@
+{
+     
+     "header": {
+          "buttons": [
+               {
+                    "name":"Login",
+                    "link":"/forms/login"
+               },
+               {
+                    "name": "Post Free Ad",
+                    "link": "/forms/add-advert"
+               }
+          ]
+     },
+     "footer": {
+          "platforms":{
+               "title": "Our Platforms"
+          },
+          "address": {
+               "title": "Our Address",
+               "callUs": "Call Us",
+               "email": "Email",
+               "location": "Location"
+          },
+          "advertiseHere": {
+               "title":"Advertise Here",
+               "message1": "Advertise your business with us",
+               "message2":"Send us a direct message via:",
+               "plansButton": {
+                    "name":"Our Plans",
+                    "link": "/payment-plans"
+               },
+               "getStarted": {
+                    "name":"Get Started",
+                    "link": "/forms/signup"
+               }
+          },
+          "supportLinks":{
+               "title": "Support & Links",
+               "links":[
+                    {
+                         "title":"Help Center",
+                         "link": "/"
+                    },
+                    {
+                         "title":"Contact Us",
+                         "link": "/"
+                    },
+                    {
+                         "title":"Privacy Policy",
+                         "link": "/privacy-policy"
+                    },
+                    {
+                         "title":"Terms & Conditions",
+                         "link": "/terms-&-conditions"
+                    },
+                    {
+                         "title":"About Us",
+                         "link": "/"
+                    },
+                    {
+                         "title":"Become an Agent",
+                         "link": "/hiring"
+                    },
+                    {
+                         "title":"our Visitors",
+                         "link": "/website-visits"
+                    }
+               ]
+          }
+     },
+     "homePage":{
+          "heroSection":{
+               "heroMessage": "Sell, Buy, Rent & Advertise in Rwanda",
+               "searchBar":{
+                    "search":"Search Anything...",
+                    "category": "All Categories",
+                    "location": "All Rwanda"
+               },
+               "buttons":[
+                    {
+                         "name":"Open a shop",
+                         "link":"/get-started"
+                    },
+                    {
+                         "name":"Buy a house",
+                         "link":"/send-request?=buy-house"
+                    },
+                    {
+                         "name":"Buy a car",
+                         "link":"/send-request?=buy-car"
+                    },
+                    {
+                         "name":"Find a job",
+                         "link":"/send-request?=find-job"
+                    },
+                    {
+                         "name":"Request Quotation",
+                         "link":"/send-request?=request-quotation"
+                    },
+                    {
+                         "name":"Find a room",
+                         "link":"/send-request?=find-room"
+                    }
+               ]
+          },
+          "topDealsSection":{
+               "title":"Today Deals",
+               "viewAllLink":{
+                    "title":"View All",
+                    "link":"/top-deals"
+               }
+          },
+          "categoriesSection":{
+               "title":"Our top Categories"
+          },
+          "premiumAdsSection": {
+               "title":"Premium Ads",
+               "viewAllLink":{
+                    "title":"View All",
+                    "link":"/sponsored-ads"
+               }
+          },
+          "newAdsSection": {
+               "title":"New Ads"
+          },
+          "bestSellersSection": {
+               "title":"Best Sellers",
+               "message":"Discover which sellers have been ranked best for the best products, services and deals.",
+               "viewAllLink":{
+                    "title":"View All",
+                    "link":"/best-sellers"
+               }
+          },
+          "sponsoredAdsSection":{
+               "title":"Sponsored Ads"
+          }
+     },
+     "advertPage": {
+          
+     },
+     "categoryPage":{
+
+     },
+     "vendorPage":{
+
+     },
+     "sponsoredAdPage":{
+
+     },
+     "topDealsPage": {
+
+     },
+     "bestSellerPage": {
+
+     },
+     "loginPage":{
+
+     },
+     "signUpPage": {
+
+     },
+     "addAdvertPage": {
+
+     },
+     "categories": [
+          {
+               "category_name":"Vehicles",
+               "category_id": "a0d3db43-94f4-47d0-bf3d-2dab7abcb128"
+          },
+          {
+               "category_name":"Property",
+               "category_id": "2187ea54-acbe-4bad-872f-40c4f8d14a09"
+          },
+          {
+               "category_name":"Mobile Phones & Tablets",
+               "category_id": "470be99f-4c78-4234-abab-4f4466565591"
+          },
+          {
+               "category_name":"Electronics",
+               "category_id": "2bfe564d-cdf0-4f5c-9de0-2748878d174d"
+          },
+          {
+               "category_name":"Beauty & Personal Care",
+               "category_id": "ed7d3624-d8a2-4561-b1af-757264cf6a9b"
+          },
+          {
+               "category_name":"Fashion",
+               "category_id": "06ac11a6-fc4a-4995-a972-9a6269d8982c"
+          },
+          {
+               "category_name":"Sports & Outdoors",
+               "category_id": "6e9b5561-71ed-43fa-b885-e7c5b852e758"
+          },
+          {
+               "category_name":"Jobs",
+               "category_id": "b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7"
+          },
+          {
+               "category_name":"Services",
+               "category_id": "213cf0e5-453b-4d61-aded-14adcec79f37"
+          },
+          {
+               "category_name":"Babies & Kids",
+               "category_id": "00f33eef-df83-46a9-8dc2-c886b6e94dd3"
+          },
+          {
+               "category_name":"Agriculture & Livestocks",
+               "category_id": "ea1eed42-f37b-4eb5-841b-4e2e7deedde3"
+          },
+          {
+               "category_name":"Foods and Beverages",
+               "category_id": "ba69b783-64d5-46be-a6d9-f5453c85cf7f"
+          },
+          {
+               "category_name":"Medical & Health",
+               "category_id": "d33b1937-349f-4f0c-a8ad-d041474107b8"
+          },
+          {
+               "category_name":"Made In Rwanda",
+               "category_id": "1357c037-2b68-4118-ae6e-08ca43f4ac53"
+          },
+          {
+               "category_name":"Education",
+               "category_id": "0ae8228c-7f5d-48fd-a2dc-89cdc08b3417"
+          },
+          {
+               "category_name":"Home, garden & furniture",
+               "category_id": "0ec28d25-493a-488b-8795-c5ade4c65744"
+          },
+          {
+               "category_name":"Hotels, Restaurants & Travels ",
+               "category_id": "5da3442b-43dd-44c8-874d-2a5bfedfd0d0"
+          },
+          {
+               "category_name":"Gifts",
+               "category_id": "6744b618-b972-44e8-be89-1a76e0fd67db"
+          },
+          {
+               "category_name":"Pets & Animals ",
+               "category_id": "6ffbc92d-16fe-4751-b41d-fd6de8502585"
+          },
+          {
+               "category_name":"Equipment & Tool",
+               "category_id": "334d4043-3b6d-4918-8d33-6f5ff83ddc68"
+          },
+          {
+               "category_name":"B2B Supplies",
+               "category_id": "cb703024-268f-4844-9323-c59d94413e2a"
+          },
+          {
+               "category_name":"Finance, Internet and Insurance",
+               "category_id": "df511ce0-c05d-41ed-9255-75628e570894"
+          },
+          {
+               "category_name":"Wedding",
+               "category_id": "7d642acf-44df-45b1-b0ee-d4d3c939ae6a"
+          },
+          {
+               "category_name":"Office & School supplies",
+               "category_id": "68a09443-6910-4237-ad8f-a065abe264ce"
+          },
+          {
+               "category_name":"Safety and workwear",
+               "category_id": "215cc205-fa3e-4e79-9bc7-fdc624529d18"
+          },
+          {
+               "category_name":"Community",
+               "category_id": "d5bc3430-c1ce-4802-be23-b243a40229e3"
+          },
+          {
+               "category_name":"Construction and building materials",
+               "category_id": "e7cc4f87-133d-4c3d-9bc2-f106a1b921eb"
+          },
+          {
+               "category_name":"Job Seekers CVs",
+               "category_id": "bed1566b-5901-4af9-ae80-708c293aa925"
+          },
+          {
+               "category_name":"Festivals & events",
+               "category_id": "2b5e08c5-97d1-448d-aeb7-daf4bf2de1ca"
+          }
+     ]
+}

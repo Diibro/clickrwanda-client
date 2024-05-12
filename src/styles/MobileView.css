@@ -80,6 +80,10 @@
           width: 30%;
      }
 
+     .header-logo-image{
+          width: 50px;
+          min-width: 20px;
+     }
      .actionBtn {
           border-radius: 5px;
      }

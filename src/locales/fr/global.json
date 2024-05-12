@@ -1,0 +1,139 @@
+{
+     
+     "header": {
+          "buttons": [
+               {
+                    "name":"Se connecter",
+                    "link":"/forms/login"
+               },
+               {
+                    "name": "Publier une annonce",
+                    "link": "/forms/add-advert"
+               }
+          ]
+     },
+     "footer": {
+          "platforms":{
+               "title": "Nos plateformes"
+          },
+          "address": {
+               "title": "Notre adresse",
+               "callUs": "Appelez-nous",
+               "email": "E-mail",
+               "location": "Emplacement"
+          },
+          "advertiseHere": {
+               "title":"Publier ici",
+               "message1": "Annoncez votre entreprise avec nous",
+               "message2":"Envoyez-nous un message direct via:",
+               "plansButton": {
+                    "name":"Nos plans",
+                    "link": "/payment-plans"
+               },
+               "getStarted": {
+                    "name":"Commencer",
+                    "link": "/forms/signup"
+               }
+          },
+          "supportLinks":{
+               "title": "Assistance et liens",
+               "links":[
+                    {
+                         "title":"Centre d'aide",
+                         "link": "/"
+                    },
+                    {
+                         "title":"Contactez-nous",
+                         "link": "/"
+                    },
+                    {
+                         "title":"politique de confidentialité",
+                         "link": "/privacy-policy"
+                    },
+                    {
+                         "title":"Termes et conditions",
+                         "link": "/terms-&-conditions"
+                    },
+                    {
+                         "title":"À propos de nous",
+                         "link": "/"
+                    },
+                    {
+                         "title":"Devenez agent",
+                         "link": "/hiring"
+                    },
+                    {
+                         "title":"nos visiteurs",
+                         "link": "/website-visits"
+                    }
+               ]
+          }
+     },
+     "homePage":{
+          "heroSection":{
+               "heroMessage": "Vendre, acheter, louer et annoncer au Rwanda",
+               "searchBar":{
+                    "search":"Rechercher n'importe quoi...",
+                    "category": "Toutes catégories",
+                    "location": "Tout le Rwanda"
+               },
+               "buttons":[
+                    {
+                         "name":"Ouvrir une boutique",
+                         "link":"/get-started"
+                    },
+                    {
+                         "name":"Acheter une maison",
+                         "link":"/send-request?=buy-house"
+                    },
+                    {
+                         "name":"Acheter une voiture",
+                         "link":"/send-request?=buy-car"
+                    },
+                    {
+                         "name":"Trouver un travail",
+                         "link":"/send-request?=find-job"
+                    },
+                    {
+                         "name":"Demande de cotation",
+                         "link":"/send-request?=request-quotation"
+                    },
+                    {
+                         "name":"Trouver une chambre",
+                         "link":"/send-request?=find-room"
+                    }
+               ]
+          },
+          "topDealsSection":{
+               "title":"Offres du jour",
+               "viewAllLink":{
+                    "title":"Voir tout",
+                    "link":"/top-deals"
+               }
+          },
+          "categoriesSection":{
+               "title":"Nos meilleures catégories"
+          },
+          "premiumAdsSection": {
+               "title":"Annonces premium",
+               "viewAllLink":{
+                    "title":"Voir tout",
+                    "link":"/sponsored-ads"
+               }
+          },
+          "newAdsSection": {
+               "title":"Nouvelles annonces"
+          },
+          "bestSellersSection": {
+               "title":"Meilleures ventes",
+               "message":"Découvrez quels vendeurs ont été classés les mieux classés pour les meilleurs produits, services et offres.",
+               "viewAllLink":{
+                    "title":"Voir tout",
+                    "link":"/best-sellers"
+               }
+          },
+          "sponsoredAdsSection":{
+               "title":"Annonces sponsorisées"
+          }
+     }
+}

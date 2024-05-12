@@ -6,10 +6,15 @@ import DeviceView from "../../Contexts/ViewContext";
 import AppData from "../../Contexts/AppContext";
 const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png';
 import Logo from '../../assets/logo/click-rwanda-logo-flat.png';
+import { useTranslation } from "react-i18next";
+import LanguageChanger from "./LanguageChanger";
 // import { BiMenu } from "react-icons/bi";
+import SquareLogo from "../../assets/logo/square-logo-rb.png";
 
 const DesktopHeader = () => {
-     const [user, setUser] = useContext(UserContext);
+     const [t] = useTranslation("global");
+     const content = t("header", {returnObjects:true});
+     const [user,] = useContext(UserContext);
      const [,setData] = useContext(AppData);
      const {loggedIn, userInfo} = user;
      const [deviceView] = useContext(DeviceView);
@@ -40,16 +45,20 @@ const DesktopHeader = () => {
                }
           }
      }
+
+     
      return (
           <header className="desktop-header">
-               <Link to='/'><img src={Logo} alt="clickrwanda" className="header-logo-image" /></Link>
+               {isMobile ? <Link to='/'><img width={30} src={SquareLogo} alt="clickrwanda" className="header-logo-image" /></Link>
+                : <Link to='/'><img src={Logo} alt="clickrwanda" className="header-logo-image" /></Link>}
                
                {/* {!loggedIn ? <h1><Link to='/hiring'>We are Hiring/Akazi</Link></h1> : null} */}
                <div className="header-profile">
-                    {!loggedIn ? <ActionBtn action={activateForm} title="Login" /> : null}
+                    <LanguageChanger />
+                    {!loggedIn ? <ActionBtn action={activateForm} title={content.buttons[0].name} /> : null}
                     {loggedIn ? <Link onClick={showHeader} to={ location.pathname.includes("/user-dashboard") ? null : "/user-dashboard"} className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
                     {/* {loggedIn && (isMobile || isTablet) ? <i className="mobile-header-toggler"><BiMenu /></i> : null} */}
-                    <ActionBtn action={activateForm} title={isTablet || isMobile ? "Post Free Ad" : 'Post Free Ad' } />
+                    <ActionBtn action={activateForm} title={isTablet || isMobile ? content.buttons[1].name : content.buttons[1].name } />
                </div>
                
           </header>

@@ -1570,11 +1570,12 @@ a{
      border-radius: 5px;
 }
 .header-profile{
-     width: clamp(150px, 30%, 1000px);
+     /* width: clamp(150px, 30%, 1000px); */
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: flex-end;
+     gap: 10px;
 }
 
 .header-logo-image{
@@ -1600,6 +1601,42 @@ a{
      border-radius: 50%;
      border: 1px solid var(--featured-plan);
      background-color: var(--back-color-gold2);
+}
+
+.languageContainer{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     width: 50px;
+}
+
+.languageContainer .active img{
+     cursor: pointer;
+     border-radius: 1px;
+     width: 40px;
+
+}
+
+.languageContainer .languages-selector {
+     display: none;
+     width: 100%;
+     flex-direction: column;
+     align-items: flex-start;
+     position: absolute;
+     top: 30px;
+     right: 0;
+     gap: 10px;
+     background-color: var(--back-color-gold1);
+     padding: 5px;
+     border-radius: 5px;
+}
+
+.languageContainer .languages-selector img {
+     width: 100%;
+     border-radius: 2px;
+     cursor: pointer;
 }
 .actionBtn{
      display: flex;

@@ -8,7 +8,7 @@ import { CategoryAdverts} from "../components/dynamic/Adverts.component";
 import { getData, saveData } from "../utils/storageFunctions";
 import { Helmet } from "react-helmet";
 import { filterByPrice, filterPrices } from "../utils/filterFunctions";
-import { formatPrice } from "../utils/otherFunctions";
+// import { formatPrice } from "../utils/otherFunctions";
 
 const CategoryPage = () => {
   const [categoryAds, setCategoryAds] = useState(null);
