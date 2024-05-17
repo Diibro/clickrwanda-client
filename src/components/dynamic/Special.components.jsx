@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getItemUrl } from "../../utils/urlFunctions";
 import PropTypes from 'prop-types';
 import { ActionBtn } from "./Buttons";
-import UserContext from "../../Contexts/UserContext";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { useState } from "react";
 import { useRef } from "react";
@@ -89,12 +88,10 @@ export const TopDealsCard = () => {
 }
 
 export const GetStartedV1 = () => {
-     const [,setUser] = useContext(UserContext);
+     const navigate = useNavigate();
      const location = useLocation();
      const getStarted = () => {
-          return setUser(prev => ({
-               ...prev, activeForm: "signup"
-          }))
+          return navigate("/forms/signup");
      }
      return(
           <div className={location.pathname === '/' ? 'home-get-started-sec' : 'get-started-sec'}>
