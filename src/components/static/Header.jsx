@@ -5,11 +5,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
 import AppData from "../../Contexts/AppContext";
 const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png';
-import Logo from '../../assets/logo/click-rwanda-logo-flat.png';
+import Logo from '../../assets/logo/clickrwanda.png';
 import { useTranslation } from "react-i18next";
 import LanguageChanger from "./LanguageChanger";
-// import { BiMenu } from "react-icons/bi";
-import SquareLogo from "../../assets/logo/square-logo-rb.png";
 
 const DesktopHeader = () => {
      const [t] = useTranslation("global");
@@ -49,8 +47,7 @@ const DesktopHeader = () => {
      
      return (
           <header className="desktop-header">
-               {isMobile ? <Link to='/'><img width={30} src={SquareLogo} alt="clickrwanda" className="header-logo-image" /></Link>
-                : <Link to='/'><img src={Logo} alt="clickrwanda" className="header-logo-image" /></Link>}
+               <Link to='/'><img src={Logo} alt="clickrwanda" className="header-logo-image" /></Link>
                
                {/* {!loggedIn ? <h1><Link to='/hiring'>We are Hiring/Akazi</Link></h1> : null} */}
                <div className="header-profile">

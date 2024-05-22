@@ -21,6 +21,7 @@ import { getArrayOfNums } from "../../utils/otherFunctions";
 import { Banners } from "../../config/banners";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
+import { getTimeNowV2 } from "../../utils/dateFunctions";
 
 export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
@@ -42,7 +43,7 @@ export const Adverts = ({eleId,limit}) => {
               {
                 adverts.map((item, index) => ( index <= limit ? (
                   <>
-                    <AdvertRenderer key={`home_ads-${eleId + item.ad_id}`} item={item}/>
+                    <AdvertRenderer key={`home_new_ads-${eleId + item.ad_id}`} item={item}/>
                   {index === adLimit ? <HorizontalBanner items={Banners} /> : null}
                   </>
                   
@@ -139,6 +140,7 @@ export const AddAdvertForm = () => {
       formData.append('ad_price', adInfo.ad_price);
       formData.append('contact', adInfo.contact);
       formData.append('image', adInfo.ad_image);
+      formData.append('registrationDate', getTimeNowV2());
       if (adInfo.otherImages) {
         for (let i = 0; i < Array.from(adInfo.otherImages).length; i++) {
           formData.append(`otherImage`, Array.from(adInfo.otherImages)[i]);

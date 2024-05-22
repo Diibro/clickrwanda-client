@@ -53,13 +53,13 @@ const SearchBar = () => {
       <div className="search-inputs">
         <input type="text" placeholder={content.search} onChange={e => setSearched(prev => ({...prev, search:e.target.value}))} onKeyDown={handleKeyPress} id="search-input-01" />
         <select name="category" id="search-category-01" className='hide-scroll' defaultValue={content.category}  onChange={e => setSearched(prev => ({...prev, category:e.target.value}))}>
-          {category && category[0] ? <option value="All"  selected>All Categories</option> : null}
-          {category && category[0] ? category.map((item) => <option key={item.category_id} value={item.category_id}>{item.category_name}</option>) : <option value="">Loading...</option>}
+          {category && category[0] ? <option value="All" >All Categories</option> : null}
+          {category && category[0] ? category.map((item) => <option key={`search-bar-category-${item.category_id}`} value={item.category_id}>{item.category_name}</option>) : <option value="">Loading...</option>}
         </select>
         <select name="locations" id="search-location-01" defaultValue={'Location'} className='hide-scroll' onChange={e => setSearched(prev => ({...prev, location:e.target.value}))} >
-          <option value="Rwanda" selected  >{content.location}</option>
+          <option value="Rwanda">{content.location}</option>
           {locations && locations[0] ? <option value="Kigali" >Kigali</option> : null}
-          {locations && locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
+          {locations && locations[0] ? locations.map((item) => <option key={`search-bar-location-${item}`}>{item}</option>) : <option value="" disabled>Loading...</option>}
         </select>
       </div>
       <i onClick={submitSearch}><FiSearch /></i>

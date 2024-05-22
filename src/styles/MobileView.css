@@ -81,8 +81,7 @@
      }
 
      .header-logo-image{
-          width: 50px;
-          min-width: 20px;
+          min-width: 100px;
      }
      .actionBtn {
           border-radius: 5px;
@@ -118,6 +117,10 @@
      .web-usage-container .visits{
           width: 40%;
           margin: 5px auto;
+     }
+
+     .home-dash-card {
+          width: 40%;
      }
 
 }

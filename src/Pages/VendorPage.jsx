@@ -6,7 +6,7 @@ import server from '../config/Server';
 import { getItemUrlId } from '../utils/urlFunctions';
 import { dateFormatMonth } from '../utils/dateFunctions';
 import UserRating from '../components/dynamic/Rating.component';
-import { SimilarAds, VerticalAds } from '../components/dynamic/Adverts.component';
+import {  VerticalAds } from '../components/dynamic/Adverts.component';
 import { IoMdCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { getData, saveData } from '../utils/storageFunctions';
@@ -141,7 +141,7 @@ const VendorPage = () => {
   )
 }
 
-const VendorHeader = ({image, title}) => {
+const VendorHeader = ({image}) => {
   return(
     <div className="vendor-page-header">
       {/* <h1>{title}</h1> */}

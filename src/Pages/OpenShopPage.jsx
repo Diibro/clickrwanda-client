@@ -10,7 +10,7 @@ const OpenShopPage = () => {
                <title>Open a shop | Click Rwanda</title>
           </Helmet>
           <div  className="page">
-               <GetStartedV1 />
+               <GetStartedV1  />
           </div>
      </>
     

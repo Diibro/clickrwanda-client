@@ -1580,7 +1580,7 @@ a{
 
 .header-logo-image{
      width: 20%;
-     min-width: 150px;
+     min-width: 120px;
 }
 .desktop-header h1 a{
      color: white;
@@ -2343,11 +2343,11 @@ a{
      align-items: center;
      justify-content: flex-start;
      position: sticky;
-     top: 10px;
+     top: 100px;
      background-color: var(--white-text);
      border-radius: 5px;
      padding: 10px 0;
-     position: relative;
+     /* position: relative; */
 }
 
 .dashboard-link{
@@ -2379,12 +2379,10 @@ a{
      margin: 0 5px 0 0 ;
 }
 .dashboard-link a:hover{
-     padding: 0 0 0 10px;
      font-family: 800;
 }
 
 .dashboard-link-active{
-     padding: 0 0 0 10px;
      font-size: 1.1rem;
      font-family: 800;
      color: var(--back-color-gold2) !important;
@@ -2407,12 +2405,21 @@ a{
      border-radius: 10px;
 }
 
+.dashboard-container{
+     width: 98%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
 .dashboard-row{
      width: 98%;
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: space-evenly;
+     gap: 10px;
      margin: 10px auto;
      flex-wrap: wrap;
      padding: 10px 0;
@@ -2478,14 +2485,12 @@ a{
 }
 
 .dash-advert-row{
-     width: 20%;
-     min-width: 360px;
+     width: 30%;
      display: flex;
      flex-direction: column;
      align-items: center;
      justify-content: space-between;
      box-shadow: 1px 1px 5px var(--back-color-gold2);
-     padding: 5px 10px;
      border-radius: 10px;
      margin: 5px auto;
      position: relative;
@@ -2499,10 +2504,20 @@ a{
      justify-content: space-between;
      padding-bottom: 10px;
 }
-.dash-advert-row img{
-     min-height: 200px;
-     max-height: 200px;
-     max-width: 95%;
+
+.dash-advert-row .image-container {
+     width: 100%;
+     border-radius: 10px;
+     overflow: hidden;
+     height: 200px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+}
+.dash-advert-row .image-container img{
+     max-height: 100%;
+     max-width: 100%;
 }
 
 .dash-advert-row  .icons{
@@ -2510,17 +2525,20 @@ a{
      top: 0;
      right: 0;
      width: 35%;
-     padding: 5px ;
+     padding: 2.5px ;
      display: flex;
      flex-direction: row;
      align-items: center;
-     justify-content: space-evenly;
+     justify-content: space-between;
+     
+     background-color: var(--white-text);
+     border-radius: 10px;
+     border: 0.8px solid var(--back-gold-color-v1);
 }
 
 .dash-advert-row  .icons span{
      font-size: 18px;
-     background-color: var(--back-color-gold2);
-     color: var(--white-text);
+     color: var(--back-color-gold2);
      width: 25%;
      aspect-ratio: 1/1;
      border-radius: 50%;
@@ -2531,6 +2549,10 @@ a{
      
 }
 
+.dash-advert-row  .icons span.delete-ad-icon{
+     color: var(--back-color-red1);
+}
+
 .dash-advert-row  .icons span:hover{
      transform: scale(1.1);
      cursor: pointer;
@@ -2538,15 +2560,20 @@ a{
 
 .dash-advert-row .row span{
      font-size: 0.9rem;
-     color: var(--text-color-title);
+     color: var(--text-color-para2);
      font-weight: 800;
 }
 
 .dash-advert-row .row p{
      width: 60%;
-     font-size: 0.95rem;
+     font-size: 0.8rem;
      font-weight: 800;
-     color: var(--text-color-para2);
+     color: var(--text-color-title);
+}
+
+.dash-advert-row .row .ad-title{
+     font-size: 1.3rem;
+     color: var(--text-color-title);
 }
 
 .advert-edit-page{
@@ -2699,6 +2726,43 @@ a{
      min-width: 20%;
      max-height: 80px;
      margin: 5px;
+}
+
+.home-dash-card {
+     width: 25%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     aspect-ratio: 1/1;
+     border-radius: 10px;
+     box-shadow: 0.5px 0.5px 5px var(--back-color-gold2);
+     border: 1.5px solid var(--back-color-gold2);
+     margin-bottom: 20px;
+     gap: 10px;
+     cursor: pointer;
+     transition: ease 0.5s;
+}
+
+.home-dash-card:hover{
+     box-shadow: 5px 5px var(--back-gold-color-v1);
+}
+
+.home-dash-card-reported{
+     box-shadow: 0.5px 0.5px 5px var(--back-color-red1);
+     border: 1.5px solid var(--back-color-red1);
+}
+
+.home-dash-card-reported:hover{
+     box-shadow: 5px 5px var(--back-color-red1);
+}
+
+.home-dash-card h2{
+     text-align: center;
+}
+
+.home-dash-card-reported h2{
+     color: var(--back-color-red1);
 }
 /* end of user dashboard components */
 

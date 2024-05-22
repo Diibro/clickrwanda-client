@@ -20,6 +20,7 @@ export const fetchData = async (url, params) => {
 
 export const searchData = async (url, params) => {
   try {
+    console.log("checking");
     const res = await axios.post(url, params);
     const info = await res.data;
     const {data} = info;

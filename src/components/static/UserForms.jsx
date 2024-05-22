@@ -13,6 +13,7 @@ import { TiTick } from "react-icons/ti";
 import { AddAdvertForm } from "../dynamic/Adverts.component";
 import { getLocations } from "../../utils/locations";
 import { PaymentPlanForm } from "./PaymentPlans.component";
+import {getTimeNowV2 } from "../../utils/dateFunctions";
 
 
 const UserForms = () => {
@@ -157,6 +158,8 @@ const SignUpForm = () => {
      }
      const submitForm = async (data) => {
           try {
+               let date  = getTimeNowV2();
+               console.log(date);
                setLoading(true); // Set loading to true when submitting
                const formData = new FormData();
                formData.append('name', data.name);
@@ -166,7 +169,7 @@ const SignUpForm = () => {
                formData.append('userType', 'user');
                formData.append('password', data.password);
                formData.append('location', data.location);
-          
+               formData.append('registrationDate', date);
                const res = await server.register(formData);
                if (res.status === "pass") {
                raiseAlert('success', 'Successfully created the account', <ImTicket />);
@@ -198,7 +201,7 @@ const SignUpForm = () => {
                // const {data} = districts;
                // setLocations(data);
                setLocations(districts.data);
-             })()
+          })()
      }, [])
      return(
           <div className="form-container hide-scroll">

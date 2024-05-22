@@ -22,10 +22,11 @@ const CategoryPage = () => {
 
   const fetchSubAdverts = async (sub_id) => {
     try {
-      if(sub_id === 'all') {
-        // setCategoryAds()
-        return;
-      }
+      console.log("trying to fetch data");
+      // if(sub_id === 'all') {
+      //   setCategoryAds()
+      //   return;
+      // }
       let check = 0;
       const parsedData = getData('subAdverts');
       if(parsedData) {
@@ -80,6 +81,7 @@ const CategoryPage = () => {
       try {
         setLoading(true);
         const categoryDatas = await server.searchAdverts('category', {category_id: id});
+        console.log("checking");
         if(categoryDatas !== "no data found"){
           const {categoryData, subCategories, adverts} = categoryDatas
           sessionStorage.setItem('categoryViewed', JSON.stringify(categoryDatas));
@@ -87,7 +89,9 @@ const CategoryPage = () => {
           setAds(adverts);
           setSubCategories(subCategories);
           setCategory(categoryData)
-          return;
+          // return;
+        }else{
+          console.log("no data found");
         }
       } catch (error) {
         console.log(error);

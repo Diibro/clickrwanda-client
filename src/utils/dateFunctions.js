@@ -94,3 +94,26 @@ export const getTimeNow = () => {
      const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
      return formattedDate;
 }
+
+export const getTimeNowV2 = () => {
+     // Use Date() to get the current date and time as a string
+     const currentDateStr = Date();
+     
+     // Split the date string into its components
+     const parts = currentDateStr.split(' ');
+     const monthMap = {
+          'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
+          'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
+          'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
+     };
+     
+     const year = parts[3];
+     const month = monthMap[parts[1]];
+     const day = parts[2];
+     const time = parts[4];
+ 
+     // Format the date string as "YYYY-MM-DD HH:MM:SS"
+     const formattedDate = `${year}-${month}-${day} ${time}`;
+     
+     return formattedDate;
+ }
