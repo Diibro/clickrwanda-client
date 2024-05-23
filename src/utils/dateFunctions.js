@@ -66,7 +66,7 @@ export const formatTimeAgo = (dateString) => {
      const currentDate = new Date();
      const providedDate = new Date(dateString);
 
-     const timeDifference = currentDate - providedDate;
+     const timeDifference = Math.abs(currentDate - providedDate);
      const seconds = Math.floor(timeDifference / 1000);
      const minutes = Math.floor(seconds / 60);
      const hours = Math.floor(minutes / 60);
