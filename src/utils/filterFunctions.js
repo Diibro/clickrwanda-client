@@ -56,3 +56,22 @@ export const filterByPrice = (ads,filterData) => {
      }
      
 } 
+
+export const sortByAny = (arr, key) => {
+     return arr.sort((a, b) => {
+     const valA = a[key];
+     const valB = b[key];
+
+     if (typeof valA === 'string' && typeof valB === 'string') {
+          return valB.localeCompare(valA);
+     }
+
+     if (valA < valB) {
+          return 1;
+     }
+     if (valA > valB) {
+          return -1;
+     }
+     return 0;
+     });
+}

@@ -29,6 +29,7 @@ const Logout = () => {
       if(res.status === "success"){
         sessionStorage.removeItem('userData');
         sessionStorage.removeItem('userAds');
+        document.cookie = "user-access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setUser((prev) => ({
           ...prev,
           userInfo: null,

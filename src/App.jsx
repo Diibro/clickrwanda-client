@@ -6,6 +6,9 @@ import { UserProvider } from "./Contexts/UserContext";
 import { ViewProvider } from "./Contexts/ViewContext";
 import i18next from "i18next";
 
+import AdminLayout from "./Admin/AdminLayout";
+import {Routes, Route } from "react-router-dom";
+
 import global_en from "./locales/en/global.json";
 import global_fr from "./locales/fr/global.json";
 import global_kn from "./locales/kn/global.json";
@@ -34,7 +37,10 @@ function App() {
       <AppProvider>
         <UserProvider>
           <ViewProvider>
-          <Layout />
+            <Routes>
+              <Route path="/*" index element={<Layout />} />
+              <Route path="/admin/*" element={<AdminLayout />} />
+            </Routes>
           </ViewProvider>
         </UserProvider>
       </AppProvider>

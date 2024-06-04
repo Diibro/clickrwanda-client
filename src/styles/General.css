@@ -1856,8 +1856,7 @@ a{
 
 .user-forms{
      position: relative;
-     top: 0;
-     width: 100vw;
+     width: 100%;
      display: flex;
      flex-direction: row;
      align-items: center;
@@ -4055,6 +4054,594 @@ a{
 }
 /* end of rating styles */
 /* end dynamic components */
+
+/* admin styles */
+
+.admin-layout{
+     width: 100%;
+     position: relative;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     min-height: 100vh;
+     z-index: 0;
+     background-color: var(--text-color-title);
+     padding-inline: 2.5%;
+}
+
+.admin-login-page{
+     width: 100%;
+     background-color: var(--white-text);
+     /* min-height: 100vh; */
+     height: 100vh;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+}
+
+.admin-navbar{
+     width: 12.5%;
+     height: 95vh;
+     position: sticky;
+     top: 0%;
+     background-color: var(--light-gray);
+     border-radius: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-between;
+     overflow: hidden;
+     overflow-y: scroll;
+}
+
+.admin-navbar .dash-logo-container{
+     width: 95%;
+     display: flex;
+     flex-direction:row ;
+     align-items: end;
+     justify-content: center;
+     padding: 20px 0;
+}
+
+.admin-navbar .dash-logo-container a{
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.admin-navbar .dash-logo-container a img{
+     width: 80%;
+     padding: 20px 10px;
+     background-color: var(--text-color-title);
+     border-radius: 20px;
+     cursor: pointer;
+}
+
+.admin-navbar .dash-nav-container{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-evenly;
+     padding: 20px 0;
+     gap: 20px;
+}
+
+.admin-navbar .dash-nav-container a  {
+     width:100%;
+     padding: 5px 10px;
+     color: var(--text-color-title);
+     font-weight: 700;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+     cursor: pointer;
+     transition: ease 0.4s;
+
+}
+
+.admin-navbar .dash-nav-container a:hover{
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+}
+
+.admin-navbar .dash-nav-container a.active {
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+}
+.admin-content{
+     width: 85%;
+     background-color: var(--light-gray);
+     height: 95vh;
+     position: sticky;
+     top: 0;
+     border-radius: 20px;
+     padding: 20px;
+     overflow: hidden;
+     overflow-y: scroll;
+}
+
+.dash-main-row {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     flex-wrap: wrap;
+     margin-bottom: 20px;
+     gap: 20px;
+}
+
+.dash-title{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     padding-inline:  20px;
+}
+
+.dash-title h2{
+     font-size: 1.8rem;
+     color: var(--text-color-title);
+     font-weight: 700;
+}
+
+.dash-title h3{
+     font-size: 1.4rem;
+     color: var(--text-color-para1);
+     font-weight: 700;
+} 
+
+.dash-title h4{
+     font-size: 1.3rem;
+     color: var(--text-color-para1);
+     font-weight: 700;
+} 
+
+.notifier-container{
+     width: 30%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-evenly;
+     padding: 2.5px 5px;
+     background-color: var(--back-color-gold1);
+     border-radius: 30px;
+     justify-self: flex-end;
+}
+
+.dash-notifier{
+     padding: 2.5px;
+     position: relative;
+}
+
+.dash-notifier i{
+     font-size: 1.81rem;
+     color: var(--back-gold-color-v1);
+     cursor: pointer;
+}
+
+.dash-notifier span{
+     padding: 2px;
+     color: var(--back-color-gold2);
+     background-color: var(--back-color-gold1);
+     border-radius: 50%;
+     position: absolute;
+     top: 0;
+     z-index: 2;
+     right: 0;
+     font-size: 0.7rem;
+     font-weight: 700;
+}
+
+.dash-card-info{
+     width: 20%;
+     aspect-ratio: 1/1;
+     display: flex;
+     flex-direction: column;
+     margin-block: 10px;
+     align-items: center;
+     justify-content: center;
+     background-color: var(--white-text);
+     border-radius: 20px;
+     padding: 10px;
+     position: relative;
+}
+
+.dash-card-info span {
+     font-size: 2rem;
+     font-weight: 800;
+     color: var(--back-gold-color-v1);
+}
+
+.dash-card-info b {
+     font-size: 1.2rem;
+     color: var(--text-color-title);
+     font-weight: 700;
+}
+
+.dash-card-info i {
+     position: absolute;
+     padding: 5px 10px;
+     border-radius: 20px;
+     font-size: 0.7rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+     border: 1px solid var(--text-color-title);
+     font-style: normal;
+     top: 5px;
+     right: 5px;
+}
+
+.dash-agents-table{
+     width: 100%;
+     justify-self: center;
+     margin: 10px auto;
+     background-color: var(--white-text);
+     border-radius: 20px;
+     padding: 10px;
+}
+
+.dash-agents-table-title{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     background-color: var(--text-color-title);
+     border-radius: 10px;
+     padding: 10px 5px;
+     color: var(--white-text);
+}
+
+
+.dash-agents-table-title b, .dash-agent-table-row span {
+     width: 12%;
+     text-align: center;
+}
+
+.dash-agents-table-title b:nth-child(2),
+.dash-agents-table-title b:nth-child(3),
+.dash-agents-table-title b:nth-child(4),
+.dash-agent-table-row span:nth-child(2),
+.dash-agent-table-row span:nth-child(3),
+.dash-agent-table-row span:nth-child(4)
+{
+     width: 15%;
+}
+
+.dash-agent-table-row{
+     width: 100%;
+     border: 1.2px solid var(--gray-text);
+     padding: 2.5px 5px;
+     margin: 5px auto;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     font-weight: 600;
+     font-size: 0.8rem;
+     border-radius: 10px;
+}
+
+.admin-forms-container {
+     position: absolute;
+     height: 100%;
+     background-color: var(--white-text);
+     z-index: 6;
+     border-radius: 20px;
+     padding: 25px;
+     top: 0;
+     width: 40%;
+     right: -100%;
+     transition: ease 0.5s;
+     border: 2px solid var(--back-color-gold2);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+
+.admin-forms-container .close {
+     width: 25px;
+     aspect-ratio: 1/1;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     padding: 5px;
+     background-color: var(--white-text);
+     color: var(--text-color-title);
+     font-size: 1rem;
+     border-radius: 50%;
+     cursor: pointer;
+     position: absolute;
+     top: 2px;
+     left: 2px;
+     border: 1.5px solid var(--back-color-gold2);
+}
+
+.admin-dash-form{
+     width: 90%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 20px;
+}
+
+.agent-form-container{
+     width: 100%;
+}
+
+.admin-dash-form .group{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     gap: 10px;
+}
+
+
+.admin-dash-form .group label{
+     color: var(--text-color-title);
+     font-size: 0.92rem;
+     font-weight: 700;
+}
+
+.admin-dash-form .group input, .admin-dash-form .group select {
+     width: 100%;
+     border: 1.4px solid var(--gray-text);
+     outline: none;
+     padding: 5px 10px;
+     border-radius: 10px;
+     font-size: 0.85rem;
+     cursor: pointer;
+     transition: ease 0.4s;
+}
+
+.admin-dash-form .group input{
+     cursor: text;
+}
+
+.admin-dash-form .group input:focus, .admin-dash-form .group select:focus{
+     border: 1.4px solid var(--back-color-blue1);
+}
+
+.admin-dash-form .group input[type="submit"]{
+     border: 1.4px solid var(--back-color-blue1);
+     color: var(--back-color-blue1);
+     font-size: 0.9rem;
+     font-weight: 700;
+     background-color: var(--white-text);
+     cursor: pointer;
+     transition: ease 0.4s;
+}
+
+.admin-dash-form .group input[type="submit"]:hover{
+     background-color: var(--back-color-blue1);
+     color: var(--white-text);
+}
+
+.admin-adverts-container{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+}
+
+.admin-advert-card{
+     width: 48%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 5px;
+     padding: 5px;
+     border-radius: 10px;
+     border: 1.5px solid var(--gray-text);
+     margin-bottom: 10px;
+     transition: all 0.5s ease;
+}
+
+.admin-advert-card:hover{
+     border-color: var(--back-gold-color-v1);
+}
+
+.admin-advert-card .image-container{
+     width: 45%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 5px;
+     border: 1.2px solid var(--gray-text);
+}
+
+.admin-advert-card img{
+     max-height: 150px;
+     width: auto;
+     max-width: 90%;
+     border-radius: 5px;
+}
+
+.admin-advert-card .description{
+     width: 50%;
+     padding: 5px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+}
+
+.admin-advert-card .description .row{
+     width: 100%;
+     display: flex;
+     gap: 5px;
+     flex-wrap: wrap;
+}
+
+.admin-advert-card .description .row span, .admin-advert-card .description .row p{
+     color: var(--text-color-para1);
+     font-size: 0.9rem;
+     font-weight: 600;
+}
+
+.admin-advert-card .description .row h4{
+     font-size: 0.95rem;
+     width: 90%;
+     font-weight: 700;
+     color: var(--text-color-title);
+}
+
+.admin-advert-card .description .actions{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+}
+
+.admin-shops-container {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 10px;
+     flex-wrap: wrap;
+}
+
+.dash-shop-card{
+     width: 32%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content:flex-start ;
+     border: 1.2px solid var(--gray-text);
+     border-radius: 10px;
+     transition: all 0.5s ease;
+     padding: 5px;
+     gap: 10px;
+}
+
+.dash-shop-card .row{
+     width: 95%;
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+
+}
+
+.dash-shop-card .row span{
+     font-size: 0.85rem;
+     color: var(--text-color-para1);
+     font-weight: 600;
+}
+
+.dash-shop-card .row b {
+     font-size: 0.8rem;
+     font-weight: 500;
+     color: var(--text-color-title);
+}
+
+/* buttons */
+
+.admin-action-btn{
+     padding: 2.5px 10px;
+     border-radius: 10px;
+     font-size: 0.8rem;
+     font-weight: 600;
+     transition: ease 0.4s;
+     cursor: pointer;
+}
+
+.admin-action-add-btn{
+     background-color: var(--back-color-blue1);
+     color: var(--white-text);
+     border: 1.5px solid var(--back-color-blue1);
+}
+
+.admin-action-add-btn:hover{
+     background-color: var(--white-text);
+     color: var(--back-color-blue1);
+}
+
+.admin-action-delete-btn{
+     background-color: var(--back-color-red1);
+     color: var(--white-text);
+     border: 1.5px solid var(--back-color-red1);
+}
+
+.admin-action-delete-btn:hover {
+     background-color: var(--white-text);
+     color: var(--back-color-red1);
+}
+
+.admin-action-edit-btn{
+     background-color: var(--back-color-gold2);
+     color: var(--white-text);
+     border: 1.5px solid var(--back-color-gold2);
+}
+
+.admin-action-edit-btn:hover{
+     background-color: var(--white-text);
+     color: var(--back-color-gold2);
+}
+
+
+
+/* notification */
+.admin-notification {
+     position: absolute;
+     top: -200px;
+     padding: 10px 20px;
+     border-radius: 10px;
+     background-color: rgb(16, 7, 1);
+     color: var(--white-text);
+     left: 50%;
+     transform: translateX(-50%);
+     font-size: 0.8rem;
+     transition: ease 0.7s;
+}
+
+.pass-admin-notification{
+     background-color: var(--featured-plan);
+}
+
+.fail-admin-notification{
+     background-color: var(--back-color-red1);
+}
+
+.warn-admin-notification{
+     background-color: var(--back-gold-color-v1);
+}
+
+/* end admin styles */
+
+/* agent styles */
+
+.agent-layout{
+     width: 90%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     margin: 20px auto;
+     background-color: var(--white-text);
+     border-radius: 20px;
+
+}
+
+/* end of agent styles */
 
 /*Banner styles */ 
 

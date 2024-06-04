@@ -13,7 +13,8 @@ import { TiTick } from "react-icons/ti";
 import { AddAdvertForm } from "../dynamic/Adverts.component";
 import { getLocations } from "../../utils/locations";
 import { PaymentPlanForm } from "./PaymentPlans.component";
-import {getTimeNowV2 } from "../../utils/dateFunctions";
+import {getRwandaTime} from "../../utils/dateFunctions";
+import AgentService from "../../services/Agent";
 
 
 const UserForms = () => {
@@ -29,7 +30,7 @@ const UserForms = () => {
      if(activeForm != '') {
           return (
                <div className="user-forms hide-scroll">
-                    {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : activeForm === "payment-plan-form" ? <PaymentPlanForm /> : null}
+                    {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : activeForm === "payment-plan-form" ? <PaymentPlanForm /> : activeForm === "agent-login" ? <AgentLoginForm /> : null}
                </div>
           )
      }else{
@@ -57,6 +58,7 @@ const LoginForm = () => {
           }));
      }
      const submitForm = async (data) => {
+          console.log("user login");
           try {
                setLoading(true);
                const formData = new FormData();
@@ -72,9 +74,16 @@ const LoginForm = () => {
                          loggedIn: true,
                          activeForm:''
                     }));
-                    raiseAlert('success', `${res.message} as ${res.data.username}`, <TiTick />)
-                    return  navigate('/user-dashboard');
+                    if(res.data.role !== "user" ){
+                         raiseAlert("success", `You have been logged as admin`, <TiTick />);
+                         return navigate("/admin");
+                    }else{
+                         raiseAlert('success', `${res.message} as ${res.data.username}`, <TiTick />)
+                         return  navigate('/user-dashboard');
+                    }
+                    
                }else{
+                    
                     return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
                }
           } catch (error) {
@@ -131,6 +140,7 @@ const LoginForm = () => {
                     </div>
                </form>
                <div className="line-divider"><p>Or</p></div>
+               <p className="other-link">Staff Login <b onClick={() => navigate("/forms/agent-login")}>Agent</b></p>
                <p className="other-link">Don&rsquo;t have account <b onClick={() => navigate("/forms/signup")}>Sign Up</b></p>
                </>
                
@@ -143,9 +153,9 @@ const SignUpForm = () => {
      const {register, handleSubmit, formState: {errors}} = useForm();
      const [,setUser] = useContext(UserContext);
      const [,setData] = useContext(AppData);
-     const [locations, setLocations] = useState([]);
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
+     const [locations, setLocations] = useState([]);
 
      const raiseAlert = (type, message, icon) => {
           setData((prev)=> ({
@@ -158,7 +168,7 @@ const SignUpForm = () => {
      }
      const submitForm = async (data) => {
           try {
-               let date  = getTimeNowV2();
+               let date  = getRwandaTime();
                console.log(date);
                setLoading(true); // Set loading to true when submitting
                const formData = new FormData();
@@ -266,6 +276,78 @@ const PasswordResetResponce = () => {
                     <ActionBtn title="Login" action={closeForm} />
                </div>
                
+          </div>
+     )
+}
+
+const AgentLoginForm = () => {
+     const [loading,setLoading ] = useState(false);
+     const [,setUser] = useContext(UserContext);
+     const {register, handleSubmit,} = useForm();
+     const [,setData] = useContext(AppData);
+     const navigate = useNavigate();
+
+     const raiseAlert = (type, message, icon) => {
+          setData((prev)=> ({
+               ...prev,
+               alertView:{
+                    on: true,
+                    content: {type, message, icon}
+               }
+          }));
+     }
+     const submitForm = async (data) => {
+          try {
+               setLoading(true);
+               const res = await AgentService.login(data);
+               if(res != null){
+                    if(res.status === "success" ){
+                         const {data, agentToken } = res;
+                         sessionStorage.setItem("agentData", JSON.stringify(data));
+                         sessionStorage.setItem("agentToken", agentToken);
+                         raiseAlert("success",res.message, <TiTick />);
+                         setUser((prev) => ({
+                              ...prev,
+                              userInfo: res.data,
+                              loggedIn: true,
+                              activeForm:''
+                         }));
+                         return navigate("/agent");
+                    }else{
+                         return raiseAlert("fail",res.message, <ImCross />);
+                    }
+               }else{
+                    return raiseAlert('fail', `Server error .Try again later`, <ImCross />);
+               }
+               
+          } catch (error) {
+               console.log(error);
+               return raiseAlert('fail', `System error .Try again`, <ImCross />);
+          }finally{
+               navigate("/agent");
+               setLoading(false);
+          }
+     } 
+     return (
+          <div className="form-container hide-scroll">
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Agent Login"}} />
+               {
+                    loading ? <Loading /> :
+                    <form onSubmit={handleSubmit(submitForm)}>
+                         <div className="group">
+                              <label htmlFor="a_email">Email: </label>
+                              <input type="email" name="a_email" id="a_email" {...register('a_email')} required placeholder="User email..." />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_password">Password:</label>
+                              <input type="password" name="a_password" id="a_password" {...register('a_password')} placeholder="User Password" />
+                         </div>
+                         <div className="group align-right">
+                              <SubmitButton content={{title: "Login", type: 'submit'}} />
+                         </div>
+                    </form>
+               }
+
           </div>
      )
 }

@@ -2,13 +2,13 @@ import {Routes, Route, useLocation} from 'react-router-dom';
 import DesktopHeader from '../components/static/Header';
 import Home from './Home';
 import ContactBar from '../components/static/ContactBar';
-import AdminLayout from '../Dashboard/Layout';
+import AdminLayout from '../User/Layout';
 import CategoriesPage from './CategoriesPage';
 import AdvertsPage from './AdvertsPage';
 import Footer from '../components/static/Footer';
 import { FilterProvider } from '../Contexts/FilterContext';
 import UserForms from '../components/static/UserForms';
-import UserLayout from '../Dashboard/Layout';
+import UserLayout from '../User/Layout';
 import AdvertView from '../views/AdvertView';
 import { ViewProvider } from '../Contexts/ViewContext';
 import { AlertView } from '../views/AlertsViews';
@@ -32,6 +32,7 @@ import PaymentPlans from './PaymentPlans';
 import TopDealsPage from './TopDealsPage';
 import BoostedAdsPage from './BoostedAdsPage';
 import WebsitesVisitors from './WebsitesVisitors';
+import AgentLayout from '../Agent/AgentLayout';
 
 
 const Layout = () => {
@@ -69,6 +70,7 @@ const Layout = () => {
                <Route path='/website-visits' element={<WebsitesVisitors />} />
                <Route path='/sponsored-ads' element={<BoostedAdsPage />} />
                <Route path="/forms/:params" element={<UserForms /> } />
+               <Route path='/agent/*' element={<AgentLayout />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

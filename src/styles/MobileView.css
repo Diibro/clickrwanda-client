@@ -123,6 +123,19 @@
           width: 40%;
      }
 
+     .dash-card-info {
+          width: 45%;
+     }
+     .admin-advert-card {
+          width: 100%;
+     }
+
+     .admin-forms-container{
+          width: 90%;
+     }
+     .dash-shop-card{
+          width: 100%;
+     }
 }
 
 
@@ -197,4 +210,10 @@
      .search-bar-main .search-inputs select, .search-bar-main .search-inputs{
           width: 90%;
      }
+
+     .dash-card-info {
+          width: 45%;
+     }
+
+     
 }

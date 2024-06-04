@@ -171,9 +171,8 @@ const DashAdvert = ({item}) => {
   const deleteAd = async () => {
     const check =  window.confirm("Are you sure you want to delete the advert");
     if(check) {
-      if(window.confirm("Your advert will deleted permanently")){
+      if(window.confirm("Your advert will be deleted permanently")){
         const res = await server.deleteUserAd({ad_id:item.ad_id});
-        console.log(res);
         if(res){
           if(res.status === "pass"){
             raiseAlert('success', `${res.message}`, <TiTick />)
