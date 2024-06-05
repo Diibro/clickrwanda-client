@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import AppData from "../Contexts/AppContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AdminContext } from "./AdminLayout";
 import { SubmitButton } from "../components/dynamic/Buttons";
 import { ImCross } from "react-icons/im";
@@ -86,6 +86,7 @@ const AdminLogin = () => {
                               </div>
                          </form>
                     }
+                    <p className="other-link"><Link to="/">Back to Home</Link></p>
                </div>
           </div>
           
