@@ -3,35 +3,47 @@ import { formatTimeAgo } from "../../../utils/dateFunctions";
 import { capitalizeString, formatPrice } from "../../../utils/otherFunctions";
 import { DeleteButton, EditButton } from "../buttons/ActionButtons";
 import server from "../../../config/Server"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AdminContext } from "../../AdminLayout";
 import { showNotification } from "../../../utils/AdminFunctions";
 
 const DashAdvertCard = ({advert}) => {
      const [adminData, setAdminData ] = useContext(AdminContext);
      const {adverts } = adminData;
+     const [loading, setLoading] = useState(false);
+     const [loadingMessage, setLoadingMessage] = useState("loading");
 
      const deleteAd = async() => {
-          const res = await server.deleteUserAd(advert);
-          if(res.status === "pass") {
-               setAdminData(prev => ({
-                    ...prev,
-                    adverts:adverts.filter(ad => ad.ad_id !== advert.ad_id),
-                    notification: {
-                         type: "pass",
-                         message: res.message
-                    }
-               })) 
-          }else {
-               setAdminData(prev => ({
-                    ...prev,
-                    notification: {
-                         type:"fail",
-                         message: res.message
-                    }
-               }));
+          try {
+               setLoadingMessage("deleting");
+               setLoading(true);
+               const res = await server.deleteUserAd(advert);
+               if(res.status === "pass") {
+                    setAdminData(prev => ({
+                         ...prev,
+                         adverts:adverts.filter(ad => ad.ad_id !== advert.ad_id),
+                         notification: {
+                              type: "pass",
+                              message: res.message
+                         }
+                    })) 
+               }else {
+                    setAdminData(prev => ({
+                         ...prev,
+                         notification: {
+                              type:"fail",
+                              message: res.message
+                         }
+                    }));
+               }
+               showNotification();
+          } catch (error) {
+               console.log(error);
+          }finally{
+               setLoading(false);
+               setLoadingMessage("loading")
           }
-          showNotification();
+          
      }
      return (
      <div className="admin-advert-card">
@@ -52,8 +64,24 @@ const DashAdvertCard = ({advert}) => {
                     <DeleteButton title="Delete" action={deleteAd} />
                </div>
           </div>
+          <DashAdvertCardLoad loading={loading} message={loadingMessage} />
      </div>
      )
+}
+
+const DashAdvertCardLoad  = ({loading, message}) => {
+     return (
+          loading ? 
+               <div className="admin-advert-card-load">
+                    <span>{message}...</span>
+               </div> 
+          : null
+     )
+}
+
+DashAdvertCardLoad.propTypes = {
+     loading: PropTypes.bool,
+     message: PropTypes.string
 }
 
 DashAdvertCard.propTypes = {
