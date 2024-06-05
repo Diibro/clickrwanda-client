@@ -161,9 +161,12 @@ export const getTimeNowV2 = () => {
  }
 
 export const getNewToday = (arr, dateKey) => {
-     const today = getTimeNow(); 
+     const today = new Date();
+     today.setHours(0, 0, 0, 0);
+     
      return arr.filter(item => {
           const itemDate = new Date(item[dateKey]);
-          return itemDate <= today;
+          itemDate.setHours(0, 0, 0, 0);
+          return itemDate.getTime() === today.getTime();
      }).length;
 }
