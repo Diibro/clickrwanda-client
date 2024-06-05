@@ -19,9 +19,9 @@ const Home = () => {
           <h2>Welcome to Management Dashboard</h2>
         </DashTitle>
         <NotifierContainer>
-          <Notifier count={10} icon={<FaHouseUser />} />
-          <Notifier count={10} icon={<FaUserSecret />} />
-          <Notifier count={10} icon={<RiAdvertisementFill />} />
+          <Notifier count={shops ? getNewToday(shops, "reg_date") :null} icon={<FaHouseUser />} url="/admin/shops" />
+          <Notifier count={agents ? getNewToday(agents, "registration_date") : null} icon={<FaUserSecret />} url="/admin/agents" />
+          <Notifier count={adverts ? getNewToday(adverts, "ad_date") : null} icon={<RiAdvertisementFill />} url="/admin/adverts"/>
         </NotifierContainer>
       </AdminRow>
       <AdminRow>

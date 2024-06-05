@@ -1,10 +1,18 @@
 import PropTypes from "prop-types";
-import { formatTimeAgo } from "../../../utils/dateFunctions";
+import { formatTimeAgo, isNewToday } from "../../../utils/dateFunctions";
 import { DeleteButton, EditButton } from "../buttons/ActionButtons";
+import { useEffect, useState } from "react";
 
 const DashShopCard = ({shop}) => {
+     const [isNew, setIsNew] = useState(false);
+     useEffect(()=>{
+          if(shop && isNewToday(shop.reg_date)){
+               setIsNew(true);
+          }
+     },[])
      return (
      <div className="dash-shop-card">
+          {isNew ? <span className="new-ad-tag">New</span>: null}
           <div className="row">
                <span>Shop Name: </span>
                <b>{shop.username}</b>

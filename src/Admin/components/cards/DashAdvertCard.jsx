@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import { formatTimeAgo } from "../../../utils/dateFunctions";
+import { formatTimeAgo, isNewToday } from "../../../utils/dateFunctions";
 import { capitalizeString, formatPrice } from "../../../utils/otherFunctions";
 import { DeleteButton, EditButton } from "../buttons/ActionButtons";
 import server from "../../../config/Server"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../AdminLayout";
 import { showNotification } from "../../../utils/AdminFunctions";
 
@@ -12,6 +12,7 @@ const DashAdvertCard = ({advert}) => {
      const {adverts } = adminData;
      const [loading, setLoading] = useState(false);
      const [loadingMessage, setLoadingMessage] = useState("loading");
+     const [isNew, setIsNew] = useState(false);
 
      const deleteAd = async() => {
           try {
@@ -45,8 +46,15 @@ const DashAdvertCard = ({advert}) => {
           }
           
      }
+
+     useEffect(() => {
+          if(advert && isNewToday(advert.ad_date)){
+               setIsNew(true);
+          }
+     }, [])
      return (
      <div className="admin-advert-card">
+          {isNew ? <span className="new-ad-tag">New</span>: null}
           <div className="image-container">
                <img src={advert.ad_image} alt={advert.ad_name} width={200} />
           </div>

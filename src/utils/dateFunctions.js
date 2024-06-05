@@ -170,3 +170,11 @@ export const getNewToday = (arr, dateKey) => {
           return itemDate.getTime() === today.getTime();
      }).length;
 }
+
+export const isNewToday = (dateStr) => {
+     const today = new Date();
+     today.setHours(0,0,0,0);
+     const itemDate = new Date(dateStr);
+     itemDate.setHours(0,0,0,0);
+     return itemDate.getTime() === today.getTime();
+}
