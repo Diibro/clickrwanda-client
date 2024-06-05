@@ -16,7 +16,7 @@ const Navbar = () => {
      return (
      <div className="admin-navbar hide-scroll">
           <div className="dash-logo-container">
-               <Link to={"/"}>
+               <Link to={"/admin/logout"}>
                     <img src={Logo} alt="clickrwanda-logo" />
                </Link>
           </div>

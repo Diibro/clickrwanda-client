@@ -53,7 +53,7 @@ const DesktopHeader = () => {
                <div className="header-profile">
                     <LanguageChanger />
                     {!loggedIn ? <ActionBtn action={activateForm} title={content.buttons[0].name} /> : null}
-                    {loggedIn ? <Link onClick={showHeader} to={ location.pathname.includes("/user-dashboard") ? null : "/user-dashboard"} className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
+                    {loggedIn && userInfo.role === "user" ? <Link onClick={showHeader} to={ location.pathname.includes("/user-dashboard") ? null : "/user-dashboard"} className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
                     {/* {loggedIn && (isMobile || isTablet) ? <i className="mobile-header-toggler"><BiMenu /></i> : null} */}
                     <ActionBtn action={activateForm} title={isTablet || isMobile ? content.buttons[1].name : content.buttons[1].name } />
                </div>
