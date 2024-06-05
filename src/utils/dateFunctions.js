@@ -161,11 +161,9 @@ export const getTimeNowV2 = () => {
  }
 
 export const getNewToday = (arr, dateKey) => {
-     const today = getTimeNow();
-     // today.setHours(0, 0, 0, 0);  
+     const today = getTimeNow(); 
      return arr.filter(item => {
           const itemDate = new Date(item[dateKey]);
-          itemDate.setHours(0, 0, 0, 0); 
           return itemDate <= today;
      }).length;
 }
