@@ -2,6 +2,7 @@ import WebService from "../../services/WebView";
 
 import { useEffect, useState } from "react";
 import { getAddedThisMonth, getAddedThisYear, getAddedToday } from "../../utils/dateFunctions";
+import { formatPrice } from "../../utils/otherFunctions";
 
 const WebUse = () => {
      const [webVisits,setWebVisits] = useState({
@@ -34,19 +35,19 @@ const WebUse = () => {
                <h2>Our Visitors</h2>
                <div className="visits">
                     <h3>Per Day:</h3>
-                    <p>{webVisits.today.length}</p>
+                    <p>{formatPrice(webVisits.today.length)}</p>
                </div>
                <div className="visits">
                     <h3>Per Month:</h3>
-                    <p>{webVisits.thisMonth.length}</p>
+                    <p>{formatPrice(webVisits.thisMonth.length)}</p>
                </div>
                <div className="visits">
                     <h3>Per Year: </h3>
-                    <p>{webVisits.thisYear.length}</p>
+                    <p>{formatPrice(webVisits.thisYear.length)}</p>
                </div>
                <div className="visits">
                     <h3>Total:</h3>
-                    <p>{webVisits.total}</p>
+                    <p>{formatPrice(webVisits.total)}</p>
                </div>
           </div>
      )
