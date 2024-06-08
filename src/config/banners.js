@@ -1,11 +1,11 @@
 export const Banners = [
      {
-          name:"Real Connect React Solutions",
+          name:"Visit My Venue",
           images:{
-               hr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1710137281/clickrwanda/banners/ConnectHR-800-200_czdibo.gif",
-               vr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1708778557/clickrwanda/banners/real-vr_vlhode.png"
+               hr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1717822655/clickrwanda/banners/visitmyvenue_hr-banner_togr83.gif",
+               vr:"https://res.cloudinary.com/dyjahjf1p/image/upload/v1717823484/clickrwanda/banners/visitmyvenue-banner-vr_ng9rqy.gif"
           },
-          link: "https://wa.me/+250784336340"
+          link: "https://visitmyvenue.com"
      },
      {
           name:"Aska Logistics",
