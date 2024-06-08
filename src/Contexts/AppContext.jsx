@@ -97,8 +97,6 @@ export const AppProvider = ({children}) => {
           }
      };
      useEffect(() => {
-
-
           if(!data.categories[0]){
                if(location.pathname === '/' || fetchNow){
                (async () => await fetchData())();
@@ -109,7 +107,7 @@ export const AppProvider = ({children}) => {
                (async () => await fetchData())();
                setData((prev) => ({...prev, fetchNow:false}));
           } 
-             
+
      }, [location.pathname, fetchNow]);
      return(
           <AppData.Provider value={[data, setData]}>

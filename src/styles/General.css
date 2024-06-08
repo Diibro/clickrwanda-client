@@ -4676,7 +4676,54 @@ a{
      margin: 20px auto;
      background-color: var(--white-text);
      border-radius: 20px;
+     position: relative;
+     overflow: hidden;
 
+}
+
+.agent-navbar{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     background-color: var(--text-color-title);
+     border-radius: 20px;
+     padding: 4px;
+     gap: 5px;
+     box-shadow: 0.5px 0px  10px var(--text-color-para1);
+}
+
+.agent-navbar a {
+     width: 23%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content:  center;
+     color: var(--white-text);
+     transition: all 0.5s ease;
+     border-radius: 20px;
+     padding-block: 5px;
+     font-weight: 700;
+     gap: 5px;
+}
+
+.agent-navbar .active, .agent-navbar a:hover {
+     background-color: var(--white-text);
+     color: var(--text-color-title);
+}
+
+.agent-navbar a i{
+     font-size: 1.5rem;
+     color: var(--back-color-gold2);
+}
+.agent-content-container{
+     width: 95%;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+     align-items: center;
+     padding-block: 10px;
 }
 
 /* end of agent styles */

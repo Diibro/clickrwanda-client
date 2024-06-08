@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import {  getItemUrl, getItemUrlId } from "../utils/urlFunctions";
+import {  fetchIds, getItemUrl } from "../utils/urlFunctions";
 import {  useEffect, useState } from "react";
 import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunctions";
 import { jsonParserV1 } from "../utils/jsonFunctions";
@@ -24,10 +24,12 @@ const AdvertPage = () => {
      const [loading, setLoading] = useState(false);
      const [adViewed, setAdViewed] = useState(null);
      const [otherAds, setOtherAds] = useState(null);
-     const adId = getItemUrlId(location.search);
      const images = jsonParserV1(adViewed?.ad_images || null);
      const [mainImage, setMainImage] = useState(null);
 
+
+
+     const{ v_id:adId} = fetchIds(location);
      
      const updateAdViewed = async () => {
           let check = 0;

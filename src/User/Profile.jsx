@@ -49,19 +49,23 @@ const Profile = () => {
 
   useEffect(() => {
     updateProfileImage();
+    console.log(userInfo);
   }, [newImage, user]);
 
   const submitForm = async (data) => {
     try {
       setLoading(true);
       const newData = new FormData();
-      if(data.name != "") newData.append('name', data.name);
-      if(data.username != "") newData.append('username', data.username);
-      if(data.phone != "") newData.append('phone', data.name);
-      
+      newData.append('user_id', userInfo.id);
+      newData.append('name', data.name || userInfo.name || userInfo.full_name);
+      newData.append('username', data.username || userInfo.username);
+      newData.append('phone', data.name || userInfo.phone || userInfo.user_phone);
+      newData.append('active', userInfo.active);
       if(data.location != "") {
         const location = {location: data.location, street: data.street || userInfo.location?.street || userInfo.user_location.street};
         newData.append('location', JSON.stringify(location));
+      }else{
+        newData.append('location', JSON.stringify(userInfo.location))
       }
       if(fileImage != "") newData.append('logo', fileImage);
       const res = await server.updateUser(newData);

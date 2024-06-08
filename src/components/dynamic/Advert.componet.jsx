@@ -97,7 +97,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
  const AdvertRenderer = ({item}) => {
      const navigate = useNavigate();
      const ViewAd = (ad) => {
-          navigate(`/ad/${getItemUrl("advert", ad.ad_id)}`);
+          navigate(`/ad/${getItemUrl(item.ad_name, ad.ad_id)}`);
      }
      return(
           item.ad_type === "product" ? <ProductSquare

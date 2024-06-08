@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {  useLocation } from "react-router-dom";
-import { getItemUrlId } from "../utils/urlFunctions";
+import { fetchIds, getItemUrlId } from "../utils/urlFunctions";
 import server from "../config/Server";
 import PropTypes from 'prop-types'
 import Loading from "../components/static/Loading";
@@ -74,7 +74,7 @@ const CategoryPage = () => {
   }
 
   useEffect(() => {
-    const categoryId = getItemUrlId(location.search);
+    const {v_id:categoryId} = fetchIds(location);
     const categoryViewStored = sessionStorage.getItem('categoryViewed');
     let check = 0;
     const fetchData = async(id) => {

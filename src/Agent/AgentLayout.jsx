@@ -1,5 +1,10 @@
 import { createContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import AgentNavBar from "./components/AgentNavBar";
+import Home from "./Home";
+import Referrals from "./Referrals";
+import Payments from "./Payments";
+import AgentLogout from "./AgentLogout";
 
 const AgentContext = createContext();
 
@@ -37,7 +42,17 @@ const AgentLayout = () => {
 
      return (
      <AgentContext.Provider value={[agentData, setAgentData]}>
-          <div className="agent-layout">AgentLayout</div>
+          <div className="agent-layout">
+               <AgentNavBar />
+               <div className="agent-content-container">
+                    <Routes>
+                         <Route index path="/" element={<Home/>} />
+                         <Route path="/referrals" element={<Referrals />} />
+                         <Route path="/payments" element={<Payments />} />
+                         <Route path="/logout" element={<AgentLogout />} />
+                    </Routes>
+               </div>
+          </div>
      </AgentContext.Provider>
      )
 }

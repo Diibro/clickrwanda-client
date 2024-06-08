@@ -39,3 +39,21 @@ export const getItemUrlToken = (url) => {
      const name = names[1];
      return name;
 }
+
+export const fetchIds = (location) => {
+     const searchId = location.search;
+     const idArr = searchId.split("?=");
+     let v_id = idArr[1];
+     let r_id = idArr[2];
+     if(v_id && r_id){
+          return {v_id, r_id};
+     }else if(v_id){
+          if(v_id.startsWith('agent_')){
+               return {v_id: null, r_id: v_id};
+          }else{
+               return {v_id, r_id: null};
+          }
+     }else{
+          return {v_id: null, r_id: null};
+     }
+}

@@ -136,6 +136,34 @@
      .dash-shop-card{
           width: 100%;
      }
+
+     .agent-layout{
+          width: 95%;
+          border-radius: 5px;
+     }
+
+     .agent-navbar {
+          border-radius: 5px;
+     }
+
+     .agent-navbar a{
+          border-radius: 5px;
+          flex-direction: column;
+     }
+
+     .agent-navbar a span{
+          height: 0px;
+          transition: all 0.5s ease;
+     }
+
+     .agent-navbar .active{
+          flex-direction: column;
+          gap: 2px;
+     }
+
+     .agent-navbar .active span{
+          height: 20px;
+     }
 }
 
 

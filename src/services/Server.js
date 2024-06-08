@@ -47,9 +47,6 @@ export default {
           update: `${serverUrl}/api/sub-category/4`,
           delete: `${serverUrl}/api/sub-category/5`,
      },
-     webView: {
-
-     },
      user: {
           getAll: `${serverUrl}/api/users/1`,
           register: `${serverUrl}/api/users/2`,
@@ -62,5 +59,12 @@ export default {
           getResetEmail: `${serverUrl}/api/users/get-reset-email`,
           passwordReset: `${serverUrl}/api/users/reset-password`,
      },
+     webView: {
+          getAll: `${serverUrl}/api/web-view/get-all`,
+          add: `${serverUrl}/api/web-view/new-visit`,
+          refVisits: `${serverUrl}/api/web-view/ref-visits`,
+          typeVisits: `${serverUrl}/api/web-view/type-visits`,
+          id_visits: `${serverUrl}/api/web-view/visits-per-id`,
+     }
 
 }

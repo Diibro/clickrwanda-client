@@ -14,7 +14,6 @@ import global_fr from "./locales/fr/global.json";
 import global_kn from "./locales/kn/global.json";
 import { I18nextProvider } from "react-i18next";
 
-
 i18next.init({
   interpolation: {escapeValue:false},
   lng: "en",

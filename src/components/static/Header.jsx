@@ -20,6 +20,7 @@ const DesktopHeader = () => {
      const [navOn, setNavOn] = useState(false);
      const location = useLocation();
      const navigate = useNavigate();
+     const agentToken = sessionStorage.getItem("agentToken");
 
      const activateForm = () =>{
           if(loggedIn){
@@ -52,8 +53,8 @@ const DesktopHeader = () => {
                {/* {!loggedIn ? <h1><Link to='/hiring'>We are Hiring/Akazi</Link></h1> : null} */}
                <div className="header-profile">
                     <LanguageChanger />
-                    {!loggedIn ? <ActionBtn action={activateForm} title={content.buttons[0].name} /> : null}
-                    {loggedIn && userInfo.role === "user" ? <Link onClick={showHeader} to={ location.pathname.includes("/user-dashboard") ? null : "/user-dashboard"} className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
+                    {!loggedIn && !agentToken ? <ActionBtn action={activateForm} title={content.buttons[0].name} /> : null}
+                    {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo.role === 'user' && !location.pathname.includes("/user-dashboard") ? "/user-dashboard" : agentToken ? "/agent" : "/admin"} className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
                     {/* {loggedIn && (isMobile || isTablet) ? <i className="mobile-header-toggler"><BiMenu /></i> : null} */}
                     <ActionBtn action={activateForm} title={isTablet || isMobile ? content.buttons[1].name : content.buttons[1].name } />
                </div>

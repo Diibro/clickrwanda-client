@@ -15,6 +15,7 @@ import { getLocations } from "../../utils/locations";
 import { PaymentPlanForm } from "./PaymentPlans.component";
 import {getRwandaTime} from "../../utils/dateFunctions";
 import AgentService from "../../services/Agent";
+import { fetchIds } from "../../utils/urlFunctions";
 
 
 const UserForms = () => {
@@ -58,13 +59,15 @@ const LoginForm = () => {
           }));
      }
      const submitForm = async (data) => {
-          console.log("user login");
+          
+          console.log('userdat: ', data);
           try {
                setLoading(true);
                const formData = new FormData();
                formData.append('email', data.email);
                formData.append('password', data.password);
                const res = await server.login(data);
+               console.log(res);
                if(res.status === "pass"){
                     sessionStorage.setItem('loginToken', res.loginToken);
                     sessionStorage.setItem('userData', JSON.stringify(res.data));
@@ -123,14 +126,14 @@ const LoginForm = () => {
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login"}} />
                {!loading ?
                <>
-                    <form onSubmit={handleSubmit(submitForm)}>
+                    <form onSubmit={handleSubmit(submitForm)} autoComplete="on">
                     <div className="group">
                          <label htmlFor="email_02">Email: </label>
-                         <input type="email" name="email" id="email_02" {...register('email')} onChange={(e) => setEmail(e.target.value)} placeholder="User email..."  />
+                         <input type="email" name="email" id="email_02" {...register('email')} autoComplete="email" onChange={(e) => setEmail(e.target.value)} placeholder="User email..."  />
                     </div>
                     <div className="group">
                          <label htmlFor="password_02">Password: </label>
-                         <input type="password" name="password" id="password_02" {...register('password')} placeholder="User Password" />
+                         <input type="password" name="password" id="password_02" {...register('password')} placeholder="User Password" autoComplete="current-password" />
                     </div>
                     <div className="group align-right">
                          <SubmitButton content={{title: "Log in", type: 'submit'}} />
@@ -144,7 +147,7 @@ const LoginForm = () => {
                <p className="other-link">Don&rsquo;t have account <b onClick={() => navigate("/forms/signup")}>Sign Up</b></p>
                </>
                
-                :<Loading />}
+               :<Loading />}
           </div>
      )
 }
@@ -156,6 +159,7 @@ const SignUpForm = () => {
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
      const [locations, setLocations] = useState([]);
+     const location = useLocation();
 
      const raiseAlert = (type, message, icon) => {
           setData((prev)=> ({
@@ -169,7 +173,7 @@ const SignUpForm = () => {
      const submitForm = async (data) => {
           try {
                let date  = getRwandaTime();
-               console.log(date);
+               const {r_id} = fetchIds(location);
                setLoading(true); // Set loading to true when submitting
                const formData = new FormData();
                formData.append('name', data.name);
@@ -178,9 +182,11 @@ const SignUpForm = () => {
                formData.append('phone', data.phone);
                formData.append('userType', 'user');
                formData.append('password', data.password);
-               formData.append('location', data.location);
+               formData.append('location', JSON.stringify(data.location));
                formData.append('registrationDate', date);
+               formData.append('r_id', r_id);
                const res = await server.register(formData);
+               console.log(res);
                if (res.status === "pass") {
                raiseAlert('success', 'Successfully created the account', <ImTicket />);
                navigate("/forms/login")
@@ -207,7 +213,9 @@ const SignUpForm = () => {
 
      useEffect(() => {
           (async() => {
+               console.log("am called");
                const {districts} = await getLocations();
+               console.log(districts);
                // const {data} = districts;
                // setLocations(data);
                setLocations(districts.data);
@@ -243,7 +251,7 @@ const SignUpForm = () => {
                <div className="group">
                     <label htmlFor="location01">Location: </label>
                     {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
-                    <select name="location" id="location01"  {...register('location', {required: true})}>
+                    <select name="location" id="location01"  {...register('location', {required: false})}>
                          {locations[0] ? <option value="" selected  >Business location</option> : null}
                          {locations[0] ? <option value="Kigali" >Kigali</option> : null}
                          {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}

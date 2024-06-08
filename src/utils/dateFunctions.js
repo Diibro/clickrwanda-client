@@ -131,6 +131,12 @@ export const getTimeNow = () => {
      return formattedDate;
 }
 
+export const getDateToday = () => {
+     const dateInRwanda = new Date().toLocaleString("en-US", { timeZone: "Africa/Kigali" });
+     const formattedDate = new Date(dateInRwanda).toISOString().slice(0, 10);
+     return formattedDate;
+}
+
 export const getRwandaTime = () => {
      const dateInRwanda = new Date().toLocaleString("en-US", {timeZone: "Africa/Kigali"});
      const formattedDate = new Date(dateInRwanda).toISOString().slice(0, 19).replace('T', ' ');
@@ -177,4 +183,34 @@ export const isNewToday = (dateStr) => {
      const itemDate = new Date(dateStr);
      itemDate.setHours(0,0,0,0);
      return itemDate.getTime() === today.getTime();
+}
+
+export const getAddedToday = (items, dateKey) => {
+     const today = new Date();
+     today.setHours(0, 0, 0, 0);
+     
+     return items.filter(item => {
+          const itemDate = new Date(item[dateKey]);
+          itemDate.setHours(0, 0, 0, 0);
+          return itemDate.getTime() === today.getTime();
+     });
+}
+
+export const getAddedThisMonth = (items, date_key) => {
+     const now = new Date();
+     const currentYear = now.getFullYear();
+     const currentMonth = (now.getMonth() + 1).toString().padStart(2, '0'); // Get current month in MM format
+     const currentPrefix = `${currentYear}-${currentMonth}`;
+     return items.filter(item => {
+          const itemDate = new Date(item[date_key]).toISOString().slice(0, 7); // Get YYYY-MM from date
+          return itemDate === currentPrefix;
+     });
+}
+
+export const getAddedThisYear = (items, date_key) => {
+     const currentYear = new Date().getFullYear();
+     return items.filter(item => {
+          const itemYear = new Date(item[date_key]).getFullYear();
+          return itemYear === currentYear;
+     });
 }

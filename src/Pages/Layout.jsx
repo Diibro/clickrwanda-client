@@ -33,12 +33,29 @@ import TopDealsPage from './TopDealsPage';
 import BoostedAdsPage from './BoostedAdsPage';
 import WebsitesVisitors from './WebsitesVisitors';
 import AgentLayout from '../Agent/AgentLayout';
+import { getDateToday } from '../utils/dateFunctions';
+import WebViewService from "../services/WebView";
+import { fetchIds } from '../utils/urlFunctions';
 
 
 const Layout = () => {
      const location = useLocation();
+     
+
+     const saveVisit = async () => {
+          const {v_id, r_id} = fetchIds(location);
+          const v_date = getDateToday();
+          const v_type = location.pathname === "/" ? "home" : location.pathname;
+
+          const webVisit = {v_date,v_type, v_id, r_id};
+          console.log(webVisit);
+          const res = await WebViewService.addVisit(webVisit);
+          console.log(res);
+     }
+
      useEffect(() => {
           window.scrollTo(0,0);
+          (async () => await saveVisit())();
      },[location.pathname] )
      return (
      <FilterProvider>
