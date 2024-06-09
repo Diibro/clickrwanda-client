@@ -34,15 +34,15 @@ const WebUse = () => {
           <div className="web-usage-container">
                <h2>Our Visitors</h2>
                <div className="visits">
-                    <h3>Per Day:</h3>
+                    <h3>Today:</h3>
                     <p>{formatPrice(webVisits.today.length)}</p>
                </div>
                <div className="visits">
-                    <h3>Per Month:</h3>
+                    <h3>This Month:</h3>
                     <p>{formatPrice(webVisits.thisMonth.length + 9000)}</p>
                </div>
                <div className="visits">
-                    <h3>Per Year: </h3>
+                    <h3>This Year: </h3>
                     <p>{formatPrice(webVisits.thisYear.length + 45000)}</p>
                </div>
                <div className="visits">
