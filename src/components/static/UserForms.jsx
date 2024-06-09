@@ -186,7 +186,6 @@ const SignUpForm = () => {
                formData.append('registrationDate', date);
                formData.append('r_id', r_id);
                const res = await server.register(formData);
-               console.log(res);
                if (res.status === "pass") {
                raiseAlert('success', 'Successfully created the account', <ImTicket />);
                navigate("/forms/login")
