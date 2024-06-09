@@ -213,9 +213,7 @@ const SignUpForm = () => {
 
      useEffect(() => {
           (async() => {
-               console.log("am called");
                const {districts} = await getLocations();
-               console.log(districts);
                // const {data} = districts;
                // setLocations(data);
                setLocations(districts.data);
