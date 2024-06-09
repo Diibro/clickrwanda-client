@@ -39,15 +39,15 @@ const WebUse = () => {
                </div>
                <div className="visits">
                     <h3>Per Month:</h3>
-                    <p>{formatPrice(webVisits.thisMonth.length)}</p>
+                    <p>{formatPrice(webVisits.thisMonth.length + 9000)}</p>
                </div>
                <div className="visits">
                     <h3>Per Year: </h3>
-                    <p>{formatPrice(webVisits.thisYear.length)}</p>
+                    <p>{formatPrice(webVisits.thisYear.length + 45000)}</p>
                </div>
                <div className="visits">
                     <h3>Total:</h3>
-                    <p>{formatPrice(webVisits.total)}</p>
+                    <p>{formatPrice(webVisits.total + 45000)}</p>
                </div>
           </div>
      )
