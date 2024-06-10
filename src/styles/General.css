@@ -4183,6 +4183,7 @@ a{
      align-items: center;
      justify-content: flex-start;
      padding-inline:  20px;
+     min-width: 50%;
 }
 
 .dash-title h2{
@@ -4589,6 +4590,41 @@ a{
      font-size: 0.8rem;
      font-weight: 500;
      color: var(--text-color-title);
+}
+
+.admin-search-form{
+     width: 40%;
+     min-width: 350px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-end;
+     justify-self: flex-end;
+     max-width: 800px;
+     gap: 10px;
+}
+
+.admin-search-form span{
+     font-size: 0.9rem;
+     font-weight: 700;
+     color: var(--text-color-para2);
+}
+
+.admin-search-form input{
+     width: 65%;
+     padding: 5px 10px;
+     border: 1.3px solid var(--text-color-para1);
+     color: var(--text-color-title);
+     font-size: 0.85rem;
+     font-weight: 600;
+     border-radius: 20px;
+     outline: none;
+     transition: all 0.4s ease;
+     background-color: transparent;
+}
+
+.admin-search-form input:focus {
+     border: 1.4px solid var(--back-color-gold2);
 }
 
 /* buttons */

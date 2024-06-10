@@ -75,3 +75,18 @@ export const sortByAny = (arr, key) => {
      return 0;
      });
 }
+
+export const searchByKey = (arr, key, searchValue) => {
+     if(searchValue && searchValue !== " " && searchValue !== ""){
+          return arr.filter(item => {
+               if(typeof(item[key]) === "string"){
+                    return item[key].toLowerCase().includes(searchValue.toLowerCase());
+               }else{
+                    return false;
+               }
+               
+          })
+     }else{    
+          return arr;
+     }
+}
