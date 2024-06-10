@@ -42,21 +42,21 @@ const Layout = () => {
      const location = useLocation();
      
 
-     const saveVisit = async () => {
-          const {v_id, r_id} = fetchIds(location);
-          const v_date = getDateToday();
-          const v_type = location.pathname === "/" ? "home" : location.pathname;
-
-          const webVisit = {v_date,v_type, v_id, r_id};
-          console.log(webVisit);
-          const res = await WebViewService.addVisit(webVisit);
-          console.log(res);
-     }
+     
 
      useEffect(() => {
           window.scrollTo(0,0);
+          const saveVisit = async () => {
+               const {v_id, r_id} = fetchIds(location);
+               const v_date = getDateToday();
+               const v_type = location.pathname === "/" ? "home" : location.pathname;
+     
+               const webVisit = {v_date,v_type, v_id, r_id};
+               await WebViewService.addVisit(webVisit);
+          }
           (async () => await saveVisit())();
-     },[location.pathname] )
+     },[location.pathname] );
+     
      return (
      <FilterProvider>
           <ViewProvider>

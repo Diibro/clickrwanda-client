@@ -77,7 +77,6 @@ const LoginForm = () => {
                formData.append('email', data.email);
                formData.append('password', data.password);
                const res = await server.login(data);
-               console.log(res);
                if(res.status === "pass"){
                     sessionStorage.setItem('loginToken', res.loginToken);
                     sessionStorage.setItem('userData', JSON.stringify(res.data));
