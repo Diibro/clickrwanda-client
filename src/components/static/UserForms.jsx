@@ -61,6 +61,7 @@ const LoginForm = () => {
      const submitForm = async (data) => {
           try {
                setLoading(true);
+               console.log(data);
                const formData = new FormData();
                formData.append('email', data.email || email);
                formData.append('password', data.password);
