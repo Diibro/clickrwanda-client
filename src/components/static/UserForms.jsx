@@ -44,7 +44,7 @@ const UserForms = () => {
 
 const LoginForm = () => {
      const [,setUser] = useContext(UserContext);
-     const {register, handleSubmit,} = useForm();
+     const {register, handleSubmit,setValue} = useForm();
      const [,setData] = useContext(AppData);
      const [loading, setLoading] = useState(false);
      const [email, setEmail] = useState("");
@@ -59,12 +59,10 @@ const LoginForm = () => {
           }));
      }
      const submitForm = async (data) => {
-          
-          console.log('userdat: ', data);
           try {
                setLoading(true);
                const formData = new FormData();
-               formData.append('email', data.email);
+               formData.append('email', data.email || email);
                formData.append('password', data.password);
                const res = await server.login(data);
                console.log(res);
@@ -119,6 +117,18 @@ const LoginForm = () => {
      const closeForm = () => {
           setUser((prev) => ({...prev, activeForm:''}));
      }
+
+     useEffect(() => {
+          const emailInput = document.getElementById('email_02');
+          const passwordInput = document.getElementById('password_02');
+          if (emailInput && emailInput.value) {
+               setEmail(emailInput.value);
+               setValue('email', emailInput.value);
+          }
+          if (passwordInput && passwordInput.value) {
+               setValue('password', passwordInput.value);
+          }
+     }, [setValue]);
 
      return(
           <div className="form-container hide-scroll">
