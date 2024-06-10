@@ -47,7 +47,6 @@ const LoginForm = () => {
      const {register, handleSubmit,setValue} = useForm();
      const [,setData] = useContext(AppData);
      const [loading, setLoading] = useState(false);
-     const [email, setEmail] = useState("");
      const navigate = useNavigate();
      const raiseAlert = (type, message, icon) => {
           setData((prev)=> ({
@@ -63,7 +62,6 @@ const LoginForm = () => {
           const emailInput = document.getElementById('email_02');
           const passwordInput = document.getElementById('password_02');
           if (emailInput && emailInput.value) {
-               setEmail(emailInput.value);
                setValue('email', emailInput.value, {shouldValidate: true, shouldDirty:true});
           }
           if (passwordInput && passwordInput.value) {
@@ -76,7 +74,7 @@ const LoginForm = () => {
                setLoading(true);
                console.log(data);
                const formData = new FormData();
-               formData.append('email', data.email !== "" ? data.email : email);
+               formData.append('email', data.email);
                formData.append('password', data.password);
                const res = await server.login(data);
                console.log(res);
@@ -111,7 +109,9 @@ const LoginForm = () => {
      const requestPasswordReset = async() => {
           try {
                setLoading(true);
-               if(email != ""){
+               const emailInput = document.getElementById("email_02");
+               let email = emailInput.value;
+               if(email && email != ""){
                     const res = await server.resetPassword('request-reset',{email});
                     if(res.status === "pass") {
                          // raiseAlert('success', `${res.message}`, <TiTick />);
@@ -139,7 +139,7 @@ const LoginForm = () => {
                     <form onSubmit={handleSubmit(submitForm)} autoComplete="on">
                     <div className="group">
                          <label htmlFor="email_02">Email: </label>
-                         <input type="email" name="email" id="email_02" {...register('email')} autoComplete="email" onChange={(e) => setEmail(e.target.value)} placeholder="User email..."  />
+                         <input type="email" name="email" id="email_02" {...register('email')} autoComplete="email" placeholder="User email..."  />
                     </div>
                     <div className="group">
                          <label htmlFor="password_02">Password: </label>
