@@ -58,12 +58,25 @@ const LoginForm = () => {
                }
           }));
      }
+
+     useEffect(() => {
+          const emailInput = document.getElementById('email_02');
+          const passwordInput = document.getElementById('password_02');
+          if (emailInput && emailInput.value) {
+               setEmail(emailInput.value);
+               setValue('email', emailInput.value, {shouldValidate: true, shouldDirty:true});
+          }
+          if (passwordInput && passwordInput.value) {
+               setValue('password', passwordInput.value, {shouldValidate: true, shouldDirty:true});
+          }
+     }, [setValue]);
+
      const submitForm = async (data) => {
           try {
                setLoading(true);
                console.log(data);
                const formData = new FormData();
-               formData.append('email', data.email || email);
+               formData.append('email', data.email !== "" ? data.email : email);
                formData.append('password', data.password);
                const res = await server.login(data);
                console.log(res);
@@ -115,25 +128,11 @@ const LoginForm = () => {
           }
           
      }
-     const closeForm = () => {
-          setUser((prev) => ({...prev, activeForm:''}));
-     }
 
-     useEffect(() => {
-          const emailInput = document.getElementById('email_02');
-          const passwordInput = document.getElementById('password_02');
-          if (emailInput && emailInput.value) {
-               setEmail(emailInput.value);
-               setValue('email', emailInput.value);
-          }
-          if (passwordInput && passwordInput.value) {
-               setValue('password', passwordInput.value);
-          }
-     }, [setValue]);
+     
 
      return(
           <div className="form-container hide-scroll">
-               <i onClick={closeForm} className="close-icon"><ImCross/></i>
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login"}} />
                {!loading ?
                <>
