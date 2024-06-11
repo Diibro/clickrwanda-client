@@ -162,7 +162,7 @@ const UpdateAdvertForm = () => {
                               </div>
                               <div className="group">
                                    <label htmlFor="ad_discount_01">Discount: </label>
-                                   <input type="number" name="ad_discount" id="ad_discount_01" defaultValue={ad.ad_discount} onChange={(e) => updateAd(e.target.value, "ad_discount")} />
+                                   <input type="number" name="ad_discount" id="ad_discount_01" defaultValue={ad.ad_discount || 0} onChange={(e) => updateAd(e.target.value, "ad_discount")} />
                               </div>
                               <div className="group">
                                    <label htmlFor="pay_plan_01">Advert plan: <span>{nameLookerExact(paymentPlans, "plan_id", "plan_name", ad.ad_plan_id)}</span></label>
