@@ -3,6 +3,7 @@ import { AdminContext } from "../../AdminLayout"
 import { ImCross } from "react-icons/im";
 import { toggleForms } from "../../../utils/AdminFunctions";
 import AgentForms from "./AgentForms";
+import AdvertForms from "./AdvertForms";
 
 const AdminForms = () => {
      const [,setAdminData] = useContext(AdminContext);
@@ -10,7 +11,10 @@ const AdminForms = () => {
           toggleForms(false);
           setAdminData((prev) => ({
                ...prev,
-               activeForm: "Admin Form"
+               activeForm: {
+                    type: "default",
+                    formName: ""
+               }
 
           }))
      }
@@ -20,6 +24,7 @@ const AdminForms = () => {
                     <ImCross />
                </i>
                <AgentForms />
+               <AdvertForms />
           </div>
      )
 }

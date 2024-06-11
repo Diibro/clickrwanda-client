@@ -336,7 +336,7 @@
      }
 
 
-     .admin-content {
+     .admin-main-content {
           width: 100%;
           height: 85vh;
      }
@@ -381,12 +381,15 @@
           overflow-x: scroll;
      }
 
-     .admin-forms-container{
+     .agent-form-container{
           width: 60%;
      }
 
      .dash-shop-card{
           width: 48%;
+     }
+     .admin-advert-update-form .group{
+          width: 70%;
      }
 }
 

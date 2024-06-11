@@ -29,6 +29,19 @@ export default {
                return null;
           }
      },
+     updateAd: async (advert) => {
+          try {
+               const loginToken = sessionStorage.getItem('loginToken') || null;
+               const res = await axios.post(Server.advert.updateAd, advert, {headers: {
+                    'Authorization': loginToken
+               }});
+               const info = res.data;
+               return info;
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
+     },
      searchAd: async (advert) => {
           try {
                const res = await axios.post(Server.advert.search, advert);

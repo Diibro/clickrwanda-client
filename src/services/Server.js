@@ -6,6 +6,7 @@ export default {
           getAll: `${serverUrl}/api/advert/1`,
           save: `${serverUrl}/api/advert/2`,
           update: `${serverUrl}/api/advert/3`,
+          updateAd: `${serverUrl}/api/advert/update-ad`,
           search: `${serverUrl}/api/advert/4`,
           delete: `${serverUrl}/api/advert/5`,
           category: `${serverUrl}/api/advert/search-category`,
@@ -65,6 +66,11 @@ export default {
           refVisits: `${serverUrl}/api/web-view/ref-visits`,
           typeVisits: `${serverUrl}/api/web-view/type-visits`,
           id_visits: `${serverUrl}/api/web-view/visits-per-id`,
+     },
+     paymentPlans: {
+          getAll: `${serverUrl}/api/payment-plan/1`,
+          save: `${serverUrl}/api/payment-plan/2`,
+          update: `${serverUrl}/api/payment-plan/3`,
      }
 
 }

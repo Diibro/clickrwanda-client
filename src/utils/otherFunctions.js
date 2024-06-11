@@ -68,39 +68,57 @@ export const openNewTab = (url) => {
 }
 
 export const getParagraphs = (text, wordsPerParagraph) => {
-  let words = text.split(/\s+/);
-  let sentences = text.split(". ");
+  try {
+    console.log(text);
+    let words = text.split(/\s+/);
+    let sentences = text.split(". ");
 
 
-  let paragraphs = [];
-  let paragraphs2 =[];
-  let currentParagraph = '';
-  let currentParagraph2 = '';
+    let paragraphs = [];
+    let paragraphs2 =[];
+    let currentParagraph = '';
+    let currentParagraph2 = '';
 
-  words.forEach(word => {
-    if (currentParagraph.split(/\s+/).length > wordsPerParagraph) {
+    words.forEach(word => {
+      if (currentParagraph.split(/\s+/).length > wordsPerParagraph) {
+        paragraphs.push(currentParagraph.trim());
+        currentParagraph = ''; 
+      }
+
+      currentParagraph += word + ' ';
+    });
+
+    sentences.forEach(sentence => {
+      if(currentParagraph2.split(". ").length > 4){
+        paragraphs2.push(currentParagraph2);
+        currentParagraph2 = "";
+      }
+      currentParagraph2 += sentence + ". ";
+    })
+
+    if (currentParagraph.trim() !== '') {
       paragraphs.push(currentParagraph.trim());
-      currentParagraph = ''; 
     }
 
-    currentParagraph += word + ' ';
+    if (currentParagraph2.trim() !== '') {
+      paragraphs2.push(currentParagraph2);
+    }
+
+    return paragraphs2;
+  } catch (error) {
+    console.log(error);
+    return [text];
+  }
+}
+
+export const nameLookerExact = (arr, keySearched, keyReturned, searchedValue) => {
+  const newArr = arr.filter(item => {
+    return item[keySearched] === searchedValue;
   });
 
-  sentences.forEach(sentence => {
-    if(currentParagraph2.split(". ").length > 4){
-      paragraphs2.push(currentParagraph2);
-      currentParagraph2 = "";
-    }
-    currentParagraph2 += sentence + ". ";
-  })
-
-  if (currentParagraph.trim() !== '') {
-    paragraphs.push(currentParagraph.trim());
+  if(newArr[0]) {
+    return newArr[0][keyReturned];
+  }else{
+    return "Not Found"
   }
-
-  if (currentParagraph2.trim() !== '') {
-    paragraphs2.push(currentParagraph2);
-  }
-
-  return paragraphs2;
 }

@@ -129,10 +129,7 @@
      .admin-advert-card {
           width: 100%;
      }
-
-     .admin-forms-container{
-          width: 90%;
-     }
+     
      .dash-shop-card{
           width: 100%;
      }
@@ -163,6 +160,9 @@
 
      .agent-navbar .active span{
           height: 20px;
+     }
+     .admin-advert-update-form .group{
+          width: 95%;
      }
 }
 

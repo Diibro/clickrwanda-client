@@ -11,24 +11,22 @@ const AgentForms = () => {
      const {activeForm} = adminData;
 
      return (
-          <div className="agent-form-container">
-               {activeForm === "Add Agent" ? <AddAgentForm />  : null}
-          </div>
+          <>
+               {activeForm.type === "agent" ? 
+                    <div className="agent-form-container">
+                         {activeForm.formName === "Add Agent" ? <AddAgentForm />  : null}
+                    </div>
+               : null}
+          </>
+          
      )
 }
 
 
 const AddAgentForm = () => {
-     const {register, handleSubmit, formState: {errors}} = useForm();
+     const {register, handleSubmit} = useForm();
      const [adminData,setAdminData] = useContext(AdminContext);
      const {locations,agents} = adminData;
-
-
-     const onErrors = (error) => {
-          if(error){
-               console.log(error);
-          }
-     }
 
      const closeFormsContainer = () => {
           toggleForms(false);
@@ -72,7 +70,7 @@ const AddAgentForm = () => {
           <DashTitle>
                <h4>Add Agent</h4>
           </DashTitle>
-          <form className="admin-dash-form" onSubmit={handleSubmit(submitForm, onErrors)}>
+          <form className="admin-dash-form" onSubmit={handleSubmit(submitForm)}>
                <div className="group">
                     <label htmlFor="a_name">Agent Name:</label>
                     <input type="text" name="a_name" id="a_name" {...register('a_name', {required: true})}/>

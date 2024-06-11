@@ -13,7 +13,10 @@ const AgentsPage = () => {
      const showAddForm = () => {
           setAdminData((prev ) => ({
                ...prev,
-               activeForm: "Add Agent"
+               activeForm: {
+                    type: "agent",
+                    formName: "Add Agent"
+               }
           }));
           toggleForms(true);
      } 
@@ -27,11 +30,6 @@ const AgentsPage = () => {
           <AdminRow>
                <AgentsTable agents={agents} />
           </AdminRow>
-          <div className="agent-form-container">
-               <DashTitle>
-                    
-               </DashTitle>
-          </div>
      </>
      )
 }

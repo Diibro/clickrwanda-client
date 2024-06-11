@@ -2,10 +2,10 @@ import axios from "axios";
 import Server from "./Server";
 
 export default {
-     add: async (item ) => {
+     save: async (item) => {
           try {
-               const res = await axios.post(Server.subCategory.save, item);
-               return (await res).data;
+               const res = await axios.post(Server.paymentPlans.save, item);
+               return res.data;
           } catch (error) {
                console.log(error);
                return null;
@@ -13,8 +13,8 @@ export default {
      },
      update: async(item) => {
           try {
-               const res = await axios.post(Server.subCategory.update, item);
-               return res;
+               const res = await axios.post(Server.paymentPlans.update, item);
+               return res.data;
           } catch (error) {
                console.log(error);
                return null;
@@ -22,8 +22,8 @@ export default {
      },
      getAll: async() => {
           try {
-               const res = axios.get(Server.subCategory.getAll);
-               return (await res).data;
+               const res = await axios.get(Server.paymentPlans.getAll);
+               return res.data;
           } catch (error) {
                console.log(error);
                return null

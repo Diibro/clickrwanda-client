@@ -5,7 +5,7 @@ import { DeleteButton, EditButton } from "../buttons/ActionButtons";
 import server from "../../../config/Server"
 import { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../AdminLayout";
-import { showNotification } from "../../../utils/AdminFunctions";
+import { showNotification, toggleForms } from "../../../utils/AdminFunctions";
 
 const DashAdvertCard = ({advert}) => {
      const [adminData, setAdminData ] = useContext(AdminContext);
@@ -47,6 +47,18 @@ const DashAdvertCard = ({advert}) => {
           
      }
 
+     const updateAd = async() => {
+          setAdminData((prev) => ({
+               ...prev, 
+               activeForm: {
+                    type: "advert",
+                    formName: "update",
+                    objFocus: advert
+               }
+          }))
+          toggleForms(true);
+     }
+
      useEffect(() => {
           if(advert && isNewToday(advert.ad_date)){
                setIsNew(true);
@@ -68,7 +80,7 @@ const DashAdvertCard = ({advert}) => {
                     <p>Status: {advert.status}</p>
                </div>
                <div className="actions">
-                    <EditButton title={"Update"} action={() => console.log("trying update")} />
+                    <EditButton title={"Update"} action={updateAd} />
                     <DeleteButton title="Delete" action={deleteAd} />
                </div>
           </div>

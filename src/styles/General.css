@@ -91,6 +91,14 @@ a{
      text-decoration: none;
 }
 
+
+input:disabled{
+     cursor: not-allowed;
+}
+
+textarea{
+     resize: none;
+}
 .title{
      font-size:1.5rem;
      /* color:var(--text-color-title); */
@@ -1126,6 +1134,7 @@ a{
      background-position: center;
      background-size: cover;
      background-repeat: no-repeat;
+     -webkit-backdrop-filter: blur(12px);
      backdrop-filter: blur(12px);
 }
 
@@ -3017,6 +3026,7 @@ a{
      box-shadow: 0.5px 0.5px 2.5px 1px var(--gray-text);
      border-radius: 5px;
      background-color: var(--white-text);
+     margin: 5px auto;
 }
 
 .advert-row .row{
@@ -3074,6 +3084,13 @@ a{
 .advert-row .desc span a:hover{
      color: var(--back-color-blue2);
      text-decoration: underline;
+}
+
+.advert-row .ad-plan {
+     color:var(--back-gold-color-v1);
+     font-weight: 700;
+     font-size: 0.8rem;
+     display: none;
 }
 
 .best-sellers-body {
@@ -3413,6 +3430,7 @@ a{
      top: 0;
      width: 100vw;
      height: 100vh;
+     -webkit-backdrop-filter: blur(30px);
      backdrop-filter: blur(30px);
      background-color: var(--text-color-title-transparent);
      display: flex;
@@ -4154,8 +4172,14 @@ a{
      background-color: var(--text-color-title);
      color: var(--white-text);
 }
-.admin-content{
+
+.admin-main-content {
      width: 85%;
+     position: relative;
+     overflow: hidden;
+}
+.admin-content{
+     width: 100%;
      background-color: var(--light-gray);
      height: 95vh;
      position: sticky;
@@ -4184,6 +4208,7 @@ a{
      justify-content: flex-start;
      padding-inline:  20px;
      min-width: 50%;
+     gap: 5px;
 }
 
 .dash-title h2{
@@ -4333,17 +4358,17 @@ a{
 .admin-forms-container {
      position: absolute;
      height: 100%;
-     background-color: var(--white-text);
+     background-color:#44444450;
      z-index: 6;
      border-radius: 20px;
-     padding: 25px;
      top: 0;
-     width: 40%;
+     width: 100%;
      right: -100%;
      transition: ease 0.5s;
      border: 2px solid var(--back-color-gold2);
      display: flex;
-     flex-direction: column;
+     flex-direction: row;
+     justify-content: flex-end;
      align-items: center;
 }
 
@@ -4375,8 +4400,18 @@ a{
      gap: 20px;
 }
 
+.dash-close-container {
+     width: 60%;
+     height: 100%;
+     background-color: transparent;
+}
+
 .agent-form-container{
-     width: 100%;
+     width: 40%;
+     background-color: var(--white-text);
+     height: 100%;
+     border-radius: 20px;
+     padding: 25px;
 }
 
 .admin-dash-form .group{
@@ -4427,6 +4462,124 @@ a{
      background-color: var(--back-color-blue1);
      color: var(--white-text);
 }
+
+/* advert form styles */
+.admin-advert-form-container{
+     width: 100%;
+     border-radius: 20px;
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     background-color:  var(--white-text);
+     padding: 20px 10px;
+     overflow-y: scroll;
+}
+
+.admin-advert-update-form {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     gap: 10px;
+}
+
+.admin-advert-update-form .group {
+     width: 45%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     padding: 5px;
+}
+
+.admin-advert-update-form .group label {
+     font-size: 0.8rem;
+     color: var(--text-color-para1);
+     font-weight: 600;
+}
+
+.admin-advert-update-form .group input, 
+.admin-advert-update-form .group select,
+.admin-advert-update-form .group textarea {
+     padding: 5px 10px;
+     border: 1.2px solid var(--gray-text);
+     color: var(--text-color-title);
+     border-radius: 10px;
+     width: 95%;
+     margin: 2.5px;
+     transition: all 0.4s ease;
+     font-weight: 700;
+}
+
+.admin-advert-update-form .group input:focus, 
+.admin-advert-update-form .group select:focus,
+.admin-advert-update-form .group textarea:focus {
+     border: 1.3px solid var(--back-color-gold2);
+     outline: none;
+}  
+
+.admin-advert-update-form .group input[type="submit"]{
+     font-size: 0.9rem;
+     background-color: var(--back-color-gold2);
+     color: var(--white-text);
+     font-weight: 700;
+     padding: 5px 15px;
+     width: auto;
+     cursor: pointer;
+     border: 1.2px solid var(--back-color-gold2);
+     transition: all 0.5s ease;
+}
+
+.admin-advert-update-form .group input[type="submit"]:hover{
+     background-color: var(--white-text);
+     color: var(--back-color-gold2);
+}
+
+.admin-advert-update-form .group .image-row{
+     width: 95%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+
+}
+
+.admin-advert-update-form .group .image-row .img{
+     width: 45%;
+     position: relative;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: 5px;
+
+}
+
+.admin-advert-update-form .group .image-row .img img{
+     width: 90%;
+}
+.admin-advert-update-form .group .image-row .img:nth-child(1)::before{
+     content: "Original Image";
+     color: var(--back-gold-color-v1);
+     border: 1.1px solid var(--back-gold-color-v1);
+     font-weight: 600;
+     border-radius: 10px;
+     z-index: 10;
+     padding: 5px 10px;
+}
+.admin-advert-update-form .group .image-row .img:nth-child(2)::before{
+     content: "New Image";
+     color: var(--back-color-blue2);
+     border: 1.1px solid var(--back-color-blue1);
+     font-weight: 600;
+     border-radius: 10px;
+     z-index: 10;
+     padding: 5px 10px;
+     width: auto;
+}
+/* end of advert form styles */
 
 .admin-adverts-container{
      width: 100%;
@@ -4685,6 +4838,7 @@ a{
      transform: translateX(-50%);
      font-size: 0.8rem;
      transition: ease 0.7s;
+     z-index: 8;
 }
 
 .pass-admin-notification{
@@ -5020,8 +5174,7 @@ a{
 }
 
 .crossed-text{
-     text-decoration: line-through;
-     text-decoration-thickness: 1.5px;
+     text-decoration: 1.2px line-through;
      color: var(--text-color-para2) !important;
 
 }
