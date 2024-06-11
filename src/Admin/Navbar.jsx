@@ -6,6 +6,7 @@ import { FaShop, FaUserSecret } from "react-icons/fa6";
 import { RiAdvertisementFill } from "react-icons/ri";
 import { IoSettings } from "react-icons/io5";
 import { GrLogout } from "react-icons/gr";
+import { BiCategory } from "react-icons/bi";
 
 
 const Navbar = () => {
@@ -25,6 +26,7 @@ const Navbar = () => {
                <Link to={"/admin/agents"}><i><FaUserSecret /></i><span>Agents</span></Link>
                <Link to='/admin/adverts'><i><RiAdvertisementFill/></i><span>Adverts</span></Link>
                <Link to={"/admin/shops"}><i><FaShop/></i><span>Shops</span></Link>
+               <Link><i><BiCategory /></i>Categories</Link>
                <Link to={"/admin/settings"}><i><IoSettings/></i><span>Settings</span></Link>
                <Link to={"/admin/logout"}><i><GrLogout /></i><span>Logout</span></Link>
           </div>

@@ -59,7 +59,7 @@ const Profile = () => {
       newData.append('user_id', userInfo.id);
       newData.append('name', data.name || userInfo.name || userInfo.full_name);
       newData.append('username', data.username || userInfo.username);
-      newData.append('phone', data.name || userInfo.phone || userInfo.user_phone);
+      newData.append('phone', data.phone || userInfo.phone || userInfo.user_phone);
       newData.append('active', userInfo.active);
       if(data.location != "") {
         const location = {location: data.location, street: data.street || userInfo.location?.street || userInfo.user_location.street};
@@ -71,9 +71,14 @@ const Profile = () => {
       const res = await server.updateUser(newData);
       if(res.status === "pass" ){
         raiseAlert('success', `${res.message}`, <TiTick />);
-        const responce = await server.getUserData();
-        if(responce.status === "pass"){
-          sessionStorage.setItem('userData', JSON.stringify(responce.data));
+        const newUser = res.data;
+        if( newUser){
+          sessionStorage.setItem('userData', JSON.stringify(newUser));
+          setUser((prev) =>({
+            ...prev,
+            userInfo: newUser
+
+          }) )
         }
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') setUser((prev) => ({...prev, activeForm:'login'}));

@@ -89,7 +89,7 @@ const DashAdvertCard = ({advert}) => {
      )
 }
 
-const DashAdvertCardLoad  = ({loading, message}) => {
+export const DashAdvertCardLoad  = ({loading, message}) => {
      return (
           loading ? 
                <div className="admin-advert-card-load">

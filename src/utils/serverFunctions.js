@@ -45,7 +45,7 @@ export const updateUser = async(url, params) => {
      const loginToken = sessionStorage.getItem('loginToken') || null;
     const res = await axios.post(url, params,{
       headers: {
-        'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'multipart/form-data',
         'Authorization': loginToken
       }
     });
