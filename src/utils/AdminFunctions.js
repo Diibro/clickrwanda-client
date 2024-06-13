@@ -27,3 +27,21 @@ export const showNotification = () => {
      }, 300)
      
 }
+
+export const showMainNotification = (type, message) => {
+     setTimeout(() => {
+          const notification = document.getElementById("main-notification-card");
+          if(notification != null) {
+               notification.classList.add(type);
+               notification.innerHTML = message;
+
+               notification.style.top = "10px"
+               setTimeout(() => {
+                    notification.style.top = "-200px"
+                    notification.innerHTML = '',
+                    notification.classList.remove(type);
+               }, 2000)
+          }
+     }, 300)
+     
+}

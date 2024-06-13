@@ -4241,6 +4241,33 @@ textarea{
      justify-self: flex-end;
 }
 
+.main-notification-card{
+     width: 350px;
+     padding: 20px 5px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     border-radius: 20px;
+     position: absolute;
+     top: -200px;
+     left: 50%;
+     transform: translateX(-50%);
+     transition: all 0.5s ease;
+     z-index: 999;
+     font-size: 0.85rem;
+}
+
+.main-notification-card.fail{
+     color: var(--white-text);
+     background-color: var(--back-color-red1);
+}
+
+.main-notification-card.pass{
+     color: var(--white-text);
+     background-color: var(--featured-plan);
+}
+
 .dash-notifier{
      padding: 2.5px;
      position: relative;
@@ -4914,6 +4941,275 @@ textarea{
      justify-content: flex-start;
      align-items: center;
      padding-block: 10px;
+}
+
+.agent-main-row{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     gap: 10px;
+     flex-wrap: wrap;
+     margin: 20px auto;
+}
+
+.agent-welcome-container{
+     width:60%;
+     border-radius: 20px;
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 10px;
+}
+
+.agent-welcome-container h2{
+     font-size: 2.2rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+}
+
+
+.agent-welcome-container p{
+     font-size: 1.1rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+
+}
+
+.agent-total-earnings-container{
+     width: 35%;
+     box-shadow: 0.2px 0.2px 5px var(--gray-text);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 20px;
+     border-radius: 20px;
+     gap: 10px;
+}
+
+.agent-total-earnings-container h2{
+     font-size: 1.6rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+}
+
+.agent-total-earnings-container b {
+     font-size: 1.4rem;
+     font-weight: 800;
+     color: var(--back-color-blue1);
+}
+
+.agent-claim-button {
+     padding: 5px 15px;
+     background-color: var(--white-text);
+     color: var(--back-color-blue1);
+     font-size: 0.9rem;
+     font-weight: 600;
+     border: 1.4px solid var(--back-color-blue1);
+     border-radius: 20px;
+     transition: all 0.5s ease;
+     cursor: pointer;
+}
+
+.agent-claim-button:hover {
+     background-color: var(--back-color-blue1);
+     color: var(--white-text);
+}
+
+.agent-claim-button:disabled{
+     background-color: var(--gray-text);
+     border: 1.3px solid var(--gray-text);
+     color: var(--text-color-title);
+     
+}
+
+.agent-claim-button:disabled:hover{
+     background-color: var(--gray-text);
+     border: 1.3px solid var(--gray-text);
+     color: var(--text-color-title);
+     cursor: not-allowed;
+}
+
+.agent-main-title{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+}
+
+.agent-main-title h2{
+     font-size: 1.6rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+}
+
+
+.agent-main-title h3{
+     font-size: 1.2rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+}
+
+.agent-content-card {
+     width: 48%;
+     padding: 20px;
+     box-shadow: 0.2px 0.2px 5px var(--gray-text);
+     border-radius: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 5px;
+}
+
+.agent-content-card h4{
+     font-size: 1rem;
+     font-weight: 700;
+     color: var(--back-gold-color-v1);
+}
+
+.agent-content-card p, .agent-content-card ul{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+     width: 95%;
+     margin: 2px auto;
+}
+
+
+.agent-content-card p b {
+     color: var(--back-color-blue1);
+}
+
+.agent-content-card p button{
+     padding: 5px 10px;
+     color: var(--white-text);
+     background-color: var(--back-gold-color-v1);
+     border-radius: 10px;
+     font-size: 0.9rem;
+     font-weight: 600;
+     cursor: pointer;
+     border: 1.3px solid var(--back-gold-color-v1);
+     transition: all 0.5s ease;
+}
+
+.agent-content-card p button:hover{
+     background-color: var(--white-text);
+     color: var(--back-gold-color-v1);
+}
+
+.agent-content-card ul {
+     width: 90%;
+}
+
+.agent-ref-shop-card{
+     width: 30%;
+     border-radius: 10px;
+     box-shadow: 0.2px 0.2px 4px var(--gray-text);
+     padding: 10px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     overflow: hidden;
+}
+
+.agent-ref-shop-card .row {
+     width: 95%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     gap:5px;
+}
+
+.agent-ref-shop-card .row span {
+     font-size: 0.85rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+
+}
+
+.agent-ref-shop-card .row b{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--back-color-blue1);
+
+}
+
+.agent-not-found-paragraphs{
+     width: 90%;
+     padding: 5px 20px;
+     font-size: 0.9rem;
+     color: var(--text-color-para1);
+     font-weight: 600;
+}
+
+.agent-ref-web-visit-card {
+     width: 90%;
+     display: flex ;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     box-shadow: 0.2px 0.2px 4px var(--gray-text);
+     padding: 10px 20px;
+     border-radius: 10px;
+
+}
+
+.agent-ref-web-visit-card span {
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+}
+
+
+.agent-payment-table{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 10px;
+     gap: 10px;
+}
+
+.agent-payments-title {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     background-color:var(--text-color-title) ;
+     color: var(--white-text);
+     padding: 5px 10px;
+     border-radius:10px;  
+}
+
+.agent-payments-title span{
+     font-size: 0.9rem;
+     font-weight: 700;
+}
+
+.agent-payment-row {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     color: var(--text-color-para1);
+     padding: 5px 10px;
+     border-radius:10px; 
+     border: 1.2px solid var(--text-color-para1);
+}
+
+.agent-payment-row span {
+     font-size: 0.85rem;
+     font-weight: 600;
 }
 
 /* end of agent styles */

@@ -214,3 +214,30 @@ export const getAddedThisYear = (items, date_key) => {
           return itemYear === currentYear;
      });
 }
+
+export const extractDateOnly = (dateTimeString) => {
+     const date = new Date(dateTimeString);
+
+     // Extract the year, month, and day
+     const year = date.getUTCFullYear();
+     const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+     const day = String(date.getUTCDate()).padStart(2, '0');
+
+     // Format the date as YYYY-MM-DD
+     const formattedDate = `${day} - ${month} - ${year}`;
+
+     return formattedDate;
+}
+
+export const isLaterThan = (currentDate, laterDate) => {
+     if(!currentDate){
+          return true;
+     }
+     const currDate = new Date(currentDate);
+     const lateDate = new Date(laterDate);
+
+     currDate.setHours(0,0,0,0);
+     lateDate.setHours(0,0,0,0);
+
+     return lateDate > currDate;
+}

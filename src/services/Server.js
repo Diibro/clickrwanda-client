@@ -22,6 +22,12 @@ export default {
           update: `${serverUrl}/api/agent/3`,
           login: `${serverUrl}/api/agent/login`,
      },
+     agentPayment: {
+          getAll: `${serverUrl}/api/agent-pay/get-all`,
+          save: `${serverUrl}/api/agent-pay/save`,
+          update: `${serverUrl}/api/agent-pay/update`,
+          findByAgent: `${serverUrl}/api/agent-pay/get-agent`,
+     },
      category: {
           getAll: `${serverUrl}/api/category/1`,
           save: `${serverUrl}/api/category/2`,
@@ -59,6 +65,7 @@ export default {
           passwordResetRequest: `${serverUrl}/api/users/request-password-reset`,
           getResetEmail: `${serverUrl}/api/users/get-reset-email`,
           passwordReset: `${serverUrl}/api/users/reset-password`,
+          getByRef: `${serverUrl}/api/users/get-ref`
      },
      webView: {
           getAll: `${serverUrl}/api/web-view/get-all`,

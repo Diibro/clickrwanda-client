@@ -122,3 +122,13 @@ export const nameLookerExact = (arr, keySearched, keyReturned, searchedValue) =>
     return "Not Found"
   }
 }
+
+export const copyText = (elementId) => {
+  const eleContainer = document.getElementById(elementId);
+
+  if(eleContainer){
+    navigator.clipboard.writeText(eleContainer.innerHTML);
+    alert("Text copied");
+  }
+
+}

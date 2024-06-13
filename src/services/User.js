@@ -19,5 +19,22 @@ export default {
                console.log(error);
                return null;
           }
+     },
+     getByRef: async (r_id) => {
+          try{
+               const token = sessionStorage.getItem("agentToken");
+               if(token){
+                    const res = await axios.post(Server.user.getByRef, {r_id}, {
+                         headers: {
+                              "Authorization": token
+                         }
+                    });
+
+                    return res.data
+               }
+          }catch(error){
+               console.log(error);
+               return null;
+          }
      }
 }

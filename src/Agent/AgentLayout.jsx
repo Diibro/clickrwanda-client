@@ -4,28 +4,46 @@ import AgentNavBar from "./components/AgentNavBar";
 import Home from "./Home";
 import Referrals from "./Referrals";
 import Payments from "./Payments";
+import AgentPaymentService from "../services/AgentPayment";
+import UserService from "../services/User";
 import AgentLogout from "./AgentLogout";
+import WebViewService from "../services/WebView";
+import { calculateRefVisitsTotal, calculateShopTotal } from "../utils/agentFunctions";
 
-const AgentContext = createContext();
+export const AgentContext = createContext();
 
 const AgentLayout = () => {
      const [agentData, setAgentData] = useState({
-          loggged: false,
+          logged: false,
           agentInfo: null,
+          referrals: null,
+          payments: null,
+          webVisitsRef: null,
+          totalAmount:0,
      });
 
      const navigate = useNavigate();
 
-     const fetchAgentInfo = () => {
+     const fetchAgentInfo = async() => {
           try {
                const loginToken = sessionStorage.getItem('agentToken');
                const agentInfoString = sessionStorage.getItem("agentData");
-               let agentInfo = null;
+               let agent = null;
                if(agentInfoString){
-                    agentInfo = JSON.parse(agentInfoString);
+                    agent= JSON.parse(agentInfoString);
                }
-               if(loginToken && loginToken != undefined && loginToken != null && agentInfo != null) {
-                    setAgentData(prev => ({...prev, logged:true, agentInfo: agentInfo}));
+               if(loginToken && loginToken != undefined && loginToken != null && agent != null) {
+                    const usersRef = await UserService.getByRef(agent.agent_id);
+                    const agentPayments = await AgentPaymentService.findByAgent(agent.agent_id);
+                    const webViewRef = await WebViewService.getRefVisits(agent.agent_id);
+                    
+                    setAgentData(prev => ({
+                         ...prev, logged:true, 
+                         agentInfo: agent,
+                         referrals: usersRef.data || [],
+                         payments: agentPayments.data || [],
+                         webVisitsRef: webViewRef.data || [],
+                    }));
                }else{
                     navigate("/forms/agent-login");
                }
@@ -37,8 +55,18 @@ const AgentLayout = () => {
      }
 
      useEffect (() => {
-          fetchAgentInfo();
-     }, [])
+          (async () => await fetchAgentInfo())();
+
+     }, [agentData.logged]);
+
+     useEffect(() => {
+          if(agentData.payments){
+               let visitAmount = calculateRefVisitsTotal(agentData.webVisitsRef, agentData.payments[0]?.p_date || null);
+               let shopsAmount = calculateShopTotal(agentData.referrals, agentData.payments[0]?.p_date || null);
+               setAgentData((prev) => ({...prev, totalAmount: (visitAmount + shopsAmount)}))
+          }
+          
+     }, [agentData.payments]);
 
      return (
      <AgentContext.Provider value={[agentData, setAgentData]}>

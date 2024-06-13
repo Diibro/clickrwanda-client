@@ -13,6 +13,7 @@ import global_en from "./locales/en/global.json";
 import global_fr from "./locales/fr/global.json";
 import global_kn from "./locales/kn/global.json";
 import { I18nextProvider } from "react-i18next";
+import NotificationCard from "./components/cards/NotificationCard";
 
 i18next.init({
   interpolation: {escapeValue:false},
@@ -40,6 +41,7 @@ function App() {
               <Route path="/*" index element={<Layout />} />
               <Route path="/admin/*" element={<AdminLayout />} />
             </Routes>
+            <NotificationCard />
           </ViewProvider>
         </UserProvider>
       </AppProvider>

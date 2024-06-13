@@ -114,6 +114,26 @@
      .dash-advert-row  .icons{
           width: 50%;
      }
+
+     .agent-ref-shop-card{
+          width: 48%;
+     }
+
+     .agent-ref-web-visit-card{
+          width: 95%;
+     }
+
+     .agent-welcome-container{
+          width: 90%;
+     }
+
+     .agent-total-earnings-container{
+          width: 50%;
+     }
+
+     .agent-content-card{
+          width: 100%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
