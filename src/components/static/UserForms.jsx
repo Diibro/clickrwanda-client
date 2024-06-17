@@ -3,19 +3,18 @@ import { ActionBtn, SubmitButton } from "../dynamic/Buttons";
 import Title from "../dynamic/TitleComponents"
 import { textColors, titleSize } from "../styles"
 import UserContext from "../../Contexts/UserContext";
-import { ImCross, ImTicket } from "react-icons/im";
 import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AppData from "../../Contexts/AppContext";
 import server from "../../config/Server";
 import Loading from "./Loading";
-import { TiTick } from "react-icons/ti";
 import { AddAdvertForm } from "../dynamic/Adverts.component";
 import { getLocations } from "../../utils/locations";
 import { PaymentPlanForm } from "./PaymentPlans.component";
-import {getRwandaTime} from "../../utils/dateFunctions";
+import {getDateToday, getRwandaTime} from "../../utils/dateFunctions";
 import AgentService from "../../services/Agent";
 import { fetchIds } from "../../utils/urlFunctions";
+import { showMainNotification } from "../../utils/AdminFunctions";
 
 
 const UserForms = () => {
@@ -31,7 +30,7 @@ const UserForms = () => {
      if(activeForm != '') {
           return (
                <div className="user-forms hide-scroll">
-                    {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : activeForm === "payment-plan-form" ? <PaymentPlanForm /> : activeForm === "agent-login" ? <AgentLoginForm /> : null}
+                    {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : activeForm === "payment-plan-form" ? <PaymentPlanForm /> : activeForm === "agent-login" ? <AgentLoginForm /> : activeForm === 'agent-signup'  ? <AgentSignUpForm /> : null}
                </div>
           )
      }else{
@@ -45,18 +44,8 @@ const UserForms = () => {
 const LoginForm = () => {
      const [,setUser] = useContext(UserContext);
      const {register, handleSubmit,setValue} = useForm();
-     const [,setData] = useContext(AppData);
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
-     const raiseAlert = (type, message, icon) => {
-          setData((prev)=> ({
-               ...prev,
-               alertView:{
-                    on: true,
-                    content: {type, message, icon}
-               }
-          }));
-     }
 
      useEffect(() => {
           const emailInput = document.getElementById('email_02');
@@ -87,19 +76,17 @@ const LoginForm = () => {
                          activeForm:''
                     }));
                     if(res.data.role !== "user" ){
-                         raiseAlert("success", `You have been logged as admin`, <TiTick />);
-                         return navigate("/admin");
+                         return showMainNotification("pass", `You have been logged as admin`, () => navigate("/admin"));
                     }else{
-                         raiseAlert('success', `${res.message} as ${res.data.username}`, <TiTick />)
-                         return  navigate('/user-dashboard');
+                         return showMainNotification('pass', `${res.message} as ${res.data.username}`, () => navigate('/user-dashboard'))
                     }
                     
                }else{
                     
-                    return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+                    return showMainNotification('fail', `${res.message} .Try again`, () => {});
                }
           } catch (error) {
-               return raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
+               return showMainNotification('fail', 'An error occurred. Try again later', () => {});
           }finally{
                setLoading(false);
           }
@@ -116,12 +103,12 @@ const LoginForm = () => {
                          // raiseAlert('success', `${res.message}`, <TiTick />);
                          navigate("/forms/reset-password")
                     }else{
-                         return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+                         return showMainNotification('fail', `${res.message} .Try again`, ( ) => {});
                     }
                }
           } catch (error) {
                console.log(error);
-               return raiseAlert('fail', `Error .Try again`, <ImCross />);
+               return showMainNotification('fail', `Error .Try again`, () => {});
           }finally{
                setLoading(false);
           }
@@ -163,21 +150,11 @@ const LoginForm = () => {
 
 const SignUpForm = () => {
      const {register, handleSubmit, formState: {errors}} = useForm();
-     const [,setData] = useContext(AppData);
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
      const [locations, setLocations] = useState([]);
      const location = useLocation();
 
-     const raiseAlert = (type, message, icon) => {
-          setData((prev)=> ({
-               ...prev,
-               alertView:{
-                    on: true,
-                    content: {type, message, icon}
-               }
-          }));
-     }
      const submitForm = async (data) => {
           try {
                let date  = getRwandaTime();
@@ -195,15 +172,15 @@ const SignUpForm = () => {
                formData.append('r_id', r_id);
                const res = await server.register(formData);
                if (res.status === "pass") {
-               raiseAlert('success', 'Successfully created the account', <ImTicket />);
-               navigate("/forms/login")
+               showMainNotification('pass', 'Successfully created the account', () => navigate("/forms/login"));
+               
                } else {
                if(res.error) console.log(res.error);
-               raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+               showMainNotification('fail', `${res.message} .Try again`, () => {});
                }
           } catch (error) {
                console.error('Error:', error);
-               raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
+               showMainNotification('fail', 'An error occurred. Try again later', () => {});
           } finally {
             setLoading(false); // Set loading to false when the request is complete
           }
@@ -211,7 +188,7 @@ const SignUpForm = () => {
 
      const onErrors = (error) => {
           if(error){
-               raiseAlert('fail', 'please check well your information', <ImCross />);
+               showMainNotification('fail', 'please check well your information', () => {});
           }
      }
 
@@ -288,7 +265,6 @@ const PasswordResetResponce = () => {
                <div className="group align-right">
                     <ActionBtn title="Login" action={closeForm} />
                </div>
-               
           </div>
      )
 }
@@ -297,18 +273,8 @@ const AgentLoginForm = () => {
      const [loading,setLoading ] = useState(false);
      const [,setUser] = useContext(UserContext);
      const {register, handleSubmit,} = useForm();
-     const [,setData] = useContext(AppData);
      const navigate = useNavigate();
 
-     const raiseAlert = (type, message, icon) => {
-          setData((prev)=> ({
-               ...prev,
-               alertView:{
-                    on: true,
-                    content: {type, message, icon}
-               }
-          }));
-     }
      const submitForm = async (data) => {
           try {
                setLoading(true);
@@ -318,26 +284,24 @@ const AgentLoginForm = () => {
                          const {data, agentToken } = res;
                          sessionStorage.setItem("agentData", JSON.stringify(data));
                          sessionStorage.setItem("agentToken", agentToken);
-                         raiseAlert("success",res.message, <TiTick />);
                          setUser((prev) => ({
                               ...prev,
                               userInfo: res.data,
                               loggedIn: true,
                               activeForm:''
                          }));
-                         return navigate("/agent");
+                         return  showMainNotification("pass",res.message, () => navigate("/agent"));
                     }else{
-                         return raiseAlert("fail",res.message, <ImCross />);
+                         return showMainNotification("fail",res.message, () => {});
                     }
                }else{
-                    return raiseAlert('fail', `Server error .Try again later`, <ImCross />);
+                    return showMainNotification('fail', `Server error .Try again later`, () => {});
                }
                
           } catch (error) {
                console.log(error);
-               return raiseAlert('fail', `System error .Try again`, <ImCross />);
+               return showMainNotification('fail', `System error .Try again`, () => {});
           }finally{
-               navigate("/agent");
                setLoading(false);
           }
      } 
@@ -360,7 +324,117 @@ const AgentLoginForm = () => {
                          </div>
                     </form>
                }
+               
+               <div className="line-divider"><p>Or</p></div>
+               <p className="other-link">Don&apos;t have account <b onClick={() => navigate("/forms/agent-signup")}>Sign Up</b></p>
+          </div>
+     )
+}
 
+
+const AgentSignUpForm = () => {
+
+     const [loading,setLoading ] = useState(false);
+     const [,setUser] = useContext(UserContext);
+     const {register, handleSubmit,} = useForm();
+     const [locations, setLocations] = useState([]);
+     const [,setData] = useContext(AppData);
+     const navigate = useNavigate();
+     const [socialLinks, setSocialLinks] = useState({
+          Tiktok: "Tiktok profile link",
+          Instagram: "Instagram profile link",
+          Twitter: "Twitter profile link",
+     })
+     
+
+     const submitForm = async(data) => {
+          try {
+               setLoading(true);
+               
+               data.location = JSON.stringify({location: data.location});
+               data.social_links = JSON.stringify(socialLinks);
+               data.active = 1;
+               data.verified = 0;
+               data.registrationDate = getDateToday();
+
+               const res = await AgentService.save(data);
+               if(res){
+                    if(res.status === "success"){
+                         showMainNotification("pass", res.message, () => navigate("/forms/agent-login"));
+                    }else{
+                         showMainNotification("fail", res.message, () => {});
+                    }
+               }else{
+                    showMainNotification("fail", "server error.", () => {})
+               }
+               
+          } catch (error) {
+               console.log(error);
+               showMainNotification("fail", "application error. Refresh the page and try again");
+          }finally{
+               setLoading(false);
+          }
+     }
+
+     useEffect(() => {
+          (async() => {
+               const {districts} = await getLocations();
+               // const {data} = districts;
+               // setLocations(data);
+               setLocations(districts.data);
+          })()
+     }, [])
+
+     return(
+          <div className="form-container hide-scroll">
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Signup for Agent Account"}} />
+               {
+                    loading ? <Loading /> : 
+                    <form onSubmit={handleSubmit(submitForm)}>
+                         <div className="group">
+                              <label htmlFor="name_01">Full name: </label>
+                              <input type="text" name="a_name" id="name_01" {...register('a_name', {required: true})} placeholder="Ex: Adms Johns..."  />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_email">Email: </label>
+                              <input type="email" name="a_email" id="a_email" {...register('a_email')} required placeholder="User email..." />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="phone_01">Phone: </label>
+                              <input type="phone" name="a_phone" id="phone_01" {...register('a_phone', {required: true})} placeholder="Ex: +25078..."  />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_password">Password:</label>
+                              <input type="password" name="a_password" id="a_password" {...register('a_password')} placeholder="User Password" />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="location01">Location: </label>
+                              {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
+                              <select name="location" id="location01"  {...register('location', {required: true})}>
+                                   {locations[0] ? <option value="" selected  >Business location</option> : null}
+                                   {locations[0] ? <option value="Kigali" >Kigali</option> : null}
+                                   {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
+                              </select>
+                         </div>
+                         {
+                              Object.entries(socialLinks).map(([key, value]) => 
+                                   <div className="group" key={`social-link-${key}`}>
+                                        <label htmlFor={`social-link-${key}`}>{key}:</label>
+                                        <input type="url" name={`social-link-${key}`} id={`social-link-${key}`} placeholder={value} required onChange={(e) => setSocialLinks(prev => ({...prev, [key]: e.target.value}))} />
+                                   </div>
+                              ) 
+                         }
+                         <div className="terms-group">
+                              <input type="checkbox" name="terms-check-box" id="terms-check-box" required/>
+                              <label htmlFor="terms-check-box">I accept the <Link to="/terms-&-conditions">Terms and Conditions</Link></label>
+                         </div>
+                         <div className="group align-right">
+                              <SubmitButton content={{title: "Submit", type: 'submit'}} />
+                         </div>
+                    </form>
+               }
+               <div className="line-divider"><p>Or</p></div>
+               <p className="other-link">Have account <b onClick={() => navigate("/forms/agent-login")}>Login</b></p>
           </div>
      )
 }

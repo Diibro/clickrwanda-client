@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { SubmitButton } from "../components/dynamic/Buttons";
+import { useNavigate } from "react-router-dom";
 
 const HiringPage = () => {
      const [language, setLanguage] = useState("eng");
+     const navigate = useNavigate();
 
   return (
      <>
@@ -28,6 +31,7 @@ const HiringPage = () => {
                          <li>Outstanding sales skills.</li>
                          <li>Should have a Smartphone.</li>
                          <li>Sales Experience is an added Advantage.</li>
+                         <li>Should have atleast two active social media accounts with atleast 100 followers</li>
                     </ul>
                     <h4>JOB ROLE</h4>
                     <ul>
@@ -51,6 +55,7 @@ const HiringPage = () => {
                          <li>Email: <a href="mailto:clickrwanda.huza@gmail.com">clickrwanda.huza@gmail.com</a></li>
                          <li>Office Location: Remera , Prince House 4th Floor,  Kigali, Rwanda</li>
                     </ul>
+                    <p>Click this button to sign up for agent account. <SubmitButton content={{title:"Sign up", action: () => navigate('/forms/agent-signup') }} /></p>
                </>
                :
                <>
@@ -62,6 +67,7 @@ const HiringPage = () => {
                          <li>Kuba afite Smartphone, azi no kuyikoresha neza</li>
                          <li>Ubumenyi mu gucuruza byaba ari akarusho</li>
                          <li>Amashuri yisumbuye atandatu no kuzamura byaba ari akarusho</li>
+                         <li>Kuba ufite konte nibura ebyiri kumbuga nkoranyambaga nabagukurikira byibura ijana.</li>
                     </ul>
                     <h4>AKAZI UZAKORA</h4>
                     <ul>
@@ -82,6 +88,7 @@ const HiringPage = () => {
                          <li>Email: <a href="mailto:clickrwanda.huza@gmail.com">clickrwanda.huza@gmail.com</a></li>
                          <li>Aho dukorera: I Remera , Prince House Kuri Etage ya 4,  Kigali, Rwanda</li>
                     </ul>
+                    <p>Kanda hano ube umu agent wacu. <SubmitButton content={{title:"Kora konte", action: () => navigate('/forms/agent-signup')}} /></p>
                </>
           }
           

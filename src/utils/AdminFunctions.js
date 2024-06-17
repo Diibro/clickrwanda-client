@@ -28,7 +28,7 @@ export const showNotification = () => {
      
 }
 
-export const showMainNotification = (type, message) => {
+export const showMainNotification = (type, message, cb) => {
      setTimeout(() => {
           const notification = document.getElementById("main-notification-card");
           if(notification != null) {
@@ -41,6 +41,7 @@ export const showMainNotification = (type, message) => {
                     notification.innerHTML = '',
                     notification.classList.remove(type);
                }, 2000)
+               cb();
           }
      }, 300)
      

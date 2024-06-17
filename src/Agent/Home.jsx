@@ -15,10 +15,10 @@ const Home = () => {
 
      const claimPayment = async () => {
           if(totalAmount < 100){
-               showMainNotification("fail", "Amount must be greater than Rwf 500")
+               showMainNotification("fail", "Amount must be greater than Rwf 500", () => {} )
           }
           else if(isLaterThan(payments[0].p_date, getDateToday())) {
-               showMainNotification("fail", "Another Payment Can be claimed tomorrow.")
+               showMainNotification("fail", "Another Payment Can be claimed tomorrow.", () => {})
           }
           else{
                const payData = {
@@ -34,9 +34,9 @@ const Home = () => {
                          ...prev,
                          payments: [res.data, ...payments]
                     }))
-                    showMainNotification('pass', res.message);
+                    showMainNotification('pass', res.message, () => {});
                }else{
-                    showMainNotification('fail', res.message);
+                    showMainNotification('fail', res.message, () => {});
                }
           }
 

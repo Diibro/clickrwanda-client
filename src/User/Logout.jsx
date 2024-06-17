@@ -1,27 +1,16 @@
-import { ImCross } from "react-icons/im";
 import { SubmitButton } from "../components/dynamic/Buttons";
 import { Loadingv2 } from "../components/static/Loading";
 import { useContext, useState } from "react";
-import AppData from "../Contexts/AppContext";
 import server from "../config/Server";
 import UserContext from "../Contexts/UserContext";
 import { useNavigate } from "react-router-dom";
-import { TiTick } from "react-icons/ti";
+import { showMainNotification } from "../utils/AdminFunctions";
 
 const Logout = () => {
   const [loading, setLoading] = useState(false);
-  const [,setData] = useContext(AppData);
   const [,setUser] = useContext(UserContext);
   const navigate = useNavigate();
-  const raiseAlert = (type, message, icon) => {
-    setData((prev)=> ({
-         ...prev,
-         alertView:{
-              on: true,
-              content: {type, message, icon}
-         }
-    }));
-}
+  
   const logOut = async () => {
     try {
       setLoading(true);
@@ -35,13 +24,12 @@ const Logout = () => {
           userInfo: null,
           loggedIn: false,
         }));
-        raiseAlert('success', 'You have been logged out', <TiTick />)
-        navigate('/');
+        showMainNotification('success', 'You have been logged out', () => navigate('/'))
       }else{
-        raiseAlert('fail', 'Server error. please try again', <ImCross />);
+        showMainNotification('fail', 'Server error. please try again', () => {});
       }
     } catch (error) {
-      raiseAlert('fail', 'Failed to log out. Refresh Page', <ImCross />);
+      showMainNotification('fail', 'Failed to log out. Refresh Page', () => {});
     }finally{
       setLoading(false);
     }
