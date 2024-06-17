@@ -252,7 +252,7 @@ const SignUpForm = () => {
                <div className="group">
                     <label htmlFor="location01">Location: </label>
                     {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
-                    <select name="location" id="location01"  {...register('location', {required: false})}>
+                    <select name="location" id="location01"  {...register('location', {required: true})}>
                          {locations[0] ? <option value="" selected  >Business location</option> : null}
                          {locations[0] ? <option value="Kigali" >Kigali</option> : null}
                          {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
