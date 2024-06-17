@@ -1963,16 +1963,16 @@ textarea{
 .user-forms .form-container .other-link{
      text-align: right;
      width: 90%;
-     margin: 5px auto;
+     margin: 10px auto;
      font-size: 0.9rem;
 }
 
 .user-forms .form-container .other-link b{
-     font-size: 1.1rem;
+     font-size: 0.9rem;
      background-color: var(--text-color-title);
      color: var(--back-color-gold1);
      border-radius: 15px;
-     padding: 0 10px;
+     padding: 5px 15px;
      transition: all 0.4s;
 }
 
@@ -2029,6 +2029,30 @@ textarea{
 .user-forms .form-container .plan-form .row a:hover{
      color: var(--back-color-blue1);
      background-color: var(--white-text);
+}
+
+.user-forms .form-container form .terms-group{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-end;
+     gap: 10px;
+     margin: 5px auto;
+}
+
+.user-forms .form-container form .terms-group label {
+     font-size: 0.9rem;
+     color: var(--text-color-title);
+     font-weight: 600;
+}
+
+.user-forms .form-container form .terms-group input{
+     border: 1.2px solid var(--text-color-title);
+     width: 14px;
+     height: 14px;
+     cursor: pointer;
+     accent-color: var(--text-color-title);
 }
 .advert-form-container{
      position: relative;
@@ -2979,6 +3003,31 @@ textarea{
 
 .product-square-container .content .contact-no:hover{
      color: var(--back-color-blue1);
+}
+
+.verified-ad-text{
+     font-size: 0.85rem;
+     font-weight: 700;
+     color: var(--featured-plan) !important;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+
+}
+
+.verified-ad-text i {
+     font-size: 1rem;
+}
+
+.verified{
+     color: var(--featured-plan);
+}
+
+
+.unverified-ad-text{
+     font-size: 0.85rem;
+     font-weight: 700;
+     color: var(--text-color-title-transparent) !important;
 }
 .ad-image {
      width: 100%;
@@ -4849,6 +4898,17 @@ textarea{
 .admin-action-edit-btn:hover{
      background-color: var(--white-text);
      color: var(--back-color-gold2);
+}
+
+.admin-action-verify-btn {
+     background-color: var(--featured-plan);
+     color: var(--white-text);
+     border: 1.5px solid var(--featured-plan) ;
+}
+
+.admin-action-verify-btn:hover {
+     background-color: var(--white-text);
+     color: var(--featured-plan);
 }
 
 

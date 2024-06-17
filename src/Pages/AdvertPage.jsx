@@ -17,6 +17,7 @@ import { AdvertReview, RateAdvert } from "../components/dynamic/Reviews.componen
 import { Helmet } from "react-helmet";
 import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
 import { Banners } from "../config/banners";
+import { VscVerifiedFilled } from "react-icons/vsc";
 
 
 const AdvertPage = () => {
@@ -90,7 +91,7 @@ const AdvertPage = () => {
                               <div className="col">
                                    <ImageViewer images={[mainImage, ...images]} />
                                    <div className="advert-page-info">
-                                        <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""}</h2>
+                                        <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""} {adViewed?.verified ? <i className="verified"><VscVerifiedFilled /></i> : null}</h2>
                                         {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
                                         {adViewed?.category_name && 
                                              <div className="cat">

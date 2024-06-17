@@ -10,6 +10,7 @@ import AppData from '../../Contexts/AppContext';
 import { formatTimeAgo } from '../../utils/dateFunctions';
 // import { LoadingImage } from './LoadinComponents';
 import { CImage } from '../static/Image';
+import { VscVerifiedFilled } from "react-icons/vsc";
 
 
 export const Advert = () => {
@@ -18,7 +19,7 @@ export const Advert = () => {
   )
 }
 
-export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, views, link, adDate, discount}) => {
+export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, views, link, adDate, discount, verified}) => {
      const currency= "Rwf";
      const [,setData] = useContext(AppData);
      const navigate = useNavigate();
@@ -45,6 +46,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{capitalizeString(title)}</h5>
+                    {verified ? <p className='verified-ad-text'>Verified <i><VscVerifiedFilled /></i></p> : <p className='unverified-ad-text'>Unverified</p>}
                     <a className='contact-no' href={`tel:${contact}`}>{contact}</a>
                     <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
                     <b>
@@ -57,7 +59,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
      )
 }
 
-export const ServiceSquare = ({image, title, plan, price, action, category,categoryLink, location, contact, views, link, adDate, discount}) => {
+export const ServiceSquare = ({image, title, plan, price, action, category,categoryLink, location, contact, views, link, adDate, discount, verified}) => {
      const [,setData] = useContext(AppData);
      const navigate = useNavigate();
      const showButtons = (url, image, name) =>{
@@ -82,6 +84,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
                     <h5 onClick={action}>{title}</h5>
+                    {verified ? <p className='verified-ad-text'>Verified <i><VscVerifiedFilled /></i></p> : <p className='unverified-ad-text'>Unverified</p>}
                     <a className='contact-no' href={`tel:${contact}`}>{contact}</a>
                     <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
                     <b>
@@ -112,6 +115,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
                          views={item.ad_views}
                          adDate={item.ad_date}
                          discount={item.ad_discount}
+                         verified={item?.verified}
                          categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                          link={`https://clickrwanda.com/ad/${getItemUrl("", item.ad_id)}`}
                          action={() => ViewAd(item)}
@@ -127,6 +131,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
                               views={item.ad_views}
                               adDate={item.ad_date}
                               discount={item.ad_discount}
+                              verified={item?.verified}
                               categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
                               link={`https://clickrwanda.com/ad/${getItemUrl("", item.ad_id)}`}
                               action={() => ViewAd(item)}
@@ -197,7 +202,8 @@ ServiceSquare.propTypes = {
      link: PropTypes.any,
      adDate: PropTypes.any,
      categoryLink: PropTypes.any,
-     discount: PropTypes.any
+     discount: PropTypes.any,
+     verified: PropTypes.any
 }
 
 ProductSquare.propTypes = {
@@ -214,7 +220,8 @@ ProductSquare.propTypes = {
      link: PropTypes.any,
      adDate: PropTypes.any,
      categoryLink: PropTypes.any,
-     discount: PropTypes.any
+     discount: PropTypes.any,
+     verified: PropTypes.any
 }
 
 AdvertRow.propTypes = {

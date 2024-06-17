@@ -4,7 +4,7 @@ import Title from "../dynamic/TitleComponents"
 import { textColors, titleSize } from "../styles"
 import UserContext from "../../Contexts/UserContext";
 import { ImCross, ImTicket } from "react-icons/im";
-import {  useLocation, useNavigate } from "react-router-dom";
+import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AppData from "../../Contexts/AppContext";
 import server from "../../config/Server";
@@ -163,7 +163,6 @@ const LoginForm = () => {
 
 const SignUpForm = () => {
      const {register, handleSubmit, formState: {errors}} = useForm();
-     const [,setUser] = useContext(UserContext);
      const [,setData] = useContext(AppData);
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
@@ -215,9 +214,6 @@ const SignUpForm = () => {
                raiseAlert('fail', 'please check well your information', <ImCross />);
           }
      }
-     const closeForm = () => {
-          setUser((prev) => ({...prev, activeForm:''}))
-     }
 
      useEffect(() => {
           (async() => {
@@ -229,7 +225,6 @@ const SignUpForm = () => {
      }, [])
      return(
           <div className="form-container hide-scroll">
-               <i onClick={closeForm} className="close-icon"><ImCross/></i>
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Sign Up"}} />
                {loading ? <Loading /> : 
                <form onSubmit={handleSubmit(submitForm, onErrors)}>
@@ -262,6 +257,10 @@ const SignUpForm = () => {
                          {locations[0] ? <option value="Kigali" >Kigali</option> : null}
                          {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
                     </select>
+               </div>
+               <div className="terms-group">
+                    <input type="checkbox" name="terms-check-box" id="terms-check-box" required/>
+                    <label htmlFor="terms-check-box">I accept the <Link to="/terms-&-conditions">Terms and Conditions</Link></label>
                </div>
                <div className="group align-right">
                     <SubmitButton content={{title: "Sign Up", type: 'submit'}} />

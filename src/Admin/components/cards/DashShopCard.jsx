@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { formatTimeAgo, isNewToday } from "../../../utils/dateFunctions";
-import { DeleteButton, EditButton } from "../buttons/ActionButtons";
+import { DeleteButton, EditButton, VerifyButton } from "../buttons/ActionButtons";
 import { useContext, useEffect, useState } from "react";
 import { DashAdvertCardLoad } from "./DashAdvertCard";
 import { AdminContext } from "../../AdminLayout";
@@ -18,6 +18,66 @@ const DashShopCard = ({shop}) => {
                setLoadMessage(status ? 'activating...' : 'Disactivating...')
                setLoading(true);
                shop.active = status;
+               const formData = new FormData();
+               for(const [key, value] of Object.entries(shop)){
+                    if(key === "user_location"){
+                         formData.append(key, JSON.stringify(value));
+                    }else{
+                         formData.append(key, value);
+                    }
+               }
+               
+               const res = await Server.updateUser(formData);
+               if(res){
+                    if(res.status === "pass"){
+                         setAdminData((prev) => ({
+                              ...prev, 
+                              notification: {
+                                   type: 'pass',
+                                   message: res.message
+                              }
+                         }));
+                    }else{
+                         setAdminData((prev) => ({
+                              ...prev,
+                              notification: {
+                                   type: "fail",
+                                   message: res.message
+                              }
+                         }));
+                    }
+               }else{
+                    setAdminData((prev ) => ({
+                         ...prev, 
+                         notification: {
+                              type: "fail",
+                              message: "network error"
+                         }
+                    }));
+               }
+               
+
+          } catch (error) {
+               console.log(error);
+               setAdminData((prev) => ({
+                    ...prev, 
+                    notification: {
+                         type: "fail",
+                         message: "System error"
+                    }
+               }));
+
+          }finally{
+               setLoading(false);
+               showNotification();
+          }
+     }
+
+     const changeVerification = async(status) => {
+          try {
+               setLoadMessage(status ? 'activating...' : 'Disactivating...')
+               setLoading(true);
+               shop.verified = status;
                const formData = new FormData();
                for(const [key, value] of Object.entries(shop)){
                     if(key === "user_location"){
@@ -94,6 +154,11 @@ const DashShopCard = ({shop}) => {
           </div>
           <div className="row">
                <EditButton title="Update" />
+               {
+                    shop.verified ? 
+                    <EditButton title="UnVerifiy" action={async() => await changeVerification(0) }  />
+                    : <VerifyButton title="Verify" action={async() => await changeVerification(1)} />
+               }
                {
                     shop.active ? 
                     <DeleteButton title="Deactivate" action={async() => await changeStatus(0)} /> 

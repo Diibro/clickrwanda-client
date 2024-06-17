@@ -11,6 +11,7 @@ import { IoMdCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { getData, saveData } from '../utils/storageFunctions';
 import { Helmet } from 'react-helmet';
+import { VscVerifiedFilled } from 'react-icons/vsc';
 
 const VendorPage = () => {
   const location = useLocation();
@@ -97,6 +98,10 @@ const VendorPage = () => {
                     <div className='row'>
                       <span>Location:</span>
                       <p>{vendorInfo.user_location.location}</p>
+                    </div>
+                    <div className="row">
+                      <span>Verification:</span>
+                      {vendorInfo?.verified ? <p className='verified-ad-text'>Verified<i><VscVerifiedFilled /></i></p> : <p className='unverified-ad-text'>Unverified</p> }
                     </div>
                     <div className="row">
                       <span>Rating:</span>

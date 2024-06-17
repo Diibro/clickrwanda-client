@@ -32,3 +32,15 @@ EditButton.propTypes = {
      title: PropTypes.string,
      action: PropTypes.func
 }
+
+
+export const VerifyButton = ({title, action}) => {
+     return (
+     <button className="admin-action-btn admin-action-verify-btn " onClick={action}>{title}</button>
+     )
+}
+
+VerifyButton.propTypes = {
+     title: PropTypes.string,
+     action: PropTypes.func
+}
