@@ -28,3 +28,13 @@ export const calculateShopTotal = (arr, lastDate) => {
 
      return total;
 } 
+
+export const countVisits = (arr, key, search) => {
+     
+     console.log(arr);
+     if(arr && arr[0]){
+          return arr.filter(item => item[key].startsWith(search)).length
+     }else{
+          return 0;
+     }
+}

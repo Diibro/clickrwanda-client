@@ -6,13 +6,12 @@ import Title from "./components/Title";
 import { copyText } from "../utils/otherFunctions";
 import { showMainNotification } from "../utils/AdminFunctions";
 import { getDateToday, isLaterThan } from "../utils/dateFunctions";
+import AgentContentCard from "./components/AgentContentCard";
+import { countVisits } from "../utils/agentFunctions";
 
 const Home = () => {
      const [agentData,setAgentData] = useContext(AgentContext);
-     const {agentInfo,totalAmount,payments } = agentData;
-
-     
-
+     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits } = agentData;
      const claimPayment = async () => {
           if(totalAmount < 100){
                showMainNotification("fail", "Amount must be greater than Rwf 500", () => {} )
@@ -45,15 +44,22 @@ const Home = () => {
      <>
           <MainRow>
                <div className="agent-welcome-container">
-                    <h2>Welcome to Agent Dashboard</h2>
-                    <p>Click Rwanda offers an ultimate and trusted way to make online and remotely. Just in a few clicks you will start making money.</p>
-                    <p>Follow the steps below to make Click Rwanda your earning platform.</p>
+                    <h2>Welcome <span>{agentInfo?.a_name}</span></h2>
+                    <p>Click Rwanda offers an ultimate and trusted way to make online and remotely.</p>
                </div>
                <div className="agent-total-earnings-container">
                     <h2>Total Earnings:</h2>
                     <b>Rwf {totalAmount}</b>
-                    <button className="agent-claim-button" disabled={totalAmount < 100} onClick={ () => claimPayment()}>Claim Payment</button>
+                    <button className="agent-claim-button" disabled={totalAmount < 500} onClick={ () => claimPayment()}>Claim Payment</button>
                </div>
+          </MainRow>
+          <MainRow>
+               <AgentContentCard content={{title: "Packages Sold", count: 0}} />
+               <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0}} />
+               <AgentContentCard content={{title: "Shop Visits", count: countVisits(webVisits, "v_type", "/vendor")}} />
+               <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad")}} />
+               {/* <AgentContentCard content={{title: "Shops Opened", count: 0}} />
+               <AgentContentCard content={{title: "Shops Opened", count: 0}} /> */}
           </MainRow>
           <MainRow>
                <Title>

@@ -9,6 +9,7 @@ import UserService from "../services/User";
 import AgentLogout from "./AgentLogout";
 import WebViewService from "../services/WebView";
 import { calculateRefVisitsTotal, calculateShopTotal } from "../utils/agentFunctions";
+import Tasks from "./Tasks";
 
 export const AgentContext = createContext();
 
@@ -75,6 +76,7 @@ const AgentLayout = () => {
                <div className="agent-content-container">
                     <Routes>
                          <Route index path="/" element={<Home/>} />
+                         <Route path="/tasks" element={<Tasks />} />
                          <Route path="/referrals" element={<Referrals />} />
                          <Route path="/payments" element={<Payments />} />
                          <Route path="/logout" element={<AgentLogout />} />

@@ -167,14 +167,18 @@ export const getTimeNowV2 = () => {
  }
 
 export const getNewToday = (arr, dateKey) => {
-     const today = new Date();
-     today.setHours(0, 0, 0, 0);
-     
-     return arr.filter(item => {
-          const itemDate = new Date(item[dateKey]);
-          itemDate.setHours(0, 0, 0, 0);
-          return itemDate.getTime() === today.getTime();
-     }).length;
+     if(arr && arr[0]){
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          
+          return arr.filter(item => {
+               const itemDate = new Date(item[dateKey]);
+               itemDate.setHours(0, 0, 0, 0);
+               return itemDate.getTime() === today.getTime();
+          }).length;
+     }else{
+          return 0
+     }
 }
 
 export const isNewToday = (dateStr) => {
@@ -186,33 +190,66 @@ export const isNewToday = (dateStr) => {
 }
 
 export const getAddedToday = (items, dateKey) => {
-     const today = new Date();
-     today.setHours(0, 0, 0, 0);
-     
-     return items.filter(item => {
-          const itemDate = new Date(item[dateKey]);
-          itemDate.setHours(0, 0, 0, 0);
-          return itemDate.getTime() === today.getTime();
-     });
+     if(items && items[0]){
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          
+          return items.filter(item => {
+               const itemDate = new Date(item[dateKey]);
+               itemDate.setHours(0, 0, 0, 0);
+               return itemDate.getTime() === today.getTime();
+          });
+     }else{
+          return []
+     }
 }
 
+export const getAddedThisWeek = (items, dateKey) => {
+     if (items && items.length > 0) {
+         const today = new Date();
+         const dayOfWeek = today.getDay(); // Get the current day of the week (0 = Sunday, 6 = Saturday)
+         const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust when day is Sunday
+ 
+         const startOfWeek = new Date(today.setDate(diff));
+         startOfWeek.setHours(0, 0, 0, 0); // Set start of the week to 00:00:00
+ 
+         return items.filter(item => {
+             const itemDate = new Date(item[dateKey]);
+             itemDate.setHours(0, 0, 0, 0); // Normalize item date to 00:00:00
+ 
+             return itemDate >= startOfWeek && itemDate <= new Date();
+         });
+     } else {
+         return [];
+     }
+ };
+
 export const getAddedThisMonth = (items, date_key) => {
-     const now = new Date();
-     const currentYear = now.getFullYear();
-     const currentMonth = (now.getMonth() + 1).toString().padStart(2, '0'); // Get current month in MM format
-     const currentPrefix = `${currentYear}-${currentMonth}`;
-     return items.filter(item => {
-          const itemDate = new Date(item[date_key]).toISOString().slice(0, 7); // Get YYYY-MM from date
-          return itemDate === currentPrefix;
-     });
+     if(items && items[0]){
+          const now = new Date();
+          const currentYear = now.getFullYear();
+          const currentMonth = (now.getMonth() + 1).toString().padStart(2, '0'); // Get current month in MM format
+          const currentPrefix = `${currentYear}-${currentMonth}`;
+          return items.filter(item => {
+               const itemDate = new Date(item[date_key]).toISOString().slice(0, 7); // Get YYYY-MM from date
+               return itemDate === currentPrefix;
+          });
+     }else{
+          return []
+     }
+     
 }
 
 export const getAddedThisYear = (items, date_key) => {
-     const currentYear = new Date().getFullYear();
-     return items.filter(item => {
-          const itemYear = new Date(item[date_key]).getFullYear();
-          return itemYear === currentYear;
-     });
+     if(items && items[0]){
+          const currentYear = new Date().getFullYear();
+          return items.filter(item => {
+               const itemYear = new Date(item[date_key]).getFullYear();
+               return itemYear === currentYear;
+          });
+     }else{
+          return []
+     }
 }
 
 export const extractDateOnly = (dateTimeString) => {

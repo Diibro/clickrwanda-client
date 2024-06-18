@@ -124,15 +124,71 @@
      }
 
      .agent-welcome-container{
-          width: 90%;
+          width: 47%;
      }
 
+     .agent-welcome-container p {
+          display: none;
+     }
+
+     .agent-welcome-container h2 {
+          font-size: 1.8rem;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+
+     }
      .agent-total-earnings-container{
-          width: 50%;
+          width: 47%;
      }
 
      .agent-content-card{
           width: 100%;
+     }
+
+     .agent-navbar a{
+          display: flex;
+          flex-direction: column;
+     }
+
+     .agent-navbar a i {
+          position: relative;
+          z-index: 1;
+     }
+
+     .agent-navbar a span {
+          display: none;
+     }
+     .agent-navbar a.active span{
+          display: block;
+          position: absolute;
+          z-index: 0;
+          /* top: 50%;
+          left: 50%;
+          transform: translateX(-50%);
+          transform: translateY(-50%); */
+          align-self: center;
+          justify-self: flex-end;
+          color: rgb(67, 123, 123);
+          bottom: 0;
+          font-size: 0.8rem;
+     }
+
+     .admin-web-visit-card b {
+          font-size: 1.8rem;
+     }
+
+     .dash-card-info span{
+          font-size: 1.8rem;
+     }
+
+     .admin-web-visit-card {
+          width: 30%;
+     }
+
+     .dash-card-info {
+          width: 30%;
      }
 }
 
@@ -353,6 +409,7 @@
           width: 100%;
           height: 10vh;
           flex-direction: row;
+          align-items: center;
      }
 
 
@@ -365,8 +422,17 @@
           width: 25%;
      }
 
+     .admin-navbar .dash-logo-container a img{
+          width: 80%;
+          padding: 5px;
+          background-color: var(--text-color-title);
+          border-radius: 20px;
+          cursor: pointer;
+     }
+
      .admin-navbar .dash-nav-container{
           width: 75%;
+          height: auto;
           flex-direction: row;
           align-items: center;
           gap: 5px;
@@ -410,6 +476,15 @@
      }
      .admin-advert-update-form .group{
           width: 70%;
+     }
+
+     .agent-home-content-card{
+          width: 45%;
+     }
+
+     .admin-web-visit-card {
+          width: 40%;
+          margin-bottom: 10px;
      }
 }
 

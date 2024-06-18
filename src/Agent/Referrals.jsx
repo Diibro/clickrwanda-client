@@ -17,6 +17,10 @@ const Referrals = () => {
      <>
           <Title><h2>Track your work</h2></Title>
           <MainRow>
+               <Title><h3>Membership plans sold</h3></Title>
+               
+          </MainRow>
+          <MainRow>
                <Title><h3>Shops Created using you referral Code:</h3></Title>
                {
                     referrals && referrals[0]

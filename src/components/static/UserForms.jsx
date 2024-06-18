@@ -5,7 +5,6 @@ import { textColors, titleSize } from "../styles"
 import UserContext from "../../Contexts/UserContext";
 import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import AppData from "../../Contexts/AppContext";
 import server from "../../config/Server";
 import Loading from "./Loading";
 import { AddAdvertForm } from "../dynamic/Adverts.component";
@@ -335,10 +334,8 @@ const AgentLoginForm = () => {
 const AgentSignUpForm = () => {
 
      const [loading,setLoading ] = useState(false);
-     const [,setUser] = useContext(UserContext);
      const {register, handleSubmit,} = useForm();
      const [locations, setLocations] = useState([]);
-     const [,setData] = useContext(AppData);
      const navigate = useNavigate();
      const [socialLinks, setSocialLinks] = useState({
           Tiktok: "Tiktok profile link",

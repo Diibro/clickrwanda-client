@@ -5,7 +5,7 @@ import { DeleteButton, EditButton } from './buttons/ActionButtons';
 
 import AgentService from "../../services/Agent";
 import { showNotification } from '../../utils/AdminFunctions';
-import { formatTimeAgo } from '../../utils/dateFunctions';
+import { extractDateOnly} from '../../utils/dateFunctions';
 
 const AgentsTable = () => {
      const [adminData,setAdminData] = useContext(AdminContext);
@@ -47,7 +47,7 @@ const AgentsTable = () => {
                     <b>name</b>
                     <b>Location</b>
                     <b>Status</b>
-                    <b>Added</b>
+                    <b>Added On</b>
                     <b>Actions</b>
                     <b>Edit</b>
                </div>
@@ -59,7 +59,7 @@ const AgentsTable = () => {
                               <span>{agent.a_name}</span>
                               <span>{agent.location?.location || "Rwanda"}</span>
                               <span>{agent.active ? "Active" : "Inactive"}</span>
-                              <span>{formatTimeAgo(agent.registration_date) || formatTimeAgo(agent.registrationDate)}</span>
+                              <span>{extractDateOnly(agent.registration_date) || extractDateOnly(agent.registrationDate)}</span>
                               <span>{agent.active ? <DeleteButton title="Disactivate" action={async()=> setAgent(agent, false)} /> : <EditButton title="Activate" action={async()=> setAgent(agent, true)} />}</span>
                               <span><EditButton title="Update" /></span>
                          </div>
