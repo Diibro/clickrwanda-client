@@ -278,3 +278,23 @@ export const isLaterThan = (currentDate, laterDate) => {
 
      return lateDate > currDate;
 }
+
+export const aggregateByMonth = (data) => {
+     const monthlyData = data.reduce((acc, visit) => {
+     const date = new Date(visit.v_date);
+     const month = date.toLocaleString('default', { month: 'short' });
+     const year = date.getFullYear();
+     const key = `${month} ${year}`;
+
+     if (!acc[key]) {
+          acc[key] = 0;
+          }
+          acc[key] += 1;
+          return acc;
+     }, {});
+
+     const labels = Object.keys(monthlyData);
+     const counts = Object.values(monthlyData);
+
+     return { labels, counts };
+};

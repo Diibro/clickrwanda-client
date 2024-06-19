@@ -3,33 +3,24 @@ import AdminRow from "./components/AdminRow"
 import DashTitle from "./components/DashTitle"
 import AgentsTable from "./components/AgentsTable";
 import { AdminContext } from "./AdminLayout";
-import { AddButton } from "./components/buttons/ActionButtons";
-import { toggleForms } from "../utils/AdminFunctions";
+import { Route, Routes } from "react-router-dom";
+import AdminAgentsNavbar from "./components/containers/AdminAgentsNavbar";
+import AgentPaymentsContainer from "./components/containers/AgentPaymentsContainer";
 
 
 const AgentsPage = () => {
-     const [,setAdminData] = useContext(AdminContext);
      
-     const showAddForm = () => {
-          setAdminData((prev ) => ({
-               ...prev,
-               activeForm: {
-                    type: "agent",
-                    formName: "Add Agent"
-               }
-          }));
-          toggleForms(true);
-     } 
      const {agents} = useContext(AdminContext);
      return (
      <>
           <AdminRow>
                <DashTitle><h2>Agents Management</h2></DashTitle>
-               <AddButton title={"Add Agent"} action={showAddForm} />
+               <AdminAgentsNavbar />
           </AdminRow>
-          <AdminRow>
-               <AgentsTable agents={agents} />
-          </AdminRow>
+          <Routes>
+               <Route index path="/" element={ <AdminRow><AgentsTable agents={agents} /></AdminRow>} />
+               <Route path="/agent-payments" element={<AgentPaymentsContainer />} />
+          </Routes>
      </>
      )
 }

@@ -39,7 +39,6 @@ const UpdateAdvertForm = () => {
           if(activeForm.type === "advert" && activeForm.objFocus){
                setAd(activeForm.objFocus);
           }
-          console.log(ad);
      }, [activeForm, activeCategory]);
 
      const closeFormsContainer = () => {

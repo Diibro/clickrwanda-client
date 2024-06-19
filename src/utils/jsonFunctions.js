@@ -27,3 +27,23 @@ export const jsonParserV2 = (string) =>{
      }
      
 }
+
+export const parseString = (string) =>{
+     if(string){
+          try {
+               let newString = JSON.stringify(string);
+               try {
+
+                    return JSON.parse(string);
+               } catch (error) {
+                    return JSON.parse(newString.trim());
+               }
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
+     }else{
+          return null;
+     }
+     
+}

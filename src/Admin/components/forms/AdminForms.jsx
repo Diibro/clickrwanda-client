@@ -6,7 +6,8 @@ import AgentForms from "./AgentForms";
 import AdvertForms from "./AdvertForms";
 
 const AdminForms = () => {
-     const [,setAdminData] = useContext(AdminContext);
+     const [adminData,setAdminData] = useContext(AdminContext);
+     const {activeForm} = adminData
      const closeFormsContainer = () => {
           toggleForms(false);
           setAdminData((prev) => ({
@@ -23,8 +24,9 @@ const AdminForms = () => {
                <i className="close" onClick={closeFormsContainer}>
                     <ImCross />
                </i>
-               <AgentForms />
-               <AdvertForms />
+               {
+                    activeForm.type === "agent" ? <AgentForms/> : activeForm.type ? <AdvertForms/> : null 
+               }
           </div>
      )
 }

@@ -13,7 +13,7 @@
      --back-gold-color-v1: #925602;
      --back-color-red1: #FA3C53;
      --text-color-para1: #444444;
-     --text-color-title: rgb(18, 57, 79);
+     --text-color-title: #12394f;
      --text-color-title-transparent: #12394f50;
      --text-color-para2: #6E8794;
      --text-color-black: #000000;
@@ -4250,10 +4250,12 @@ textarea{
      align-items: center;
      justify-content: space-between;
      flex-wrap: wrap;
-     margin-bottom: 20px;
+     margin-bottom: 5px;
      gap: 10px;
      padding-inline: 10px;
      padding-block: 5px;
+     overflow: hidden;
+     overflow-x: auto;
 }
 
 .dash-title{
@@ -4306,7 +4308,7 @@ textarea{
      align-items: center;
      justify-content: center;
      border-radius: 20px;
-     position: absolute;
+     position: fixed;
      top: -200px;
      left: 50%;
      transform: translateX(-50%);
@@ -4363,6 +4365,7 @@ textarea{
      border-radius: 20px;
      padding: 10px;
      position: relative;
+     gap:10px;
 }
 
 .dash-card-info span {
@@ -4372,8 +4375,8 @@ textarea{
 }
 
 .dash-card-info b {
-     font-size: 1.2rem;
-     color: var(--text-color-title);
+     font-size: 1rem;
+     color: var(--text-color-para2);
      font-weight: 700;
      text-align: center;
 }
@@ -4393,13 +4396,50 @@ textarea{
      right: 5px;
 }
 
+.admin-agents-nav-bar{
+     width: auto;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 5px; 
+     background-color: var(--white-text);
+     padding: 5px 10px;
+     border-radius: 20px;
+}
+
+.admin-agents-nav-bar a {
+     padding: 2.5px 10px;
+     color: var(--text-color-title);
+     font-size: 0.8rem;
+     font-weight: 600;
+     transition: all 0.4s ease;
+     border-radius: 10px;
+}
+
+.admin-agents-nav-bar a:hover{
+     background-color: var(--text-color-para2);
+}
+
+.admin-agents-nav-bar a.active{
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     font-size: 0.85rem;
+     font-weight: 700;
+}
+
 .dash-agents-table{
      width: 100%;
+     min-width: 800px;
      justify-self: center;
      margin: 10px auto;
      background-color: var(--white-text);
      border-radius: 20px;
      padding: 10px;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     gap: 5px;
 }
 
 .dash-agents-table-title{
@@ -4411,7 +4451,7 @@ textarea{
      background-color: var(--text-color-title);
      border-radius: 10px;
      padding: 10px 5px;
-     color: var(--white-text);
+     color: var(--light-gray);
 }
 
 
@@ -4496,11 +4536,26 @@ textarea{
 }
 
 .agent-form-container{
-     width: 40%;
+     width: 100%;
      background-color: var(--white-text);
      height: 100%;
      border-radius: 20px;
      padding: 25px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     overflow-y: auto;
+}
+
+
+.admin-add-agent-form {
+     width: 60%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+
 }
 
 .admin-dash-form .group{
@@ -4550,6 +4605,84 @@ textarea{
 .admin-dash-form .group input[type="submit"]:hover{
      background-color: var(--back-color-blue1);
      color: var(--white-text);
+}
+
+.admin-agent-update-form {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+}
+
+.admin-agent-update-form-container{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     gap: 15px;
+     border-radius: 20px;
+     padding: 20px;
+     background-color: var(--text-color-title);
+}
+
+.admin-agent-update-form-container .group {
+     width: 45%;
+     border-radius: 10px;
+     padding: 15px 10px;
+     display:flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     flex-wrap: wrap;
+     gap: 5px;
+     /* box-shadow: 0.2px 0.2px 4px var(--text-color-para2); */
+     background-color: var(--white-text);
+     position: relative;
+}
+
+.admin-agent-update-form-container .group b {
+     font-size: 0.95rem;
+     color: var(--text-color-para2);
+     font-weight: 700;
+}
+
+.admin-agent-update-form-container .group span {
+     font-size: 0.9rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+}
+
+.admin-agent-update-form-container .group span .call-icon{
+     color: var(--featured-plan);
+     font-size: 1.8rem;
+     position: absolute;
+     top: 50%;
+     right: 20px;
+     transform: translateY(-50%);
+     cursor: pointer;
+
+}
+
+.admin-agent-update-form-container .group input, .admin-agent-update-form-container .group select {
+     padding: 5px 10px;
+     border: none;
+     outline: none;
+     border-bottom: 1.2px solid var(--gray-text);
+
+}
+
+.admin-agent-update-form-container .group p{
+     width: 90%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     font-size: 0.85rem;
+     color: var(--text-color-para1);
+     gap: 5px;
 }
 
 /* advert form styles */
@@ -4883,7 +5016,7 @@ textarea{
 }
 
 .admin-web-visit-card b {
-     font-size: 2.2rem;
+     font-size: 2rem;
      font-weight: 800;
      color: var(--text-color-title);
 }

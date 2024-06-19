@@ -31,7 +31,7 @@ const Home = () => {
         <DashCardInfo count={(shops && shops.length) || 0} title="Shops" newAdded={shops ? getNewToday(shops, "reg_date") :null}/>
         <DashCardInfo count={(agents && agents.length) || 0} title="Agents" newAdded={agents ? getNewToday(agents, "registration_date") : null} />
         <DashCardInfo count={(categories && categories.length) || 0} title="Categories" />
-        <DashCardInfo count={(webVisits && webVisits.length + 4500) || 0} title={"Total Web Visits"} newAdded={getNewToday(webVisits, "v_date")} />
+        <DashCardInfo count={(webVisits && webVisits.length + 4500) || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} />
       </AdminRow>
       <AdminRow>
         <DashTitle><h3>Website Visits</h3></DashTitle>
@@ -42,7 +42,7 @@ const Home = () => {
       </AdminRow>
       <AdminRow>
         <DashTitle><h3>Web Usage Summary</h3></DashTitle>
-        {webVisits && webVisits[0] && <WebVisitsLineChart visits={webVisits} />}
+        {webVisits && webVisits[0]  ? <WebVisitsLineChart visits={webVisits} /> : <p>Chart showing data</p>}
       </AdminRow>
     </>
   )

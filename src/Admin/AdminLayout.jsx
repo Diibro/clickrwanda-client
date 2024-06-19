@@ -45,7 +45,7 @@ const AdminLayout = () => {
      const {logged, activeForm} = adminData;
 
      const fetchData = async () => {
-          const {districts} = await getLocations();
+          const {districts} = getLocations();
           const catRes = await CategoryService.getAll();
           const agents = await AgentService.getAll();
           const shops = await UserService.getAll();
@@ -57,7 +57,7 @@ const AdminLayout = () => {
           console.log(shops);
           setAdminData((prev) => ({
                ...prev,
-               locations: districts.data,
+               locations: districts,
                categories: catRes.data,
                agents: sortByAny(agents.data, "registration_date"),
                shops: sortByAny(shops.data, "reg_date"),
@@ -98,7 +98,7 @@ const AdminLayout = () => {
                          <div className="admin-content hide-scroll">
                               <Routes>
                                    <Route index path="/" element={<Home />} />
-                                   <Route path="/agents" element={<AgentsPage />} />
+                                   <Route path="/agents/*" element={<AgentsPage />} />
                                    <Route path="/adverts" element={<AdvertsPage />} />
                                    <Route path="/settings" element={<Settings />} />
                                    <Route path="/shops" element={<ShopsPage />} />

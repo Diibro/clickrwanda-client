@@ -44,8 +44,8 @@ const SearchBar = () => {
   useEffect(() => {
     (async() => {
       await getCategories();
-      const {districts} = await getLocations();
-      setLocations(districts.data);
+      const {districts} = getLocations();
+      setLocations(districts);
     })()
   },[data.categories]);
   return (

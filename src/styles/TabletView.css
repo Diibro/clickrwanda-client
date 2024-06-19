@@ -190,6 +190,13 @@
      .dash-card-info {
           width: 30%;
      }
+     .dash-main-row{
+          overflow: hidden;
+          overflow-x: auto;
+     }
+     .admin-agent-update-form-container .group.links{
+          width: 100%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -458,17 +465,14 @@
           width: 30%;
      }
 
-     .dash-agents-table{
-          min-width: 800px;
-     }
 
      .dash-main-row{
           overflow: hidden;
           overflow-x: scroll;
      }
 
-     .agent-form-container{
-          width: 60%;
+     .admin-add-agent-form{
+          width: 100%;
      }
 
      .dash-shop-card{
@@ -485,6 +489,9 @@
      .admin-web-visit-card {
           width: 40%;
           margin-bottom: 10px;
+     }
+     .admin-agent-update-form-container .group{
+          width: 100%;
      }
 }
 

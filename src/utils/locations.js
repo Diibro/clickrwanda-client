@@ -1,5 +1,6 @@
 import axios from "axios";
 const api = 'https://rwanda.p.rapidapi.com/';
+import locations from "../data/Location.json";
 
 const provincesOptions = {
   method: 'GET',
@@ -30,12 +31,9 @@ const districtsOptions = {
 
 
 
-export const getLocations = async () => {
+export const getLocations = () => {
      try {
-          // const provinces = await axios.request(provincesOptions);
-          const districts = await axios.request(districtsOptions);
-          // const locations = await axios.request(allLocationsOptions);
-          return {districts:districts.data}
+          return locations
      } catch (error) {
           console.error(error);
      }

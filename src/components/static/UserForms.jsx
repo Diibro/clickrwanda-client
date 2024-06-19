@@ -193,10 +193,10 @@ const SignUpForm = () => {
 
      useEffect(() => {
           (async() => {
-               const {districts} = await getLocations();
+               const {districts} = getLocations();
                // const {data} = districts;
                // setLocations(data);
-               setLocations(districts.data);
+               setLocations(districts);
           })()
      }, [])
      return(
@@ -375,10 +375,10 @@ const AgentSignUpForm = () => {
 
      useEffect(() => {
           (async() => {
-               const {districts} = await getLocations();
+               const {districts} = getLocations();
                // const {data} = districts;
                // setLocations(data);
-               setLocations(districts.data);
+               setLocations(districts);
           })()
      }, [])
 
