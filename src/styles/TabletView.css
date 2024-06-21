@@ -468,7 +468,7 @@
 
      .dash-main-row{
           overflow: hidden;
-          overflow-x: scroll;
+          overflow-x: auto;
      }
 
      .admin-add-agent-form{
@@ -490,7 +490,8 @@
           width: 40%;
           margin-bottom: 10px;
      }
-     .admin-agent-update-form-container .group{
+     .admin-agent-update-form-container .group,
+     .admin-shop-view-form .group{
           width: 100%;
      }
 }

@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { DashAdvertCardLoad } from "./DashAdvertCard";
 import { AdminContext } from "../../AdminLayout";
 import Server from "../../../config/Server";
-import { showNotification } from "../../../utils/AdminFunctions";
+import { showNotification, toggleForms } from "../../../utils/AdminFunctions";
 
 const DashShopCard = ({shop}) => {
      const [, setAdminData ] = useContext(AdminContext);
@@ -71,6 +71,18 @@ const DashShopCard = ({shop}) => {
                setLoading(false);
                showNotification();
           }
+     }
+
+     const viewShop = (shop) => {
+          setAdminData((prev) => ({
+               ...prev, 
+               activeForm: {
+                    type: "shop",
+                    formName: "view shop",
+                    objFocus: shop
+               }
+          }))
+          toggleForms(true);
      }
 
      const changeVerification = async(status) => {
@@ -153,7 +165,7 @@ const DashShopCard = ({shop}) => {
                <b>{formatTimeAgo(shop.reg_date)}</b>
           </div>
           <div className="row">
-               <EditButton title="Update" />
+               <EditButton title="View" action={() => viewShop(shop)} />
                {
                     shop.verified ? 
                     <EditButton title="UnVerifiy" action={async() => await changeVerification(0) }  />

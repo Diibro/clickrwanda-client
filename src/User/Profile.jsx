@@ -6,9 +6,8 @@ import { FaEdit } from "react-icons/fa";
 import { SubmitButton } from "../components/dynamic/Buttons";
 import server from "../config/Server";
 import AppData from "../Contexts/AppContext";
-import { TiTick } from "react-icons/ti";
-import { ImCross } from "react-icons/im";
 import { Loadingv2 } from "../components/static/Loading";
+import { showMainNotification } from "../utils/AdminFunctions";
 
 const Profile = () => {
   const [user, setUser] = useContext(UserContext);
@@ -37,16 +36,6 @@ const Profile = () => {
 
   } 
 
-  const raiseAlert = (type, message, icon) => {
-    setData((prev)=> ({
-         ...prev,
-         alertView:{
-              on: true,
-              content: {type, message, icon}
-         }
-    }));
-}
-
   useEffect(() => {
     updateProfileImage();
     console.log(userInfo);
@@ -71,7 +60,7 @@ const Profile = () => {
       if(fileImage != "") newData.append('logo', fileImage);
       const res = await server.updateUser(newData);
       if(res.status === "pass" ){
-        raiseAlert('success', `${res.message}`, <TiTick />);
+        showMainNotification('pass', `${res.message}`, () => {});
         const newUser = res.data;
         if( newUser){
           sessionStorage.setItem('userData', JSON.stringify(newUser));
@@ -83,11 +72,11 @@ const Profile = () => {
         }
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') setUser((prev) => ({...prev, activeForm:'login'}));
-        return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+        return showMainNotification('fail', `${res.message} .Try again`, () => {});
       }
     } catch (error) {
       console.log("Error : ", error);
-      return raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
+      return showMainNotification('fail', 'An error occurred. Try again later',() => {});
     }finally{
       setLoading(false);
     }

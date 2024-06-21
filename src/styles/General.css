@@ -4163,7 +4163,7 @@ textarea{
      align-items: center;
      justify-content: space-between;
      overflow: hidden;
-     overflow-y: scroll;
+     overflow-y:auto;
 }
 
 .admin-navbar .dash-logo-container{
@@ -4240,7 +4240,7 @@ textarea{
      border-radius: 20px;
      padding: 20px;
      overflow: hidden;
-     overflow-y: scroll;
+     overflow-y: auto;
 }
 
 .dash-main-row {
@@ -4628,7 +4628,8 @@ textarea{
      background-color: var(--text-color-title);
 }
 
-.admin-agent-update-form-container .group {
+.admin-agent-update-form-container .group,
+.admin-shop-view-form .group {
      width: 45%;
      border-radius: 10px;
      padding: 15px 10px;
@@ -4643,19 +4644,22 @@ textarea{
      position: relative;
 }
 
-.admin-agent-update-form-container .group b {
+.admin-agent-update-form-container .group b, 
+.admin-shop-view-form .group b {
      font-size: 0.95rem;
      color: var(--text-color-para2);
      font-weight: 700;
 }
 
-.admin-agent-update-form-container .group span {
+.admin-agent-update-form-container .group span, 
+.admin-shop-view-form .group span {
      font-size: 0.9rem;
      font-weight: 800;
      color: var(--text-color-title);
 }
 
-.admin-agent-update-form-container .group span .call-icon{
+.admin-agent-update-form-container .group span .call-icon, 
+.admin-shop-view-form .group span .call-icon{
      color: var(--featured-plan);
      font-size: 1.8rem;
      position: absolute;
@@ -4666,7 +4670,11 @@ textarea{
 
 }
 
-.admin-agent-update-form-container .group input, .admin-agent-update-form-container .group select {
+.admin-agent-update-form-container .group input, 
+.admin-agent-update-form-container .group select,
+.admin-shop-view-form .group input,
+.admin-shop-view-form .group select
+ {
      padding: 5px 10px;
      border: none;
      outline: none;
@@ -4674,7 +4682,8 @@ textarea{
 
 }
 
-.admin-agent-update-form-container .group p{
+.admin-agent-update-form-container .group p,
+.admin-shop-view-form .group p{
      width: 90%;
      display: flex;
      flex-direction: row;
@@ -4683,6 +4692,45 @@ textarea{
      font-size: 0.85rem;
      color: var(--text-color-para1);
      gap: 5px;
+}
+
+.admin-shop-form-container{
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+     overflow-y: auto;
+     background-color: var(--white-text);
+     border-radius: 20px;
+     padding: 20px 20px;
+}
+
+.admin-shop-view-form {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     padding: 10px;
+     background-color: var(--text-color-title);
+     border-radius: 20px;
+     gap: 10px;
+     flex-wrap: wrap;
+
+}
+
+.admin-shop-view-form .group{
+     width: 45%;
+     border-radius: 10px;
+     padding: 15px 10px;
+     display:flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     flex-wrap: wrap;
+     gap: 5px;
+     /* box-shadow: 0.2px 0.2px 4px var(--text-color-para2); */
+     background-color: var(--white-text);
+     position: relative;
 }
 
 /* advert form styles */
@@ -5608,6 +5656,10 @@ textarea{
      /* height: ; */
      border: 1px solid var(--back-gold-color-v1);
      border-radius: 5px;
+}
+
+.adsterra-h-banner{
+     width: 90%;
 }
 /*End of Banner styles */ 
 

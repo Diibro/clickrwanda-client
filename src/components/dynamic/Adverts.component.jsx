@@ -14,14 +14,13 @@ import { MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
 import { Link, useNavigate } from "react-router-dom";
-import { HorizontalBanner } from "./Banners";
 import DeviceView from "../../Contexts/ViewContext";
 import { LoadingAd } from "./LoadinComponents";
 import { getArrayOfNums } from "../../utils/otherFunctions";
-import { Banners } from "../../config/banners";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
 import { getRwandaTime } from "../../utils/dateFunctions";
+import Banner728x90 from "../../AdSterra/Banner728x90";
 
 export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
@@ -44,7 +43,7 @@ export const Adverts = ({eleId,limit}) => {
                 adverts.map((item, index) => ( index <= limit ? (
                   <>
                     <AdvertRenderer key={`home_new_ads-${eleId + item.ad_id}`} item={item}/>
-                  {index === adLimit ? <HorizontalBanner items={Banners} /> : null}
+                  {index === adLimit ? <Banner728x90 /> : null}
                   </>
                   
                 ) : null))

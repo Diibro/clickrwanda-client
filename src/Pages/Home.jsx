@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 import { HeroSectionBanner, HorizontalBanner, LeftBanner, RightBanner } from '../components/dynamic/Banners';
 import { Banners } from '../config/banners';
 import { useTranslation } from 'react-i18next';
+import Banner728x90 from '../AdSterra/Banner728x90';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -62,6 +63,7 @@ const Home = () => {
 
           {/* best sellers section */}
           <BoostedSellers />
+          <Banner728x90 />
 
           {/* ads websites section */}
           <AdWebsites />
@@ -71,7 +73,7 @@ const Home = () => {
           <div className="side right-side"><RightBanner items={Banners}/></div>
         </div>
       </div>
-    </>
+      </>
     
   )
 }
