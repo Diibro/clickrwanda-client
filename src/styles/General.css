@@ -5661,6 +5661,17 @@ textarea{
 .adsterra-h-banner{
      width: 90%;
 }
+
+.adsterra-h-banner{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     overflow: hidden;
+     padding: 5px 0;
+
+}
 /*End of Banner styles */ 
 
 /* overrider styles */

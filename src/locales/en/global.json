@@ -61,10 +61,6 @@
                     {
                          "title":"Become an Agent",
                          "link": "/hiring"
-                    },
-                    {
-                         "title":"Staff",
-                         "link": "/forms/agent-login"
                     }
                ]
           }
@@ -115,7 +111,7 @@
                "title":"Our top Categories"
           },
           "premiumAdsSection": {
-               "title":"Premium Ads",
+               "title":"Featured Ads",
                "viewAllLink":{
                     "title":"View All",
                     "link":"/sponsored-ads"
@@ -125,7 +121,7 @@
                "title":"New Ads"
           },
           "bestSellersSection": {
-               "title":"Best Sellers",
+               "title":"Top Sellers",
                "message":"Discover which sellers have been ranked best for the best products, services and deals.",
                "viewAllLink":{
                     "title":"View All",

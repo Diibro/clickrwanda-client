@@ -21,7 +21,7 @@ const Banner728x90 = () => {
       
         return (
           <div className="adsterra-h-banner">
-               <div id="adsterra-container" style={{ width: '728px', height: '90px' }}></div>
+               <div id="adsterra-container" className="adsterra-h-banner"></div>
           </div>
         );
 }
