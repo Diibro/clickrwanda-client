@@ -24,7 +24,7 @@ const Logout = () => {
           userInfo: null,
           loggedIn: false,
         }));
-        showMainNotification('success', 'You have been logged out', () => navigate('/'))
+        showMainNotification('pass', 'You have been logged out', () => navigate('/'))
       }else{
         showMainNotification('fail', 'Server error. please try again', () => {});
       }

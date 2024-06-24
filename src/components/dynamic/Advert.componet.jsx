@@ -5,7 +5,7 @@ import { getItemUrl } from '../../utils/urlFunctions';
 import { FaLocationDot } from "react-icons/fa6";
 import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
 // import { SubmitButton } from './Buttons';
-import { FaShareAlt, FaLongArrowAltRight } from "react-icons/fa";
+import {  FaLongArrowAltRight } from "react-icons/fa";
 import AppData from '../../Contexts/AppContext';
 import { formatTimeAgo } from '../../utils/dateFunctions';
 // import { LoadingImage } from './LoadinComponents';
@@ -24,7 +24,6 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
      const [,setData] = useContext(AppData);
      const navigate = useNavigate();
      const showButtons = (url, image, name) =>{
-          console.log(url, name, image);
           setData(prev => ({
                ...prev,
                shareAlert: {
@@ -37,7 +36,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
           <div className={`product-square-container ${plan}-ad`}>
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "enterprise" ? "pay-plan enterprise" : "free-plan"}>{capitalizeString(plan)}</span>
                {discount ? <span className='advert-discount'>- {discount}%</span> : null}
-               <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
+               {/* <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i> */}
                <div className="ad-image">
                <div className='background-img' style={{backgroundImage:`url(${image})`}} ></div>
                     {/* <img src={image} alt={title} onClick={action} loading='lazy' /> */}
@@ -75,7 +74,7 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
           <div className={`product-square-container ${plan}-ad`}>
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "premium" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "enterprise" ? "pay-plan enterprise" : "free-plan"}>{capitalizeString(plan)}</span>
                {discount ? <span className='advert-discount'>{discount}% off</span> : null}
-               <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i>
+               {/* <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i> */}
                <div className="ad-image" >
                     <div className='background-img' style={{backgroundImage:`url(${image})`}} ></div>
                     {/* {image ? <img src={image} alt={capitalizeString(title)} onClick={action} loading='lazy'/> : <LoadingImage />} */}
@@ -176,7 +175,7 @@ export const AdvertRow = ({item}) => {
                     </div>
                </div>
                <p className='desc'>
-                    <span>{item?.description?.desc}</span>
+                    <span>{item?.description?.desc?.value || item?.description?.desc }</span>
                     <span><a href={item.ad_website} target='_blank' rel="noreferrer" > Visit Website <i><FaLongArrowAltRight /></i> </a></span>
                     
                </p>

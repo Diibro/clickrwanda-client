@@ -108,11 +108,7 @@
      }
 
      .dash-advert-row{
-          width: 45%;
-     }
-
-     .dash-advert-row  .icons{
-          width: 50%;
+          width: 100%;
      }
 
      .agent-ref-shop-card{
@@ -196,6 +192,10 @@
      }
      .admin-agent-update-form-container .group.links{
           width: 100%;
+     }
+
+     .home-dash-card{
+          width: 27%;
      }
 }
 
@@ -494,5 +494,27 @@
      .admin-shop-view-form .group{
           width: 100%;
      }
+     .advert-form-container form .group{
+          width: 100%;
+     }
+
+     .advert-form-container form .group label{
+          font-size: 1.1rem;
+     }
+
+     .advert-form-container form .group input, 
+     .advert-form-container form .group select,
+     .advert-form-container form .group textarea{
+          width: 100%;
+          padding-block: 10px ;
+     }
+
+     .user-dash-view-form form .row .dash-col{
+          width: 100% ;
+     }
+     .home-dash-card{
+          width: 30%;
+     }
 }
+
 

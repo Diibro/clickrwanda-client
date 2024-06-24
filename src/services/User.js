@@ -1,5 +1,6 @@
 import axios from "axios";
 import Server from "./Server";
+import { showMainNotification } from "../utils/AdminFunctions";
 
 export default {
      login: async (user) => {
@@ -34,6 +35,26 @@ export default {
                }
           }catch(error){
                console.log(error);
+               return null;
+          }
+     },
+     getUserDashBoard: async(user_id) => {
+          try{
+               const token = sessionStorage.getItem("loginToken");
+               if(token){
+                    const res = await axios.post(Server.user.getUserDashInfo, {user_id}, {
+                         headers: {
+                              "Authorization": token
+                         }
+                    });
+                    return res.data
+               }else{
+                    showMainNotification("fail", "Session expired. Login again.", () => {});
+                    return null;
+               }
+          }catch(error){
+               console.log(error);
+               showMainNotification("fail", "Network error", () => {})
                return null;
           }
      }

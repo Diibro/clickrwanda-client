@@ -1,4 +1,4 @@
-import { DashboardContainer } from "../components/dynamic/DashboardComponents"
+import { DashboardContainer } from "./components/DashboardComponents"
 
 export const UserReviews = () => {
      return(

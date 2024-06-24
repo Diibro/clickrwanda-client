@@ -5,6 +5,7 @@ import { nameLookerExact } from '../../../utils/otherFunctions';
 import AdvertService from "../../../services/Advert"
 import { showNotification, toggleForms } from '../../../utils/AdminFunctions';
 import { sortByAny } from '../../../utils/filterFunctions';
+import { parseString } from '../../../utils/jsonFunctions';
 
 const AdvertForms = () => {
      const [adminData] = useContext(AdminContext);
@@ -186,7 +187,7 @@ const UpdateAdvertForm = () => {
                               </div>
                               <div className="group">
                                    <label htmlFor="description_ad">Description:</label>
-                                   <textarea name="description" id="description_ad" cols={10} rows={5} defaultValue={ad.description.desc || (JSON.parse(ad.description)).desc || ""} onChange={(e) => updateAd({desc: e.target.value}, "description")}>
+                                   <textarea name="description" id="description_ad" cols={10} rows={5} defaultValue={parseString(ad.description).desc.value || parseString(ad.description).desc} onChange={(e) => updateAd({desc: {value:e.target.value, type: "textarea"}}, "description")}>
                                    </textarea>
                               </div>
                               

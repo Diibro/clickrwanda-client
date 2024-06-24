@@ -73,7 +73,6 @@ export const ContentContainer = ({children}) => {
      return(
           <div className='dashboard-content' onClick={showHeader}>
                {children}
-               
           </div>
      )
 }

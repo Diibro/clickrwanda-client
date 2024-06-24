@@ -44,6 +44,7 @@ const AdvertPage = () => {
                               setAdViewed(ad);
                               setOtherAds(sameSubCategory || sameCategory || null);
                               setMainImage(ad.ad_image);
+                              console.log(ad);
                               setAdDescription(parseString(ad.description));
                               check = 1;
                          }
@@ -59,12 +60,12 @@ const AdvertPage = () => {
                     saveData("adViewed",res.data, 5);
                     const {adData, sameCategory, sameSubCategory} = res.data;
                     setAdViewed(adData);
-                    setOtherAds([...sameSubCategory, ...sameCategory]);
                     setMainImage(adData.ad_image);
                     setAdDescription(parseString(adData.description));
+                    setOtherAds([...sameSubCategory, ...sameCategory]);
                }
           } catch (error) {
-               console.log(error);
+               console.log(`"Advert page error: "${error}`);
           }finally {
                setLoading(false);
                
@@ -110,8 +111,8 @@ const AdvertPage = () => {
                                         <div className="content">
                                              {adDescription && <h4>Details:</h4>}
                                              {
-                                                  adViewed?.description ? 
-                                                       Object.entries(adDescription).map(([key,value], index) => 
+                                                  adViewed?.description && adDescription ? 
+                                                       Object.entries(adDescription)?.map(([key,value], index) => 
                                                             key === "desc" ? 
                                                             <div className="group description-container" key={`ad-desc-view-${key}-${index}`}>
                                                                  <b>Description:</b>

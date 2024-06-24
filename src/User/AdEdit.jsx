@@ -1,14 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { DashboardContainer } from "../components/dynamic/DashboardComponents";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
 import { getItemUrlId } from "../utils/urlFunctions";
 import { SubmitButton } from "../components/dynamic/Buttons";
-import AppData from "../Contexts/AppContext";
-import { TiTick } from "react-icons/ti";
-import { ImCross } from "react-icons/im";
 import { Input } from "@mui/material";
+import { showMainNotification } from "../utils/AdminFunctions";
 
 const AdEdit = () => {
   const [adEdit, setAdEdit] = useState({});
@@ -16,7 +13,6 @@ const AdEdit = () => {
   const [found, setFound] = useState(false);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  const [,setData] = useContext(AppData);
   const ad_id = getItemUrlId(location.search);
 
   const fetchData = async() => {
@@ -33,16 +29,6 @@ const AdEdit = () => {
       setLoading(false);
     }
   }
-
-  const raiseAlert = (type, message, icon) => {
-    setData((prev)=> ({
-        ...prev,
-        alertView:{
-              on: true,
-              content: {type, message, icon}
-        }
-    }));
-}
 
   const submitEdit = async (e) => {
     e.preventDefault();
@@ -61,19 +47,18 @@ const AdEdit = () => {
         formData.append('ad_id', ad_id);
         const res = await server.updateUser(formData);
         if(res.status === "pass"){
-          raiseAlert('success', `${res.message}`, <TiTick />);
+          showMainNotification('pass', `${res.message}`, () => {});
         }else{
-          return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+          return showMainNotification('fail', `${res.message} .Try again`, () => {});
         }
       }else{
         if(Object.keys(adChanges).length > 0){
           const changes = {...adChanges, ad_id}
           const res = await server.updateUserAd(changes);
           if(res.status === "pass"){
-            raiseAlert('success', `${res.message}`, <TiTick />);
-            return window.location.reload();
+            return showMainNotification('pass', `${res.message}`,() => window.location.reload());
           }else{
-            return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+            return showMainNotification('fail', `${res.message} .Try again`, () => {});
           }
         }
       }
@@ -110,7 +95,7 @@ const AdEdit = () => {
                 </div>
                 <div className="group">
                   <label htmlFor="ad-discount">Ad Discount (%):</label>
-                  <input type="number" name="ad-discount" id="ad-discount" placeholder={adEdit?.ad_discount} defaultValue={adEdit.ad_discount} onChange={(e) => setAdChanges(prev => ({...prev, ad_discount: e.target.value}))} />
+                  <input type="number" name="ad-discount" id="ad-discount" placeholder={adEdit?.ad_discount} defaultValue={adEdit.ad_discount} onChange={(e) => setAdChanges(prev => ({...prev, ad_discount: e.target.value}))} disabled />
                 </div>
                 <div className="group">
                   <label htmlFor="ad-type">Ad Type:</label>
@@ -121,7 +106,7 @@ const AdEdit = () => {
                 </div>
                 <div className="group">
                   <label htmlFor="ad-description">Ad Description:</label>
-                  <textarea name="ad-description" id="ad-description" cols="20" rows="10" defaultValue={adEdit.description.desc} onChange={(e) => setAdChanges(prev => ({...prev, description: e.target.value}))}></textarea>
+                  <textarea name="ad-description" id="ad-description" cols="20" rows="10" defaultValue={adEdit.description.desc?.value || adEdit.description.desc} onChange={(e) => setAdChanges(prev => ({...prev, description: {desc: {value:e.target.value, type: "textarea"}}}))}></textarea>
                 </div>
                 <div className="group full-width">
                   <label htmlFor="ad_image">Main Image:</label>

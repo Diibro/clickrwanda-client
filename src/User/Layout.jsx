@@ -1,13 +1,13 @@
 
 import {Routes, Route, useNavigate} from "react-router-dom";
 import Home from "./Home";
-import { ContentContainer, MainContainer, NavContainer } from "../components/dynamic/DashboardComponents";
 import Profile from "./Profile";
 import PayPlans from "./PayPlans";
 import MyAdverts from "./MyAdverts";
 import Logout from "./Logout";
 import { useEffect } from "react";
 import { UserReviews } from "./Reviews";
+import { ContentContainer, MainContainer, NavContainer } from "./components/DashboardComponents";
 
 const UserLayout = () => {
   const navigate = useNavigate();

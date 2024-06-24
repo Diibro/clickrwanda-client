@@ -1,18 +1,15 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import UserContext from "../Contexts/UserContext";
-import { DashboardContainer, DashboardRow } from "../components/dynamic/DashboardComponents";
 import { useForm } from "react-hook-form";
 import { FaEdit } from "react-icons/fa";
 import { SubmitButton } from "../components/dynamic/Buttons";
 import server from "../config/Server";
-import AppData from "../Contexts/AppContext";
 import { Loadingv2 } from "../components/static/Loading";
 import { showMainNotification } from "../utils/AdminFunctions";
 
 const Profile = () => {
   const [user, setUser] = useContext(UserContext);
   const {userInfo} = user;
-  const [,setData] = useContext(AppData);
   const [profileImage, setProfileImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [newImage, setNewImage] = useState("");
@@ -93,55 +90,57 @@ const Profile = () => {
   }
   return (
     <>
-      <DashboardContainer>
+      <div className="user-dash-view-form">
         <form onSubmit={handleSubmit(submitForm)} >
-          <DashboardRow>
+          <div className="row" >
             <h2>Profile Information: </h2>
-          </DashboardRow>
-          <DashboardRow>
+          </div>
+          <div className="row">
             <div className="dash-col">
-              <label htmlFor="profileImage">Profile Image:</label>
-              <div className="image-dash-col">
-                <input ref={profileRef} type="file" name="profileImage" accept="image/*" style={{display: "none"}} onChange={changeProfileImage} />
-                <i className="edit-icon" onClick={promptNewFile}><FaEdit /></i>
-                <img src={profileImage} alt="profile image" style={{ width: "100%" }} />
+              <div className="group">
+                <label htmlFor="profileImage">Profile Image:</label>
+                <div className="image-dash-col">
+                  <input ref={profileRef} type="file" name="profileImage" accept="image/*" style={{display: "none"}} onChange={changeProfileImage} />
+                  <i className="edit-icon" onClick={promptNewFile}><FaEdit /></i>
+                  <img src={profileImage} alt="profile image" style={{ width: "100%" }} />
+                </div>
               </div>
             </div>
             <div className="dash-col">
               <div className="group">
-                <label htmlFor="name">Full name:</label>
+                <label htmlFor="name">Full name: <span>{userInfo.name || userInfo.full_name}</span></label>
                 <input type="text" name="name" {...register('name')} placeholder={userInfo.name || userInfo.full_name}/>
               </div>
               <div className="group">
-                <label htmlFor="username">Business name:</label>
+                <label htmlFor="username">Business name: <span>{userInfo.username}</span></label>
                 <input type="text" name="username" {...register('username')} placeholder={userInfo.username}/>
               </div>
               
               
             </div>
-          </DashboardRow>
-          <DashboardRow>
+          </div>
+          <div className="row">
             <h2> Contact Information: </h2>
-          </DashboardRow>
-          <DashboardRow>
+          </div>
+          <div className="row">
             <div className="dash-col">
               <div className="group">
-                <label htmlFor="email">Email Address:</label>
+                <label htmlFor="email">Email Address: <span>{userInfo.email || userInfo.user_email}</span></label>
                 <input type="email" name="email" disabled placeholder={userInfo.email || userInfo.user_email}/>
               </div>
               
             </div>
             <div className="dash-col">
               <div className="group">
-                <label htmlFor="phone">Phone Number:</label>
+                <label htmlFor="phone">Phone Number: <span>{userInfo.phone || userInfo.user_phone}</span></label>
                 <input type="phone" name="phone" {...register('phone')} placeholder={userInfo.phone || userInfo.user_phone}/>
               </div>
             </div>
-          </DashboardRow>
-          <DashboardRow>
+          </div>
+          <div className="row">
             <div className="dash-col">
               <div className="group">
-                <label htmlFor="location">Business Location:</label>
+                <label htmlFor="location">Business Location: <span>{userInfo?.location?.location || userInfo.user_location?.location}</span></label>
                 <input type="text" name="location" id="location" {...register('location')} placeholder={userInfo?.location?.location || userInfo.user_location?.location || "City"} />
               </div>
             </div>
@@ -151,13 +150,13 @@ const Profile = () => {
                 <input type="text" name="street" id="street" {...register('street')} placeholder={userInfo?.location?.street || userInfo.user_location?.street ||"Address Street"} />
               </div>
             </div>
-          </DashboardRow>
-          <DashboardRow>
+          </div>
+          <div className="row">
             <SubmitButton content={{title: "Save Changes", type: "submit"}} />
-          </DashboardRow>
+          </div>
         </form>
         
-      </DashboardContainer>
+      </div>
       {loading ? <Loadingv2 /> : null}
     </>
     

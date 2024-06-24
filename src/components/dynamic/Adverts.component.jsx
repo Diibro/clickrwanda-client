@@ -1,4 +1,4 @@
-import { Container, Input, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Container, } from "@mui/material";
 import { InnerSection } from "./InnerSectionContainer";
 import AppData from "../../Contexts/AppContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { AdvertRow} from "./Advert.componet";
 const AdvertRenderer = React.lazy(() => import("./Advert.componet"))
 import { SubmitButton } from "./Buttons";
-import UserContext from "../../Contexts/UserContext";
 import { ImCross } from "react-icons/im";
 import server from "../../config/Server";
 import { TiTick } from "react-icons/ti";
@@ -21,6 +20,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
 import { getRwandaTime } from "../../utils/dateFunctions";
 import Banner728x90 from "../../AdSterra/Banner728x90";
+import { parseString, stringfyObject } from "../../utils/jsonFunctions";
 
 export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
@@ -105,26 +105,23 @@ export const SimilarAds = ({limit, adverts}) => {
     )
   }
 }
- 
+
 export const AddAdvertForm = () => {
   const navigate  = useNavigate();
   const [data, setData] = useContext(AppData);
-  const [, setUser] = useContext(UserContext);
   const [adInfo, setAdInfo] = useState({});
-  const [adDescription, setAdDescription] = useState("");
+  const [adDescription, setAdDescription] = useState({});
   const [loading, setLoading] = useState(false);
-  const {categories, subCategories} = data;  
-  const closeForm = () => {
-    setUser((prev) => ({...prev, activeForm:''}));
-  }
+  const {categories, subCategories} = data; 
+  const [descFields,setDescFields] = useState(null); 
 
   const raiseAlert = (type, message, icon) => {
     setData((prev)=> ({
-         ...prev,
-         alertView:{
+        ...prev,
+        alertView:{
               on: true,
               content: {type, message, icon}
-         }
+        }
     }));
 }
 
@@ -134,7 +131,7 @@ export const AddAdvertForm = () => {
       setLoading(true);
       const formData = new FormData();
       formData.append('ad_name', adInfo.ad_name);
-      formData.append('description', adDescription);
+      formData.append('description', stringfyObject(adDescription));
       formData.append('ad_type', adInfo.ad_type);
       formData.append('ad_price', adInfo.ad_price);
       formData.append('contact', adInfo.contact);
@@ -163,9 +160,22 @@ export const AddAdvertForm = () => {
     
   } 
 
+  useEffect(() => {
+    if(!categories || !categories[0]){
+      setData(prev => ({...prev, fetchNow: true}));
+    }
+  },[])
+
+  useEffect(() => {
+    if(adInfo.subCategory_id){
+      setDescFields(parseString(subCategories.filter(item => item.sub_id != adInfo.subCategory_id)[0])?.fields || null);
+    }else{
+      setDescFields(null);
+    }
+  }, [adInfo]);
+
   return(
     <div className="advert-form-container">
-      <i onClick={closeForm} className="close-icon"><ImCross/></i>
       {
         loading ? <Loading /> :
         <form onSubmit={submitForm}>
@@ -173,75 +183,73 @@ export const AddAdvertForm = () => {
           <h2>Add New Ad</h2>
         </div>
         <div className="row">
-          <div className="col">
-            <InputLabel className="lables" htmlFor="category">Category:</InputLabel>
-            <Select name="category" id="category" value={adInfo.category_id || ''} onChange={(e) => setAdInfo(prev => ({...prev, category_id:e.target.value}))} required>
-              <MenuItem value="">Select a category</MenuItem>
-              {categories && categories[0] ? categories.map((category) => (
-                <MenuItem key={category.category_id} value={category.category_id}>
-                  {category.category_name}
-                </MenuItem>
-              )): null}
-            </Select>
+          <div className="group">
+            <label htmlFor="ad-input-name">Title:</label>
+            <input type="text" name="ad-input-name" id="ad-input-name" onChange={(e) => setAdInfo((prev) => ({...prev, ad_name: e.target.value}))} required placeholder="ex: Samsung phone" />
           </div>
-          <div className="col">
-            <InputLabel htmlFor="sub_category">
-              Sub Category:
-            </InputLabel>
-            <Select name="category" id="category" value={adInfo.subCategory_id || ''} disabled={!adInfo.category_id} onChange={(e) => setAdInfo(prev => ({...prev, subCategory_id:e.target.value}))} required>
-              <MenuItem value="">Select sub category....</MenuItem>
-              {subCategories && subCategories[0] ? subCategories.map((item) => (
-                item.category_id === adInfo.category_id ? 
-                <MenuItem key={item.sub_id} value={item.sub_id}>
-                  {item.sub_name}
-                </MenuItem>
-                :
-                null
-              )): null}
-            </Select>
+          <div className="group">
+            <label htmlFor="ad-input-type">Type:</label>
+            <select name="ad-input-type" id="ad-input-type" onChange={(e) => setAdInfo((prev) => ({...prev, ad_type: e.target.value}))} required>
+              <option value="">Select type...</option>
+              <option value="service">Service</option>
+              <option value="product">Product</option>
+            </select>
           </div>
         </div>
         <div className="row">
-          <div className="col">
-            <InputLabel htmlFor="title">Ad Title: </InputLabel>
-            <Input type='text' name='title' label='Ad Title:' onChange={(e) => setAdInfo((prev) => ({...prev, ad_name: e.target.value}))} required/>
+          <div className="group">
+            <label htmlFor="ad-input-category">Category:</label>
+            <select name="ad-input-category" id="ad-input-category" onChange={(e) => setAdInfo(prev => ({...prev, category_id:e.target.value}))} required>
+              <option value="">Select Category...</option>
+              {
+                categories && categories[0] ?
+                categories.map((category) =>  <option key={`ad-input-category-${category.category_id}`} value={category.category_id}>{category.category_name}</option>)
+                : null
+              }
+            </select>
           </div>
-          <div className="col">
-            <InputLabel htmlFor="ad_type"  >Ad Type: </InputLabel>
-            <Select value={adInfo.ad_type || ''} name="ad_type" onChange={(e) => setAdInfo((prev) => ({...prev, ad_type: e.target.value}))}>
-              <MenuItem value=''>Select ad type....</MenuItem>
-              <MenuItem value='service'>Service</MenuItem>
-              <MenuItem value='product'>Product</MenuItem>
-            </Select>
+          <div className="group">
+            <label htmlFor="ad-input-sub-category">Sub Category:</label>
+            <select name="ad-input-sub-category" id="ad-input-sub-category" disabled={!adInfo.category_id} onChange={(e) => setAdInfo(prev => ({...prev, subCategory_id:e.target.value}))} required>
+              <option value="">Select sub category...</option>
+              {
+                subCategories && subCategories[0] ? 
+                subCategories.map(item => item.category_id === adInfo.category_id && <option key={`ad-input-${item.sub_id}`} value={item.sub_id} >{item.sub_name}</option> )
+                : null
+              }
+            </select>
           </div>
         </div>
         <div className="row">
-          <div className="col">
-            <InputLabel htmlFor="price">Ad Price --Rwf:</InputLabel>
-            <Input name="ad_price" type="number" label="Ad Price" onChange={(e) => setAdInfo((prev) => ({...prev, ad_price: e.target.value}))} />
+          <div className="group">
+            <label htmlFor="ad-input-price">Price -- Rwf:</label>
+            <input type="number" name="ad-input-price" id="ad-input-price" onChange={(e) => setAdInfo((prev) => ({...prev, ad_price: e.target.value}))} required placeholder="ex: 120000" />
           </div>
-          <div className="col">
-            <InputLabel htmlFor='contact'>Contact Number:</InputLabel>
-            <Input name="contact" type="text"  label="Contact Number" onChange={e => setAdInfo(prev => ({...prev, contact: e.target.value}))}/>
+          <div className="group">
+            <label htmlFor="ad-input-contact">Contact Phone:</label>
+            <input type="tel" name="ad-input-contact" id="ad-input-contact" onChange={e => setAdInfo(prev => ({...prev, contact: e.target.value}))} required placeholder="ex: +25078..."/>
           </div>
         </div>
-        <div className="row">
-          <div className="col">
-            <InputLabel htmlFor="description">Description: <p>(20 words per paragraph)</p></InputLabel>
-            <TextField id="description" multiline rows={4} name="description" fullWidth onChange={(e) => setAdDescription(e.target.value)}>Ad description</TextField>
-          </div>
-          <div className="col"></div>
+        {descFields ? 
+          <div className="row">
+              {Object.entries(descFields).map(([key, value], index) => 
+                <div className="group" key={`ad-input-${key}-${index}`}>
+                  <label htmlFor={`ad-input-${key}`}>{key}:</label>
+                  { value.type === "textarea" 
+                    ? <textarea cols={10} rows={4} aria-multiline placeholder={value.placeholder} onChange={(e) => setAdDescription(prev => ({...prev, desc: {value:e.target.value, type:value.type}}))} required={value.required}></textarea>
+                    : <input type={value.type} required={value.required} onChange={(e) => setAdDescription(prev => ({...prev, [key]: {value:e.target.value, type: value.type}}))} placeholder={value.placeholder}/>
+                  }
+            </div>)}
         </div>
+        : null}
         <div className="row">
-          <div className="col">
-            <InputLabel htmlFor="ad image">Ad Image: </InputLabel>
-            <Input type="file" name="ad image" onChange={(e) => setAdInfo((prev) => ({...prev, ad_image: e.target.files[0]}))} required />
-            <p>Main ad image</p>
+          <div className="group">
+            <label htmlFor="ad-input-image">Main Image: </label>
+            <input type="file" name="ad-input-image" id="ad-input-image" onChange={(e) => setAdInfo((prev) => ({...prev, ad_image: e.target.files[0]}))} required  />
           </div>
-          <div className="col">
-            <InputLabel htmlFor="ad images">Other Images --<i>optional</i>: </InputLabel>
-            <Input type="file" name="ad images" inputProps={{multiple: true}} onChange={(e) => setAdInfo((prev) => ({...prev, otherImages: e.target.files}))} />
-            <p>Add up to 4 images</p>
+          <div className="group">
+            <label htmlFor="ad-input-images">Other Images:</label>
+            <input type="file" name="ad-input-images" id="ad-input-images" multiple  onChange={(e) => setAdInfo((prev) => ({...prev, otherImages: e.target.files}))}  />
           </div>
         </div>
         <div className="row">

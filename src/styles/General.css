@@ -1271,6 +1271,15 @@ textarea{
      justify-content: center;
      flex-wrap: wrap;
 }
+
+.user-dash-ads-container{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+}
 .image-slider{
      width: 100%;
      position: relative;
@@ -2061,7 +2070,7 @@ textarea{
      position: relative;
      width: clamp(360px, 80%, 1600px);
      background-color: var(--white-text);
-     border-radius: 10px;
+     border-radius: 20px;
      padding: 10px;
      display: flex;
      flex-direction: column;
@@ -2101,10 +2110,12 @@ textarea{
 
 .advert-form-container form .row h2{
      font-size: 1.8rem;
-     font-weight: 700;
+     font-weight: 800;
      width: auto;
      margin: 10px auto;
+     color: var(--text-color-title);
 }
+
 .advert-form-container form .col{
      width: 45%;
      display: flex;
@@ -2121,6 +2132,44 @@ textarea{
      font-size: 0.8rem;
      font-weight: 600;
      color: var(--back-color-blue2);
+}
+
+.advert-form-container form .group{
+     width: 45%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     transition: all 0.5s ease;
+     gap: 5px;
+     margin-bottom: 10px;
+}
+
+.advert-form-container form .group label{
+     font-size: 0.9rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+     padding: 0 10px;
+}
+
+.advert-form-container form .group input, 
+.advert-form-container form .group select,
+.advert-form-container form .group textarea {
+     width: 100%;
+     border-radius: 10px;
+     padding: 5px 10px;
+     font-size: 0.9rem;
+     font-weight: 700;
+     color: var(--back-gold-color-v1);
+     outline: none;
+     border: 1.5px solid var(--gray-text);
+     cursor: pointer;
+}
+
+.advert-form-container form .group input:focus, 
+.advert-form-container form .group select:focus,
+.advert-form-container form .group textarea:focus{
+     border-color: var(--back-color-blue1);
 }
 .line-divider {
      width: 90%;
@@ -2462,8 +2511,28 @@ textarea{
 
 .dashboard-row h2{
      color: var(--text-color-title);
-     font-size: 2rem;
+     font-size: 1.8rem;
      width: 90%;
+     font-weight: 800;
+}
+
+.dashboard-row h3{
+     color: var(--text-color-para1);
+     font-size: 1.5rem;
+     font-weight: 700;
+     width: 90%;
+}
+
+.user-dash-content-container {
+     width: 90%;
+
+}
+
+.user-dash-content-container p {
+     width: 100%;
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
 }
 
 .dash-col{
@@ -2492,9 +2561,9 @@ textarea{
 }
 
 .image-dash-col{
-     width: 50%;
+     width: 80%;
      position: relative;
-     min-width: 80px;
+     min-width: 80%;
      max-width: 100px;
 }
 
@@ -2520,15 +2589,29 @@ textarea{
 }
 
 .dash-advert-row{
-     width: 30%;
+     width: 48%;
      display: flex;
-     flex-direction: column;
-     align-items: center;
+     flex-direction: row;
+     align-items: flex-start;
      justify-content: space-between;
-     box-shadow: 1px 1px 5px var(--back-color-gold2);
      border-radius: 10px;
      margin: 5px auto;
      position: relative;
+     padding: 10px 5px;
+     gap: 5px;
+     transition: all 0.5s ease;
+     border: 1.5px solid var(--gray-text);
+}
+
+.dash-advert-row:hover{
+     border-color: var(--back-gold-color-v1);
+}
+
+.dash-advert-row .content{
+     width: 48%;
+     display: flex;
+     flex-direction: column;
+     gap: 5px;
 }
 
 .dash-advert-row .row{
@@ -2536,79 +2619,88 @@ textarea{
      display: flex;
      flex-direction: row;
      align-items: center;
-     justify-content: space-between;
-     padding-bottom: 10px;
+     justify-content: flex-start;
+     gap: 5px;
 }
 
 .dash-advert-row .image-container {
-     width: 100%;
-     border-radius: 10px;
-     overflow: hidden;
-     height: 200px;
+     width: 45%;
      display: flex;
-     flex-direction: row;
      align-items: center;
      justify-content: center;
+     border-radius: 5px;
+     border: 1.2px solid var(--gray-text);
 }
 .dash-advert-row .image-container img{
-     max-height: 100%;
-     max-width: 100%;
+     max-height: 150px;
+     width: auto;
+     max-width: 90%;
+     border-radius: 5px;
 }
 
 .dash-advert-row  .icons{
-     position: absolute;
      top: 0;
      right: 0;
-     width: 35%;
+     width: 100%;
      padding: 2.5px ;
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: space-between;
-     
-     background-color: var(--white-text);
      border-radius: 10px;
-     border: 0.8px solid var(--back-gold-color-v1);
+     background-color: var(--light-gray);
 }
 
-.dash-advert-row  .icons span{
+.dash-advert-row  .icons .icon-container{
      font-size: 18px;
      color: var(--back-color-gold2);
-     width: 25%;
-     aspect-ratio: 1/1;
+     width: 30%;
+     padding: 5px;
      border-radius: 50%;
      display: flex;
      flex-direction: row;
      align-items: center;
      justify-content: center;
+     display: flex;
+     flex-direction: column;
+     align-items:center;
+     justify-content: center;
+     color: var(--back-gold-color-v1);
      
 }
 
-.dash-advert-row  .icons span.delete-ad-icon{
+.dash-advert-row  .icons .icon-container i {
+     font-size: 0.7rem;
+     font-weight: 600;
+     color: var(--text-color-para2);
+}
+
+.dash-advert-row  .icons .icon-container.delete-ad-icon{
      color: var(--back-color-red1);
 }
 
-.dash-advert-row  .icons span:hover{
+.dash-advert-row  .icons .icon-container:hover{
      transform: scale(1.1);
      cursor: pointer;
 }
 
-.dash-advert-row .row span{
-     font-size: 0.9rem;
+.dash-advert-row .row span {
+     font-size: 0.8rem;
+     font-weight: 700;
      color: var(--text-color-para2);
-     font-weight: 800;
 }
 
 .dash-advert-row .row p{
-     width: 60%;
+     max-width: 60%;
      font-size: 0.8rem;
      font-weight: 800;
      color: var(--text-color-title);
 }
 
 .dash-advert-row .row .ad-title{
-     font-size: 1.3rem;
+     font-size: 1rem;
      color: var(--text-color-title);
+     font-weight: 700;
 }
 
 .advert-edit-page{
@@ -2764,15 +2856,14 @@ textarea{
 }
 
 .home-dash-card {
-     width: 25%;
+     width: 18%;
      display: flex;
      flex-direction: column;
      align-items: center;
      justify-content: center;
      aspect-ratio: 1/1;
      border-radius: 10px;
-     box-shadow: 0.5px 0.5px 5px var(--back-color-gold2);
-     border: 1.5px solid var(--back-color-gold2);
+     box-shadow: 0.5px 0.5px 5px var(--text-color-para2);
      margin-bottom: 20px;
      gap: 10px;
      cursor: pointer;
@@ -2780,25 +2871,104 @@ textarea{
 }
 
 .home-dash-card:hover{
-     box-shadow: 5px 5px var(--back-gold-color-v1);
+     box-shadow: 0.5px 0.5px 8px var(--text-color-para2);
 }
 
-.home-dash-card-reported{
-     box-shadow: 0.5px 0.5px 5px var(--back-color-red1);
-     border: 1.5px solid var(--back-color-red1);
-}
-
-.home-dash-card-reported:hover{
-     box-shadow: 5px 5px var(--back-color-red1);
-}
 
 .home-dash-card h2{
+     font-size: 2rem;
+     font-weight: 800;
+     color:var(--text-color-title);
      text-align: center;
+}
+
+.home-dash-card b {
+     font-size: 0.9rem;
+     font-weight: 700;
+     color: var(--text-color-para2);
 }
 
 .home-dash-card-reported h2{
      color: var(--back-color-red1);
 }
+
+.home-dash-card-reported b {
+     color: var(--back-color-red1);
+}
+
+.user-dash-view-form{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.user-dash-view-form form {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+     padding-block: 10px;
+}
+
+.user-dash-view-form form .row {
+     width: 95%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+
+}
+
+.user-dash-view-form form .row .dash-col {
+     width: 45%;
+     gap: 10px;
+}
+
+.user-dash-view-form form .row .dash-col  .group {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 5px;
+}
+
+.user-dash-view-form form .row .dash-col  .group label{
+     font-size: 0.95rem;
+     font-weight: 700;
+     color: var(--text-color-para2);
+}
+
+.user-dash-view-form form .row .dash-col  .group label span {
+     font-size: 1rem;
+     font-weight: 800;
+     color: var(--back-gold-color-v1);
+}
+
+.user-dash-view-form form .row .dash-col  .group input{
+     width: 100%;
+     border-radius: 10px;
+     padding: 5px 10px;
+     border: 1.4px solid var(--gray-text);
+     color: var(--back-gold-color-v1);
+     outline: none;
+     transition: all 0.5s ease;
+}
+
+.user-dash-view-form form .row .dash-col  .group input:focus{
+     border-color: var(--back-color-blue1);
+}
+
+.user-dash-view-form form .row h2 {
+     font-size: 1.5rem;
+     font-weight: 800;
+     color: var(--text-color-title);     
+}
+
 /* end of user dashboard components */
 
 /* small container styles */
@@ -3754,10 +3924,35 @@ textarea{
 
 .advert-page-mainAdvert .col .content h4{
      font-size: 1.2rem;
-     font-weight: 700;
+     font-weight: 800;
      color: var(--text-color-title);
      margin: 5px 0;
 
+}
+
+.advert-page-mainAdvert .col .content .group{
+     width: 45%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     box-shadow: 0.2px 0.2px 4px var(--text-color-para2);
+     border-radius: 10px;
+     padding: 5px 10px;
+}
+
+.advert-page-mainAdvert .col .content .group b {
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para2);
+
+}
+
+.advert-page-mainAdvert .col .content .description-container{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
 }
 
 .advert-page-mainAdvert .col .content p{

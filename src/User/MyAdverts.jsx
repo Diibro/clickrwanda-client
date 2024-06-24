@@ -1,59 +1,27 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Loading from "../components/static/Loading";
-import { DashboardContainer, DashboardRow } from "../components/dynamic/DashboardComponents";
 import server from "../config/Server";
 import PropTypes from 'prop-types';
 import { MdVisibility } from "react-icons/md";
-import { dateFormatMonth } from "../utils/dateFunctions";
+import { dateFormatMonth, extractDateOnly } from "../utils/dateFunctions";
 import { FaEdit } from "react-icons/fa";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AdPreview from "./AdPreview";
 import AdEdit from "./AdEdit";
 import { getItemUrl } from "../utils/urlFunctions";
-import { getData, saveData } from "../utils/storageFunctions";
 import { MdDelete } from "react-icons/md";
 import AppData from "../Contexts/AppContext";
 import { TiTick } from "react-icons/ti";
 import { ImCross } from "react-icons/im";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { LoadingAd } from "../components/dynamic/LoadinComponents";
+import UserContext from "../Contexts/UserContext";
+import { DashboardContainer, DashboardRow } from "./components/DashboardComponents";
 
 const MyAdverts = () => {
-  const [loading, setLoading] = useState(false);
-  const [adverts, setAdverts] = useState([]);
-  const navigate = useNavigate();
-
-  const fetchAdverts = async() => {
-    try {
-      setLoading(true);
-      console.log("loading set here");
-      const res = await server.getUserAdverts();
-      console.log(res);
-      if(res.status === "pass") {
-        saveData('userAds',res.data, 180);
-        setAdverts(res.data);
-        setLoading(false);
-      }else{
-        if(res.message === "No Authentication Token" || res.message === 'Authentication Error') navigate("/forms/login");
-      }
-    } catch (error) {
-      console.log(error);
-    }finally{
-      setLoading(false);
-    }
-  }
-  useEffect(() =>{
-    try {
-      if(getData('userAds')){
-        setAdverts(getData('userAds'));
-        setLoading(false);
-      }else{
-        (async() => await fetchAdverts())();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [])
+  const [user] = useContext(UserContext);
+  const {userAdverts:adverts} = user;
+  
   return (
     <>
       <DashboardContainer>
@@ -61,7 +29,7 @@ const MyAdverts = () => {
           <h2>My Adverts</h2>
         </DashboardRow>
         <Routes>
-          <Route path="/"  element={<DashboardRow>{adverts != "no adverts found" ? <AllAdverts content={{adverts, loading}} />  : <p>No adverts found</p>}</DashboardRow>}/>
+          <Route path="/"  element={<DashboardRow>{adverts != "no adverts found" ? <AllAdverts content={{adverts, loading:false}} />  : <p>No adverts found</p>}</DashboardRow>}/>
           <Route path="/preview/:params" element={<AdPreview />} />
           <Route path="/edit/:params" element={<AdEdit />} />
         </Routes>
@@ -124,7 +92,7 @@ const DashVerticalAds = ({ ads, adsNo, eleId }) => {
   };
 
   return (
-    <div className="ads-container" id={eleId}>
+    <div className="user-dash-ads-container" id={eleId}>
       {adsViewed && adsViewed[0] && !loading ? (
         <>
           <div className="pagination">
@@ -197,26 +165,31 @@ const DashAdvert = ({item}) => {
       <div className="image-container">
         <img src={item.ad_image} alt={"ad_image"} />
       </div>
-      <div className="row">
-      <span className="ad-title">{item.ad_name}</span>
+      <div className="content">
+        <div className="row">
+        <span className="ad-title">{item.ad_name}</span>
+        </div>
+        <div className="row">
+          <span>Price:</span>
+          <p>Rwf {item.ad_price}</p>
+        </div>
+        <div className="row">
+          <span>Added on:</span>
+          <p className="date">{extractDateOnly(item.ad_date)}</p>
+        </div>
+        <div className="row">
+          <span>status:</span> 
+          <p className="status">{item?.status}</p>
+        </div>
+        <div className="row">
+        <div className="icons">
+          <div className="icon-container" onClick={() => navigate(`/user-dashboard/user-adverts/preview/${getItemUrl(item.ad_name, item.ad_id)}`)} ><MdVisibility /><i>View</i></div>
+          <div className="icon-container" onClick={() => navigate(`/user-dashboard/user-adverts/edit/${getItemUrl(item.ad_name, item.ad_id)}`)}><FaEdit /><i>Edit</i></div>
+          <div className="icon-container delete-ad-icon" onClick={async () => await deleteAd()} ><MdDelete /><i>Delete</i></div>
+        </div>
+        </div>
       </div>
-      <div className="row">
-        <span>Price:</span>
-        <p>Rwf {item.ad_price}</p>
-      </div>
-      <div className="row">
-        <span>Added on:</span>
-        <p className="date">{dateFormatMonth(item.ad_date)}</p>
-      </div>
-      <div className="row">
-        <span>status:</span> 
-        <p className="status">{item?.status}</p>
-      </div>
-      <div className="icons">
-        <span onClick={() => navigate(`/user-dashboard/user-adverts/preview/${getItemUrl(item.ad_name, item.ad_id)}`)} ><MdVisibility /></span>
-        <span onClick={() => navigate(`/user-dashboard/user-adverts/edit/${getItemUrl(item.ad_name, item.ad_id)}`)}><FaEdit /></span>
-        <span onClick={async () => await deleteAd()} className="delete-ad-icon"><MdDelete /></span>
-      </div>
+      
       
     </div>
   )

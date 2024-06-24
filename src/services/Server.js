@@ -65,7 +65,8 @@ export default {
           passwordResetRequest: `${serverUrl}/api/users/request-password-reset`,
           getResetEmail: `${serverUrl}/api/users/get-reset-email`,
           passwordReset: `${serverUrl}/api/users/reset-password`,
-          getByRef: `${serverUrl}/api/users/get-ref`
+          getByRef: `${serverUrl}/api/users/get-ref`,
+          getUserDashInfo: `${serverUrl}/api/users/get-user-dash-info`
      },
      webView: {
           getAll: `${serverUrl}/api/web-view/get-all`,

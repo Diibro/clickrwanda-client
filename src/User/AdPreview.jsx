@@ -87,7 +87,7 @@ const AdPreview = () => {
             </div>
             <div className="row">
               <h4>Description:</h4>
-              <p>{adView.description.desc}</p>
+              <p>{adView.description.desc?.value || adView.description.desc}</p>
             </div>
           </>
         }
