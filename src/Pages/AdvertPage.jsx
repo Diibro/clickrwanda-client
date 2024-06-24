@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom"
 import {  fetchIds, getItemUrl } from "../utils/urlFunctions";
 import {  useEffect, useState } from "react";
 import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunctions";
-import { jsonParserV1 } from "../utils/jsonFunctions";
+import { jsonParserV1, parseString } from "../utils/jsonFunctions";
 import { FaEye, FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import Loading from "../components/static/Loading";
@@ -27,7 +27,7 @@ const AdvertPage = () => {
      const [otherAds, setOtherAds] = useState(null);
      const images = jsonParserV1(adViewed?.ad_images || null);
      const [mainImage, setMainImage] = useState(null);
-
+     const [adDescription,setAdDescription] = useState(null);
 
 
      const{ v_id:adId} = fetchIds(location);
@@ -44,6 +44,7 @@ const AdvertPage = () => {
                               setAdViewed(ad);
                               setOtherAds(sameSubCategory || sameCategory || null);
                               setMainImage(ad.ad_image);
+                              setAdDescription(parseString(ad.description));
                               check = 1;
                          }
                     } catch (error) {
@@ -60,6 +61,7 @@ const AdvertPage = () => {
                     setAdViewed(adData);
                     setOtherAds([...sameSubCategory, ...sameCategory]);
                     setMainImage(adData.ad_image);
+                    setAdDescription(parseString(adData.description));
                }
           } catch (error) {
                console.log(error);
@@ -76,9 +78,14 @@ const AdvertPage = () => {
   return (
      <>
           <Helmet>
-               <meta name="description" content={`${adViewed?.description?.desc}`} />
-               <meta name="keywords" content={`${adViewed?.ad_name}, buy or sell in Rwanda`} />
-               <title>{`${adViewed?.ad_name || 'Advert'}`} | Click Rwanda</title>
+               <meta name="description" content={adViewed?.description?.desc || ''} />
+               <meta name="keywords" content={`${adViewed?.ad_name} | Click Rwanda`} />
+               <meta property="og:title" content={`${adViewed?.ad_name || 'Advert'} | Click Rwanda`} />
+               <meta property="og:description" content={adViewed?.description?.desc || ''} />
+               <meta property="og:image" content={adViewed?.ad_image || ''} />
+               <meta property="og:url" content={window.location.href} />
+               <meta property="og:type" content="website" />
+               <title>{`${adViewed?.ad_name || 'Advert'} | Click Rwanda`}</title>
           </Helmet>
           <div className="page-main">
                <div className="side"><LeftBanner items={Banners} /></div>
@@ -101,13 +108,22 @@ const AdvertPage = () => {
                                         } 
                                         
                                         <div className="content">
-                                             {adViewed?.description && <h4>Description:</h4>}
+                                             {adDescription && <h4>Details:</h4>}
                                              {
                                                   adViewed?.description ? 
-                                                       getParagraphs(adViewed?.description?.desc, 50).map((item, index) => 
-                                                            <p key={index}>{item}</p>
+                                                       Object.entries(adDescription).map(([key,value], index) => 
+                                                            key === "desc" ? 
+                                                            <div className="group description-container" key={`ad-desc-view-${key}-${index}`}>
+                                                                 <b>Description:</b>
+                                                                 {
+                                                                      getParagraphs(value.value || value, 50).map((text, count) => <p key={`ad-view-paragraph-${count}`}>{text}</p>)
+                                                                 }
+                                                            </div>
+                                                            :
+                                                            <div className="group" key={`ad-desc-view-${key}-${index}`}>
+                                                                 <b>{key}:</b><span>{value.value || value}</span>
+                                                            </div>
                                                        )
-                                                       
                                                   : null
                                              }
                                         </div>
