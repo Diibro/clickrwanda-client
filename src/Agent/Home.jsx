@@ -3,7 +3,6 @@ import MainRow from "./components/MainRow"
 import { AgentContext } from "./AgentLayout";
 import AgentPaymentService from "../services/AgentPayment"; 
 import Title from "./components/Title";
-import { copyText } from "../utils/otherFunctions";
 import { showMainNotification } from "../utils/AdminFunctions";
 import { getDateToday, isLaterThan } from "../utils/dateFunctions";
 import AgentContentCard from "./components/AgentContentCard";
@@ -66,25 +65,30 @@ const Home = () => {
                     <h2>Make money on Click Rwanda</h2>
                </Title>
                <div className="agent-content-card">
-                    <h4>1. Help people open shops on ClickRwanda</h4>
-                    <p>Click Rwanda pays Rwf 200 to verified agents who help people to successfully open shops on the platform.</p>
-                    <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> below. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
-                    <p>After opening the shop. Also guide them on how to add propducts on their shops.</p>
-                    <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyText("agent-open-shop-link")}>Copy Link</button></p>
+                    <h4>1. Sell Click Rwanda membership plans.</h4>
+                    <p>Earn 20% commission on every package you sell. On every successful payment by any business referred by you, you will be paid 20% of the amount paid.</p>
+                    <p>By Selling Click Rwanda packages, you earn a rank in the top agents who are the ones given more tasks than others.</p>
+                    <p><button>View Packages</button></p>
                </div>
                <div className="agent-content-card">
-                    <h4>2. Perform tasks assigned by the system.</h4>
-                    <p>Earn Money by performing simple tasks assigned by Click Rwanda to you. </p>
-                    <p>These tasks include: </p>
-                    <ul>
-                         <li>Earn through people who view our premium products using your referral link.</li>
-                         <li>Earn through people who view our premium shops using your referral link</li>
-                    </ul>
+                    <h4>2. Advertisement of premium ads</h4>
+                    <p>Every agent is assigned a task by Click Rwanda about the ads to advertise. You can find the tasks assigned to you in the tasks section.</p>
+                    <p>Simply you copy the ad link and share via your social medias, whatsapp and other platforms. Then you get paid some amount on the every clicks you get. More clicks more money.</p>
+                    <p><button>View Tasks today</button></p>
                </div>
                <div className="agent-content-card">
-                    <h4>3. Earn Commission by Selling our membership plans to business.</h4>
-                    <p>By view our plans in our plans in the plans button in the footer, Select which to sell and earn commission by selling any of our plans.</p>
+                    <h4>3. Help people open shops on ClickRwanda</h4>
+                    <p>Click Rwanda pays Rwf 50 to verified agents who help people to successfully open shops on the platform.</p>
+                    <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> in the tasks Section. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
+                    {/* <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyText("agent-open-shop-link")}>Copy Link</button></p> */}
+                    <p><button>View Tasks</button></p>
                </div>
+               <div className="agent-content-card">
+                    <h4>4. Other Tasks</h4>
+                    <p>Agents on Click Rwanda can earn huge money by performing others tasks assigned to them. These tasks include advertising our top sellers. </p>
+                    <p><button>View Available</button></p>
+               </div>
+               
           </MainRow>
           <MainRow>
                <Title>

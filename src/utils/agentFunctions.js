@@ -5,7 +5,7 @@ export const calculateRefVisitsTotal = (arr, lastDate) => {
      if(arr && arr[0]){
           arr.forEach(visit => {
                if(!visit.v_type.startsWith('/forms') && isLaterThan(lastDate, visit.v_date)){
-                    totalAmount += 5;
+                    totalAmount += 1;
                }
           })
      }
@@ -20,7 +20,7 @@ export const calculateShopTotal = (arr, lastDate) => {
      if(arr && arr[0]){
           arr.forEach(shop => {
                if(shop.active && isLaterThan(lastDate, shop.reg_date)){
-                    total += 200;
+                    total += 50;
                }
           });
      }

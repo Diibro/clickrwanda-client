@@ -160,7 +160,7 @@ const SignUpForm = () => {
                const {r_id} = fetchIds(location);
                setLoading(true); // Set loading to true when submitting
                const formData = new FormData();
-               formData.append('name', data.name);
+               formData.append('name', data.username);
                formData.append('username', data.username);
                formData.append('email', data.email);
                formData.append('phone', data.phone);
@@ -204,12 +204,12 @@ const SignUpForm = () => {
                <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Sign Up"}} />
                {loading ? <Loading /> : 
                <form onSubmit={handleSubmit(submitForm, onErrors)}>
-               <div className="group">
+               {/* <div className="group">
                     <label htmlFor="name_01">Full name: </label>
                     <input type="text" name="name" id="name_01" {...register('name', {required: true})} placeholder="Ex: Adms Johns..."  />
-               </div>
+               </div> */}
                <div className="group">
-                    <label htmlFor="username_01">Business: </label>
+                    <label htmlFor="username_01">Username: </label>
                     <input type="text" name="username" id="username_01" {...register('username', {required: true})} placeholder="username..."  />
                </div>
                <div className="group">
