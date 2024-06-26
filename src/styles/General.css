@@ -4561,6 +4561,12 @@ textarea{
      padding: 10px;
      position: relative;
      gap:10px;
+     cursor:pointer;
+     transition: all 0.4s ease;
+}
+
+.dash-card-info:hover {
+     box-shadow: 0.2px 0.2px 4px var(--text-color-para2);
 }
 
 .dash-card-info span {
@@ -5268,6 +5274,53 @@ textarea{
      font-size: 0.9rem;
      font-weight: 700;
      color: var(--text-color-para2);
+}
+
+.admin-plans-container {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     background-color: var(--white-text);
+     border-radius: 20px;
+     padding: 10px;
+     margin: auto;
+     transition: all 1s ease;
+     gap: 10px;
+}
+
+.admin-plans-container .title-row{
+     width: 100%;
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     border-radius: 10px;
+     padding: 7.5px 15px;
+     cursor: pointer;
+     transition: all 0.4s ease;
+}
+
+.admin-plans-container .title-row:hover {
+     background-color: var(--back-color-blue1);
+}
+
+.admin-plans-container .plans-container-row {
+     width: 95%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     gap: 20px;
+     flex-wrap: wrap;
+     display: none;
+
+}
+
+.admin-dash-plan-card {
+     width: 30%;
+     border: 1.5px solid var(--text-color-para2);
+     padding: 10px;
+     border-radius: 10px;
 }
 /* buttons */
 

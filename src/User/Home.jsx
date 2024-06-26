@@ -7,9 +7,11 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [user] = useContext(UserContext);
   const {userInfo, userAdverts, shopVisits, reviews} = user;
+
   const navigate = useNavigate();
 useEffect(() => {
   console.log(user);
+  console.log(userAdverts);
 }, [])
   return (
     <DashboardContainer>
@@ -20,10 +22,10 @@ useEffect(() => {
         </div>
       </DashboardRow>
       <DashboardRow>
-        <h3>Shop Statics</h3>
-        <DashHomeCard content={{name:"Total Ads", count: userAdverts?.length || 0}} />
-        <DashHomeCard content={{name:"Reviews", count:reviews?.length || 0} } />
-        <DashHomeCard content={{name:"Shop Visits", count:shopVisits?.length || 0}} />
+        <h3>Shop Statistics</h3>
+        <DashHomeCard content={{name:"Total Ads", count: userAdverts?.length || 0, action: () => navigate("/user-dashboard/user-adverts")}} />
+        <DashHomeCard content={{name:"Reviews", count:reviews?.length || 0, action: () => navigate("/user-dashboard/user-reviews")} } />
+        <DashHomeCard content={{name:"Visits", count:shopVisits?.length || 0, action: () => navigate("/user-dashboard/statistics")}} />
         <DashHomeCard content={{name:"Ads Reported", count:0, classname:"reported"}} />
       </DashboardRow>
       <DashboardRow>

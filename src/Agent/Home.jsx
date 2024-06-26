@@ -7,10 +7,13 @@ import { showMainNotification } from "../utils/AdminFunctions";
 import { getDateToday, isLaterThan } from "../utils/dateFunctions";
 import AgentContentCard from "./components/AgentContentCard";
 import { countVisits } from "../utils/agentFunctions";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
      const [agentData,setAgentData] = useContext(AgentContext);
      const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits } = agentData;
+     const navigate = useNavigate();
+
      const claimPayment = async () => {
           if(totalAmount < 100){
                showMainNotification("fail", "Amount must be greater than Rwf 500", () => {} )
@@ -74,19 +77,19 @@ const Home = () => {
                     <h4>2. Advertisement of premium ads</h4>
                     <p>Every agent is assigned a task by Click Rwanda about the ads to advertise. You can find the tasks assigned to you in the tasks section.</p>
                     <p>Simply you copy the ad link and share via your social medias, whatsapp and other platforms. Then you get paid some amount on the every clicks you get. More clicks more money.</p>
-                    <p><button>View Tasks today</button></p>
+                    <p><button onClick={() => navigate("/agent/tasks")}>View Tasks today</button></p>
                </div>
                <div className="agent-content-card">
                     <h4>3. Help people open shops on ClickRwanda</h4>
                     <p>Click Rwanda pays Rwf 50 to verified agents who help people to successfully open shops on the platform.</p>
                     <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> in the tasks Section. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
                     {/* <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyText("agent-open-shop-link")}>Copy Link</button></p> */}
-                    <p><button>View Tasks</button></p>
+                    <p><button onClick={() => navigate("/agent/tasks")}>View Tasks</button></p>
                </div>
                <div className="agent-content-card">
                     <h4>4. Other Tasks</h4>
                     <p>Agents on Click Rwanda can earn huge money by performing others tasks assigned to them. These tasks include advertising our top sellers. </p>
-                    <p><button>View Available</button></p>
+                    <p><button onClick={() => navigate("/agent/tasks")}>View Available</button></p>
                </div>
                
           </MainRow>

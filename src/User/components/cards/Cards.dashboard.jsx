@@ -8,7 +8,7 @@ const DashCard = () => {
 
 export const DashHomeCard = ({content}) => {
      return (
-          <div className={`home-dash-card home-dash-card-${content.classname}`}>
+          <div onClick={content?.action} className={`home-dash-card home-dash-card-${content.classname}`}>
                <h2>{content?.count}</h2>
                <b>{content?.name}</b>
           </div>

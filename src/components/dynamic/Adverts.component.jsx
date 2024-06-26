@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import { AdvertRow} from "./Advert.componet";
 const AdvertRenderer = React.lazy(() => import("./Advert.componet"))
 import { SubmitButton } from "./Buttons";
-import { ImCross } from "react-icons/im";
 import server from "../../config/Server";
-import { TiTick } from "react-icons/ti";
 import { MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
@@ -21,6 +19,8 @@ import { useTranslation } from "react-i18next";
 import { getRwandaTime } from "../../utils/dateFunctions";
 import Banner728x90 from "../../AdSterra/Banner728x90";
 import { parseString, stringfyObject } from "../../utils/jsonFunctions";
+import { showMainNotification } from "../../utils/AdminFunctions";
+
 
 export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
@@ -115,15 +115,6 @@ export const AddAdvertForm = () => {
   const {categories, subCategories} = data; 
   const [descFields,setDescFields] = useState(null); 
 
-  const raiseAlert = (type, message, icon) => {
-    setData((prev)=> ({
-        ...prev,
-        alertView:{
-              on: true,
-              content: {type, message, icon}
-        }
-    }));
-}
 
   const submitForm =async (event) => {
     event.preventDefault();
@@ -146,14 +137,13 @@ export const AddAdvertForm = () => {
       
       const res = await server.addAdvert(formData);
       if(res.status === "pass"){
-        raiseAlert('success', `${res.message} as ${adInfo.ad_name}`, <TiTick />);
-        navigate('/user-dashboard/user-adverts');
+        return showMainNotification('pass', `${res.message} as ${adInfo.ad_name}`, () => navigate('/user-dashboard/user-adverts'));
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') navigate("/forms/login");
-        return raiseAlert('fail', `${res.message} .Try again`, <ImCross />);
+        return showMainNotification('fail', `${res.message} .Try again`, () => {});
       }
     } catch (error) {
-      return raiseAlert('fail', 'An error occurred. Try again later', <ImCross />);
+      return showMainNotification('fail', 'An error occurred. Try again later', () => {});
     }finally{
       setLoading(false);
     }

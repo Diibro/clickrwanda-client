@@ -23,6 +23,7 @@ import AdvertService from "../services/Advert";
 import SubCategoryService from "../services/SubCategory";
 import WebViewService from "../services/WebView";
 import PayPlanService from "../services/PaymentPlan";
+import Plans from "./Plans";
 
 export const AdminContext = createContext();
 
@@ -53,8 +54,6 @@ const AdminLayout = () => {
           const subCats = await SubCategoryService.getAll();
           const webViews = await WebViewService.getAllVisits();
           const plans = await PayPlanService.getAll();
-          console.log(adverts);
-          console.log(shops);
           setAdminData((prev) => ({
                ...prev,
                locations: districts,
@@ -102,6 +101,7 @@ const AdminLayout = () => {
                                    <Route path="/adverts" element={<AdvertsPage />} />
                                    <Route path="/settings" element={<Settings />} />
                                    <Route path="/shops" element={<ShopsPage />} />
+                                   <Route path="/plans/*" element={<Plans />} />
                                    <Route path="/logout" element={<Logout />} />
                               </Routes>
                          </div>

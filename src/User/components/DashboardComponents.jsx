@@ -7,6 +7,7 @@ import { CiLogout } from "react-icons/ci";
 import { useContext, useState } from 'react';
 import UserContext from '../../Contexts/UserContext';
 import DeviceView from '../../Contexts/ViewContext';
+import { FcStatistics } from "react-icons/fc";
 
 export const  MainContainer = ({children}) => {
      return(
@@ -42,6 +43,7 @@ export const NavContainer = () => {
                     <LinkContainer content={{to:'/', name: 'Home', icon: <IoHome />}} />
                     <LinkContainer content={{to:'/profile-settings', name: 'View Profile', icon: <IoSettings />}} />
                     <LinkContainer content={{to:'/user-adverts', name: 'My Adverts', icon: <LiaAdversal />}} />
+                    <LinkContainer content={{to:"/statistics", name: "Shop Visits", icon: <FcStatistics />}}  />
                     <LinkContainer content={{to:'/user-reviews', name:  'Reviews', icon: <MdRateReview />}} />
                     <LinkContainer content={{to:'/payment-plans', name: 'Payment Plans', icon: <MdOutlinePayment />}} />
                     <LinkContainer content={{to:'/logout', name:'Log out', icon: <CiLogout />}} />

@@ -8,6 +8,7 @@ import Logout from "./Logout";
 import { useEffect } from "react";
 import { UserReviews } from "./Reviews";
 import { ContentContainer, MainContainer, NavContainer } from "./components/DashboardComponents";
+import ShopStatistics from "./ShopStatistics";
 
 const UserLayout = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const UserLayout = () => {
             <Route path='/payment-plans' element={<PayPlans />} />
             <Route path="/user-adverts/*" element={<MyAdverts />} />
             <Route path="/user-reviews" element={<UserReviews />} />
+            <Route path="/statistics" element={<ShopStatistics />} />
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </ContentContainer>
