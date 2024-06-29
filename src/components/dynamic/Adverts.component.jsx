@@ -18,7 +18,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
 import { getRwandaTime } from "../../utils/dateFunctions";
 import Banner728x90 from "../../AdSterra/Banner728x90";
-import { parseString, stringfyObject } from "../../utils/jsonFunctions";
+import { parseString} from "../../utils/jsonFunctions";
 import { showMainNotification } from "../../utils/AdminFunctions";
 import uploadFile, { uploadMany } from "../../utils/aws-upload-functions";
 import { s3Folders } from "../../config/s3Config";
