@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import UserContext from "../../Contexts/UserContext";
 import { ActionBtn } from "../dynamic/Buttons";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
 import AppData from "../../Contexts/AppContext";
 const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png';
@@ -18,7 +18,6 @@ const DesktopHeader = () => {
      const [deviceView] = useContext(DeviceView);
      const {isTablet,isMobile} = deviceView;
      const [navOn, setNavOn] = useState(false);
-     const location = useLocation();
      const navigate = useNavigate();
      const agentToken = sessionStorage.getItem("agentToken");
 
@@ -54,7 +53,7 @@ const DesktopHeader = () => {
                <div className="header-profile">
                     <LanguageChanger />
                     {!loggedIn && !agentToken ? <ActionBtn action={activateForm} title={content.buttons[0].name} /> : null}
-                    {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo.role === 'user' && !location.pathname.includes("/user-dashboard") ? "/user-dashboard" : agentToken ? "/agent" : "/admin"} className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
+                    {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo.user_type === 'user' ? "/user-dashboard" : agentToken ? "/agent" : "/admin"} className="header-profileImage"><img src={userInfo.profile_image || profileImage} alt="" /></Link> : null}
                     {/* {loggedIn && (isMobile || isTablet) ? <i className="mobile-header-toggler"><BiMenu /></i> : null} */}
                     <ActionBtn action={activateForm} title={isTablet || isMobile ? content.buttons[1].name : content.buttons[1].name } />
                </div>

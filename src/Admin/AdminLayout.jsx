@@ -73,7 +73,7 @@ const AdminLayout = () => {
                const userInfoString = sessionStorage.getItem("userData");
                if(userInfoString  && userInfoString != undefined) {
                     const userinfo = JSON.parse(userInfoString);
-                    if(loginToken && userinfo && userinfo.role === "admin"){
+                    if(loginToken && userinfo && userinfo.user_type === "admin"){
                          setAdminData((prev) => ({...prev, logged:true, adminInfo:userinfo}))
                     }
                }

@@ -3,9 +3,11 @@ import { AdminContext } from '../../AdminLayout';
 import DashTitle from '../DashTitle';
 import { nameLookerExact } from '../../../utils/otherFunctions';
 import AdvertService from "../../../services/Advert"
-import { showNotification, toggleForms } from '../../../utils/AdminFunctions';
+import { showMainNotification, showNotification, toggleForms } from '../../../utils/AdminFunctions';
 import { sortByAny } from '../../../utils/filterFunctions';
 import { parseString } from '../../../utils/jsonFunctions';
+import uploadFile from '../../../utils/aws-upload-functions';
+import { s3Folders } from '../../../config/s3Config';
 
 const AdvertForms = () => {
      const [adminData] = useContext(AdminContext);
@@ -52,56 +54,60 @@ const UpdateAdvertForm = () => {
 
      const submitUpdate = async(e) => {
           e.preventDefault();
-          if(ad){
-               const formData = new FormData();
-               for(const [key, value] of Object.entries(ad)){
-                    if(key === "ad_images"){
-                         formData.append(key, JSON.stringify(value));
-                    }else if(key === "description"){
-                         formData.append(key, JSON.stringify(value));
-                    }else if(key === "ad_new_image"){
-                         formData.append("image", value);
-                    }else{
-                         formData.append(key, value);
+          try {
+               if(ad){
+                    const newAdInfo = {};
+
+                    Object.entries(ad).forEach(([key,value]) => {
+                         newAdInfo[key] = value;
+                    })
+
+                    if(ad.ad_new_image){
+                         const newimageUrl = await uploadFile(ad.ad_new_image, s3Folders.adverts);
+                         newAdInfo.ad_image = newimageUrl;
                     }
-               }
-               const res = await AdvertService.updateAd(formData);
-               console.log(res);
-               if(res){
-                    if(res.status === "success"){
-                         const newAds = sortByAny([...(adverts.filter((item) => item.ad_id !== ad.ad_id)), res.data], "ad_date")
-                         setAdminData((prev) => 
-                              ({
-                                   ...prev, 
-                                   notification: {type:"pass", message: res.message},
-                                   adverts: [...newAds]
-                              })
-                         );
-                         showNotification();
-                         closeFormsContainer();
+                    const res = await AdvertService.updateAd(newAdInfo);
+                    if(res){
+                         if(res.status === "success"){
+                              const newAds = sortByAny([...(adverts.filter((item) => item.ad_id !== ad.ad_id)), res.data], "ad_date")
+                              setAdminData((prev) => 
+                                   ({
+                                        ...prev, 
+                                        notification: {type:"pass", message: res.message},
+                                        adverts: [...newAds]
+                                   })
+                              );
+                              showNotification();
+                              document.getElementById("admin-ad-update-form").reset();
+                              closeFormsContainer();
+                         }else{
+                              setAdminData((prev) => 
+                                   ({
+                                        ...prev, 
+                                        notification: {type:"fail", message: res.message}
+                                   })
+                              );
+                              showNotification();
+                         }
                     }else{
-                         setAdminData((prev) => 
-                              ({
-                                   ...prev, 
-                                   notification: {type:"fail", message: res.message}
-                              })
-                         );
+                         setAdminData((prev) => ({
+                              ...prev,
+                              notification: {type: "fail", message: "unable to connect to server"}
+                         }))
                          showNotification();
                     }
                }else{
                     setAdminData((prev) => ({
                          ...prev,
-                         notification: {type: "fail", message: "unable to connect to server"}
+                         notification: {type: "fail", message: "system error."}
                     }))
                     showNotification();
                }
-          }else{
-               setAdminData((prev) => ({
-                    ...prev,
-                    notification: {type: "fail", message: "system error."}
-               }))
-               showNotification();
+          } catch (error) {
+               console.log(error);
+               showMainNotification("fail", "Error updating advert", () => {});
           }
+          
      }
 
      return (
@@ -113,7 +119,7 @@ const UpdateAdvertForm = () => {
                               <h2>Edit Advert: </h2>
                               <h4>{ad.ad_name}</h4>
                          </DashTitle>
-                         <form className="admin-advert-update-form" onSubmit={async (e) =>await submitUpdate(e)}>
+                         <form className="admin-advert-update-form" id='admin-ad-update-form' onSubmit={async (e) =>await submitUpdate(e)}>
                               <div className="group">
                                    <label htmlFor="ad_name_01">Title: </label>
                                    <input type="text" name='ad_name' id='ad_name_01' defaultValue={ad.ad_name} onChange={(e) => updateAd(e.target.value, "ad_name")} />
@@ -181,7 +187,7 @@ const UpdateAdvertForm = () => {
                                    <label htmlFor="ad_image_01">Image:</label>
                                    <div className="image-row">
                                         <div className="img"><img src={ad.ad_image} alt={ad.ad_name} width={150} /></div>
-                                        {ad.ad_new_image &&<div className="img"><img src={URL.createObjectURL(ad.ad_new_image)} alt="new Image" width={150} /></div>}
+                                        {ad.ad_new_image && ad.ad_new_image instanceof File ? <div className="img"><img src={URL.createObjectURL(ad?.ad_new_image)} alt="new Image" width={150} /></div>: null}
                                    </div>
                                    <input type="file" name="ad_image" id="ad_image_01" onChange={(e) => updateAd(e.target.files[0], "ad_new_image")} />
                               </div>

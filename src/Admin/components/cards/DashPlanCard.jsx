@@ -7,7 +7,7 @@ const DashPlanCard = ({plan}) => {
                     plan ? 
                     
                     <div className="admin-dash-plan-card">
-                         <h2>{plan.plan_id}</h2>
+                         <h2>{plan.plan_name}</h2>
                     </div>
                     :null
                }

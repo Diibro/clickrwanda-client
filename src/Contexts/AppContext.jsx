@@ -1,8 +1,10 @@
 import {useState, createContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import server from '../config/Server';
+import AdvertService from "../services/Advert";
 import { useLocation } from 'react-router-dom';
 import { getDataLocal, saveData } from '../utils/storageFunctions';
+import { getAdvertsInfo } from '../utils/AdvertFunctions';
 
 const AppData = createContext();
 
@@ -14,6 +16,7 @@ export const AppProvider = ({children}) => {
           fetchNow: false,
           appOnline:true,
           categories:[],
+          allAdverts:[],
           adverts: [],
           boosted: [],
           bestSellers: [],
@@ -37,16 +40,22 @@ export const AppProvider = ({children}) => {
           try{
                const categoriesData = await server.get('categories',null);
                const resData = await server.get('adverts',{page: 1, boost: 20, boostSellers: true,boostNum:10, todayDeals:50, website:50});
-               const {generalAds:advertsData, boostedAds:boosted, bestSellers:boostedSellers, discounted, adWebsites} = resData?.adWebsites ? resData : {};
+               // const {generalAds:advertsData, boostedAds:boosted, bestSellers:boostedSellers, discounted, adWebsites} = resData?.adWebsites ? resData : {};
+               const { bestSellers:boostedSellers} = resData?.adWebsites ? resData : {};
                const subCategoriesData = await server.get('sub categories',null);
                const payPlansData = await server.get('payment plans', null);
-               const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted, adWebsites}
+
+               const {data:allAdverts} = await AdvertService.getAllApproved();
+               const {newAdverts: advertsData, todayDeals:discounted, websiteAds:adWebsites, boosted} = getAdvertsInfo(allAdverts);
+               const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted, adWebsites, allAdverts}
+
                
                if(appData && appData.categoriesData && appData.categoriesData[0]){
                     setData((prev) => ({
                          ...prev,
                          categories: categoriesData,
                          adverts: advertsData,
+                         allAdverts: allAdverts,
                          subCategories: subCategoriesData,
                          payPlans: payPlansData,
                          boosted: boosted,
@@ -70,11 +79,13 @@ export const AppProvider = ({children}) => {
                if(localData ){
                     const {value: sessionData} = localData;
                     if (sessionData){
-                         const {categoriesData, subCategoriesData, advertsData, payPlansData, boosted, boostedSellers, discounted, adWebsites} = sessionData;
+                         const {categoriesData, subCategoriesData, payPlansData, boostedSellers,allAdverts} = sessionData;
+                         const {newAdverts: advertsData, todayDeals:discounted, websiteAds:adWebsites, boosted} = getAdvertsInfo(allAdverts);
                          setData((prev) => ({
                               ...prev,
                               categories: categoriesData,
                               adverts: advertsData,
+                              allAdverts: allAdverts,
                               boosted:boosted,
                               subCategories: subCategoriesData,
                               payPlans: payPlansData,
@@ -96,6 +107,7 @@ export const AppProvider = ({children}) => {
                setData((prev) => ({...prev, loading: false}));
           }
      };
+
      useEffect(() => {
           if(!data.categories[0]){
                if(location.pathname === '/' || fetchNow){

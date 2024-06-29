@@ -6,6 +6,7 @@ import AgentForms from "./AgentForms";
 import AdvertForms from "./AdvertForms";
 import ShopForms from "./ShopForms";
 import { useLocation } from "react-router-dom";
+import PlansForms from "./PlansForms";
 
 const AdminForms = () => {
      const [adminData,setAdminData] = useContext(AdminContext);
@@ -32,7 +33,7 @@ const AdminForms = () => {
                     <ImCross />
                </i>
                {
-                    activeForm.type === "agent" ? <AgentForms/> : activeForm.type === "advert" ? <AdvertForms/> : activeForm.type === "shop" ? <ShopForms /> : null 
+                    activeForm.type === "agent" ? <AgentForms/> : activeForm.type === "advert" ? <AdvertForms/> : activeForm.type === "shop" ? <ShopForms /> : activeForm.type === "plans" ? <PlansForms /> : null 
                }
           </div>
      )

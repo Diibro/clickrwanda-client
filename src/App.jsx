@@ -1,4 +1,4 @@
-
+import "./init"
 import Layout from "./Pages/Layout"
 import './App.css';
 import { AppProvider } from "./Contexts/AppContext";

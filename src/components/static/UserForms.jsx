@@ -14,6 +14,8 @@ import {getDateToday, getRwandaTime} from "../../utils/dateFunctions";
 import AgentService from "../../services/Agent";
 import { fetchIds } from "../../utils/urlFunctions";
 import { showMainNotification } from "../../utils/AdminFunctions";
+import uploadFile from "../../utils/aws-upload-functions";
+import { s3Folders } from "../../config/s3Config";
 
 
 const UserForms = () => {
@@ -60,11 +62,11 @@ const LoginForm = () => {
      const submitForm = async (data) => {
           try {
                setLoading(true);
-               console.log(data);
                const formData = new FormData();
                formData.append('email', data.email);
                formData.append('password', data.password);
                const res = await server.login(data);
+               console.log(res);
                if(res.status === "pass"){
                     sessionStorage.setItem('loginToken', res.loginToken);
                     sessionStorage.setItem('userData', JSON.stringify(res.data));
@@ -72,9 +74,10 @@ const LoginForm = () => {
                          ...prev,
                          userInfo: res.data,
                          loggedIn: true,
-                         activeForm:''
+                         activeForm:'',
+                         fetchNow:true
                     }));
-                    if(res.data.role !== "user" ){
+                    if(res.data.user_type !== "user" ){
                          return showMainNotification("pass", `You have been logged as admin`, () => navigate("/admin"));
                     }else{
                          return showMainNotification('pass', `${res.message} as ${res.data.username}`, () => navigate('/user-dashboard'))
@@ -153,23 +156,29 @@ const SignUpForm = () => {
      const navigate = useNavigate();
      const [locations, setLocations] = useState([]);
      const location = useLocation();
+     const [profileImage,setProfileImage] = useState();
 
      const submitForm = async (data) => {
           try {
                let date  = getRwandaTime();
                const {r_id} = fetchIds(location);
+
                setLoading(true); // Set loading to true when submitting
-               const formData = new FormData();
-               formData.append('name', data.username);
-               formData.append('username', data.username);
-               formData.append('email', data.email);
-               formData.append('phone', data.phone);
-               formData.append('userType', 'user');
-               formData.append('password', data.password);
-               formData.append('location', JSON.stringify(data.location));
-               formData.append('registrationDate', date);
-               formData.append('r_id', r_id);
-               const res = await server.register(formData);
+               const profileImageUrl = await uploadFile(profileImage, s3Folders.logos);
+               const userData = {
+                    name: data.username,
+                    username: data.username,
+                    email: data.email,
+                    phone: data.phone,
+                    userType: 'user',
+                    password: data.password,
+                    location: {location: data.location},
+                    registrationDate: date,
+                    r_id,
+                    business_type: data.business_type,
+                    user_image: profileImageUrl
+               };
+               const res = await server.register(userData);
                if (res.status === "pass") {
                showMainNotification('pass', 'Successfully created the account', () => navigate("/forms/login"));
                
@@ -209,6 +218,15 @@ const SignUpForm = () => {
                     <input type="text" name="name" id="name_01" {...register('name', {required: true})} placeholder="Ex: Adms Johns..."  />
                </div> */}
                <div className="group">
+                    <label htmlFor="business-type-01">Business Size: </label>
+                    <select name="business-type-01" id="business-type-01" {...register('business_type', {required:true})}>
+                         <option value="" disabled selected>Select Business size...</option>
+                         <option value="Individual">Individual</option>
+                         <option value="Small Business">Small Business</option>
+                         <option value="Large Business">Large Business</option>
+                    </select>
+               </div>
+               <div className="group">
                     <label htmlFor="username_01">Username: </label>
                     <input type="text" name="username" id="username_01" {...register('username', {required: true})} placeholder="username..."  />
                </div>
@@ -233,6 +251,13 @@ const SignUpForm = () => {
                          {locations[0] ? <option value="Kigali" >Kigali</option> : null}
                          {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
                     </select>
+               </div>
+               <div className="group">
+                    <label htmlFor="profile_image">Business Logo:</label>
+                    <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} required />
+                    {
+                         profileImage && profileImage instanceof File ? <img width={100} src={URL.createObjectURL(profileImage)}  /> : null
+                    }
                </div>
                <div className="terms-group">
                     <input type="checkbox" name="terms-check-box" id="terms-check-box" required/>

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import UserService from "../services/User";
 import server from "../config/Server";
+import { useNavigate } from "react-router-dom";
+import { showMainNotification } from "../utils/AdminFunctions";
 
 const UserContext = createContext();
 
@@ -14,19 +16,28 @@ export const UserProvider = ({children}) => {
           shopVisits: [],
           reviews: [],
           activeForm: '',
-          loggedIn: false
+          loggedIn: false,
+          fetchNow:""
      });
+     const navigate = useNavigate();
 
      const fetchUserData = async (userId) => {
           if(userId  && userId != ''){
                const res = await UserService.getUserDashBoard(userId);
                const userAds = await server.getUserAdverts();
+               console.log(userAds);
                if(userAds.status === "pass"){
                     setUser((prev) => ({
                          ...prev,
                          userAdverts: userAds.data
                     }))
-               }
+               }else if(userAds.message === "Authentication Error"){
+                    setUser(prev => ({
+                         ...prev,
+                         loggedIn:false
+                    })) 
+                    showMainNotification("fail", "Session Timeout", () => navigate("/forms/login"));
+               }    
                if(res){
                     const {data} = res;
                     setUser(prev => ({
@@ -53,10 +64,15 @@ export const UserProvider = ({children}) => {
                     loggedIn: true
                     }));
 
-                    (async() => await fetchUserData(userData.id))();
+                    (async() => await fetchUserData(userData.user_id))();
                }
+               
+          }else{
+               setUser(prev => ({
+                    ...prev, loggedIn:false
+               }))
           }
-     }, []);
+     }, [user?.fetchNow]);
 
      return(
           <UserContext.Provider value={[user, setUser]} >{children}</UserContext.Provider>

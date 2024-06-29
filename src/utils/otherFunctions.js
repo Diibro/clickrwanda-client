@@ -69,7 +69,6 @@ export const openNewTab = (url) => {
 
 export const getParagraphs = (text, wordsPerParagraph) => {
   try {
-    console.log(text);
     let words = text.split(/\s+/);
     let sentences = text.split(". ");
 

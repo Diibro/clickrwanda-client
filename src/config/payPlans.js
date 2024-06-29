@@ -208,4 +208,14 @@ export const ExtraBoostPlans = [
                {months: 12, price: 0}
           ]
      },
+];
+
+export const PlansAllowedFields = [
+     "Adress & Contact Visibility",
+     "Personal Support Manager",
+     "Agents Promotion",
+     "Listed in top sellers",
+     "Email & Social Media promotion",
+     "Youtube Video Promotion",
+     "Social Media/Website Link inclusion"
 ]

@@ -3,6 +3,7 @@ const  serverUrl = import.meta.env.VITE_BASE_URL;
 export default {
      advert: {
           findAll: `${serverUrl}/api/advert/all-adverts`,
+          findAllApproved: `${serverUrl}/api/advert/all-approved`,
           getAll: `${serverUrl}/api/advert/1`,
           save: `${serverUrl}/api/advert/2`,
           update: `${serverUrl}/api/advert/3`,

@@ -20,6 +20,8 @@ import { getRwandaTime } from "../../utils/dateFunctions";
 import Banner728x90 from "../../AdSterra/Banner728x90";
 import { parseString, stringfyObject } from "../../utils/jsonFunctions";
 import { showMainNotification } from "../../utils/AdminFunctions";
+import uploadFile, { uploadMany } from "../../utils/aws-upload-functions";
+import { s3Folders } from "../../config/s3Config";
 
 
 export const Adverts = ({eleId,limit}) => {
@@ -81,6 +83,18 @@ export const Adverts = ({eleId,limit}) => {
     
 }
 
+export const AdvertsContainer = ({content}) => {
+  const {adverts, title, containerId, adsNo} =  content;
+  return (
+    <>
+      <InnerSection type="title" eleId={containerId} >
+        {title}
+      </InnerSection>
+      <VerticalAds ads={adverts} adsNo={adsNo} eleId={containerId} />
+    </>
+  )
+}
+
 export const SimilarAds = ({limit, adverts}) => {
   if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
     return(
@@ -120,22 +134,21 @@ export const AddAdvertForm = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const formData = new FormData();
-      formData.append('ad_name', adInfo.ad_name);
-      formData.append('description', stringfyObject(adDescription));
-      formData.append('ad_type', adInfo.ad_type);
-      formData.append('ad_price', adInfo.ad_price);
-      formData.append('contact', adInfo.contact);
-      formData.append('image', adInfo.ad_image);
-      formData.append('registrationDate', getRwandaTime());
-      if (adInfo.otherImages) {
-        for (let i = 0; i < Array.from(adInfo.otherImages).length; i++) {
-          formData.append(`otherImage`, Array.from(adInfo.otherImages)[i]);
-        }
+      const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.adverts);
+      const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.adverts);
+      const newAd = {
+        ad_name: adInfo.ad_name,
+        description: adDescription,
+        ad_type: adInfo.ad_type,
+        ad_price: adInfo.ad_price,
+        contact: adInfo.contact,
+        ad_image: adImageUrl,
+        ad_images: adImagesUrls,
+        registrationDate: getRwandaTime(),
+        sub_category_id: adInfo.subCategory_id,
       }
-      formData.append('sub_category_id',adInfo.subCategory_id);
       
-      const res = await server.addAdvert(formData);
+      const res = await server.addAdvert(newAd);
       if(res.status === "pass"){
         return showMainNotification('pass', `${res.message} as ${adInfo.ad_name}`, () => navigate('/user-dashboard/user-adverts'));
       }else{
@@ -143,6 +156,7 @@ export const AddAdvertForm = () => {
         return showMainNotification('fail', `${res.message} .Try again`, () => {});
       }
     } catch (error) {
+      console.log(error);
       return showMainNotification('fail', 'An error occurred. Try again later', () => {});
     }finally{
       setLoading(false);
@@ -338,6 +352,12 @@ export const VerticalAds = ({ ads, adsNo, eleId }) => {
     pageArr.push(i);
   }
 
+  useEffect(() => {
+    if(ads && ads[0]){
+      setAdsViewed([...ads.slice(0,adsNo)])
+    }
+  },[ads])
+
   const changePage = (num) => {
     if (num <= pages && num > 0) {
       try {
@@ -366,9 +386,7 @@ export const VerticalAds = ({ ads, adsNo, eleId }) => {
       {adsViewed && adsViewed[0] && !loading ? (
         <>
           {adsViewed.map(item => (
-            <React.Suspense key={item.ad_id} fallback={<LoadingAd />}>
-              <AdvertRenderer item={item} />
-            </React.Suspense>
+            <AdvertRenderer item={item} key={item.ad_id} />
           ))}
           <div className="pagination">
             <i onClick={() => changePage(currentPage - 1)} className="nav">
@@ -491,4 +509,8 @@ VerticalAds.propTypes = {
   ads: PropTypes.any,
   adsNo: PropTypes.number,
   eleId: PropTypes.any
+}
+
+AdvertsContainer.propTypes = {
+  content: PropTypes.object
 }

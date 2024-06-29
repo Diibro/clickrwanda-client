@@ -70,6 +70,6 @@ const AdvertsContainer = ({adverts}) => {
 }
 
 AdvertsContainer.propTypes = {
-     adverts: PropTypes.array.isRequired
+     adverts: PropTypes.array
 }
 export default AdvertsContainer

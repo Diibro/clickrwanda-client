@@ -61,5 +61,15 @@ export default {
                console.log(error);
                return null
           }
+     },
+     getAllApproved: async() => {
+          try {
+               const res = await axios.get(Server.advert.findAllApproved);
+               const info = res.data;
+               return info;
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
      }
 }

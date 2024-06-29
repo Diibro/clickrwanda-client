@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import {  fetchIds, getItemUrl } from "../utils/urlFunctions";
-import {  useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunctions";
 import { jsonParserV1, parseString } from "../utils/jsonFunctions";
 import { FaEye, FaLocationDot, FaPhone } from "react-icons/fa6";
@@ -18,19 +18,30 @@ import { Helmet } from "react-helmet";
 import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
 import { Banners } from "../config/banners";
 import { VscVerifiedFilled } from "react-icons/vsc";
+import AppData from "../Contexts/AppContext";
+import { getSimilarAds } from "../utils/AdvertFunctions";
 
 
 const AdvertPage = () => {
      const location = useLocation();
+     const [data, setData] = useContext(AppData);
+     const {allAdverts} = data;
      const [loading, setLoading] = useState(false);
      const [adViewed, setAdViewed] = useState(null);
-     const [otherAds, setOtherAds] = useState(null);
+     const [sameVendorAds, setSameVendorsAds] = useState([]);
+     const [samecategoryAds, setSameCategoryAds] = useState([]);
      const images = jsonParserV1(adViewed?.ad_images || null);
      const [mainImage, setMainImage] = useState(null);
      const [adDescription,setAdDescription] = useState(null);
 
 
      const{ v_id:adId} = fetchIds(location);
+
+     const updateSimilarAds = () => {
+          const {sameCategory,sameVendor} = getSimilarAds(allAdverts, adViewed);
+          setSameVendorsAds(sameVendor);
+          setSameCategoryAds(sameCategory);
+     }
      
      const updateAdViewed = async () => {
           let check = 0;
@@ -40,11 +51,9 @@ const AdvertPage = () => {
                     try {
                          const ad = adDatas.adData;
                          if(ad && adId === ad.ad_id){
-                              const {sameCategory, sameSubCategory} = adDatas;
+                              // const {sameCategory, sameSubCategory} = adDatas;
                               setAdViewed(ad);
-                              setOtherAds(sameSubCategory || sameCategory || null);
-                              setMainImage(ad.ad_image);
-                              console.log(ad);
+                              setMainImage(ad?.ad_image);
                               setAdDescription(parseString(ad.description));
                               check = 1;
                          }
@@ -57,12 +66,12 @@ const AdvertPage = () => {
                if(check === 0){
                     setLoading(true);
                     const res = await server.searchAd({ad_id:adId});
-                    saveData("adViewed",res.data, 5);
-                    const {adData, sameCategory, sameSubCategory} = res.data;
+                    console.log(res);
+                    saveData("adViewed",res.data, 10);
+                    const adData = res.data;
                     setAdViewed(adData);
                     setMainImage(adData.ad_image);
                     setAdDescription(parseString(adData.description));
-                    setOtherAds([...sameSubCategory, ...sameCategory]);
                }
           } catch (error) {
                console.log(`"Advert page error: "${error}`);
@@ -74,8 +83,18 @@ const AdvertPage = () => {
      }
      useEffect(() => {
                window.scrollTo(0,0);
-               updateAdViewed();
+               (async () => await updateAdViewed())();
      }, [location.search]);
+
+     useEffect(() => {
+          if(adViewed){
+               if(allAdverts && allAdverts[0]){
+                    updateSimilarAds();
+               }else{
+                    setData((prev) => ({...prev, fetchNow: true}));
+               }
+          }
+     }, [adViewed, allAdverts]);
   return (
      <>
           <Helmet>
@@ -171,8 +190,19 @@ const AdvertPage = () => {
                               </div>
                          </div>
                          <div className="advert-page-others">
-                              <h3>Similar ads</h3>
-                              {otherAds ? <SimilarAds limit={50} adverts={otherAds} /> : <>no similarads</>}
+                              {sameVendorAds && sameVendorAds[0] ? 
+                                   <>
+                                        <h3>More Ads from {adViewed?.username} shop</h3>
+                                        <SimilarAds limit={10} adverts={sameVendorAds} />
+                                   </>
+                              : null}
+                              
+                              {samecategoryAds && samecategoryAds[0] ? 
+                                   <>
+                                        <h3>More {adViewed?.category_name} Ads</h3>
+                                        <SimilarAds limit={10} adverts={samecategoryAds} />
+                                   </>
+                              :null}
                          </div>
                          </>
                          : <Loading/>

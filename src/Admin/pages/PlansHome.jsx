@@ -1,13 +1,22 @@
 import { useContext, useEffect, useState } from "react"
 import { AdminContext } from "../AdminLayout"
 import DashPlanCard from "../components/cards/DashPlanCard";
+import { AddButton } from "../components/buttons/ActionButtons";
+import { toggleForms } from "../../utils/AdminFunctions";
 
 const PlansHome = () => {
-     const [adminData] = useContext(AdminContext);
+     const [adminData,setAdminData] = useContext(AdminContext);
      const {paymentPlans} = adminData;
      const [catPlans, setCatPlans] = useState(null);
      const [activePlans, setActivePlans] = useState("");
-     
+
+     const updateActivePlans = (plansName) => {
+          if(activePlans === plansName) {
+               setActivePlans("");
+          }else{
+               setActivePlans(plansName);
+          }
+     }
      const updateCatPlans = () => {
           if(paymentPlans && paymentPlans[0]){
                const dividedPlans = {"Individual":[], "Small Business": [], "Large Business": [], "Extra Boost Packages": [], "undefined": []};
@@ -28,6 +37,19 @@ const PlansHome = () => {
           }
      }
 
+     const showPlansAddForm = (plan_type) => {
+          setAdminData((prev) => ({
+               ...prev, 
+               activeForm: {
+                    type: "plans",
+                    formName: "Add Plan",
+                    planType: plan_type,
+                    nextId: `${plan_type}`
+               }
+          }))
+          toggleForms(true);
+     }
+
      useEffect(() => {
           updateCatPlans();
      }, [paymentPlans]); 
@@ -38,8 +60,11 @@ const PlansHome = () => {
                     catPlans ? 
                     Object.entries(catPlans).map(([key, value], index) => 
                          <div className="admin-plans-container" key={`admin-plans-row-${key}-${index}`}>
-                              <div className="title-row"><h3>{key}</h3></div>
-                              <div className="plans-container-row">
+                              <div className={`title-row ${activePlans === key ? "active-plans-title" : ""}`} onClick={() => updateActivePlans(key)}><h3>{key}</h3></div>
+                              <div className={`plans-container-row ${activePlans === key ? "active-plans" : ""} `}>
+                                   <div className="actions-row">
+                                        <AddButton title={"Add New Plan"} action={() => showPlansAddForm(key)} />
+                                   </div>
                                    {
                                         value.map(item => <DashPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} />)
                                    }

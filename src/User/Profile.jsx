@@ -6,6 +6,9 @@ import { SubmitButton } from "../components/dynamic/Buttons";
 import server from "../config/Server";
 import { Loadingv2 } from "../components/static/Loading";
 import { showMainNotification } from "../utils/AdminFunctions";
+import uploadFile from "../utils/aws-upload-functions";
+import { s3Folders } from "../config/s3Config";
+import locations from "../data/Location.json"
 
 const Profile = () => {
   const [user, setUser] = useContext(UserContext);
@@ -35,26 +38,27 @@ const Profile = () => {
 
   useEffect(() => {
     updateProfileImage();
-    console.log(userInfo);
   }, [newImage, user]);
 
   const submitForm = async (data) => {
     try {
       setLoading(true);
-      const newData = new FormData();
-      newData.append('user_id', userInfo.id);
-      newData.append('name', data.name || userInfo.name || userInfo.full_name);
-      newData.append('username', data.username || userInfo.username);
-      newData.append('phone', data.phone || userInfo.phone || userInfo.user_phone);
-      newData.append('active', userInfo.active);
-      newData.append('verified', userInfo.verified)
-      if(data.location != "") {
-        const location = {location: data.location, street: data.street || userInfo.location?.street || userInfo.user_location.street};
-        newData.append('location', JSON.stringify(location));
-      }else{
-        newData.append('location', JSON.stringify(userInfo.location))
+      console.log(userInfo);
+      const newData = {
+        user_id: userInfo.id || userInfo.user_id,
+        user_email: userInfo.user_email,
+        name: data.name || userInfo.name || userInfo.full_name,
+        username: data.username || userInfo.username,
+        phone: data.phone || userInfo.phone || userInfo.user_phone,
+        active: userInfo.active,
+        verified: userInfo.verified,
+        profile_image: userInfo.profile_image,
+        location: data.location ? {location: data.location, street: data?.street || userInfo.location?.street || userInfo.user_location?.street || "street"} : userInfo.location
       }
-      if(fileImage != "") newData.append('logo', fileImage);
+      if(newImage) {
+        const logoUrl = await uploadFile(fileImage, s3Folders.logos);
+        newData.profile_image = logoUrl;
+      }
       const res = await server.updateUser(newData);
       if(res.status === "pass" ){
         showMainNotification('pass', `${res.message}`, () => {});
@@ -141,7 +145,12 @@ const Profile = () => {
             <div className="dash-col">
               <div className="group">
                 <label htmlFor="location">Business Location: <span>{userInfo?.location?.location || userInfo.user_location?.location}</span></label>
-                <input type="text" name="location" id="location" {...register('location')} placeholder={userInfo?.location?.location || userInfo.user_location?.location || "City"} />
+                <select name="location" id="location" {...register('location')} placeholder={userInfo?.location?.location || userInfo.user_location?.location || "City"}>
+                  <option value="" disabled>Select new location...</option>
+                  {
+                    locations.districts.map((item, index) => <option key={`profile-change-location-${index}`} value={item}>{item}</option>)
+                  }
+                </select>
               </div>
             </div>
             <div className="dash-col">

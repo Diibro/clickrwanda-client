@@ -1929,7 +1929,7 @@ textarea{
      margin: 5px auto;
      display: flex;
      flex-direction: column;
-     align-items: center;
+     align-items: flex-start;
 }
 
 
@@ -1937,34 +1937,38 @@ textarea{
      width: 100%;
      display: flex;
      flex-wrap: wrap;
-     flex-direction: row;
-     align-items: center;
-     justify-content: space-between;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
      margin: 10px auto;
 }
 
 .user-forms .form-container form .group label{
-     width: clamp(150px, 35%, 500px);
+     width: 100%;
      font-size: 1.2rem;
      color: var(--text-color-title);
      font-weight: bold;
      margin: 5px auto;
+     text-align: left;
 }
 
 .user-forms .form-container form .group input, .user-forms .form-container form .group select{
-     width: clamp(250px, 60%, 800px);
-     text-align: center;
+     width: 97%;
      font-size: 0.8rem;
      outline: none;
      border: none;
-     padding: 2px 5px;
+     padding: 5px 10px;
      border-radius: 2px;
-     border-bottom: 1.5px solid var(--text-color-para1);
+     border: 1.5px solid var(--text-color-para2);
+     border-radius: 10px;
      margin: 5px auto;
+     font-weight: 700;
+     transition: all 0.5s ease;
+     color: var(--back-gold-color-v1);
 }
 
 .user-forms .form-container form .group input:focus, .user-forms .form-container form .group select:focus{
-     border-bottom: 1.5px solid var(--back-color-gold2);
+     border: 1.5px solid var(--back-color-gold2);
 }
 .user-forms .form-container form .group input::placeholder{
      color: var(--text-color-para1);
@@ -2949,7 +2953,8 @@ textarea{
      color: var(--back-gold-color-v1);
 }
 
-.user-dash-view-form form .row .dash-col  .group input{
+.user-dash-view-form form .row .dash-col  .group input,
+.user-dash-view-form form .row .dash-col  .group select{
      width: 100%;
      border-radius: 10px;
      padding: 5px 10px;
@@ -4296,8 +4301,13 @@ textarea{
 }
 
 .advert-page-others h3{
-     font-size: 2rem;
-     color: var(--text-color-title);
+     font-size: 1.2rem;
+     font-weight: 700;
+     color: var(--light-gray);
+     background-color: var(--text-color-title);
+     width: 100%;
+     border-radius: 10px;
+     padding: 5px 10px;
 }
 
 /* end of views styles */
@@ -5050,6 +5060,30 @@ textarea{
      padding: 5px 10px;
      width: auto;
 }
+
+.admin-advert-update-form .check-box-input-row {
+     width: 95%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     margin-block: 2.5px;
+     gap: 5px;
+     margin-inline: auto;
+}
+
+.admin-advert-update-form .check-box-input-row input{
+     width: auto;
+}
+
+.admin-plan-forms-container{
+     width: 100%;
+     background-color: var(--white-text);
+     height: 100%;
+     border-radius: 20px;
+     padding: 20px;
+     overflow-y: auto;
+}
 /* end of advert form styles */
 
 .admin-adverts-container{
@@ -5298,10 +5332,23 @@ textarea{
      padding: 7.5px 15px;
      cursor: pointer;
      transition: all 0.4s ease;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+}
+
+.admin-plans-container .title-row.active-plans-title{
+     background-color: var(--back-gold-color-v1);
+}
+
+.admin-plans-container .title-row.active-plans-title:hover{
+     background-color: var(--back-color-gold2-transparent);
 }
 
 .admin-plans-container .title-row:hover {
-     background-color: var(--back-color-blue1);
+     background-color: var(--gray-text);
+     color: var(--text-color-title);
 }
 
 .admin-plans-container .plans-container-row {
@@ -5312,10 +5359,23 @@ textarea{
      justify-content: space-between;
      gap: 20px;
      flex-wrap: wrap;
-     display: none;
-
+     height: 0;
+     transition: all 1s ease;
+     overflow: hidden;
 }
 
+.admin-plans-container .plans-container-row .actions-row{
+     width: 90%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+}
+
+.admin-plans-container .plans-container-row.active-plans{
+     height: auto;
+}
 .admin-dash-plan-card {
      width: 30%;
      border: 1.5px solid var(--text-color-para2);
