@@ -22,14 +22,14 @@
 //      s3Url: `https://s3.${import.meta.env.VITE_REGION}.amazonaws.com/${import.meta.env.VITE_BUCKET_NAME}/`,
 // };
 
-// export const s3Folders = {
-//      adverts: 'adverts',
-//      banners: 'banners',
-//      categories: 'categories',
-//      logos: 'logos',
-//      payPlans: 'pay-plans',
-//      quotations: 'quotations'
-// };
+export const s3Folders = {
+     adverts: 'adverts',
+     banners: 'banners',
+     categories: 'categories',
+     logos: 'logos',
+     payPlans: 'pay-plans',
+     quotations: 'quotations'
+};
 
 // s3.listBuckets((err, data) => {
 //      if (err) {
