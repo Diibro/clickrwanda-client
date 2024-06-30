@@ -162,10 +162,6 @@ const SignUpForm = () => {
           try {
                let date  = getRwandaTime();
                const {r_id} = fetchIds(location);
-               const cond= true;
-               if(cond){
-                    return showMainNotification("fail", "Please try again later. We are working on it", () => {});
-               }
                setLoading(true); // Set loading to true when submitting
                const profileImageUrl = await uploadFile(profileImage, s3Folders.logos);
                const userData = {

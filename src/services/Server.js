@@ -80,6 +80,10 @@ export default {
           getAll: `${serverUrl}/api/payment-plan/1`,
           save: `${serverUrl}/api/payment-plan/2`,
           update: `${serverUrl}/api/payment-plan/3`,
+     },
+     fileUpload: {
+          single: `${serverUrl}/api/file-upload/single`,
+          multiple: `${serverUrl}/api/file-upload/multiple`
      }
 
 }

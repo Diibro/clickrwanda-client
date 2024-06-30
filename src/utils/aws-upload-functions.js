@@ -1,29 +1,16 @@
-// upload.js
-
-import { v4 as uuidv4 } from 'uuid';
-// import s3, { s3Config } from "../config/s3Config";
+import UploadService from '../services/uploadFile';
 
 const uploadFile = async (file, folder) => {
-     // const uniqueKey = `${uuidv4()}-${file.name}`;
-     // const filePath = `${folder}/${uniqueKey}`
-     // const params = {
-     //      Bucket: s3Config.bucketName,
-     //      Key: filePath,
-     //      Body: file,
-     //      ACL: 'public-read', // Optional: for public access
-     //      ContentType: file.type,
-     // };
-
-     // // eslint-disable-next-line no-useless-catch
-     // try {
-     //      const response = await s3.upload(params).promise();
-     //      const {Location} = response;
-     //      return Location;
-     // } catch (error) {
-     //      throw error
-     // }
-     
-     return "";
+     const formData = new FormData();
+     formData.append('image', file);
+     formData.append('folderName', folder);
+     const res = await UploadService.uploadSingle(formData);
+     console.log(res);
+     if(res.status === "pass"){
+          return res.data;
+     }else{
+          return "";
+     }
 };
 
 export const deleteFile = async (fileUrl) => {
@@ -48,22 +35,14 @@ export const deleteFile = async (fileUrl) => {
 };
 
 export const uploadMany = async (files, folder) => {
-     const fileUrls = [];
-     
-          // if (files && files[0]) {
-          // const uploadPromises = Array.from(files).map(async (file) => {
-          //      try {
-          //           const fileUrl = await uploadFile(file, folder);
-          //           fileUrls.push(fileUrl);
-          //      } catch (error) {
-          //           console.log(error);
-          //      }
-          // });
-     
-          // await Promise.all(uploadPromises);
-          // }
-     
-          return fileUrls;
+     const fileUrls = []
+     if(files && files.length > 0){
+          Array.from(files).map(async(file) => {
+               const fileUrl = await uploadFile(file, folder);
+               fileUrls.push(fileUrl);
+          })
+     }
+     return fileUrls;
 };
 
 export default uploadFile;

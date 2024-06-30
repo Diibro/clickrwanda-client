@@ -134,10 +134,6 @@ export const AddAdvertForm = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const cond = true;
-      if(cond){
-        return showMainNotification("fail", "Error adding advert. Please try again later.", () => {});
-      }
       const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.adverts);
       const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.adverts);
       const newAd = {
