@@ -1,38 +1,13 @@
-// export const s3Config =  {
-//      accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID,
-//      secretAccessKey: "orvN1NiJ9eTnyvzLsI5S5/SUaXnNQvhhhaF7jOwb",
-//      bucketName: "clickrwanda.s3.com",
-//      dirName: "adverts",
-//      region: "eu-north-1",
-//      s3Url: "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/"
-// }
-
-// export const s3Folders = {
-//      adverts: "adverts",
-//      banners: "banners",
-//      categories: "categories",
-//      logos: "logos",
-//      payPlans: "pay-plans",
-//      quotations: "quotations"
-// }
-
-// aws-config.js
-// import AWS from 'aws-sdk';
-
-// // import { CognitoIdentityServiceProvider } from 'aws-sdk';
-
-// AWS.config.update({
-//      accessKeyId: "AKIA6ODVAPPY43PDXM4L",
-//      secretAccessKey: "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",
-//      region: "eu-north-1",
-// });
-
-// const s3 = new AWS.S3();
-// // const s3 = new CognitoIdentityServiceProvider.S3();
-
-// export default s3;
-
 import AWS from 'aws-sdk';
+
+if (
+     !import.meta.env.VITE_AWS_ACCESS_KEY_ID ||
+     !import.meta.env.VITE_AWS_SECRET_ACCESS_KEY ||
+     !import.meta.env.VITE_REGION ||
+     !import.meta.env.VITE_BUCKET_NAME
+) {
+     throw new Error("Missing required environment variables for AWS S3 configuration");
+}
 
 const s3 = new AWS.S3({
      accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID,
@@ -55,5 +30,13 @@ export const s3Folders = {
      payPlans: 'pay-plans',
      quotations: 'quotations'
 };
+
+s3.listBuckets((err, data) => {
+     if (err) {
+       console.error('Error listing buckets:', err);
+     } else {
+       console.log('Buckets:', data.Buckets);
+     }
+   });
 
 export default s3;
