@@ -59,7 +59,11 @@ export const PaymentPlansContainer = () => {
                          dividedPlans["Extra Boost Packages"].push(plan)
                     }
                }
+               for (const category in dividedPlans) {
+                    dividedPlans[category].sort((a, b) => a.plan_amount - b.plan_amount);
+               }
                setCatPlans(dividedPlans);
+
           }
      }
      useEffect(() => {
