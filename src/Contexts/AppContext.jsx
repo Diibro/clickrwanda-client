@@ -79,8 +79,8 @@ export const AppProvider = ({children}) => {
                if(localData ){
                     const {value: sessionData} = localData;
                     if (sessionData){
-                         const {categoriesData, subCategoriesData, payPlansData, boostedSellers,allAdverts} = sessionData;
-                         const {newAdverts: advertsData, todayDeals:discounted, websiteAds:adWebsites, boosted} = getAdvertsInfo(allAdverts);
+                         const {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted, adWebsites, allAdverts} = sessionData;
+                         // const {newAdverts: advertsData, todayDeals:discounted, websiteAds:adWebsites, boosted} = getAdvertsInfo(allAdverts);
                          setData((prev) => ({
                               ...prev,
                               categories: categoriesData,

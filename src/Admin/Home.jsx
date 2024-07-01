@@ -33,13 +33,13 @@ const Home = () => {
         <DashCardInfo count={(shops && shops.length) || 0} title="Shops" newAdded={shops ? getNewToday(shops, "reg_date") :null} action={() => navigate("/admin/shops")}/>
         <DashCardInfo count={(agents && agents.length) || 0} title="Agents" newAdded={agents ? getNewToday(agents, "registration_date") : null} action={() => navigate("/admin/agents")} />
         <DashCardInfo count={(categories && categories.length) || 0} title="Categories" action={() => navigate("/")} />
-        <DashCardInfo count={(webVisits && webVisits.length + 4500) || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} action={() => navigate("/")} />
+        <DashCardInfo count={(webVisits && webVisits.length) || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} action={() => navigate("/")} />
       </AdminRow>
       <AdminRow>
         <DashTitle><h3>Website Visits</h3></DashTitle>
         <WebVisitCard content={{title:"Today", count: getAddedToday(webVisits, "v_date")?.length || 0}} />
         <WebVisitCard content={{title: "This Week", count: getAddedThisWeek(webVisits, "v_date")?.length || 0}} />
-        <WebVisitCard content={{title: "This Month", count: getAddedThisMonth(webVisits, "v_date")?.length + 9000 || 0}} />
+        <WebVisitCard content={{title: "This Month", count: getAddedThisMonth(webVisits, "v_date")?.length || 0}} />
         <WebVisitCard content={{title: "This Year", count: getAddedThisYear(webVisits, "v_date")?.length + 45000 || 0}} />
       </AdminRow>
       <AdminRow>

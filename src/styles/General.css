@@ -6208,6 +6208,11 @@ textarea{
      font-size: 1.6rem;
      font-weight: 900;
 }
+
+.highlighted-text{
+     color: var(--back-color-gold2);
+     font-weight: 800;
+}
 /* end of overriders */
 /* media queries */
 

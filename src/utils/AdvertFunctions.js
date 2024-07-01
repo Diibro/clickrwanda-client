@@ -8,7 +8,7 @@ export const getAdvertsInfo = (adverts) => {
 
      if(adverts) {
           for(const item of adverts){
-               if (item.plan_name === 'premium' || item.plan_name === 'basic' || item.plan_name === 'enterprise'){
+               if (item.plan_name === 'VIP' || item.plan_name === 'basic' || item.plan_name === 'VVIP'){
                     dividedAds.boosted.push(item);
                }else if(item.plan_name === 'sponsored'){
                     dividedAds.websiteAds.push(item);
