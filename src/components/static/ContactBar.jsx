@@ -9,8 +9,8 @@ const ContactBar = () => {
     <div className="contact-bar">
      <div className='contact-info'>
           <div>
-               <a href="tel:+250 787260494"><i><ImPhone/></i></a>
-               <p>+250 787260494</p>
+               <a href="tel:+250 727 559 173"><i><ImPhone/></i></a>
+               <p>+250 727 559 173</p>
           </div>
           <div>
                <a href="mailto:clickrwandaltd@gmail.com"><i><MdEmail /></i></a>
