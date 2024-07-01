@@ -35,7 +35,7 @@ const Footer = () => {
           <div className="footer-col">
                <Title content={{color:textColors.white, size: titleSize.small, name: content.address.title}} />
                <div className="footer-content">
-                    <a href="tel:+250 787260494" rel="noreferrer" target="_blank"><i className="icon call-icon"><MdCall /></i> {content.address.callUs}: +250787260494 </a>
+                    <a href="tel:+250 727 559 173" rel="noreferrer" target="_blank"><i className="icon call-icon"><MdCall /></i> {content.address.callUs}: +250 727 559 173 </a>
                     <p><i className="icon"><FaLocationArrow /> </i> {content.address.location}: Kigali, Rwanda </p>
                     <a href="mailto:clickrwandaltd@gmail.com" rel="noreferrer" target="_blank"><i className="icon"><MdEmail /></i> {content.address.email}: clickrwandaltd@gmail.com</a>
                </div>
@@ -45,7 +45,7 @@ const Footer = () => {
                <div className="footer-content">
                     <p>{content.advertiseHere.message1}</p>
                     <p>{content.advertiseHere.message2}</p>
-                    <a href="https://wa.me/+250 787260494" rel="noreferrer" target="_blank"><i className="icon whatsapp-icon"><FaWhatsapp /></i> Whatsapp: +250787260494 </a>
+                    <a href="https://wa.me/+250 727 559 173" rel="noreferrer" target="_blank"><i className="icon whatsapp-icon"><FaWhatsapp /></i> Whatsapp: +250 727 559 173 </a>
                </div>
                {!loggedIn ? <ActionBtn title={content.advertiseHere.getStarted.name} action={getStarted} /> : null } 
                <ActionBtn title={content.advertiseHere.plansButton.name}  action={viewPlans}/>

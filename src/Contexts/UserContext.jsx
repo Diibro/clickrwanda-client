@@ -19,10 +19,11 @@ export const UserProvider = ({children}) => {
           loggedIn: false,
           fetchNow:""
      });
+     const {loggedIn} = user;
      const navigate = useNavigate();
 
      const fetchUserData = async (userId) => {
-          if(userId  && userId != ''){
+          if(userId  && userId != '' && loggedIn){
                const res = await UserService.getUserDashBoard(userId);
                const userAds = await server.getUserAdverts();
                console.log(userAds);
