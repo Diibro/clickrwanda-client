@@ -10,6 +10,7 @@ import AgentLogout from "./AgentLogout";
 import WebViewService from "../services/WebView";
 import { calculateRefVisitsTotal, calculateShopTotal } from "../utils/agentFunctions";
 import Tasks from "./Tasks";
+import AgentPlans from "./AgentPlans";
 
 export const AgentContext = createContext();
 
@@ -79,6 +80,7 @@ const AgentLayout = () => {
                          <Route path="/tasks" element={<Tasks />} />
                          <Route path="/referrals" element={<Referrals />} />
                          <Route path="/payments" element={<Payments />} />
+                         <Route path="/pay-plans" element={<AgentPlans />} />
                          <Route path="/logout" element={<AgentLogout />} />
                     </Routes>
                </div>

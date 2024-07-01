@@ -71,7 +71,7 @@ const Home = () => {
                     <h4>1. Sell Click Rwanda membership plans.</h4>
                     <p>Earn 20% commission on every package you sell. On every successful payment by any business referred by you, you will be paid 20% of the amount paid.</p>
                     <p>By Selling Click Rwanda packages, you earn a rank in the top agents who are the ones given more tasks than others.</p>
-                    <p><button>View Packages</button></p>
+                    <p><button onClick={() => navigate('/agent/pay-plans')}>View Packages</button></p>
                </div>
                <div className="agent-content-card">
                     <h4>2. Advertisement of premium ads</h4>
