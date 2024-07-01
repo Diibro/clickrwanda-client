@@ -605,7 +605,7 @@ textarea{
 
 .payment-plan-card .head{
      width: 100%;
-     background-color: var(--light-gray);
+     background-color: var(--text-color-title);
      border-radius: 10px;
      display: flex;
      flex-direction: column;
@@ -616,11 +616,11 @@ textarea{
 }
 
 .payment-plan-card .head .title{  
-     font-size: 1.6rem;
+     font-size: 1.5rem;
      font-weight: 800;
      color: var(--back-color-gold2);
      text-align: center;
-     margin: 5px auto;
+     margin: 1px auto;
 }
 
 .payment-plan-card .head img{
@@ -633,10 +633,10 @@ textarea{
 
 .payment-plan-card .head .price{
      font-size: 1.5rem;
-     color: var(--text-color-title);
+     color: var(--white-text);
      font-weight: 900;
      text-align: center;
-     margin: 5px auto;
+     margin: 1px auto;
      display: flex;
      flex-direction: row;
      gap: 5px;

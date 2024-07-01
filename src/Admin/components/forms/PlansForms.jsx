@@ -65,7 +65,8 @@ const AddPlanForm = () => {
      const submitForm = async (e) => {
           e.preventDefault();
           try {
-               const iconUrl = await uploadFile(icon, s3Folders.payPlans);
+               // const iconUrl = await uploadFile(icon, s3Folders.payPlans);
+               const iconUrl = "";
                const locationUrl = await uploadFile(planLocation, s3Folders.payPlans);
                const desc = updatePlanDescription();
                const newPlan  = {
@@ -120,7 +121,7 @@ const AddPlanForm = () => {
                     </div>
                     <div className="group">
                          <label htmlFor="plan-input-icon">Plan Icon:</label>
-                         <input type="file" name="plan-input-icon" id="plan-input-icon" onChange={(e) => setIcon(e.target.files[0])} required/>
+                         <input type="file" name="plan-input-icon" id="plan-input-icon" onChange={(e) => setIcon(e.target.files[0])}/>
                          {icon ? <img src={URL.createObjectURL(icon)} alt="plan icon" width={100} />:null}
                     </div>
                     <div className="group">
