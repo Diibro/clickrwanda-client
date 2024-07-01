@@ -70,7 +70,7 @@ const AddPlanForm = () => {
                const locationUrl = await uploadFile(planLocation, s3Folders.payPlans);
                const desc = updatePlanDescription();
                const newPlan  = {
-                    plan_id: `plan_${paymentPlans.length + 1}`,
+                    plan_id: `plan_${paymentPlans.length + 2}`,
                     plan_name: plan.plan_name,
                     plan_amount: plan.plan_amount,
                     plan_icon: iconUrl,
