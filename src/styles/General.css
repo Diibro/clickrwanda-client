@@ -576,12 +576,25 @@ textarea{
      border-bottom: 1.5px solid var(--back-color-gold2-transparent);
 }
 
+.pay-plans-container  .row .plan-container-row{
+     width: 97%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     overflow: hidden;
+     overflow-x: auto;
+     gap: 10px;
+}
+
 .payment-plan-card{
-     width: 22%;
+     width: 25%;
+     min-width: 250px;
+     max-width: 300px;
      margin: 10px;
      box-shadow: 0.1px 0.1px 3px  var(--back-gold-color-v1);
      padding: 5px;
-     border-radius: 5px;
+     border-radius: 10px;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -592,26 +605,48 @@ textarea{
 
 .payment-plan-card .head{
      width: 100%;
-     background-color: var(--text-color-title);
+     background-color: var(--light-gray);
+     border-radius: 10px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
 }
 .payment-plan-card .body{
      width: 95%;
 }
 
 .payment-plan-card .head .title{  
-     font-size: 1.1rem;
+     font-size: 1.6rem;
      font-weight: 800;
      color: var(--back-color-gold2);
      text-align: center;
      margin: 5px auto;
 }
 
+.payment-plan-card .head img{
+     background-color: var(--white-text);
+     width: 40%;
+     border: 1.5px solid var(--text-color-para2);
+     padding: 5px;
+     border-radius: 50%;
+}
+
 .payment-plan-card .head .price{
-     font-size: 0.95rem;
-     color: var(--back-color-gold1);
-     font-weight: 800;
+     font-size: 1.5rem;
+     color: var(--text-color-title);
+     font-weight: 900;
      text-align: center;
      margin: 5px auto;
+     display: flex;
+     flex-direction: row;
+     gap: 5px;
+     align-items: center;
+     letter-spacing: 0.6px;
+}
+
+.payment-plan-card .head .price span{
+     font-size: 0.85rem;
+     color: var(--text-color-para2);
 }
 
 .payment-plan-card .body{
@@ -1669,19 +1704,18 @@ textarea{
      font-size: 0.9rem ;
      outline: none;
      border: none;
-     padding: 2.5px 10px ;
+     padding: 5px 15px ;
      border-radius: 15px;
      letter-spacing: 0.56px;
-     border: 1.5px solid var(--back-color-gold2);
-     transition: all 0.9s;
+     border: 1.2px solid var(--back-color-gold2);
+     transition: all 0.5s ease;
      margin:  5px 2.5px;
      width: auto;
 }
 
 .actionBtn:hover{
-     background-color: var(--back-color-gold1);
+     background-color: var(--white-text);
      cursor: pointer;
-     box-shadow: 1px 1px 5px var(--text-color-para1);
      color: var(--back-color-gold2);
 }
 
@@ -1695,17 +1729,16 @@ textarea{
      font-size: 0.9rem ;
      outline: none;
      border: none;
-     padding: 2px 10px ;
+     padding: 5px 15px ;
      border-radius: 50px;
      letter-spacing: 0.56px;
      border: 1.5px solid var(--back-color-gold2);
-     transition: all 0.9s;
+     transition: all 0.5s ease;
 }
 
 .submit-btn:hover{
-     background-color: var(--back-color-gold1);
+     background-color: var(--white-text);
      cursor: pointer;
-     box-shadow: 1px 1px 5px var(--text-color-para1);
      color: var(--back-color-gold2);
 }
 
@@ -1945,7 +1978,7 @@ textarea{
 
 .user-forms .form-container form .group label{
      width: 100%;
-     font-size: 1.2rem;
+     font-size: 1.3rem;
      color: var(--text-color-title);
      font-weight: bold;
      margin: 5px auto;
@@ -1954,12 +1987,12 @@ textarea{
 
 .user-forms .form-container form .group input, .user-forms .form-container form .group select{
      width: 97%;
-     font-size: 0.8rem;
+     font-size: 1rem;
      outline: none;
      border: none;
      padding: 5px 10px;
      border-radius: 2px;
-     border: 1.5px solid var(--text-color-para2);
+     border: 1.5px solid var(--gray-text);
      border-radius: 10px;
      margin: 5px auto;
      font-weight: 700;
@@ -5352,20 +5385,21 @@ textarea{
 }
 
 .admin-plans-container .plans-container-row {
-     width: 95%;
+     width: 98%;
      display: flex;
      flex-direction: row;
      align-items: flex-start;
-     justify-content: space-between;
-     gap: 20px;
+     justify-content: center;
+     gap: 5px;
      flex-wrap: wrap;
      height: 0;
      transition: all 1s ease;
      overflow: hidden;
+     
 }
 
 .admin-plans-container .plans-container-row .actions-row{
-     width: 90%;
+     width: 100%;
      display: flex;
      flex-direction: row;
      align-items: center;
@@ -5381,6 +5415,16 @@ textarea{
      border: 1.5px solid var(--text-color-para2);
      padding: 10px;
      border-radius: 10px;
+}
+
+.admin-plans-container .plans-container-row .content{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     overflow-x: auto;
+     gap: 10px;
 }
 /* buttons */
 

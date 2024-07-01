@@ -3,10 +3,12 @@ import { TickIcon } from "./Icons";
 import PropTypes from "prop-types"
 import { useLocation, useNavigate } from "react-router-dom";
 import { ExtraBoostPlans, MainPaymentPlansInfo } from "../../config/payPlans";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { formatPrice } from "../../utils/otherFunctions";
 // import UserContext from "../../Contexts/UserContext";
 import { MdCall, MdEmail } from "react-icons/md";
+import AppData from "../../Contexts/AppContext";
+import PayPlanCard from "../cards/PayPlanCard";
 
 export const PaymentPlanCard = ({item}) => {
      const features = item.allowed;
@@ -34,16 +36,53 @@ export const PaymentPlanCard = ({item}) => {
 
 
 export const PaymentPlansContainer = () => {
+     const [data,setData] = useContext(AppData);
+     const {payPlans: paymentPlans} = data;
+     const [catPlans, setCatPlans] = useState(null);
+     useEffect(() => {
+          if(!paymentPlans.length){
+               setData(prev => ({...prev, fetchNow: true}));
+          }
+     },[]);
+
+     const updateCatPlans = () => {
+          if(paymentPlans && paymentPlans[0]){
+               const dividedPlans = {"Individual":[], "Small Business": [], "Large Business": [], "Extra Boost Packages": [], "undefined": []};
+               for(const plan of paymentPlans){
+                    if(plan.plan_type === "Individual"){
+                         dividedPlans["Individual"].push(plan);
+                    }else if (plan.plan_type === "Small Business"){
+                         dividedPlans["Small Business"].push(plan);
+                    }else if(plan.plan_type === "Large Business"){
+                         dividedPlans["Large Business"].push(plan);
+                    }else if(plan.plan_type === "Extra Boost Packages"){
+                         dividedPlans["Extra Boost Packages"].push(plan)
+                    }
+               }
+               setCatPlans(dividedPlans);
+          }
+     }
+     useEffect(() => {
+          updateCatPlans();
+     }, [data])
      return (
           <div className="pay-plans-container">
-               <div className="row">
-                    <h3>General Packages</h3>
-                    {MainPaymentPlansInfo.map(plan => <PaymentPlanCard item={plan} key={plan.title} />)}
-               </div>
-               <div className="row">
-                    <h3>Extra Boost Packages</h3>
-                    {ExtraBoostPlans.map(plan => <PaymentPlanCard item={plan} key={plan.title} />)}
-               </div>
+               {
+                    catPlans ? 
+                    Object.entries(catPlans).map(([key, value], index) => 
+                         value.length > 0 ? 
+                              <div className="row" key={`admin-plans-row-${key}-${index}`}>
+                                   <h3>{key}</h3>
+                                   <div className="plan-container-row">
+                                        {     
+                                                  value.map(item => <PayPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} action={() => {}} btnTitle={"Choose Package"} />)
+                                        }
+                                   </div>
+                              </div>
+                    : null
+                    )
+                    : <p>No plans found</p>
+               }
           </div>
      )
 }

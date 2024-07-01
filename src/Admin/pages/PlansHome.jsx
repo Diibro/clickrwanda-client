@@ -3,6 +3,7 @@ import { AdminContext } from "../AdminLayout"
 import DashPlanCard from "../components/cards/DashPlanCard";
 import { AddButton } from "../components/buttons/ActionButtons";
 import { toggleForms } from "../../utils/AdminFunctions";
+import PayPlanCard from "../../components/cards/PayPlanCard";
 
 const PlansHome = () => {
      const [adminData,setAdminData] = useContext(AdminContext);
@@ -50,6 +51,19 @@ const PlansHome = () => {
           toggleForms(true);
      }
 
+     const showPlanView = (plan, plan_type) => {
+          setAdminData((prev) => ({
+               ...prev, 
+               activeForm: {
+                    type: "plans",
+                    formName: "Update Plan",
+                    planType: plan_type,
+                    objFocus: plan
+               }
+          }))
+          toggleForms(true);
+     }
+
      useEffect(() => {
           updateCatPlans();
      }, [paymentPlans]); 
@@ -65,9 +79,11 @@ const PlansHome = () => {
                                    <div className="actions-row">
                                         <AddButton title={"Add New Plan"} action={() => showPlansAddForm(key)} />
                                    </div>
-                                   {
-                                        value.map(item => <DashPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} />)
-                                   }
+                                   <div className="content">
+                                        {
+                                             value.map(item => <PayPlanCard btnTitle={"View Package"} key={`admin-plans-card-${item.plan_id}`} plan={item} action={() => showPlanView(item, key)} />)
+                                        }
+                                   </div>
                               </div>
                          </div>
                     )

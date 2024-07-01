@@ -1,35 +1,22 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import AppData from "../Contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
 import { AdminContext } from "./AdminLayout";
 import { SubmitButton } from "../components/dynamic/Buttons";
-import { ImCross } from "react-icons/im";
 
 import UserService from "../services/User";
-import { TiTick } from "react-icons/ti";
 import { textColors, titleSize } from "../components/styles";
 import Title from "../components/dynamic/TitleComponents";
 import Loading from "../components/static/Loading";
+import { showMainNotification } from "../utils/AdminFunctions";
 
 const AdminLogin = () => {
      const [loading,setLoading ] = useState(false);
      const {register, handleSubmit,} = useForm();
-     const [,setData] = useContext(AppData);
      const [,setAdminData] = useContext(AdminContext);
      const navigate = useNavigate();
 
-     const raiseAlert = (type, message, icon) => {
-          console.log("I am raising a notification");
-          setData((prev)=> ({
-               ...prev,
-               alertView:{
-                    on: true,
-                    content: {type, message, icon}
-               }
-          }));
-          console.log("The notification is over");
-     }
+    
 
      const submitForm = async (data) =>{
           try {
@@ -39,7 +26,7 @@ const AdminLogin = () => {
                if(res != null) {
                     if(res.status === "pass"){
                          const userInfo = res.data;
-                         if(userInfo.role === "admin"){
+                         if(userInfo.user_type === "admin"){
                               sessionStorage.setItem('loginToken', res.loginToken);
                               sessionStorage.setItem('userData', JSON.stringify(res.data));
                               setAdminData((prev) => ({
@@ -47,20 +34,19 @@ const AdminLogin = () => {
                                    logged: true,
                                    adminInfo: userInfo
                               }))
-                              raiseAlert('success', `${res.message} as ${res.data.username}`, <TiTick />)
-                              return navigate("/admin");
+                              return showMainNotification('pass', `${res.message} as ${res.data.username}`, () => navigate("/admin"))
                          }else{
-                              return raiseAlert('fail', `Cannot login. Try the other way`, <ImCross />);
+                              return showMainNotification('fail', `Cannot login. Try the other way`, () => {});
                          }
                     }else{
-                         return raiseAlert('fail', `${res.message} .`, <ImCross />);
+                         return showMainNotification('fail', `${res.message} .`, () => {});
                     }
                }else{
-                    raiseAlert("fail", "Login failed. Contact super admin", <ImCross />);
+                    showMainNotification("fail", "Login failed. Contact super admin", () => {});
                }
           } catch (error) {
                console.log(error);
-               return raiseAlert('fail', `System error .Try again`, <ImCross />);
+               return showMainNotification('fail', `System error .Try again`, () => {});
           }finally{
                setLoading(false);
           }
