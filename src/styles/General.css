@@ -680,6 +680,17 @@ textarea{
      align-self: center;
 }
 
+.payment-plan-card .image{
+     width: 95%;
+     margin: 5px auto;
+}
+
+.payment-plan-card .image img{
+     width: 100%;
+     border-radius: 10px;
+     border: 1.2px solid var(--text-color-para2);
+}
+
 .payment-plan-card .body .image img{
      width: 90%;
      border-radius: 5px;
