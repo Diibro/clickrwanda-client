@@ -33,8 +33,8 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
           }))
      }
      return(
-          <div className={`product-square-container ${plan}-ad`}>
-               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "VIP" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{capitalizeString(plan)}</span>
+          <div className={`product-square-container ${plan === 'VIP' ? "premium" : plan === "VVIP" ? "enterprise" : plan}-ad`}>
+               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "VIP" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{plan === 'VVIP' || plan === 'VIP' ? plan : capitalizeString(plan) }</span>
                {discount ? <span className='advert-discount'>- {discount}%</span> : null}
                {/* <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i> */}
                <div className="ad-image">
@@ -71,8 +71,8 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
           }))
      }
      return(
-          <div className={`product-square-container ${plan}-ad`}>
-               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "VIP" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{capitalizeString(plan)}</span>
+          <div className={`product-square-container ${plan === "VIP" ? 'premium' : plan === "VVIP" ? 'enterprise' : plan}-ad`}>
+               <span className={plan === "urgent" ? "pay-plan urgent" : plan === "VIP" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{plan === 'VVIP' || plan === 'VIP' ? plan : capitalizeString(plan) }</span>
                {discount ? <span className='advert-discount'>{discount}% off</span> : null}
                {/* <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i> */}
                <div className="ad-image" >

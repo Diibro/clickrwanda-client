@@ -41,3 +41,14 @@ export const getSimilarAds = (adverts, advert) => {
      }
      return similarAds;
 }
+
+export const getFieldSummation = (arr, field) => {
+     let total = 0;
+     if(arr && arr.length){
+          for (const item of arr ){
+               total += item[field];
+          }
+     }
+
+     return  total;
+}

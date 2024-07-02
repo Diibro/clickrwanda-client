@@ -19,7 +19,7 @@ import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
 import { Banners } from "../config/banners";
 import { VscVerifiedFilled } from "react-icons/vsc";
 import AppData from "../Contexts/AppContext";
-import { getSimilarAds } from "../utils/AdvertFunctions";
+import { getFieldSummation, getSimilarAds } from "../utils/AdvertFunctions";
 
 
 const AdvertPage = () => {
@@ -33,14 +33,16 @@ const AdvertPage = () => {
      const images = jsonParserV1(adViewed?.ad_images || null);
      const [mainImage, setMainImage] = useState(null);
      const [adDescription,setAdDescription] = useState(null);
-
+     const [totalVendorViews, setTotalVendorviews] = useState(0);
 
      const{ v_id:adId} = fetchIds(location);
 
      const updateSimilarAds = () => {
           const {sameCategory,sameVendor} = getSimilarAds(allAdverts, adViewed);
+          const totalViews = getFieldSummation(sameVendor, "ad_views") + adViewed.ad_views;
           setSameVendorsAds(sameVendor);
           setSameCategoryAds(sameCategory);
+          setTotalVendorviews(totalViews);
      }
      
      const updateAdViewed = async () => {
@@ -66,7 +68,6 @@ const AdvertPage = () => {
                if(check === 0){
                     setLoading(true);
                     const res = await server.searchAd({ad_id:adId});
-                    console.log(res);
                     saveData("adViewed",res.data, 10);
                     const adData = res.data;
                     setAdViewed(adData);
@@ -162,8 +163,8 @@ const AdvertPage = () => {
                                                   <div className="contact" >
                                                        <p className="vendor-date">Joined  {formatTimeAgo(adViewed?.reg_date)}</p>
                                                        <div className="row">
-                                                            <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {adViewed?.total_ads} Ads</a></p>
-                                                            <p className="vendor-views"><i><FaEye /></i>  {adViewed?.totalViews} views</p>
+                                                            <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {sameVendorAds.length + 1} Ads</a></p>
+                                                            <p className="vendor-views"><i><FaEye /></i>  {totalVendorViews} views</p>
                                                        </div>
                                                        <p className="vendor-views"><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
                                                        <p className="vendor-views"><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>

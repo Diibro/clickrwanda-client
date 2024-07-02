@@ -3,8 +3,7 @@ import { InnerSection } from "./InnerSectionContainer";
 import AppData from "../../Contexts/AppContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
-import { AdvertRow} from "./Advert.componet";
-const AdvertRenderer = React.lazy(() => import("./Advert.componet"))
+import AdvertRenderer, { AdvertRow} from "./Advert.componet";
 import { SubmitButton } from "./Buttons";
 import server from "../../config/Server";
 import { MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
