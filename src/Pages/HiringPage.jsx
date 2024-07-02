@@ -51,8 +51,8 @@ const HiringPage = () => {
                     </ul>
                     <p>If you are intereseted contact us via:</p>
                     <ul>
-                         <li>Call/Whatsapp: <a href="tel:+250 727 559 173">+250 727 559 173</a> / <a href="https://wa.me/+250732474510">+250732474510</a></li>
-                         <li>Email: <a href="mailto:clickrwanda.huza@gmail.com">clickrwanda.huza@gmail.com</a></li>
+                         <li>Call/Whatsapp: <a href="tel:+250 727 559 173">+250 727 559 173</a> / <a href="https://wa.me/+250 787 260 494">+250 787 260 494</a></li>
+                         <li>Email: <a href="mailto:clickrwanda.huza@gmail.com">clickrwandaltd@gmail.com</a></li>
                          <li>Office Location: Remera , Prince House 4th Floor,  Kigali, Rwanda</li>
                     </ul>
                     <p>Click this button to sign up for agent account. <SubmitButton content={{title:"Sign up", action: () => navigate('/forms/agent-signup') }} /></p>
@@ -84,8 +84,8 @@ const HiringPage = () => {
                     </ul>
                     <p>Ababishaka baduhamagara cyangwa bakatwandikira:</p>
                     <ul>
-                         <li>Guhamagara/Whatsapp: <a href="tel:+250 727 559 173">+250 727 559 173</a> / <a href="https://wa.me/+250732474510">+250732474510</a></li>
-                         <li>Email: <a href="mailto:clickrwanda.huza@gmail.com">clickrwanda.huza@gmail.com</a></li>
+                         <li>Guhamagara/Whatsapp: <a href="tel:+250 727 559 173">+250 727 559 173</a> / <a href="https://wa.me/+250 787 260 494">+250 787 260 494</a></li>
+                         <li>Email: <a href="mailto:clickrwanda.huza@gmail.com">clickrwandaltd@gmail.com</a></li>
                          <li>Aho dukorera: I Remera , Prince House Kuri Etage ya 4,  Kigali, Rwanda</li>
                     </ul>
                     <p>Kanda hano ube umu agent wacu. <SubmitButton content={{title:"Kora konte", action: () => navigate('/forms/agent-signup')}} /></p>

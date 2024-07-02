@@ -54,6 +54,7 @@ const Footer = () => {
                <Title content={{color:textColors.white, size: titleSize.small, name:content.supportLinks.title}} />
                <div className="footer-content">
                     {content.supportLinks.links.map((item, index) => <Link key={`footer-supportlinks-${index}`} to={item.link}>{item.title}</Link>)}
+                    <Link to={content.supportLinks.agentLink.link} className="highlighted-text">{content.supportLinks.agentLink.title}</Link>
                </div>
           </div>
           

@@ -6210,8 +6210,9 @@ textarea{
 }
 
 .highlighted-text{
-     color: var(--back-color-gold2);
+     color: var(--back-color-gold2) !important;
      font-weight: 800;
+     transition: all 0.5s ease;
 }
 /* end of overriders */
 /* media queries */

@@ -60,12 +60,12 @@
                     {
                          "title":"Korana Natwe",
                          "link": "/hiring"
-                    },
-                    {
-                         "title":"Abokozi",
-                         "link": "/forms/agent-login"
                     }
-               ]
+               ],
+               "agentLink": {
+                    "title":"Abokozi",
+                    "link": "/forms/agent-login"
+               }
           }
      },
      "homePage":{

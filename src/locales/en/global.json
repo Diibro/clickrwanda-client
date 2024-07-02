@@ -57,12 +57,12 @@
                     {
                          "title":"About Us",
                          "link": "/"
-                    },
-                    {
-                         "title":"Become an Agent",
-                         "link": "/hiring"
                     }
-               ]
+               ],
+               "agentLink": {
+                    "title":"Become an Agent",
+                    "link": "/hiring"
+               }
           }
      },
      "homePage":{
