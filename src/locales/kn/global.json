@@ -56,15 +56,12 @@
                     {
                          "title":"Abo Turibo",
                          "link": "/"
-                    },
-                    {
-                         "title":"Korana Natwe",
-                         "link": "/hiring"
                     }
+                    
                ],
                "agentLink": {
-                    "title":"Abokozi",
-                    "link": "/forms/agent-login"
+                    "title":"Korana Natwe",
+                    "link": "/hiring"
                }
           }
      },
