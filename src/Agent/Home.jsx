@@ -16,7 +16,7 @@ const Home = () => {
      const navigate = useNavigate();
 
      const claimPayment = async () => {
-          if(totalAmount < 100){
+          if(totalAmount < 500){
                showMainNotification("fail", "Amount must be greater than Rwf 500", () => {} )
           }
           else if(isLaterThan(payments[0].p_date, getDateToday())) {
@@ -82,7 +82,7 @@ const Home = () => {
                </div>
                <div className="agent-content-card">
                     <h4>3. Help people open shops on ClickRwanda</h4>
-                    <p>Click Rwanda pays Rwf 50 to verified agents who help people to successfully open shops on the platform.</p>
+                    <p>Click Rwanda pays Rwf 20 to verified agents who help people to successfully open shops on the platform.</p>
                     <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> in the tasks Section. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
                     <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyText("agent-open-shop-link")}>Copy Link</button></p>
                     {/* <p><button onClick={() => navigate("/agent/tasks")}>View Tasks</button></p> */}
