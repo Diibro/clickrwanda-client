@@ -39,7 +39,7 @@ const AdvertPage = () => {
 
      const updateSimilarAds = () => {
           const {sameCategory,sameVendor} = getSimilarAds(allAdverts, adViewed);
-          const totalViews = getFieldSummation(sameVendor, "ad_views") + adViewed.ad_views;
+          const totalViews = getFieldSummation(sameVendor, "ad_views") + adViewed.ad_views + sameVendor.length;
           setSameVendorsAds(sameVendor);
           setSameCategoryAds(sameCategory);
           setTotalVendorviews(totalViews);
