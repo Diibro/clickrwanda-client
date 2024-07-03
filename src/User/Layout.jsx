@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { UserReviews } from "./Reviews";
 import { ContentContainer, MainContainer, NavContainer } from "./components/DashboardComponents";
 import ShopStatistics from "./ShopStatistics";
+import UserPlansPage from "./UserPlansPage";
 
 const UserLayout = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const UserLayout = () => {
             <Route path="/user-reviews" element={<UserReviews />} />
             <Route path="/statistics" element={<ShopStatistics />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/user-plans" element={<UserPlansPage />} />
           </Routes>
         </ContentContainer>
         

@@ -84,6 +84,12 @@ export default {
      fileUpload: {
           single: `${serverUrl}/api/file-upload/single`,
           multiple: `${serverUrl}/api/file-upload/multiple`
+     },
+     planSubscription: {
+          add: `${serverUrl}/api/plan-subscription/add`,
+          update: `${serverUrl}/api/plan-subscription/update`,
+          findAll: `${serverUrl}/api/plan-subscription/get-all`,
+          findByAgent: `${serverUrl}/api/plan-subscription/get-by-r-id`,
+          findByUser: `${serverUrl}/api/plan-subscription/get-by-user-id`
      }
-
 }

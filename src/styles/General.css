@@ -342,6 +342,155 @@ textarea{
      font-size: 0.9rem;
 }
 
+.payment-plan-page h1{
+     width: 90%;
+     padding: 10px 20px;
+     border-radius: 20px;
+     font-size: 1.8rem;
+     font-weight: 800;
+     color: var(--white-text);
+     text-align: center;
+     background-color: var(--text-color-para2);
+     margin: 10px auto;
+}
+
+.payment-plan-page .plan-benefits-container{
+     width: 90%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+}
+
+.payment-plan-page .plan-benefits-container .benefits-container,
+.payment-plan-page .plan-benefits-container .plan-location-image-container{
+     width: 45%;
+     padding: 5px 10px;
+}
+
+
+.payment-plan-page .plan-benefits-container .plan-location-image-container img{
+     width: 100%;
+     border: 1.1px solid var(--text-color-para2);
+     border-radius: 10px;
+}
+
+.payment-plan-page .plan-benefits-container .plan-location-image-container p,
+.payment-plan-page .plan-benefits-container .benefits-container p{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+     margin-bottom: 5px;
+}
+
+.payment-plan-page .plan-benefits-container .benefits-container ul{
+     width: 90%;
+     margin: 5px auto;
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+}
+
+.payment-plan-page .plan-duration-container{
+     width: 90%;
+     background-color: var(--white-text);
+     border-radius: 20px;
+     padding: 20px;
+     margin: 10px auto;
+}
+
+.payment-plan-page .plan-duration-container .row{
+     width: 95%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     margin: 2px auto;
+     flex-wrap: wrap;
+     gap: 10px;
+}
+
+.payment-plan-page .plan-duration-container .row h4{
+     font-size: 1.4rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+}
+
+.pay-plan-invoice-container {
+     width: 100%;
+     background-color: #44444460;
+     position: fixed;
+     height: 100vh;
+     top: 0;
+     left: 0;
+     z-index: 80;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     overflow-y: auto;
+}
+
+.pay-plan-invoice-container .confirm-payment-container{
+     width: 50%;
+     background-color: var(--white-text);
+     padding: 10px;
+}
+
+
+.pay-plan-invoice-container .confirm-payment-container p {
+     font-size:0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
+#plan-invoice{
+     width: 50%;
+     min-height: 80%;
+     background-color: var(--white-text);
+     padding: 10px;
+}
+
+#plan-invoice .header-row{
+     width: 90%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+}
+
+#plan-invoice .header-row img{
+     width: 150px;
+     background-color: var(--text-color-title);
+     border-radius: 0;
+     padding: 10px;
+}
+
+.plan-duration-card{
+     width: 45%;
+     padding: 5px 10px;
+     border-radius: 10px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     border: 1.5px solid var(--text-color-title);
+}
+
+.plan-duration-card b {
+     font-size: 1.2rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+
+}
+
+.plan-duration-card span{
+     font-size: 1.1rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
+
 .contact-form-container{
      width:60%;
      display: flex;
@@ -670,6 +819,30 @@ textarea{
      background-color: var(--white-text);
 }
 
+.payment-plan-card.Free{
+     box-shadow: none;
+     border: 1.4px solid var(--text-color-para1);
+}
+
+.payment-plan-card.Basic{
+     box-shadow: none;
+     border:1.4px solid var(--basic-plan-color);
+}
+
+.payment-plan-card.VIP{
+     box-shadow: none;
+     border:1.4px solid  var(--featured-plan);
+}
+
+.payment-plan-card.VVIP{
+     box-shadow: none;
+     border:1.4px solid  var(--back-color-blue1);
+}
+
+.payment-plan-card.current-plan-view{
+     box-shadow: none;
+     border: 1.2px solid var(--text-color-para2);
+}
 
 .payment-plan-card .head{
      width: 100%;
@@ -783,6 +956,12 @@ textarea{
      color: var(--text-color-para1);
      font-weight: 600;
      margin: 5px auto;
+}
+
+.payment-plan-card .current-plan-text{
+     font-size: 1.1rem;
+     font-weight: 600;
+     color: var(--text-color-para2);
 }
 
 .payment-plan-choice{
@@ -1392,6 +1571,15 @@ textarea{
      flex-direction: row;
      align-items: flex-start;
      justify-content: space-between;
+     flex-wrap: wrap;
+}
+.user-dashboard-plans-container{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 10px;
      flex-wrap: wrap;
 }
 .image-slider{
@@ -6226,6 +6414,20 @@ textarea{
 
 }
 
+.plan-exceed-alert{
+     width: 90%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+
+}
+
+.plan-exceed-alert p{
+     color: var(--back-color-red1);
+     font-size: 0.9rem;
+     font-weight: 700;
+}
 .small-icon{
      width: 18px;
      margin: 0 2px;

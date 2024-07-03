@@ -1,10 +1,13 @@
-import { createContext, useEffect } from "react";
+import { createContext, useContext, useEffect } from "react";
 import PropTypes from 'prop-types';
 import { useState } from "react";
 import UserService from "../services/User";
 import server from "../config/Server";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { showMainNotification } from "../utils/AdminFunctions";
+import PlanSubscriptionService from "../services/PlanSubscription";
+import { getActivePlan, getActiveSubscription, getFreePlan } from "../utils/subscriptionFunctions";
+import AppData from "./AppContext";
 
 const UserContext = createContext();
 
@@ -12,68 +15,102 @@ export const UserProvider = ({children}) => {
      const [user, setUser] = useState({
           userId: '',
           userAdverts: [],
-          userInfo: {},
+          userInfo: null,
           shopVisits: [],
           reviews: [],
           activeForm: '',
           loggedIn: false,
-          fetchNow:""
+          fetchNow:"",
+          activePlan: {},
+          activeSubscription: null,
+          userSubscriptions: [],
+          
      });
-     const {loggedIn} = user;
+     const [data,setData] = useContext(AppData);
+     const {payPlans} = data;
+     const { userInfo} = user;
      const navigate = useNavigate();
+     const location = useLocation();
 
-     const fetchUserData = async (userId) => {
-          if(userId  && userId != '' && loggedIn){
-               const res = await UserService.getUserDashBoard(userId);
-               const userAds = await server.getUserAdverts();
-               console.log(userAds);
-               if(userAds.status === "pass"){
-                    setUser((prev) => ({
-                         ...prev,
-                         userAdverts: userAds.data
-                    }))
-               }else if(userAds.message === "Authentication Error"){
-                    setUser(prev => ({
-                         ...prev,
-                         loggedIn:false
-                    })) 
-                    showMainNotification("fail", "Session Timeout", () => navigate("/forms/login"));
-               }    
-               if(res){
-                    const {data} = res;
-                    setUser(prev => ({
-                         ...prev,
-                         shopVisits: data?.userVisits,
-                         reviews: data?.userReviews
-                    }));
-               }
-
-
-          }else{
-               console.log('no user Id');
-          }
-     }
-     useEffect(() => {
-          const token = sessionStorage.getItem('loginToken') || null;
-          if(token){
-               const storedData = sessionStorage.getItem('userData');
-               if(storedData){
-                    const userData = JSON.parse(storedData);
-                    setUser((prev) => ({
+     const fetchData = async() => {
+          const res = await UserService.getUserDashBoard(userInfo.user_id);
+          const userAds = await server.getUserAdverts();
+          const userSubscriptionsRes = await PlanSubscriptionService.findByUser(userInfo.user_id); 
+          if(userAds.status === "pass"){
+               setUser((prev) => ({
                     ...prev,
-                    userInfo: userData,
-                    loggedIn: true
-                    }));
-
-                    (async() => await fetchUserData(userData.user_id))();
-               }
-               
-          }else{
+                    userAdverts: userAds.data
+               }))
+          }else if(userAds.message === "Authentication Error"){
                setUser(prev => ({
-                    ...prev, loggedIn:false
+                    ...prev,
+                    loggedIn:false
+               })) 
+               showMainNotification("fail", "Session Timeout", () => navigate("/forms/login"));
+          }    
+          if(res){
+               const {data} = res;
+               setUser(prev => ({
+                    ...prev,
+                    shopVisits: data?.userVisits,
+                    reviews: data?.userReviews
+               }));
+          }
+          if(userSubscriptionsRes){
+               const subs = userSubscriptionsRes.data;
+               let userActiveSubscription = null;
+               let userActivePlan = null;
+               setUser(prev => ({
+                    ...prev,
+                    userSubscriptions: subs
+               }))
+               if(subs.length){
+                    userActiveSubscription = getActiveSubscription(subs);
+                    userActivePlan = getActivePlan(payPlans,userActiveSubscription.plan_id);
+               }else{
+                    userActivePlan = getFreePlan(payPlans, userInfo.business_type);
+               }
+
+               setUser((prev) => ({
+                    ...prev,
+                    activePlan: userActivePlan,
+                    activeSubscription: userActiveSubscription
                }))
           }
-     }, [user.fetchNow]);
+     }
+
+     useEffect(() => {
+          if(location.pathname.startsWith('/user-dashboard') || location.pathname.startsWith("/plan-payment")){
+               if(userInfo && payPlans && payPlans.length ){
+                    (async() => await fetchData())();
+               }else if(!userInfo){
+                    const token = sessionStorage.getItem('loginToken') || null;
+                    let isLoggedIn = false;
+                    if(token){
+                         const storedData = sessionStorage.getItem('userData');
+                         if(storedData){
+                              const userData = JSON.parse(storedData);
+                              setUser((prev) => ({
+                              ...prev,
+                              userInfo: userData,
+                              loggedIn: true
+                              }));
+                              isLoggedIn = true;
+                         }
+                    }
+     
+                    if(!isLoggedIn){
+                         return showMainNotification("fail", "First Login to access the user dashboard.", () => navigate("/forms/login"));
+                    }
+               }else if(!payPlans || !payPlans.length){
+                    setData(prev => ({
+                         ...prev, fetchNow:true
+                    }))
+               }
+          }
+          
+     },[userInfo, location.pathname, payPlans]);
+     
 
      return(
           <UserContext.Provider value={[user, setUser]} >{children}</UserContext.Provider>

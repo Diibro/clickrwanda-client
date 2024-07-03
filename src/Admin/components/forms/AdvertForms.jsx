@@ -138,8 +138,9 @@ const UpdateAdvertForm = () => {
                               <div className="group">
                                    <label htmlFor="status_01">Status: </label>
                                    <select name="status" id="status-01" onChange={(e) => updateAd(e.target.value, "status")} >
-                                        <option value="Approved" selected={ad.status === "approved"}>Approved</option>
+                                        <option value="Approved" selected={ad.status === "Approved"}>Approved</option>
                                         <option value="pending" selected={ad.status === "pending"}>pending</option>
+                                        <option value="Rejected" selected={ad.status === "Rejected"}>Rejected</option>
                                    </select>
                               </div>
                               <div className="group">

@@ -45,7 +45,7 @@ export const NavContainer = () => {
                     <LinkContainer content={{to:'/user-adverts', name: 'My Adverts', icon: <LiaAdversal />}} />
                     <LinkContainer content={{to:"/statistics", name: "Shop Visits", icon: <FcStatistics />}}  />
                     <LinkContainer content={{to:'/user-reviews', name:  'Reviews', icon: <MdRateReview />}} />
-                    <LinkContainer content={{to:'/payment-plans', name: 'Payment Plans', icon: <MdOutlinePayment />}} />
+                    <LinkContainer content={{to:'/payment-plans', name: 'Subscriptions', icon: <MdOutlinePayment />}} />
                     <LinkContainer content={{to:'/logout', name:'Log out', icon: <CiLogout />}} />
           </div>
      )

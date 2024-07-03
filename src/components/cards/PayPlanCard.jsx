@@ -3,10 +3,10 @@ import { parseString } from '../../utils/jsonFunctions';
 import { TickIcon } from '../static/Icons';
 import { ActionBtn } from '../dynamic/Buttons';
 
-const PayPlanCard = ({plan, action, btnTitle}) => {
+const PayPlanCard = ({plan, action, btnTitle, extra}) => {
      const planDescription = parseString(plan.description);
      return (
-          <div className='payment-plan-card'>
+          <div className={`payment-plan-card ${plan?.plan_name} ${extra?.view_type}`}>
                <div className="head">
                     {/* <img width={60} src={plan?.plan_icon} alt="plan icon" /> */}
                     <h2 className='title'>{plan?.plan_name}</h2>
@@ -37,6 +37,9 @@ const PayPlanCard = ({plan, action, btnTitle}) => {
                {
                     action ? <ActionBtn title={btnTitle} action={action} /> : null
                }
+               {
+                    extra?.currentName ? <b className='current-plan-text'>{extra?.currentName}</b> : null
+               }
           </div>
      )
 }
@@ -44,7 +47,9 @@ const PayPlanCard = ({plan, action, btnTitle}) => {
 PayPlanCard.propTypes = {
      plan: PropTypes.object,
      action: PropTypes.func,
-     btnTitle: PropTypes.string
+     btnTitle: PropTypes.string,
+     extra: PropTypes.any
+
 }
 
 export default PayPlanCard

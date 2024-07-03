@@ -4,7 +4,7 @@ import AppData from "../../Contexts/AppContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 import AdvertRenderer, { AdvertRow} from "./Advert.componet";
-import { SubmitButton } from "./Buttons";
+import { ActionBtn, SubmitButton } from "./Buttons";
 import server from "../../config/Server";
 import { MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { AdvertsPagination } from "./Pagination";
@@ -21,6 +21,7 @@ import { parseString} from "../../utils/jsonFunctions";
 import { showMainNotification } from "../../utils/AdminFunctions";
 import uploadFile, { uploadMany } from "../../utils/aws-upload-functions";
 import { s3Folders } from "../../config/s3Config";
+import UserContext from "../../Contexts/UserContext";
 
 
 export const Adverts = ({eleId,limit}) => {
@@ -127,6 +128,8 @@ export const AddAdvertForm = () => {
   const [loading, setLoading] = useState(false);
   const {categories, subCategories} = data; 
   const [descFields,setDescFields] = useState(null); 
+  const [user] = useContext(UserContext);
+  const {userInfo, activePlan, userAdverts} = user;
 
 
   const submitForm =async (event) => {
@@ -269,7 +272,14 @@ export const AddAdvertForm = () => {
           </div>
         </div>
         <div className="row">
-          <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
+          {activePlan?.adsAllowed > userAdverts.length ? 
+            <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
+          : <div className="plan-exceed-alert">
+              <p>You have exceed the ads allowed for the {activePlan?.plan_name} plan</p>
+              <ActionBtn title="Upgrade" action={() => navigate("/user-dashboard/user-plans")} />
+            </div>
+          }
+          
         </div>
       </form>
       }

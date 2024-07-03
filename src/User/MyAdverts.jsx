@@ -3,7 +3,7 @@ import Loading from "../components/static/Loading";
 import server from "../config/Server";
 import PropTypes from 'prop-types';
 import { MdVisibility } from "react-icons/md";
-import { dateFormatMonth, extractDateOnly } from "../utils/dateFunctions";
+import { extractDateOnly } from "../utils/dateFunctions";
 import { FaEdit } from "react-icons/fa";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AdPreview from "./AdPreview";

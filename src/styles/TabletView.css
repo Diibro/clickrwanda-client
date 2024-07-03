@@ -197,6 +197,11 @@
      .home-dash-card{
           width: 27%;
      }
+
+     .payment-plan-page .plan-benefits-container .benefits-container,
+     .payment-plan-page .plan-benefits-container .plan-location-image-container{
+          width: 100%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -518,6 +523,11 @@
 
      .contact-form-container{
           width: 100%;
+     }
+
+     
+     .plan-duration-card{
+          width: 90%;
      }
 }
 

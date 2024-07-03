@@ -73,9 +73,7 @@ const LoginForm = () => {
                     setUser((prev) => ({
                          ...prev,
                          userInfo: res.data,
-                         loggedIn: true,
-                         activeForm:'',
-                         fetchNow:true
+                         loggedIn: true
                     }));
                     if(res.data.user_type !== "user" ){
                          return showMainNotification("pass", `You have been logged as admin`, () => navigate("/admin"));
