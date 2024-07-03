@@ -73,7 +73,7 @@ export const UserProvider = ({children}) => {
                     ...prev, loggedIn:false
                }))
           }
-     }, [user?.fetchNow]);
+     }, [user.fetchNow]);
 
      return(
           <UserContext.Provider value={[user, setUser]} >{children}</UserContext.Provider>

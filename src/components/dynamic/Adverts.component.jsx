@@ -134,7 +134,10 @@ export const AddAdvertForm = () => {
     try {
       setLoading(true);
       const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.adverts);
+      // const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.temp);
       const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.adverts);
+      // const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.temp);
+      console.log(adImagesUrls);
       const newAd = {
         ad_name: adInfo.ad_name,
         description: adDescription,

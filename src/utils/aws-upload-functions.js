@@ -35,12 +35,14 @@ export const deleteFile = async (fileUrl) => {
 };
 
 export const uploadMany = async (files, folder) => {
-     const fileUrls = []
-     if(files && files.length > 0){
-          Array.from(files).map(async(file) => {
+     const fileUrls = [];
+     if (files && files.length > 0) {
+          const uploadPromises = Array.from(files).map(async (file) => {
                const fileUrl = await uploadFile(file, folder);
-               fileUrls.push(fileUrl);
-          })
+               return fileUrl;
+          });
+          const resolvedFileUrls = await Promise.all(uploadPromises);
+          fileUrls.push(...resolvedFileUrls);
      }
      return fileUrls;
 };
