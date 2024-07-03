@@ -39,11 +39,11 @@
                "links":[
                     {
                          "title":"Ubufasha",
-                         "link": "/"
+                         "link": "/help-center"
                     },
                     {
                          "title":"Tuvugishe",
-                         "link": "/"
+                         "link": "/contact-us"
                     },
                     {
                          "title":"Itegeko Ku Makuru Bwite",
@@ -55,7 +55,7 @@
                     },
                     {
                          "title":"Abo Turibo",
-                         "link": "/"
+                         "link": "/about"
                     }
                     
                ],

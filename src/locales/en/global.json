@@ -40,11 +40,11 @@
                "links":[
                     {
                          "title":"Help Center",
-                         "link": "/"
+                         "link": "/help-center"
                     },
                     {
                          "title":"Contact Us",
-                         "link": "/"
+                         "link": "/contact-us"
                     },
                     {
                          "title":"Privacy Policy",
@@ -56,7 +56,7 @@
                     },
                     {
                          "title":"About Us",
-                         "link": "/"
+                         "link": "/about"
                     }
                ],
                "agentLink": {

@@ -36,6 +36,9 @@ import AgentLayout from '../Agent/AgentLayout';
 import { getDateToday } from '../utils/dateFunctions';
 import WebViewService from "../services/WebView";
 import { fetchIds } from '../utils/urlFunctions';
+import About from './About';
+import HelpCenter from './HelpCenter';
+import ContactPage from './ContactPage';
 
 
 const Layout = () => {
@@ -88,6 +91,9 @@ const Layout = () => {
                <Route path='/sponsored-ads' element={<BoostedAdsPage />} />
                <Route path="/forms/:params" element={<UserForms /> } />
                <Route path='/agent/*' element={<AgentLayout />} />
+               <Route path="/about" element={<About />} />
+               <Route path='/help-center' element={<HelpCenter />} />
+               <Route path='/contact-us' element={<ContactPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 
