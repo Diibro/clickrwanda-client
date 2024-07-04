@@ -1,7 +1,13 @@
+import { DashboardContainer, DashboardRow } from "./components/DashboardComponents";
 
 const PayPlans = () => {
   return (
-    <div>PayPlans</div>
+    <DashboardContainer>
+      <DashboardRow>
+        <h2>Below are your subscriptions.</h2>
+      </DashboardRow>
+      
+    </DashboardContainer>
   )
 }
 

@@ -1,3 +1,5 @@
+import { showMainNotification } from "./AdminFunctions";
+
 export const dashReplacer = (name) =>{
      return name.replace(/ /g, "-");
 }
@@ -130,4 +132,9 @@ export const copyText = (elementId) => {
     alert("Text copied");
   }
 
+}
+
+export const copyToClipboard = (str) => {
+  navigator.clipboard.writeText(str);
+    showMainNotification("pass", "Link Copied to clipboard", () => {})
 }

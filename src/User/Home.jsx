@@ -6,7 +6,7 @@ import { ActionBtn } from "../components/dynamic/Buttons";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [user] = useContext(UserContext);
-  const {userInfo, userAdverts, shopVisits, reviews} = user;
+  const {userInfo, userAdverts, shopVisits, reviews, activePlan} = user;
 
   const navigate = useNavigate();
 useEffect(() => {
@@ -21,7 +21,7 @@ useEffect(() => {
           <p>Advertise with Click Rwanda by posting your products. <ActionBtn action={() => navigate('/forms/add-advert')} title="Post New Ad" /></p>
         </div>
         <div className="user-dash-content-container">
-          <p>Maximise your ad views and shop visits by upgrading to our VIP membership plans. Click the button below:</p>
+          <p>Currently subscribed in <i>{activePlan?.plan_name} plan</i>. Upgrade to increase your sales.</p>
           <ActionBtn action={() => navigate("/user-dashboard/user-plans")} title="Upgrade" />
         </div>
       </DashboardRow>

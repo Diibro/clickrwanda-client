@@ -90,6 +90,7 @@ export default {
           update: `${serverUrl}/api/plan-subscription/update`,
           findAll: `${serverUrl}/api/plan-subscription/get-all`,
           findByAgent: `${serverUrl}/api/plan-subscription/get-by-r-id`,
-          findByUser: `${serverUrl}/api/plan-subscription/get-by-user-id`
+          findByUser: `${serverUrl}/api/plan-subscription/get-by-user-id`,
+          countAll: `${serverUrl}/api/plan-subscription/count-all`,
      }
 }

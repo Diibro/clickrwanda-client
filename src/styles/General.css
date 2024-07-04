@@ -419,7 +419,7 @@ textarea{
 
 .pay-plan-invoice-container {
      width: 100%;
-     background-color: #44444460;
+     background-color: #00000080;
      position: fixed;
      height: 100vh;
      top: 0;
@@ -428,7 +428,7 @@ textarea{
      display: flex;
      flex-direction: column;
      align-items: center;
-     justify-content: center;
+     justify-content: flex-start;
      gap: 10px;
      overflow-y: auto;
 }
@@ -445,15 +445,26 @@ textarea{
      font-weight: 600;
      color: var(--text-color-title);
 }
+
+.pay-plan-invoice-container .confirm-payment-container span {
+     width: 80%;
+     display: flex;
+     flex-direction: row;
+     gap: 10px;
+}
 #plan-invoice{
      width: 50%;
-     min-height: 80%;
      background-color: var(--white-text);
      padding: 10px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 30px;
 }
 
 #plan-invoice .header-row{
-     width: 90%;
+     width: 95%;
      display: flex;
      flex-direction: row;
      align-items: flex-start;
@@ -467,6 +478,155 @@ textarea{
      padding: 10px;
 }
 
+#plan-invoice .header-row .invoice-title{
+     width: 45%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+}
+
+#plan-invoice .header-row .invoice-title h2{
+     font-size: 2.2rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+}
+
+#plan-invoice .header-row .invoice-title h3{
+     color: var(--text-color-para1);
+     font-size: 1.4rem;
+     font-weight: 700;
+}
+
+#plan-invoice .header-row .invoice-info{
+     width: 50%;
+     flex-direction: column;
+     align-items: flex-start;
+     gap: 10px;
+}
+
+
+
+#plan-invoice .header-row .invoice-info p{
+     font-size: 1rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+     
+}
+
+#plan-invoice .header-row .invoice-info p b{
+     font-size: 0.95rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+     margin-inline: 5px;
+}
+
+#plan-invoice .invoice-table{
+     width: 95%;
+}
+
+#plan-invoice .invoice-table table{
+     width: 100%;
+     border-collapse: collapse;
+     border: 1.2px solid var(--text-color-title);
+}
+
+#plan-invoice .invoice-table table thead{
+     background-color: var(--text-color-title);
+}
+
+
+#plan-invoice .invoice-table table th,
+#plan-invoice .invoice-table table td{
+     border: none;
+     text-align: center;
+}
+
+#plan-invoice .invoice-table table thead th{
+     font-size: 1.1rem;
+     font-weight: 700;
+     color: var(--text-color-para1);
+     padding: 5px;
+     color: var(--light-gray);
+}
+
+#plan-invoice .invoice-table table tbody{
+     width: 100%;
+}
+
+#plan-invoice .invoice-table table tbody tr{
+     width: 100%;
+}
+
+#plan-invoice .invoice-table table tbody tr td{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+     padding: 5px;
+     border: 1.1px solid var(--text-color-para2);
+}
+
+#plan-invoice .invoice-table .row-align-right{
+     width: 95%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     margin-block: 10px;
+}
+
+#plan-invoice .invoice-table .row-align-right .total-amount-container{
+     width: auto;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     gap: 5px;
+}
+
+#plan-invoice .divider{
+     width: 100%;
+     border-bottom: 1.4px solid var(--text-color-para2);
+} 
+
+#plan-invoice .invoice-table .row-align-right .total-amount-container p{
+     font-size: 0.95rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     width: 100%;
+     gap: 20px;
+}
+
+#plan-invoice .payment-details-row{
+     width: 95%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 5px;
+}
+
+#plan-invoice .payment-details-row h3{
+     font-size: 0.95rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+}
+
+#plan-invoice .payment-details-row p{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+}
+
+#plan-invoice .payment-details-row p span{
+     color: var(--text-color-title);
+     font-weight: 700;
+}
 .plan-duration-card{
      width: 45%;
      padding: 5px 10px;
@@ -475,18 +635,18 @@ textarea{
      flex-direction: row;
      align-items: center;
      justify-content: space-between;
-     border: 1.5px solid var(--text-color-title);
+     border: 1.2px solid var(--text-color-title);
 }
 
 .plan-duration-card b {
-     font-size: 1.2rem;
+     font-size: 1rem;
      font-weight: 700;
      color: var(--text-color-title);
 
 }
 
 .plan-duration-card span{
-     font-size: 1.1rem;
+     font-size: 0.9rem;
      font-weight: 600;
      color: var(--text-color-title);
 }
@@ -1971,10 +2131,10 @@ textarea{
      font-size: 0.9rem ;
      outline: none;
      border: none;
-     padding: 5px 15px ;
+     padding: 6px 15px ;
      border-radius: 15px;
      letter-spacing: 0.56px;
-     border: 1.2px solid var(--back-color-gold2);
+     border: 1.1px solid var(--back-color-gold2);
      transition: all 0.5s ease;
      margin:  5px 2.5px;
      width: auto;
@@ -2805,7 +2965,7 @@ textarea{
      width: 98%;
      display: flex;
      flex-direction: row;
-     align-items: center;
+     align-items: flex-start;
      justify-content: space-evenly;
      gap: 10px;
      margin: 10px auto;
@@ -2828,7 +2988,10 @@ textarea{
 }
 
 .user-dash-content-container {
-     width: 90%;
+     width: 45%;
+     background-color: var(--text-color-title);
+     border-radius: 20px;
+     padding: 20px;
 
 }
 
@@ -2836,7 +2999,7 @@ textarea{
      width: 100%;
      font-size: 0.9rem;
      font-weight: 600;
-     color: var(--text-color-para1);
+     color: var(--white-text);
 }
 
 .dash-col{

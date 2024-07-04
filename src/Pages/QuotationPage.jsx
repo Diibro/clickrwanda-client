@@ -84,7 +84,7 @@ const QuotationPage = () => {
                          loading ? <Loading /> :
                          submitted ? <p className="form-submitted">You have successfully submitted the request</p> :
                          <>
-                              <p>Complete the following form or call <a href="tel:+250788490887">+250 788490887</a> / <a href="tel:+250 727559173">+250 727559173</a></p>
+                              <p>Complete the following form or call <a href="tel:+250 787 260 494">+250 787 260 494</a> / <a href="tel:+250 727559173">+250 727559173</a></p>
                               <form onSubmit={async (e) => await handleSubmit(e)}>
                               <div className="group">
                                    <label htmlFor="email-03">Email:</label>

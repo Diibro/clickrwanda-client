@@ -202,6 +202,10 @@
      .payment-plan-page .plan-benefits-container .plan-location-image-container{
           width: 100%;
      }
+
+     #plan-invoice, .pay-plan-invoice-container .confirm-payment-container{
+          width: 70%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -528,6 +532,14 @@
      
      .plan-duration-card{
           width: 90%;
+     }
+
+     #plan-invoice, .pay-plan-invoice-container .confirm-payment-container{
+          width: 90%;
+     }
+
+     .user-dash-content-container {
+          width: 95%;
      }
 }
 

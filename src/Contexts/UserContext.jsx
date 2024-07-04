@@ -65,8 +65,14 @@ export const UserProvider = ({children}) => {
                     userSubscriptions: subs
                }))
                if(subs.length){
+                    console.log(subs);
                     userActiveSubscription = getActiveSubscription(subs);
-                    userActivePlan = getActivePlan(payPlans,userActiveSubscription.plan_id);
+                    if(userActiveSubscription){
+                         userActivePlan = getActivePlan(payPlans,userActiveSubscription.plan_id);
+                    }else{
+                         userActivePlan = getFreePlan(payPlans, userInfo.business_type);
+                    }
+                    
                }else{
                     userActivePlan = getFreePlan(payPlans, userInfo.business_type);
                }

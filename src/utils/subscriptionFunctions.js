@@ -5,8 +5,8 @@ export const getActiveSubscription = (plans) => {
           const expDate = new Date(plan.exp_date);
           const validPlanTypes = ["Individual", "Small Business", "Large Business"];
           
-          return expDate <= currentDate && validPlanTypes.includes(plan.plan_type);
-     });
+          return expDate <= currentDate && validPlanTypes.includes(plan.plan_type) && plan.status === "Approved";
+     }) || null;
 }
 
 export const getActivePlan  = (plans, plan_id) => {

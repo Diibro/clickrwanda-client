@@ -46,5 +46,14 @@ export default {
                console.log(error);
                return null;
           }
+     },
+     countAll: async() => {
+          try {
+               const res = await axios.get(Server.planSubscription.countAll);
+               return res.data;
+          } catch (error) {
+               console.log(error);
+               return 0;
+          }
      }
 }
