@@ -162,7 +162,6 @@ export const DashAdvert = ({item}) => {
 }
 
 export const AdvertRow = ({item}) => {
-     console.log(item);
      return(
           <div className="advert-row">
                <p className='ad-plan'>{item.plan_name !== "freemium" ? item.plan_name : null}</p>

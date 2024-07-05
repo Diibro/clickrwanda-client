@@ -204,7 +204,7 @@ const PlanInvoice = ({item}) => {
                          <tbody>
                               <tr>
                                    <td>{item?.plan_name}</td>
-                                   <td>{formatPrice(Math.floor((item?.plan_amount * 100) / 118))}</td>
+                                   <td>{formatPrice(item.plan_amount - (item?.plan_amount * 18) / 100)}</td>
                                    <td>{"18%"}</td>
                                    <td>{formatPrice(item?.plan_amount)}</td>
                               </tr>
@@ -212,8 +212,8 @@ const PlanInvoice = ({item}) => {
                     </table>
                     <div className="row-align-right">
                          <div className="total-amount-container">
-                              <p><b>Total Excluding Tax:</b><span>{formatPrice(Math.floor((item?.plan_amount * 100) / 118))}</span></p>
-                              <p><b>VAT:</b><span>{formatPrice(Math.floor((item?.plan_amount * 18) / 118))}</span></p>
+                              <p><b>Total Excluding Tax:</b><span>{formatPrice(item.plan_amount - (item?.plan_amount * 18) / 100)}</span></p>
+                              <p><b>VAT:</b><span>{formatPrice(Math.floor((item?.plan_amount * 18) / 100))}</span></p>
                               <div className="divider"></div>
                               <p><b>Total Amount Due: </b><span>{formatPrice(item?.plan_amount)}</span></p>
                          </div>
