@@ -162,6 +162,7 @@ export const DashAdvert = ({item}) => {
 }
 
 export const AdvertRow = ({item}) => {
+     console.log(item);
      return(
           <div className="advert-row">
                <p className='ad-plan'>{item.plan_name !== "freemium" ? item.plan_name : null}</p>
@@ -170,13 +171,13 @@ export const AdvertRow = ({item}) => {
                     <div className='col'>
                          <h3>{item.ad_name}</h3>
                          <p className='website'>
-                              <a href={item.ad_website} target='_blank' rel="noreferrer" >{item.ad_website}</a>
+                              <a href={item.website} target='_blank' rel="noreferrer" >{item.website}</a>
                          </p>
                     </div>
                </div>
                <p className='desc'>
                     <span>{item?.description?.desc?.value || item?.description?.desc }</span>
-                    <span><a href={item.ad_website} target='_blank' rel="noreferrer" > Visit Website <i><FaLongArrowAltRight /></i> </a></span>
+                    <span><a href={item.website} target='_blank' rel="noreferrer" > Visit Website <i><FaLongArrowAltRight /></i> </a></span>
                     
                </p>
           </div>
