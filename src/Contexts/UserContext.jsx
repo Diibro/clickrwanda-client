@@ -24,7 +24,6 @@ export const UserProvider = ({children}) => {
           activePlan: {},
           activeSubscription: null,
           userSubscriptions: [],
-          
      });
      const [data,setData] = useContext(AppData);
      const {payPlans} = data;
@@ -46,7 +45,7 @@ export const UserProvider = ({children}) => {
                     ...prev,
                     loggedIn:false
                })) 
-               showMainNotification("fail", "Session Timeout", () => navigate("/forms/login"));
+               showMainNotification("fail", "Session Timeout", () => navigate("/forms/login", { state: { from: location } }));
           }    
           if(res){
                const {data} = res;
@@ -86,7 +85,7 @@ export const UserProvider = ({children}) => {
      }
 
      useEffect(() => {
-          if(location.pathname.startsWith('/user-dashboard') || location.pathname.startsWith("/plan-payment")){
+          if(location.pathname.startsWith('/user-dashboard') || location.pathname.startsWith("/plan-payment" ) || location.pathname.startsWith('/forms/add-advert')){
                if(userInfo && payPlans && payPlans.length ){
                     (async() => await fetchData())();
                }else if(!userInfo){
@@ -106,7 +105,7 @@ export const UserProvider = ({children}) => {
                     }
      
                     if(!isLoggedIn){
-                         return showMainNotification("fail", "First Login to access the user dashboard.", () => navigate("/forms/login"));
+                         return showMainNotification("fail", "First Login to access the user dashboard.", () => navigate("/forms/login", { state: { from: location } }));
                     }
                }else if(!payPlans || !payPlans.length){
                     setData(prev => ({

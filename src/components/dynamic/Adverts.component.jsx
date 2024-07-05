@@ -130,6 +130,7 @@ export const AddAdvertForm = () => {
   const [descFields,setDescFields] = useState(null); 
   const [user] = useContext(UserContext);
   const {userInfo, activePlan, userAdverts} = user;
+  const [isOffPlan, setIsOffPlan] = useState(false);
 
 
   const submitForm =async (event) => {
@@ -182,6 +183,16 @@ export const AddAdvertForm = () => {
       setDescFields(null);
     }
   }, [adInfo]);
+
+  useEffect(() => {
+    console.log(userAdverts);
+    console.log(activePlan);
+    if(userAdverts?.length < activePlan?.description?.adsAllowed){
+      setIsOffPlan(false);
+    }else{
+      setIsOffPlan(true);
+    }
+  },[user]);
 
   return(
     <div className="advert-form-container">
@@ -272,7 +283,7 @@ export const AddAdvertForm = () => {
           </div>
         </div>
         <div className="row">
-          {activePlan?.adsAllowed > userAdverts.length ? 
+          {!isOffPlan ? 
             <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
           : <div className="plan-exceed-alert">
               <p>You have exceed the ads allowed for the {activePlan?.plan_name} plan</p>

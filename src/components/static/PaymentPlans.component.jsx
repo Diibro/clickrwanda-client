@@ -39,6 +39,7 @@ export const PaymentPlansContainer = () => {
      const [data,setData] = useContext(AppData);
      const {payPlans: paymentPlans} = data;
      const [catPlans, setCatPlans] = useState(null);
+     const navigate = useNavigate();
      useEffect(() => {
           if(!paymentPlans.length){
                setData(prev => ({...prev, fetchNow: true}));
@@ -79,7 +80,7 @@ export const PaymentPlansContainer = () => {
                                    <h3>{key}</h3>
                                    <div className="plan-container-row">
                                         {     
-                                                  value.map(item => <PayPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} action={() => {}} btnTitle={"Choose Package"} />)
+                                                  value.map(item => <PayPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} action={() => navigate(`/plan-payment?=${item.plan_id}`)} btnTitle={"Choose Package"} />)
                                         }
                                    </div>
                               </div>
