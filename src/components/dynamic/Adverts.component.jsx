@@ -133,7 +133,7 @@ export const AddAdvertForm = () => {
   const [isOffPlan, setIsOffPlan] = useState(false);
 
 
-  const submitForm =async (event) => {
+  const submitForm =async (event,cb) => {
     event.preventDefault();
     try {
       setLoading(true);
@@ -156,7 +156,7 @@ export const AddAdvertForm = () => {
       
       const res = await server.addAdvert(newAd);
       if(res.status === "pass"){
-        return showMainNotification('pass', `${res.message} as ${adInfo.ad_name}`, () => navigate('/user-dashboard/user-adverts'));
+        return showMainNotification('pass', `${res.message} as ${adInfo.ad_name}`, () => cb());
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') navigate("/forms/login");
         return showMainNotification('fail', `${res.message} .Try again`, () => {});
@@ -198,7 +198,7 @@ export const AddAdvertForm = () => {
     <div className="advert-form-container">
       {
         loading ? <Loading /> :
-        <form onSubmit={submitForm}>
+        <form onSubmit={async(e) =>await submitForm(e. navigate("/user-dashboard/user-adverts"))}>
         <div className="row">
           <h2>Add New Ad</h2>
         </div>
@@ -283,13 +283,13 @@ export const AddAdvertForm = () => {
           </div>
         </div>
         <div className="row">
-          {!isOffPlan ? 
-            <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
-          : <div className="plan-exceed-alert">
-              <p>You have exceed the ads allowed for the {activePlan?.plan_name} plan</p>
-              <ActionBtn title="Upgrade" action={() => navigate("/user-dashboard/user-plans")} />
+            <div className="plan-exceed-alert">
+              <ActionBtn title="Boost"  action={() => navigate("/user-dashboard/user-plans")} />
+              <p>To maximise your ad views with our packages</p>
+              
             </div>
-          }
+            <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
+            
           
         </div>
       </form>
