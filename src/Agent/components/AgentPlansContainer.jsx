@@ -49,7 +49,7 @@ const AgentPlansContainer = ({agent}) => {
                                    <h3>{key}</h3>
                                    <div className="plan-container-row">
                                         {     
-                                                  value.map(item => item.plan_name !== "Free"  ?<PayPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} action={() => copyToClipboard(`https://www.clickrwanda.com/plan-payment?=${item.plan_id}?=${agent?.agent_id}`)} btnTitle={"Sell Package"} /> :null)
+                                                  value.map(item => item.plan_name !== "Free"  ?<PayPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} action={() => copyToClipboard(`http://localhost:5173/plan-payment?=${item.plan_id}?=${agent?.agent_id}`)} btnTitle={"Sell Package"} /> :null)
                                         }
                                    </div>
                               </div>

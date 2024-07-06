@@ -16,6 +16,7 @@ import { fetchIds } from "../../utils/urlFunctions";
 import { showMainNotification } from "../../utils/AdminFunctions";
 import uploadFile from "../../utils/aws-upload-functions";
 import { s3Folders } from "../../config/s3Config";
+import AppData from "../../Contexts/AppContext";
 
 
 const UserForms = () => {
@@ -24,9 +25,6 @@ const UserForms = () => {
      const location = useLocation()
      const {pathname} = location
      const activeForm = pathname.split("/")[2];
-     useEffect(() => {
-          console.log(pathname.split('/'))
-     },[])
      
      if(activeForm != '') {
           return (
@@ -44,9 +42,13 @@ const UserForms = () => {
 
 const LoginForm = () => {
      const [,setUser] = useContext(UserContext);
+     const [data, setData] = useContext(AppData);
+     const{prevState} = data;
      const {register, handleSubmit,setValue} = useForm();
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
+     const from  = prevState ? `${prevState?.pathname}${prevState?.search}` : '/user-dashboard';
+
 
      useEffect(() => {
           const emailInput = document.getElementById('email_02');
@@ -78,7 +80,10 @@ const LoginForm = () => {
                     if(res.data.user_type !== "user" ){
                          return showMainNotification("pass", `You have been logged as admin`, () => navigate("/admin"));
                     }else{
-                         return showMainNotification('pass', `${res.message} as ${res.data.username}`, () => navigate('/user-dashboard'))
+                         return showMainNotification('pass', `${res.message} as ${res.data.username}`, () => {
+                              navigate(from);
+                              setData(prev => ({...prev, prevState:null}));
+                         });
                     }
                     
                }else{

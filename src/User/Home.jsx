@@ -12,7 +12,7 @@ const Home = () => {
 useEffect(() => {
   console.log(user);
   console.log(userAdverts);
-}, [])
+}, [userAdverts]);
   return (
     <DashboardContainer>
       <DashboardRow>

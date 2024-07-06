@@ -26,7 +26,7 @@ export const UserProvider = ({children}) => {
           userSubscriptions: [],
      });
      const [data,setData] = useContext(AppData);
-     const {payPlans} = data;
+     const {payPlans,prevState} = data;
      const { userInfo} = user;
      const navigate = useNavigate();
      const location = useLocation();
@@ -45,7 +45,14 @@ export const UserProvider = ({children}) => {
                     ...prev,
                     loggedIn:false
                })) 
-               showMainNotification("fail", "Session Timeout", () => navigate("/forms/login", { state: { from: location } }));
+               showMainNotification("fail", "Session Timeout", () => {
+                    navigate("/forms/login");
+                    setData(prev => ({
+                         ...prev,
+                         prevState: location
+                    }));
+                    localStorage.setItem('prevState', JSON.stringify(location));
+               });
           }    
           if(res){
                const {data} = res;
@@ -85,6 +92,7 @@ export const UserProvider = ({children}) => {
      }
 
      useEffect(() => {
+          console.log(prevState);
           if(location.pathname.startsWith('/user-dashboard') || location.pathname.startsWith("/plan-payment" ) || location.pathname.startsWith('/forms/add-advert')){
                if(userInfo && payPlans && payPlans.length ){
                     (async() => await fetchData())();
@@ -105,7 +113,8 @@ export const UserProvider = ({children}) => {
                     }
      
                     if(!isLoggedIn){
-                         return showMainNotification("fail", "First Login to access the user dashboard.", () => navigate("/forms/login", { state: { from: location } }));
+                         console.log(location);
+                         return showMainNotification("fail", "First Login to access the user dashboard.", () => navigate("/forms/login", { state: { from: location} }));
                     }
                }else if(!payPlans || !payPlans.length){
                     setData(prev => ({

@@ -32,6 +32,7 @@ export const AppProvider = ({children}) => {
           shareAlert: {on: false, content: {}},
           loading: false,
           changingPage: false,
+          prevState: null
      });
 
      const {fetchNow} = data;
