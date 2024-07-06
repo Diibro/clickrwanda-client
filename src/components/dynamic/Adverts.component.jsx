@@ -133,7 +133,7 @@ export const AddAdvertForm = () => {
   const [isOffPlan, setIsOffPlan] = useState(false);
 
 
-  const submitForm =async (event,cb) => {
+  const submitForm =async (event) => {
     event.preventDefault();
     try {
       setLoading(true);
@@ -156,7 +156,7 @@ export const AddAdvertForm = () => {
       
       const res = await server.addAdvert(newAd);
       if(res.status === "pass"){
-        return showMainNotification('pass', `${res.message} as ${adInfo.ad_name}`, () => cb());
+        return showMainNotification('pass', `${res.message} as ${adInfo.ad_name}`, () => navigate("/user-dashboard/user-adverts"));
       }else{
         if(res.message === "No Authentication Token" || res.message === 'Authentication Error') navigate("/forms/login");
         return showMainNotification('fail', `${res.message} .Try again`, () => {});
@@ -198,7 +198,7 @@ export const AddAdvertForm = () => {
     <div className="advert-form-container">
       {
         loading ? <Loading /> :
-        <form onSubmit={async(e) =>await submitForm(e. navigate("/user-dashboard/user-adverts"))}>
+        <form onSubmit={submitForm}>
         <div className="row">
           <h2>Add New Ad</h2>
         </div>
