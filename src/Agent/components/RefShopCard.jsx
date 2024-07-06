@@ -19,7 +19,7 @@ export const RefShopCard = ({shop}) => {
                </div>
                <div className="row">
                     <span>Amounted Earned:</span>
-                    <b>Rwf 200</b>
+                    <b>Rwf 20</b>
                </div>
           </div>
      )
