@@ -8,6 +8,7 @@ const Tasks = () => {
                <Title>
                     <h2>Today Tasks:</h2>
                </Title>
+               
                <p className="agent-not-found-paragraphs">No tasks available today.</p>
           </MainRow>
      </>

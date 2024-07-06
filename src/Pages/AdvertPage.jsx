@@ -14,13 +14,13 @@ import { RiAdvertisementFill } from "react-icons/ri";
 import {  ImageViewer } from "../components/dynamic/ImageSlider";
 import { getData, saveData } from "../utils/storageFunctions";
 import { AdvertReview, RateAdvert } from "../components/dynamic/Reviews.component";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
 import { Banners } from "../config/banners";
 import { VscVerifiedFilled } from "react-icons/vsc";
 import AppData from "../Contexts/AppContext";
 import { getFieldSummation, getSimilarAds } from "../utils/AdvertFunctions";
-
+import { Helmet } from 'react-helmet-async';
 
 const AdvertPage = () => {
      const location = useLocation();
