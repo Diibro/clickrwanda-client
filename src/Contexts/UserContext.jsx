@@ -92,7 +92,6 @@ export const UserProvider = ({children}) => {
      }
 
      useEffect(() => {
-          console.log(prevState);
           if(location.pathname.startsWith('/user-dashboard') || location.pathname.startsWith("/plan-payment" ) || location.pathname.startsWith('/forms/add-advert')){
                if(userInfo && payPlans && payPlans.length ){
                     (async() => await fetchData())();
@@ -113,8 +112,11 @@ export const UserProvider = ({children}) => {
                     }
      
                     if(!isLoggedIn){
-                         console.log(location);
-                         return showMainNotification("fail", "First Login to access the user dashboard.", () => navigate("/forms/login", { state: { from: location} }));
+                         return showMainNotification("fail", "First Login to access the user dashboard.", () => {
+                              setData(prev => ({...prev, prevState: location}));
+                              navigate("/forms/login", { state: { from: location} });
+
+                         });
                     }
                }else if(!payPlans || !payPlans.length){
                     setData(prev => ({

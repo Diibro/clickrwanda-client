@@ -144,8 +144,8 @@ const LoginForm = () => {
                     </div>
                </form>
                <div className="line-divider"><p>Or</p></div>
-               <p className="other-link">Staff Login <b onClick={() => navigate("/forms/agent-login")}>Agent</b></p>
                <p className="other-link">Don&rsquo;t have account <b onClick={() => navigate("/forms/signup")}>Sign Up</b></p>
+               <p className="other-link">Staff Login <b onClick={() => navigate("/forms/agent-login")}>Agent</b></p>
                </>
                
                :<Loading />}
