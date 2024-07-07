@@ -19,7 +19,7 @@ export const calculateShopTotal = (arr, lastDate) => {
      let total = 0;
      if(arr && arr[0]){
           arr.forEach(shop => {
-               if(shop.active && isLaterThan(lastDate, shop.reg_date)){
+               if(shop.active && isLaterThan(lastDate, shop.reg_date) && shop.total_ads > 0){
                     total += 20;
                }
           });

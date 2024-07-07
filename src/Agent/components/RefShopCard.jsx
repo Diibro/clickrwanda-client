@@ -18,9 +18,25 @@ export const RefShopCard = ({shop}) => {
                     <b>{extractDateOnly(shop.reg_date)}</b>
                </div>
                <div className="row">
-                    <span>Amounted Earned:</span>
-                    <b>Rwf 20</b>
+                    <span>Total Ads: </span>
+                    <b>{shop.total_ads}</b>
                </div>
+               <>
+                    {
+                         shop.total_ads > 0 ?
+                         <>
+                         <div className="row">
+                              <span>Amounted Earned:</span>
+                              <b>Rwf 20</b>
+                         </div>
+                         </>
+                         :
+                         <div className="row">
+                              <p className="red-paragrap">Not yet Approved to be a shop</p>
+                         </div>
+                    }
+               </>
+               
           </div>
      )
 }

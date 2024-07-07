@@ -6678,6 +6678,12 @@ textarea{
      font-weight: 800;
      transition: all 0.5s ease;
 }
+
+.red-paragrap{
+     color: var(--back-color-red1);
+     font-size: 0.9rem;
+     font-weight: 600;
+}
 /* end of overriders */
 /* media queries */
 
