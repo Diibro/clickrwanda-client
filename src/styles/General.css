@@ -4039,16 +4039,45 @@ textarea{
 }
 
 .share-buttons{
-     width: 20%;
+     width: 50%;
      min-width: 200px;
      padding: 20px;
-     background-color: var(--back-color-gold1);
+     background-color: var(--white-text);
      border-radius: 10px;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 10px;
+     flex-wrap: wrap;
 }
 
-.share-buttons button{
+.share-buttons .copy-link-container{
+     width: 100%;
+
+}
+
+.share-buttons button.share-btn{
      margin: 10px;
-} 
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     border: 1.1px solid var(--text-color-para2) !important;
+     padding: 5px 10px !important;
+     border-radius: 20px;
+     gap: 5px !important;
+}
+.share-buttons button.share-btn:hover{
+     background-color: var(--light-gray) !important;
+}
+
+
+.share-buttons button.share-btn span{
+     font-size: 0.9rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+}
+
 
 /* end of category container styles */
 

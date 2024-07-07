@@ -23,6 +23,8 @@ import {
 import { useContext, useEffect, useState } from 'react';
 import AppData from '../../Contexts/AppContext';
 import { ImCross } from 'react-icons/im';
+import { ActionBtn } from './Buttons';
+import { copyToClipboard } from '../../utils/otherFunctions';
 
 export const SectionContainer = ({content, title, sectionType}) => {
      return(
@@ -100,29 +102,36 @@ export const ShareButtons = () => {
                <div className='share-buttons-container'>
                     <i className='close-icon' onClick={closeShareButtons}><ImCross /></i>
                     <div className="share-buttons">
-                         <FacebookShareButton url={url} title={name}>
+                         <div className="copy-link-container">
+                              <ActionBtn title='Copy Share Link' action={() => copyToClipboard(url)} />
+                         </div>
+                         <FacebookShareButton className='share-btn' url={url} title={name}>
                               <FacebookIcon size={32} round />
+                              <span>Facebook</span>
                          </FacebookShareButton>
-                         <EmailShareButton url={url} subject={name} body='check out this link:'>
+                         <EmailShareButton className='share-btn' url={url} subject={name} body='check out this link:'>
                               <EmailIcon size={32} round />
+                              <span>Email</span>
                          </EmailShareButton>
-                         <TwitterShareButton url={url} title={name}>
+                         <TwitterShareButton className='share-btn' url={url} title={name}>
                               <TwitterIcon size={32} round />
+                              <span>Twitter</span>
                          </TwitterShareButton>
-                         <WhatsappShareButton url={url} title={name}>
+                         <WhatsappShareButton className='share-btn' url={url} title={name}>
                               <WhatsappIcon size={32} round />
+                              <span>WhatsApp</span>
                          </WhatsappShareButton>
-                         <InstapaperShareButton url={url} title={name}>
-                              <InstapaperIcon size={32} round />
-                         </InstapaperShareButton>
-                         <PinterestShareButton url={url} media={image} description={name}>
+                         <PinterestShareButton className='share-btn' url={url} media={image} description={name}>
                               <PinterestIcon size={32} round />
+                              <span>Pinterest</span>
                          </PinterestShareButton>
-                         <LinkedinShareButton url={url} title={name}>
+                         <LinkedinShareButton className='share-btn' url={url} title={name}>
                               <LinkedinIcon size={32} round />
+                              <span>LinkedIn</span>
                          </LinkedinShareButton>
-                         <TelegramShareButton url={url} title={name}>
+                         <TelegramShareButton className='share-btn' url={url} title={name}>
                               <TelegramIcon size={32} round />
+                              <span>Telegram</span>
                          </TelegramShareButton>
                     </div>
                </div> 

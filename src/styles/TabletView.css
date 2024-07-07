@@ -261,9 +261,12 @@
           height: 30px;
           font-size: 20px;
      }
+     .share-buttons{
+          width: 80%;
+     }
      .share-buttons button{
-          width: 30px;
-          height: 30px;
+          width: auto;
+          height: auto;
      }
 
      .share-buttons button i{

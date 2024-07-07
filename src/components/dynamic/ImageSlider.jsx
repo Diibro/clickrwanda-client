@@ -11,7 +11,7 @@ export const ImageSlider = ({images}) => {
      const [,setData] = useContext(AppData);
      const location = useLocation();
      
-     const urlLink = "https://clickrwanda.com"+ location.pathname + location.search
+     const urlLink = "https://share.clickrwanda.com/advert/"+location.search.split('?=')[1]
      const changeImage = count => {
           setImageCount(prev => prev + count);
      }
@@ -46,7 +46,7 @@ export const ImageViewer = ({images}) => {
      const [,setData] = useContext(AppData);
      const location = useLocation();
      
-     const urlLink = "https://clickrwanda.com"+ location.pathname + location.search
+     const urlLink = "https://share.clickrwanda.com/advert/"+location.search.split('?=')[1]
      const changeImage = image => {
           setInView(image);
      }
@@ -62,6 +62,7 @@ export const ImageViewer = ({images}) => {
 
      useEffect(() => {
           setInView(images[imageCount]);
+          console.log(urlLink);
      }, [imageCount, images]);
 
      return(
