@@ -1,6 +1,7 @@
 import { showMainNotification } from "./AdminFunctions";
 
 export const dashReplacer = (name) =>{
+    
      return name.replace(/ /g, "-");
 }
 

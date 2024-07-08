@@ -1,10 +1,11 @@
 import { isLaterThan } from "./dateFunctions";
 
-export const calculateRefVisitsTotal = (arr, lastDate) => {
+export const calculateRefVisitsTotal = (arr, lastDate,v_ids) => {
      let totalAmount = 0;
+     console.log(v_ids);
      if(arr && arr[0]){
           arr.forEach(visit => {
-               if(!visit.v_type.startsWith('/forms') && isLaterThan(lastDate, visit.v_date)){
+               if(v_ids.includes(visit.v_id) && isLaterThan(lastDate, visit.v_date)){
                     totalAmount += 5;
                }
           })
@@ -48,4 +49,14 @@ export const countVisits = (arr, key, search) => {
      }else{
           return 0;
      }
+}
+
+export const getVisitIds = (tasks) => {
+     const v_ids = [];
+     if(tasks && tasks.length){
+          tasks.forEach(task => {
+               v_ids.push(...(task.v_ids));
+          })
+     }
+     return v_ids;
 }

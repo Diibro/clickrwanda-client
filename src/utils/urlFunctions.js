@@ -1,7 +1,7 @@
 import { charAdder, charRemover, dashRemover, dashReplacer } from "./otherFunctions";
 
 export const getItemUrl = (name, id) => {
-     const newName = dashReplacer(name);
+     const newName = dashReplacer(name.split("/").join(' '));
      return charAdder([newName, id], '?=');
 }
 
