@@ -38,4 +38,13 @@ export default {
                return null
           }
      },
+     findByAgent: async(agent_id) => {
+          try {
+               const res = await axios.post(Server.agentTask.findByAgent, {agent_id})
+               return res.data;
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
+     }
 }

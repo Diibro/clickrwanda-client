@@ -1,4 +1,4 @@
-import { useContext} from "react"
+import { useContext, useEffect} from "react"
 import MainRow from "./components/MainRow"
 import { AgentContext } from "./AgentLayout";
 import AgentPaymentService from "../services/AgentPayment"; 
@@ -9,10 +9,11 @@ import AgentContentCard from "./components/AgentContentCard";
 import { countVisits } from "../utils/agentFunctions";
 import { useNavigate } from "react-router-dom";
 import { copyText } from "../utils/otherFunctions";
+import TaskContainer from "./components/TaskContainer";
 
 const Home = () => {
      const [agentData,setAgentData] = useContext(AgentContext);
-     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits,packageSold } = agentData;
+     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits,packageSold, tasks } = agentData;
      const navigate = useNavigate();
 
      const claimPayment = async () => {
@@ -98,7 +99,12 @@ const Home = () => {
                <Title>
                     <h2>Today Tasks:</h2>
                </Title>
-               <p className="agent-not-found-paragraphs">No tasks available today.</p>
+               {
+                    tasks && tasks[0] ? 
+                         tasks.map((task, index) => <TaskContainer key={`agent-task-cont-${index}` } task={task} agent={agentInfo} />)
+                    :<p className="agent-not-found-paragraphs">No tasks available today.</p>
+               }
+               
           </MainRow>
      </>
      )

@@ -544,6 +544,14 @@
      .user-dash-content-container {
           width: 95%;
      }
+
+     .agent-task-container .row p{
+          width: 100%;
+     }
+
+     .agent-task-container .row b {
+          width: 60;
+     }
 }
 
 

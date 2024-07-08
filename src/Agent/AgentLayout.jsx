@@ -12,6 +12,7 @@ import { calculatePackageTotal, calculateRefVisitsTotal, calculateShopTotal } fr
 import Tasks from "./Tasks";
 import AgentPlans from "./AgentPlans";
 import PlanSubscriptionService from "../services/PlanSubscription";
+import AgentTaskService from "../services/AgentTask";
 
 export const AgentContext = createContext();
 
@@ -42,14 +43,15 @@ const AgentLayout = () => {
                     const agentPayments = await AgentPaymentService.findByAgent(agent.agent_id);
                     const webViewRef = await WebViewService.getRefVisits(agent.agent_id);
                     const packageSoldInfo = await PlanSubscriptionService.findByRId(agent.agent_id);
-
+                    const agentTaskInfo = await AgentTaskService.findByAgent(agent.agent_id);
                     setAgentData(prev => ({
                          ...prev, logged:true, 
                          agentInfo: agent,
                          referrals: usersRef.data || [],
                          payments: agentPayments.data || [],
                          webVisitsRef: webViewRef.data || [],
-                         packageSold: packageSoldInfo.data || []
+                         packageSold: packageSoldInfo.data || [],
+                         tasks: agentTaskInfo.data || []
                     }));
                }else{
                     navigate("/forms/agent-login");

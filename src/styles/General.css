@@ -6328,6 +6328,38 @@ textarea{
      font-weight: 600;
 }
 
+.agent-task-container{
+     width: 95%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+}
+
+.agent-task-container .row{
+     width: 100%;
+     border-radius: 10px;
+     border: 1.2px solid var(--text-color-para2);
+     padding: 10px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+}
+
+.agent-task-container .row p{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
+
+.agent-task-container .row b{
+     font-size: 0.9rem;
+     font-weight: 500;
+     color: var(--back-color-blue2);
+}
 /* end of agent styles */
 
 /*Banner styles */ 
