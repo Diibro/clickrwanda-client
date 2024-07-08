@@ -12,7 +12,7 @@ import { copyText } from "../utils/otherFunctions";
 
 const Home = () => {
      const [agentData,setAgentData] = useContext(AgentContext);
-     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits } = agentData;
+     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits,packageSold } = agentData;
      const navigate = useNavigate();
 
      const claimPayment = async () => {
@@ -57,7 +57,7 @@ const Home = () => {
                </div>
           </MainRow>
           <MainRow>
-               <AgentContentCard content={{title: "Packages Sold", count: 0}} />
+               <AgentContentCard content={{title: "Packages Sold", count: packageSold?.length || 0}} />
                <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0}} />
                <AgentContentCard content={{title: "Shop Visits", count: countVisits(webVisits, "v_type", "/vendor")}} />
                <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad")}} />

@@ -8,9 +8,10 @@ import AgentPaymentService from "../services/AgentPayment";
 import UserService from "../services/User";
 import AgentLogout from "./AgentLogout";
 import WebViewService from "../services/WebView";
-import { calculateRefVisitsTotal, calculateShopTotal } from "../utils/agentFunctions";
+import { calculatePackageTotal, calculateRefVisitsTotal, calculateShopTotal } from "../utils/agentFunctions";
 import Tasks from "./Tasks";
 import AgentPlans from "./AgentPlans";
+import PlanSubscriptionService from "../services/PlanSubscription";
 
 export const AgentContext = createContext();
 
@@ -21,7 +22,9 @@ const AgentLayout = () => {
           referrals: null,
           payments: null,
           webVisitsRef: null,
+          packageSold:null,
           totalAmount:0,
+          tasks:null,
      });
 
      const navigate = useNavigate();
@@ -38,13 +41,15 @@ const AgentLayout = () => {
                     const usersRef = await UserService.getByRef(agent.agent_id);
                     const agentPayments = await AgentPaymentService.findByAgent(agent.agent_id);
                     const webViewRef = await WebViewService.getRefVisits(agent.agent_id);
-                    
+                    const packageSoldInfo = await PlanSubscriptionService.findByRId(agent.agent_id);
+
                     setAgentData(prev => ({
                          ...prev, logged:true, 
                          agentInfo: agent,
                          referrals: usersRef.data || [],
                          payments: agentPayments.data || [],
                          webVisitsRef: webViewRef.data || [],
+                         packageSold: packageSoldInfo.data || []
                     }));
                }else{
                     navigate("/forms/agent-login");
@@ -65,7 +70,8 @@ const AgentLayout = () => {
           if(agentData.payments){
                let visitAmount = calculateRefVisitsTotal(agentData.webVisitsRef, agentData.payments[0]?.p_date || null);
                let shopsAmount = calculateShopTotal(agentData.referrals, agentData.payments[0]?.p_date || null);
-               setAgentData((prev) => ({...prev, totalAmount: (visitAmount + shopsAmount)}))
+               let packagesAmount = calculatePackageTotal(agentData.packageSold,agentData.payments[0]?.p_date || null);
+               setAgentData((prev) => ({...prev, totalAmount: (visitAmount + shopsAmount + packagesAmount)}))
           }
           
      }, [agentData.payments]);

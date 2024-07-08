@@ -29,9 +29,20 @@ export const calculateShopTotal = (arr, lastDate) => {
      return total;
 } 
 
+export const calculatePackageTotal = (arr, lastDate) =>{
+     let total = 0;
+     if(arr && arr[0]){
+          arr.forEach(sub => {
+               if(sub.status === "Approved" && isLaterThan(lastDate, sub.subscription_date)){
+                    total += ((20 / 100) * sub.amount);
+               }
+          })
+     }
+
+     return total;
+}
+
 export const countVisits = (arr, key, search) => {
-     
-     console.log(arr);
      if(arr && arr[0]){
           return arr.filter(item => item[key].startsWith(search)).length
      }else{

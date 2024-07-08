@@ -92,5 +92,11 @@ export default {
           findByAgent: `${serverUrl}/api/plan-subscription/get-by-r-id`,
           findByUser: `${serverUrl}/api/plan-subscription/get-by-user-id`,
           countAll: `${serverUrl}/api/plan-subscription/count-all`,
+     },
+     agentTask: {
+          add: `${serverUrl}/api/agent-task/add`,
+          update: `${serverUrl}/api/agent-task/update`,
+          delete: `${serverUrl}/api/agent-task/delete`,
+          findAll: `${serverUrl}/api/agent-task/get-all`,
      }
 }
