@@ -8,7 +8,7 @@ import RefWebVisitCard from "./components/RefWebVisitCard";
 const Referrals = () => {
      const [agentData] = useContext(AgentContext);
 
-     const {referrals,webVisitsRef } = agentData;
+     const {referrals,webVisitsRef, vIds } = agentData;
 
      useEffect(() => {
           console.log(webVisitsRef);
@@ -34,7 +34,7 @@ const Referrals = () => {
                {
                     webVisitsRef && webVisitsRef[0] 
                     ? 
-                    webVisitsRef.map((item, index) => <RefWebVisitCard key={`web-visit-card-ref-${index}`} visit={item} />)
+                    webVisitsRef.map((item, index) => vIds.includes(item.v_id) ? <RefWebVisitCard key={`web-visit-card-ref-${index}`} visit={item} /> : null)
                     : <p className="agent-not-found-paragraphs">No referred webvisits found.</p>
                }
           </MainRow>
