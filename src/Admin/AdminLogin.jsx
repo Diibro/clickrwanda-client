@@ -9,12 +9,14 @@ import { textColors, titleSize } from "../components/styles";
 import Title from "../components/dynamic/TitleComponents";
 import Loading from "../components/static/Loading";
 import { showMainNotification } from "../utils/AdminFunctions";
+import UserContext from "../Contexts/UserContext";
 
 const AdminLogin = () => {
      const [loading,setLoading ] = useState(false);
      const {register, handleSubmit,} = useForm();
      const [,setAdminData] = useContext(AdminContext);
      const navigate = useNavigate();
+     const [,setUser] = useContext(UserContext);
 
     
 
@@ -33,6 +35,11 @@ const AdminLogin = () => {
                                    ...prev,
                                    logged: true,
                                    adminInfo: userInfo
+                              }));
+                              setUser(prev => ({
+                                   ...prev,
+                                   loggedIn:true,
+                                   userInfo:userInfo
                               }))
                               return showMainNotification('pass', `${res.message} as ${res.data.username}`, () => navigate("/admin"))
                          }else{

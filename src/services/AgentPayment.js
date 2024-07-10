@@ -31,7 +31,7 @@ export default {
      },
      update: async(item) => {
           try {
-               const token = sessionStorage.getItem("agentToken");
+               const token = sessionStorage.getItem("loginToken");
                if(token){
                     const res = await axios.post(Server.agentPayment.update, item, {
                          headers: {

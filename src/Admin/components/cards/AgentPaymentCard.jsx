@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { ActionBtn } from '../../../components/dynamic/Buttons';
 import { extractDateOnly } from '../../../utils/dateFunctions';
 import { formatPrice } from '../../../utils/otherFunctions';
+import { DeleteButton, EditButton } from '../buttons/ActionButtons';
 
-const AgentPaymentCard = ({payment}) => {
+const AgentPaymentCard = ({payment,actions}) => {
      return (
           <div className={`admin-agent-payment-card ${payment.status === 'Approved' ? "approved-card" : payment.status === 'pending' ? "pending-card" : payment.status === 'rejected' ? "rejected-card" : ''}`}>
                <span>{extractDateOnly(payment.p_date)}</span>
@@ -13,13 +13,17 @@ const AgentPaymentCard = ({payment}) => {
                <span>Rwf {formatPrice(payment.amount)}</span>
                <span>{payment.status}</span>
                {
-                    payment.status !== "Approved" ? <ActionBtn title='Approve' /> : null
+                    payment.status !== "Approved" ? <EditButton title='Approve' action={actions.approve} /> : null
+               }
+               {
+                    payment.status !== "Approved" && payment.status !== "rejected"  ? <DeleteButton title='Reject' action={actions.reject} /> : null
                }
           </div>
      )
 }
 
 AgentPaymentCard.propTypes = {
-     payment: PropTypes.object
+     payment: PropTypes.object,
+     actions: PropTypes.object
 }
 export default AgentPaymentCard

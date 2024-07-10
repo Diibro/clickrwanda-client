@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import AdminRow from "../AdminRow";
 import AgentPaymentService from "../../../services/AgentPayment";
 import AgentPaymentCard from "../cards/AgentPaymentCard";
+import { showMainNotification } from "../../../utils/AdminFunctions";
+import { getDateOnly } from "../../../utils/dateFunctions";
 
 const AgentPaymentsContainer = () => {
      const [payments, setPayments] = useState({
@@ -10,6 +11,7 @@ const AgentPaymentsContainer = () => {
           "Approved Payments": [],
      });
      const [activePays, setActivePays] = useState("");
+     const [refresh, setRefresh] = useState(0)
      
      const fetchPayments = async() =>{
           const paymentsInfo = await AgentPaymentService.getAll();
@@ -35,9 +37,47 @@ const AgentPaymentsContainer = () => {
           setPayments(info);
      }
 
+     const approvePay = async(payment) => {
+          if(payment){
+               console.log(payment)
+               payment.status = 'Approved';
+               payment.p_date = getDateOnly(payment.p_date)
+               const res = await AgentPaymentService.update(payment);
+               console.log(res);
+               if(res){
+                    if(res.status === 'success'){
+                         showMainNotification('pass', 'Payment approved successfully', () => setRefresh(refresh  + 1));
+                    }else{
+                         showMainNotification('fail', res.message, () => {})
+                    }
+               }else{
+                    showMainNotification('fail', 'error connecting to the server.', () => {});
+               }
+          }
+     }
+
+     const rejectPay = async(payment) => {
+          if(payment){
+               console.log(payment)
+               payment.status = 'rejected';
+               payment.p_date = getDateOnly(payment.p_date)
+               const res = await AgentPaymentService.update(payment);
+               console.log(res);
+               if(res){
+                    if(res.status === 'success'){
+                         showMainNotification('pass', 'Payment rejected successfully', () => setRefresh(refresh  + 1));
+                    }else{
+                         showMainNotification('fail', res.message, () => {})
+                    }
+               }else{
+                    showMainNotification('fail', 'error connecting to the server.', () => {});
+               }
+          }
+     }
+
      useEffect(() => {
           (async() => await fetchPayments())()
-     })
+     },[refresh]);
      return (
           <div className="admin-agent-payments-container">
                {
@@ -47,7 +87,7 @@ const AgentPaymentsContainer = () => {
                               <div className="sub-container-payments active">
                                    {
                                         value && value.length ? 
-                                             value.map((item,index) => <AgentPaymentCard key={`agent-payment-card-${key}-${index}`} payment={item} />)
+                                             value.map((item,index) => <AgentPaymentCard key={`agent-payment-card-${key}-${index}`} payment={item} actions={{approve: async() => await approvePay(item), reject: async() => await rejectPay(item)}} />)
                                         : <p>No {key}</p>
                                    }
                               </div>

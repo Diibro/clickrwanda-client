@@ -46,6 +46,7 @@ const AgentLayout = () => {
                     const packageSoldInfo = await PlanSubscriptionService.findByRId(agent.agent_id);
                     const agentTaskInfo = await AgentTaskService.findByAgent(agent.agent_id);
                     const visitIds = getVisitIds(agentTaskInfo.data);
+                    console.log(agentPayments)
                     setAgentData(prev => ({
                          ...prev, logged:true, 
                          agentInfo: agent,
@@ -68,7 +69,6 @@ const AgentLayout = () => {
 
      useEffect (() => {
           (async () => await fetchAgentInfo())();
-
      }, [agentData.logged]);
 
      useEffect(() => {

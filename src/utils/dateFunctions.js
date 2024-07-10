@@ -298,3 +298,13 @@ export const aggregateByMonth = (data) => {
 
      return { labels, counts };
 };
+
+export const getDateOnly =(date) => {
+     if (date instanceof Date) {
+          return date.toISOString().split('T')[0];
+     }
+     if (typeof date === 'string') {
+          return new Date(date).toISOString().split('T')[0];
+     }
+     return null;
+}

@@ -5943,6 +5943,7 @@ textarea{
      height: 0;
      transition: all 0.5s ease;
      overflow: hidden;
+     gap: 5px;
 }
 
 .payments-sub-container.active-pays .sub-container-payments{
