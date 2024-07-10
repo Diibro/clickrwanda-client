@@ -20,7 +20,7 @@ const Home = () => {
           if(totalAmount < 500){
                showMainNotification("fail", "Amount must be greater than Rwf 500", () => {} )
           }
-          else if(isLaterThan(payments[0].p_date, getDateToday())) {
+          else if(payments.length && !isLaterThan(payments[0].p_date, getDateToday())) {
                showMainNotification("fail", "Another Payment Can be claimed tomorrow.", () => {})
           }
           else{
