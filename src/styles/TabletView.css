@@ -429,6 +429,9 @@
           height: 10vh;
           flex-direction: row;
           align-items: center;
+          overflow-y: hidden;
+          position: relative;
+          z-index: 10;
      }
 
 
@@ -451,11 +454,11 @@
 
      .admin-navbar .dash-nav-container{
           width: 75%;
-          height: auto;
           flex-direction: row;
           align-items: center;
           gap: 5px;
-          overflow-x: scroll;
+          overflow-y: hidden;
+          overflow-x: auto;
      }
 
      .admin-navbar .dash-nav-container a {

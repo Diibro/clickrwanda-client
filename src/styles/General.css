@@ -4902,7 +4902,7 @@ textarea{
      width:100%;
      padding: 5px 10px;
      color: var(--text-color-title);
-     font-weight: 700;
+     font-weight: 600;
      display: flex;
      flex-direction: row;
      align-items: center;
@@ -4921,6 +4921,10 @@ textarea{
 .admin-navbar .dash-nav-container a.active {
      background-color: var(--text-color-title);
      color: var(--white-text);
+}
+
+.admin-navbar .dash-nav-container a span{
+     font-size: 0.9rem;
 }
 
 .admin-main-content {
@@ -5884,6 +5888,85 @@ textarea{
      justify-content: flex-start;
      overflow-x: auto;
      gap: 10px;
+}
+
+.admin-agent-payment-card{
+     width: 100%;
+     border: 1.2px solid var(--text-color-para2);
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     padding: 5px;
+     border-radius: 10px;
+}
+
+.admin-agent-payments-container{
+     width: 100%;
+     background-color: var(--white-text);
+     border-radius: 20px; 
+     padding: 20px;
+     overflow-x: auto;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 20px;
+}
+
+.payments-sub-container{
+     width: 100%;
+     min-width: 800px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+}
+
+.admin-agent-payments-container .sub-container-title{
+     width: 100%;
+     background-color: var(--text-color-title);
+     color: var(--white-text);
+     padding: 5px 10px;
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+     border-radius: 10px;
+     cursor: pointer;
+}
+.payments-sub-container .sub-container-payments{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     height: 0;
+     transition: all 0.5s ease;
+     overflow: hidden;
+}
+
+.payments-sub-container.active-pays .sub-container-payments{
+     height: auto;
+}
+
+
+
+.admin-agent-payment-card span{
+     font-size: 0.85rem;
+     font-weight: 600;
+     color:var(--text-color-title);
+}
+
+.approved-card {
+     border: 1.2px solid var(--featured-plan);
+}
+
+.pending-card{
+     border: 1.2px solid var(--back-gold-color-v1);
+}
+
+.rejected-card{
+     border:1.2px solid var(--back-color-red1);
 }
 /* buttons */
 

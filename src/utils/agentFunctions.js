@@ -1,13 +1,30 @@
 import { isLaterThan } from "./dateFunctions";
 
-export const calculateRefVisitsTotal = (arr, lastDate,v_ids) => {
+// export const calculateRefVisitsTotal = (arr, lastDate,v_ids) => {
+//      let totalAmount = 0;
+//      console.log(v_ids);
+//      if(arr && arr[0]){
+//           arr.forEach(visit => {
+//                if(v_ids.includes(visit.v_id) && isLaterThan(lastDate, visit.v_date)){
+//                     totalAmount += 5;
+//                }
+//           })
+//      }
+     
+
+//      return totalAmount;
+// }
+
+
+export const calculateRefVisitsTotal = (arr, lastDate,tasks) => {
      let totalAmount = 0;
-     console.log(v_ids);
-     if(arr && arr[0]){
+     if(arr && arr[0] && tasks && tasks.length){
           arr.forEach(visit => {
-               if(v_ids.includes(visit.v_id) && isLaterThan(lastDate, visit.v_date)){
-                    totalAmount += 5;
-               }
+               tasks.forEach(task => {
+                    if(task.v_ids.includes(visit.v_id) && isLaterThan(lastDate, visit.v_date) && isLaterThan(visit.v_date, task.exp_date)){
+                         totalAmount += 5;
+                    }
+               })
           })
      }
      
