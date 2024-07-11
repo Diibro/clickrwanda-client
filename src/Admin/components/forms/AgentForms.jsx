@@ -200,6 +200,10 @@ const AgentUpdateFom = () => {
                               : <p>No social medial Links</p>
                          }
                     </div>
+                    <div className="group">
+                         <b>New login password:</b>
+                         <p>Type new Password: <input type="text" onChange={(e) => setActiveAgent(prev => ({...prev, new_password: e.target.value}))} /></p>
+                    </div>
                     <EditButton title={"Save Changes"} action={async() => await updateAgent() } />
                </div>
           </div>
