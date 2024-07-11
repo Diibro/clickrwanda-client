@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext} from "react"
 import UserContext from "../Contexts/UserContext"
 import { DashboardContainer, DashboardRow } from "./components/DashboardComponents";
 import { DashHomeCard } from "./components/cards/Cards.dashboard";
@@ -9,10 +9,6 @@ const Home = () => {
   const {userInfo, userAdverts, shopVisits, reviews, activePlan} = user;
 
   const navigate = useNavigate();
-useEffect(() => {
-  console.log(user);
-  console.log(userAdverts);
-}, [userAdverts]);
   return (
     <DashboardContainer>
       <DashboardRow>

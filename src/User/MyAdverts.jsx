@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
 import PropTypes from 'prop-types';
@@ -41,9 +41,6 @@ const MyAdverts = () => {
 
 const AllAdverts = ({content}) => {
   const {loading, adverts} = content;
-  useEffect(() => {
-    console.log(adverts);
-  },[adverts])
   return(
     <>
       {!loading && adverts && adverts[0] ? 

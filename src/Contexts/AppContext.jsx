@@ -5,7 +5,11 @@ import AdvertService from "../services/Advert";
 import { useLocation } from 'react-router-dom';
 import { getDataLocal, saveData } from '../utils/storageFunctions';
 import { getAdvertsInfo } from '../utils/AdvertFunctions';
+import { io } from 'socket.io-client';
+import { showMainNotification } from '../utils/AdminFunctions';
+const  serverUrl = import.meta.env.VITE_BASE_URL;
 
+const socket = io(serverUrl)
 const AppData = createContext();
 
 export const AppProvider = ({children}) => {
@@ -32,9 +36,9 @@ export const AppProvider = ({children}) => {
           shareAlert: {on: false, content: {}},
           loading: false,
           changingPage: false,
-          prevState: null
+          prevState: null,
+          onlineUsers: 0
      });
-
      const {fetchNow} = data;
 
      const fetchFromServer = async () => {
@@ -120,6 +124,15 @@ export const AppProvider = ({children}) => {
                (async () => await fetchData())();
                setData((prev) => ({...prev, fetchNow:false}));
           } 
+
+          socket.on('online-users', (count) => {
+               showMainNotification('pass', 'new user online', () => {});
+               setData(prev => ({...prev, onlineUsers: count}));
+          });
+
+          return () => {
+               socket.off('online-users');
+          }
 
      }, [location.pathname, fetchNow]);
      return(

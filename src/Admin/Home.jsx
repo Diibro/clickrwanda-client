@@ -11,9 +11,12 @@ import { getAddedThisMonth, getAddedThisWeek, getAddedThisYear, getAddedToday, g
 import WebVisitCard from "./components/cards/WebVisitCard"
 import WebVisitsLineChart from "./components/containers/WebVisitsLineChart"
 import { useNavigate } from "react-router-dom"
+import AppData from "../Contexts/AppContext"
 
 const Home = () => {
   const [adminData] = useContext(AdminContext);
+  const [data] = useContext(AppData);
+  const {onlineUsers} = data;
   const {categories,agents,shops,adverts, webVisits} = adminData;
   const navigate = useNavigate();
   return (
@@ -33,7 +36,8 @@ const Home = () => {
         <DashCardInfo count={(shops && shops.length) || 0} title="Shops" newAdded={shops ? getNewToday(shops, "reg_date") :null} action={() => navigate("/admin/shops")}/>
         <DashCardInfo count={(agents && agents.length) || 0} title="Agents" newAdded={agents ? getNewToday(agents, "registration_date") : null} action={() => navigate("/admin/agents")} />
         <DashCardInfo count={(categories && categories.length) || 0} title="Categories" action={() => navigate("/")} />
-        <DashCardInfo count={(webVisits && webVisits.length) || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} action={() => navigate("/")} />
+        <DashCardInfo count={(webVisits && webVisits.length) || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} action={() => {}} />
+          <DashCardInfo count={onlineUsers} title={"Online Users"} newAdded={0} action={() => {}} />
       </AdminRow>
       <AdminRow>
         <DashTitle><h3>Website Visits</h3></DashTitle>

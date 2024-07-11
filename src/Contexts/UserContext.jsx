@@ -26,7 +26,7 @@ export const UserProvider = ({children}) => {
           userSubscriptions: [],
      });
      const [data,setData] = useContext(AppData);
-     const {payPlans,prevState} = data;
+     const {payPlans} = data;
      const { userInfo} = user;
      const navigate = useNavigate();
      const location = useLocation();
@@ -71,7 +71,6 @@ export const UserProvider = ({children}) => {
                     userSubscriptions: subs
                }))
                if(subs.length){
-                    console.log(subs);
                     userActiveSubscription = getActiveSubscription(subs);
                     if(userActiveSubscription){
                          userActivePlan = getActivePlan(payPlans,userActiveSubscription.plan_id);
