@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 import { getDataLocal, saveData } from '../utils/storageFunctions';
 import { getAdvertsInfo } from '../utils/AdvertFunctions';
 import { io } from 'socket.io-client';
-import { showMainNotification } from '../utils/AdminFunctions';
 const  serverUrl = import.meta.env.VITE_BASE_URL;
 
 const socket = io(serverUrl)
@@ -126,7 +125,6 @@ export const AppProvider = ({children}) => {
           } 
 
           socket.on('online-users', (count) => {
-               showMainNotification('pass', 'new user online', () => {});
                setData(prev => ({...prev, onlineUsers: count}));
           });
 
