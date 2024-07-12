@@ -3543,7 +3543,7 @@ textarea{
      border: 1px solid var(--gray-text);
      overflow: hidden;
      flex: 1;
-     border-radius: 5px;
+     border-radius: 3px;
 }
 
 .product-square-container:hover{
@@ -3656,23 +3656,23 @@ textarea{
 
 .product-square-container .content .row button.view-btn{
      border-color: var(--back-color-gold2);
-     color:var(--back-color-gold2);
-     background-color: var(--white-text);
+     color:var(--white-text);
+     background-color: var(--back-color-gold2);
 }
 
 .product-square-container .content .row button.view-btn:hover{
-     background-color: var(--back-color-gold2);
-     color: var(--white-text);
+     background-color: var(--white-text);
+     color: var(--back-color-gold2);
 }
 
 .product-square-container .content .row button.contact-btn{
-     color: var(--text-color-title);
-     background-color: var(--light-gray);
+     color: var(--white-text);
+     background-color: var(--text-color-title);
 }
 
 .product-square-container .content .row button.contact-btn:hover{
-     background-color: var(--text-color-title);
-     color:var(--white-text);
+     background-color: var(--white-text);
+     color:var(--text-color-title);
      border-color: var(--text-color-title);
 }
 .verified-ad-text{
@@ -3700,8 +3700,8 @@ textarea{
      color: var(--text-color-title-transparent) !important;
 }
 .ad-image {
-     width: 96%;
-     margin: 4px auto;
+     width: 100%;
+     margin: 0 auto;
      height: 150px;
      border-radius: 0px;
      display: flex;
@@ -3713,7 +3713,7 @@ textarea{
      background-size: cover;
      position: relative;
      overflow: hidden;
-     border: 0.5px solid var(--text-color-para2);
+     /* border: 0.5px solid var(--text-color-para2); */
      border-radius: 5px;
      /* box-shadow: 0.5px 0 2px var(--text-color-para1); */
 }
