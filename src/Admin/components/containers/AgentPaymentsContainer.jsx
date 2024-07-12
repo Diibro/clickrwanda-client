@@ -39,11 +39,9 @@ const AgentPaymentsContainer = () => {
 
      const approvePay = async(payment) => {
           if(payment){
-               console.log(payment)
                payment.status = 'Approved';
                payment.p_date = getDateOnly(payment.p_date)
                const res = await AgentPaymentService.update(payment);
-               console.log(res);
                if(res){
                     if(res.status === 'success'){
                          showMainNotification('pass', 'Payment approved successfully', () => setRefresh(refresh  + 1));
