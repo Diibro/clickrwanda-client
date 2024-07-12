@@ -63,7 +63,7 @@ const Home = () => {
 
           {/* new ads section */}
           {/* <Adverts eleId={"home-adverts"} limit={50} /> */}
-          <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 50}} />
+          <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 40}} />
 
           {/* best sellers section */}
           <BoostedSellers />

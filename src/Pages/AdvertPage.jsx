@@ -194,14 +194,14 @@ const AdvertPage = () => {
                               {sameVendorAds && sameVendorAds[0] ? 
                                    <>
                                         <h3>More Ads from {adViewed?.username} shop</h3>
-                                        <SimilarAds limit={10} adverts={sameVendorAds} />
+                                        <SimilarAds limit={6} adverts={sameVendorAds} />
                                    </>
                               : null}
                               
                               {samecategoryAds && samecategoryAds[0] ? 
                                    <>
                                         <h3>More {adViewed?.category_name} Ads</h3>
-                                        <SimilarAds limit={10} adverts={samecategoryAds} />
+                                        <SimilarAds limit={6} adverts={samecategoryAds} />
                                    </>
                               :null}
                          </div>

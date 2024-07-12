@@ -99,7 +99,7 @@ export const SimilarAds = ({limit, adverts}) => {
   if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
     return(
       <div className="container" id="others-ads-container-id">
-        <VerticalAds ads={adverts} adsNo={20} eleId={"others-ads-container-id"}/>
+        <VerticalAds ads={adverts} adsNo={limit} eleId={"others-ads-container-id"}/>
       </div>
     )
   }else if(limit === 0 && adverts && adverts[0] && adverts != "no data found" ){
@@ -302,7 +302,7 @@ export const AddAdvertForm = () => {
 export const CategoryAdverts = ({adverts}) => {
   return (
     <div className="category-adverts" id="category_Ads-container-001">
-          <VerticalAds ads={adverts} adsNo={50} eleId={"category_Ads-container-001"}/>
+          <VerticalAds ads={adverts} adsNo={30} eleId={"category_Ads-container-001"}/>
     </div>
   )
 }

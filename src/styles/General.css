@@ -1875,7 +1875,8 @@ textarea{
      border-radius: 50%;
      cursor: pointer;
      z-index: 1;
-     top: 150px;
+     top: 50%;
+     transform: translateY(-50%);
 }
 
 .home-boosted-ads .left-nav-icon  {
@@ -1946,7 +1947,8 @@ textarea{
      color: var(--white-text);
      border-radius: 50%;
      align-self: flex-end;
-     bottom: 20%;
+     top: 20%;
+     transform: translateY(-50%);
      cursor: pointer;
 }
 
@@ -3525,9 +3527,9 @@ textarea{
 }
 
 .product-square-container{
-     min-width: 18%;
-     width: 20%;
-     max-width: 21%;
+     min-width: 250px;
+     width: 23%;
+     max-width: 300px;
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -3536,7 +3538,7 @@ textarea{
      border-radius: 1px;
      margin:0 5px 10px 5px;
      padding: 0 0 5px 0 ;
-     transition: all 0.4s;
+     transition: all 0.4s ease;
      background-color: var(--white-text);
      border: 1px solid var(--gray-text);
      overflow: hidden;
@@ -3545,7 +3547,7 @@ textarea{
 }
 
 .product-square-container:hover{
-     box-shadow: 1px 1px 1px var(--back-color-gold2);
+     box-shadow: 0.5px 0.5px 3px var(--text-color-para2);
      /* transform: scale(1.05); */
 }
 
@@ -3571,23 +3573,29 @@ textarea{
 }
 
 .product-square-container h5{
+     width: 95%;
+     border-radius: 5px;
+     transition: all 0.2s;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     gap: 3px;
+}
+
+.product-square-container h5 span{
      font-size: 0.9rem;
-     font-weight: 800;
+     font-weight: 700;
      color: var(--text-color-title);
-     margin: 2px 0;
-     padding: 0;
      max-width: 95%;
      text-overflow: ellipsis;
      white-space: nowrap;
      overflow: hidden;
-     border-radius: 5px;
-     transition: all 0.2s;
+     transition: all 0.5s ease;
 }
 
-.product-square-container h5:hover{
+.product-square-container h5 span:hover{
      cursor: pointer;
      color: var(--back-color-blue2);
-     padding: 1px 3px;
      max-width: auto;
 }
 
@@ -3597,57 +3605,78 @@ textarea{
      flex-direction: column;
      align-items: flex-start;
      justify-content: space-between;
-     margin: 5px auto;
-     padding:  4px 2.5px;
+     margin: 2.5px auto;
+     padding:  0px 2.5px;
      flex-wrap: wrap;
+     gap: 5px;
 } 
+.product-square-container .content .row{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 4px;
+}
 
-.product-square-container .content b{
+.product-square-container .content .row .ad-price{
      font-size: 1rem;
      color: var(--back-color-red1);
-     width: 95%;
      display: flex;
      flex-direction: row;
      justify-content: space-between;
      align-items: center;
+     font-weight: 800;
 }
 
-.product-square-container .content b span{
-     max-width:98%;
-     text-overflow: ellipsis;
-     white-space: nowrap;
-     overflow: hidden;
-}
 
-.product-square-container .content b i{
+.product-square-container .content .row b i{
      font-style: normal; 
      font-size: 0.75rem;
      font-weight: 600;
      color: var(--text-color-title);
 }
-
-.product-square-container .content a{
+.product-square-container .content .row b a {
+     font-weight: 600;
+     margin: 0 5px;
      font-size: 0.8rem;
-     text-transform: capitalize;
-     width: 100%;
-     text-overflow: ellipsis;
-     white-space: nowrap;
-     overflow: hidden;
-     margin: 3px auto;
 }
 
-.product-square-container .content .contact-no{
+.product-square-container .content .row button{
+     width: 50%;
+     padding: 4px 0;
      font-size: 0.8rem;
-     color: var(--text-color-title);
      font-weight: 700;
+     cursor: pointer;
+     border-radius: 2.5px;
+     outline: none;
+     border: 1.2px solid var(--text-color-para2);
+     transition: all 0.5s ease;
 }
 
-.product-square-container .content .contact-no:hover{
-     color: var(--back-color-blue1);
+.product-square-container .content .row button.view-btn{
+     border-color: var(--back-color-gold2);
+     color:var(--back-color-gold2);
+     background-color: var(--white-text);
 }
 
+.product-square-container .content .row button.view-btn:hover{
+     background-color: var(--back-color-gold2);
+     color: var(--white-text);
+}
+
+.product-square-container .content .row button.contact-btn{
+     color: var(--text-color-title);
+     background-color: var(--light-gray);
+}
+
+.product-square-container .content .row button.contact-btn:hover{
+     background-color: var(--text-color-title);
+     color:var(--white-text);
+     border-color: var(--text-color-title);
+}
 .verified-ad-text{
-     font-size: 0.85rem;
+     font-size: 0.95rem;
      font-weight: 700;
      color: var(--featured-plan) !important;
      display: flex;
@@ -3671,8 +3700,8 @@ textarea{
      color: var(--text-color-title-transparent) !important;
 }
 .ad-image {
-     width: 100%;
-     margin: 0;
+     width: 96%;
+     margin: 4px auto;
      height: 150px;
      border-radius: 0px;
      display: flex;
@@ -3684,6 +3713,8 @@ textarea{
      background-size: cover;
      position: relative;
      overflow: hidden;
+     border: 0.5px solid var(--text-color-para2);
+     border-radius: 5px;
      /* box-shadow: 0.5px 0 2px var(--text-color-para1); */
 }
 
@@ -6648,10 +6679,6 @@ textarea{
      border-radius: 5px;
 }
 
-.premium-ad:hover{
-     box-shadow: 1.5px 1.5px var(--featured-plan);
-}
-
 .basic{
      background-color: var(--basic-plan-color);
 }
@@ -6661,16 +6688,9 @@ textarea{
      border-radius: 5px;
 }
 
-.basic-ad:hover{
-     box-shadow: 1.5px 1.5px var(--basic-plan-color);
-}
 
 .urgent{
      background-color: var(--back-color-red1);
-}
-
-.urgent-ad:hover{
-     box-shadow: 1.5px 1.5px var(--back-color-red1);
 }
 
 .urgent-ad{
@@ -6682,13 +6702,10 @@ textarea{
      background-color: var(--back-color-blue2);
 }
 .enterprise-ad{
-     border: 1.8px solid var(--back-color-blue2);
+     border: 1.4px solid var(--back-color-blue2);
      border-radius: 5px;
 }
 
-.enterprise-ad:hover{
-     box-shadow: 1.5px 1.5px var(--back-color-blue2);
-}
 
 .full-width{
      width: 100%;

@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
-import {  useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getItemUrl } from '../../utils/urlFunctions';
 import { FaLocationDot } from "react-icons/fa6";
 import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
 // import { SubmitButton } from './Buttons';
 import {  FaLongArrowAltRight } from "react-icons/fa";
-import AppData from '../../Contexts/AppContext';
 import { formatTimeAgo } from '../../utils/dateFunctions';
 // import { LoadingImage } from './LoadinComponents';
 import { CImage } from '../static/Image';
@@ -19,19 +17,46 @@ export const Advert = () => {
   )
 }
 
+export const AdvertCardVertical = ({ad}) => {
+     const currency= "Rwf";
+     const navigate = useNavigate();
+     const categoryLink = `/category/${getItemUrl(ad.category_name, ad.category_id)}`;
+     const ViewAd = () => {
+          navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
+     }
+     return(
+          <div className={`product-square-container ${ad.plan_name === 'VIP' ? "premium" : ad.plan_name === "VVIP" ? "enterprise" : ad.plan_name}-ad`}>
+               <span className={ad.plan_name === "urgent" ? "pay-plan urgent" : ad.plan_name === "VIP" ? "pay-plan premium" : ad.plan_name === "basic" ? "pay-plan basic" : ad.plan_name === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{ad.plan_name === 'VVIP' || ad.plan_name === 'VIP' ? ad.plan_name : capitalizeString(ad.plan_name) }</span>
+               {ad.ad_discount ? <span className='advert-discount'>- {ad.ad_discount}%</span> : null}
+               <div className="ad-image">
+                    <div className='background-img' style={{backgroundImage:`url(${ad.ad_image})`}} ></div>
+                    {/* <img src={image} alt={title} onClick={action} loading='lazy' /> */}
+                    <CImage image={{src:ad.ad_image, alt:ad.ad_name, action:() => ViewAd()}}  />
+               </div>
+               <div className='content'>
+                    <h5 onClick={ViewAd}><span>{capitalizeString(ad.ad_name)}</span>{ad.verified ? <i className='verified-ad-text'><VscVerifiedFilled /></i> : null}</h5>
+                    <div className="row">
+                         <b>
+                              <i>{formatTimeAgo(ad.ad_date)},</i>
+                              <a href={`https://www.google.com/maps/place/${capitalizeString(ad.user_location?.location)}`} target="_blank" rel="noopener noreferrer">{ad.user_location?.location}</a>
+                         </b>
+                         
+                    </div>
+                    <div className="row">
+                         <span className='ad-price' >{`${currency} ${formatPrice(ad.ad_price)}`}</span> 
+                    </div>
+                    <div className="row">
+                         <button className='view-btn' onClick={ViewAd}>View</button>
+                         <button className='contact-btn'>Contact</button>
+                    </div>
+               </div>
+          </div>
+     )
+}
+
 export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, views, link, adDate, discount, verified}) => {
      const currency= "Rwf";
-     const [,setData] = useContext(AppData);
      const navigate = useNavigate();
-     const showButtons = (url, image, name) =>{
-          setData(prev => ({
-               ...prev,
-               shareAlert: {
-                    on: true,
-                    content: {url, image, name}
-               }
-          }))
-     }
      return(
           <div className={`product-square-container ${plan === 'VIP' ? "premium" : plan === "VVIP" ? "enterprise" : plan}-ad`}>
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "VIP" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{plan === 'VVIP' || plan === 'VIP' ? plan : capitalizeString(plan) }</span>
@@ -44,8 +69,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
                </div>
                <p className='cat' onClick={() => navigate(categoryLink)}>{category}</p>
                <div className='content'>
-                    <h5 onClick={action}>{capitalizeString(title)}</h5>
-                    {verified ? <p className='verified-ad-text'>Verified <i><VscVerifiedFilled /></i></p> : <p className='unverified-ad-text'>Unverified</p>}
+                    <h5 onClick={action}>{capitalizeString(title)}{verified ? <p className='verified-ad-text'><i><VscVerifiedFilled /></i></p> : null}</h5>
                     <a className='contact-no' href={`tel:${contact}`}>{contact}</a>
                     <a href={`https://www.google.com/maps/place/${capitalizeString(location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {location}</a>
                     <b>
@@ -59,17 +83,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
 }
 
 export const ServiceSquare = ({image, title, plan, price, action, category,categoryLink, location, contact, views, link, adDate, discount, verified}) => {
-     const [,setData] = useContext(AppData);
      const navigate = useNavigate();
-     const showButtons = (url, image, name) =>{
-          setData(prev => ({
-               ...prev,
-               shareAlert: {
-                    on: true,
-                    content: {url, image, name}
-               }
-          }))
-     }
      return(
           <div className={`product-square-container ${plan === "VIP" ? 'premium' : plan === "VVIP" ? 'enterprise' : plan}-ad`}>
                <span className={plan === "urgent" ? "pay-plan urgent" : plan === "VIP" ? "pay-plan premium" : plan === "basic" ? "pay-plan basic" : plan === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{plan === 'VVIP' || plan === 'VIP' ? plan : capitalizeString(plan) }</span>
@@ -96,47 +110,12 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
      )
 }
 
- const AdvertRenderer = ({item}) => {
-     const navigate = useNavigate();
-     const ViewAd = (ad) => {
-          navigate(`/ad/${getItemUrl(item.ad_name, ad.ad_id)}`);
-     }
+const AdvertRenderer = ({item}) => {
      return(
-          item.ad_type === "product" ? <ProductSquare
-                         image={item.ad_image}
-                         title={item.ad_name}
-                         price={item.ad_price}
-                         plan={item.plan_name}
-                         // category={item.category_name}
-                         category={item.sub_name}
-                         contact={item.contact || item.user_phone}
-                         location={item.user_location.location}
-                         views={item.ad_views}
-                         adDate={item.ad_date}
-                         discount={item.ad_discount}
-                         verified={item?.verified}
-                         categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
-                         link={`https://clickrwanda.com/ad/${getItemUrl("", item.ad_id)}`}
-                         action={() => ViewAd(item)}
-                         />
-                         : <ServiceSquare
-                              image={item.ad_image} 
-                              title={item.ad_name}
-                              plan={item.plan_name}
-                              category={item.category_name}
-                              contact={item.contact || item.user_phone}
-                              location={item?.user_location?.location}
-                              price={item.ad_price}
-                              views={item.ad_views}
-                              adDate={item.ad_date}
-                              discount={item.ad_discount}
-                              verified={item?.verified}
-                              categoryLink={`/category/${getItemUrl(item.category_name, item.category_id)}`}
-                              link={`https://clickrwanda.com/ad/${getItemUrl("", item.ad_id)}`}
-                              action={() => ViewAd(item)}
-                         />
+          <AdvertCardVertical ad={item} />
      )
 }
+
 
 export const AdvertImage = ({images}) => {
      const others = images.more ? images.more : null;
@@ -233,6 +212,10 @@ AdvertImage.propTypes = {
 
 DashAdvert.propTypes ={
      item: PropTypes.any
+}
+
+AdvertCardVertical.propTypes = {
+     ad: PropTypes.object
 }
 
 export default AdvertRenderer;
