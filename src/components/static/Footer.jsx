@@ -17,7 +17,7 @@ const Footer = () => {
      const navigate = useNavigate();
      const getStarted = () => {
           if(!loggedIn){
-               return navigate("/forms/signup")
+               return navigate("/forms")
           }
      }
      const viewPlans = () => {

@@ -7,7 +7,7 @@ import CategoriesPage from './CategoriesPage';
 import AdvertsPage from './AdvertsPage';
 import Footer from '../components/static/Footer';
 import { FilterProvider } from '../Contexts/FilterContext';
-import UserForms from '../components/static/UserForms';
+// import UserForms from '../components/static/UserForms';
 import UserLayout from '../User/Layout';
 import AdvertView from '../views/AdvertView';
 import { ViewProvider } from '../Contexts/ViewContext';
@@ -41,6 +41,7 @@ import HelpCenter from './HelpCenter';
 import ContactPage from './ContactPage';
 import PlanPaymentPage from './PlanPaymentPage';
 import ContactSeller from '../components/containers/ContactSeller';
+import Forms from './Forms';
 
 
 const Layout = () => {
@@ -91,12 +92,13 @@ const Layout = () => {
                <Route path='/top-deals' element={<TopDealsPage />} />
                <Route path='/website-visits' element={<WebsitesVisitors />} />
                <Route path='/sponsored-ads' element={<BoostedAdsPage />} />
-               <Route path="/forms/:params" element={<UserForms /> } />
+               {/* <Route path="/forms/:params" element={<UserForms /> } /> */}
                <Route path='/agent/*' element={<AgentLayout />} />
                <Route path="/about" element={<About />} />
                <Route path='/help-center' element={<HelpCenter />} />
                <Route path='/contact-us' element={<ContactPage />} />
                <Route path='/plan-payment' element={<PlanPaymentPage />} />
+               <Route path='/forms/*' element={<Forms />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

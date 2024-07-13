@@ -7,9 +7,7 @@ import {  Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import server from "../../config/Server";
 import Loading from "./Loading";
-import { AddAdvertForm } from "../dynamic/Adverts.component";
 import { getLocations } from "../../utils/locations";
-import { PaymentPlanForm } from "./PaymentPlans.component";
 import {getDateToday, getRwandaTime} from "../../utils/dateFunctions";
 import AgentService from "../../services/Agent";
 import { fetchIds } from "../../utils/urlFunctions";
@@ -20,27 +18,31 @@ import AppData from "../../Contexts/AppContext";
 
 
 const UserForms = () => {
-     // const [user] = useContext(UserContext);
-     // const {activeForm} = user;
-     const location = useLocation()
-     const {pathname} = location
-     const activeForm = pathname.split("/")[2];
-     
-     if(activeForm != '') {
-          return (
-               <div className="user-forms hide-scroll">
-                    {activeForm === 'login' ? <LoginForm /> : activeForm === 'signup' ? <SignUpForm /> : activeForm === "add-advert" ? <AddAdvertForm /> : activeForm === "reset-password" ? <PasswordResetResponce /> : activeForm === "payment-plan-form" ? <PaymentPlanForm /> : activeForm === "agent-login" ? <AgentLoginForm /> : activeForm === 'agent-signup'  ? <AgentSignUpForm /> : null}
+          const navigate = useNavigate()
+          return(
+               <div className="user-types-container">
+                    <div className="user-type-container">
+                         <p>It is easy to sell online by using Click Rwanda. Register as a Seller and Put your products in front of thousands of customers and increase your visibility. </p>
+                         <ActionBtn title="Continue as Seller" action={() => navigate('/forms/login')} />
+                    </div>
+                    <div className="user-type-container">
+                         <p>Register as an agent and earn between 50%-100% of Commissions.</p>
+                         <ActionBtn title="Continue as Agent" action={() => navigate('/forms/agent-login')}  />
+                    </div>
+                    <div className="user-type-container">
+                         <p>Find your dream Job. Get exposed to several companies that work with Click Rwanda and land your dream job</p>
+                         <ActionBtn title="Continue as Job Seeker" action={() => showMainNotification('fail', 'Sorry comming soon', () => {})} />
+                    </div>
+                    <div className="user-type-container">
+                         <p>Whether you are a micro influencer or a celebrity with thousands/millions of followers, you can sign up to join our family, advertise for our sellers and get paid on time!</p>
+                         <ActionBtn title="Continue as Influencer" action={() => showMainNotification('fail', 'Sorry comming soon', () => {})} />
+                    </div>
                </div>
           )
-     }else{
-          return(
-               <></>
-          )
-     }
   
 }
 
-const LoginForm = () => {
+export const LoginForm = () => {
      const [,setUser] = useContext(UserContext);
      const [data, setData] = useContext(AppData);
      const{prevState} = data;
@@ -124,7 +126,7 @@ const LoginForm = () => {
 
      return(
           <div className="form-container hide-scroll">
-               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login"}} />
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login as Seller" }} />
                {!loading ?
                <>
                     <form onSubmit={handleSubmit(submitForm)} autoComplete="on">
@@ -145,7 +147,6 @@ const LoginForm = () => {
                </form>
                <div className="line-divider"><p>Or</p></div>
                <p className="other-link">Don&rsquo;t have account <b onClick={() => navigate("/forms/signup")}>Sign Up</b></p>
-               <p className="other-link">Staff Login <b onClick={() => navigate("/forms/agent-login")}>Agent</b></p>
                </>
                
                :<Loading />}
@@ -153,7 +154,7 @@ const LoginForm = () => {
      )
 }
 
-const SignUpForm = () => {
+export const SignUpForm = () => {
      const {register, handleSubmit, formState: {errors}} = useForm();
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
@@ -212,7 +213,7 @@ const SignUpForm = () => {
      }, [])
      return(
           <div className="form-container hide-scroll">
-               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Sign Up"}} />
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Sign Up for Seller Account"}} />
                {loading ? <Loading /> : 
                <form onSubmit={handleSubmit(submitForm, onErrors)}>
                {/* <div className="group">
@@ -277,7 +278,7 @@ const SignUpForm = () => {
      )
 }
 
-const PasswordResetResponce = () => {
+export const PasswordResetResponce = () => {
      const navigate = useNavigate();
      const [user] = useContext(UserContext);
      const {email } = user.userInfo;
@@ -295,7 +296,7 @@ const PasswordResetResponce = () => {
      )
 }
 
-const AgentLoginForm = () => {
+export const AgentLoginForm = () => {
      const [loading,setLoading ] = useState(false);
      const [,setUser] = useContext(UserContext);
      const {register, handleSubmit,} = useForm();
@@ -333,7 +334,7 @@ const AgentLoginForm = () => {
      } 
      return (
           <div className="form-container hide-scroll">
-               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Agent Login"}} />
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login as Agent"}} />
                {
                     loading ? <Loading /> :
                     <form onSubmit={handleSubmit(submitForm)}>
@@ -358,7 +359,7 @@ const AgentLoginForm = () => {
 }
 
 
-const AgentSignUpForm = () => {
+export const AgentSignUpForm = () => {
 
      const [loading,setLoading ] = useState(false);
      const {register, handleSubmit,} = useForm();
