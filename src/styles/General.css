@@ -4833,6 +4833,162 @@ textarea{
      padding: 5px 10px;
 }
 
+.contact-seller-view{
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background-color: #00000070;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+     align-items: center;
+     z-index: 80;
+     gap: 10px;
+     overflow: hidden;
+     overflow-y: auto;
+     padding: 20px;
+}
+
+.contact-seller-view .contact-seller-close-icon{
+     width: 40px;
+     aspect-ratio: 1/1;
+     border-radius: 50%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     color: var(--back-color-gold2);
+     font-size: 18px;
+     position: relative;
+     cursor: pointer;
+     transition: all 0.5s ease;
+}
+
+
+.contact-seller-view .contact-seller-close-icon i{
+     position: inherit;
+
+}
+
+.contact-seller-view .contact-seller-close-icon:hover{
+     transform: scale(1.1);
+}
+
+.contact-seller-view .contact-seller-container{
+     width: 35%;
+     background-color: var(--white-text);
+     border-radius: 5px;
+     padding: 10px;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+}
+
+.contact-seller-view .contact-seller-container .seller-profile{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-end;
+     gap: 5px;
+}
+
+.contact-seller-view .contact-seller-container .seller-profile img{
+     max-height: 75px;
+     max-width: 75px;
+}
+
+.contact-seller-view .contact-seller-container .seller-profile .profile{
+     width: auto;
+     display: flex;
+     flex-direction: column;
+}
+.contact-seller-view .contact-seller-container .seller-profile .profile b{
+     font-size: 0.9rem;
+     color: var(--text-color-title);
+     font-weight: 700;
+}
+
+.contact-seller-view .contact-seller-container .seller-profile .profile span{
+     font-size: 0.9rem;
+     color: var(--text-color-para1);
+     font-weight: 600;
+     cursor: pointer;
+}
+.contact-seller-view .contact-seller-container .seller-profile .profile a{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--back-color-blue1);
+
+}
+
+.contact-seller-view .contact-seller-container .contact-form{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     margin: 0 auto;
+}
+
+.contact-seller-view .contact-seller-container .contact-form .group{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 5px;
+}
+
+.contact-seller-view .contact-seller-container .contact-form .group label{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+}
+
+.contact-seller-view .contact-seller-container .contact-form .group input,
+.contact-seller-view .contact-seller-container .contact-form .group  textarea{
+     width: 95%;
+     outline:none;
+     padding: 10px 10px;
+     border: 1.2px solid var(--text-color-para2);
+     margin: 0 auto;
+     border-radius: 10px;
+     font-size: 0.85rem;
+     font-weight: 600;
+     color: var(--back-gold-color-v1);
+     transition: all 0.4s ease;
+}
+
+.contact-seller-view .contact-seller-container .contact-form .group input:focus,
+.contact-seller-view .contact-seller-container .contact-form .group  textarea:focus{
+     border-color: var(--back-color-gold2);
+}
+
+.contact-seller-view .contact-seller-container .contact-form .group input[type="submit"]{
+     color: var(--white-text);
+     background-color: var(--back-color-gold2);
+     border-color: var(--back-color-gold2);
+     width: 100%;
+     cursor: pointer;
+     font-size: 0.95rem;
+}
+
+.contact-seller-view .contact-seller-container .contact-form .group input[type="submit"]:hover{
+     background: var(--back-color-gold1);
+     color: var(--back-color-gold2);
+}
+
+.contact-seller-view .contact-seller-container .agreement-row{
+     width: 100%;
+}
+
+.contact-seller-view .contact-seller-container .agreement-row p{
+     font-size:0.8rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+}
+
 /* end of views styles */
 
 /* rating styles */

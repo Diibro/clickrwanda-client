@@ -9,6 +9,8 @@ import { formatTimeAgo } from '../../utils/dateFunctions';
 // import { LoadingImage } from './LoadinComponents';
 import { CImage } from '../static/Image';
 import { VscVerifiedFilled } from "react-icons/vsc";
+import { useContext } from 'react';
+import AppData from '../../Contexts/AppContext';
 
 
 export const Advert = () => {
@@ -18,12 +20,18 @@ export const Advert = () => {
 }
 
 export const AdvertCardVertical = ({ad}) => {
+     const [,setData] = useContext(AppData);
      const currency= "Rwf";
      const navigate = useNavigate();
      const categoryLink = `/category/${getItemUrl(ad.category_name, ad.category_id)}`;
      const ViewAd = () => {
           navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
      }
+
+     const showContactSeller = () => {
+          setData((prev) => ({...prev, contactAd: ad}))
+     }
+
      return(
           <div className={`product-square-container ${ad.plan_name === 'VIP' ? "premium" : ad.plan_name === "VVIP" ? "enterprise" : ad.plan_name}-ad`}>
                <span className={ad.plan_name === "urgent" ? "pay-plan urgent" : ad.plan_name === "VIP" ? "pay-plan premium" : ad.plan_name === "basic" ? "pay-plan basic" : ad.plan_name === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{ad.plan_name === 'VVIP' || ad.plan_name === 'VIP' ? ad.plan_name : capitalizeString(ad.plan_name) }</span>
@@ -47,7 +55,7 @@ export const AdvertCardVertical = ({ad}) => {
                     </div>
                     <div className="row">
                          <button className='view-btn' onClick={ViewAd}>View</button>
-                         <button className='contact-btn'>Contact</button>
+                         <button className='contact-btn' onClick={showContactSeller}>Contact</button>
                     </div>
                </div>
           </div>

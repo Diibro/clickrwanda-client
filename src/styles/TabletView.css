@@ -206,6 +206,9 @@
      #plan-invoice, .pay-plan-invoice-container .confirm-payment-container{
           width: 70%;
      }
+     .contact-seller-view .contact-seller-container{
+          width: 50%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -554,6 +557,9 @@
 
      .agent-task-container .row b {
           width: 60;
+     }
+     .contact-seller-view .contact-seller-container{
+          width: 70%;
      }
 }
 

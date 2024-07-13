@@ -40,6 +40,7 @@ import About from './About';
 import HelpCenter from './HelpCenter';
 import ContactPage from './ContactPage';
 import PlanPaymentPage from './PlanPaymentPage';
+import ContactSeller from '../components/containers/ContactSeller';
 
 
 const Layout = () => {
@@ -102,6 +103,7 @@ const Layout = () => {
           <ShareButtons />
           {/* <Loadingv2 /> */}
           <LoadingV1 />
+          <ContactSeller />
           <Footer /> 
           </ViewProvider>
            

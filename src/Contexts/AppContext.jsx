@@ -36,7 +36,8 @@ export const AppProvider = ({children}) => {
           loading: false,
           changingPage: false,
           prevState: null,
-          onlineUsers: 0
+          onlineUsers: 0,
+          contactAd: null
      });
      const {fetchNow} = data;
 
