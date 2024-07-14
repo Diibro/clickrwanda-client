@@ -78,7 +78,7 @@ const Home = () => {
                </Title>
                <div className="agent-content-card">
                     <h4>1. Sell Click Rwanda membership plans.</h4>
-                    <p>Earn 300% commission on every package you sell. On every successful payment by any business referred by you, you will be paid 20% of the amount paid.</p>
+                    <p>Earn 30% commission on every package you sell. On every successful payment by any business referred by you, you will be paid 20% of the amount paid.</p>
                     <p>By Selling Click Rwanda packages, you earn a rank in the top agents who are the ones given more tasks than others.</p>
                     <p><button onClick={() => navigate('/agent/pay-plans')}>View Packages</button></p>
                </div>
