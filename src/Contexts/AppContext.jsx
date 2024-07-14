@@ -69,6 +69,7 @@ export const AppProvider = ({children}) => {
                          websiteAds: adWebsites,
                          currency: "Frw"
                     }));
+                    console.log('saving data')
                     saveData('appData', appData, 30);
                }
           }catch(error){
