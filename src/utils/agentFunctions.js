@@ -89,3 +89,7 @@ export const getNotPayed = (arr, date_key, last_pay_date) => {
           return arr;
      }
 } 
+
+export const getValidWebVisits = (arr, ) => {
+
+}
