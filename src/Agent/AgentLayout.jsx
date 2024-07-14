@@ -8,7 +8,7 @@ import AgentPaymentService from "../services/AgentPayment";
 import UserService from "../services/User";
 import AgentLogout from "./AgentLogout";
 import WebViewService from "../services/WebView";
-import { calculatePackageTotal, calculateRefVisitsTotal, calculateShopTotal, getNotPayed, getVisitIds } from "../utils/agentFunctions";
+import { calculatePackageTotal, calculateRefVisitsTotal, calculateShopTotal, getNotPayed, getValidWebVisits, getVisitIds } from "../utils/agentFunctions";
 import Tasks from "./Tasks";
 import AgentPlans from "./AgentPlans";
 import PlanSubscriptionService from "../services/PlanSubscription";
@@ -53,7 +53,7 @@ const AgentLayout = () => {
                          agentInfo: agent,
                          referrals: getNotPayed(usersRef.data, "reg_date", lastPayDate ),
                          payments: paymentsData,
-                         webVisitsRef: getNotPayed(webViewRef.data, "v_date", lastPayDate),
+                         webVisitsRef: getValidWebVisits(webViewRef.data, agentTaskInfo.data, lastPayDate),
                          packageSold: getNotPayed(packageSoldInfo.data, 'subscription_date', lastPayDate),
                          tasks: agentTaskInfo.data || [],
                          commissionShops: [],

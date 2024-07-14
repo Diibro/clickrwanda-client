@@ -90,6 +90,14 @@ export const getNotPayed = (arr, date_key, last_pay_date) => {
      }
 } 
 
-export const getValidWebVisits = (arr, ) => {
-
-}
+export const getValidWebVisits = (arr, tasks, last_pay_date) => {
+          if (arr && arr.length && tasks && tasks.length) {
+          return arr.filter(visit => {
+          return tasks.some(task => {
+               return isLaterThan(visit.v_date, task.exp_date) && isLaterThan(last_pay_date, visit.v_date);
+          });
+          });
+          } else {
+          return [];
+          }
+};
