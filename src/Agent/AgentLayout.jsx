@@ -8,7 +8,7 @@ import AgentPaymentService from "../services/AgentPayment";
 import UserService from "../services/User";
 import AgentLogout from "./AgentLogout";
 import WebViewService from "../services/WebView";
-import { calculatePackageTotal, calculateRefVisitsTotal, calculateShopTotal, getVisitIds } from "../utils/agentFunctions";
+import { calculatePackageTotal, calculateRefVisitsTotal, calculateShopTotal, getNotPayed, getVisitIds } from "../utils/agentFunctions";
 import Tasks from "./Tasks";
 import AgentPlans from "./AgentPlans";
 import PlanSubscriptionService from "../services/PlanSubscription";
@@ -42,19 +42,21 @@ const AgentLayout = () => {
                if(loginToken && loginToken != undefined && loginToken != null && agent != null) {
                     const usersRef = await UserService.getByRef(agent.agent_id);
                     const agentPayments = await AgentPaymentService.findByAgent(agent.agent_id);
+                    const paymentsData = agentPayments.data || [];
+                    const lastPayDate = paymentsData && paymentsData.length ? paymentsData[0].p_date : null; 
                     const webViewRef = await WebViewService.getRefVisits(agent.agent_id);
                     const packageSoldInfo = await PlanSubscriptionService.findByRId(agent.agent_id);
                     const agentTaskInfo = await AgentTaskService.findByAgent(agent.agent_id);
                     const visitIds = getVisitIds(agentTaskInfo.data);
-                    console.log(agentPayments)
                     setAgentData(prev => ({
                          ...prev, logged:true, 
                          agentInfo: agent,
-                         referrals: usersRef.data || [],
-                         payments: agentPayments.data || [],
-                         webVisitsRef: webViewRef.data || [],
-                         packageSold: packageSoldInfo.data || [],
+                         referrals: getNotPayed(usersRef.data, "reg_date", lastPayDate ),
+                         payments: paymentsData,
+                         webVisitsRef: getNotPayed(webViewRef.data, "v_date", lastPayDate),
+                         packageSold: getNotPayed(packageSoldInfo.data, 'subscription_date', lastPayDate),
                          tasks: agentTaskInfo.data || [],
+                         commissionShops: [],
                          vIds: visitIds
                     }));
                }else{
@@ -83,7 +85,12 @@ const AgentLayout = () => {
 
      return (
      <AgentContext.Provider value={[agentData, setAgentData]}>
+          <div className="agent-technical-notification">
+               <p>Hello our beloved agents. we are happy to have you on our platform and we highly appreciate your effort. This is a notice from the Click Rwanda Technical team to address the problem that has been reported by most of the agents where, you found some of the amounts on your dashboard. We would like to let you know it has been a technical issues with in our system. We kindly excuse ourselves for the inconviences received on this. Please kindly continue to report any issue to the support team.</p>
+               <p>Keep making money from Click Rwanda through the various options availed for you. Thanks.</p>
+          </div>
           <div className="agent-layout">
+               
                <AgentNavBar />
                <div className="agent-content-container">
                     <Routes>

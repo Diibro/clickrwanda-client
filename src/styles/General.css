@@ -5320,6 +5320,23 @@ textarea{
      right: 5px;
 }
 
+.agent-technical-notification {
+     width: 90%;
+     background-color: var(--white-text);
+     border-radius: 20px;
+     margin: 10px auto;
+     padding: 10px;
+     border: 1.5px solid var(--back-color-blue1);
+     display: flex;
+     flex-direction: column;
+     gap: 5px;
+}
+
+.agent-technical-notification p{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
 .admin-agents-nav-bar{
      width: auto;
      display: flex;

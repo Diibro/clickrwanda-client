@@ -8,12 +8,11 @@ import { getDateToday, isLaterThan } from "../utils/dateFunctions";
 import AgentContentCard from "./components/AgentContentCard";
 import { countVisits } from "../utils/agentFunctions";
 import { useNavigate } from "react-router-dom";
-import { copyText } from "../utils/otherFunctions";
-import TaskContainer from "./components/TaskContainer";
+import { copyToClipboard } from "../utils/otherFunctions";
 
 const Home = () => {
      const [agentData,setAgentData] = useContext(AgentContext);
-     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits,packageSold, tasks } = agentData;
+     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits,packageSold,commissionShops} = agentData;
      const navigate = useNavigate();
 
      const claimPayment = async () => {
@@ -44,6 +43,14 @@ const Home = () => {
           }
 
      }
+
+     const showAddAdForm = () => {
+          if(commissionShops.length) {
+               return navigate('/forms/add-advert');
+          }else{
+               return showMainNotification('fail', "No Commission shops you have.", () => {})
+          }
+     }
      return (
      <>
           <MainRow>
@@ -60,7 +67,7 @@ const Home = () => {
           <MainRow>
                <AgentContentCard content={{title: "Packages Sold", count: packageSold?.length || 0}} />
                <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0}} />
-               <AgentContentCard content={{title: "Shop Visits", count: countVisits(webVisits, "v_type", "/vendor")}} />
+               <AgentContentCard content={{title: "Commission Shops", count: commissionShops.length}} />
                <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad")}} />
                {/* <AgentContentCard content={{title: "Shops Opened", count: 0}} />
                <AgentContentCard content={{title: "Shops Opened", count: 0}} /> */}
@@ -85,25 +92,16 @@ const Home = () => {
                     <h4>3. Help people open shops on ClickRwanda</h4>
                     <p>Click Rwanda pays Rwf 20 to verified agents who help people to successfully open shops on the platform.</p>
                     <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> in the tasks Section. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
-                    <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyText("agent-open-shop-link")}>Copy Link</button></p>
+                    <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
                     {/* <p><button onClick={() => navigate("/agent/tasks")}>View Tasks</button></p> */}
                </div>
                <div className="agent-content-card">
-                    <h4>4. Other Tasks</h4>
-                    <p>Agents on Click Rwanda can earn huge money by performing others tasks assigned to them. These tasks include advertising our top sellers. </p>
-                    <p><button onClick={() => navigate("/agent/tasks")}>View Available</button></p>
+                    <h4>4. Earn Commission on products.</h4>
+                    <p>Click Rwanda pays 70% of the commission earned upon successful transaction of the producsts brought by the agents.</p>
+                    <p>To get started, deal with a shop or seller. Create for them a shop on click Rwanda using your agent-shop sign link, click to copy the link <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
+                    <p>Subscribe to the Commision package for sellers. Once Approved, start uploading the seller&apos;s products by clicking the button below.</p>
+                    <p><button onClick={showAddAdForm}>Post Commission Deals</button></p>
                </div>
-               
-          </MainRow>
-          <MainRow>
-               <Title>
-                    <h2>Today Tasks:</h2>
-               </Title>
-               {
-                    tasks && tasks[0] ? 
-                         tasks.map((task, index) => <TaskContainer key={`agent-task-cont-${index}` } task={task} agent={agentInfo} />)
-                    :<p className="agent-not-found-paragraphs">No tasks available today.</p>
-               }
                
           </MainRow>
      </>

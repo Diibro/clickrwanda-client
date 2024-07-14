@@ -77,3 +77,15 @@ export const getVisitIds = (tasks) => {
      }
      return v_ids;
 }
+
+export const getNotPayed = (arr, date_key, last_pay_date) => {
+     if(last_pay_date && last_pay_date != null && last_pay_date != ''){
+          if(arr && arr.length){
+               return arr.filter(item => isLaterThan(last_pay_date, item[date_key]) )
+          }else {
+               return []
+          }
+     }else {
+          return arr;
+     }
+} 
