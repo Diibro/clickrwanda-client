@@ -67,7 +67,7 @@ const Home = () => {
           <MainRow>
                <AgentContentCard content={{title: "Packages Sold", count: packageSold?.length || 0}} />
                <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0}} />
-               <AgentContentCard content={{title: "Commission Shops", count: commissionShops.length || 0}} />
+               <AgentContentCard content={{title: "Commission Shops", count: commissionShops?.length || 0}} />
                <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad")}} />
                {/* <AgentContentCard content={{title: "Shops Opened", count: 0}} />
                <AgentContentCard content={{title: "Shops Opened", count: 0}} /> */}
