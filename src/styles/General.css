@@ -4942,7 +4942,7 @@ textarea{
 
 .contact-seller-view .contact-seller-container .seller-profile .profile span{
      font-size: 0.9rem;
-     color: var(--text-color-para1);
+     color: var(--back-color-blue1);
      font-weight: 600;
      cursor: pointer;
 }
