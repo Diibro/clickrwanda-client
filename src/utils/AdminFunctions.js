@@ -43,6 +43,6 @@ export const showMainNotification = (type, message, cb) => {
                }, 2000)
                cb();
           }
-     }, 300)
+     }, 50)
      
 }

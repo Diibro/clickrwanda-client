@@ -13,6 +13,9 @@ import PlanSubscriptionService from "../services/PlanSubscription";
 import { extractDateOnly, getDateToday } from "../utils/dateFunctions";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import MobileMoneyImage from '../assets/images/mtn-mobile.jpg';
+import BankTransferImage from '../assets/images/bank-transfer.jpeg'
+import Loading from "../components/static/Loading";
 
 const PlanPaymentPage = () => {
      const [user] = useContext(UserContext);
@@ -20,9 +23,11 @@ const PlanPaymentPage = () => {
      const [plan,setPlan] = useState(null);
      const [refId, setRefId] = useState(null);
      const [showInvoice, setShowInvoice] = useState(false);
+     const [invoiceClaimed,setInvoiceClaimed] = useState(false)
      const [invoice,setInvoice] = useState({});
      const invoiceRef = useRef();
-
+     const [activePayDetails, setActivePayDetails] = useState("")
+     const [loading,setLoading] = useState(false);
      const {payPlans} = data;
      const {userInfo} = user;
 
@@ -44,7 +49,8 @@ const PlanPaymentPage = () => {
           setShowInvoice(true);
      }
 
-     const saveSubscription = async() => {
+     const saveSubscription = async(cb) => {
+          setLoading(true);
           const newSubscription = {
                plan_id: plan.plan_id,
                plan_type: plan.plan_type,
@@ -60,12 +66,20 @@ const PlanPaymentPage = () => {
           const subResponse = await PlanSubscriptionService.add(newSubscription);
           if(subResponse.status === "pass"){
                setShowInvoice(false);
-               showMainNotification("pass", subResponse.message, () => navigate('/user-dashboard'));
+               setInvoiceClaimed(false)
+               setActivePayDetails("");
+               showMainNotification("pass", subResponse.message, () =>{ 
+                    setLoading(false);
+                    cb();
+                    navigate('/user-dashboard')});
           }else{
-               showMainNotification('fail', subResponse.message, () => {});
+               showMainNotification('fail', subResponse.message, () => {
+                    setLoading(false);
+               });
           }
      }
      const generateInvoice = async() => {
+          // showMainNotification('pass', 'generating invoice. please wait', () => {});
           setTimeout(() => {
                const input = document.getElementById("plan-invoice");
                if (input) {
@@ -88,9 +102,7 @@ const PlanPaymentPage = () => {
                                    pdf.addImage(canvas, 'PNG', 0, position, imgWidth, imgHeight);
                                    heightLeft -= pageHeight;
                               }
-     
-                              pdf.save("clickrwanda-invoice.pdf");
-                              showMainNotification("pass", "Successfully generated invoice for your purchase.", async() => await saveSubscription());
+                              (async () => await saveSubscription(() => pdf.save("clickrwanda-invoice.pdf")))()
                          })
                          .catch(error => {
                               console.error('Error generating PDF', error);
@@ -99,8 +111,7 @@ const PlanPaymentPage = () => {
                } else {
                     console.error('Invoice element not found');
                }
-               }, 1000);
-               
+               }, 1000);     
      }
 
      useEffect(() => {
@@ -140,22 +151,22 @@ const PlanPaymentPage = () => {
                               <div className="plan-duration-card">
                                    <b>Rwf {formatPrice(plan?.plan_amount * 1)}</b>
                                    <span>One Month</span>
-                                   <ActionBtn action={() => updateInvoice({amount: plan?.plan_amount, dur:1})} title="Pay"/>
+                                   <ActionBtn action={() => updateInvoice({amount: plan?.plan_amount, dur:1})} title="Choose"/>
                               </div>
                               <div className="plan-duration-card">
                                    <b>Rwf {formatPrice(plan?.plan_amount * 3)}</b>
                                    <span>3 Month</span>
-                                   <ActionBtn action={() => updateInvoice({amount: plan?.plan_amount * 3, dur:3})} title="Pay"/>
+                                   <ActionBtn action={() => updateInvoice({amount: plan?.plan_amount * 3, dur:3})} title="Choose"/>
                               </div>
                               <div className="plan-duration-card">
                                    <b>Rwf {formatPrice(plan?.plan_amount * 6)}</b>
                                    <span>6 Months</span>
-                                   <ActionBtn action={() => updateInvoice({amount: plan?.plan_amount * 6,dur:6})} title="Pay"/>
+                                   <ActionBtn action={() => updateInvoice({amount: plan?.plan_amount * 6,dur:6})} title="Choose"/>
                               </div>
                               <div className="plan-duration-card">
                                    <b>Rwf {formatPrice(plan?.plan_amount * 12)}</b>
                                    <span>1 Year</span>
-                                   <ActionBtn action={() => updateInvoice({amount: plan?.plan_amount * 12,dur:12})} title="Pay"/>
+                                   <ActionBtn action={() => updateInvoice({amount: plan?.plan_amount * 12,dur:12})} title="Choose"/>
                               </div>
                          </div>
                     </div>
@@ -163,12 +174,65 @@ const PlanPaymentPage = () => {
                }
                {showInvoice ? 
                <div className="pay-plan-invoice-container">
-                    <div className="confirm-payment-container">
-                         <p>After payment to the provided details. Click here to confirmation the payment. </p>
-                         <span><ActionBtn action={() => generateInvoice()} title="Confirm Payment" /> <ActionBtn action={() => setShowInvoice(false)} title="Cancel" /></span>
-                    </div>
-                    <PlanInvoice item={invoice} ref={invoiceRef} />
-                    
+                    {
+                         !loading ? 
+                              <>
+                              {
+                         !invoiceClaimed ? 
+                         <>
+                              <div className="confirm-payment-container">
+                                   <p> Click here to cancel: <ActionBtn action={() => {setShowInvoice(false); setInvoiceClaimed(false); setActivePayDetails("")}} title="Cancel" /></p>
+                              </div>
+                              <div className="confirm-payment-container">
+                                   <p>Choose which payment method you would like to use:</p>
+                                   <div className="pay-options">
+                                        <div className="image" onClick={() => setActivePayDetails("mobile-money")}>
+                                             <img src={MobileMoneyImage} alt="mobile money" width={100} />
+                                             <h5>Mobile Money</h5>
+                                        </div>
+                                        <div className="image" onClick={() => setActivePayDetails("bank-transfer")}>
+                                             <img src={BankTransferImage} alt="bank transfer" width={100}  />
+                                             <h5>Bank Transfer</h5>
+                                        </div>
+                                   </div>
+                                   <div className="pay-details">
+                                        {
+                                             activePayDetails === "mobile-money" ? 
+                                             <div className="payment-details-row">
+                                                  <h3>Payment Details for Mobile Money</h3>
+                                                  <p><b>Service: </b> <span>Mobile Money</span></p>
+                                                  <p><b>Account Name: </b> <span>Nyagatare Marius</span></p>
+                                                  <p><b>Account number: </b><span>0787260494</span></p>
+                                                  <p><b>Amount:</b> <span>Rwf {formatPrice(invoice?.plan_amount)}</span></p>
+                                                  <p>After payment click here to claim your invoice. <ActionBtn action={() => setInvoiceClaimed(true)} title="Get Invoice" /> </p>
+                                             </div>
+                                             : activePayDetails === 'bank-transfer' ? 
+                                             <div className="payment-details-row">
+                                                  <h3>Bank  Payment Details</h3>
+                                                  <p><b>Bank Name: </b><span>Banque Populaire du Rwanda</span></p>
+                                                  <p><b>Account Number: </b><span>4490263474</span></p>
+                                                  <p><b>Account Name: </b><span>Nyagatare Marius</span></p>
+                                                  <p><b>Bank Address: </b><span>KN 67, Street 2, P.O. Box 1348, Kigali, Rwanda</span></p>
+                                                  <p><b>Account Currency: </b><span>Rwandan Francs</span></p>
+                                                  <p><b>Amount:</b> <span>Rwf {formatPrice(invoice?.plan_amount)}</span></p>
+                                                  <p>After payment click here to claim your invoice. <ActionBtn action={() => setInvoiceClaimed(true)} title="Get Invoice" /> </p>
+                                             </div>
+                                             : null
+                                        }
+                                   </div>
+                              </div>
+                         </>
+                         :
+                          <>
+                              <div className="confirm-payment-container">
+                                   <p>Below is your invoice. Click here to download <ActionBtn action={() => generateInvoice()} title="Complete" /> <ActionBtn action={() => {setShowInvoice(false); setInvoiceClaimed(false); setActivePayDetails("")}} title="Cancel" /></p>
+                              </div>
+                              <PlanInvoice item={invoice} ref={invoiceRef} />
+                          </>              
+                    }
+                              </>
+                         : <div className="confirm-payment-container"><Loading /></div>
+                    }
                </div>
                : null}
           </div>
@@ -176,7 +240,6 @@ const PlanPaymentPage = () => {
 }
 
 const PlanInvoice = ({item}) => {
-
      return(
           <div className="plan-invoice" id="plan-invoice">
                <div className="header-row">

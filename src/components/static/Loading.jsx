@@ -44,4 +44,13 @@ export const Loadingv2 = () => {
   
 }
 
+export const ClickLoader = () => {
+  return(
+    <div className="click-loader">
+      <div className="spinner"></div>
+      
+    </div>
+  )
+}
+
 export default Loading

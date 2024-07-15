@@ -463,6 +463,89 @@ textarea{
      gap: 30px;
 }
 
+.pay-plan-invoice-container .confirm-payment-container .pay-options{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     padding-block: 10px;
+}
+
+.pay-plan-invoice-container .confirm-payment-container .pay-options .image{
+     cursor: pointer;
+     border: 1.5px solid var(--text-color-title) ;
+     border-radius: 20px;
+     width: 45%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+     padding: 10px;
+     transition: all 0.5s ease;
+}
+
+.pay-plan-invoice-container .confirm-payment-container .pay-options .image:hover{
+     background-color: var(--light-gray);
+}
+
+
+.pay-plan-invoice-container .confirm-payment-container .pay-options .image img {
+     border-radius: 10px;
+     width: auto;
+     height: 60px;
+}
+
+
+.pay-plan-invoice-container .confirm-payment-container .pay-options .image h5{
+     font-size: 1.3rem;
+     color: var(--back-color-blue1);
+     font-weight: 600;
+}
+
+
+.pay-plan-invoice-container .confirm-payment-container .pay-details{
+     width: 100%;
+     margin: 2px auto;
+}
+
+.pay-plan-invoice-container .confirm-payment-container .pay-details .payment-details-row{
+     width: 100%;
+     display: flex;
+     flex-direction:column;
+     gap:5px;
+     padding: 10px;
+     border-radius: 20px;
+     box-shadow: 0.5px 0.5px 4px var(--text-color-para2);
+}
+
+
+.pay-plan-invoice-container .confirm-payment-container .pay-details .payment-details-row h3{
+     font-size: 1.3rem;
+     font-weight: 800;
+     color: var(--back-gold-color-v1);
+}
+
+.pay-plan-invoice-container .confirm-payment-container .pay-details .payment-details-row p{
+     width: auto;
+}
+
+.pay-plan-invoice-container .confirm-payment-container .pay-details .payment-details-row p:last-child{
+     margin-top: 20px;
+}
+
+.pay-plan-invoice-container .confirm-payment-container .pay-details .payment-details-row p b{
+     display: inline;
+}
+
+.pay-plan-invoice-container .confirm-payment-container .pay-details .payment-details-row p span{
+     display: inline;
+     font-size: 1.1rem;
+     color: var(--text-color-para1);
+     font-weight: 600;
+     text-decoration: underline;
+}
 #plan-invoice .header-row{
      width: 95%;
      display: flex;
@@ -2124,7 +2207,7 @@ textarea{
      cursor: pointer;
 }
 .actionBtn{
-     display: flex;
+     display: inline-flex;
      flex-direction: row;
      align-items: center;
      background-color: var(--back-color-gold2);
@@ -3577,8 +3660,7 @@ textarea{
 }
 
 .product-square-container:hover{
-     box-shadow: 0.5px 0.5px 3px var(--text-color-para2);
-     /* transform: scale(1.05); */
+     border-color: var(--back-color-blue1);
 }
 
 .product-square-container .cat{
