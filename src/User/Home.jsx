@@ -4,6 +4,8 @@ import { DashboardContainer, DashboardRow } from "./components/DashboardComponen
 import { DashHomeCard } from "./components/cards/Cards.dashboard";
 import { ActionBtn } from "../components/dynamic/Buttons";
 import { useNavigate } from "react-router-dom";
+import UserPlansContainer from "./components/containers/UserPlansContainer";
+import ParagraphCard from "./components/cards/ParagraphCard";
 const Home = () => {
   const [user] = useContext(UserContext);
   const {userInfo, userAdverts, shopVisits, reviews, activePlan} = user;
@@ -29,8 +31,12 @@ const Home = () => {
         <DashHomeCard content={{name:"Rejected Ads", count:0, classname:"reported"}} />
       </DashboardRow>
       <DashboardRow>
-
+        <h2>Membership Plans</h2>
+        <ParagraphCard>
+          <p>Boost the viwers of your products by subscribing to our membership plans. With our membership plans, you get more shop views, product views form potential customers plus agent promotion of your shop and products.</p>
+        </ParagraphCard>
       </DashboardRow>
+      <UserPlansContainer />
     </DashboardContainer>
   )
 }

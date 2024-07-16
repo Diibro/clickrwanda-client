@@ -1827,6 +1827,21 @@ textarea{
      gap: 10px;
      flex-wrap: wrap;
 }
+
+.user-dashboard-paragraph-card{
+     width: 90%;
+     padding: 5px;
+     display: flex;
+     flex-direction: column;
+     gap: 5px;
+}
+
+.user-dashboard-paragraph-card p{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+
+}
 .image-slider{
      width: 100%;
      position: relative;
