@@ -27,13 +27,25 @@ const UserPlansContainer = () => {
                const dividedPlans = {"Individual Plans":[], "Small Business Plans": [], "Large Business Plans": [], "Extra Boost Plans": []};
                for(const plan of payPlans){
                     if(plan.plan_type === "Individual"){
-                         dividedPlans["Individual Plans"].push(plan);
+                         if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free") {
+                              dividedPlans["Individual Plans"].push(plan);
+                         }
+                         
                     }else if (plan.plan_type === "Small Business"){
-                         dividedPlans["Small Business Plans"].push(plan);
+                         if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free"){
+                              dividedPlans["Small Business Plans"].push(plan);
+                         }
+                         
                     }else if(plan.plan_type === "Large Business Plans"){
-                         dividedPlans["Large Business"].push(plan);
+                         if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free"){
+                              dividedPlans["Large Business"].push(plan);
+                         }
+                         
                     }else if(plan.plan_type === "Extra Boost Packages"){
-                         dividedPlans["Extra Boost Packages"].push(plan)
+                         if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free"){
+                              dividedPlans["Extra Boost Packages"].push(plan)
+                         }
+                         
                     }
                }
                setCatPlans(dividedPlans);
