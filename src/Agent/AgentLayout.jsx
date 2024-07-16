@@ -85,10 +85,10 @@ const AgentLayout = () => {
 
      return (
      <AgentContext.Provider value={[agentData, setAgentData]}>
-          <div className="agent-technical-notification">
+          {/* <div className="agent-technical-notification">
                <p>Hello our beloved agents. we are happy to have you on our platform and we highly appreciate your effort. This is a notice from the Click Rwanda Technical team to address the problem that has been reported by most of the agents where, you found some of the amounts on your dashboard. We would like to let you know it has been a technical issue with in our system. We kindly excuse ourselves for the inconviences received on this. Please kindly continue to report any issue to the support team.</p>
                <p>Keep making money from Click Rwanda through the various options availed for you. Thanks.</p>
-          </div>
+          </div> */}
           <div className="agent-layout">
                
                <AgentNavBar />
