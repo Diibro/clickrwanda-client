@@ -38,7 +38,7 @@ const UserPlansContainer = () => {
                          
                     }else if(plan.plan_type === "Large Business Plans"){
                          if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free"){
-                              dividedPlans["Large Business"].push(plan);
+                              dividedPlans["Large Business Plans"].push(plan);
                          }
                          
                     }else if(plan.plan_type === "Extra Boost Packages"){
