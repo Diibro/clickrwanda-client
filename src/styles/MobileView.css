@@ -179,6 +179,10 @@
      .contact-seller-view .contact-seller-container{
           width: 95%;
      }
+
+     .pay-plan-invoice-container .confirm-payment-container .pay-options .image {
+          width: 90%;
+     }
 }
 
 

@@ -186,11 +186,11 @@ const PlanPaymentPage = () => {
                               <div className="confirm-payment-container">
                                    <p>Choose which payment method you would like to use:</p>
                                    <div className="pay-options">
-                                        <div className="image" onClick={() => setActivePayDetails("mobile-money")}>
+                                        <div className="image" onClick={() => {setActivePayDetails("mobile-money"); setInvoice(prev => ({...prev, payOptions: "mobile-money"}))}}>
                                              <img src={MobileMoneyImage} alt="mobile money" width={100} />
                                              <h5>Mobile Money</h5>
                                         </div>
-                                        <div className="image" onClick={() => setActivePayDetails("bank-transfer")}>
+                                        <div className="image" onClick={() => {setActivePayDetails("bank-transfer"); setInvoice(prev => ({...prev, payOptions: "bank-transfer"}))}}>
                                              <img src={BankTransferImage} alt="bank transfer" width={100}  />
                                              <h5>Bank Transfer</h5>
                                         </div>
@@ -223,12 +223,12 @@ const PlanPaymentPage = () => {
                               </div>
                          </>
                          :
-                          <>
-                              <div className="confirm-payment-container">
-                                   <p>Below is your invoice. Click here to download <ActionBtn action={() => generateInvoice()} title="Complete" /> <ActionBtn action={() => {setShowInvoice(false); setInvoiceClaimed(false); setActivePayDetails("")}} title="Cancel" /></p>
-                              </div>
-                              <PlanInvoice item={invoice} ref={invoiceRef} />
-                          </>              
+                         <>
+                         <PlanInvoice item={invoice} ref={invoiceRef} />
+                         <div className="confirm-payment-container">
+                              <p>Below is your invoice. Click here to download <ActionBtn action={() => generateInvoice()} title="Complete" /> <ActionBtn action={() => {setShowInvoice(false); setInvoiceClaimed(false); setActivePayDetails("")}} title="Cancel" /></p>
+                         </div>
+                         </>              
                     }
                               </>
                          : <div className="confirm-payment-container"><Loading /></div>
@@ -282,20 +282,26 @@ const PlanInvoice = ({item}) => {
                          </div>
                     </div>
                </div>
-               <div className="payment-details-row">
-                    <h3>Payment Details for Mobile Money</h3>
-                    <p><b>Service: </b> <span>Mobile Money</span></p>
-                    <p><b>Account Name: </b> <span>Nyagatare Marius</span></p>
-                    <p><b>Account number: </b><span>0787260494</span></p>
-               </div>
-               <div className="payment-details-row">
-                    <h3>Bank  Payment Details</h3>
-                    <p><b>Bank Name: </b><span>Banque Populaire du Rwanda</span></p>
-                    <p><b>Account Number: </b><span>4490263474</span></p>
-                    <p><b>Account Name: </b><span>Nyagatare Marius</span></p>
-                    <p><b>Bank Address: </b><span>KN 67, Street 2, P.O. Box 1348, Kigali, Rwanda</span></p>
-                    <p><b>Account Currency: </b><span>Rwandan Francs</span></p>
-               </div>
+               {
+                    item?.payOptions === "mobile-money" ? 
+                    <div className="payment-details-row">
+                         <h3>Payment Details for Mobile Money</h3>
+                         <p><b>Service: </b> <span>Mobile Money</span></p>
+                         <p><b>Account Name: </b> <span>Nyagatare Marius</span></p>
+                         <p><b>Account number: </b><span>0787260494</span></p>
+                    </div> :
+                    item?.payOptions === "bank-transfer" ?
+                    <div className="payment-details-row">
+                         <h3>Bank  Payment Details</h3>
+                         <p><b>Bank Name: </b><span>Banque Populaire du Rwanda</span></p>
+                         <p><b>Account Number: </b><span>4490263474</span></p>
+                         <p><b>Account Name: </b><span>Nyagatare Marius</span></p>
+                         <p><b>Bank Address: </b><span>KN 67, Street 2, P.O. Box 1348, Kigali, Rwanda</span></p>
+                         <p><b>Account Currency: </b><span>Rwandan Francs</span></p>
+                    </div> :null
+               }
+               
+               
                <div className="footer">
                     <div className="col">
                          <p>Huza250 Ltd</p>
