@@ -4,7 +4,6 @@ import server from '../config/Server';
 import AdvertService from "../services/Advert";
 import { useLocation } from 'react-router-dom';
 import { getDataLocal, saveData } from '../utils/storageFunctions';
-import { getAdvertsInfo } from '../utils/AdvertFunctions';
 import { io } from 'socket.io-client';
 const  serverUrl = import.meta.env.VITE_BASE_URL;
 
@@ -37,37 +36,49 @@ export const AppProvider = ({children}) => {
           changingPage: false,
           prevState: null,
           onlineUsers: 0,
-          contactAd: null
+          contactAd: null,
+          freeAdsCount: 0,
+          listingAdsCount: 0,
+          urgentAdsCount: 0,
+          sponsoredAdsCount:0
      });
      const {fetchNow} = data;
 
      const fetchFromServer = async () => {
           try{
                const categoriesData = await server.get('categories',null);
-               const resData = await server.get('adverts',{page: 1, boost: 20, boostSellers: true,boostNum:10, todayDeals:50, website:50});
+               const resData = await server.get('adverts',{boostSellers: true,boostNum:10, todayDeals:50, website:50});
                // const {generalAds:advertsData, boostedAds:boosted, bestSellers:boostedSellers, discounted, adWebsites} = resData?.adWebsites ? resData : {};
                const { bestSellers:boostedSellers} = resData?.adWebsites ? resData : {};
                const subCategoriesData = await server.get('sub categories',null);
                const payPlansData = await server.get('payment plans', null);
-
-               const {data:allAdverts} = await AdvertService.getAllApproved();
-               const {newAdverts: advertsData, todayDeals:discounted, websiteAds:adWebsites, boosted} = getAdvertsInfo(allAdverts);
-               const appData = {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted, adWebsites, allAdverts}
+               const ops = {freeAds:{limit: 40, offset: 0}, urgentAds: {limit: 20,offset:0},listingAds:{limit: 20,offset:0}, sponsoredAds:{limit: 20,offset:0}};
+               const {data:allAdverts} = await AdvertService.getAllApproved(ops);
+               // const {newAdverts: advertsData, todayDeals:discounted, websiteAds:adWebsites, boosted} = getAdvertsInfo(allAdverts);
+               const {
+                         freeAds:advertsData, urgentAds:discounted, 
+                         listingAds: boosted, sponsoredAds:adWebsites, 
+                         freeAdsCount, listingAdsCount, 
+                         urgentAdsCount, sponsoredAdsCount
+                    } = allAdverts;
+               const appData = {
+                    categoriesData, advertsData, 
+                    subCategoriesData, payPlansData, 
+                    boosted, boostedSellers, 
+                    discounted, adWebsites, 
+                    allAdverts, freeAdsCount, 
+                    listingAdsCount, urgentAdsCount, sponsoredAdsCount};
 
                
                if(appData && appData.categoriesData && appData.categoriesData[0]){
                     setData((prev) => ({
                          ...prev,
-                         categories: categoriesData,
-                         adverts: advertsData,
-                         allAdverts: allAdverts,
-                         subCategories: subCategoriesData,
-                         payPlans: payPlansData,
-                         boosted: boosted,
-                         todayDeals:discounted,
-                         bestSellers:boostedSellers,
-                         websiteAds: adWebsites,
-                         currency: "Frw"
+                         categories: categoriesData,adverts: advertsData,
+                         allAdverts: allAdverts,subCategories: subCategoriesData,
+                         payPlans: payPlansData,boosted: boosted,
+                         todayDeals:discounted, bestSellers:boostedSellers,
+                         websiteAds: adWebsites,currency: "Frw",
+                         freeAdsCount, listingAdsCount, urgentAdsCount, sponsoredAdsCount
                     }));
                     console.log('saving data')
                     saveData('appData', appData, 30);
@@ -85,20 +96,24 @@ export const AppProvider = ({children}) => {
                if(localData ){
                     const {value: sessionData} = localData;
                     if (sessionData){
-                         const {categoriesData, advertsData, subCategoriesData, payPlansData, boosted, boostedSellers, discounted, adWebsites, allAdverts} = sessionData;
+                         const {
+                                   categoriesData, advertsData, 
+                                   subCategoriesData, payPlansData, 
+                                   boosted, boostedSellers, 
+                                   discounted, adWebsites, allAdverts,
+                                   freeAdsCount, listingAdsCount, 
+                                   urgentAdsCount, sponsoredAdsCount
+                              } = sessionData;
                          // const {newAdverts: advertsData, todayDeals:discounted, websiteAds:adWebsites, boosted} = getAdvertsInfo(allAdverts);
                          setData((prev) => ({
                               ...prev,
-                              categories: categoriesData,
-                              adverts: advertsData,
-                              allAdverts: allAdverts,
-                              boosted:boosted,
-                              subCategories: subCategoriesData,
-                              payPlans: payPlansData,
-                              bestSellers:boostedSellers,
-                              todayDeals:discounted,
-                              websiteAds: adWebsites,
-                              currency: "Frw"
+                              categories: categoriesData,adverts: advertsData,
+                              allAdverts: allAdverts,boosted:boosted,
+                              subCategories: subCategoriesData,payPlans: payPlansData,
+                              bestSellers:boostedSellers,todayDeals:discounted,
+                              websiteAds: adWebsites,currency: "Frw",
+                              freeAdsCount, listingAdsCount, 
+                              urgentAdsCount, sponsoredAdsCount
                          }));
                          setData((prev) => ({...prev, loading: false}));
                     }

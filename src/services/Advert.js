@@ -62,9 +62,9 @@ export default {
                return null
           }
      },
-     getAllApproved: async() => {
+     getAllApproved: async(ops) => {
           try {
-               const res = await axios.get(Server.advert.findAllApproved);
+               const res = await axios.post(Server.advert.findAllApproved, ops);
                const info = res.data;
                return info;
           } catch (error) {

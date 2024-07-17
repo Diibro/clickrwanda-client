@@ -62,8 +62,7 @@ export const ImageViewer = ({images}) => {
 
      useEffect(() => {
           setInView(images[imageCount]);
-          console.log(urlLink);
-     }, [imageCount, images]);
+     }, [imageCount]);
 
      return(
           <div className="image-viewer">

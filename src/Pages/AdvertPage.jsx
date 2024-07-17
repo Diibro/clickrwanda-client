@@ -38,11 +38,7 @@ const AdvertPage = () => {
      const{ v_id:adId} = fetchIds(location);
 
      const updateSimilarAds = () => {
-          const {sameCategory,sameVendor} = getSimilarAds(allAdverts, adViewed);
-          const totalViews = getFieldSummation(sameVendor, "ad_views") + adViewed.ad_views + sameVendor.length;
-          setSameVendorsAds(sameVendor);
-          setSameCategoryAds(sameCategory);
-          setTotalVendorviews(totalViews);
+          
      }
      
      const updateAdViewed = async () => {
@@ -86,16 +82,6 @@ const AdvertPage = () => {
                window.scrollTo(0,0);
                (async () => await updateAdViewed())();
      }, [location.search]);
-
-     useEffect(() => {
-          if(adViewed){
-               if(allAdverts && allAdverts[0]){
-                    updateSimilarAds();
-               }else{
-                    setData((prev) => ({...prev, fetchNow: true}));
-               }
-          }
-     }, [adViewed, allAdverts]);
   return (
      <>
           <Helmet>

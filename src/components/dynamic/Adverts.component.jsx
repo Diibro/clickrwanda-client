@@ -22,6 +22,7 @@ import { showMainNotification } from "../../utils/AdminFunctions";
 import uploadFile, { uploadMany } from "../../utils/aws-upload-functions";
 import { s3Folders } from "../../config/s3Config";
 import UserContext from "../../Contexts/UserContext";
+import FreeAdsSection from "../containers/FreeAdsSection";
 
 
 export const Adverts = ({eleId,limit}) => {
@@ -84,13 +85,13 @@ export const Adverts = ({eleId,limit}) => {
 }
 
 export const AdvertsContainer = ({content}) => {
-  const {adverts, title, containerId, adsNo} =  content;
+  const {title, containerId} =  content;
   return (
     <>
       <InnerSection type="title" eleId={containerId} >
         {title}
       </InnerSection>
-      <VerticalAds ads={adverts} adsNo={adsNo} eleId={containerId} />
+      <FreeAdsSection  />
     </>
   )
 }
@@ -302,7 +303,7 @@ export const AddAdvertForm = () => {
 export const CategoryAdverts = ({adverts}) => {
   return (
     <div className="category-adverts" id="category_Ads-container-001">
-          <VerticalAds ads={adverts} adsNo={30} eleId={"category_Ads-container-001"}/>
+      <VerticalAds ads={adverts} adsNo={30} eleId={"category_Ads-container-001"}/>
     </div>
   )
 }
