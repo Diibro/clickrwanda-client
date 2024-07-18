@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import {  fetchIds, getItemUrl } from "../utils/urlFunctions";
-import {  useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunctions";
 import { jsonParserV1, parseString } from "../utils/jsonFunctions";
 import { FaEye, FaLocationDot, FaPhone } from "react-icons/fa6";
@@ -12,20 +12,17 @@ import UserRating from "../components/dynamic/Rating.component";
 import {  formatTimeAgo } from "../utils/dateFunctions";
 import { RiAdvertisementFill } from "react-icons/ri";
 import {  ImageViewer } from "../components/dynamic/ImageSlider";
-import { getData, saveData } from "../utils/storageFunctions";
+// import { getData, saveData } from "../utils/storageFunctions";
 import { AdvertReview, RateAdvert } from "../components/dynamic/Reviews.component";
 // import { Helmet } from "react-helmet";
 import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
 import { Banners } from "../config/banners";
 import { VscVerifiedFilled } from "react-icons/vsc";
-import AppData from "../Contexts/AppContext";
-import { getFieldSummation, getSimilarAds } from "../utils/AdvertFunctions";
+// import AppData from "../Contexts/AppContext";
 import { Helmet } from 'react-helmet-async';
 
 const AdvertPage = () => {
      const location = useLocation();
-     const [data, setData] = useContext(AppData);
-     const {allAdverts} = data;
      const [loading, setLoading] = useState(false);
      const [adViewed, setAdViewed] = useState(null);
      const [sameVendorAds, setSameVendorsAds] = useState([]);
@@ -34,6 +31,7 @@ const AdvertPage = () => {
      const [mainImage, setMainImage] = useState(null);
      const [adDescription,setAdDescription] = useState(null);
      const [totalVendorViews, setTotalVendorviews] = useState(0);
+     const [totalVendorAds,setTotalVendorAds] = useState(0); 
 
      const{ v_id:adId} = fetchIds(location);
 
@@ -44,28 +42,31 @@ const AdvertPage = () => {
      const updateAdViewed = async () => {
           let check = 0;
           try {
-               let adDatas =  getData('adViewed');
-               if(adDatas){
-                    try {
-                         const ad = adDatas.adData;
-                         if(ad && adId === ad.ad_id){
-                              // const {sameCategory, sameSubCategory} = adDatas;
-                              setAdViewed(ad);
-                              setMainImage(ad?.ad_image);
-                              setAdDescription(parseString(ad.description));
-                              check = 1;
-                         }
-                    } catch (error) {
-                         check = 0;
-                    }
+               // let adDatas =  getData('adViewed');
+               // if(adDatas){
+               //      try {
+               //           const ad = adDatas.adData;
+               //           if(ad && adId === ad.ad_id){
+               //                // const {sameCategory, sameSubCategory} = adDatas;
+               //                setAdViewed(ad);
+               //                setMainImage(ad?.ad_image);
+               //                setAdDescription(parseString(ad.description));
+               //                check = 1;
+               //           }
+               //      } catch (error) {
+               //           check = 0;
+               //      }
                     
-               }
+               // }
 
                if(check === 0){
                     setLoading(true);
                     const res = await server.searchAd({ad_id:adId});
-                    saveData("adViewed",res.data, 10);
+                    // saveData("adViewed",res.data, 10);
                     const adData = res.data;
+                    const extraData = res.extraData;
+                    setTotalVendorAds(extraData.totalAds);
+                    setTotalVendorviews(extraData.visits);
                     setAdViewed(adData);
                     setMainImage(adData.ad_image);
                     setAdDescription(parseString(adData.description));
@@ -149,7 +150,7 @@ const AdvertPage = () => {
                                                   <div className="contact" >
                                                        <p className="vendor-date">Joined  {formatTimeAgo(adViewed?.reg_date)}</p>
                                                        <div className="row">
-                                                            <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {sameVendorAds.length + 1} Ads</a></p>
+                                                            <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {formatPrice(totalVendorAds)} Ads</a></p>
                                                             <p className="vendor-views"><i><FaEye /></i>  {totalVendorViews} views</p>
                                                        </div>
                                                        <p className="vendor-views"><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
