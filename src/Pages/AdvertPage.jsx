@@ -7,7 +7,6 @@ import { FaEye, FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
-import { SimilarAds } from "../components/dynamic/Adverts.component";
 import UserRating from "../components/dynamic/Rating.component";
 import {  formatTimeAgo } from "../utils/dateFunctions";
 import { RiAdvertisementFill } from "react-icons/ri";
@@ -20,6 +19,8 @@ import { Banners } from "../config/banners";
 import { VscVerifiedFilled } from "react-icons/vsc";
 // import AppData from "../Contexts/AppContext";
 import { Helmet } from 'react-helmet-async';
+import AdvertService from "../services/Advert";
+import AdvertsContainer from "../components/containers/AdvertsContainer";
 
 const AdvertPage = () => {
      const location = useLocation();
@@ -35,8 +36,16 @@ const AdvertPage = () => {
 
      const{ v_id:adId} = fetchIds(location);
 
-     const updateSimilarAds = () => {
-          
+     const updateSimilarAds = async() => {
+          const similarAds = await AdvertService.getSimilarAds({
+               sameVendor: {user_id: adViewed.user_id, limit:8,offset:0}, 
+               similarCategory:{category_id:adViewed.category_id, limit:8, offset:0}
+          })
+          if(similarAds){
+               const {vendorAds, similarCategory} = similarAds.data;
+               setSameVendorsAds(vendorAds);
+               setSameCategoryAds(similarCategory);
+          }
      }
      
      const updateAdViewed = async () => {
@@ -83,6 +92,11 @@ const AdvertPage = () => {
                window.scrollTo(0,0);
                (async () => await updateAdViewed())();
      }, [location.search]);
+     useEffect(() => {
+          if(adViewed){
+               (async() => await updateSimilarAds())();
+          }
+     },[adViewed])
   return (
      <>
           <Helmet>
@@ -180,15 +194,15 @@ const AdvertPage = () => {
                          <div className="advert-page-others">
                               {sameVendorAds && sameVendorAds[0] ? 
                                    <>
-                                        <h3>More Ads from {adViewed?.username} shop</h3>
-                                        <SimilarAds limit={6} adverts={sameVendorAds} />
+                                        <h3>More Ads from {adViewed?.username} shop <Link to={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}>View All</Link></h3>
+                                        <AdvertsContainer adverts={sameVendorAds} />
                                    </>
                               : null}
                               
                               {samecategoryAds && samecategoryAds[0] ? 
                                    <>
-                                        <h3>More {adViewed?.category_name} Ads</h3>
-                                        <SimilarAds limit={6} adverts={samecategoryAds} />
+                                        <h3>More {adViewed?.category_name} Ads <Link to={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}>View All</Link></h3>
+                                        <AdvertsContainer adverts={samecategoryAds} />
                                    </>
                               :null}
                          </div>

@@ -71,5 +71,15 @@ export default {
                console.log(error);
                return null;
           }
+     },
+     getSimilarAds: async(ops) => {
+          try {
+               const res = await axios.post(Server.advert.similarAds,ops);
+               const info = res.data;
+               return info;
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
      }
 }

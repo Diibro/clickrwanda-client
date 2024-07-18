@@ -1808,6 +1808,7 @@ textarea{
      align-items: flex-start;
      justify-content: center;
      flex-wrap: wrap;
+     padding-block: 5px;
 }
 
 .user-dash-ads-container{
@@ -4953,15 +4954,27 @@ textarea{
 }
 
 .advert-page-others h3{
-     font-size: 1.2rem;
-     font-weight: 700;
+     font-size: 1.1rem;
+     font-weight: 600;
      color: var(--light-gray);
      background-color: var(--text-color-title);
      width: 100%;
      border-radius: 10px;
      padding: 5px 10px;
+     display: flex;
+     justify-content: space-between;
 }
 
+.advert-page-others h3 a{
+     font-size: 0.8rem;
+     cursor: pointer;
+     color: var(--back-color-gold2);
+     transition: all 0.4s ease;
+}
+
+.advert-page-others h3 a:hover{
+     color: var(--light-gray);
+}
 .contact-seller-view{
      position: fixed;
      top: 0;
