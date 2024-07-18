@@ -91,13 +91,22 @@ export const getNotPayed = (arr, date_key, last_pay_date) => {
 } 
 
 export const getValidWebVisits = (arr, tasks, last_pay_date) => {
-          if (arr && arr.length && tasks && tasks.length) {
+     const validWebVisits = [];
+     if (arr && arr.length && tasks && tasks.length) {
+          // arr.forEach(visit => {
+          //      tasks.forEach(task => {
+          //           if(task.v_ids.includes(visit.v_id) && isLaterThan(task.exp_date, visit.v_date)){
+
+          //           }
+          //      })
+          // })
+
           return arr.filter(visit => {
-          return tasks.some(task => {
-               return isLaterThan(visit.v_date, task.exp_date) && isLaterThan(last_pay_date, visit.v_date);
+               return tasks.some(task => {
+                    return isLaterThan(visit.v_date, task.exp_date) && isLaterThan(last_pay_date, visit.v_date) && task.v_ids.includes(visit.v_id);
+               });
           });
-          });
-          } else {
-          return [];
-          }
+     }
+
+     return validWebVisits;
 };
