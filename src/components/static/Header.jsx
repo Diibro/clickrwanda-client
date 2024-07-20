@@ -53,7 +53,7 @@ const DesktopHeader = () => {
                <div className="header-profile">
                     <LanguageChanger />
                     {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/forms')} title={content.buttons[0].name} /> : null}
-                    {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'user' ? "/user-dashboard" : agentToken ? "/agent" : "/admin"} className="header-profileImage"><img src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
+                    {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'user' ? "/user-dashboard" : userInfo?.user_type === 'job-seeker' ? "/job-seeker" : agentToken ? "/agent" : "/admin"} className="header-profileImage"><img src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
                     {/* {loggedIn && (isMobile || isTablet) ? <i className="mobile-header-toggler"><BiMenu /></i> : null} */}
                     <ActionBtn action={activateForm} title={isTablet || isMobile ? content.buttons[1].name : content.buttons[1].name } />
                </div>

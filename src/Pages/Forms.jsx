@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import UserForms, { AgentLoginForm, AgentSignUpForm, LoginForm, PasswordResetResponce, SignUpForm } from "../components/static/UserForms"
+import UserForms, { AgentLoginForm, AgentSignUpForm, JobSeekerLogin, JobSeekerSignUp, LoginForm, PasswordResetResponce, SignUpForm } from "../components/static/UserForms"
 import { AddAdvertForm } from "../components/dynamic/Adverts.component"
 import { PaymentPlanForm } from "../components/static/PaymentPlans.component"
 
@@ -15,6 +15,8 @@ const Forms = () => {
                <Route path="/payment-plan-form" element={<PaymentPlanForm />} />
                <Route path="/agent-login" element={<AgentLoginForm />} />
                <Route path="/agent-signup" element={<AgentSignUpForm />} />
+               <Route path="/job-seeker-signup" element={<JobSeekerSignUp />} />
+               <Route path="/job-seeker-login" element={<JobSeekerLogin />} />
           </Routes>
      </div>
      )

@@ -15,6 +15,7 @@ import { showMainNotification } from "../../utils/AdminFunctions";
 import uploadFile from "../../utils/aws-upload-functions";
 import { s3Folders } from "../../config/s3Config";
 import AppData from "../../Contexts/AppContext";
+import SubCategoryService from "../../services/SubCategory";
 
 
 const UserForms = () => {
@@ -31,7 +32,7 @@ const UserForms = () => {
                     </div>
                     <div className="user-type-container">
                          <p>Find your dream Job. Get exposed to several companies that work with Click Rwanda and land your dream job</p>
-                         <ActionBtn title="Continue as Job Seeker" action={() => showMainNotification('fail', 'Sorry comming soon', () => {})} />
+                         <ActionBtn title="Continue as Job Seeker" action={() => navigate('/forms/job-seeker-signup')} />
                     </div>
                     <div className="user-type-container">
                          <p>Whether you are a micro influencer or a celebrity with thousands/millions of followers, you can sign up to join our family, advertise for our sellers and get paid on time!</p>
@@ -70,7 +71,6 @@ export const LoginForm = () => {
                formData.append('email', data.email);
                formData.append('password', data.password);
                const res = await server.login(data);
-               console.log(res);
                if(res.status === "pass"){
                     sessionStorage.setItem('loginToken', res.loginToken);
                     sessionStorage.setItem('userData', JSON.stringify(res.data));
@@ -79,7 +79,7 @@ export const LoginForm = () => {
                          userInfo: res.data,
                          loggedIn: true
                     }));
-                    if(res.data.user_type !== "user" ){
+                    if(res.data.user_type === "admin" ){
                          return showMainNotification("pass", `You have been logged as admin`, () => navigate("/admin"));
                     }else{
                          return showMainNotification('pass', `${res.message} as ${res.data.username}`, () => {
@@ -360,15 +360,14 @@ export const AgentLoginForm = () => {
 
 
 export const AgentSignUpForm = () => {
-
      const [loading,setLoading ] = useState(false);
      const {register, handleSubmit,} = useForm();
      const [locations, setLocations] = useState([]);
      const navigate = useNavigate();
      const [socialLinks, setSocialLinks] = useState({
-          Tiktok: "Tiktok profile link",
-          Instagram: "Instagram profile link",
-          Twitter: "Twitter profile link",
+          Tiktok: "",
+          Instagram: "",
+          Twitter: "",
      })
      
 
@@ -381,7 +380,7 @@ export const AgentSignUpForm = () => {
                data.active = 1;
                data.verified = 0;
                data.registrationDate = getDateToday();
-
+               data.agent_type = 'agent';
                const res = await AgentService.save(data);
                if(res){
                     if(res.status === "success"){
@@ -445,7 +444,7 @@ export const AgentSignUpForm = () => {
                               Object.entries(socialLinks).map(([key, value]) => 
                                    <div className="group" key={`social-link-${key}`}>
                                         <label htmlFor={`social-link-${key}`}>{key}:</label>
-                                        <input type="url" name={`social-link-${key}`} id={`social-link-${key}`} placeholder={value} required onChange={(e) => setSocialLinks(prev => ({...prev, [key]: e.target.value}))} />
+                                        <input type="url" name={`social-link-${key}`} id={`social-link-${key}`} placeholder={value}  onChange={(e) => setSocialLinks(prev => ({...prev, [key]: e.target.value}))} />
                                    </div>
                               ) 
                          }
@@ -464,6 +463,230 @@ export const AgentSignUpForm = () => {
      )
 }
 
+export const JobSeekerLogin = () => {
+     const [,setUser] = useContext(UserContext);
+     const [data, setData] = useContext(AppData);
+     const{prevState} = data;
+     const from  = prevState ? `${prevState?.pathname}${prevState?.search}` : '/job-seeker-dashboard';
+     const [loading,setLoading] = useState(false);
+     const {register,handleSubmit} = useForm();
+     const navigate = useNavigate();
+     const submitForm = async(data) =>{
+          try {
+               setLoading(true);
+               const formData = new FormData();
+               formData.append('email', data.email);
+               formData.append('password', data.password);
+               const res = await server.login(data);
+               if(res.status === "pass"){
+                    sessionStorage.setItem('loginToken', res.loginToken);
+                    sessionStorage.setItem('userData', JSON.stringify(res.data));
+                    setUser((prev) => ({
+                         ...prev,
+                         userInfo: res.data,
+                         loggedIn: true
+                    }));
+                    if(res.data.user_type === "job-seeker" ){
+                         return showMainNotification("pass", `You have been logged as job seeker`, () => {
+                              navigate(from);
+                              setData(prev => ({...prev, prevState:null}));
+                         });
+                    }else{
+                         return showMainNotification('fail', `Not register as a job seeker. Try with other credentials`, () => {});
+                    }
+                    
+               }else{
+                    
+                    return showMainNotification('fail', `${res.message} .Try again`, () => {});
+               }
+          } catch (error) {
+               return showMainNotification('fail', 'An error occurred. Try again later', () => {});
+          }finally{
+               setLoading(false);
+          }
+
+     };
+     return (
+          <div className="form-container hide-scroll">
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login as Job Seeker"}} />
+               {
+                    loading ? <Loading /> :
+                    <form onSubmit={handleSubmit(submitForm)}>
+                         <div className="group">
+                              <label htmlFor="a_email">Email: </label>
+                              <input type="email" name="a_email" id="a_email" {...register('email')} required placeholder="User email..." />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_password">Password:</label>
+                              <input type="password" name="a_password" id="a_password" {...register('password')} placeholder="User Password" />
+                         </div>
+                         <div className="group align-right">
+                              <SubmitButton content={{title: "Login", type: 'submit'}} />
+                         </div>
+                    </form>
+               }
+               
+               <div className="line-divider"><p>Or</p></div>
+               <p className="other-link">Don&apos;t have account <b onClick={() => navigate("/forms/job-seeker-signup")}>Sign Up</b></p>
+          </div>
+     )
+}
+
+export const JobSeekerSignUp = () => {
+     const [,setUser] = useContext(UserContext);
+     const [loading,setLoading] = useState(false);
+     const {register,handleSubmit} = useForm();
+     const [locations, setLocations] = useState([]);
+     const [subCategories,setSubCategories] = useState(null);
+     const [profileImage,setProfileImage] = useState(null);
+     const [userCV,setUserCV] = useState(null);
+     const navigate = useNavigate();
+     
+     const categoryId = "bed1566b-5901-4af9-ae80-708c293aa925";
+
+     const submitForm = async(data) => {
+          try {
+               setLoading(true);
+               let date  = getRwandaTime();
+               const profileImageUrl = await uploadFile(profileImage, s3Folders.logos);
+               const userData = {
+                    name: data.name,
+                    username: data.name,
+                    email: data.email,
+                    phone: data.phone,
+                    userType: 'job-seeker',
+                    password: data.password,
+                    location: {location: data.location},
+                    registrationDate: date,
+                    r_id:null,
+                    business_type: "individual",
+                    user_image: profileImageUrl
+               }
+               const res = await server.register(userData);
+               if(res){
+                    if(res.status === "pass"){
+                         console.log(res);
+                         sessionStorage.setItem('loginToken', res.loginToken);
+                         sessionStorage.setItem('userData', JSON.stringify(res.data));
+                         setUser((prev) => ({
+                              ...prev,
+                              userInfo: res.data,
+                              loggedIn: true
+                         }));
+                         showMainNotification('pass', `Successfully created your job seeker account`, () => {});
+                         const cvUrl = await uploadFile(userCV, s3Folders.userCVs);
+                         const advertData = {
+                              ad_name: data.name,
+                              description: {desc: {type:"textarea",value: data.description}, userCv: {type:"url", value:cvUrl}},
+                              ad_type: "service",
+                              contact: data.phone,
+                              ad_image: profileImageUrl,
+                              ad_price: 0,
+                              ad_images: [],
+                              registrationDate: date,
+                              sub_category_id: data.sub_category
+                         }
+                         const adRes = await server.addAdvert(advertData);
+                         if(adRes.status === "pass"){
+                              showMainNotification("pass", "Thanks. Once our team approves you. You will be live on our platform", () => navigate('/job-seeker-dashboard'));                         
+                         }else{
+                              showMainNotification('fail',adRes.message, () => {});
+                         }
+                    }else{
+                         console.log(res);
+                         showMainNotification('fail', 'error creating you account. try again later', () => {});
+                    }
+               }
+          } catch (error) {
+               console.log(error);
+               showMainNotification('fail', "Application error. Try again later", () => {});
+          }finally{
+               setLoading(false);
+          }
+     };
+
+     useEffect(() => {
+          (async() => {
+               const {districts} = getLocations();
+               const subCategoriesData = await SubCategoryService.searchCategory(categoryId);
+               if(subCategoriesData) {
+                    setSubCategories(subCategoriesData.data);
+               }
+               // const {data} = districts;
+               // setLocations(data);
+               setLocations(districts);
+          })()
+     }, []);
+
+     return (
+          <div className="form-container hide-scroll">
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Signup as Job Seeker"}} />
+               {
+                    loading ? <Loading /> : 
+                    <form onSubmit={handleSubmit(submitForm)}>
+                         <div className="group">
+                              <label htmlFor="name_01">Full name: </label>
+                              <input type="text" name="a_name" id="name_01" {...register('name', {required: true})} placeholder="Ex: Adms Johns..."  />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_email">Email: </label>
+                              <input type="email" name="a_email" id="a_email" {...register('email')} required placeholder="User email..." />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="phone_01">Phone: </label>
+                              <input type="phone" name="a_phone" id="phone_01" {...register('phone', {required: true})} placeholder="Ex: +25078..."  />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_password">Password:</label>
+                              <input type="password" name="a_password" id="a_password" {...register('password')} placeholder="User Password" />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="location01">Location: </label>
+                              {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
+                              <select name="location" id="location01"  {...register('location', {required: true})}>
+                                   {locations[0] ? <option value="" selected  >Business location</option> : null}
+                                   {locations[0] ? <option value="Kigali" >Kigali</option> : null}
+                                   {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
+                              </select>
+                         </div>
+                         <div className="group">
+                              <label htmlFor="profile-image">Profile Image: </label>
+                              <input type="file" onChange={(e) =>setProfileImage(e.target.files[0])} name="profile-image" id="profile-image" required/>
+                              {profileImage ? <img src={URL.createObjectURL(profileImage)} alt="user profile image" width={80} /> : null}
+                         </div>
+                         <div className="group">
+                              <label htmlFor="sub_category">Choose field:</label>
+                              <select name="sub_category" id="sub_category" {...register('sub_category', {required: true})}>
+                                   <>
+                                        <option value="" selected disabled>Select field</option>
+                                        {subCategories && subCategories.length ? 
+                                   subCategories.map((item, index) => <option key={`job-seeker-sub-${index}`} value={item.sub_id}>{item.sub_name}</option>) 
+                                   : <option value={""} disabled>Loading</option>}
+                                   </>
+                              </select>
+                         </div>
+                         <div className="group">
+                              <label htmlFor="description">Your Bio:</label>
+                              <textarea name="description" id="description" cols={10} rows={5} {...register('description', {required: true})}></textarea>
+                         </div>
+                         <div className="group">
+                              <label htmlFor="user-cv">CV:</label>
+                              <input type="file" name="user-cv" id="user-cv" accept="application/pdf" onChange={(e) => setUserCV(e.target.files[0])} />
+                         </div>
+                         <div className="terms-group">
+                              <input type="checkbox" name="terms-check-box" id="terms-check-box" required/>
+                              <label htmlFor="terms-check-box">I accept the <Link to="/terms-&-conditions">Terms and Conditions</Link></label>
+                         </div>
+                         <div className="group align-right">
+                              <SubmitButton content={{title: "Submit", type: 'submit'}} />
+                         </div>
+                    </form>
+               }
+               <div className="line-divider"><p>Or</p></div>
+               <p className="other-link">Have account <b onClick={() => navigate("/forms/job-seeker-login")}>Login</b></p>
+          </div>
+     )
+}
 
 
 export default UserForms;

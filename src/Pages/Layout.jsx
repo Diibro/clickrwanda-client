@@ -42,6 +42,7 @@ import ContactPage from './ContactPage';
 import PlanPaymentPage from './PlanPaymentPage';
 import ContactSeller from '../components/containers/ContactSeller';
 import Forms from './Forms';
+import JobSeekerLayout from '../jobSeeker/Layout';
 
 
 const Layout = () => {
@@ -73,6 +74,7 @@ const Layout = () => {
                <Route index path='/' element={<Home />} />
                <Route path="/categories/*" element={<CategoriesPage />} />
                <Route  path='/user-dashboard/*' element={<AdminLayout />} />
+               <Route path='/job-seeker-dashboard/*' element={<JobSeekerLayout />} />
                <Route path='/ads/*' element={<AdvertsPage />} />
                <Route path='/user-dashboard/*' element={<UserLayout />} />
                <Route path='/terms-&-conditions' element={<TermsPage />} />

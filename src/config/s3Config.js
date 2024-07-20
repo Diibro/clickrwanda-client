@@ -6,7 +6,8 @@ export const s3Folders = {
      logos: 'logos',
      payPlans: 'pay-plans',
      quotations: 'quotations',
-     temp: "temp"
+     temp: "temp",
+     userCVs: "userCVs"
 };
 
 

@@ -2538,21 +2538,24 @@ textarea{
 
 .user-forms .form-container form .group label{
      width: 100%;
-     font-size: 1.3rem;
+     font-size: 1.1rem;
      color: var(--text-color-title);
      font-weight: bold;
      margin: 5px auto;
      text-align: left;
 }
 
-.user-forms .form-container form .group input, .user-forms .form-container form .group select{
+.user-forms .form-container form .group input, 
+.user-forms .form-container form .group select,
+.user-forms .form-container form .group textarea
+{
      width: 97%;
      font-size: 1rem;
      outline: none;
      border: none;
      padding: 5px 10px;
      border-radius: 2px;
-     border: 1.5px solid var(--gray-text);
+     border: 1.2px solid var(--gray-text);
      border-radius: 10px;
      margin: 5px auto;
      font-weight: 700;
@@ -2560,7 +2563,9 @@ textarea{
      color: var(--back-gold-color-v1);
 }
 
-.user-forms .form-container form .group input:focus, .user-forms .form-container form .group select:focus{
+.user-forms .form-container form .group input:focus, 
+.user-forms .form-container form .group select:focus,
+.user-forms .form-container form .group textarea:focus{
      border: 1.5px solid var(--back-color-gold2);
 }
 .user-forms .form-container form .group input::placeholder{
@@ -4766,6 +4771,97 @@ textarea{
      border: 1px solid var(--text-color-para2);
 }
 
+.job-seeker-page-container{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     padding-block: 10px;
+}
+
+.job-seeker-page-container .row{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+}
+
+.job-seeker-page-container .row .col{
+     width: 48%;
+     background-color: var(--white-text);
+     border-radius: 20px;
+     padding: 15px;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     gap:20px;
+     overflow: hidden;
+}
+
+.job-seeker-page-container .row .col .profile-image{
+     max-height: 100px;
+     width: auto;
+     border-radius: 20px;
+}
+
+.job-seeker-page-container .row .col .profile-info{
+     width: auto;
+     max-width: 70%;     
+     display: flex;
+     gap: 10px;
+     flex-direction: column;
+}
+
+.job-seeker-page-container .row .col .profile-info p b{
+     font-size: 0.9rem;
+     font-weight: 700;
+     color: var(--text-color-para2);
+}
+
+.job-seeker-page-container .row .col .profile-info p span{
+     font-size: 0.9rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+}
+
+.job-seeker-page-container .row .col .description {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 5px;
+}
+
+.job-seeker-page-container .row .col .description .description-title{
+     font-size: 1.1rem;
+     font-weight: 700;
+     width: 100%;
+     background-color: var(--text-color-title);
+     color: var(--light-gray);
+     padding: 5px 10px;
+     border-radius: 10px;
+}
+
+.job-seeker-page-container .row .col .description p{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-para1);
+}
+
+.job-seeker-page-container .row .doc-container{
+     width:100%;
+     border-radius: 20px;
+     padding: 20px;
+     background-color: var(--white-text);
+}
+
+.pdf-container{
+     width: 100%;
+     height: auto;
+}
+
+
 .advert-review-container{
      width: 100%;
 }
@@ -4779,6 +4875,7 @@ textarea{
      border-radius: 0 0 10px 10px;
      padding: 5px 0;
 }
+
 
 .advert-review-footer span{
      width: 30%;

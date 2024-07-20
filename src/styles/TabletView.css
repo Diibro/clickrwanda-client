@@ -212,6 +212,12 @@
      .user-type-container{
           width: 45%;
      }
+     .job-seeker-page-container .row{
+          gap: 10px;
+     }
+     .job-seeker-page-container .row .col{
+          width: 100%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -569,6 +575,13 @@
           width: 100%;
           padding: 10px 5px;
           border-radius: 10px;
+     }
+
+     .job-seeker-page-container .row{
+          gap: 10px;
+     }
+     .job-seeker-page-container .row .col{
+          width: 95%;
      }
 }
 

@@ -28,5 +28,13 @@ export default {
                console.log(error);
                return null
           }
+     },
+     searchCategory: async(category_id) => {
+          try {
+               const res = await axios.post(Server.subCategory.category, {category_id})
+               return res.data;
+          } catch (error) {
+               console.log(error);
+          }
      }
 }

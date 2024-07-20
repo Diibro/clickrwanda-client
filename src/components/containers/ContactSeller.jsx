@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import AppData from "../../Contexts/AppContext"
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
@@ -34,10 +34,6 @@ const ContactSeller = () => {
           }
           
      } 
-
-     useEffect(() => {
-          console.log(contactAd)
-     },[contactAd])
 
      return ( 
           <>

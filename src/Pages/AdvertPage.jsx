@@ -21,6 +21,7 @@ import { VscVerifiedFilled } from "react-icons/vsc";
 import { Helmet } from 'react-helmet-async';
 import AdvertService from "../services/Advert";
 import AdvertsContainer from "../components/containers/AdvertsContainer";
+import JobSeekerPageContainer from "../jobSeeker/components/containers/JobSeekerPageContainer";
 
 const AdvertPage = () => {
      const location = useLocation();
@@ -38,8 +39,8 @@ const AdvertPage = () => {
 
      const updateSimilarAds = async() => {
           const similarAds = await AdvertService.getSimilarAds({
-               sameVendor: {user_id: adViewed.user_id, limit:8,offset:0}, 
-               similarCategory:{category_id:adViewed.category_id, limit:8, offset:0}
+               sameVendor: {user_id: adViewed.user_id, limit:8,offset:0, ad_id: adViewed.ad_id}, 
+               similarCategory:{category_id:adViewed.category_id, limit:8, offset:0, ad_id: adViewed.ad_id}
           })
           if(similarAds){
                const {vendorAds, similarCategory} = similarAds.data;
@@ -116,81 +117,87 @@ const AdvertPage = () => {
                     {
                          !loading ?
                          <>
-                         <div className="advert-page-mainAdvert">
-                              <div className="col">
-                                   <ImageViewer images={[mainImage, ...images]} />
-                                   <div className="advert-page-info">
-                                        <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""} {adViewed?.verified ? <i className="verified"><VscVerifiedFilled /></i> : null}</h2>
-                                        {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
-                                        {adViewed?.category_name && 
-                                             <div className="cat">
-                                                  <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>
-                                                  <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.sub_name}</span></a> 
-                                             </div>
-                                        } 
-                                        
-                                        <div className="content">
-                                             {adDescription && <h4>Details:</h4>}
-                                             {
-                                                  adViewed?.description && adDescription ? 
-                                                       Object.entries(adDescription)?.map(([key,value], index) => 
-                                                            key === "desc" ? 
-                                                            <div className="group description-container" key={`ad-desc-view-${key}-${index}`}>
-                                                                 <b>Description:</b>
-                                                                 {
-                                                                      getParagraphs(value.value || value, 50).map((text, count) => <p key={`ad-view-paragraph-${count}`}>{text}</p>)
-                                                                 }
-                                                            </div>
-                                                            :
-                                                            <div className="group" key={`ad-desc-view-${key}-${index}`}>
-                                                                 <b>{key}:</b><span>{value.value || value}</span>
-                                                            </div>
-                                                       )
-                                                  : null
-                                             }
-                                        </div>
-                                   </div>
-                              </div>
-                              <div className="col">
-                                   <div className="vendor">
-                                   {adViewed?.full_name && <div className="vendor-info-header"><h4>Seller Information</h4></div>}
-                                        <div className="vendor-col-left">
-                                             {adViewed?.profile_image && <a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}><img src={adViewed?.profile_image} alt={adViewed?.full_name} /></a>}
-                                             {adViewed?.full_name && <h5>{adViewed?.full_name}</h5>}
-                                             <UserRating rating={adViewed?.rating} />
-                                        </div>
-                                        <div className="vendor-col-right">
-                                             {adViewed?.user_email && 
-                                                  <div className="contact" >
-                                                       <p className="vendor-date">Joined  {formatTimeAgo(adViewed?.reg_date)}</p>
-                                                       <div className="row">
-                                                            <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {formatPrice(totalVendorAds)} Ads</a></p>
-                                                            <p className="vendor-views"><i><FaEye /></i>  {totalVendorViews} views</p>
-                                                       </div>
-                                                       <p className="vendor-views"><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
-                                                       <p className="vendor-views"><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
-                                                       <p className="vendor-views"><a href={`https://www.google.com/maps/place/${adViewed.user_location.location}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {adViewed?.user_location.location}</a></p>
+                         {
+                              adViewed?.category_name === "Job Seekers CVs" 
+                              ? 
+                                   <JobSeekerPageContainer user={adViewed} />
+                              :<div className="advert-page-mainAdvert">
+                                   <div className="col">
+                                        <ImageViewer images={[mainImage, ...images]} />
+                                        <div className="advert-page-info">
+                                             <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""} {adViewed?.verified ? <i className="verified"><VscVerifiedFilled /></i> : null}</h2>
+                                             {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
+                                             {adViewed?.category_name && 
+                                                  <div className="cat">
+                                                       <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>
+                                                       <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.sub_name}</span></a> 
                                                   </div>
-                                             }
+                                             } 
+                                             
+                                             <div className="content">
+                                                  {adDescription && <h4>Details:</h4>}
+                                                  {
+                                                       adViewed?.description && adDescription ? 
+                                                            Object.entries(adDescription)?.map(([key,value], index) => 
+                                                                 key === "desc" ? 
+                                                                 <div className="group description-container" key={`ad-desc-view-${key}-${index}`}>
+                                                                      <b>Description:</b>
+                                                                      {
+                                                                           getParagraphs(value.value || value, 50).map((text, count) => <p key={`ad-view-paragraph-${count}`}>{text}</p>)
+                                                                      }
+                                                                 </div>
+                                                                 :
+                                                                 <div className="group" key={`ad-desc-view-${key}-${index}`}>
+                                                                      <b>{key}:</b><span>{value.value || value}</span>
+                                                                 </div>
+                                                            )
+                                                       : null
+                                                  }
+                                             </div>
                                         </div>
-                                        
                                    </div>
-                                   <div className="reviews">
-                                        {adViewed ? <RateAdvert item={adViewed} /> : null}
-                                   </div>
-                                   <div className="reviews">
-                                        {adViewed && <AdvertReview item={adViewed} />} 
-                                   </div>
-                                   <div className="safety-tips">
-                                        <h4>Safety Tips</h4>
-                                        <div className="tips">
-                                             <p><span>1</span> Meet in a public space to see the item and exchange the money.</p>
-                                             <p><span>2</span> Never send the item before receiving the money.</p>
-                                             <p><span>3</span> Never send or wire the money to sellers or buyers.</p>
+                                   <div className="col">
+                                        <div className="vendor">
+                                        {adViewed?.full_name && <div className="vendor-info-header"><h4>Seller Information</h4></div>}
+                                             <div className="vendor-col-left">
+                                                  {adViewed?.profile_image && <a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}><img src={adViewed?.profile_image} alt={adViewed?.full_name} /></a>}
+                                                  {adViewed?.full_name && <h5>{adViewed?.full_name}</h5>}
+                                                  <UserRating rating={adViewed?.rating} />
+                                             </div>
+                                             <div className="vendor-col-right">
+                                                  {adViewed?.user_email && 
+                                                       <div className="contact" >
+                                                            <p className="vendor-date">Joined  {formatTimeAgo(adViewed?.reg_date)}</p>
+                                                            <div className="row">
+                                                                 <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {formatPrice(totalVendorAds)} Ads</a></p>
+                                                                 <p className="vendor-views"><i><FaEye /></i>  {totalVendorViews} views</p>
+                                                            </div>
+                                                            <p className="vendor-views"><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
+                                                            <p className="vendor-views"><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
+                                                            <p className="vendor-views"><a href={`https://www.google.com/maps/place/${adViewed.user_location.location}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {adViewed?.user_location.location}</a></p>
+                                                       </div>
+                                                  }
+                                             </div>
+                                             
+                                        </div>
+                                        <div className="reviews">
+                                             {adViewed ? <RateAdvert item={adViewed} /> : null}
+                                        </div>
+                                        <div className="reviews">
+                                             {adViewed && <AdvertReview item={adViewed} />} 
+                                        </div>
+                                        <div className="safety-tips">
+                                             <h4>Safety Tips</h4>
+                                             <div className="tips">
+                                                  <p><span>1</span> Meet in a public space to see the item and exchange the money.</p>
+                                                  <p><span>2</span> Never send the item before receiving the money.</p>
+                                                  <p><span>3</span> Never send or wire the money to sellers or buyers.</p>
+                                             </div>
                                         </div>
                                    </div>
                               </div>
-                         </div>
+                         }
+                         
                          <div className="advert-page-others">
                               {sameVendorAds && sameVendorAds[0] ? 
                                    <>

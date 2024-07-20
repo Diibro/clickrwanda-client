@@ -51,7 +51,10 @@ export const AdvertCardVertical = ({ad}) => {
                          
                     </div>
                     <div className="row">
-                         <span className='ad-price' >{`${currency} ${formatPrice(ad.ad_price)}`}</span> 
+                         {
+                              ad.category_name === 'Job Seekers CVs' ? <span className='ad-price'>Negotiable</span> :<span className='ad-price' >{`${currency} ${formatPrice(ad.ad_price)}`}</span> 
+                         }
+                         
                     </div>
                     <div className="row">
                          <button className='view-btn' onClick={ViewAd}>View</button>
