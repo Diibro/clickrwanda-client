@@ -22,7 +22,7 @@ export const calculateRefVisitsTotal = (arr, lastDate,tasks) => {
           arr.forEach(visit => {
                tasks.forEach(task => {
                     if(task.v_ids.includes(visit.v_id) && isLaterThan(lastDate, visit.v_date) && isLaterThan(visit.v_date, task.exp_date)){
-                         totalAmount += 5;
+                         totalAmount += task.amount;
                     }
                })
           })
@@ -52,7 +52,7 @@ export const calculatePackageTotal = (arr, lastDate) =>{
      if(arr && arr[0]){
           arr.forEach(sub => {
                if(sub.status === "Approved" && isLaterThan(lastDate, sub.subscription_date)){
-                    total += ((20 / 100) * sub.amount);
+                    total += ((30 / 100) * sub.amount);
                }
           })
      }

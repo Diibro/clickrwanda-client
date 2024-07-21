@@ -64,44 +64,87 @@ const Home = () => {
                     <button className="agent-claim-button" disabled={totalAmount < 500} onClick={ () => claimPayment()}>Claim Payment</button>
                </div>
           </MainRow>
-          <MainRow>
-               <AgentContentCard content={{title: "Packages Sold", count: packageSold?.length || 0}} />
-               <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0}} />
-               <AgentContentCard content={{title: "Commission Shops", count: commissionShops?.length || 0}} />
-               <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad")}} />
-               {/* <AgentContentCard content={{title: "Shops Opened", count: 0}} />
-               <AgentContentCard content={{title: "Shops Opened", count: 0}} /> */}
-          </MainRow>
+          {
+               agentInfo?.agent_type !== 'influencer' ?
+                    <MainRow>
+                         <AgentContentCard content={{title: "Packages Sold", count: packageSold?.length || 0}} />
+                         <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0}} />
+                         <AgentContentCard content={{title: "Commission Shops", count: commissionShops?.length || 0}} />
+                         <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad")}} />
+                         {/* <AgentContentCard content={{title: "Shops Opened", count: 0}} />
+                         <AgentContentCard content={{title: "Shops Opened", count: 0}} /> */}
+                    </MainRow>               
+               :
+                    <MainRow>
+                         <AgentContentCard content={{title: "Bought packages", count: packageSold?.length || 0}} />
+                         <AgentContentCard content={{title: "Opened Shops", count: referrals?.length || 0}} />
+                         <AgentContentCard content={{title: "Total Clicks", count: countVisits(webVisits, "v_type", "/ad")}} />
+                    </MainRow>
+
+          }
           <MainRow>
                <Title>
                     <h2>Make money on Click Rwanda</h2>
                </Title>
-               <div className="agent-content-card">
-                    <h4>1. Sell Click Rwanda membership plans.</h4>
-                    <p>Earn 30% commission on every package you sell. On every successful payment by any business referred by you, you will be paid 20% of the amount paid.</p>
-                    <p>By Selling Click Rwanda packages, you earn a rank in the top agents who are the ones given more tasks than others.</p>
-                    <p><button onClick={() => navigate('/agent/pay-plans')}>View Packages</button></p>
-               </div>
-               <div className="agent-content-card">
-                    <h4>2. Advertisement of featured ads</h4>
-                    <p>Every agent is assigned a task by Click Rwanda about the ads to advertise. You can find the tasks assigned to you in the tasks section.</p>
-                    <p>Simply you copy the ad link and share via your social medias, whatsapp and other platforms. Then you get paid some amount on the every clicks you get. More clicks more money.</p>
-                    <p><button onClick={() => navigate("/agent/tasks")}>View Tasks today</button></p>
-               </div>
-               <div className="agent-content-card">
-                    <h4>3. Help people open shops on ClickRwanda</h4>
-                    <p>Click Rwanda pays Rwf 20 to verified agents who help people to successfully open shops on the platform.</p>
-                    <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> in the tasks Section. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
-                    <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
-                    {/* <p><button onClick={() => navigate("/agent/tasks")}>View Tasks</button></p> */}
-               </div>
-               <div className="agent-content-card">
-                    <h4>4. Earn Commission on products.</h4>
-                    <p>Click Rwanda pays 70% of the commission earned upon successful transaction of the producsts brought by the agents.</p>
-                    <p>To get started, deal with a shop or seller. Create for them a shop on click Rwanda using your agent-shop sign link, click to copy the link <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
-                    <p>Subscribe to the Commision package for sellers. Once Approved, start uploading the seller&apos;s products by clicking the button below.</p>
-                    <p><button onClick={showAddAdForm}>Post Commission Deals</button></p>
-               </div>
+               {
+                    agentInfo?.agent_type !== 'influencer' ? 
+                    <>
+                         <div className="agent-content-card">
+                              <h4>1. Sell Click Rwanda membership plans.</h4>
+                              <p>Earn 30% commission on every package you sell. On every successful payment by any business referred by you, you will be paid 30% of the amount paid.</p>
+                              <p>By Selling Click Rwanda packages, you earn a rank in the top agents who are the ones given more tasks than others.</p>
+                              <p><button onClick={() => navigate('/agent/pay-plans')}>View Packages</button></p>
+                         </div>
+                         <div className="agent-content-card">
+                              <h4>2. Advertisement of featured ads</h4>
+                              <p>Every agent is assigned a task by Click Rwanda about the ads to advertise. You can find the tasks assigned to you in the tasks section.</p>
+                              <p>Simply you copy the ad link and share via your social medias, whatsapp and other platforms. Then you get paid some amount on the every clicks you get. More clicks more money.</p>
+                              <p><button onClick={() => navigate("/agent/tasks")}>View Tasks today</button></p>
+                         </div>
+                         <div className="agent-content-card">
+                              <h4>3. Help people open shops on ClickRwanda</h4>
+                              <p>Click Rwanda pays Rwf 20 to verified agents who help people to successfully open shops on the platform.</p>
+                              <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> in the tasks Section. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
+                              <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
+                              {/* <p><button onClick={() => navigate("/agent/tasks")}>View Tasks</button></p> */}
+                         </div>
+                         <div className="agent-content-card">
+                              <h4>4. Earn Commission on products.</h4>
+                              <p>Click Rwanda pays 70% of the commission earned upon successful transaction of the producsts brought by the agents.</p>
+                              <p>To get started, deal with a shop or seller. Create for them a shop on click Rwanda using your agent-shop sign link, click to copy the link <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
+                              <p>Subscribe to the Commision package for sellers. Once Approved, start uploading the seller&apos;s products by clicking the button below.</p>
+                              <p><button onClick={showAddAdForm}>Post Commission Deals</button></p>
+                         </div>
+                    </> : 
+                    <>
+                         <div className="agent-content-card">
+                              <h4>1. Create content about Click  Rwanda Packages.</h4>
+                              <p>Earn 30% commission on every package bought from the content you make about ClickRwanda membership packages. On every successful payment by any business referred by you, you will be paid 30% of the amount paid.</p>
+                              <p>By Selling Click Rwanda packages, you not only earn commission but also earn a good reputation from the ClickRwanda Platform.</p>
+                              <p><button onClick={() => navigate('/agent/pay-plans')}>View Packages</button></p>
+                         </div>
+                         <div className="agent-content-card">
+                              <h4>2. Advertisement of featured ads</h4>
+                              <p>Visit the tasks section and choose the products of your choice to advertise. You will be paid for every click you get from your social media visitors.</p>
+                              <p>Simply you copy the ad link and share via your social medias, whatsapp and other platforms. Then you get paid some amount on the every clicks you get. More clicks more money.</p>
+                              <p><button onClick={() => navigate("/agent/tasks")}>View Tasks</button></p>
+                         </div>
+                         {/* <div className="agent-content-card">
+                              <h4>3. Help people open shops on ClickRwanda</h4>
+                              <p>Click Rwanda pays Rwf 20 to verified agents who help people to successfully open shops on the platform.</p>
+                              <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> in the tasks Section. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
+                              <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
+                         </div>
+                         <div className="agent-content-card">
+                              <h4>4. Earn Commission on products.</h4>
+                              <p>Click Rwanda pays 70% of the commission earned upon successful transaction of the producsts brought by the agents.</p>
+                              <p>To get started, deal with a shop or seller. Create for them a shop on click Rwanda using your agent-shop sign link, click to copy the link <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
+                              <p>Subscribe to the Commision package for sellers. Once Approved, start uploading the seller&apos;s products by clicking the button below.</p>
+                              <p><button onClick={showAddAdForm}>Post Commission Deals</button></p>
+                         </div> */}
+                    </>
+               }
+               
                
           </MainRow>
      </>

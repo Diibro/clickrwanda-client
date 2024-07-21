@@ -46,7 +46,7 @@ const AgentLayout = () => {
                     const lastPayDate = paymentsData && paymentsData.length ? paymentsData[0].p_date : null; 
                     const webViewRef = await WebViewService.getRefVisits(agent.agent_id);
                     const packageSoldInfo = await PlanSubscriptionService.findByRId(agent.agent_id);
-                    const agentTaskInfo = await AgentTaskService.findByAgent(agent.agent_id);
+                    const agentTaskInfo = await AgentTaskService.findByAgent(agent);
                     const visitIds = getVisitIds(agentTaskInfo.data);
                     setAgentData(prev => ({
                          ...prev, logged:true, 
@@ -60,11 +60,11 @@ const AgentLayout = () => {
                          vIds: visitIds
                     }));
                }else{
-                    navigate("/forms/agent-login");
+                    navigate("/");
                }
           } catch (error) {
                console.log(error);
-               navigate("/forms/agent-login");
+               navigate("/");
           }
           
      }

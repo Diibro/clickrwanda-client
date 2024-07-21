@@ -36,7 +36,7 @@ const UserForms = () => {
                     </div>
                     <div className="user-type-container">
                          <p>Whether you are a micro influencer or a celebrity with thousands/millions of followers, you can sign up to join our family, advertise for our sellers and get paid on time!</p>
-                         <ActionBtn title="Continue as Influencer" action={() => showMainNotification('fail', 'Sorry comming soon', () => {})} />
+                         <ActionBtn title="Continue as Influencer" action={() => navigate('/forms/influencer-login')} />
                     </div>
                </div>
           )
@@ -305,6 +305,7 @@ export const AgentLoginForm = () => {
      const submitForm = async (data) => {
           try {
                setLoading(true);
+               data.agent_type = 'agent';
                const res = await AgentService.login(data);
                if(res != null){
                     if(res.status === "success" ){
@@ -435,18 +436,18 @@ export const AgentSignUpForm = () => {
                               <label htmlFor="location01">Location: </label>
                               {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
                               <select name="location" id="location01"  {...register('location', {required: true})}>
-                                   {locations[0] ? <option value="" selected  >Business location</option> : null}
+                                   {locations[0] ? <option value="" selected  >Location</option> : null}
                                    {locations[0] ? <option value="Kigali" >Kigali</option> : null}
                                    {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
                               </select>
                          </div>
                          {
-                              Object.entries(socialLinks).map(([key, value]) => 
-                                   <div className="group" key={`social-link-${key}`}>
-                                        <label htmlFor={`social-link-${key}`}>{key}:</label>
-                                        <input type="url" name={`social-link-${key}`} id={`social-link-${key}`} placeholder={value}  onChange={(e) => setSocialLinks(prev => ({...prev, [key]: e.target.value}))} />
-                                   </div>
-                              ) 
+                              // Object.entries(socialLinks).map(([key, value]) => 
+                              //      <div className="group" key={`social-link-${key}`}>
+                              //           <label htmlFor={`social-link-${key}`}>{key}:</label>
+                              //           <input type="url" name={`social-link-${key}`} id={`social-link-${key}`} placeholder={value}  onChange={(e) => setSocialLinks(prev => ({...prev, [key]: e.target.value}))} />
+                              //      </div>
+                              // ) 
                          }
                          <div className="terms-group">
                               <input type="checkbox" name="terms-check-box" id="terms-check-box" required/>
@@ -462,6 +463,8 @@ export const AgentSignUpForm = () => {
           </div>
      )
 }
+
+
 
 export const JobSeekerLogin = () => {
      const [,setUser] = useContext(UserContext);
@@ -688,5 +691,171 @@ export const JobSeekerSignUp = () => {
      )
 }
 
+export const InfluencerSignUpForm = () => {
+     const [loading,setLoading ] = useState(false);
+     const {register, handleSubmit,} = useForm();
+     const [locations, setLocations] = useState([]);
+     const navigate = useNavigate();
+     const [socialLinks, setSocialLinks] = useState({
+          Tiktok: "",
+          Instagram: "",
+          Twitter: "",
+     })
+     
+
+     const submitForm = async(data) => {
+          try {
+               setLoading(true);
+               
+               data.location = JSON.stringify({location: data.location});
+               data.social_links = JSON.stringify(socialLinks);
+               data.active = 1;
+               data.verified = 0;
+               data.registrationDate = getDateToday();
+               data.agent_type = 'influencer';
+               const res = await AgentService.save(data);
+               if(res){
+                    if(res.status === "success"){
+                         showMainNotification("pass", res.message, () => navigate("/forms/influencer-login"));
+                    }else{
+                         showMainNotification("fail", res.message, () => {});
+                    }
+               }else{
+                    showMainNotification("fail", "server error.", () => {})
+               }
+               
+          } catch (error) {
+               console.log(error);
+               showMainNotification("fail", "application error. Refresh the page and try again");
+          }finally{
+               setLoading(false);
+          }
+     }
+
+     useEffect(() => {
+          (async() => {
+               const {districts} = getLocations();
+               // const {data} = districts;
+               // setLocations(data);
+               setLocations(districts);
+          })()
+     }, [])
+
+     return(
+          <div className="form-container hide-scroll">
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Signup for Influencer Account"}} />
+               {
+                    loading ? <Loading /> : 
+                    <form onSubmit={handleSubmit(submitForm)}>
+                         <div className="group">
+                              <label htmlFor="name_01">Full name: </label>
+                              <input type="text" name="a_name" id="name_01" {...register('a_name', {required: true})} placeholder="Ex: Adms Johns..."  />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_email">Email: </label>
+                              <input type="email" name="a_email" id="a_email" {...register('a_email')} required placeholder="User email..." />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="phone_01">Phone: </label>
+                              <input type="phone" name="a_phone" id="phone_01" {...register('a_phone', {required: true})} placeholder="Ex: +25078..."  />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_password">Password:</label>
+                              <input type="password" name="a_password" id="a_password" {...register('a_password')} placeholder="User Password" />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="location01">Location: </label>
+                              {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
+                              <select name="location" id="location01"  {...register('location', {required: true})}>
+                                   {locations[0] ? <option value="" selected  >Location</option> : null}
+                                   {locations[0] ? <option value="Kigali" >Kigali</option> : null}
+                                   {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
+                              </select>
+                         </div>
+                         {
+                              Object.entries(socialLinks).map(([key, value]) => 
+                                   <div className="group" key={`social-link-${key}`}>
+                                        <label htmlFor={`social-link-${key}`}>{key}: (should have 10k followers)</label>
+                                        <input type="url" name={`social-link-${key}`} id={`social-link-${key}`} placeholder={value}  onChange={(e) => setSocialLinks(prev => ({...prev, [key]: e.target.value}))} />
+                                   </div>
+                              ) 
+                         }
+                         <div className="terms-group">
+                              <input type="checkbox" name="terms-check-box" id="terms-check-box" required/>
+                              <label htmlFor="terms-check-box">I accept the <Link to="/terms-&-conditions">Terms and Conditions</Link></label>
+                         </div>
+                         <div className="group align-right">
+                              <SubmitButton content={{title: "Submit", type: 'submit'}} />
+                         </div>
+                    </form>
+               }
+               <div className="line-divider"><p>Or</p></div>
+               <p className="other-link">Have account <b onClick={() => navigate("/forms/influencer-login")}>Login</b></p>
+          </div>
+     )
+}
+
+export const InfluencerLoginForm = () => {
+     const [loading,setLoading ] = useState(false);
+     const [,setUser] = useContext(UserContext);
+     const {register, handleSubmit,} = useForm();
+     const navigate = useNavigate();
+
+     const submitForm = async (data) => {
+          try {
+               setLoading(true);
+               data.agent_type = 'influencer';
+               const res = await AgentService.login(data);
+               if(res != null){
+                    if(res.status === "success" ){
+                         const {data, agentToken } = res;
+                         sessionStorage.setItem("agentData", JSON.stringify(data));
+                         sessionStorage.setItem("agentToken", agentToken);
+                         setUser((prev) => ({
+                              ...prev,
+                              userInfo: res.data,
+                              loggedIn: true,
+                              activeForm:''
+                         }));
+                         return  showMainNotification("pass",res.message, () => navigate("/agent"));
+                    }else{
+                         return showMainNotification("fail",res.message, () => {});
+                    }
+               }else{
+                    return showMainNotification('fail', `Server error .Try again later`, () => {});
+               }
+               
+          } catch (error) {
+               console.log(error);
+               return showMainNotification('fail', `System error .Try again`, () => {});
+          }finally{
+               setLoading(false);
+          }
+     } 
+     return (
+          <div className="form-container hide-scroll">
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Login as an Influencer"}} />
+               {
+                    loading ? <Loading /> :
+                    <form onSubmit={handleSubmit(submitForm)}>
+                         <div className="group">
+                              <label htmlFor="a_email">Email: </label>
+                              <input type="email" name="a_email" id="a_email" {...register('a_email')} required placeholder="User email..." />
+                         </div>
+                         <div className="group">
+                              <label htmlFor="a_password">Password:</label>
+                              <input type="password" name="a_password" id="a_password" {...register('a_password')} placeholder="User Password" />
+                         </div>
+                         <div className="group align-right">
+                              <SubmitButton content={{title: "Login", type: 'submit'}} />
+                         </div>
+                    </form>
+               }
+               
+               <div className="line-divider"><p>Or</p></div>
+               <p className="other-link">Don&apos;t have account <b onClick={() => navigate("/forms/influencer-signup")}>Sign Up</b></p>
+          </div>
+     )
+}
 
 export default UserForms;

@@ -38,9 +38,9 @@ export default {
                return null
           }
      },
-     findByAgent: async(agent_id) => {
+     findByAgent: async(agent) => {
           try {
-               const res = await axios.post(Server.agentTask.findByAgent, {agent_id})
+               const res = await axios.post(Server.agentTask.findByAgent, agent);
                return res.data;
           } catch (error) {
                console.log(error);
