@@ -2031,8 +2031,8 @@ textarea{
      justify-content: flex-start;
      width: 95%;
      padding: 5px 2.5px;
-     overflow-x: scroll;
      position: relative;
+     overflow-x: auto;
 }
 
 .home-best-sellers .nav-icon{
@@ -2048,7 +2048,8 @@ textarea{
      color: var(--white-text);
      border-radius: 50%;
      align-self: flex-end;
-     top: 20%;
+     top: 50%;
+     transform: translateY(-50%);
      transform: translateY(-50%);
      cursor: pointer;
 }
@@ -2062,16 +2063,55 @@ textarea{
      right:0px;
 }
 .best-seller-card{
-     width: auto;
-     padding: 5px 15px;
+     width: 150px;
+     min-width: 150px;
      margin: 0 5px;
-     background-color: var(--back-color-blue1);
-     color: var(--white-text);
+     /* background-color: var(--white-text); */
+     background: linear-gradient(180deg, #ffffff, var(--light-gray), #ffffff);
      font-size: 0.85rem;
      font-weight: 600;
-     border-radius: 5px;
      cursor: pointer;
      white-space: nowrap;
+     border-radius: 10px;
+     /* border: 1.3px solid var(--back-color-blue1); */
+     box-shadow: 0.5px 0.5px 2px var(--text-color-title);
+     display: flex;
+     flex-direction: column;
+     gap: 5px;
+     overflow: hidden;
+     padding: 5px;
+     text-align: center;
+}
+
+.best-seller-card .content{
+     width: 100%;
+     
+}
+
+.best-seller-card p{
+     text-align: center;
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--back-color-blue1);
+}
+
+.best-seller-card p i{
+     color: var(--featured-plan);
+
+}
+.best-seller-card .profile-image{
+     width: 98%;
+     height: 120px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+}
+
+.best-seller-card .profile-image img{
+     width: auto;
+     height: 100%;
+     border-radius: 10px;
 }
 
 
@@ -2992,13 +3032,14 @@ textarea{
 }
 
 .home-ad-websites{
-     width: 80%;
+     width: 100%;
      padding: 5px 0 20px;
      margin: 0px auto 10px;
      display: flex;
      flex-direction: column;
      align-items: center;
      justify-content: center;
+     gap: 5px;
 }
 /* end of section container styles */
 

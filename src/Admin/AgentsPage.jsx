@@ -21,8 +21,6 @@ const AgentsPage = () => {
                setAgentData(agentsInfo.agents);
                console.log(agentsInfo);
                setInfluencers(agentsInfo.influencers);
-          }else {
-               console.log(agents);
           }
      },[agents]);
      return (

@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getItemUrl } from "../../utils/urlFunctions";
 import PropTypes from 'prop-types';
 import { ActionBtn } from "./Buttons";
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import { MdNavigateBefore, MdNavigateNext, MdVerified } from "react-icons/md";
 import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
@@ -37,6 +37,7 @@ export const BoostedSellers = () => {
         };
       
         useEffect(() => {
+          console.log(bestSellers);
           const currentRef = adsRef.current;
           currentRef && currentRef.addEventListener('scroll', handleScroll);
       
@@ -54,7 +55,7 @@ export const BoostedSellers = () => {
                     <p className="best-seller-para">{content.message}</p>
                     <div ref={adsRef} className="sellers-container hide-scroll">
                          {bestSellers && bestSellers[0] && bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
-                         <span className="best-seller-card" onClick={() => navigate('/best-sellers')} >More...</span>
+                         <div className="best-seller-card" onClick={() => navigate('/best-sellers')} ><p>More...</p></div>
                     </div>
                     {!scrollPos.atLeft ? <i  onClick={()=>scrollHandle(-1)} className="nav-icon icon-left"><MdNavigateBefore/></i> : null}
                     {!scrollPos.atRight ? <i  onClick={()=>scrollHandle(1)} className="nav-icon icon-right"><MdNavigateNext /></i> : null }
@@ -71,9 +72,14 @@ const BesterSellerCard = ({item}) => {
           navigate(`/vendor/${getItemUrl(item.full_name, item.user_id)}`)
      } 
      return(
-          <span onClick={handleClick} className="best-seller-card">
-               {item.full_name}
-          </span>
+          <div onClick={handleClick} className="best-seller-card">
+               <div className="profile-image">
+                    <img src={item.profile_image} width={100} alt={`profile image for ${item.full_name}`} />
+               </div>
+               <div className="content">
+               <p>{item.full_name}{item.verified ? <i><MdVerified /></i> : null}</p>
+               </div>
+          </div>
      )
 }
 
