@@ -7,9 +7,8 @@ import AgentService from "../../services/Agent";
 import { showNotification, toggleForms } from '../../utils/AdminFunctions';
 import { extractDateOnly} from '../../utils/dateFunctions';
 
-const AgentsTable = () => {
-     const [adminData,setAdminData] = useContext(AdminContext);
-     const {agents} = adminData;
+const AgentsTable = ({agents}) => {
+     const [,setAdminData] = useContext(AdminContext);
      // const [agentEdit,setAgentEdit] = useState(null);
      
      const showAddForm = () => {

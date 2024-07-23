@@ -100,5 +100,8 @@ export default {
           delete: `${serverUrl}/api/agent-task/delete`,
           findAll: `${serverUrl}/api/agent-task/get-all`,
           findByAgent: `${serverUrl}/api/agent-task/find-by-agent`,
+     },
+     admin: {
+          countAll: `${serverUrl}/api/admin/count-all`
      }
 }

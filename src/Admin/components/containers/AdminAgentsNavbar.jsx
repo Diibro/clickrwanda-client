@@ -11,7 +11,8 @@ const AdminAgentsNavbar = () => {
      }, [location.pathname])
      return (
           <div className="admin-agents-nav-bar">
-               <Link to="/admin/agents" className={activePath === "agents" ? "active" : ""}>All</Link>
+               <Link to="/admin/agents" className={activePath === "agents" ? "active" : ""}>Agents</Link>
+               <Link to="/admin/agents/influencers" className={activePath === "influencers" ? "active" : ""}>Influencers</Link>
                <Link to="/admin/agents/agent-payments" className={activePath === "agent-payments"? "active" : ""}>Payments</Link>
                <Link to="/admin/agents/tasks" className={activePath === "tasks"? "active" : ""} >Tasks</Link>
           </div>

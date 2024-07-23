@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import AdminRow from "./components/AdminRow"
 import DashTitle from "./components/DashTitle"
 import AgentsTable from "./components/AgentsTable";
@@ -9,8 +9,22 @@ import AgentPaymentsContainer from "./components/containers/AgentPaymentsContain
 
 
 const AgentsPage = () => {
-     
-     const {agents} = useContext(AdminContext);
+     const [agentsData,setAgentData] = useState([]);
+     const [influencers,setInfluencers] = useState([]);
+     const [adminData] = useContext(AdminContext);
+     const {agents} = adminData;
+
+     useEffect(() => {
+          if(agents && agents.length){
+               const agentsInfo = {agents: [], influencers: []}; 
+               agents.forEach(agent => agent.agent_type === 'agent' ? agentsInfo.agents.push(agent) : agent.agent_type === 'influencer' ? agentsInfo.influencers.push(agent) : () => {});
+               setAgentData(agentsInfo.agents);
+               console.log(agentsInfo);
+               setInfluencers(agentsInfo.influencers);
+          }else {
+               console.log(agents);
+          }
+     },[agents]);
      return (
      <>
           <AdminRow>
@@ -18,7 +32,8 @@ const AgentsPage = () => {
                <AdminAgentsNavbar />
           </AdminRow>
           <Routes>
-               <Route index path="/" element={ <AdminRow><AgentsTable agents={agents} /></AdminRow>} />
+               <Route index path="/" element={ <AdminRow><AgentsTable agents={agentsData} /></AdminRow>} />
+               <Route path='/influencers' element={<AdminRow><AgentsTable agents={influencers} /></AdminRow>} />
                <Route path="/agent-payments" element={<AgentPaymentsContainer />} />
           </Routes>
      </>

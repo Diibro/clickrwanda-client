@@ -5,20 +5,56 @@ import Notifier from "./components/Notifier"
 import NotifierContainer from "./components/NotifierContainer"
 import { RiAdvertisementFill } from "react-icons/ri"
 import DashCardInfo from "./components/DashCardInfo"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AdminContext } from "./AdminLayout"
 import { getAddedThisMonth, getAddedThisWeek, getAddedThisYear, getAddedToday, getNewToday } from "../utils/dateFunctions"
 import WebVisitCard from "./components/cards/WebVisitCard"
 import WebVisitsLineChart from "./components/containers/WebVisitsLineChart"
 import { useNavigate } from "react-router-dom"
 import AppData from "../Contexts/AppContext"
+import adminService from "../services/Admin";
 
 const Home = () => {
   const [adminData] = useContext(AdminContext);
+  const [counts,setCounts] = useState({
+    totalAds: 0, newAds:0,
+    totalShops: 0, newShops:0,
+    totalJobSeekers:0, newJobSeekers: 0,
+    totalCategories: 0,
+    totalAgents: 0, newAgents: 0,
+    totalInfluencers: 0, newInfluencers:0,
+
+  });
   const [data] = useContext(AppData);
   const {onlineUsers} = data;
   const {categories,agents,shops,adverts, webVisits} = adminData;
   const navigate = useNavigate();
+  const fetchCounts = async() => {
+    const res = await adminService.countAll();
+    if(res){
+      const {
+        totalAds, newAds,
+        totalShops, newShops,
+        totalJobSeekers, newJobSeekers,
+        totalCategories,
+        totalAgents, newAgents,
+        totalInfluencers, newInfluencers
+      } = res.data;
+      setCounts((prev) => ({
+        ...prev,
+        totalAds, newAds,
+        totalShops, newShops,
+        totalJobSeekers, newJobSeekers,
+        totalCategories,
+        totalAgents, newAgents,
+        totalInfluencers, newInfluencers
+      }) )
+    }
+  }
+
+  useEffect(() => {
+    (async() => await fetchCounts())();
+  },[])
   return (
     <>
       <AdminRow>
@@ -32,10 +68,12 @@ const Home = () => {
         </DashTitle>
       </AdminRow>
       <AdminRow>
-        <DashCardInfo count={(adverts && adverts.length) || 0} title="Adverts" newAdded={adverts ? getNewToday(adverts, "ad_date") : null} action={() => navigate("/admin/adverts") } />
-        <DashCardInfo count={(shops && shops.length) || 0} title="Shops" newAdded={shops ? getNewToday(shops, "reg_date") :null} action={() => navigate("/admin/shops")}/>
-        <DashCardInfo count={(agents && agents.length) || 0} title="Agents" newAdded={agents ? getNewToday(agents, "registration_date") : null} action={() => navigate("/admin/agents")} />
-        <DashCardInfo count={(categories && categories.length) || 0} title="Categories" action={() => navigate("/")} />
+        <DashCardInfo count={counts.totalAds} title="Adverts" newAdded={counts.newAds || null} action={() => navigate("/admin/adverts") } />
+        <DashCardInfo count={counts.totalShops} title="Shops" newAdded={counts.newShops || null} action={() => navigate("/admin/shops")}/>
+        <DashCardInfo count={counts.totalJobSeekers} title="Job Seekers" newAdded={counts.newJobSeekers || null} action={() => navigate("/admin")}/>
+        <DashCardInfo count={counts.totalAgents} title="Agents" newAdded={agents ? getNewToday(agents, "registration_date") : null} action={() => navigate("/admin/agents")} />
+        <DashCardInfo count={counts.totalInfluencers} title="Influencers" newAdded={counts.newInfluencers} action={() => navigate("/admin")} />
+        <DashCardInfo count={counts.totalCategories} title="Categories" action={() => navigate("/admin")} />
         <DashCardInfo count={(webVisits && webVisits.length) + 45000 || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} action={() => {}} />
           <DashCardInfo count={onlineUsers} title={"Online Users"} newAdded={0} action={() => {}} />
       </AdminRow>
