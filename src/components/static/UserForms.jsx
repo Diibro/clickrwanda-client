@@ -187,7 +187,7 @@ export const SignUpForm = () => {
                     username: data.username,
                     email: data.email,
                     phone: data.phone,
-                    userType: 'user',
+                    userType: 'seller',
                     password: data.password,
                     location: {location: data.location},
                     registrationDate: date,
