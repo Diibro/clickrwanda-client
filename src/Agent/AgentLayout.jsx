@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AgentNavBar from "./components/AgentNavBar";
 import Home from "./Home";
@@ -13,6 +13,7 @@ import Tasks from "./Tasks";
 import AgentPlans from "./AgentPlans";
 import PlanSubscriptionService from "../services/PlanSubscription";
 import AgentTaskService from "../services/AgentTask";
+import UserContext from "../Contexts/UserContext";
 
 export const AgentContext = createContext();
 
@@ -28,7 +29,7 @@ const AgentLayout = () => {
           tasks:null,
           vIds:[]
      });
-
+     const [,setUser] = useContext(UserContext);
      const navigate = useNavigate();
 
      const fetchAgentInfo = async() => {
@@ -59,6 +60,7 @@ const AgentLayout = () => {
                          commissionShops: [],
                          vIds: visitIds
                     }));
+                    setUser(prev => ({...prev, loggedIn: true, role: agent.agent_type}));
                }else{
                     navigate("/");
                }

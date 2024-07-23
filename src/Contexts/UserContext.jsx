@@ -24,6 +24,7 @@ export const UserProvider = ({children}) => {
           activePlan: {},
           activeSubscription: null,
           userSubscriptions: [],
+          role:""
      });
      const [data,setData] = useContext(AppData);
      const {payPlans} = data;
@@ -43,7 +44,8 @@ export const UserProvider = ({children}) => {
           }else if(userAds.message === "Authentication Error"){
                setUser(prev => ({
                     ...prev,
-                    loggedIn:false
+                    loggedIn:false,
+                    role: ''
                })) 
                showMainNotification("fail", "Session Timeout", () => {
                     navigate("/forms/login");
@@ -91,7 +93,12 @@ export const UserProvider = ({children}) => {
      }
 
      useEffect(() => {
-          if(location.pathname.startsWith('/user-dashboard') || location.pathname.startsWith("/plan-payment" ) || location.pathname.startsWith('/forms/add-advert')){
+          if(
+               location.pathname.startsWith('/user-dashboard') 
+               || location.pathname.startsWith("/plan-payment" ) 
+               || location.pathname.startsWith('/forms/add-advert')
+               || location.pathname.startsWith('/job-seeker')
+          ){
                if(userInfo && payPlans && payPlans.length ){
                     (async() => await fetchData())();
                }else if(!userInfo){
@@ -104,7 +111,8 @@ export const UserProvider = ({children}) => {
                               setUser((prev) => ({
                               ...prev,
                               userInfo: userData,
-                              loggedIn: true
+                              loggedIn: true,
+                              role: userData.user_type || userData.agent_type
                               }));
                               isLoggedIn = true;
                          }

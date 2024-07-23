@@ -77,15 +77,29 @@ export const LoginForm = () => {
                     setUser((prev) => ({
                          ...prev,
                          userInfo: res.data,
-                         loggedIn: true
+                         loggedIn: true,
+                         role: 'seller'
                     }));
-                    if(res.data.user_type === "admin" ){
-                         return showMainNotification("pass", `You have been logged as admin`, () => navigate("/admin"));
-                    }else{
+                    if(res.data.user_type === 'seller'){
+                         setUser((prev) => ({
+                              ...prev,
+                              userInfo: res.data,
+                              loggedIn: true,
+                              role: 'seller'
+                         }));
                          return showMainNotification('pass', `${res.message} as ${res.data.username}`, () => {
                               navigate(from);
                               setData(prev => ({...prev, prevState:null}));
                          });
+                    }
+                    if(res.data.user_type === "admin" ){
+                         setUser((prev) => ({
+                              ...prev,
+                              userInfo: res.data,
+                              loggedIn: true,
+                              role: 'admin'
+                         }));
+                         return showMainNotification("pass", `You have been logged as admin`, () => navigate("/admin"));
                     }
                     
                }else{
@@ -316,7 +330,8 @@ export const AgentLoginForm = () => {
                               ...prev,
                               userInfo: res.data,
                               loggedIn: true,
-                              activeForm:''
+                              activeForm:'',
+                              role: 'agent'
                          }));
                          return  showMainNotification("pass",res.message, () => navigate("/agent"));
                     }else{
@@ -487,7 +502,8 @@ export const JobSeekerLogin = () => {
                     setUser((prev) => ({
                          ...prev,
                          userInfo: res.data,
-                         loggedIn: true
+                         loggedIn: true,
+                         role: 'job-seeker'
                     }));
                     if(res.data.user_type === "job-seeker" ){
                          return showMainNotification("pass", `You have been logged as job seeker`, () => {
@@ -815,7 +831,8 @@ export const InfluencerLoginForm = () => {
                               ...prev,
                               userInfo: res.data,
                               loggedIn: true,
-                              activeForm:''
+                              activeForm:'',
+                              role: 'influencer'
                          }));
                          return  showMainNotification("pass",res.message, () => navigate("/agent"));
                     }else{

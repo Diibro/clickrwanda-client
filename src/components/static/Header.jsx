@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../../Contexts/UserContext";
 import { ActionBtn } from "../dynamic/Buttons";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,14 +12,15 @@ import LanguageChanger from "./LanguageChanger";
 const DesktopHeader = () => {
      const [t] = useTranslation("global");
      const content = t("header", {returnObjects:true});
-     const [user,] = useContext(UserContext);
+     const [user] = useContext(UserContext);
      const [,setData] = useContext(AppData);
-     const {loggedIn, userInfo} = user;
+     const {loggedIn, userInfo, role} = user;
      const [deviceView] = useContext(DeviceView);
      const {isTablet,isMobile} = deviceView;
      const [navOn, setNavOn] = useState(false);
      const navigate = useNavigate();
      const agentToken = sessionStorage.getItem("agentToken");
+     const [showAddAd,setShowAddAd] = useState(true);
 
      const activateForm = () =>{
           if(loggedIn){
@@ -44,18 +45,24 @@ const DesktopHeader = () => {
           }
      }
 
-     
+     useEffect(() => {
+          console.log(role);
+          console.log(loggedIn);
+          if(!loggedIn || role === 'seller'){
+               setShowAddAd(true);
+          }else{
+               setShowAddAd(false);
+          }
+     },[user]);
+
      return (
           <header className="desktop-header">
                <Link to='/'><img src={Logo} alt="clickrwanda" className="header-logo-image" /></Link>
-               
-               {/* {!loggedIn ? <h1><Link to='/hiring'>We are Hiring/Akazi</Link></h1> : null} */}
                <div className="header-profile">
                     <LanguageChanger />
                     {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/forms')} title={content.buttons[0].name} /> : null}
-                    {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'user' ? "/user-dashboard" : userInfo?.user_type === 'job-seeker' ? "/job-seeker" : agentToken ? "/agent" : "/admin"} className="header-profileImage"><img src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
-                    {/* {loggedIn && (isMobile || isTablet) ? <i className="mobile-header-toggler"><BiMenu /></i> : null} */}
-                    <ActionBtn action={activateForm} title={isTablet || isMobile ? content.buttons[1].name : content.buttons[1].name } />
+                    {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'seller' ? "/user-dashboard" : userInfo?.user_type === 'job-seeker' ? "/job-seeker" : agentToken ? "/agent" : "/admin"} className="header-profileImage"><img src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
+                    {showAddAd ? <ActionBtn action={activateForm} title={isTablet || isMobile ? content.buttons[1].name : content.buttons[1].name } /> : null}
                </div>
                
           </header>
