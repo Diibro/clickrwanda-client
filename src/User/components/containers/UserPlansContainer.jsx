@@ -36,7 +36,7 @@ const UserPlansContainer = () => {
                               dividedPlans["Small Business Plans"].push(plan);
                          }
                          
-                    }else if(plan.plan_type === "Large Business Plans"){
+                    }else if(plan.plan_type === "Large Business"){
                          if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free"){
                               dividedPlans["Large Business Plans"].push(plan);
                          }
