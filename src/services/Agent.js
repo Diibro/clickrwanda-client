@@ -40,8 +40,16 @@ export default {
      },
      login: async(agent) => {
           try {
-               console.log(agent);
                const res = await axios.post(Server.agent.login, agent);
+               return res.data;
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
+     },
+     resetPassword: async(agent) => {
+          try {
+               const res = await axios.post(Server.agent.resetPassword, agent);
                return res.data;
           } catch (error) {
                console.log(error);

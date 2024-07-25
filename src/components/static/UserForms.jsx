@@ -47,7 +47,7 @@ export const LoginForm = () => {
      const [,setUser] = useContext(UserContext);
      const [data, setData] = useContext(AppData);
      const{prevState} = data;
-     const {register, handleSubmit,setValue} = useForm();
+     const {register, handleSubmit,setValue, formState:{errors}} = useForm();
      const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
      const from  = prevState ? `${prevState?.pathname}${prevState?.search}` : '/user-dashboard';
@@ -146,12 +146,14 @@ export const LoginForm = () => {
                     <form onSubmit={handleSubmit(submitForm)} autoComplete="on">
                     <div className="group">
                          <label htmlFor="email_02">Email: </label>
-                         <input type="email" name="email" id="email_02" {...register('email')} autoComplete="email" placeholder="User email..."  />
+                         <input type="email" name="email" id="email_02" {...register('email', {required: 'Please enter email!'})} autoComplete="email" placeholder="User email..."  />
                     </div>
+                    {errors.email ? <p className="form-errors">{errors.email.message}</p> : null}
                     <div className="group">
                          <label htmlFor="password_02">Password: </label>
-                         <input type="password" name="password" id="password_02" {...register('password')} placeholder="User Password" autoComplete="current-password" />
+                         <input type="password" name="password" id="password_02" {...register('password', {required:'Please enter password!'})} placeholder="User Password" autoComplete="current-password" />
                     </div>
+                    {errors.password ? <p className="form-errors">{errors.password.message}</p> : null}
                     <div className="group align-right">
                          <SubmitButton content={{title: "Log in", type: 'submit'}} />
                     </div>
@@ -236,46 +238,52 @@ export const SignUpForm = () => {
                </div> */}
                <div className="group">
                     <label htmlFor="business-type-01">Business Size: </label>
-                    <select name="business-type-01" id="business-type-01" {...register('business_type', {required:true})}>
+                    <select name="business-type-01" id="business-type-01" {...register('business_type', {required:'Please choose business type!'})}>
                          <option value="" disabled selected>Select Business size...</option>
                          <option value="Individual">Individual</option>
                          <option value="Small Business">Small Business</option>
                          <option value="Large Business">Large Business</option>
                     </select>
                </div>
+               {errors.business_type ? <p className="form-errors">{errors.business_type.message}</p> : null}
                <div className="group">
                     <label htmlFor="username_01">Username: </label>
-                    <input type="text" name="username" id="username_01" {...register('username', {required: true})} placeholder="username..."  />
+                    <input type="text" name="username" id="username_01" {...register('username', {required: "Pleas enter a username or business name!"})} placeholder="username..."  />
                </div>
+               {errors.username ? <p className="form-errors">{errors.username.message}</p> :null}
                <div className="group">
                     <label htmlFor="email_01">Email: </label>
-                    <input type="email" name="email" id="email_01" {...register('email', {required: true})} placeholder="User email..."  />
+                    <input type="email" name="email" id="email_01" {...register('email', {required: "Please enter email!"})} placeholder="User email..."  />
                </div>
+               {errors.email ? <p className="form-errors">{errors.email.message}</p> : null}
                <div className="group">
                     <label htmlFor="phone_01">Phone: </label>
-                    <input type="phone" name="phone" id="phone_01" {...register('phone', {required: true})} placeholder="Ex: +25078..."  />
+                    <input type="phone" name="phone" id="phone_01" {...register('phone', {required: "Please enter you phone number"})} placeholder="Ex: +25078..."  />
                </div>
+               {errors.phone ? <p className="form-errors">{errors.phone.message}</p> : null}
                <div className="group">
                     <label htmlFor="password">Password: </label>
-                    <input type="password" id="password" name="password" {...register('password', {required: true, minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
+                    <input type="password" id="password" name="password" {...register('password', {required: "Please enter a password", minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
                </div>
-               <p className="form-errors">{errors?.password && errors.password.message}</p>
+               {errors.password ? <p className="form-errors">{errors.password.message}</p> :null}
                <div className="group">
                     <label htmlFor="location01">Location: </label>
                     {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
-                    <select name="location" id="location01"  {...register('location', {required: true})}>
+                    <select name="location" id="location01"  {...register('location', {required: "Please select your location"})}>
                          {locations[0] ? <option value="" selected  >Business location</option> : null}
                          {locations[0] ? <option value="Kigali" >Kigali</option> : null}
                          {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
                     </select>
                </div>
+               {errors.location ? <p className="form-errors">{errors.location.message}</p> : null}
                <div className="group">
                     <label htmlFor="profile_image">Business Logo:</label>
-                    <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} required />
+                    <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} {...register('logo', {required: "Please select you profile picture or business logo!"})} />
                     {
                          profileImage && profileImage instanceof File ? <img width={100} src={URL.createObjectURL(profileImage)}  /> : null
                     }
                </div>
+               {errors.logo ? <p className="form-errors">{errors.logo.message}</p> :null}
                <div className="terms-group">
                     <input type="checkbox" name="terms-check-box" id="terms-check-box" required/>
                     <label htmlFor="terms-check-box">I accept the <Link to="/terms-&-conditions">Terms and Conditions</Link></label>
@@ -313,7 +321,7 @@ export const PasswordResetResponce = () => {
 export const AgentLoginForm = () => {
      const [loading,setLoading ] = useState(false);
      const [,setUser] = useContext(UserContext);
-     const {register, handleSubmit,} = useForm();
+     const {register, handleSubmit,formState: {errors}} = useForm();
      const navigate = useNavigate();
 
      const submitForm = async (data) => {
@@ -356,14 +364,19 @@ export const AgentLoginForm = () => {
                     <form onSubmit={handleSubmit(submitForm)}>
                          <div className="group">
                               <label htmlFor="a_email">Email: </label>
-                              <input type="email" name="a_email" id="a_email" {...register('a_email')} required placeholder="User email..." />
+                              <input type="email" name="a_email" id="a_email" {...register('a_email', {required:'Please enter email!'})} placeholder="User email..." />
                          </div>
+                         {errors.a_email ? <p className="form-errors">{errors.a_email.message}</p> : null}
                          <div className="group">
                               <label htmlFor="a_password">Password:</label>
-                              <input type="password" name="a_password" id="a_password" {...register('a_password')} placeholder="User Password" />
+                              <input type="password" name="a_password" id="a_password" {...register('a_password', {required: 'Please enter password!'})} placeholder="User Password" />
                          </div>
+                         {errors.a_password ? <p className="form-errors">{errors.a_password.message}</p> : null}
                          <div className="group align-right">
                               <SubmitButton content={{title: "Login", type: 'submit'}} />
+                         </div>
+                         <div className="group align-right">
+                              <p onClick={() => navigate('/forms/agent-reset-password')} className="forgot-password-para">Forgot Password</p>
                          </div>
                     </form>
                }
@@ -377,7 +390,7 @@ export const AgentLoginForm = () => {
 
 export const AgentSignUpForm = () => {
      const [loading,setLoading ] = useState(false);
-     const {register, handleSubmit,} = useForm();
+     const {register, handleSubmit, formState: {errors}} = useForm();
      const [locations, setLocations] = useState([]);
      const navigate = useNavigate();
      const [socialLinks, setSocialLinks] = useState({
@@ -433,29 +446,34 @@ export const AgentSignUpForm = () => {
                     <form onSubmit={handleSubmit(submitForm)}>
                          <div className="group">
                               <label htmlFor="name_01">Full name: </label>
-                              <input type="text" name="a_name" id="name_01" {...register('a_name', {required: true})} placeholder="Ex: Adms Johns..."  />
+                              <input type="text" name="a_name" id="name_01" {...register('a_name', {required: "Please enter your name"})} placeholder="Ex: Adms Johns..."  />
                          </div>
+                         {errors.a_name ? <p className="form-errors">{errors.a_name.message}</p> : null}
                          <div className="group">
                               <label htmlFor="a_email">Email: </label>
-                              <input type="email" name="a_email" id="a_email" {...register('a_email')} required placeholder="User email..." />
+                              <input type="email" name="a_email" id="a_email" {...register('a_email', {required: "Please enter your email!"})} placeholder="User email..." />
                          </div>
+                         {errors.a_email ? <p className="form-errors">{errors.a_email.message}</p> : null}
                          <div className="group">
                               <label htmlFor="phone_01">Phone: </label>
-                              <input type="phone" name="a_phone" id="phone_01" {...register('a_phone', {required: true})} placeholder="Ex: +25078..."  />
+                              <input type="phone" name="a_phone" id="phone_01" {...register('a_phone', {required: "Please enter a valid phone number!"})} placeholder="Ex: +25078..."  />
                          </div>
+                         {errors.a_phone ? <p className="form-errors">{errors.a_phone.message}</p> : null}
                          <div className="group">
                               <label htmlFor="a_password">Password:</label>
-                              <input type="password" name="a_password" id="a_password" {...register('a_password')} placeholder="User Password" />
+                              <input type="password" name="a_password" id="a_password" {...register('a_password', {required: "Please enter password"})} placeholder="User Password" />
                          </div>
+                         {errors.a_password ? <p className="form-errors">{errors.a_password.message}</p> : null}
                          <div className="group">
                               <label htmlFor="location01">Location: </label>
                               {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
-                              <select name="location" id="location01"  {...register('location', {required: true})}>
+                              <select name="location" id="location01"  {...register('location', {required: "Please select your location!"})}>
                                    {locations[0] ? <option value="" selected  >Location</option> : null}
                                    {locations[0] ? <option value="Kigali" >Kigali</option> : null}
                                    {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
                               </select>
                          </div>
+                         {errors.location ? <p className="form-errors">{errors.location.message}</p> : null}
                          {
                               // Object.entries(socialLinks).map(([key, value]) => 
                               //      <div className="group" key={`social-link-${key}`}>
@@ -479,7 +497,74 @@ export const AgentSignUpForm = () => {
      )
 }
 
-
+export const AgentResetPasswordForm = () => {
+     const [loading, setLoading] = useState(false);
+     const {register, handleSubmit, formState: {errors}, watch} = useForm();
+     const password = watch('new_password');
+     const navigate = useNavigate();
+     const submitForm = async(data) => {
+          try {
+               setLoading(true);
+               data.agent_type = 'agent';
+               const res = await AgentService.resetPassword(data);
+               if(res){
+                    if(res.status === "pass") {
+                         showMainNotification('pass', res.message, () => navigate('/forms/agent-login'))
+                    }else{
+                         showMainNotification('fail', res.message, () => {});
+                    }
+               }else{
+                    showMainNotification('fail', 'System error. Contact technical support if this issue persists', () => {})
+               }
+          } catch (error) {
+               console.log(error);
+               showMainNotification('fail', 'error processing your request. Try gain later.')
+          }finally{
+               setLoading(false);
+          }
+     }
+     return (
+          <div className="form-container hide-scroll">
+               {
+                    loading ? <Loading /> :
+                    <>
+                         <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Agent: Reset Password"}} />
+                         <form onSubmit={handleSubmit(submitForm)}>
+                              <div className="group">
+                                   <label htmlFor="email">Email used:</label>
+                                   <input type="text" name="email" id="email" {...register('a_email', {required:"Email is required!"})} />
+                              </div>
+                              {errors.a_email ? <p className="form-errors">{errors.a_email.message}</p> : null}
+                              <div className="group">
+                                   <label htmlFor="phone">Phone Number:</label>
+                                   <input type="tel" name="phone" id="phone" {...register('a_phone', {required:"Phone number is required!"})} />
+                              </div>
+                              {errors.a_phone ? <p className="form-errors">{errors.a_phone.message}</p> : null}
+                              <div className="group">
+                                   <label htmlFor="new_password">New Password: </label>
+                                   <input type="password" name="new_password" id="new_password" {...register('new_password', {required: "Please enter new Password!", minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} />
+                              </div>
+                              {errors.new_password ? <p className="form-errors">{errors.new_password.message}</p> :null}
+                              <div className="group">
+                                   <label htmlFor="co_password">Confirm Password:</label>
+                                   <input type="password" name="co_password" id="co_password" {...register('co_password', {
+                                             required: "Please confirm your new Password", 
+                                             validate: value => value === password || 'Passwords do not match.' 
+                                   })} />
+                              </div>
+                              {errors.co_password ? <p className="form-errors">{errors.co_password.message}</p> : null}
+                              <div className="group align-right">
+                                   <SubmitButton content={{title: "Submit", type: 'submit'}} />
+                              </div>
+                         </form>
+                         <div className="line-divider"><p>Or</p></div>
+                         <p className="other-link">Go back <b onClick={() => navigate("/forms/agent-login")}>Login</b></p>
+                    </>
+                    
+               }
+          </div>
+     )
+}
 
 export const JobSeekerLogin = () => {
      const [,setUser] = useContext(UserContext);
@@ -866,11 +951,83 @@ export const InfluencerLoginForm = () => {
                          <div className="group align-right">
                               <SubmitButton content={{title: "Login", type: 'submit'}} />
                          </div>
+                         <div className="group align-right">
+                              <p onClick={() => navigate('/forms/influencer-reset-password')} className="forgot-password-para">Forgot Password</p>
+                         </div>
                     </form>
                }
                
                <div className="line-divider"><p>Or</p></div>
                <p className="other-link">Don&apos;t have account <b onClick={() => navigate("/forms/influencer-signup")}>Sign Up</b></p>
+          </div>
+     )
+}
+
+export const InfluencerResetPasswordForm = () => {
+     const [loading, setLoading] = useState(false);
+     const {register, handleSubmit, formState: {errors}, watch} = useForm();
+     const password = watch('new_password');
+     const navigate = useNavigate();
+     const submitForm = async(data) => {
+          try {
+               setLoading(true);
+               data.agent_type = 'influencer';
+               const res = await AgentService.resetPassword(data);
+               if(res){
+                    if(res.status === "pass") {
+                         showMainNotification('pass', res.message, () => navigate('/forms/influencer-login'))
+                    }else{
+                         showMainNotification('fail', res.message, () => {});
+                    }
+               }else{
+                    showMainNotification('fail', 'System error. Contact technical support if this issue persists', () => {})
+               }
+          } catch (error) {
+               console.log(error);
+               showMainNotification('fail', 'error processing your request. Try gain later.')
+          }finally{
+               setLoading(false);
+          }
+     }
+     return (
+          <div className="form-container hide-scroll">
+               {
+                    loading ? <Loading /> :
+                    <>
+                         <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Influencer: Reset Password"}} />
+                         <form onSubmit={handleSubmit(submitForm)}>
+                              <div className="group">
+                                   <label htmlFor="email">Email used:</label>
+                                   <input type="text" name="email" id="email" {...register('a_email', {required:"Email is required!"})} />
+                              </div>
+                              {errors.a_email ? <p className="form-errors">{errors.a_email.message}</p> : null}
+                              <div className="group">
+                                   <label htmlFor="phone">Phone Number:</label>
+                                   <input type="tel" name="phone" id="phone" {...register('a_phone', {required:"Phone number is required!"})} />
+                              </div>
+                              {errors.a_phone ? <p className="form-errors">{errors.a_phone.message}</p> : null}
+                              <div className="group">
+                                   <label htmlFor="new_password">New Password: </label>
+                                   <input type="password" name="new_password" id="new_password" {...register('new_password', {required: "Please enter new Password!", minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} />
+                              </div>
+                              {errors.new_password ? <p className="form-errors">{errors.new_password.message}</p> :null}
+                              <div className="group">
+                                   <label htmlFor="co_password">Confirm Password:</label>
+                                   <input type="password" name="co_password" id="co_password" {...register('co_password', {
+                                             required: "Please confirm your new Password", 
+                                             validate: value => value === password || 'Passwords do not match.' 
+                                   })} />
+                              </div>
+                              {errors.co_password ? <p className="form-errors">{errors.co_password.message}</p> : null}
+                              <div className="group align-right">
+                                   <SubmitButton content={{title: "Submit", type: 'submit'}} />
+                              </div>
+                         </form>
+                         <div className="line-divider"><p>Or</p></div>
+                         <p className="other-link">Go back <b onClick={() => navigate("/forms/influencer-login")}>Login</b></p>
+                    </>
+                    
+               }
           </div>
      )
 }
