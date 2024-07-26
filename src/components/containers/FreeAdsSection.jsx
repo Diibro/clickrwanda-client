@@ -12,7 +12,7 @@ const FreeAdsSection = () => {
      const [data] = useContext(AppData);
      const {freeAdsCount, adverts} = data;
 
-     let adsNo = 40;
+     let adsNo = 12;
      let eleId = "home-free-ads-section";
      let pages = freeAdsCount / adsNo;
      if (freeAdsCount % adsNo !== 0) pages = Math.floor(pages + 1);

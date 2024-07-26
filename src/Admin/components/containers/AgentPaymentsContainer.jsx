@@ -40,7 +40,7 @@ const AgentPaymentsContainer = () => {
      const approvePay = async(payment) => {
           if(payment){
                payment.status = 'Approved';
-               payment.p_date = getDateOnly(payment.p_date)
+               payment.p_date = getDateOnly(payment.p_date);
                const res = await AgentPaymentService.update(payment);
                if(res){
                     if(res.status === 'success'){

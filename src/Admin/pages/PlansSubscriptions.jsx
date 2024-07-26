@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SubscriptionCard from "../components/cards/SubscriptionCard";
 import PlanSubscriptionService from "../../services/PlanSubscription"
-import { getDateOnly } from "../../utils/dateFunctions";
+import { addDaysToDate, getDateOnly, getDateToday } from "../../utils/dateFunctions";
 import { showMainNotification } from "../../utils/AdminFunctions";
 const PlansSubscriptions = () => {
      const [subscriptions,setSubscriptions] = useState({
@@ -40,7 +40,7 @@ const PlansSubscriptions = () => {
      const approvePay = async(sub) => {
                sub.status = "Approved";
                sub.subscription_date = getDateOnly(sub.subscription_date);
-
+               sub.exp_date = addDaysToDate(getDateToday(), sub.duration);
                const res = await PlanSubscriptionService.update(sub);
                if(res){
                     if(res.status === 'pass'){

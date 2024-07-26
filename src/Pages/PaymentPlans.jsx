@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet"
-import { PaymentPlanChoice, PaymentPlansContainer } from "../components/static/PaymentPlans.component"
+import { PaymentPlanChoice } from "../components/static/PaymentPlans.component"
 import {Routes, Route} from "react-router-dom";
+import UserPlansContainer from "../User/components/containers/UserPlansContainer";
 
 const PaymentPlans = () => {
   return (
@@ -16,7 +17,8 @@ const PaymentPlans = () => {
                   <p>Increase your sales and visibility with our boost packages.</p>
               </div>
               <div className="payment-plans-page-body">
-                <PaymentPlansContainer />
+                {/* <PaymentPlansContainer /> */}
+                <UserPlansContainer />
               </div>
             </>} /> 
             <Route path="/:planName" element={<PaymentPlanChoice />} />

@@ -43,7 +43,8 @@ const PlanPaymentPage = () => {
                plan_name: plan.plan_name,
                user_id: userInfo.user_id,
                username: userInfo.username,
-               plan_type: plan.plan_type
+               plan_type: plan.plan_type,
+               duration: item.dur
           } 
           setInvoice(invoiceData);
           setShowInvoice(true);
@@ -60,7 +61,9 @@ const PlanPaymentPage = () => {
                user_id: userInfo.user_id,
                exp_date: null,
                r_id: userInfo.r_if || refId,
-               payment_id: invoice.payment_id
+               payment_id: invoice.payment_id,
+               ad_ids:[],
+               duration: invoice.duration * 30
           } 
 
           const subResponse = await PlanSubscriptionService.add(newSubscription);

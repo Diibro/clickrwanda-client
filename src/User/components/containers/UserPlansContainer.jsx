@@ -24,28 +24,32 @@ const UserPlansContainer = () => {
 
      const updateCatPlans = () => {
           if(payPlans && payPlans[0]){
-               const dividedPlans = {"Individual Plans":[], "Small Business Plans": [], "Large Business Plans": [], "Extra Boost Plans": []};
+               const dividedPlans = {
+                    "Individual":[], "Small Business": [], 
+                    "Large Business": [], "Extra Boost": [], 
+                    "Commissions": [], "Fixed Ads": [],
+                    "Banner Ads": [], "Urgent Ads": [],
+                    "Article": []
+               };
                for(const plan of payPlans){
                     if(plan.plan_type === "Individual"){
-                         if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free") {
-                              dividedPlans["Individual Plans"].push(plan);
-                         }
-                         
+                         dividedPlans["Individual"].push(plan);
                     }else if (plan.plan_type === "Small Business"){
-                         if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free"){
-                              dividedPlans["Small Business Plans"].push(plan);
-                         }
-                         
+                         dividedPlans["Small Business"].push(plan);
                     }else if(plan.plan_type === "Large Business"){
-                         if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free"){
-                              dividedPlans["Large Business Plans"].push(plan);
-                         }
-                         
-                    }else if(plan.plan_type === "Extra Boost Packages"){
-                         if(plan.plan_id === activePlan.plan_id || plan.plan_name !== "Free"){
-                              dividedPlans["Extra Boost Packages"].push(plan)
-                         }
-                         
+                         dividedPlans["Large Business"].push(plan);
+                    }else if(plan.plan_type === "Extra Boost"){
+                         dividedPlans["Extra Boost"].push(plan)
+                    }else if(plan.plan_type === "Commissions"){
+                         dividedPlans["Commissions"].push(plan);
+                    }else if(plan.plan_type === "Fixed Ads"){
+                         dividedPlans["Fixed Ads"].push(plan);
+                    }else if(plan.plan_type === "Banner Ads"){
+                         dividedPlans["Banner Ads"].push(plan);
+                    }else if(plan.plan_type === "Urgent Ads"){
+                         dividedPlans["Urgent Ads"].push(plan);
+                    }else if(plan.plan_type === "Article Package"){
+                         dividedPlans["Article"].push();
                     }
                }
                setCatPlans(dividedPlans);
@@ -68,6 +72,7 @@ const UserPlansContainer = () => {
                {
                     catPlans ? 
                     Object.entries(catPlans).map(([key, value], index) => 
+                         value.length ?
                          <div className="admin-plans-container" key={`admin-plans-row-${key}-${index}`}>
                               <div className={`title-row ${activePlans === key ? "active-plans-title" : ""}`} onClick={() => updateActivePlans(key)}><h3>{key}</h3></div>
                               <div className={`plans-container-row ${activePlans === key ? "active-plans" : ""} `}>
@@ -77,7 +82,9 @@ const UserPlansContainer = () => {
                                         }
                                    </div>
                               </div>
-                         </div>
+                         </div> 
+                         : null
+
                     )
                     : <p>No plans found</p>
                }

@@ -52,7 +52,7 @@ export const AppProvider = ({children}) => {
                const { bestSellers:boostedSellers} = resData?.adWebsites ? resData : {};
                const subCategoriesData = await server.get('sub categories',null);
                const payPlansData = await server.get('payment plans', null);
-               const ops = {freeAds:{limit: 40, offset: 0}, urgentAds: {limit: 20,offset:0},listingAds:{limit: 20,offset:0}, sponsoredAds:{limit: 20,offset:0}};
+               const ops = {freeAds:{limit: 12, offset: 0}, urgentAds: {limit: 10,offset:0},listingAds:{limit: 10,offset:0}, sponsoredAds:{limit: 10,offset:0}};
                const {data:allAdverts} = await AdvertService.getAllApproved(ops);
                // const {newAdverts: advertsData, todayDeals:discounted, websiteAds:adWebsites, boosted} = getAdvertsInfo(allAdverts);
                const {

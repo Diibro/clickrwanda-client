@@ -308,3 +308,9 @@ export const getDateOnly =(date) => {
      }
      return null;
 }
+
+export const addDaysToDate = (date, days) =>{
+     const finalDate = new Date(date);
+     finalDate.setDate(finalDate.getDate() + days);
+     return getDateOnly(finalDate);
+}

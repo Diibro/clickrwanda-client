@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { AdminContext } from "../AdminLayout"
-import DashPlanCard from "../components/cards/DashPlanCard";
+// import DashPlanCard from "../components/cards/DashPlanCard";
 import { AddButton } from "../components/buttons/ActionButtons";
 import { toggleForms } from "../../utils/AdminFunctions";
 import PayPlanCard from "../../components/cards/PayPlanCard";
@@ -20,7 +20,13 @@ const PlansHome = () => {
      }
      const updateCatPlans = () => {
           if(paymentPlans && paymentPlans[0]){
-               const dividedPlans = {"Individual":[], "Small Business": [], "Large Business": [], "Extra Boost Packages": [], "undefined": []};
+               const dividedPlans = {
+                    "Individual":[], "Small Business": [], 
+                    "Large Business": [], "Extra Boost": [], 
+                    "Commissions": [], "Fixed Ads": [],
+                    "Banner Ads": [], "Urgent Ads": [],
+                    "Article": [],"undefined": []
+               };
                for(const plan of paymentPlans){
                     if(plan.plan_type === "Individual"){
                          dividedPlans["Individual"].push(plan);
@@ -28,9 +34,20 @@ const PlansHome = () => {
                          dividedPlans["Small Business"].push(plan);
                     }else if(plan.plan_type === "Large Business"){
                          dividedPlans["Large Business"].push(plan);
-                    }else if(plan.plan_type === "Extra Boost Packages"){
-                         dividedPlans["Extra Boost Packages"].push(plan)
-                    }else{
+                    }else if(plan.plan_type === "Extra Boost"){
+                         dividedPlans["Extra Boost"].push(plan)
+                    }else if(plan.plan_type === "Commissions"){
+                         dividedPlans["Commissions"].push(plan);
+                    }else if(plan.plan_type === "Fixed Ads"){
+                         dividedPlans["Fixed Ads"].push(plan);
+                    }else if(plan.plan_type === "Banner Ads"){
+                         dividedPlans["Banner Ads"].push(plan);
+                    }else if(plan.plan_type === "Urgent Ads"){
+                         dividedPlans["Urgent Ads"].push(plan);
+                    }else if(plan.plan_type === "Article Package"){
+                         dividedPlans["Article"].push();
+                    }
+                    else{
                          dividedPlans["undefined"].push(plan);
                     }
                }
