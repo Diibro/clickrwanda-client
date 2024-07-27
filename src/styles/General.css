@@ -2040,6 +2040,51 @@ textarea{
      text-decoration: underline;
 }
 
+.make-money-section{
+     width: 99%;
+     border-radius: 10px;
+     background-color: var(--back-gold-color-v1);
+     padding: 20px;
+     margin-bottom: 10px;
+}
+
+.make-money-section .title {
+     width: 100%;
+     margin-bottom: 10px;
+}
+
+.make-money-section .title h3{
+     font-size: 1.5rem;
+     font-weight: 800;
+     color: var(--light-gray);
+}
+
+.make-money-section .content{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-evenly;
+     flex-wrap: wrap;
+     gap: 10px;
+}
+
+.make-money-section .content .col{
+     width: 40%;
+     border-radius: 10px;
+     background-color: var(--text-color-title);
+     padding: 15px;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+}
+
+.make-money-section .content .col p{
+     font-size: 0.9rem;
+     color: var(--light-gray);
+     font-weight: 600;
+     text-align: center;
+}
 .home-categories-section{
      width: 99%;
      background-color: var(--white-text);

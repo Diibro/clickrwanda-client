@@ -221,6 +221,10 @@
      .home-locations-section .locations-content span{
           width: 27%;
      }
+
+     .user-forms .form-container{
+          width: 70%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -593,6 +597,15 @@
      .home-categories-subcard{
           width: 30%;
      }
+     .make-money-section .content .col {
+          width: 90%;
+     }
+
+     .user-forms .form-container {
+          width: 80%;
+     }
+
 }
+
 
 

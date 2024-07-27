@@ -196,6 +196,10 @@
           text-decoration-thickness: 0.6px;
           text-underline-offset: 1.5px;
      }
+
+     .user-forms .form-container{
+          width: 90%;
+     }
 }
 
 

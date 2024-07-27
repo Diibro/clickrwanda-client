@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import AppData from '../Contexts/AppContext';
 import HomeLocationsSection from '../components/containers/HomeLocationsSection';
 import AllCategoriesSection from '../components/containers/AllCategoriesSection';
-import { BecomeSeller } from '../components/containers/PageBreaks';
+import { BecomeSeller, MakeMoneySection } from '../components/containers/PageBreaks';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -79,6 +79,8 @@ const Home = () => {
           {/* All categories with sub categories */}
           <AllCategoriesSection />
 
+          {/* make money section */}
+          <MakeMoneySection />
           </div>
           <div className="side right-side"><RightBanner items={Banners}/></div>
         </div>
