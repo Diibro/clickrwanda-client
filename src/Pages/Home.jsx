@@ -8,8 +8,10 @@ import { Helmet } from 'react-helmet';
 import { HeroSectionBanner, HorizontalBanner, LeftBanner, RightBanner } from '../components/dynamic/Banners';
 import { Banners } from '../config/banners';
 import { useTranslation } from 'react-i18next';
-import Banner728x90 from '../AdSterra/Banner728x90';
 import AppData from '../Contexts/AppContext';
+import HomeLocationsSection from '../components/containers/HomeLocationsSection';
+import AllCategoriesSection from '../components/containers/AllCategoriesSection';
+import { BecomeSeller } from '../components/containers/PageBreaks';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -63,17 +65,21 @@ const Home = () => {
 
           {/* new ads section */}
           {/* <Adverts eleId={"home-adverts"} limit={50} /> */}
-          <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 40}} />
-
-          {/* best sellers section */}
-          <BoostedSellers />
-          <Banner728x90 />
+          <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 12}} />
 
           {/* ads websites section */}
           <AdWebsites />
-          {/* <GetStartedV1 /> */}
-          </div>
 
+          {/* Locations section */}
+          <HomeLocationsSection />
+          {/* best sellers section */}
+          <BoostedSellers />
+           {/* get started as seller page break */}
+           <BecomeSeller />
+          {/* All categories with sub categories */}
+          <AllCategoriesSection />
+
+          </div>
           <div className="side right-side"><RightBanner items={Banners}/></div>
         </div>
       </div>

@@ -218,6 +218,9 @@
      .job-seeker-page-container .row .col{
           width: 100%;
      }
+     .home-locations-section .locations-content span{
+          width: 27%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -582,6 +585,13 @@
      }
      .job-seeker-page-container .row .col{
           width: 95%;
+     }
+     .home-locations-section .locations-content {
+          width: 100%;
+     }
+
+     .home-categories-subcard{
+          width: 30%;
      }
 }
 

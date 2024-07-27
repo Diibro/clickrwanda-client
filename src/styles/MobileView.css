@@ -183,6 +183,19 @@
      .pay-plan-invoice-container .confirm-payment-container .pay-options .image {
           width: 90%;
      }
+
+     .home-categories-subcard {
+          width: 45%;
+     }
+
+     .home-categories-subcard .title h5{
+          text-underline-offset: 2px;
+     }
+
+     .home-categories-subcard .sub-categories span{
+          text-decoration-thickness: 0.6px;
+          text-underline-offset: 1.5px;
+     }
 }
 
 
