@@ -176,7 +176,7 @@ export const SignUpForm = () => {
      const navigate = useNavigate();
      const [locations, setLocations] = useState([]);
      const location = useLocation();
-     const [profileImage,setProfileImage] = useState();
+     const [profileImage,setProfileImage] = useState(null);
 
      const submitForm = async (data) => {
           try {
@@ -278,7 +278,7 @@ export const SignUpForm = () => {
                {errors.location ? <p className="form-errors">{errors.location.message}</p> : null}
                <div className="group">
                     <label htmlFor="profile_image">Business Logo:</label>
-                    <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} {...register('logo', {required: "Please select you profile picture or business logo!"})} />
+                    <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} required />
                     {
                          profileImage && profileImage instanceof File ? <img width={100} src={URL.createObjectURL(profileImage)}  /> : null
                     }
