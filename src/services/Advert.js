@@ -81,5 +81,15 @@ export default {
                console.log(error);
                return null;
           }
+     },
+     getByLocation: async(ops) => {
+          try {
+               const res = await axios.post(Server.advert.adsByLocation, ops);
+               const info = res.data;
+               return info;
+          } catch (error) {
+               console.log(error);
+               return null
+          }
      }
 }

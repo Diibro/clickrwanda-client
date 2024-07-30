@@ -147,9 +147,7 @@ const AdvertPage = () => {
                                                                       }
                                                                  </div>
                                                                  :
-                                                                 <div className="group" key={`ad-desc-view-${key}-${index}`}>
-                                                                      <b>{key}:</b><span>{value.value || value}</span>
-                                                                 </div>
+                                                                 <></>
                                                             )
                                                        : null
                                                   }

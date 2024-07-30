@@ -43,6 +43,7 @@ import PlanPaymentPage from './PlanPaymentPage';
 import ContactSeller from '../components/containers/ContactSeller';
 import Forms from './Forms';
 import JobSeekerLayout from '../jobSeeker/Layout';
+import LocationPage from './LocationPage';
 
 
 const Layout = () => {
@@ -100,6 +101,7 @@ const Layout = () => {
                <Route path='/help-center' element={<HelpCenter />} />
                <Route path='/contact-us' element={<ContactPage />} />
                <Route path='/plan-payment' element={<PlanPaymentPage />} />
+               <Route path='/location/*' element={<LocationPage />} />
                <Route path='/forms/*' element={<Forms />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 

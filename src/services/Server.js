@@ -16,7 +16,8 @@ export default {
           shop: `${serverUrl}/api/advert/get-user-ads`,
           searchMany: `${serverUrl}/api/advert/search-adverts`,
           userAd: `${serverUrl}/api/advert/search-user-ad`,
-          similarAds: `${serverUrl}/api/advert/get-similar-ads`
+          similarAds: `${serverUrl}/api/advert/get-similar-ads`,
+          adsByLocation: `${serverUrl}/api/advert/get-by-location`
      },
      agent: {
           getAll: `${serverUrl}/api/agent/1`,

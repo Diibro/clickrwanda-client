@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import AppData from '../Contexts/AppContext';
 import HomeLocationsSection from '../components/containers/HomeLocationsSection';
 import AllCategoriesSection from '../components/containers/AllCategoriesSection';
-import { BecomeSeller, MakeMoneySection } from '../components/containers/PageBreaks';
+import { BecomeSeller, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -60,8 +60,10 @@ const Home = () => {
           {/* Premium ads section */}
           <BoostedAds />
 
+          {/* {company advertisement} */}
+          <SubscribeToPlans />
           {/* Second home page banner */}
-          <HorizontalBanner items={Banners} upper={smallDevice ? 1 : 1} lower={smallDevice ? 1 : 0} />
+          {/* <HorizontalBanner items={Banners} upper={smallDevice ? 1 : 1} lower={smallDevice ? 1 : 0} /> */}
 
           {/* new ads section */}
           {/* <Adverts eleId={"home-adverts"} limit={50} /> */}

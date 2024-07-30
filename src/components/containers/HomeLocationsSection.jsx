@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { getLocations } from "../../utils/locations";
+import { useNavigate } from "react-router-dom";
 
 const HomeLocationsSection = () => {
      const [locations, setLocations] = useState(null);
-
+     const navigate = useNavigate();
      useEffect(() => {
           (async() => {
                const {districts} = getLocations();
@@ -23,7 +24,7 @@ const HomeLocationsSection = () => {
                               </div>
                               <div className="locations-content">
                                    {
-                                        locations.map((location, index) => <span key={`home-section-location-${index}`}>{location}</span>)
+                                        locations.map((location, index) => <span key={`home-section-location-${index}`} onClick={() => navigate(`/location?=${location}`)}>{location}</span>)
                                    }
                               </div>
                          </div>
