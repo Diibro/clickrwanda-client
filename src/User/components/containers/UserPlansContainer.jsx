@@ -27,7 +27,7 @@ const UserPlansContainer = () => {
                const dividedPlans = {
                     "Individual":[], "Small Business": [], 
                     "Large Business": [], "Extra Boost": [], 
-                    "Commissions": [], "Fixed Ads": [],
+                    "Commission Ads": [], "Fixed Ads": [],
                     "Banner Ads": [], "Urgent Ads": [],
                     "Article": []
                };
@@ -40,8 +40,8 @@ const UserPlansContainer = () => {
                          dividedPlans["Large Business"].push(plan);
                     }else if(plan.plan_type === "Extra Boost"){
                          dividedPlans["Extra Boost"].push(plan)
-                    }else if(plan.plan_type === "Commissions"){
-                         dividedPlans["Commissions"].push(plan);
+                    }else if(plan.plan_type === "Commission Ads"){
+                         dividedPlans["Commission Ads"].push(plan);
                     }else if(plan.plan_type === "Fixed Ads"){
                          dividedPlans["Fixed Ads"].push(plan);
                     }else if(plan.plan_type === "Banner Ads"){
@@ -78,7 +78,7 @@ const UserPlansContainer = () => {
                               <div className={`plans-container-row ${activePlans === key ? "active-plans" : ""} `}>
                                    <div className="content">
                                         {
-                                             value.map(item => item.plan_id === activePlan.plan_id ? <PayPlanCard btnTitle="Choose Plan" key={`user-dashboard-plans-card-${item.plan_id}`} extra={{view_type: "current-plan-view", currentName: "Current Plan"}} plan={item}  /> : <PayPlanCard btnTitle={"Choose Plan"} key={`user-dashboard-plans-card-${item.plan_id}`} plan={item} action={() => navigate(`/plan-payment?=${item.plan_id}`)} extra={{view_type: `${item.plan_plan_name}`}} />)
+                                             value.map(item => item?.plan_id === activePlan?.plan_id ? <PayPlanCard btnTitle="Choose Plan" key={`user-dashboard-plans-card-${item?.plan_id}`} extra={{view_type: "current-plan-view", currentName: "Current Plan"}} plan={item}  /> : <PayPlanCard btnTitle={"Choose Plan"} key={`user-dashboard-plans-card-${item?.plan_id}`} plan={item} action={() => navigate(`/plan-payment?=${item.plan_id}`)} extra={{view_type: `${item.plan_plan_name}`}} />)
                                         }
                                    </div>
                               </div>

@@ -43,9 +43,9 @@ const FreeAdsSection = () => {
                setLoading(false);
                }
           } else {
-            return;
+               return;
           }
-        };
+     };
 
      useEffect(() => {
           setAds(adverts);

@@ -1990,7 +1990,7 @@ textarea{
 
 .home-locations-section{
      width: 99%;
-     background-color: var(--text-color-para2);
+     background-color: var(--text-color-title);
      border-radius: 10px;
      padding: 20px;
 }
@@ -2038,6 +2038,12 @@ textarea{
 .home-locations-section .locations-content span:hover{
      color: var(--white-text);
      text-decoration: underline;
+}
+
+.home-locations-section .locations-content span b{
+     color:var(--back-color-gold2);
+     font-weight: 500;
+     font-size: 0.84rem;
 }
 
 .make-money-section{

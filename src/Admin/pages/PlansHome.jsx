@@ -23,7 +23,7 @@ const PlansHome = () => {
                const dividedPlans = {
                     "Individual":[], "Small Business": [], 
                     "Large Business": [], "Extra Boost": [], 
-                    "Commissions": [], "Fixed Ads": [],
+                    "Commission Ads": [], "Fixed Ads": [],
                     "Banner Ads": [], "Urgent Ads": [],
                     "Article": [],"undefined": []
                };
@@ -36,8 +36,8 @@ const PlansHome = () => {
                          dividedPlans["Large Business"].push(plan);
                     }else if(plan.plan_type === "Extra Boost"){
                          dividedPlans["Extra Boost"].push(plan)
-                    }else if(plan.plan_type === "Commissions"){
-                         dividedPlans["Commissions"].push(plan);
+                    }else if(plan.plan_type === "Commission Ads"){
+                         dividedPlans["Commission Ads"].push(plan);
                     }else if(plan.plan_type === "Fixed Ads"){
                          dividedPlans["Fixed Ads"].push(plan);
                     }else if(plan.plan_type === "Banner Ads"){

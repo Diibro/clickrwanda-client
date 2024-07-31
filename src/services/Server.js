@@ -17,7 +17,8 @@ export default {
           searchMany: `${serverUrl}/api/advert/search-adverts`,
           userAd: `${serverUrl}/api/advert/search-user-ad`,
           similarAds: `${serverUrl}/api/advert/get-similar-ads`,
-          adsByLocation: `${serverUrl}/api/advert/get-by-location`
+          adsByLocation: `${serverUrl}/api/advert/get-by-location`,
+          getCountsByLocation: `${serverUrl}/api/advert/get-counts-by-location`
      },
      agent: {
           getAll: `${serverUrl}/api/agent/1`,

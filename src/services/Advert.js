@@ -91,5 +91,14 @@ export default {
                console.log(error);
                return null
           }
+     },
+     getCountsByLocation: async(locations) => {
+          try {
+               const res = await axios.post(Server.advert.getCountsByLocation, locations);
+               return res.data;
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
      }
 }
