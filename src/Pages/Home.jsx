@@ -12,6 +12,7 @@ import AppData from '../Contexts/AppContext';
 import HomeLocationsSection from '../components/containers/HomeLocationsSection';
 import AllCategoriesSection from '../components/containers/AllCategoriesSection';
 import { BecomeSeller, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
+import JobSeekersSection from '../components/containers/JobSeekersSection';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -65,6 +66,8 @@ const Home = () => {
           {/* Second home page banner */}
           {/* <HorizontalBanner items={Banners} upper={smallDevice ? 1 : 1} lower={smallDevice ? 1 : 0} /> */}
 
+          {/* Job Seekers section */}
+          <JobSeekersSection />
           {/* new ads section */}
           {/* <Adverts eleId={"home-adverts"} limit={50} /> */}
           <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 12}} />

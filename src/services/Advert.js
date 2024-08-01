@@ -100,5 +100,23 @@ export default {
                console.log(error);
                return null;
           }
+     },
+     getByCategory: async(ops) => {
+          try {
+               const res = await axios.post(Server.advert.getByCategory, ops);
+               return res.data; 
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
+     },
+     getBySubCategory: async(ops) => {
+          try {
+               const res = await axios.post(Server.advert.getBySubCategory, ops);
+               return res.data; 
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
      }
 }

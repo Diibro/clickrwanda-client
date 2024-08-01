@@ -18,7 +18,9 @@ export default {
           userAd: `${serverUrl}/api/advert/search-user-ad`,
           similarAds: `${serverUrl}/api/advert/get-similar-ads`,
           adsByLocation: `${serverUrl}/api/advert/get-by-location`,
-          getCountsByLocation: `${serverUrl}/api/advert/get-counts-by-location`
+          getCountsByLocation: `${serverUrl}/api/advert/get-counts-by-location`,
+          getByCategory: `${serverUrl}/api/advert/get-by-category`,
+          getBySubCategory: `${serverUrl}/api/advert/get-by-sub-category`
      },
      agent: {
           getAll: `${serverUrl}/api/agent/1`,

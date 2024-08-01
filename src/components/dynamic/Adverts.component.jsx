@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import AdvertRenderer, { AdvertRow} from "./Advert.componet";
 import { ActionBtn, SubmitButton } from "./Buttons";
 import server from "../../config/Server";
-import { MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
 import { Link, useNavigate } from "react-router-dom";
@@ -23,7 +22,7 @@ import uploadFile, { uploadMany } from "../../utils/aws-upload-functions";
 import { s3Folders } from "../../config/s3Config";
 import UserContext from "../../Contexts/UserContext";
 import FreeAdsSection from "../containers/FreeAdsSection";
-
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
 export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
@@ -343,10 +342,17 @@ export const BoostedAds = ({params}) => {
 
   return(
     <div className="container">
-      <InnerSection type="title" >
-            { content.title }
-            <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
-      </InnerSection>
+     
+      <div className="ads-section-title">
+        <div className="title">
+          <h3 className="main-title">{content.title}</h3>
+          <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
+        </div>
+        <div className="section-navigation">
+          <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft && !params?.wrap ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
+          <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight && !params?.wrap ? '' : 'inactive'}`}><RiArrowRightSLine/></i>
+        </div>
+      </div>
       <div className="home-boosted-ads " >
           <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
             {
@@ -354,9 +360,7 @@ export const BoostedAds = ({params}) => {
               )
             }
           </div>
-        {!scrollPos.atLeft && !params?.wrap  ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
-        {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
-      </div>
+        </div>
     </div>
     
   )
@@ -426,13 +430,6 @@ export const VerticalAds = ({ ads, adsNo, eleId }) => {
   );
 };
 
-// export const RowAds = ({adsInfo}) => {
-//   return (
-//     <div className="row-adverts">
-
-//     </div>
-//   )
-// }
 
 export const TodayDeals = ({params}) => {
   const {t} = useTranslation("global");
@@ -468,10 +465,16 @@ export const TodayDeals = ({params}) => {
 
   return (
     <div className="container">
-      <InnerSection type="title" >
-            {content.title}
-            <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
-      </InnerSection>
+      <div className="ads-section-title">
+        <div className="title">
+          <h3 className="main-title">{content.title}</h3>
+          <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
+        </div>
+        <div className="section-navigation">
+          <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft && !params?.wrap ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
+          <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight && !params?.wrap ? '' : 'inactive'}`}><RiArrowRightSLine/></i>
+        </div>
+      </div>
       <div className="home-boosted-ads " >
       <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
           {
@@ -479,9 +482,7 @@ export const TodayDeals = ({params}) => {
             )
           }
       </div>
-      {!scrollPos.atLeft && !params?.wrap ? <i onClick={()=>scrollHandle(-1)} className="nav-icon left-nav-icon"><MdArrowBackIos /></i> : null}
-      {!scrollPos.atRight && !params?.wrap ? <i onClick={() => scrollHandle(1)} className="nav-icon right-nav-icon"><MdArrowForwardIos /></i> : null}
-    </div>
+     </div>
     </div>
     
   ) 

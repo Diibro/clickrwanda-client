@@ -4,12 +4,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getItemUrl } from "../../utils/urlFunctions";
 import PropTypes from 'prop-types';
 import { ActionBtn } from "./Buttons";
-import { MdNavigateBefore, MdNavigateNext, MdVerified } from "react-icons/md";
+import { MdVerified } from "react-icons/md";
 import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { InnerSection } from "./InnerSectionContainer";
 import { useTranslation } from "react-i18next";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
 export const BoostedSellers = () => {
      const {t} = useTranslation("global");
@@ -47,19 +47,22 @@ export const BoostedSellers = () => {
         }, [bestSellers]);
      return(
           <div className="container">
-               <InnerSection type="title">
-                    {content.title}
-                    <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
-               </InnerSection>
+               <div className="ads-section-title">
+                    <div className="title">
+                         <h3 className="main-title">{content.title}</h3>
+                         <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
+                    </div>
+                    <div className="section-navigation">
+                         <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft  ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
+                         <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight ? '' : 'inactive'}`}><RiArrowRightSLine/></i>
+                    </div>
+               </div>
                <div className="home-best-sellers">
                     <p className="best-seller-para">{content.message}</p>
                     <div ref={adsRef} className="sellers-container hide-scroll">
                          {bestSellers && bestSellers[0] && bestSellers.map(item => <BesterSellerCard key={item.user_id} item={item}  /> )}
                          <div className="best-seller-card" onClick={() => navigate('/best-sellers')} ><p>More...</p></div>
                     </div>
-                    {!scrollPos.atLeft ? <i  onClick={()=>scrollHandle(-1)} className="nav-icon icon-left"><MdNavigateBefore/></i> : null}
-                    {!scrollPos.atRight ? <i  onClick={()=>scrollHandle(1)} className="nav-icon icon-right"><MdNavigateNext /></i> : null }
-                    
                </div>
           </div>
           

@@ -5,9 +5,9 @@ import server from "../config/Server";
 import PropTypes from 'prop-types'
 import Loading from "../components/static/Loading";
 import { CategoryAdverts} from "../components/dynamic/Adverts.component";
-import { getData, saveData } from "../utils/storageFunctions";
 import { Helmet } from "react-helmet";
 import { filterByPrice, filterPrices } from "../utils/filterFunctions";
+import AdvertService from '../services/Advert';
 // import { formatPrice } from "../utils/otherFunctions";
 
 const CategoryPage = () => {
@@ -19,35 +19,31 @@ const CategoryPage = () => {
   const [subCategory, setSubCategory] = useState(null);
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  
+  // const fetchCategoryAds = async (category_id, limit, offset) => {
+  //   try {
+  //     setLoading(true);
+  //     const res = await AdvertService.getByCategory({category_id, limit, offset});
+  //     if(res){
+  //       const {data} = res;
+  //       if(data){
+  //         setAds(data);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }finally{
+  //     setLoading(false);
+  //   }
+  // }
 
-  const fetchSubAdverts = async (sub_id) => {
+  const fetchSubAdverts = async (sub_id, limit, offset) => {
     try {
-      console.log("trying to fetch data");
-      // if(sub_id === 'all') {
-      //   setCategoryAds()
-      //   return;
-      // }
-      let check = 0;
-      const parsedData = getData('subAdverts');
-      if(parsedData) {
-        if(parsedData.sub_id === sub_id) {
-          setCategoryAds(parsedData.adverts);
-          setAds(parsedData.adverts);
-          check = 1;
-          return;
-        }
-      }
-
-      if(check === 0) {
-        setLoading(true);
-        const res = await server.searchAdverts('sub-category', {sub_id});
-        if(res === 'no adverts found'){
-          return;
-        }
-        setCategoryAds(res);
-        setAds(res);
-        const subAdverts = { sub_id, data: res};
-        saveData('subAdverts', subAdverts, 30);
+      setLoading(true);
+      const res = await AdvertService.getBySubCategory({sub_id, limit, offset});
+      if(res) {
+        const {data} = res;
+        setCategoryAds(data);
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +55,7 @@ const CategoryPage = () => {
   const viewSubCategory = (item) => {
     setSubCategory(item);
     setSubViewed((prev) => ({...prev, id: item.sub_id}));
-    (async () => await fetchSubAdverts(item.sub_id) )();
+    (async () => await fetchSubAdverts(item.sub_id, 48,0) )();
   }
 
   const viewAdsByPrice = (filterData) => {
@@ -81,15 +77,12 @@ const CategoryPage = () => {
       try {
         setLoading(true);
         const categoryDatas = await server.searchAdverts('category', {category_id: id});
-        console.log("checking");
         if(categoryDatas !== "no data found"){
-          const {categoryData, subCategories, adverts} = categoryDatas
-          sessionStorage.setItem('categoryViewed', JSON.stringify(categoryDatas));
+          const {categoryData, subCategories, adverts} = categoryDatas;
           setCategoryAds(adverts);
           setAds(adverts);
           setSubCategories(subCategories);
           setCategory(categoryData)
-          // return;
         }else{
           console.log("no data found");
         }
@@ -98,8 +91,6 @@ const CategoryPage = () => {
       }finally{
         setLoading(false)
       }
-      
-      console.log("no data found");
 
       
     }
@@ -146,7 +137,7 @@ const CategoryPage = () => {
               {id: subViewed.id, action: viewSubCategory, data: ads, filterByPrice: viewAdsByPrice}
               } /> : null }
             {!loading ? <>
-            {categoryAds ? <CategoryAdverts adverts={categoryAds} /> : null}
+            {categoryAds && categoryAds.length ? <CategoryAdverts adverts={categoryAds} /> : <p className="no-ads-found">No Ads found</p>}
             </> : <Loading />}
           </div>
       </div>
