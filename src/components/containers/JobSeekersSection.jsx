@@ -63,10 +63,12 @@ const JobSeekersSection = () => {
                     <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight ? '' : 'inactive'}`}><RiArrowRightSLine /></i>
                     </div>
                </div>
-               <div className="ads-container hide-scroll"  ref={adsRef}>
-                    {
-                         ads && ads.length && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} /> )
-                    }
+               <div className="home-boosted-ads">
+                    <div className="ads-container hide-scroll"  ref={adsRef}>
+                         {
+                              ads && ads.length && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} /> )
+                         }
+                    </div>
                </div>
           </div>
      )
