@@ -1,4 +1,4 @@
-@media only screen and (min-width: 2000px){
+/* @media only screen and (min-width: 2000px){
      :root{
           font-size: 25px;
      }
@@ -80,7 +80,7 @@
      .search-bar-main .search-inputs input, .search-bar-main .search-inputs select {
           font-size: 0.8rem;
      }
-}
+} */
 
 @media only screen and (max-width: 1600px){
      :root{

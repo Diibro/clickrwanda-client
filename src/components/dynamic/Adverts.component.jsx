@@ -493,6 +493,9 @@ export const AdWebsites = () => {
   const content = t("homePage.sponsoredAdsSection", {returnObjects:true});
   const [data] = useContext(AppData);
   const {websiteAds } = data;
+  useEffect(() => {
+    console.log(websiteAds);
+  },[])
   return Array.isArray(websiteAds) && websiteAds[0] ? (
     <div className="container">
           <InnerSection type="title" >

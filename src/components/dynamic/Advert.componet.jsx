@@ -7,7 +7,7 @@ import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
 import {  FaLongArrowAltRight } from "react-icons/fa";
 import { formatTimeAgo } from '../../utils/dateFunctions';
 // import { LoadingImage } from './LoadinComponents';
-import { CImage } from '../static/Image';
+import { AnyImage, CImage } from '../static/Image';
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { useContext } from 'react';
 import AppData from '../../Contexts/AppContext';
@@ -136,8 +136,13 @@ export const AdvertImage = ({images}) => {
      }
      return(
           <>
-               <img src={images.main} alt={images.name} loading='lazy' className='search-page-image' onClick={showAd} />
-               {others && others.map((image, index) =><img key={index} src={image} alt={images.name} loading='lazy' className='search-page-image' onClick={showAd} /> ) }
+               {/* <img src={images.main} alt={images.name} loading='lazy' className='search-page-image' onClick={showAd} /> */}
+               <AnyImage image={{src: images.main, alt: images.name, action: showAd}} />
+               {others && others.map((image, index) =>
+                    // <img key={index} src={image} alt={images.name} loading='lazy' className='search-page-image' onClick={showAd} /> 
+                    <AnyImage image={{src:image,alt: images.name, action: showAd}} key={index}  />
+               ) 
+               }
           </>
      )
 }
@@ -156,7 +161,8 @@ export const AdvertRow = ({item}) => {
           <div className="advert-row">
                <p className='ad-plan'>{item.plan_name !== "freemium" ? item.plan_name : null}</p>
                <div className="row">
-                    <img src={item.ad_image} alt={item.ad_name} loading='lazy' />
+                    {/* <img src={item.ad_image} alt={item.ad_name} loading='lazy' /> */}
+                    <AnyImage image={{src: item.ad_image, alt: item.ad_name, action: () => {}}} />
                     <div className='col'>
                          <h3>{item.ad_name}</h3>
                          <p className='website'>

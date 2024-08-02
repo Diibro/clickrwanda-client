@@ -6,7 +6,7 @@ import { openNewTab } from "../../utils/otherFunctions";
 const advertBanner = {
      name: "Advert Here",
      images: {
-          vr: "https://res.cloudinary.com/dyjahjf1p/image/upload/v1709100968/clickrwanda/banners/asideAd_l4n54f.png"
+          vr: "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/asideAd.png"
 
      },
      link: "https://www.clickrwanda.com/payment-plans/banners"
@@ -49,7 +49,7 @@ export const RightBanner = ({items}) => {
                          <div className="vr-banner" onClick={() => openNewTab(advertBanner.link)} key={item}>
                               <div className="hover-content">
                                    {/* <h3>{banner.name}</h3> */}
-                                   <a href={advertBanner.link} rel="noreferrer" target="_blank">Click Here</a>
+                                   <a href={advertBanner.link} rel="noreferrer" target="_blank" download={advertBanner.images?.vr}>Click Here</a>
                               </div>
                               <img src={advertBanner.images?.vr} alt={advertBanner.name} />
                          </div>
