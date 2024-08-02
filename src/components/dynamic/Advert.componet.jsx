@@ -52,7 +52,7 @@ export const AdvertCardVertical = ({ad}) => {
                     </div>
                     <div className="row">
                          {
-                              ad.category_name === 'Job Seekers CVs' ? <span className='ad-price'>Negotiable</span> :<span className='ad-price' >{`${currency} ${formatPrice(ad.ad_price)}`}</span> 
+                              ad.category_name === 'Job Seekers CVs' || +ad.ad_price <= 0  ? <span className='ad-price'>Negotiable</span> :<span className='ad-price' >{`${currency} ${formatPrice(ad.ad_price)}`}</span> 
                          }
                          
                     </div>

@@ -126,7 +126,7 @@ const AdvertPage = () => {
                                         <ImageViewer images={[mainImage, ...images]} />
                                         <div className="advert-page-info">
                                              <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""} {adViewed?.verified ? <i className="verified"><VscVerifiedFilled /></i> : null}</h2>
-                                             {adViewed?.ad_price && <h3 className="advert-price"> Price: <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b> </h3>}
+                                             {adViewed && <h3 className="advert-price"> Price: {adViewed?.ad_price <= 0 ? <b>Negotiable</b> : <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b>} </h3>}
                                              {adViewed?.category_name && 
                                                   <div className="cat">
                                                        <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>

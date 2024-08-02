@@ -1992,6 +1992,12 @@ textarea{
      justify-content: center;
      border: 1px solid var(--gray-text);
 }
+
+.image-viewer .main-image img{
+     width: auto;
+     height: auto;
+     max-height: 400px !important;
+}
 .home-boosted-ads{
      width: 100%;
      display: flex;
