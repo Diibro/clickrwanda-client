@@ -6,9 +6,7 @@ import { useEffect, useState } from "react";
 export const CImage = ({image}) => {
      const [imageUrl, setImageUrl] = useState(ImageNotFound);
      const imageStyle = {
-          // width: image.width || "100%",
-          // height: image.height || "100%",
-          maxWidth: image.maxWidth || "100%",  // Add maxWidth property
+          maxWidth: image.maxWidth || "100%", 
           maxHeight: image.maxHeight || "100%",
           zIndex: "1"
      }
@@ -28,7 +26,7 @@ export const CImage = ({image}) => {
                img.onload = () => setImageUrl(image.src);
                img.onerror = () => setImageUrl(ImageNotFound);
           }
-     }, [])
+     }, [image.src]);
      return(
           <div className="c-image" style={containerStyles}>
                {/* <img src={image.src} width={image.width || "100%"} height={image.height || "100%"} alt={image.alt} loading="lazy" onClick={image.action} /> */}
@@ -53,7 +51,8 @@ export const AnyImage = ({image, ...props}) => {
                img.onload = () => setImageUrl(image.src);
                img.onerror = () => setImageUrl(ImageNotFound);
           }
-     }, [])
+     }, [image.src]);
+     
      return(
           <img src={imageUrl}  alt={image.alt} loading="lazy" style={imageStyle}  onClick={image.action} {...props}/>
      )
