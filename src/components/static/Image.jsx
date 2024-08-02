@@ -1,10 +1,11 @@
 
 import PropTypes from "prop-types";
 import { ImageNotFound } from "../../assets/assets";
-import { useEffect, useState } from "react";
+import {Img} from 'react-image';
+
 
 export const CImage = ({image}) => {
-     const [imageUrl, setImageUrl] = useState(ImageNotFound);
+
      const imageStyle = {
           maxWidth: image.maxWidth || "100%", 
           maxHeight: image.maxHeight || "100%",
@@ -18,43 +19,27 @@ export const CImage = ({image}) => {
           alignItems: "center",
           justifyContent: "center"
      }
-
-     useEffect(() => {
-          if(image.src){
-               const img = new Image();
-               img.src = image.src;
-               img.onload = () => setImageUrl(image.src);
-               img.onerror = () => setImageUrl(ImageNotFound);
-          }
-     }, [image.src]);
      return(
           <div className="c-image" style={containerStyles}>
-               {/* <img src={image.src} width={image.width || "100%"} height={image.height || "100%"} alt={image.alt} loading="lazy" onClick={image.action} /> */}
-               <img src={imageUrl}  alt={image.alt} loading="lazy" style={imageStyle}  onClick={image.action} />
+               <Img
+                    src={[image.src,ImageNotFound]}
+                    alt={image.alt}
+                    style={imageStyle}
+                    onClick={image.action}
+               />
           </div>
      )
 }
 
 export const AnyImage = ({image, ...props}) => {
-     const [imageUrl, setImageUrl] = useState(ImageNotFound);
      const imageStyle = {
           maxWidth: "auto",  
           maxHeight: "auto",
           zIndex: "1"
      }
-     
 
-     useEffect(() => {
-          if(image.src){
-               const img = new Image();
-               img.src = image.src;
-               img.onload = () => setImageUrl(image.src);
-               img.onerror = () => setImageUrl(ImageNotFound);
-          }
-     }, [image.src]);
-     
      return(
-          <img src={imageUrl}  alt={image.alt} loading="lazy" style={imageStyle}  onClick={image.action} {...props}/>
+          <Img src={[image.src,ImageNotFound]}  alt={image.alt} style={imageStyle}  onClick={image.action} {...props}/>
      )
 }
 

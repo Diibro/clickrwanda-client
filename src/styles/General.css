@@ -75,6 +75,7 @@
 html{
      scroll-behavior: smooth;
      width: 100%;
+     max-width: 1600px;
 }
 
 body{
@@ -3167,8 +3168,8 @@ textarea{
 }
 
 .initial-loader{
-     width: 100vw;
-     height: 100vh;
+     width: 100%;
+     height: 100%;
      position: fixed;
      top: 0;
      z-index: 100;
@@ -3177,6 +3178,7 @@ textarea{
      flex-direction: row;
      align-items: center;
      justify-content: center;
+     margin: auto;
 }
 
 .initial-loader .loader-container{
@@ -4524,7 +4526,7 @@ textarea{
 
 .share-buttons-container{
      position: fixed;
-     width: 100vw;
+     width: 100%;
      height: 100vh;
      top: 0;
      background-color: var(--text-color-title-transparent);
@@ -4645,7 +4647,7 @@ textarea{
 .advert-view{
      position: fixed;
      top: 0;
-     width: 100vw;
+     width: 100%;
      height: 100vh;
      -webkit-backdrop-filter: blur(30px);
      backdrop-filter: blur(30px);
@@ -5408,7 +5410,7 @@ textarea{
      position: fixed;
      top: 0;
      left: 0;
-     width: 100vw;
+     width: 100%;
      height: 100vh;
      background-color: #00000070;
      display: flex;

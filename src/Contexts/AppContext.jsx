@@ -80,7 +80,6 @@ export const AppProvider = ({children}) => {
                          websiteAds: adWebsites,currency: "Frw",
                          freeAdsCount, listingAdsCount, urgentAdsCount, sponsoredAdsCount
                     }));
-                    console.log('saving data')
                     saveData('appData', appData, 30);
                }
           }catch(error){

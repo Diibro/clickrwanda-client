@@ -15,7 +15,6 @@ const AllCategoriesSection = () => {
           newCategories.forEach(cat => {
                cat.subCategories = subCategories.filter(sub => sub.category_id === cat.category_id)
           });
-          console.log(newCategories);
           setContent(newCategories);
      }
 

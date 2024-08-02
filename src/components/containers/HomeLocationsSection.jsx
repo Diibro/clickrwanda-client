@@ -10,7 +10,6 @@ const HomeLocationsSection = () => {
      const fetchLocationCounts = async(locations) => {
           const res = await advertService.getCountsByLocation(locations);
           if(res){
-               console.log(res);
                const data = res.data;
                if(data && data.length){
                     setNewLocations(data);

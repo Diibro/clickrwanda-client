@@ -184,8 +184,6 @@ export const AddAdvertForm = () => {
   }, [adInfo]);
 
   useEffect(() => {
-    console.log(userAdverts);
-    console.log(activePlan);
     if(userAdverts?.length < activePlan?.description?.adsAllowed){
       setIsOffPlan(false);
     }else{
@@ -493,9 +491,6 @@ export const AdWebsites = () => {
   const content = t("homePage.sponsoredAdsSection", {returnObjects:true});
   const [data] = useContext(AppData);
   const {websiteAds } = data;
-  useEffect(() => {
-    console.log(websiteAds);
-  },[])
   return Array.isArray(websiteAds) && websiteAds[0] ? (
     <div className="container">
           <InnerSection type="title" >

@@ -46,8 +46,6 @@ const DesktopHeader = () => {
      }
 
      useEffect(() => {
-          console.log(role);
-          console.log(loggedIn);
           if(!loggedIn || role === 'seller'){
                setShowAddAd(true);
           }else{

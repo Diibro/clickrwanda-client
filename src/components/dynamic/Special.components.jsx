@@ -38,7 +38,6 @@ export const BoostedSellers = () => {
         };
       
         useEffect(() => {
-          console.log(bestSellers);
           const currentRef = adsRef.current;
           currentRef && currentRef.addEventListener('scroll', handleScroll);
       
