@@ -269,12 +269,12 @@ export const AddAdvertForm = () => {
                 }
               </select>
             </div>
-            :
-            <div className="group">
+            : null
+          }
+          <div className="group">
               <label htmlFor="ad-input-contact">Contact Phone:</label>
               <input type="tel" name="ad-input-contact" id="ad-input-contact" onChange={e => setAdInfo(prev => ({...prev, contact: e.target.value}))} required placeholder="ex: +25078..."/>
             </div>
-          }
         </div>
         {descFields ? 
           <div className="row">
