@@ -69,12 +69,12 @@ const Home = () => {
           {/* Job Seekers section */}
           <JobSeekersSection />
 
-          {/* hot deals section */}
-          <ExploreHotDeals />
-          {/* <HomeCommissionAds /> */}
           {/* new ads section */}
           <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 12}} />
 
+          {/* hot deals section */}
+          <ExploreHotDeals />
+          <HomeCommissionAds />
           {/* ads websites section */}
           <AdWebsites />
 

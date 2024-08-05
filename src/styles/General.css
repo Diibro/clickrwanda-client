@@ -7652,6 +7652,15 @@ textarea{
      background-color: var(--back-color-red1);
 }
 
+.deal{
+     background-color: var(--back-color-gold2);
+}
+
+.deal-ad{
+     border: 1.8px solid var(--back-color-gold2);
+     border-radius: 5px;
+}
+
 .urgent-ad{
      border: 1.8px solid var(--back-color-red1);
      border-radius: 5px;

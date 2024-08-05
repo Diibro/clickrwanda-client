@@ -11,6 +11,7 @@ const HomeCommissionAds = () => {
 
      const fetchAds = async() => {
           const res = await AdvertService.getClientApprovedCommissionAds({limit: 20, offset:0});
+          console.log(res);
           if(res){
                setAds(res.data);
           }
@@ -35,7 +36,7 @@ const HomeCommissionAds = () => {
      useEffect(() => {
           (async () => {
                await fetchAds();
-          })()
+          })();
      },[])
 
      useEffect(() => {
@@ -47,25 +48,31 @@ const HomeCommissionAds = () => {
           };
         }, [ads]);
      return (
-          <div className="container">
-               <div className="ads-section-title">
-                    <div className="title">
-                         <h3 className="main-title">Hot Deals</h3>
-                         <Link>View All</Link>
+          <>
+               {
+                    ads ? 
+                    <div className="container">
+                         <div className="ads-section-title">
+                              <div className="title">
+                                   <h3 className="main-title">Hot Deals</h3>
+                                   <Link>View All</Link>
+                              </div>
+                              <div className="section-navigation">
+                              <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft  ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
+                              <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight ? '' : 'inactive'}`}><RiArrowRightSLine /></i>
+                              </div>
+                         </div>
+                         <div className="home-boosted-ads">
+                              <div className="ads-container hide-scroll"  ref={adsRef}>
+                                   {
+                                        ads && ads.length && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} /> )
+                                   }
+                              </div>
+                         </div>
                     </div>
-                    <div className="section-navigation">
-                    <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft  ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
-                    <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight ? '' : 'inactive'}`}><RiArrowRightSLine /></i>
-                    </div>
-               </div>
-               <div className="home-boosted-ads">
-                    <div className="ads-container hide-scroll"  ref={adsRef}>
-                         {
-                              ads && ads.length && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} /> )
-                         }
-                    </div>
-               </div>
-          </div>
+                    :null
+               }
+          </>
      )
 }
 

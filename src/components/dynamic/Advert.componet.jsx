@@ -33,8 +33,9 @@ export const AdvertCardVertical = ({ad}) => {
      }
 
      return(
-          <div className={`product-square-container ${ad.plan_name === 'VIP' ? "premium" : ad.plan_name === "VVIP" ? "enterprise" : ad.plan_name}-ad`}>
+          <div className={`product-square-container ${ad.plan_name === 'VIP' ? "premium" : ad.plan_name === "VVIP" ? "enterprise" : ad.plan_name}-ad ${ad.commission ? 'deal-ad' : ''}`}>
                <span className={ad.plan_name === "urgent" ? "pay-plan urgent" : ad.plan_name === "VIP" ? "pay-plan premium" : ad.plan_name === "basic" ? "pay-plan basic" : ad.plan_name === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{ad.plan_name === 'VVIP' || ad.plan_name === 'VIP' ? ad.plan_name : capitalizeString(ad.plan_name) }</span>
+               {ad.commission ? <span className='pay-plan deal'>Deal</span> : null}
                {ad.ad_discount ? <span className='advert-discount'>- {ad.ad_discount}%</span> : null}
                <div className="ad-image">
                     <div className='background-img' style={{backgroundImage:`url(${ad.ad_image})`}} ></div>

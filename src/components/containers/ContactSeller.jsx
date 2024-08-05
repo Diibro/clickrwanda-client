@@ -18,13 +18,22 @@ const ContactSeller = () => {
 
      const submitMessage = async(e) => {
           e.preventDefault();
-          const data = {
-               name: message.phone,
-               message: message.message,
-               user_id: contactAd.user_id,
-               ad_id: contactAd.ad_id,
-               review_type: "message"
-          }
+          const data = !contactAd.commission ?  
+               {
+                    name: message.phone,
+                    message: message.message,
+                    user_id: contactAd.user_id,
+                    ad_id: contactAd.ad_id,
+                    review_type: "message"
+               } 
+               :
+               {
+                    name: message.phone,
+                    message: message.message,
+                    user_id: contactAd.user_id,
+                    ad_id: contactAd.ad_id,
+                    review_type: "message"
+               }
 
           const info = await server.reviews.addAdReview(data);
           if(info.status === 'pass'){
