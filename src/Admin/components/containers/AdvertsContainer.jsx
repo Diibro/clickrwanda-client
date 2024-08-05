@@ -41,16 +41,6 @@ const AdvertsContainer = ({adverts}) => {
                !adverts || !adverts[0] ? 
                <p>No adverts found</p> :
                <>
-               <div className="pagination">
-                    <i onClick={() => changePage(currentPage - 1)} className="nav">
-                    <GrFormPrevious />
-                    </i>
-                    {pageArr.map((item) => item < 7 ? <span onClick={() => changePage(item)} className={`${currentPage === item ? 'active-page disabled-page' : ''}`} key={item}>{item}</span> : null)}
-                    <p>.. {currentPage >= 7 && currentPage < pages ? <span className="active-page">{currentPage}</span> : null} .</p>
-                    <span className={`${currentPage === pages ? 'active-page disabled-page' : ''}`} onClick={() => changePage(pages)}>{pages}</span>
-                    <i onClick={() => changePage(currentPage + 1)} ><GrFormNext /></i>
-               </div>
-
                {adsRendered && adsRendered.map((advert) => <DashAdvertCard advert={advert} key={advert.ad_id} />)}
 
                <div className="pagination">

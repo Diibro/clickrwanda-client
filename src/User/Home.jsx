@@ -19,6 +19,10 @@ const Home = () => {
           <p>Advertise with Click Rwanda by posting your products. <ActionBtn action={() => navigate('/forms/add-advert')} title="Post New Ad" /></p>
         </div>
         <div className="user-dash-content-container">
+          <p>At Click Rwanda we sell your products on your behalf. Click here to add commission products.</p>
+          <ActionBtn title="Add product" action={() => navigate('/forms/add-advert?=commission')} />
+        </div>
+        <div className="user-dash-content-container">
           <p>Currently subscribed in <i>{activePlan?.plan_name} plan</i>. Upgrade to increase your sales.</p>
           <ActionBtn action={() => navigate("/user-dashboard/user-plans")} title="Upgrade" />
         </div>

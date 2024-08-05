@@ -69,17 +69,10 @@ const UpdateAdvertForm = () => {
                     const res = await AdvertService.updateAd(newAdInfo);
                     if(res){
                          if(res.status === "success"){
-                              const newAds = sortByAny([...(adverts.filter((item) => item.ad_id !== ad.ad_id)), res.data], "ad_date")
-                              setAdminData((prev) => 
-                                   ({
-                                        ...prev, 
-                                        notification: {type:"pass", message: res.message},
-                                        adverts: [...newAds]
-                                   })
-                              );
                               showNotification();
                               document.getElementById("admin-ad-update-form").reset();
                               closeFormsContainer();
+                              window.location.reload();
                          }else{
                               setAdminData((prev) => 
                                    ({

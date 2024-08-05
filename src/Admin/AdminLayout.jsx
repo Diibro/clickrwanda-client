@@ -50,7 +50,7 @@ const AdminLayout = () => {
           const catRes = await CategoryService.getAll();
           const agents = await AgentService.getAll();
           const shops = await UserService.getAll();
-          const adverts = await AdvertService.getAll();
+          // const adverts = await AdvertService.getAll();
           const subCats = await SubCategoryService.getAll();
           const webViews = await WebViewService.getAllVisits();
           const plans = await PayPlanService.getAll();
@@ -60,7 +60,7 @@ const AdminLayout = () => {
                categories: catRes.data,
                agents: sortByAny(agents.data, "registration_date"),
                shops: sortByAny(shops.data, "reg_date"),
-               adverts:sortByAny(adverts.data, "ad_date"),
+               // adverts:sortByAny(adverts.data, "ad_date"),
                subCategories: subCats.data,
                webVisits: webViews.data,
                paymentPlans: plans.data
@@ -98,7 +98,7 @@ const AdminLayout = () => {
                               <Routes>
                                    <Route index path="/" element={<Home />} />
                                    <Route path="/agents/*" element={<AgentsPage />} />
-                                   <Route path="/adverts" element={<AdvertsPage />} />
+                                   <Route path="/adverts/*" element={<AdvertsPage />} />
                                    <Route path="/settings" element={<Settings />} />
                                    <Route path="/shops" element={<ShopsPage />} />
                                    <Route path="/plans/*" element={<Plans />} />

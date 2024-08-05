@@ -8,14 +8,14 @@ import { ActionBtn, SubmitButton } from "./Buttons";
 import server from "../../config/Server";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
 import { LoadingAd } from "./LoadinComponents";
 import { getArrayOfNums } from "../../utils/otherFunctions";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
 import { getRwandaTime } from "../../utils/dateFunctions";
-import Banner728x90 from "../../AdSterra/Banner728x90";
+// import Banner728x90 from "../../AdSterra/Banner728x90";
 import { parseString} from "../../utils/jsonFunctions";
 import { showMainNotification } from "../../utils/AdminFunctions";
 import uploadFile, { uploadMany } from "../../utils/aws-upload-functions";
@@ -131,16 +131,29 @@ export const AddAdvertForm = () => {
   const [user] = useContext(UserContext);
   const {userInfo, activePlan, userAdverts} = user;
   const [isOffPlan, setIsOffPlan] = useState(false);
+  const [commission, setCommission] = useState(null);
+  const location = useLocation();
+  const commissionPercents = [];
 
-
+  for(let i = 10; i <= 50;){
+    commissionPercents.push(i);
+    i +=5;
+  }
+  const checkCommission = () => {
+    const searchArr = location.search.split('?=');
+    if(searchArr.length && searchArr[1]){
+      setCommission({commission:true, r_id: searchArr[2] || null});
+    }
+    
+  }
   const submitForm =async (event) => {
     event.preventDefault();
     try {
       setLoading(true);
-      const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.adverts);
-      // const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.temp);
-      const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.adverts);
-      // const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.temp);
+      // const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.adverts);
+      const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.temp);
+      // const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.adverts);
+      const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.temp);
       const newAd = {
         ad_name: adInfo.ad_name,
         description: adDescription,
@@ -151,6 +164,8 @@ export const AddAdvertForm = () => {
         ad_images: adImagesUrls,
         registrationDate: getRwandaTime(),
         sub_category_id: adInfo.subCategory_id,
+        commission: adInfo.commission,
+        r_id: commission.r_id
       }
       
       const res = await server.addAdvert(newAd);
@@ -170,6 +185,7 @@ export const AddAdvertForm = () => {
   } 
 
   useEffect(() => {
+    checkCommission();
     if(!categories || !categories[0]){
       setData(prev => ({...prev, fetchNow: true}));
     }
@@ -242,10 +258,23 @@ export const AddAdvertForm = () => {
             <label htmlFor="ad-input-price">Price -- Rwf:</label>
             <input type="number" name="ad-input-price" id="ad-input-price" onChange={(e) => setAdInfo((prev) => ({...prev, ad_price: e.target.value}))} required placeholder="ex: 120000" />
           </div>
-          <div className="group">
-            <label htmlFor="ad-input-contact">Contact Phone:</label>
-            <input type="tel" name="ad-input-contact" id="ad-input-contact" onChange={e => setAdInfo(prev => ({...prev, contact: e.target.value}))} required placeholder="ex: +25078..."/>
-          </div>
+          {
+            commission ? 
+            <div className="group">
+              <label htmlFor="ad-input-commission">Commission: </label>
+              <select name="ad-input-commission" id="ad-input-commission" required onChange={e => setAdInfo(prev => ({...prev, commission: e.target.value}))} >
+                <option value="" disabled selected>Select commission percent...</option>
+                {
+                  commissionPercents.map((number) => <option value={number} key={`commission-percent-${number}`}>{number}%</option>)
+                }
+              </select>
+            </div>
+            :
+            <div className="group">
+              <label htmlFor="ad-input-contact">Contact Phone:</label>
+              <input type="tel" name="ad-input-contact" id="ad-input-contact" onChange={e => setAdInfo(prev => ({...prev, contact: e.target.value}))} required placeholder="ex: +25078..."/>
+            </div>
+          }
         </div>
         {descFields ? 
           <div className="row">
@@ -280,11 +309,14 @@ export const AddAdvertForm = () => {
           </div>
         </div>
         <div className="row">
+            {
+            !commission && 
             <div className="plan-exceed-alert">
               <ActionBtn title="Boost"  action={() => navigate("/user-dashboard/user-plans")} />
               <p>To maximise your ad views with our packages</p>
               
             </div>
+            }
             <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
             
           

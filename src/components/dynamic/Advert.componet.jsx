@@ -23,7 +23,7 @@ export const AdvertCardVertical = ({ad}) => {
      const [,setData] = useContext(AppData);
      const currency= "Rwf";
      const navigate = useNavigate();
-     const categoryLink = `/category/${getItemUrl(ad.category_name, ad.category_id)}`;
+     // const categoryLink = `/category/${getItemUrl(ad.category_name, ad.category_id)}`;
      const ViewAd = () => {
           navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
      }
@@ -65,7 +65,7 @@ export const AdvertCardVertical = ({ad}) => {
      )
 }
 
-export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, views, link, adDate, discount, verified}) => {
+export const ProductSquare = ({image, title, price, plan, action, category,categoryLink, location, contact, adDate, discount, verified}) => {
      const currency= "Rwf";
      const navigate = useNavigate();
      return(
@@ -93,7 +93,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
      )
 }
 
-export const ServiceSquare = ({image, title, plan, price, action, category,categoryLink, location, contact, views, link, adDate, discount, verified}) => {
+export const ServiceSquare = ({image, title, plan, price, action, category,categoryLink, location, contact, adDate, discount, verified}) => {
      const navigate = useNavigate();
      return(
           <div className={`product-square-container ${plan === "VIP" ? 'premium' : plan === "VVIP" ? 'enterprise' : plan}-ad`}>

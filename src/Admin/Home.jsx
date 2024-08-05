@@ -31,6 +31,7 @@ const Home = () => {
   const navigate = useNavigate();
   const fetchCounts = async() => {
     const res = await adminService.countAll();
+    console.log(res);
     if(res){
       const {
         totalAds, newAds,
@@ -38,7 +39,8 @@ const Home = () => {
         totalJobSeekers, newJobSeekers,
         totalCategories,
         totalAgents, newAgents,
-        totalInfluencers, newInfluencers
+        totalInfluencers, newInfluencers,
+        totalCommissionAds,newCommissionAds
       } = res.data;
       setCounts((prev) => ({
         ...prev,
@@ -47,7 +49,8 @@ const Home = () => {
         totalJobSeekers, newJobSeekers,
         totalCategories,
         totalAgents, newAgents,
-        totalInfluencers, newInfluencers
+        totalInfluencers, newInfluencers,
+        totalCommissionAds,newCommissionAds
       }) )
     }
   }
@@ -75,7 +78,7 @@ const Home = () => {
         <DashCardInfo count={counts.totalInfluencers} title="Influencers" newAdded={counts.newInfluencers} action={() => navigate("/admin/agents/influencers")} />
         <DashCardInfo count={counts.totalCategories} title="Categories" action={() => navigate("/admin")} />
         <DashCardInfo count={(webVisits && webVisits.length) + 45000 || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} action={() => {}} />
-          <DashCardInfo count={onlineUsers} title={"Online Users"} newAdded={0} action={() => {}} />
+          <DashCardInfo count={counts.totalCommissionAds} title={"Commission Ads"} newAdded={counts.newCommissionAds} action={() => navigate('/admin/adverts/approved-commission-ads')} />
       </AdminRow>
       <AdminRow>
         <DashTitle><h3>Website Visits</h3></DashTitle>

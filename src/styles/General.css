@@ -1895,7 +1895,100 @@ textarea{
      font-size: 0.9rem;
      font-weight: 600;
      color: var(--text-color-para1);
+}
 
+.user-subscriptions-container {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-between;
+     gap: 10px;
+     margin-block: 20px;
+}
+
+.user-subscriptions-container  .title{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     gap: 20px;
+}
+
+.user-subscriptions-container  .title h3{
+     font-size: 1.4rem;
+     font-weight: 800;
+     color: var(--text-color-para1);
+}
+
+.user-subscriptions-container  .title span{
+     font-size: 1rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
+.user-subscription-card{
+     width: 45%;
+     display: flex;
+     flex-direction: row;
+     align-items:flex-start;
+     justify-content: space-between;
+     border-radius: 10px;
+     padding: 5px;
+     border: 2px solid var(--text-color-para1);
+     flex-wrap: wrap;
+}
+
+.user-subscription-card.pending{
+     border-color: var(--back-color-gold2);
+     border-style: dashed;
+     color: var(--text-color-para1);
+}
+
+.user-subscription-card.rejected{
+     border-color: var(--back-color-red1);
+     border-style: ridge;
+     color: var(--text-color-para2);
+}
+
+.user-subscription-card.Approved{
+     border-color: var(--featured-plan);
+     border-style: solid;
+     color: var(--text-color-title);
+}
+
+.user-subscription-card.expired{
+     border-color: var(--gray-text);
+     color:var(--gray-text);
+}
+
+.user-subscription-card .col{
+     width: 50%;
+     display: flex;
+     flex-direction: row;
+     gap: 2.5px;
+     align-items: center;
+     flex-wrap: wrap;
+}
+
+.user-subscription-card .col .row{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     gap: 4px;
+     justify-content: flex-start;
+}
+
+.user-subscription-card .col .row span{
+     font-size: 0.8rem;
+     font-weight: 500;
+     letter-spacing: 0.45px;
+}
+
+.user-subscription-card .col .row b {
+     font-size: 0.85rem;
+     font-weight: 700;
 }
 .image-slider{
      width: 100%;
@@ -2536,10 +2629,17 @@ textarea{
      width: auto;
 }
 
+
 .actionBtn:hover{
      background-color: var(--white-text);
      cursor: pointer;
      color: var(--back-color-gold2);
+}
+
+.actionBtn.small{
+     margin: 2px 2.5px;
+     font-size: 0.8rem;
+     font-weight: 600;
 }
 
 .submit-btn{

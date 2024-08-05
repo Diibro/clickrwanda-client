@@ -11,5 +11,14 @@ export default {
                console.log(error);
                return null
           }
+     },
+     getAdverts: async(type) => {
+          try {
+               const res = await axios.get(`${Server.admin.getAdverts}?type=${type}`);
+               return res.data;
+          } catch (error) {
+               console.log(error);
+               return null
+          }
      }
 }

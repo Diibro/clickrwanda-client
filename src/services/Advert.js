@@ -118,5 +118,14 @@ export default {
                console.log(error);
                return null;
           }
-     }
+     },
+     getClientApprovedCommissionAds: async (ops) => {
+          try {
+               const res = await axios.post(Server.advert.getClientCommissionAds, ops);
+               return res.data;
+          } catch (error) {
+               console.log(error);
+               return null
+          }
+     } 
 }

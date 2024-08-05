@@ -20,7 +20,8 @@ export default {
           adsByLocation: `${serverUrl}/api/advert/get-by-location`,
           getCountsByLocation: `${serverUrl}/api/advert/get-counts-by-location`,
           getByCategory: `${serverUrl}/api/advert/get-by-category`,
-          getBySubCategory: `${serverUrl}/api/advert/get-by-sub-category`
+          getBySubCategory: `${serverUrl}/api/advert/get-by-sub-category`,
+          getClientCommissionAds: `${serverUrl}/api/advert/get-client-approved-commission-ads`
      },
      agent: {
           getAll: `${serverUrl}/api/agent/1`,
@@ -107,6 +108,7 @@ export default {
           findByAgent: `${serverUrl}/api/agent-task/find-by-agent`,
      },
      admin: {
-          countAll: `${serverUrl}/api/admin/count-all`
+          countAll: `${serverUrl}/api/admin/count-all`,
+          getAdverts: `${serverUrl}/api/admin/adverts`
      }
 }

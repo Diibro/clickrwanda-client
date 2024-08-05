@@ -46,7 +46,8 @@ export const formatPriceV1 = (price) => {
 
 
 export const formatPrice = (price) => {
-     const priceString = price.toString();
+  if(price){
+    const priceString = price.toString();
 
      const [integerPart, decimalPart] = priceString.split('.');
 
@@ -55,6 +56,10 @@ export const formatPrice = (price) => {
      const formattedPrice = decimalPart ? `${formattedIntegerPart}.${decimalPart}` : formattedIntegerPart;
 
      return formattedPrice;
+  }else {
+    return 0;
+  }
+     
 } 
 
 export const getArrayOfNums = (num) => {

@@ -16,6 +16,22 @@ export const BecomeSeller = () => {
      )
 }
 
+export const ExploreHotDeals = () => {
+     const navigate = useNavigate();
+
+     return (
+          <div className="become-seller-section">
+               <div className="title">
+                    <h4>Discover the best deals on ClickRwanda</h4>
+               </div>
+               <div className="content">
+                    <p>View the best products, services, discounts from our verified sellers on our market place.</p>
+                    <p>Click the view button to visit our market place <ActionBtn title="View Market Place" action={() => {}} /></p>
+               </div>
+          </div>
+     )
+}
+
 export const MakeMoneySection = () => {
      const navigate = useNavigate();
 

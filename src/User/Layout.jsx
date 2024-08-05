@@ -10,6 +10,7 @@ import { UserReviews } from "./Reviews";
 import { ContentContainer, MainContainer, NavContainer } from "./components/DashboardComponents";
 import ShopStatistics from "./ShopStatistics";
 import UserPlansPage from "./UserPlansPage";
+import BoostAdsPage from "./BoostAdsPage";
 
 const UserLayout = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const UserLayout = () => {
             <Route path="/statistics" element={<ShopStatistics />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/user-plans" element={<UserPlansPage />} />
+            <Route path="/boost-ads" element={<BoostAdsPage />} />
           </Routes>
         </ContentContainer>
         

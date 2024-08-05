@@ -261,7 +261,7 @@ export const extractDateOnly = (dateTimeString) => {
      const day = String(date.getUTCDate()).padStart(2, '0');
 
      // Format the date as YYYY-MM-DD
-     const formattedDate = `${day} - ${month} - ${year}`;
+     const formattedDate = `${day}/${month}/${year}`;
 
      return formattedDate;
 }
