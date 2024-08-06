@@ -9,8 +9,7 @@ import { showNotification, toggleForms } from "../../../utils/AdminFunctions";
 import { AnyImage } from "../../../components/static/Image";
 
 const DashAdvertCard = ({advert}) => {
-     const [adminData, setAdminData ] = useContext(AdminContext);
-     const {adverts } = adminData;
+     const [,setAdminData ] = useContext(AdminContext);
      const [loading, setLoading] = useState(false);
      const [loadingMessage, setLoadingMessage] = useState("loading");
      const [isNew, setIsNew] = useState(false);
@@ -19,18 +18,16 @@ const DashAdvertCard = ({advert}) => {
           try {
                setLoadingMessage("deleting");
                setLoading(true);
-               console.log(advert);
                const res = await server.deleteUserAd(advert);
-               console.log(res);
                if(res.status === "pass") {
                     setAdminData(prev => ({
                          ...prev,
-                         adverts:adverts.filter(ad => ad.ad_id !== advert.ad_id),
                          notification: {
                               type: "pass",
                               message: res.message
                          }
-                    })) 
+                    }));
+                    window.location.reload();
                }else {
                     setAdminData(prev => ({
                          ...prev,
@@ -66,7 +63,7 @@ const DashAdvertCard = ({advert}) => {
           if(advert && isNewToday(advert.ad_date)){
                setIsNew(true);
           }
-     }, [])
+     }, []);
      return (
      <div className="admin-advert-card">
           {isNew ? <span className="new-ad-tag">New</span>: null}
@@ -109,6 +106,7 @@ DashAdvertCardLoad.propTypes = {
 }
 
 DashAdvertCard.propTypes = {
-     advert: PropTypes.object.isRequired
+     advert: PropTypes.object.isRequired,
+     cb: PropTypes.func
 }
 export default DashAdvertCard

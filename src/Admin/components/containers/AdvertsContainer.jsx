@@ -41,7 +41,7 @@ const AdvertsContainer = ({adverts}) => {
                !adverts || !adverts[0] ? 
                <p>No adverts found</p> :
                <>
-               {adsRendered && adsRendered.map((advert) => <DashAdvertCard advert={advert} key={advert.ad_id} />)}
+               {adsRendered && adsRendered.map((advert) => <DashAdvertCard advert={advert}  key={advert.ad_id} />)}
 
                <div className="pagination">
                     <i onClick={() => changePage(currentPage - 1)} className="nav">

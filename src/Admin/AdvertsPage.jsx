@@ -8,6 +8,7 @@ import { Link, Route, Routes, useLocation } from "react-router-dom"
 import Loading from "../components/static/Loading"
 import AdminService from '../services/Admin';
 
+
 const AdvertsPage = () => {
      return (
      <>
