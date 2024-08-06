@@ -5987,6 +5987,7 @@ textarea{
 }
 .admin-agents-nav-bar{
      width: auto;
+     max-width: 100%;
      display: flex;
      flex-direction: row;
      align-items: center;
@@ -5995,6 +5996,7 @@ textarea{
      background-color: var(--white-text);
      padding: 5px 10px;
      border-radius: 20px;
+     overflow-x: auto;
 }
 
 .admin-agents-nav-bar a {
@@ -6004,6 +6006,7 @@ textarea{
      font-weight: 600;
      transition: all 0.4s ease;
      border-radius: 10px;
+     min-width: 80px;
 }
 
 .admin-agents-nav-bar a:hover{

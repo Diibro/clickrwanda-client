@@ -16,7 +16,7 @@ const SubscriptionCard = ({subscription, actions}) => {
                     subscription.status !== "Approved" ? <EditButton title='Approve' action={actions.approve} /> : null
                }
                {
-                    subscription.status !== "Approved" && subscription.status !== "rejected"  ? <DeleteButton title='Reject' action={actions.reject} /> : null
+                    subscription.status !== "rejected"  ? <DeleteButton title='Reject' action={actions.reject} /> : null
                }
           </div>
      )

@@ -19,7 +19,9 @@ const DashAdvertCard = ({advert}) => {
           try {
                setLoadingMessage("deleting");
                setLoading(true);
+               console.log(advert);
                const res = await server.deleteUserAd(advert);
+               console.log(res);
                if(res.status === "pass") {
                     setAdminData(prev => ({
                          ...prev,

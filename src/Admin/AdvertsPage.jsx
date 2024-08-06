@@ -98,6 +98,7 @@ const ApprovedAds = () => {
           try {
                setLoading(true);
                const res = await AdminService.getAdverts('approved-ads');
+               console.log(res.data);
                if(res) {
                     setAds(res.data);
                     setDisplayAds(res.data);
@@ -169,6 +170,7 @@ const ApprovedCommissionAds = () => {
           try {
                setLoading(true);
                const res = await AdminService.getAdverts('approved-commission-ads');
+               console.log(res.data);
                if(res) {
                     setAds(res.data);
                     setDisplayAds(res.data);
