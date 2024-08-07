@@ -19,11 +19,12 @@ import { getLocations } from "../utils/locations";
 import CategoryService from "../services/Category";
 import AgentService from "../services/Agent";
 import UserService from "../services/User";
-import AdvertService from "../services/Advert";
+// import AdvertService from "../services/Advert";
 import SubCategoryService from "../services/SubCategory";
 import WebViewService from "../services/WebView";
 import PayPlanService from "../services/PaymentPlan";
 import Plans from "./Plans";
+import MessagePage from "./MessagePage";
 
 export const AdminContext = createContext();
 
@@ -102,6 +103,7 @@ const AdminLayout = () => {
                                    <Route path="/settings" element={<Settings />} />
                                    <Route path="/shops" element={<ShopsPage />} />
                                    <Route path="/plans/*" element={<Plans />} />
+                                   <Route path="/messages/*" element={<MessagePage />}/>
                                    <Route path="/logout" element={<Logout />} />
                               </Routes>
                          </div>

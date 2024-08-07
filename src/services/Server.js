@@ -110,5 +110,11 @@ export default {
      admin: {
           countAll: `${serverUrl}/api/admin/count-all`,
           getAdverts: `${serverUrl}/api/admin/adverts`
+     },
+     commissionAdsClients: {
+          add: `${serverUrl}/api/commission-ads-clients/add`,
+          update: `${serverUrl}/api/commission-ads-clients/update`,
+          findAll: `${serverUrl}/api/commission-ads-clients/find-all`,
+          findByAgent: `${serverUrl}/api/commission-ads-clients/find-by-agent`,
      }
 }

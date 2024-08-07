@@ -11,7 +11,6 @@ import { getAddedThisMonth, getAddedThisWeek, getAddedThisYear, getAddedToday, g
 import WebVisitCard from "./components/cards/WebVisitCard"
 import WebVisitsLineChart from "./components/containers/WebVisitsLineChart"
 import { useNavigate } from "react-router-dom"
-import AppData from "../Contexts/AppContext"
 import adminService from "../services/Admin";
 
 const Home = () => {
@@ -25,9 +24,7 @@ const Home = () => {
     totalInfluencers: 0, newInfluencers:0,
 
   });
-  const [data] = useContext(AppData);
-  const {onlineUsers} = data;
-  const {categories,agents,shops,adverts, webVisits} = adminData;
+  const {agents,shops,adverts, webVisits} = adminData;
   const navigate = useNavigate();
   const fetchCounts = async() => {
     const res = await adminService.countAll();
@@ -40,7 +37,8 @@ const Home = () => {
         totalCategories,
         totalAgents, newAgents,
         totalInfluencers, newInfluencers,
-        totalCommissionAds,newCommissionAds
+        totalCommissionAds,newCommissionAds,
+        totalCommissionAdsClients, newCommissionAdsClients
       } = res.data;
       setCounts((prev) => ({
         ...prev,
@@ -50,7 +48,8 @@ const Home = () => {
         totalCategories,
         totalAgents, newAgents,
         totalInfluencers, newInfluencers,
-        totalCommissionAds,newCommissionAds
+        totalCommissionAds,newCommissionAds,
+        totalCommissionAdsClients, newCommissionAdsClients
       }) )
     }
   }
@@ -78,7 +77,8 @@ const Home = () => {
         <DashCardInfo count={counts.totalInfluencers} title="Influencers" newAdded={counts.newInfluencers} action={() => navigate("/admin/agents/influencers")} />
         <DashCardInfo count={counts.totalCategories} title="Categories" action={() => navigate("/admin")} />
         <DashCardInfo count={(webVisits && webVisits.length) + 45000 || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} action={() => {}} />
-          <DashCardInfo count={counts.totalCommissionAds} title={"Commission Ads"} newAdded={counts.newCommissionAds} action={() => navigate('/admin/adverts/approved-commission-ads')} />
+        <DashCardInfo count={counts.totalCommissionAds} title={"Commission Ads"} newAdded={counts.newCommissionAds} action={() => navigate('/admin/adverts/approved-commission-ads')} />
+        <DashCardInfo count={counts.totalCommissionAdsClients} title={"Commission Ads Clients"} newAdded={counts.newCommissionAdsClients} action={() => navigate('/admin/messages')} />
       </AdminRow>
       <AdminRow>
         <DashTitle><h3>Website Visits</h3></DashTitle>

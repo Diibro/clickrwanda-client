@@ -1684,7 +1684,7 @@ textarea{
 .vendor-page-header img{
      position: absolute;
      max-width: 80px;
-     border-radius: 50%;
+     border-radius: 15px;
      bottom: -40px;
      border: 1.5px solid var(--back-color-gold2);
      max-height: 80px;
@@ -5136,8 +5136,9 @@ textarea{
      justify-content: center;
 }
 .advert-page-mainAdvert .col .vendor img{
-     width: clamp(30px, 40%, 100px);
-     border-radius: 50%;
+     max-width: 100px;
+     max-height: 100px;
+     border-radius: 15px;
      margin: 5px auto;
      border: 2px solid var(--back-color-gold2);
      transition: all 0.4s;

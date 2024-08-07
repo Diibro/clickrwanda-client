@@ -1,15 +1,18 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import AppData from "../../Contexts/AppContext"
 import { ImCross } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { showMainNotification } from "../../utils/AdminFunctions";
 import server from "../../config/Server";
+import CommissionAdsClients from "../../services/CommissionAdsClients";
+import { getDateToday } from "../../utils/dateFunctions";
 
 const ContactSeller = () => {
      const [data,setData]  = useContext(AppData);
      const {contactAd} = data;
      const [showNumber,setShowNumber] = useState(false)
      const [message, setMessage] = useState(null);
+     const location = useLocation();
 
      const closeForm = () => {
           setShowNumber(false)
@@ -18,24 +21,24 @@ const ContactSeller = () => {
 
      const submitMessage = async(e) => {
           e.preventDefault();
-          const data = !contactAd.commission ?  
+          const data = !contactAd.commission ?
                {
                     name: message.phone,
                     message: message.message,
                     user_id: contactAd.user_id,
                     ad_id: contactAd.ad_id,
                     review_type: "message"
-               } 
-               :
-               {
-                    name: message.phone,
+               } : {
+                    name: message.name,
+                    phone: message.phone,
                     message: message.message,
                     user_id: contactAd.user_id,
                     ad_id: contactAd.ad_id,
-                    review_type: "message"
+                    r_id: message.r_id,
+                    contact_date: getDateToday(),
                }
 
-          const info = await server.reviews.addAdReview(data);
+          const info = !contactAd.commission ? await server.reviews.addAdReview(data) : await CommissionAdsClients.save(data)
           if(info.status === 'pass'){
                showMainNotification("pass", "Successfully sent the message", closeForm);
           }else{
@@ -43,6 +46,16 @@ const ContactSeller = () => {
           }
           
      } 
+
+     useEffect(() => {
+          const arr = location.search.split('?=');
+          if(arr.length){
+               const r_id = arr[arr.length - 1];
+               if(r_id && r_id.startsWith('agent_')){
+                    setMessage((prev) => ({...prev, r_id}));
+               }
+          }
+     },[])
 
      return ( 
           <>
@@ -54,9 +67,9 @@ const ContactSeller = () => {
                                    <div className="seller-profile">
                                         <img src={contactAd.profile_image} alt={`${contactAd.username}-user-image`} />
                                         <div className="profile">
-                                             <b>{contactAd.username}</b>
+                                             <b>{contactAd.username || contactAd.full_name}</b>
                                              {
-                                                  !showNumber ? <span onClick={() => setShowNumber(true)}>Show number</span> : <a href={`tel:${contactAd?.contact || contactAd?.user_phone || '+250 780 795 232'}`}>{contactAd?.contact || contactAd?.user_phone || '+250 780 795 232'}(Call)</a>
+                                                  !showNumber ? <span onClick={() => setShowNumber(true)}>Show number</span> : <a href={`tel:${contactAd.commission ? '+250739399391' : contactAd?.contact || '+250 739 399 391'}`}>{contactAd.commission ? '+250 739 399 391' : contactAd?.contact || '+250 739 399 391'}(Call)</a>
                                              }
                                         </div>
                                    </div>

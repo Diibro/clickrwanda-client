@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import {  fetchIds, getItemUrl } from "../utils/urlFunctions";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunctions";
 import { jsonParserV1, parseString } from "../utils/jsonFunctions";
 import { FaEye, FaLocationDot, FaPhone } from "react-icons/fa6";
@@ -22,8 +22,11 @@ import { Helmet } from 'react-helmet-async';
 import AdvertService from "../services/Advert";
 import AdvertsContainer from "../components/containers/AdvertsContainer";
 import JobSeekerPageContainer from "../jobSeeker/components/containers/JobSeekerPageContainer";
+import { ActionBtn } from "../components/dynamic/Buttons";
+import AppData from "../Contexts/AppContext";
 
 const AdvertPage = () => {
+     const [ , setData ] = useContext(AppData);
      const location = useLocation();
      const [loading, setLoading] = useState(false);
      const [adViewed, setAdViewed] = useState(null);
@@ -34,6 +37,10 @@ const AdvertPage = () => {
      const [adDescription,setAdDescription] = useState(null);
      const [totalVendorViews, setTotalVendorviews] = useState(0);
      const [totalVendorAds,setTotalVendorAds] = useState(0); 
+
+     const showContactSeller = () => {
+          setData((prev) => ({...prev, contactAd: adViewed}));
+     }
 
      const{ v_id:adId} = fetchIds(location);
 
@@ -52,22 +59,6 @@ const AdvertPage = () => {
      const updateAdViewed = async () => {
           let check = 0;
           try {
-               // let adDatas =  getData('adViewed');
-               // if(adDatas){
-               //      try {
-               //           const ad = adDatas.adData;
-               //           if(ad && adId === ad.ad_id){
-               //                // const {sameCategory, sameSubCategory} = adDatas;
-               //                setAdViewed(ad);
-               //                setMainImage(ad?.ad_image);
-               //                setAdDescription(parseString(ad.description));
-               //                check = 1;
-               //           }
-               //      } catch (error) {
-               //           check = 0;
-               //      }
-                    
-               // }
 
                if(check === 0){
                     setLoading(true);
@@ -93,6 +84,7 @@ const AdvertPage = () => {
                window.scrollTo(0,0);
                (async () => await updateAdViewed())();
      }, [location.search]);
+
      useEffect(() => {
           if(adViewed){
                (async() => await updateSimilarAds())();
@@ -170,9 +162,16 @@ const AdvertPage = () => {
                                                                  <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {formatPrice(totalVendorAds)} Ads</a></p>
                                                                  <p className="vendor-views"><i><FaEye /></i>  {totalVendorViews} views</p>
                                                             </div>
-                                                            <p className="vendor-views"><Link to={`tel:${adViewed?.user_phone}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
-                                                            <p className="vendor-views"><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
+                                                            {
+                                                                 !adViewed.commission ? 
+                                                                      <>
+                                                                           <p className="vendor-views"><Link to={`tel:${adViewed?.contact}`}><i><FaPhone/></i>{adViewed?.user_phone}</Link></p>
+                                                                           <p className="vendor-views"><Link to={`mailto:${adViewed?.user_email}`}><i><MdMail /></i>{adViewed?.user_email}</Link></p>
+                                                                      </>
+                                                                 :null
+                                                            }
                                                             <p className="vendor-views"><a href={`https://www.google.com/maps/place/${adViewed.user_location.location}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot/></i> {adViewed?.user_location.location}</a></p>
+                                                            <ActionBtn title="Contact Seller" action={showContactSeller} />
                                                        </div>
                                                   }
                                              </div>

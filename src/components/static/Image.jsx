@@ -124,7 +124,8 @@ export const CImage = ({image}) => {
   return (
     <div className="c-image" style={containerStyles}>
       {isLoading ?
-        <img src={ImageLoader} alt="Loading..." style={loaderStyle} />
+        null
+        // <img src={ImageLoader} alt="Loading..." style={loaderStyle} />
       :
       <img
         ref={imgRef}
