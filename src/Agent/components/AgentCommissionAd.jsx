@@ -1,17 +1,29 @@
 import PropTypes from 'prop-types';
-import { CImage } from '../../components/static/Image';
+import { formatPrice } from '../../utils/otherFunctions';
 
 const AgentCommissionAd = ({ad}) => {
      return (
-          <div className="agent-commission-product-card">
+          <div className="product-square-container">
                <div className="ad-image">
-                    <CImage image={ad.ad_image} />
+                    <img src={ad?.ad_image} alt="ad-image" />
                </div>
                <div className="content">
-                    <h4 className='ad-title'>{ad.ad_name}</h4>
-                    <p className="ad-price">Price:{ad.ad_price}</p>
-                    <p>Commission: {ad.commission}</p>
-                    <p>Status: {ad.status}</p>
+                    <h5 className='ad-title'><span>{ad?.ad_name}</span></h5>
+                    <div className="agent-advert-row">
+                         <b>Price:</b>
+                         <span className="ad-price">Rwf {formatPrice(ad.ad_price)}</span>
+                    </div>
+                    <div className="agent-advert-row">
+                         <b>Commission:</b>
+                         <span>Rwf {formatPrice((70*ad.ad_price*ad.commission)/10000)}</span>
+                    </div>
+                    <div className="agent-advert-row">
+                         <b>Status: </b>
+                         {ad.status === 'pending' 
+                         ? <span style={{color:'#925602'}}>{ad.status}</span>
+                         : ad.status ==='Approved' ? <span style={{color: '#28C238'}}>{ad.status}</span> 
+                         : <span style={{color: '#FA3C53'}}>{ad.status}</span>}
+                    </div>
                </div>
           </div>
      )

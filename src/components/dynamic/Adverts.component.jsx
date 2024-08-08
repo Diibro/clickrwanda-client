@@ -9,7 +9,7 @@ import server from "../../config/Server";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import DeviceView from "../../Contexts/ViewContext";
+// import DeviceView from "../../Contexts/ViewContext";
 import { LoadingAd } from "./LoadinComponents";
 import { getArrayOfNums } from "../../utils/otherFunctions";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -28,10 +28,7 @@ export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
       const content = t("homePage.newAdsSection", {returnObjects:true});
       const [data] = useContext(AppData);
-      const [deviceView] = useContext(DeviceView)
-      const { isMobile, isTablet} = deviceView
       const {adverts, changingPage} = data;
-      let adLimit = isTablet || isMobile ? 19 : 24;
 
       if(limit != 0 && adverts && adverts[0] && adverts != "no data found") {
         return(
@@ -45,7 +42,6 @@ export const Adverts = ({eleId,limit}) => {
                 adverts.map((item, index) => ( index <= limit ? (
                   <>
                     <AdvertRenderer key={`home_new_ads-${eleId + item.ad_id}`} item={item}/>
-                  {index === adLimit ? <Banner728x90 /> : null}
                   </>
                   
                 ) : null))

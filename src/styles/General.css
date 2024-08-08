@@ -4310,6 +4310,26 @@ textarea{
 
 }
 
+.agent-advert-row{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     gap: 5px;
+}
+
+.agent-advert-row b {
+     font-size: 0.8rem;
+     color: var(--text-color-para1);
+}
+
+.agent-advert-row span{
+     font-size: 0.85rem;
+     color: var(--text-color-title);
+     font-weight: 800;
+}
+
 .ad-image:hover{
      cursor: pointer;
 }
