@@ -75,6 +75,8 @@ const DashAdvertCard = ({advert}) => {
                <div className="row">
                     <h4>{capitalizeString(advert.ad_name)}</h4>
                     <span>Price: Rwf {formatPrice(advert.ad_price)}</span>
+                    {advert.commission ? <span>Commission: {advert.commission}%</span> : null}
+                    {advert.contact ? <span>Owner: {advert.contact}</span> : null }
                </div>
                <div className="row">
                     <p>Added {formatTimeAgo(advert.ad_date)}</p>

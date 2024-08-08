@@ -146,10 +146,14 @@ export const AddAdvertForm = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      // const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.adverts);
-      const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.temp);
-      // const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.adverts);
-      const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.temp);
+      if(!adInfo.contact || adInfo.contact.length != 10){
+        return showMainNotification('fail', 'invalid contact number. must be 10 digits', () => {});
+      }
+      const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.adverts);
+      // const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.temp);
+      const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.adverts);
+      // const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.temp);
+      
       const newAd = {
         ad_name: adInfo.ad_name,
         description: adDescription,
