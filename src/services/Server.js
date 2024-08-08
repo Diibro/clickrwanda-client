@@ -28,7 +28,9 @@ export default {
           save: `${serverUrl}/api/agent/2`,
           update: `${serverUrl}/api/agent/3`,
           login: `${serverUrl}/api/agent/login`,
-          resetPassword: `${serverUrl}/api/agent/reset-password`
+          resetPassword: `${serverUrl}/api/agent/reset-password`,
+          getCounts: `${serverUrl}/api/agent/get-counts`,
+          getCommissionAdsByAgent: `${serverUrl}/api/agent/get-commission-ads-by-agent`
      },
      agentPayment: {
           getAll: `${serverUrl}/api/agent-pay/get-all`,

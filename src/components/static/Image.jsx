@@ -67,11 +67,11 @@ export const CImage = ({image}) => {
     position: 'relative'
   };
 
-  const loaderStyle = {
-    width: '50px',
-    height: '50px',
-    marginBlock: "10px"
-  };
+  // const loaderStyle = {
+  //   width: '50px',
+  //   height: '50px',
+  //   marginBlock: "10px"
+  // };
 
   useEffect(() => {
     const img = new Image();

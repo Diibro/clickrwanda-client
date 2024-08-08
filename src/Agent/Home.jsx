@@ -1,4 +1,4 @@
-import { useContext} from "react"
+import { useContext, useEffect, useState} from "react"
 import MainRow from "./components/MainRow"
 import { AgentContext } from "./AgentLayout";
 import AgentPaymentService from "../services/AgentPayment"; 
@@ -9,10 +9,12 @@ import AgentContentCard from "./components/AgentContentCard";
 import { countVisits } from "../utils/agentFunctions";
 import { useNavigate } from "react-router-dom";
 import { copyToClipboard } from "../utils/otherFunctions";
+import AgentService from "../services/Agent";
 
 const Home = () => {
      const [agentData,setAgentData] = useContext(AgentContext);
-     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits,packageSold,commissionShops} = agentData;
+     const {agentInfo,totalAmount,payments, referrals, webVisitsRef:webVisits,packageSold} = agentData;
+     const [commissionAdsNo,setCommissionAdsNo] = useState(0);
      const navigate = useNavigate();
 
      const claimPayment = async () => {
@@ -45,12 +47,20 @@ const Home = () => {
      }
 
      const showAddAdForm = () => {
-          if(commissionShops.length) {
-               return navigate('/forms/add-advert');
-          }else{
-               return showMainNotification('fail', "No Commission shops you have.", () => {})
-          }
+          navigate(`/forms/add-advert?=commission?=${agentInfo.agent_id}`);
      }
+
+     useEffect(() => {
+          if(agentInfo){
+               (async() => {
+                    const res = await AgentService.getCounts({agent_id: agentInfo.agent_id});
+                    if(res){
+                         const {data} = res;
+                         setCommissionAdsNo(data.commissionAdsCount);
+                    }
+               })();
+          }
+     },[agentInfo]);
      return (
      <>
           <MainRow>
@@ -67,10 +77,10 @@ const Home = () => {
           {
                agentInfo?.agent_type !== 'influencer' ?
                     <MainRow>
-                         <AgentContentCard content={{title: "Packages Sold", count: packageSold?.length || 0}} />
-                         <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0}} />
-                         <AgentContentCard content={{title: "Commission Shops", count: commissionShops?.length || 0}} />
-                         <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad")}} />
+                         <AgentContentCard content={{title: "Packages Sold", count: packageSold?.length || 0, clickAction: () => navigate('/agent/referrals#agent-packages-solid')}} />
+                         <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0, clickAction: () => navigate('/agent/referrals#agent-shops-opened')}} />
+                         <AgentContentCard content={{title: "Commission Products", count: commissionAdsNo, clickAction: () => navigate('/agent/commission-products')}} />
+                         <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad"), clickAction: () => navigate('/agent/referrals#agent-advert-visits')}} />
                          {/* <AgentContentCard content={{title: "Shops Opened", count: 0}} />
                          <AgentContentCard content={{title: "Shops Opened", count: 0}} /> */}
                     </MainRow>               
@@ -111,8 +121,7 @@ const Home = () => {
                          <div className="agent-content-card">
                               <h4>4. Earn Commission on products.</h4>
                               <p>Click Rwanda pays 70% of the commission earned upon successful transaction of the producsts brought by the agents.</p>
-                              <p>To get started, deal with a shop or seller. Create for them a shop on click Rwanda using your agent-shop sign link, click to copy the link <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
-                              <p>Subscribe to the Commision package for sellers. Once Approved, start uploading the seller&apos;s products by clicking the button below.</p>
+                              <p>To post a deal on clickrwanda market click the button below and fill in the information of deal or product and you will be paid 70% of the commission earned upon successful transaction of the deal.</p>
                               <p><button onClick={showAddAdForm}>Post Commission Deals</button></p>
                          </div>
                     </> : 

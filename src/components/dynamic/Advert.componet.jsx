@@ -75,7 +75,7 @@ export const ProductSquare = ({image, title, price, plan, action, category,categ
                {discount ? <span className='advert-discount'>- {discount}%</span> : null}
                {/* <i className='product-share-icon' onClick={() => showButtons(link,image, title)}><FaShareAlt/></i> */}
                <div className="ad-image">
-               <div className='background-img' style={{backgroundImage:`url(${image})`}} ></div>
+                    <div className='background-img' style={{backgroundImage:`url(${image})`}} ></div>
                     {/* <img src={image} alt={title} onClick={action} loading='lazy' /> */}
                     <CImage image={{src:image, alt:title, action}}  />
                </div>

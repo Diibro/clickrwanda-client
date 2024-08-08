@@ -4304,6 +4304,7 @@ textarea{
 .ad-image img{
      max-height: 100%;
      max-width: 100%;
+     width: auto;
      border-radius: 0px;
      /* box-shadow: 0.2px 0.2px 3px var(--text-color-para1); */
 
@@ -7284,6 +7285,7 @@ textarea{
      margin: 10px auto;
      padding: 20px 10px;
      justify-self: flex-start;
+     cursor: pointer;
 }
 
 .agent-home-content-card b {
@@ -7329,6 +7331,26 @@ textarea{
      font-size: 0.9rem;
      font-weight: 500;
      color: var(--back-color-blue2);
+}
+
+.agent-commission-products-container{
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: flex-start;
+     flex-wrap: wrap;
+     gap: 10px;
+}
+
+.agent-commission-product-card{
+     width: 23%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border: 1.2px solid var(--back-color-gold2);
+     border-radius: 10px;
+
 }
 /* end of agent styles */
 

@@ -64,6 +64,7 @@ export const UserProvider = ({children}) => {
                     reviews: data?.userReviews
                }));
           }
+          
           if(userSubscriptionsRes){
                const subs = userSubscriptionsRes.data;
                let userActiveSubscription = null;
@@ -93,7 +94,10 @@ export const UserProvider = ({children}) => {
      }
 
      useEffect(() => {
-          if(
+          if(location.pathname.startsWith('/forms/add-advert') && location.search.split('?=')[2]){
+               return;
+          }
+          else if(
                location.pathname.startsWith('/user-dashboard') 
                || location.pathname.startsWith("/plan-payment" ) 
                || location.pathname.startsWith('/forms/add-advert')

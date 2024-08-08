@@ -14,6 +14,7 @@ import AgentPlans from "./AgentPlans";
 import PlanSubscriptionService from "../services/PlanSubscription";
 import AgentTaskService from "../services/AgentTask";
 import UserContext from "../Contexts/UserContext";
+import CommissionProducts from "./CommissionProducts";
 
 export const AgentContext = createContext();
 
@@ -98,6 +99,7 @@ const AgentLayout = () => {
                          <Route path="/payments" element={<Payments />} />
                          <Route path="/pay-plans" element={<AgentPlans />} />
                          <Route path="/logout" element={<AgentLogout />} />
+                         <Route path="/commission-products" element={<CommissionProducts />} />
                     </Routes>
                </div>
           </div>

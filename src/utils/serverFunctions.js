@@ -94,9 +94,12 @@ export const getUserAds = async (url) => {
 
 export const addAdvert = async (url, params) => {
   try {
+    console.log(params);
     const loginToken = sessionStorage.getItem('loginToken') || null;
+    const agentToken = sessionStorage.getItem('agentToken');
+    console.log(agentToken);
     const res = await axios.post(url, params, {headers: {
-      'Authorization': loginToken
+      'Authorization': loginToken || agentToken
     }});
     const info = await res.data;
     return info;
