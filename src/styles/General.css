@@ -7757,7 +7757,7 @@ textarea{
 }
 
 .premium-ad{
-     border: 1.8px solid var(--featured-plan);
+     border: 1.2px solid var(--featured-plan);
      border-radius: 5px;
 }
 
@@ -7766,7 +7766,7 @@ textarea{
 }
 
 .basic-ad{
-     border: 1.8px solid var(--basic-plan-color);
+     border: 1.2px solid var(--basic-plan-color);
      border-radius: 5px;
 }
 
@@ -7780,12 +7780,12 @@ textarea{
 }
 
 .deal-ad{
-     border: 1.8px solid var(--back-color-gold2);
+     border: 1.2px solid var(--back-color-gold2);
      border-radius: 5px;
 }
 
 .urgent-ad{
-     border: 1.8px solid var(--back-color-red1);
+     border: 1.2px solid var(--back-color-red1);
      border-radius: 5px;
 }
 
@@ -7793,7 +7793,7 @@ textarea{
      background-color: var(--back-color-blue2);
 }
 .enterprise-ad{
-     border: 1.4px solid var(--back-color-blue2);
+     border: 1.2px solid var(--back-color-blue2);
      border-radius: 5px;
 }
 
