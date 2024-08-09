@@ -4034,13 +4034,14 @@ textarea{
      flex-direction: column;
      align-items: center;
      justify-content: flex-start;
-     margin: 0px 0 10px;
      padding-bottom:5px;
-     border-radius: 10px;
+     border-radius: 2px;
      transition: all 0.5s;
      margin: 5px 3px;
-     border: 1.1px solid var(--text-color-para2);
+     /* border: 1.1px solid var(--text-color-title); */
+     /* box-shadow: 0.5px 0.5px 4px var(--text-color-para2); */
      overflow: hidden;
+     background-color: var(--light-gray);
 }
 
 .category-square:hover{
@@ -4066,9 +4067,17 @@ textarea{
      width: 100%;
      height: 100%;
 }
+
+.category-square .content{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 2.5px;
+     align-items: center;
+}
 .category-square h3{
      font-size: 0.75rem;
-     color: var(--text-color-black);
+     color: var(--text-color-title);
      font-weight: 600;
      margin-top:5px;
      max-width: 95%;

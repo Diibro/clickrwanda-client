@@ -206,12 +206,16 @@
      }
 
      .category-square{
-          width: 25%;
+          width: 30%;
           min-width: 100px;
      }
 
      .admin-category-card{
           width: 100%;
+     }
+
+     .categories-container {
+          gap: 2px;
      }
 }
 

@@ -24,7 +24,7 @@ import { useContext, useEffect, useState } from 'react';
 import AppData from '../../Contexts/AppContext';
 import { ImCross } from 'react-icons/im';
 import { ActionBtn } from './Buttons';
-import { copyToClipboard } from '../../utils/otherFunctions';
+import { copyToClipboard, formatPrice } from '../../utils/otherFunctions';
 import { AnyImage } from '../static/Image';
 
 export const SectionContainer = ({content, title, sectionType}) => {
@@ -48,11 +48,13 @@ export const CategoryContainerSquare = ({image, title, ads_no, view }) => {
      return (
           <div className="category-square" onClick={() => navigate(view)}>
                <div className="img">
-                    {/* <img src={image} alt={title} /> */}
-                    <AnyImage image={{src:image, alt: title, action: () => {}}} />
+                    <img src={image} alt={title} loading='lazy' />
+                    {/* <AnyImage image={{src:image, alt: title, action: () => {}}} /> */}
                </div>
-               <h3>{title}</h3>
-               <p className='small-paragraph'>{ads_no}</p>
+               <div className="content">
+                    <h3>{title}</h3>
+                    <p className='small-paragraph'>{formatPrice(ads_no)}</p>
+               </div>
           </div>
      )
 }
