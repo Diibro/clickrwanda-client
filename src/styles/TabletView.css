@@ -225,6 +225,8 @@
      .user-forms .form-container{
           width: 70%;
      }
+
+     
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -414,9 +416,8 @@
      }
 
      .category-square{
-          min-width: 18%;
           width: 22%;
-          margin: 0 2px 10px;
+          aspect-ratio: 100/95;
      }
      .web-usage-container{
           width: 90%;
@@ -572,7 +573,7 @@
      }
 
      .agent-task-container .row b {
-          width: 60;
+          width: 60%;
      }
      .contact-seller-view .contact-seller-container{
           width: 70%;
@@ -637,6 +638,10 @@
 
      .admin-advert-card{
           width: 90%;
+     }
+
+     .admin-category-card{
+          width: 70%;
      }
 }
 

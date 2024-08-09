@@ -129,7 +129,7 @@ export const AddAdvertForm = () => {
   const [isOffPlan, setIsOffPlan] = useState(false);
   const [commission, setCommission] = useState(null);
   const location = useLocation();
-  const commissionPercents = [];
+  const commissionPercents = [3];
 
   for(let i = 10; i <= 50;){
     commissionPercents.push(i);

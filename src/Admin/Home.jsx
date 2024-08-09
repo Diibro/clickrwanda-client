@@ -75,7 +75,7 @@ const Home = () => {
         <DashCardInfo count={counts.totalJobSeekers} title="Job Seekers" newAdded={counts.newJobSeekers || null} action={() => navigate("/admin")}/>
         <DashCardInfo count={counts.totalAgents} title="Agents" newAdded={agents ? getNewToday(agents, "registration_date") : null} action={() => navigate("/admin/agents")} />
         <DashCardInfo count={counts.totalInfluencers} title="Influencers" newAdded={counts.newInfluencers} action={() => navigate("/admin/agents/influencers")} />
-        <DashCardInfo count={counts.totalCategories} title="Categories" action={() => navigate("/admin")} />
+        <DashCardInfo count={counts.totalCategories} title="Categories" action={() => navigate("/admin/categories")} />
         <DashCardInfo count={(webVisits && webVisits.length) + 45000 || 0} title={"Web Visits"} newAdded={getNewToday(webVisits, "v_date")} action={() => {}} />
         <DashCardInfo count={counts.totalCommissionAds} title={"Commission Ads"} newAdded={counts.newCommissionAds} action={() => navigate('/admin/adverts/approved-commission-ads')} />
         <DashCardInfo count={counts.totalCommissionAdsClients} title={"Commission Ads Clients"} newAdded={counts.newCommissionAdsClients} action={() => navigate('/admin/messages')} />

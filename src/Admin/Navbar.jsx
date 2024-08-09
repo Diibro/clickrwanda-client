@@ -27,7 +27,7 @@ const Navbar = () => {
                <Link to={"/admin/agents"}><i><FaUserSecret /></i><span>Agents</span></Link>
                <Link to='/admin/adverts'><i><RiAdvertisementFill/></i><span>Adverts</span></Link>
                <Link to={"/admin/shops"}><i><FaShop/></i><span>Shops</span></Link>
-               <Link><i><BiCategory /></i><span>Categories</span></Link>
+               <Link to='/admin/categories' ><i><BiCategory /></i><span>Categories</span></Link>
                <Link to="/admin/plans"><i><FiPackage/></i><span>Plans</span></Link>
                {/* <Link to={"/admin/settings"}><i><IoSettings/></i><span>Settings</span></Link> */}
                <Link to={"/admin/messages"}><i><FaMessage /></i><span>Messages</span></Link>

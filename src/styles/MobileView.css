@@ -204,6 +204,15 @@
      .user-subscription-card{
           width: 95%;
      }
+
+     .category-square{
+          width: 25%;
+          min-width: 100px;
+     }
+
+     .admin-category-card{
+          width: 100%;
+     }
 }
 
 

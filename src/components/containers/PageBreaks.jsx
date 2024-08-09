@@ -17,7 +17,6 @@ export const BecomeSeller = () => {
 }
 
 export const ExploreHotDeals = () => {
-     const navigate = useNavigate();
 
      return (
           <div className="become-seller-section">
@@ -26,7 +25,7 @@ export const ExploreHotDeals = () => {
                </div>
                <div className="content">
                     <p>View the best products, services, discounts from our verified sellers on our market place.</p>
-                    <p>Click the view button to visit our market place <ActionBtn title="View Market Place" action={() => {}} /></p>
+                    <p>Discover best best deals and get home delivery at any place in Rwanda.</p>
                </div>
           </div>
      )

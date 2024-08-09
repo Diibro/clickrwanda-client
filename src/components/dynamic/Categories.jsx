@@ -29,7 +29,7 @@ const Categories = ({limit}) => {
                <InnerSection type="title" >
                     {content.title}
                </InnerSection>
-               <InnerSection type="content">
+               <div className='categories-container'>
                     {/* {Array.isArray(categories) && <TopDealsCard />} */}
                     {Array.isArray(categories) && limit != 0  ? categories.map(
                     (item, index) => index < limit && item.category_id !== "d5bc3430-c1ce-4802-be23-b243a40229e3d5bc3430-c1ce-4802-be23-b243a40229e3" ? <CategoryContainerSquare
@@ -50,7 +50,7 @@ const Categories = ({limit}) => {
                     )
                     : null}
                     {/* {limit !== 0 && <CategoryContainerSquare view={`/categories`} image={MoreIcon} title={`All Categories`} /> } */}
-               </InnerSection>
+               </div>
 
                {limit 
                     ? <InnerSection  type="more"><MoreLink content={{message: "View more Categories", icon: FaArrowRight, dest: '/categories'}} /> </InnerSection> 

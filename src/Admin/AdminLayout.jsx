@@ -25,6 +25,7 @@ import WebViewService from "../services/WebView";
 import PayPlanService from "../services/PaymentPlan";
 import Plans from "./Plans";
 import MessagePage from "./MessagePage";
+import CategoriesPage from "./CategoriesPage";
 
 export const AdminContext = createContext();
 
@@ -104,6 +105,7 @@ const AdminLayout = () => {
                                    <Route path="/shops" element={<ShopsPage />} />
                                    <Route path="/plans/*" element={<Plans />} />
                                    <Route path="/messages/*" element={<MessagePage />}/>
+                                   <Route path="/categories/*" element={<CategoriesPage />} />
                                    <Route path="/logout" element={<Logout />} />
                               </Routes>
                          </div>

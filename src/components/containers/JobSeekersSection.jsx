@@ -55,7 +55,7 @@ const JobSeekersSection = () => {
           <div className="container">
                <div className="ads-section-title">
                     <div className="title">
-                         <h3 className="main-title">Best Employees</h3>
+                         <h3 className="main-title">Hire me</h3>
                          <Link to='/category/Job-Seekers-CVs?=bed1566b-5901-4af9-ae80-708c293aa925'>View All</Link>
                     </div>
                     <div className="section-navigation">
