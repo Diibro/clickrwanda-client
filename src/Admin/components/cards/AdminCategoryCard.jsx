@@ -15,7 +15,8 @@ const AdminCategoryCard = ({item}) => {
           try {
                setLoading(true);
                if(catImage instanceof Blob) {
-                    const newCatIcon = await uploadFile(catImage, s3Folders.categories);
+                    // const newCatIcon = await uploadFile(catImage, s3Folders.categories);
+                    const newCatIcon = await uploadFile(catImage, s3Folders.temp);
                     const newCat = {
                          category_icon: newCatIcon,
                          category_name: item.category_name,

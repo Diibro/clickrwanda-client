@@ -21,7 +21,8 @@ export default {
           getCountsByLocation: `${serverUrl}/api/advert/get-counts-by-location`,
           getByCategory: `${serverUrl}/api/advert/get-by-category`,
           getBySubCategory: `${serverUrl}/api/advert/get-by-sub-category`,
-          getClientCommissionAds: `${serverUrl}/api/advert/get-client-approved-commission-ads`
+          getClientCommissionAds: `${serverUrl}/api/advert/get-client-approved-commission-ads`,
+          getCommissionAdsByCategory: `${serverUrl}/api/advert/get-commission-ads-by-category`
      },
      agent: {
           getAll: `${serverUrl}/api/agent/1`,

@@ -127,5 +127,14 @@ export default {
                console.log(error);
                return null
           }
+     },
+     getCommissionAdsByCategory: async(ops) => {
+          try {
+               const res = await axios.post(Server.advert.getCommissionAdsByCategory, ops);
+               return res.data;
+          } catch (error) {
+               console.log(error);
+               return null;
+          }
      } 
 }

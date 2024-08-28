@@ -341,6 +341,7 @@ export const AgentLoginForm = () => {
                               activeForm:'',
                               role: 'agent'
                          }));
+                         localStorage.setItem('user-type', 'agent');
                          return  showMainNotification("pass",res.message, () => navigate("/agent"));
                     }else{
                          return showMainNotification("fail",res.message, () => {});

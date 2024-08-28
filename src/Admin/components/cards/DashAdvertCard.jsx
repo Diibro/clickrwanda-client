@@ -6,7 +6,6 @@ import server from "../../../config/Server"
 import { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../AdminLayout";
 import { showNotification, toggleForms } from "../../../utils/AdminFunctions";
-import { AnyImage } from "../../../components/static/Image";
 
 const DashAdvertCard = ({advert}) => {
      const [,setAdminData ] = useContext(AdminContext);
@@ -68,8 +67,7 @@ const DashAdvertCard = ({advert}) => {
      <div className="admin-advert-card">
           {isNew ? <span className="new-ad-tag">New</span>: null}
           <div className="image-container">
-               {/* <img src={advert.ad_image} alt={advert.ad_name} width={200} /> */}
-               <AnyImage image={{src: advert.ad_image, alt: advert.ad_name}} width={200} />
+               <img src={advert.ad_image} alt={advert.ad_name} width={200} />
           </div>
           <div className="description">
                <div className="row">

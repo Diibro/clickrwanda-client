@@ -44,6 +44,7 @@ import ContactSeller from '../components/containers/ContactSeller';
 import Forms from './Forms';
 import JobSeekerLayout from '../jobSeeker/Layout';
 import LocationPage from './LocationPage';
+import MarketPage from './MarketPage';
 
 
 const Layout = () => {
@@ -58,9 +59,15 @@ const Layout = () => {
                const {v_id, r_id} = fetchIds(location);
                const v_date = getDateToday();
                const v_type = location.pathname === "/" ? "home" : location.pathname;
-     
-               const webVisit = {v_date,v_type, v_id, r_id};
-               await WebViewService.addVisit(webVisit);
+               const userType = localStorage.getItem('user-type');
+               if(userType){
+                    const webVisit = {v_date,v_type, v_id, r_id:null};
+                    await WebViewService.addVisit(webVisit);
+               }else {
+                    const webVisit = {v_date,v_type, v_id, r_id};
+                    await WebViewService.addVisit(webVisit);
+               }
+               
           }
           (async () => await saveVisit())();
      },[location.pathname] );
@@ -103,6 +110,7 @@ const Layout = () => {
                <Route path='/plan-payment' element={<PlanPaymentPage />} />
                <Route path='/location/*' element={<LocationPage />} />
                <Route path='/forms/*' element={<Forms />} />
+               <Route path='/market/*' element={<MarketPage />}/>
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

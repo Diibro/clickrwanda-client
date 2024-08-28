@@ -10,7 +10,6 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import { AnyImage} from "../static/Image";
 
 export const BoostedSellers = () => {
      const {t} = useTranslation("global");
@@ -77,8 +76,7 @@ const BesterSellerCard = ({item}) => {
      return(
           <div onClick={handleClick} className="best-seller-card">
                <div className="profile-image">
-                    {/* <img src={item.profile_image} width={100} alt={`profile image for ${item.full_name}`} /> */}
-                    <AnyImage image={{src: item.profile_image, alt: `profile image for ${item.full_name}`, action: () => {}}} />
+                    <img src={item.profile_image} width={100} alt={`profile image for ${item.full_name}`} />
                </div>
                <div className="content">
                <p>{item.full_name}{item.verified ? <i><MdVerified /></i> : null}</p>

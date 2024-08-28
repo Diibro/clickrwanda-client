@@ -1,0 +1,43 @@
+{
+     "categories": [
+          {
+               "name": "TV & Electronics",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/852cd05a-41d7-4645-8402-357d1b24a8ee-Electronics.png",
+               "subs": [
+                    {"sub_name": "TVs", "id":"5a6fcde2-14a9-4290-b1d7-016f38aa870e"},
+                    {"sub_name": "Computers", "id":"befe7931-601a-455f-9e47-73afe7394bda"},
+                    {"sub_name": "Phones", "id":"d6cdd366-ada0-4fb9-b3a2-d8d20a54e013"}
+               ]
+          },
+          {
+               "name":"Houses & Cars",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/b08742ec-adc0-4e58-bc8e-39d2d8b7e647-property.png",
+               "subs": [
+                    {"sub_name": "Houses for Sale", "id": "8839b32d-2463-4ec0-ac9a-d67f3c5b539a"},
+                    {"sub_name": "Houses for Rent", "id": "08beec85-2c0f-4789-9cd0-7bdc072f3b4b"},
+                    {"sub_name": "Used Cars for Sale", "id": "1c841a85-c0d2-4e7c-9863-e0aecda74b84"},
+                    {"sub_name": "Brand new Cars for Sale", "id": "85e95070-dce3-4c78-87c1-9aa1d22a9774"},
+                    {"sub_name": "Plots of Land for Sale", "id": "02b3aaed-d029-40a1-b522-2b310f3d2834"},
+                    {"sub_name": "Appartments for Sale", "id": "c8be4449-974d-4f62-a56c-10bb9d3605ce"},
+                    {"sub_name": "Appartments for Rent", "id": "1f9a5b92-13a4-4452-885a-e5bf365505a0"}
+               ]
+          },
+          {
+               "name": "Services",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/4d6b899d-7943-4b65-97a5-7138088cb6b3-services.png",
+               "subs": [
+                    {"sub_name": "Hotels", "id": "00a00fa6-fc2e-4582-b50c-bd6fb9dab5c1"},
+                    {"sub_name": "Guest Houses or Lodges", "id": ""},
+                    {"sub_name":"Bars & Restaurants", "id": "85610261-e469-4b31-8444-aa5cd462792e"},
+                    {"sub_name": "Jobs", "id":""},
+                    {"sub_name": "Other Services", "id":""}
+               ]
+          },
+          {
+               "name": "Others",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/aa385c89-301c-4600-af82-551d9c9311c7-sports.png",
+               "subs":[
+               ]
+          }
+     ]
+}

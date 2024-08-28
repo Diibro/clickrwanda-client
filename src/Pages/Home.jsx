@@ -14,6 +14,7 @@ import AllCategoriesSection from '../components/containers/AllCategoriesSection'
 import { BecomeSeller, ExploreHotDeals, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
 import JobSeekersSection from '../components/containers/JobSeekersSection';
 import HomeCommissionAds from '../components/containers/HomeCommissionAds';
+import HomeHotCategories from '../components/containers/HomeHotCategories';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -75,6 +76,7 @@ const Home = () => {
           {/* hot deals section */}
           <ExploreHotDeals />
           <HomeCommissionAds />
+          {/* <HomeHotCategories /> */}
           {/* ads websites section */}
           <AdWebsites />
 

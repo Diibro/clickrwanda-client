@@ -162,8 +162,7 @@ export const AdvertRow = ({item}) => {
           <div className="advert-row">
                <p className='ad-plan'>{item.plan_name !== "freemium" ? item.plan_name : null}</p>
                <div className="row">
-                    {/* <img src={item.ad_image} alt={item.ad_name} loading='lazy' /> */}
-                    <AnyImage image={{src: item.ad_image, alt: item.ad_name, action: () => {}}} />
+                    <img src={item.ad_image} alt={item.ad_name} loading='lazy' />
                     <div className='col'>
                          <h3>{item.ad_name}</h3>
                          <p className='website'>

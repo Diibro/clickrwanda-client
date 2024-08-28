@@ -27,12 +27,6 @@ export const CImage = ({image}) => {
     position: 'relative'
   };
 
-  // const loaderStyle = {
-  //   width: '50px',
-  //   height: '50px',
-  //   marginBlock: "10px"
-  // };
-
   useEffect(() => {
     const img = new Image();
     img.src = image.src;
@@ -107,8 +101,6 @@ export const CImage = ({image}) => {
 
 export const AnyImage = ({image}) => {
   const [imageUrl, setImageUrl] = useState(ImageLoader);
-const [isLoading, setIsLoading] = useState(true);
-const [hasError, setHasError] = useState(false);
 const imgRef = useRef();
 
 const imageStyle = {
@@ -117,80 +109,21 @@ const imageStyle = {
   zIndex: "1"
 };
 
-
-const loaderStyle = {
-  width: '50px',
-  height: '50px',
-  margin: "20px"
-};
-
-useEffect(() => {
- const img = new Image();
- img.src = image.src;
- img.onload = () => {
-   setImageUrl(image.src);
-   setIsLoading(false);
-   setHasError(false);
- };
- img.onerror = () => {
-   setImageUrl(ImageNotFound);
-   setIsLoading(false);
-   setHasError(true);
- };
-}, [image.src]);
-
-useEffect(() => {
- const observer = new IntersectionObserver(
-   (entries) => {
-     entries.forEach((entry) => {
-       if (entry.isIntersecting) {
-         const img = new Image();
-         img.src = image.src;
-         img.onload = () => {
-           setImageUrl(image.src);
-           setIsLoading(false);
-           setHasError(false);
-         };
-         img.onerror = () => {
-           setImageUrl(ImageNotFound);
-           setIsLoading(false);
-           setHasError(true);
-         };
-         observer.unobserve(entry.target);
-       }
-     });
-   },
-   { threshold: 0.1 }
- );
- if (imgRef.current) {
-   observer.observe(imgRef.current);
- }
- return () => {
-   if (imgRef.current) {
-     observer.unobserve(imgRef.current);
-   }
- };
-}, [image.src]);
-
 return (
- <>
-   {isLoading ?
-      <img src={ImageLoader} alt="Loading..." style={loaderStyle} />
-    :<img
-      ref={imgRef}
-      src={imageUrl}
-      alt={image.alt}
-      style={imageStyle}
-      onClick={image.action}
-      onError={() => {
-        setImageUrl(ImageNotFound);
-        setIsLoading(false);
-        setHasError(true);
-      }}
-    />
-   }
- </>
+  <>
+    <img
+          ref={imgRef}
+          src={imageUrl}
+          alt={image.alt}
+          style={imageStyle}
+          onClick={image.action}
+          onError={() => {
+            setImageUrl(ImageNotFound);
+          }}
+        />
+    </>
 );
+
 }
 CImage.propTypes = {
      image: PropTypes.any
