@@ -4171,7 +4171,7 @@ textarea{
      flex-direction: row;
      align-items: center;
      justify-content: center;
-     background-color: var(--text-color-para2);
+     background-color: var(--back-color-gold2);
      padding: 5px;
 }
 
