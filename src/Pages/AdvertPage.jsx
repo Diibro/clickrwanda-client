@@ -160,7 +160,7 @@ const AdvertPage = () => {
                                                             <p className="vendor-date">Joined  {formatTimeAgo(adViewed?.reg_date)}</p>
                                                             <div className="row">
                                                                  <p className="vendor-views"><a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`} className="vendor-views vendor-ads"><i><RiAdvertisementFill /></i>  {formatPrice(totalVendorAds)} Ads</a></p>
-                                                                 <p className="vendor-views"><i><FaEye /></i>  {totalVendorViews} views</p>
+                                                                 <p className="vendor-views"><i><FaEye /></i>  {formatPrice(totalVendorViews)} views</p>
                                                             </div>
                                                             {
                                                                  !adViewed.commission ? 
