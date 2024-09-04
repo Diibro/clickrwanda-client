@@ -8,7 +8,9 @@ import RefWebVisitCard from "./components/RefWebVisitCard";
 const Referrals = () => {
      const [agentData] = useContext(AgentContext);
 
-     const {referrals,webVisitsRef, vIds } = agentData;
+     const {
+          // referrals,
+          webVisitsRef, vIds } = agentData;
 
      useEffect(() => {
           console.log(webVisitsRef);
@@ -21,7 +23,7 @@ const Referrals = () => {
                <Title><h3>Membership plans sold</h3></Title>
                
           </MainRow>
-          <div id="agent-shops-opened"></div>
+          {/* <div id="agent-shops-opened"></div>
           <MainRow>
                <Title><h3>Shops Created using you referral Code:</h3></Title>
                {
@@ -30,7 +32,7 @@ const Referrals = () => {
                     referrals.map((item, index) => <RefShopCard key={`${index}--${item.user_id}`} shop={item} /> )
                     : <p className="agent-not-found-paragraphs">No shops with your referral code are found. </p>  
                }
-          </MainRow>
+          </MainRow> */}
           <div id="agent-advert-visits"></div>
           <MainRow>
                <Title><h3>Referral Webvisits:</h3></Title>

@@ -79,9 +79,9 @@ const AgentLayout = () => {
      useEffect(() => {
           if(agentData.payments){
                let visitAmount = calculateRefVisitsTotal(agentData.webVisitsRef, agentData.payments[0]?.p_date || null, agentData.tasks);
-               let shopsAmount = calculateShopTotal(agentData.referrals, agentData.payments[0]?.p_date || null);
+               // let shopsAmount = calculateShopTotal(agentData.referrals, agentData.payments[0]?.p_date || null);
                let packagesAmount = calculatePackageTotal(agentData.packageSold,agentData.payments[0]?.p_date || null);
-               setAgentData((prev) => ({...prev, totalAmount: (visitAmount + shopsAmount + packagesAmount)}))
+               setAgentData((prev) => ({...prev, totalAmount: (visitAmount  + packagesAmount)}))
           }
           
      }, [agentData.payments]);

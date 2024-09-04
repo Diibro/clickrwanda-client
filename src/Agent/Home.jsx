@@ -66,7 +66,7 @@ const Home = () => {
           <MainRow>
                <div className="agent-welcome-container">
                     <h2>Welcome <span>{agentInfo?.a_name}</span></h2>
-                    <p>Click Rwanda offers an ultimate and trusted way to make online and remotely.</p>
+                    <p>Click Rwanda offers an ultimate and trusted way to make money online and remotely.</p>
                </div>
                <div className="agent-total-earnings-container">
                     <h2>Total Earnings:</h2>
@@ -78,16 +78,14 @@ const Home = () => {
                agentInfo?.agent_type !== 'influencer' ?
                     <MainRow>
                          <AgentContentCard content={{title: "Packages Sold", count: packageSold?.length || 0, clickAction: () => navigate('/agent/referrals#agent-packages-solid')}} />
-                         <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0, clickAction: () => navigate('/agent/referrals#agent-shops-opened')}} />
+                         {/* <AgentContentCard content={{title: "Shops Opened", count: referrals?.length || 0, clickAction: () => navigate('/agent/referrals#agent-shops-opened')}} /> */}
                          <AgentContentCard content={{title: "Commission Products", count: commissionAdsNo, clickAction: () => navigate('/agent/commission-products')}} />
                          <AgentContentCard content={{title: "Advert Visits", count: countVisits(webVisits, "v_type", "/ad"), clickAction: () => navigate('/agent/referrals#agent-advert-visits')}} />
-                         {/* <AgentContentCard content={{title: "Shops Opened", count: 0}} />
-                         <AgentContentCard content={{title: "Shops Opened", count: 0}} /> */}
                     </MainRow>               
                :
                     <MainRow>
                          <AgentContentCard content={{title: "Bought packages", count: packageSold?.length || 0}} />
-                         <AgentContentCard content={{title: "Opened Shops", count: referrals?.length || 0}} />
+                         {/* <AgentContentCard content={{title: "Opened Shops", count: referrals?.length || 0}} /> */}
                          <AgentContentCard content={{title: "Total Clicks", count: countVisits(webVisits, "v_type", "/ad")}} />
                     </MainRow>
 
@@ -111,15 +109,15 @@ const Home = () => {
                               <p>Simply you copy the ad link and share via your social medias, whatsapp and other platforms. Then you get paid some amount on the every clicks you get. More clicks more money.</p>
                               <p><button onClick={() => navigate("/agent/tasks")}>View Tasks today</button></p>
                          </div>
-                         <div className="agent-content-card">
+                         {/* <div className="agent-content-card">
                               <h4>3. Help people open shops on ClickRwanda</h4>
                               <p>Click Rwanda pays Rwf 20 to verified agents who help people to successfully open shops on the platform.</p>
                               <p>It is very simple. Simply copy the <b>Agent Open shop Link</b> in the tasks Section. Share it to many people and guide them well on the journey to open their own shops on Click Rwanda.</p>
                               <p>Click the copy the link. <br /> <b id="agent-open-shop-link">{`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`}</b> <button onClick={() => copyToClipboard(`https://clickrwanda.com/forms/signup?=${agentInfo?.agent_id}`)}>Copy Link</button></p>
-                              {/* <p><button onClick={() => navigate("/agent/tasks")}>View Tasks</button></p> */}
-                         </div>
+                              <p><button onClick={() => navigate("/agent/tasks")}>View Tasks</button></p>
+                         </div> */}
                          <div className="agent-content-card">
-                              <h4>4. Earn Commission on products.</h4>
+                              <h4>3. Earn Commission on products.</h4>
                               <p>Click Rwanda pays 70% of the commission earned upon successful transaction of the producsts brought by the agents.</p>
                               <p>To post a deal on clickrwanda market click the button below and fill in the information of deal or product and you will be paid 70% of the commission earned upon successful transaction of the deal.</p>
                               <p><button onClick={showAddAdForm}>Post Commission Deals</button></p>
