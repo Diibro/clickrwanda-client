@@ -101,5 +101,13 @@ export const getValidWebVisits = (arr, tasks, last_pay_date) => {
           });
      }
 
+     // const commonIps = {};
+
+     // validWebVisits.forEach(visit => {
+     //      const baseIpArr = visit.v_ip_address.split('.')
+     //      const baseIp = baseIpArr[0]+'.'+baseIpArr[1]+'.'+baseIpArr[2];
+     //      // commonIps[baseIp] = 
+     // })
+
      return validWebVisits;
 };

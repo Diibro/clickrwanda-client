@@ -1,11 +1,12 @@
 import UploadService from '../services/uploadFile';
 
-const uploadFile = async (file, folder) => {
+const uploadFile = async (file, folder, onProgress) => {
      const formData = new FormData();
      formData.append('image', file);
      formData.append('folderName', folder);
-     const res = await UploadService.uploadSingle(formData);
-     console.log(res);
+     const res = await UploadService.uploadSingle(formData, (progress) => {
+          if(onProgress) onProgress(progress);
+     });
      if(res.status === "pass"){
           return res.data;
      }else{

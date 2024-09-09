@@ -14,6 +14,12 @@ export const SubmitButton =({content}) => {
      )
 }
 
+export const SelectFileBtn = ({title, action}) => {
+     return(
+          <button onClick={action} type='button' className={ "select-file-btn "}>{title}</button>
+     )
+}
+
 ActionBtn.propTypes = {
      title: PropTypes.string.isRequired,
      size: PropTypes.any,
@@ -23,6 +29,11 @@ ActionBtn.propTypes = {
 
 SubmitButton.propTypes = {
      content: PropTypes.object
+}
+
+SelectFileBtn.propTypes = {
+     title: PropTypes.string,
+     action: PropTypes.func
 }
 
 

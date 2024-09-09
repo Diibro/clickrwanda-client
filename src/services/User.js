@@ -1,11 +1,16 @@
 import axios from "axios";
 import Server from "./Server";
 import { showMainNotification } from "../utils/AdminFunctions";
+const serverKey = import.meta.env.VITE_SERVER_KEY;
 
 export default {
      login: async (user) => {
           try {
-               const res = await axios.post(Server.user.login, user);
+               const res = await axios.post(Server.user.login, user, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
                return res.data;
           } catch (error) {
                console.log(error);
@@ -14,7 +19,11 @@ export default {
      },
      getAll: async () => {
           try {
-               const res = await axios.get(Server.user.getAll);
+               const res = await axios.get(Server.user.getAll, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
                return res.data;
           } catch (error) {
                console.log(error);
@@ -27,7 +36,8 @@ export default {
                if(token){
                     const res = await axios.post(Server.user.getByRef, {r_id}, {
                          headers: {
-                              "Authorization": token
+                              "Authorization": token,
+                              'x-api-key': serverKey
                          }
                     });
 
@@ -44,7 +54,8 @@ export default {
                if(token){
                     const res = await axios.post(Server.user.getUserDashInfo, {user_id}, {
                          headers: {
-                              "Authorization": token
+                              "Authorization": token,
+                              'x-api-key': serverKey
                          }
                     });
                     return res.data

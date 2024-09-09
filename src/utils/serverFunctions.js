@@ -1,10 +1,15 @@
 import axios from "axios";
 import { saveData } from "./storageFunctions";
 const  serverUrl = import.meta.env.VITE_BASE_URL;
+const serverKey = import.meta.env.VITE_SERVER_KEY;
 
 export const fetchData = async (url, params) => {
      try {
-          const res = params ?  await axios.post(url, params) : await axios.get(url);
+          const res = params ?  await axios.post(url, params) : await axios.get(url, {
+            headers: {
+              'x-api-key': serverKey
+            }
+          });
           const info = await res.data;
           if (info.totalAds) {
             saveData('totalAds', info.totalAds, 180000);
@@ -21,7 +26,11 @@ export const fetchData = async (url, params) => {
 export const searchData = async (url, params) => {
   try {
     console.log("checking");
-    const res = await axios.post(url, params);
+    const res = await axios.post(url, params, {
+      headers: {
+        'x-api-key': serverKey
+      }
+    });
     const info = await res.data;
     const {data} = info;
     return data;
@@ -32,7 +41,11 @@ export const searchData = async (url, params) => {
 
 export const registerUser = async (url, params) => {
   try {
-    const res = await axios.post(url, params);
+    const res = await axios.post(url, params, {
+      headers: {
+        'x-api-key': serverKey
+      }
+    });
     const info = await res.data;
     return info;
   } catch (error) {
@@ -46,7 +59,8 @@ export const updateUser = async(url, params) => {
     const res = await axios.post(url, params,{
       headers: {
         // 'Content-Type': 'multipart/form-data',
-        'Authorization': loginToken
+        'Authorization': loginToken,
+        'x-api-key': serverKey
       }
     });
     const info = await res.data;
@@ -60,7 +74,8 @@ export const searchUser = async (url) => {
   try {
     const loginToken = sessionStorage.getItem('loginToken') || null;
     const res = await axios.get(url, {headers: {
-      'Authorization': loginToken
+      'Authorization': loginToken,
+      'x-api-key': serverKey
     }});
     const info = await res.data;
     return info;
@@ -71,7 +86,12 @@ export const searchUser = async (url) => {
 
 export const loginUser = async (url, params) => {
   try {
-    const res = await axios.post(url, params, {withCredentials: true, credentials: true});
+    const res = await axios.post(url, params, {
+      withCredentials: true, credentials: true,
+      headers: {
+        'x-api-key': serverKey
+      }
+    });
     const info = await res.data;
     return info;
   } catch (error) {
@@ -83,7 +103,8 @@ export const getUserAds = async (url) => {
   try {
     const loginToken = sessionStorage.getItem('loginToken') || null;
     const res = await axios.get(url, {headers: {
-      'Authorization': loginToken
+      'Authorization': loginToken,
+      'x-api-key': serverKey
     }});
     const info = await res.data;
     return info;
@@ -99,7 +120,8 @@ export const addAdvert = async (url, params) => {
     const agentToken = sessionStorage.getItem('agentToken');
     console.log(agentToken);
     const res = await axios.post(url, params, {headers: {
-      'Authorization': loginToken || agentToken
+      'Authorization': loginToken || agentToken,
+      'x-api-key': serverKey
     }});
     const info = await res.data;
     return info;
@@ -110,7 +132,11 @@ export const addAdvert = async (url, params) => {
 
 export const searchAdvert = async(url, params ) => {
   try {
-    const res = await axios.post(url, params);
+    const res = await axios.post(url, params, {
+      headers: {
+        'x-api-key': serverKey
+      }
+    });
     const info = await res.data;
     return info;
   } catch (error) {
@@ -131,7 +157,8 @@ export const deleteAdvert =async (url,params) => {
   try {
     const loginToken = sessionStorage.getItem('loginToken') || null;
     const res = await axios.post(url, params,{headers: {
-      'Authorization': loginToken
+      'Authorization': loginToken,
+      'x-api-key': serverKey
     }});
     return res.data;
   } catch (error) {
@@ -141,7 +168,11 @@ export const deleteAdvert =async (url,params) => {
 
 export const searchAds = async(url, params) => {
   try {
-    const res = await axios.post(url, params);
+    const res = await axios.post(url, params, {
+      headers: {
+        'x-api-key': serverKey
+      }
+    });
     const info = res.data;
     if(info.status === "pass"){
       return info.data;
@@ -158,18 +189,30 @@ export const getUrl = (endpoint) => {
 }
 
 export const manipulateReview = async (url, params) => {
-  const res = await axios.post(url, params);
+  const res = await axios.post(url, params, {
+    headers: {
+      'x-api-key': serverKey
+    }
+  });
   return res.data;
 }
 
 export const resetPassword = async (url, params) => {
-  const res = await axios.post(url, params);
+  const res = await axios.post(url, params, {
+    headers: {
+      'x-api-key':serverKey
+    }
+  });
   return res.data;
 }
 
 export const postData = async (url, params) => {
   try {
-    const res = await axios.post(url, params);
+    const res = await axios.post(url, params, {
+      headers: {
+        'x-api-key': serverKey
+      }
+    });
     const info = await res.data;
     return info;
   } catch (error) {

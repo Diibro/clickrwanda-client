@@ -4,7 +4,7 @@ import AppData from "../../Contexts/AppContext";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 import AdvertRenderer, { AdvertRow} from "./Advert.componet";
-import { ActionBtn, SubmitButton } from "./Buttons";
+import { ActionBtn, SelectFileBtn, SubmitButton } from "./Buttons";
 import server from "../../config/Server";
 import { AdvertsPagination } from "./Pagination";
 import Loading from "../static/Loading";
@@ -23,6 +23,8 @@ import { s3Folders } from "../../config/s3Config";
 import UserContext from "../../Contexts/UserContext";
 import FreeAdsSection from "../containers/FreeAdsSection";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import ImageUploader from "../containers/ImageUploader";
+import TextEditor from "../containers/TextEditor";
 
 export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
@@ -130,6 +132,9 @@ export const AddAdvertForm = () => {
   const [commission, setCommission] = useState(null);
   const location = useLocation();
   const commissionPercents = [3];
+  const [uploadContent, setUploadContent] = useState(
+    {show: false}
+  );
 
   for(let i = 10; i <= 50;){
     commissionPercents.push(i);
@@ -149,19 +154,14 @@ export const AddAdvertForm = () => {
       if(!adInfo.contact || adInfo.contact.length != 10){
         return showMainNotification('fail', 'invalid contact number. must be 10 digits', () => {});
       }
-      const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.adverts);
-      // const adImageUrl = await uploadFile(adInfo.ad_image, s3Folders.temp);
-      const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.adverts);
-      // const adImagesUrls = await uploadMany(adInfo.otherImages,s3Folders.temp);
-      
       const newAd = {
         ad_name: adInfo.ad_name,
         description: adDescription,
         ad_type: adInfo.ad_type,
         ad_price: adInfo.ad_price,
         contact: adInfo.contact,
-        ad_image: adImageUrl,
-        ad_images: adImagesUrls,
+        ad_image: adInfo.ad_image,
+        ad_images: [],
         registrationDate: getRwandaTime(),
         sub_category_id: adInfo.subCategory_id,
         commission: adInfo.commission,
@@ -169,6 +169,7 @@ export const AddAdvertForm = () => {
       }
       
       const res = await server.addAdvert(newAd);
+      console.log(res);
       if(res.status === "pass"){
         return showMainNotification('pass', `${res.message} as ${adInfo.ad_name}`, () => navigate("/user-dashboard/user-adverts"));
       }else{
@@ -191,9 +192,14 @@ export const AddAdvertForm = () => {
     }
   },[])
 
+  // useEffect(() => {
+  //   console.log(subCategories);
+  // },[subCategories])
+
   useEffect(() => {
     if(adInfo.subCategory_id){
-      setDescFields(parseString(subCategories.filter(item => item.sub_id != adInfo.subCategory_id)[0])?.fields || null);
+      setDescFields(parseString(subCategories.filter(item => item.sub_id === adInfo.subCategory_id)[0])?.fields || null);
+      console.log(parseString(subCategories.filter(item => item.sub_id === adInfo.subCategory_id)[0]));
     }else{
       setDescFields(null);
     }
@@ -214,20 +220,6 @@ export const AddAdvertForm = () => {
         <form onSubmit={submitForm}>
         <div className="row">
           <h2>Add New Ad</h2>
-        </div>
-        <div className="row">
-          <div className="group">
-            <label htmlFor="ad-input-name">Title:</label>
-            <input type="text" name="ad-input-name" id="ad-input-name" onChange={(e) => setAdInfo((prev) => ({...prev, ad_name: e.target.value}))} required placeholder="ex: Samsung phone" />
-          </div>
-          <div className="group">
-            <label htmlFor="ad-input-type">Type:</label>
-            <select name="ad-input-type" id="ad-input-type" onChange={(e) => setAdInfo((prev) => ({...prev, ad_type: e.target.value}))} required>
-              <option value="">Select type...</option>
-              <option value="service">Service</option>
-              <option value="product">Product</option>
-            </select>
-          </div>
         </div>
         <div className="row">
           <div className="group">
@@ -255,8 +247,23 @@ export const AddAdvertForm = () => {
         </div>
         <div className="row">
           <div className="group">
-            <label htmlFor="ad-input-price">Price -- Rwf:</label>
-            <input type="number" name="ad-input-price" id="ad-input-price" onChange={(e) => setAdInfo((prev) => ({...prev, ad_price: e.target.value}))} required placeholder="ex: 120000" />
+            <label htmlFor="ad-input-name">Title:</label>
+            <input type="text" name="ad-input-name" id="ad-input-name" onChange={(e) => setAdInfo((prev) => ({...prev, ad_name: e.target.value}))} required placeholder="ex: Samsung phone" />
+          </div>
+          <div className="group">
+            <label htmlFor="ad-input-type">Type:</label>
+            <select name="ad-input-type" id="ad-input-type" onChange={(e) => setAdInfo((prev) => ({...prev, ad_type: e.target.value}))} required>
+              <option value="">Select type...</option>
+              <option value="service">Service</option>
+              <option value="product">Product</option>
+            </select>
+          </div>
+        </div>
+        
+        <div className="row">
+          <div className="group">
+            <label htmlFor="ad-input-price">Amount -- Rwf:</label>
+            <input type="text" name="ad-input-price" id="ad-input-price" inputMode="numeric" onChange={(e) => setAdInfo((prev) => ({...prev, ad_price: e.target.value}))} required placeholder="ex: 120000" />
           </div>
           {
             commission ? 
@@ -282,8 +289,26 @@ export const AddAdvertForm = () => {
                 <div className="group" key={`ad-input-${key}-${index}`}>
                   <label htmlFor={`ad-input-${key}`}>{key}:</label>
                   { value.type === "textarea" 
-                    ? <textarea cols={10} rows={4} aria-multiline placeholder={value.placeholder} onChange={(e) => setAdDescription(prev => ({...prev, desc: {value:e.target.value, type:value.type}}))} required={value.required}></textarea>
-                    : <input type={value.type} required={value.required} onChange={(e) => setAdDescription(prev => ({...prev, [key]: {value:e.target.value, type: value.type}}))} placeholder={value.placeholder}/>
+                    ? <textarea cols={10} rows={4} aria-multiline placeholder={value.placeholder} onChange={(e) => setAdDescription(prev => ({...prev, [key]: {value:e.target.value, type:value.type, rank: value.rank || 0, abbr: value.abbreviation || ""}}))} required={value.required}></textarea>
+                    : 
+                    value.type === 'file' 
+                    ?<SelectFileBtn 
+                        title={`Select ${key}`} 
+                        action={() => setUploadContent({show: true, options: {allowed: value.allowedFiles, cb: (res) => {
+                          setAdDescription(prev => ({...prev, [key]:{value:res, type: value.type, fileType: value.allowedFiles, rank: value.rank || 0, abbr: value.abbreviation || ""}}));
+                          setUploadContent({show:false})
+                        }}})} 
+                      />
+                    :value.type === 'select'?
+                      <select onChange={e => setAdDescription(prev => ({...prev, [key]: {value: e.target.value, type: value.type, rank: value.rank || 0, abbr: value.abbreviation || ""}}))}>
+                        <option value="">Select...</option>
+                        {
+                          value.selectValues.split(',').map((item, index) => <option key={`select-value-${index}`}>{item}</option>)
+                        }
+                      </select>
+                    :value.type === 'htmlValue'? 
+                    <TextEditor cb={(res) => setAdDescription(prev=> ({...prev, [key]: {value:res, type: value.type, rank: value.rank, abbr: value.abbreviation || ""}}))} />
+                    :<input type={value.type === 'number' ? 'text' : value.type} required={value.required} onChange={(e) => setAdDescription(prev => ({...prev, [key]: {value:e.target.value, type: value.type, rank: value.rank, abbr: value.abbreviation || ""}}))} placeholder={value.placeholder} inputMode={value.type === 'number' ? 'numeric':'text'} />
                   }
             </div>)}
         </div>
@@ -291,21 +316,17 @@ export const AddAdvertForm = () => {
         <div className="row">
           <div className="group">
             <label htmlFor="ad-input-image">Main Image: </label>
-            <input type="file" name="ad-input-image" id="ad-input-image" onChange={(e) => setAdInfo((prev) => ({...prev, ad_image: e.target.files[0]}))} required  />
-          </div>
-          <div className="group">
-            <label htmlFor="ad-input-images">Other Images:</label>
-            <input type="file" name="ad-input-images" id="ad-input-images" multiple  onChange={(e) => setAdInfo((prev) => ({...prev, otherImages: e.target.files}))}  />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            {adInfo.ad_image ? <img src={URL.createObjectURL(adInfo.ad_image)} alt="" style={{width: 'clamp(50px, 95%, 100px)', borderRadius: "10px"}} /> : null}
+            {/* <input type="file" name="ad-input-image" id="ad-input-image" onChange={(e) => setAdInfo((prev) => ({...prev, ad_image: e.target.files[0]}))} required  /> */}
+            <SelectFileBtn 
+              title="select file" 
+              action={() => setUploadContent({show:true, options: {allowed: 'image/*', cb: (res) => {
+                if(res) setAdInfo(prev => ({...prev, ad_image: res}));
+                setUploadContent({show:false});
+              }}})} 
+            /> 
           </div>
           <div className="col">
-            {adInfo.otherImages && adInfo.otherImages[0] ? 
-            Array.from(adInfo.otherImages).map(( image, index) => <img key={index} src={URL.createObjectURL(image)} style={{width: 'clamp(40px, 50%, 80px)', borderRadius: '5px'}} />)
-            : null }
+            {adInfo.ad_image ? <img src={adInfo.ad_image} alt="" style={{width: 'clamp(50px, 95%, 100px)', borderRadius: "10px"}} /> : null}
           </div>
         </div>
         <div className="row">
@@ -318,11 +339,10 @@ export const AddAdvertForm = () => {
             </div>
             }
             <SubmitButton content={{title: "Submit Ad", type:"submit"}} />
-            
-          
         </div>
       </form>
       }
+      {uploadContent.show && uploadContent.options ? <ImageUploader content={uploadContent.options} /> : null}
     </div>
   )
   

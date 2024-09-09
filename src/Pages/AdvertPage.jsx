@@ -88,6 +88,7 @@ const AdvertPage = () => {
      useEffect(() => {
           if(adViewed){
                (async() => await updateSimilarAds())();
+               console.log(adDescription);
           }
      },[adViewed])
   return (
@@ -138,8 +139,31 @@ const AdvertPage = () => {
                                                                            getParagraphs(value.value || value, 50).map((text, count) => <p key={`ad-view-paragraph-${count}`}>{text}</p>)
                                                                       }
                                                                  </div>
-                                                                 :
-                                                                 <></>
+                                                                 : value.type === 'textarea' ? 
+                                                                      <div className="group description-container">
+                                                                           <b>{key}</b>
+                                                                           {
+                                                                                getParagraphs(value.value || value, 50).map((text, count) => <p key={`${key}-paragraph-advert-page-${count}`}>{text}</p>)
+                                                                           }
+                                                                      </div>
+                                                                 : value.type === 'htmlValue' ? 
+                                                                           <div className="group  description-container" >
+                                                                                <b>{key}</b>
+                                                                                <div className="html-value-container" dangerouslySetInnerHTML={{__html: value.value}} ></div>
+                                                                           </div>
+                                                                 : value.type === 'file'? 
+                                                                      <div className="inner-image">
+                                                                           <b>{key}</b>
+                                                                           {
+                                                                                value.fileType === 'image/*' ? <img src={value.value} alt={key} /> 
+                                                                                : value.fileType === '.pdf' ? <p>Click to view the document: <a href={value.value} target="_blank" rel="noreferrer" className="view-btn">Document</a></p> 
+                                                                                :null
+                                                                           }
+                                                                      </div>
+                                                                 : <div className="short-value">
+                                                                      <b>{key}:</b>
+                                                                      <span>{value.value}</span>
+                                                                 </div>
                                                             )
                                                        : null
                                                   }

@@ -1,10 +1,15 @@
 import axios from "axios"
 import Server from "./Server"
+const serverKey = import.meta.env.VITE_SERVER_KEY;
 
 export default {
      add: async(task) => {
           try {
-               const res = await axios.post(Server.agentTask.add, task);
+               const res = await axios.post(Server.agentTask.add, task, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
                return res.data;
           } catch (error) {
                console.log(error);
@@ -13,7 +18,11 @@ export default {
      },
      update: async(task) => {
           try {
-               const res = await axios.post(Server.agentTask.update, task);
+               const res = await axios.post(Server.agentTask.update, task, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
                return res.data;
           } catch (error) {
                console.log(error);
@@ -22,7 +31,11 @@ export default {
      },
      delete: async(task) => {
           try {
-               const res = await axios.post(Server.agentTask.delete, task);
+               const res = await axios.post(Server.agentTask.delete, task, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
                return res.data;
           } catch (error) {
                console.log(error);
@@ -31,7 +44,11 @@ export default {
      },
      findAll: async() => {
           try {
-               const res = await axios.get(Server.agentTask.findAll);
+               const res = await axios.get(Server.agentTask.findAll, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
                return res.data;
           } catch (error) {
                console.log(error);
@@ -40,7 +57,11 @@ export default {
      },
      findByAgent: async(agent) => {
           try {
-               const res = await axios.post(Server.agentTask.findByAgent, agent);
+               const res = await axios.post(Server.agentTask.findByAgent, agent, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
                return res.data;
           } catch (error) {
                console.log(error);

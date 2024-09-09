@@ -4,10 +4,7 @@ import server from '../config/Server';
 import AdvertService from "../services/Advert";
 import { useLocation } from 'react-router-dom';
 import { getDataLocal, saveData } from '../utils/storageFunctions';
-import { io } from 'socket.io-client';
-const  serverUrl = import.meta.env.VITE_BASE_URL;
 
-const socket = io(serverUrl)
 const AppData = createContext();
 
 export const AppProvider = ({children}) => {
@@ -139,14 +136,6 @@ export const AppProvider = ({children}) => {
                (async () => await fetchData())();
                setData((prev) => ({...prev, fetchNow:false}));
           } 
-
-          socket.on('online-users', (count) => {
-               setData(prev => ({...prev, onlineUsers: count}));
-          });
-
-          return () => {
-               socket.off('online-users');
-          }
 
      }, [location.pathname, fetchNow]);
      return(
