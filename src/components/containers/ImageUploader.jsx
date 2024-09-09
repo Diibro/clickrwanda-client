@@ -17,7 +17,7 @@ const ImageUploader = ({content}) => {
      const uploadImage = async() => {
           if(imageFile){
                setIsUploading(true);
-               const res = await uploadFile(imageFile,s3Folders.temp, progress => {
+               const res = await uploadFile(imageFile,s3Folders.adverts, progress => {
                     setUploadProgress(progress);
                });
                setIsUploading(false);
