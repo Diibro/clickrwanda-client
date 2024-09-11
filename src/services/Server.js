@@ -22,7 +22,8 @@ export default {
           getByCategory: `${serverUrl}/api/advert/get-by-category`,
           getBySubCategory: `${serverUrl}/api/advert/get-by-sub-category`,
           getClientCommissionAds: `${serverUrl}/api/advert/get-client-approved-commission-ads`,
-          getCommissionAdsByCategory: `${serverUrl}/api/advert/get-commission-ads-by-category`
+          getCommissionAdsByCategory: `${serverUrl}/api/advert/get-commission-ads-by-category`,
+          getApprovedAdsByCategory: `${serverUrl}/api/advert/get-approved-ads-by-category`
      },
      agent: {
           getAll: `${serverUrl}/api/agent/1`,

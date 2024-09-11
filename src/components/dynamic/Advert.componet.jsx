@@ -11,6 +11,7 @@ import { AnyImage, CImage } from '../static/Image';
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { useContext } from 'react';
 import AppData from '../../Contexts/AppContext';
+import JobCard from '../cards/JobCard';
 
 
 export const Advert = () => {
@@ -123,8 +124,11 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
 }
 
 const AdvertRenderer = ({item}) => {
+     
      return(
-          <AdvertCardVertical ad={item} />
+          item.category_id === "b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7" ?
+               <JobCard ad={item} />
+          :<AdvertCardVertical ad={item} />
      )
 }
 

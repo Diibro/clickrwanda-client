@@ -5,7 +5,11 @@ const serverKey = import.meta.env.VITE_SERVER_KEY;
 
 export const fetchData = async (url, params) => {
      try {
-          const res = params ?  await axios.post(url, params) : await axios.get(url, {
+          const res = params ?  await axios.post(url, params, {
+            headers: {
+              'x-api-key': serverKey
+            }
+          }) : await axios.get(url, {
             headers: {
               'x-api-key': serverKey
             }

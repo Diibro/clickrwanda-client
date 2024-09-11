@@ -15,6 +15,7 @@ import { BecomeSeller, ExploreHotDeals, MakeMoneySection, SubscribeToPlans } fro
 import JobSeekersSection from '../components/containers/JobSeekersSection';
 import HomeCommissionAds from '../components/containers/HomeCommissionAds';
 import HomeHotCategories from '../components/containers/HomeHotCategories';
+import JobsSection from '../components/containers/JobsSection';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -67,6 +68,8 @@ const Home = () => {
           <SubscribeToPlans />
           {/* Second home page banner */}
 
+          {/* jobs section */}
+          <JobsSection />
           {/* Job Seekers section */}
           <JobSeekersSection />
 

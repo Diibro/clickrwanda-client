@@ -4600,6 +4600,92 @@ textarea{
 
 }
 
+.ads-container-wrapped {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     gap: 10px;
+     justify-content: space-between;
+     padding: 10px;
+}
+
+.job-card {
+     width: 45%;
+     min-width: 300px;
+     border-radius: 10px;
+     box-shadow: 1px 1px 5px var(--gray-text);
+     padding: 10px;
+     margin: 0 10px 10px;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     overflow: hidden;
+}
+
+.job-card .content {
+     width: 70%;
+     display: flex;
+     flex-direction: column;
+     gap: 2.5px;
+}
+
+
+.job-card .content h3{
+     font-size: 1.1rem;
+     font-weight: 700;
+     color: var(--text-color-title);
+}
+
+.job-card .content p{
+     font-size: 0.9rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
+
+.job-card .content p span{
+     color: var(--text-color-para1);
+}
+
+.job-card .image{
+     width: 25%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.job-card .image img{
+     width: auto;
+     max-width: 95%;
+     border-radius: 5px;
+     max-height: 100px;
+}
+
+.job-card .image p{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--text-color-para2);
+}
+
+.job-card-apply-btn{
+     width: 100%;
+     text-align: center;
+     background-color: var(--text-color-title);
+     border: 1.2px solid var(--text-color-title);
+     color: var(--light-gray);
+     border-radius:5px;
+     padding: 5px 20px;
+     cursor: pointer;
+     font-size: 0.9rem;
+     transition: all 0.5s ease;
+}
+
+.job-card-apply-btn:hover {
+     background-color: var(--light-gray);
+     color: var(--text-color-title);
+}
+
 .agent-advert-row{
      width: 100%;
      display: flex;
