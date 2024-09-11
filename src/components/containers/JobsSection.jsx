@@ -58,7 +58,7 @@ const JobsSection = () => {
           <div className="container">
                <div className="ads-section-title">
                     <div className="title">
-                         <h3 className="main-title">Apply Now</h3>
+                         <h3 className="main-title">Available Jobs</h3>
                          <Link to='/category/Jobs?=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7'>View All</Link>
                     </div>
                     <div className="section-navigation">

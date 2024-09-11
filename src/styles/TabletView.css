@@ -661,7 +661,12 @@
      .image-uploader-container .container{
           width: 90%;
      }
+
+     .job-card{
+          width: 95%;
+     }
 }
+
 
 
 
