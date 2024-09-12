@@ -4632,7 +4632,7 @@ textarea{
 }
 
 
-.job-card .content h3{
+.job-card .content h4.card-title{
      font-size: 1.1rem;
      font-weight: 700;
      color: var(--text-color-title);

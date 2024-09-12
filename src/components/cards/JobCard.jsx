@@ -15,7 +15,7 @@ const JobCard = ({ad}) => {
      return (
           <div className="job-card">
                <div className="content">
-                    <h3>{ad.ad_name}</h3>
+                    <h4 className='card-title'>{ad.ad_name}</h4>
                     <p><span>Company/Institution: </span> {description['Company/Institution'] ? description['Company/Institution'].value : 'Not specified'}</p>
                     <p><span>Type: </span>{description['Type'] ? description['Type'].value : 'Job'}</p>
                     <p><span>Location: </span><a href={`https://www.google.com/maps/place/${capitalizeString(description['Location'] ? description['Location'].value : 'Rwanda')}`} target="_blank" rel="noopener noreferrer">{description['Location'] ? description['Location'].value : 'Rwanda'}</a></p>
