@@ -14,7 +14,7 @@ const JobsSection = () => {
 
      const fetchAds = async() => {
           // const res = await AdvertService.getByCategory({category_id: catId, limit: 20, offset: 0});
-          const res = await Service.post(Server.advert.getApprovedAdsByCategory, {ids: [catId], limit: 10, offset: 0});
+          const res = await Service.post(Server.advert.getApprovedAdsByCategory, {ids: [catId], limit: 8, offset: 0});
           if(res){
                const {data} = res;
                if(data && data.length){

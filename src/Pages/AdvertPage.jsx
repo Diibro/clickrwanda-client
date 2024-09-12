@@ -24,6 +24,7 @@ import AdvertsContainer from "../components/containers/AdvertsContainer";
 import JobSeekerPageContainer from "../jobSeeker/components/containers/JobSeekerPageContainer";
 import { ActionBtn } from "../components/dynamic/Buttons";
 import AppData from "../Contexts/AppContext";
+import DOMPurify from 'dompurify';
 
 const AdvertPage = () => {
      const [ , setData ] = useContext(AppData);
@@ -37,9 +38,22 @@ const AdvertPage = () => {
      const [adDescription,setAdDescription] = useState(null);
      const [totalVendorViews, setTotalVendorviews] = useState(0);
      const [totalVendorAds,setTotalVendorAds] = useState(0); 
+     const [shortDesc, setShortDesc] = useState(null);
+     const [longDesc, setLongDesc ] = useState(null);
 
      const showContactSeller = () => {
           setData((prev) => ({...prev, contactAd: adViewed}));
+     }
+
+     const updateDescription = () => {
+          Object.entries(adDescription).forEach(([key,value])=> {
+               if(key === 'desc' || value.type === 'textarea' || value.type === 'file' || value.type === "htmlValue") {
+                    setLongDesc(prev => ({...prev, [key]: value}));
+               }else{
+                    setShortDesc(prev => ({...prev, [key]: value}));
+               }
+               
+          });
      }
 
      const{ v_id:adId} = fetchIds(location);
@@ -90,7 +104,13 @@ const AdvertPage = () => {
                (async() => await updateSimilarAds())();
                console.log(adDescription);
           }
-     },[adViewed])
+     },[adViewed]);
+
+     useEffect(() => {
+          if(adDescription){
+               return updateDescription();
+          }
+     }, [adDescription])
   return (
      <>
           <Helmet>
@@ -119,19 +139,28 @@ const AdvertPage = () => {
                                         <ImageViewer images={[mainImage, ...images]} />
                                         <div className="advert-page-info">
                                              <h2>{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""} {adViewed?.verified ? <i className="verified"><VscVerifiedFilled /></i> : null}</h2>
-                                             {adViewed && <h3 className="advert-price"> Price: {adViewed?.ad_price <= 0 ? <b>Negotiable</b> : <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b>} </h3>}
                                              {adViewed?.category_name && 
                                                   <div className="cat">
-                                                       <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>
+                                                       <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.category_name}</span></a>,
                                                        <a href={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}><span>{adViewed?.sub_name}</span></a> 
                                                   </div>
                                              } 
                                              
+                                             {adViewed && <h3 className="advert-price"> Price: {adViewed?.ad_price <= 0 ? <b>Negotiable</b> : <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b>} </h3>}
                                              <div className="content">
-                                                  {adDescription && <h4>Details:</h4>}
                                                   {
-                                                       adViewed?.description && adDescription ? 
-                                                            Object.entries(adDescription)?.map(([key,value], index) => 
+                                                       shortDesc ? 
+                                                            Object.entries(shortDesc).map(([key,value], index) => 
+                                                            <div className="short-value" key={`ad-desc-view-${key}-${index}`}>
+                                                                 <b>{key}:</b>
+                                                                 <span>{value.value}</span>
+                                                            </div> 
+                                                            )
+                                                       :null
+                                                  }
+                                                  {
+                                                       longDesc ? 
+                                                            Object.entries(longDesc)?.map(([key,value], index) => 
                                                                  key === "desc" ? 
                                                                  <div className="group description-container" key={`ad-desc-view-${key}-${index}`}>
                                                                       <b>Description:</b>
@@ -141,29 +170,26 @@ const AdvertPage = () => {
                                                                  </div>
                                                                  : value.type === 'textarea' ? 
                                                                       <div className="group description-container">
-                                                                           <b>{key}</b>
+                                                                           <b>{key}:</b>
                                                                            {
                                                                                 getParagraphs(value.value || value, 50).map((text, count) => <p key={`${key}-paragraph-advert-page-${count}`}>{text}</p>)
                                                                            }
                                                                       </div>
                                                                  : value.type === 'htmlValue' ? 
                                                                            <div className="group  description-container" >
-                                                                                <b>{key}</b>
-                                                                                <div className="html-value-container" dangerouslySetInnerHTML={{__html: value.value}} ></div>
+                                                                                <b>{key}:</b>
+                                                                                <div className="html-value-container" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(value.value)}} ></div>
                                                                            </div>
                                                                  : value.type === 'file'? 
                                                                       <div className="inner-image">
-                                                                           <b>{key}</b>
+                                                                           <b>{key}:</b>
                                                                            {
                                                                                 value.fileType === 'image/*' ? <img src={value.value} alt={key} /> 
                                                                                 : value.fileType === '.pdf' ? <p>Click to view the document: <a href={value.value} target="_blank" rel="noreferrer" className="view-btn">Document</a></p> 
                                                                                 :null
                                                                            }
                                                                       </div>
-                                                                 : <div className="short-value">
-                                                                      <b>{key}:</b>
-                                                                      <span>{value.value}</span>
-                                                                 </div>
+                                                                 : null
                                                             )
                                                        : null
                                                   }

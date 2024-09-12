@@ -4621,6 +4621,7 @@ textarea{
      flex-direction: row;
      justify-content: space-between;
      overflow: hidden;
+     background-color: var(--white-text);
 }
 
 .job-card .content {
@@ -5332,17 +5333,12 @@ textarea{
      flex-wrap: wrap;
 }
 
-.advert-page-mainAdvert .col .cat a{
-     background-color: var(--text-color-title);
-     color: var(--white-text);
-     border-radius: 10px;
-     padding: 4px 10px ;
-     margin: 5px 20px 5px 0;
-}
 
 .advert-page-mainAdvert .col .cat a{
      font-size: 0.8rem;
      margin: 2px 2px;
+     color: var(--text-color-title);
+     font-weight: 600;
 }
 
 .advert-page-mainAdvert .col .cat a:hover{
@@ -5406,9 +5402,8 @@ textarea{
 
 .advert-page-mainAdvert .col .advert-price{
      width: 100%;
-     margin: 2px auto;
      text-align: left;
-     font-size: 1.2rem;
+     font-size: 1rem;
      color: var(--back-color-red1);
 }
 
@@ -5423,7 +5418,7 @@ textarea{
      flex-direction: row;
      flex-wrap: wrap;
      justify-content: flex-start;
-     gap: 10px;
+     gap: 5px;
 }
 
 .advert-page-mainAdvert .col .content .short-value {
@@ -5436,7 +5431,7 @@ textarea{
 }
 
 .advert-page-mainAdvert .col .content .short-value b{
-     font-size: 0.8rem;
+     font-size: 0.9rem;
      color: var(--text-color-para1);
 }
 
@@ -5460,15 +5455,13 @@ textarea{
      flex-direction: row;
      align-items: center;
      justify-content: flex-start;
-     box-shadow: 0.2px 0.2px 4px var(--text-color-para2);
      border-radius: 10px;
-     padding: 5px 10px;
 }
 
 .advert-page-mainAdvert .col .content .group b {
      font-size: 0.9rem;
      font-weight: 600;
-     color: var(--text-color-para2);
+     color: var(--text-color-para1);
 
 }
 
@@ -5479,9 +5472,15 @@ textarea{
      align-items: flex-start;
 }
 
+.advert-page-mainAdvert .col .content .description-container b {
+     width: 100%;
+     color: var(--text-color-para1);
+     font-weight: 700;
+}
+
 .advert-page-mainAdvert .col .content .html-value-container {
      width: 100%;
-     padding: 10px;
+     padding: 10px 5px;
 }
 
 .advert-page-mainAdvert .col .content .html-value-container ul,
