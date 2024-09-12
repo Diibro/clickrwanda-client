@@ -16,7 +16,7 @@ const JobCard = ({ad}) => {
           <div className="job-card">
                <div className="content">
                     <h3>{ad.ad_name}</h3>
-                    <p><span>Position: </span> {description['Position'] ? description['Position'].value : 'Other'}</p>
+                    <p><span>Company/Institution: </span> {description['Company/Institution'] ? description['Company/Institution'].value : 'Not specified'}</p>
                     <p><span>Deadline: </span> {description['Deadline'] ? description['Deadline'].value : 'Not specified'}</p>
                     <p><span>Location: </span><a href={`https://www.google.com/maps/place/${capitalizeString(ad.user_location?.location)}`} target="_blank" rel="noopener noreferrer">{ad.user_location?.location}</a></p>
                     <button onClick={ViewAd} className='job-card-apply-btn'>View More Details</button>
