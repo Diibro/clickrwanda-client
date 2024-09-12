@@ -5422,17 +5422,16 @@ textarea{
 }
 
 .advert-page-mainAdvert .col .content .short-value {
-     width: auto;
-     padding: 5px 10px 5px 0;
+     width: 100%;
      display: flex;
      flex-direction: row;
      gap: 5px;
-     align-items: flex-end;
+     align-items: flex-start;
 }
 
 .advert-page-mainAdvert .col .content .short-value b{
      font-size: 0.9rem;
-     color: var(--text-color-para1);
+     color: var(--text-color-para2);
 }
 
 .advert-page-mainAdvert .col .content .short-value span {
@@ -5460,8 +5459,8 @@ textarea{
 
 .advert-page-mainAdvert .col .content .group b {
      font-size: 0.9rem;
-     font-weight: 600;
-     color: var(--text-color-para1);
+     font-weight: 700;
+     color: var(--text-color-para2);
 
 }
 
@@ -5474,7 +5473,7 @@ textarea{
 
 .advert-page-mainAdvert .col .content .description-container b {
      width: 100%;
-     color: var(--text-color-para1);
+     color: var(--text-color-para2);
      font-weight: 700;
 }
 
@@ -5513,8 +5512,8 @@ textarea{
 
 .advert-page-mainAdvert .col .content .inner-image b {
      font-size: 0.9rem;
-     font-weight: 600;
-     color: var(--text-color-title);
+     font-weight: 700;
+     color: var(--text-color-para2);
 }
 
 .advert-page-mainAdvert .col .content .inner-image img {
