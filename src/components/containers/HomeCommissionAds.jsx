@@ -55,7 +55,7 @@ const HomeCommissionAds = () => {
                          <div className="ads-section-title">
                               <div className="title">
                                    <h3 className="main-title">Hot Deals</h3>
-                                   {/* <Link>View All</Link> */}
+                                   <Link to={'/market'}>View All</Link>
                               </div>
                               <div className="section-navigation">
                               <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft  ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>

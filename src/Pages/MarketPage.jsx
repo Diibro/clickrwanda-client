@@ -32,7 +32,7 @@ const MainPage = () => {
                               categories.map((cat, index) => 
                               <div key={`market-page-cat-${index}`} className='market-page-category-container'>
                                    <div className="market-page-category-container-title">
-                                        <h2>{cat.name} Deals</h2>
+                                        <h2>{cat.name}</h2>
                                         <Link to={`/market/${getItemUrl(cat.name, "")}`}>View deals</Link>
                                    </div>
                                    <div className="market-page-sub-cat-container hide-scroll">
@@ -56,7 +56,7 @@ const MainPage = () => {
 const MarketPageHeader = () => {
      return (
           <div className="market-page-title">
-               <h1>Discover the Best Deals</h1>
+               <h1>Welcome to our Marketplace</h1>
           </div>
      )
 }
@@ -65,7 +65,7 @@ const HotSubcategoryCard = ({category,sub}) => {
      const navigate = useNavigate();
      return (
           <div className="home-hot-category-card" onClick={() => navigate(`/market/${getItemUrl(category.name, sub.id)}`)}>
-               <img src={category.image} alt={`${sub.sub_name}`} loading="lazy" />
+               <img src={sub.image || category.image} alt={`${sub.sub_name}`} loading="lazy" />
                <div className="content">
                     <h5>{sub.sub_name}</h5>
                </div>
@@ -118,7 +118,7 @@ const HotCategoryPage = () => {
                          <>
                               <div className="market-page-category-page-header" style={{backgroundImage: `url(${category.image})`}}>
                                    <div className="content">
-                                        <h3>Discover the best in {category.name}</h3>
+                                        <h3>{category.name}</h3>
                                    </div>
                               </div>
                               <div className='market-page-categories'>

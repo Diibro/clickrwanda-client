@@ -93,13 +93,8 @@ export const LoginForm = () => {
                          });
                     }
                     if(res.data.user_type === "admin" ){
-                         setUser((prev) => ({
-                              ...prev,
-                              userInfo: res.data,
-                              loggedIn: true,
-                              role: 'admin'
-                         }));
-                         return showMainNotification("pass", `You have been logged as admin`, () => navigate("/admin"));
+                         
+                         return showMainNotification("fail", `You are lost please. Use the new way.`, () => navigate("/"));
                     }
                     
                }else{

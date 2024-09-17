@@ -1,42 +1,109 @@
 {
      "categories": [
           {
-               "name": "TV & Electronics",
-               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/852cd05a-41d7-4645-8402-357d1b24a8ee-Electronics.png",
+               "name": "Cars",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/new-cars-for-sale.png",
                "subs": [
-                    {"sub_name": "TVs", "id":"5a6fcde2-14a9-4290-b1d7-016f38aa870e"},
-                    {"sub_name": "Computers", "id":"befe7931-601a-455f-9e47-73afe7394bda"},
-                    {"sub_name": "Phones", "id":"d6cdd366-ada0-4fb9-b3a2-d8d20a54e013"}
+                    {"sub_name": "Used Cars for Sale", "id": "1c841a85-c0d2-4e7c-9863-e0aecda74b84", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/used-cars.png"},
+                    {"sub_name": "Cars For Rent", "id": "b74ca435-cb8b-4a7f-b134-6a5f2b7f37dc", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/cars-for-sale.png"},
+                    {"sub_name": "New cars For Sale", "id": "85e95070-dce3-4c78-87c1-9aa1d22a9774", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/new-cars-for-sale.png"},
+                    {"sub_name": "Cars Spare Parts", "id": "4b251ae5-fdba-441c-a36d-14a3d213a49a", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/car-spare-parts.png"}
                ]
           },
           {
-               "name":"Houses & Cars",
+               "name":"House & Apartments",
                "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/b08742ec-adc0-4e58-bc8e-39d2d8b7e647-property.png",
                "subs": [
-                    {"sub_name": "Houses for Sale", "id": "8839b32d-2463-4ec0-ac9a-d67f3c5b539a"},
-                    {"sub_name": "Houses for Rent", "id": "08beec85-2c0f-4789-9cd0-7bdc072f3b4b"},
-                    {"sub_name": "Used Cars for Sale", "id": "1c841a85-c0d2-4e7c-9863-e0aecda74b84"},
-                    {"sub_name": "Brand new Cars for Sale", "id": "85e95070-dce3-4c78-87c1-9aa1d22a9774"},
-                    {"sub_name": "Plots of Land for Sale", "id": "02b3aaed-d029-40a1-b522-2b310f3d2834"},
-                    {"sub_name": "Appartments for Sale", "id": "c8be4449-974d-4f62-a56c-10bb9d3605ce"},
-                    {"sub_name": "Appartments for Rent", "id": "1f9a5b92-13a4-4452-885a-e5bf365505a0"}
+                    {"sub_name": "Houses for sale", "id": "8839b32d-2463-4ec0-ac9a-d67f3c5b539a", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/houses-for-sale.png"},
+                    {"sub_name": "Apartment for sale", "id": "c8be4449-974d-4f62-a56c-10bb9d3605ce", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/Apartments-for-sale.png"},
+                    {"sub_name": "Commercial Properties for sale", "id": "91052aa4-2a96-4e6e-999f-21ed92258485", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/commercial-property-for-sale.png"},
+                    {"sub_name": "Short Let Property", "id": "01e1b213-b646-45c7-9a96-4ccfbad39ced", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/short-let-property.png"},
+                    {"sub_name": "House for rent", "id": "08beec85-2c0f-4789-9cd0-7bdc072f3b4b", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/house-for-rent.png"},
+                    {"sub_name": "Land & Plots for Sale", "id": "02b3aaed-d029-40a1-b522-2b310f3d2834", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/land-plots-for-sale.png"},
+                    {"sub_name": "Apartments for Rent", "id": "1f9a5b92-13a4-4452-885a-e5bf365505a0", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/apartments-for-rent.png"}
                ]
           },
           {
-               "name": "Services",
-               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/4d6b899d-7943-4b65-97a5-7138088cb6b3-services.png",
+               "name": "Travel & Tours",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/hotels.png",
                "subs": [
-                    {"sub_name": "Hotels", "id": "00a00fa6-fc2e-4582-b50c-bd6fb9dab5c1"},
-                    {"sub_name": "Guest Houses or Lodges", "id": ""},
-                    {"sub_name":"Bars & Restaurants", "id": "85610261-e469-4b31-8444-aa5cd462792e"},
-                    {"sub_name": "Jobs", "id":""},
-                    {"sub_name": "Other Services", "id":""}
+                    {"sub_name": "Hotels", "id":"00a00fa6-fc2e-4582-b50c-bd6fb9dab5c1", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/hotels.png"},
+                    {"sub_name": "Bar & Restaurants", "id":"85610261-e469-4b31-8444-aa5cd462792e", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/bars-restaurants.png"},
+                    {"sub_name": "Lodges & Guest Houses", "id":"4c7552e1-3e03-45ce-8f19-ecdd03b82e1d", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/lodges.png"},
+                    {"sub_name": "Tours", "id":"7aaf42a9-3e80-4ed6-9d96-dc17abeb8326", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/tours.png"}
                ]
           },
           {
-               "name": "Others",
-               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/aa385c89-301c-4600-af82-551d9c9311c7-sports.png",
-               "subs":[
+               "name":"Study & Work Abroad",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/study-abroad.png",
+               "subs": [
+                    {"sub_name": "Study Abroad", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/study-abroad.png"},
+                    {"sub_name": "Travel Abroad", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/travel-abroad.png"},
+                    {"sub_name": "Work Abroad", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/work-abroad.png"},
+                    {"sub_name": "Visa & Tickets", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/visa.png"}
+               ]
+          },
+          {
+               "name": "Schools & Training Courses & Grants",
+               "image":"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/nursery-primary.png",
+               "subs": [
+                    {"sub_name": "Nursery & Primary", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/nursery-primary.png"},
+                    {"sub_name": "Universities", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/universities.png"},
+                    {"sub_name": "HomeWorks & Exams", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/homeworks-exams.png"},
+                    {"sub_name": "Scholarships", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/scholarships.png"},
+                    {"sub_name": "High Schools", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/high-schools.png"},
+                    {"sub_name": "Courses", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/courses.png"},
+                    {"sub_name": "Professional Training Courses", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/professional-courses.png"},
+                    {"sub_name": "Grants & Funds", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/grants-funds.png"}
+               ]
+          },
+          {
+               "name": "Companies & Venues",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best service.png",
+               "subs": [
+                    {"sub_name": "Best services", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best service.png"},
+                    {"sub_name": "Best Suppliers", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best-suppliers.png"},
+                    {"sub_name": "Best Companies", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best-companies.png"},
+                    {"sub_name": "Best wedding venues", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best-wedding-venues.png"}
+               ]
+          },
+          {
+               "name": "Mobile & Electronics",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/mobile-phones.png",
+               "subs": [
+                    {"sub_name": "Mobile Phones", "id":"d6cdd366-ada0-4fb9-b3a2-d8d20a54e013", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/mobile-phones.png"},
+                    {"sub_name": "Printers & Scanners", "id":"aeb6ade6-b8fa-45e4-b588-68b8236756d1", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/printers-scanners.png"},
+                    {"sub_name": "Laptops & Desktops", "id":"befe7931-601a-455f-9e47-73afe7394bda", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/computers.png"},
+                    {"sub_name": "Others", "id":"079a6baf-5c3d-487f-b475-32bccadc8905", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/other-electronics.png"}
+               ]
+          },
+          {
+               "name": "Home Appliances & Furniture",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/tvs.png",
+               "subs": [
+                    {"sub_name": "TVs", "id": "5a6fcde2-14a9-4290-b1d7-016f38aa870e", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/tvs.png"},
+                    {"sub_name": "Furniture", "id": "ac817757-d400-4bb2-83b7-5ac21144229f", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/furniture.png"},
+                    {"sub_name": "Cookers & Stoves", "id": "d5d18df0-c02a-4ed8-ac07-2f2405e078c8", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/cookers-stoves.png"},
+                    {"sub_name": "Kitchen Appliances", "id": "3bc2f061-860b-424e-ab39-2f68d4752f78", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/kitchen-appliances.png"},
+                    {"sub_name": "Others", "id": "1a2d928c-e782-47ea-8820-67df21d153da", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/other-home-appliances.png"}
+               ]
+          },
+          {
+               "name": "Hardware & Tools",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/tools.png",
+               "subs": [
+                    {"sub_name": "Tools", "id": "fa483479-c027-4ce9-9c53-fc353e625bd8", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/tools.png"},
+                    {"sub_name": "Construction Materials", "id": "8bbc9f5d-8738-4920-ab64-50e22994c419", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/construction-materials.png"},
+                    {"sub_name": "Hardware", "id": "079a6baf-5c3d-487f-b475-32bccadc8905", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/hardware.png"},
+                    {"sub_name": "Others", "id": "cf5ca4a9-4ecc-4162-bcf3-f2269998b90d", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/other-hardware-tools.png"}
+               ]
+          },
+          {
+               "name":"Investment opportunities &Things to do in Rwanda",
+               "image": "Investment opportunities", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/investment-opportunities.png",
+               "subs": [
+                    {"sub_name": "Investment opportunities", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/investment-opportunities.png"},
+                    {"sub_name": "Things to do in Rwanda", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/things-to-do-in rwanda.png"}
                ]
           }
      ]

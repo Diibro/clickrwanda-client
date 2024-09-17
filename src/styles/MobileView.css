@@ -221,6 +221,10 @@
      .home-hot-category-card {
           width: 45%;
      }
+
+     .market-page-sub-cat-container{
+          gap: 5%;
+     }
 }
 
 

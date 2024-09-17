@@ -229,6 +229,14 @@
      .market-page-category-page-header {
           aspect-ratio: 1000/150;
      }
+
+     .home-hot-category-card{
+          width: 30%;
+     }
+
+     .market-page-sub-cat-container{
+          gap: 3.3%;
+     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -647,7 +655,7 @@
      }
 
      .home-hot-category-card {
-          width: 27%;
+          width: 30%;
      }
 
      .market-page-category-page-header { 
