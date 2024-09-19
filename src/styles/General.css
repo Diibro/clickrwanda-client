@@ -5503,6 +5503,7 @@ textarea{
 .advert-page-mainAdvert .col .content .html-value-container {
      width: 100%;
      padding: 10px 5px;
+     overflow: hidden;
 }
 
 .advert-page-mainAdvert .col .content .html-value-container ul,
@@ -5520,9 +5521,10 @@ textarea{
      font-size: 0.85rem;
      font-weight: 600;
      width: 95%;
+     max-width: 100% !important;
      margin: 2px auto;
      margin-bottom: 10px;
-     text-align: justify;
+     text-align: left;
 }
 
 .advert-page-mainAdvert .col .content .inner-image{
