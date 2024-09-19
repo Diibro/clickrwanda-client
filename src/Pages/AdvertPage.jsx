@@ -146,7 +146,8 @@ const AdvertPage = () => {
                                                   </div>
                                              } 
                                              
-                                             {adViewed && <h3 className="advert-price"> Price: {adViewed?.ad_price <= 0 ? <b>Negotiable</b> : <b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b>} </h3>}
+                                             {adViewed && adViewed?.ad_price > 0 &&
+                                                  <h3 className="advert-price">{adViewed?.category_name === "Jobs" ? "Salary" : "Price"}: {<b>Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b>} </h3>}
                                              <div className="content">
                                                   {
                                                        shortDesc ? 
@@ -198,7 +199,7 @@ const AdvertPage = () => {
                                    </div>
                                    <div className="col">
                                         <div className="vendor">
-                                        {adViewed?.full_name && <div className="vendor-info-header"><h4>Seller Information</h4></div>}
+                                        {adViewed?.full_name && <div className="vendor-info-header"><h4>{adViewed?.category_name === "Jobs" ? "Employer Information" : "Seller Information"}</h4></div>}
                                              <div className="vendor-col-left">
                                                   {adViewed?.profile_image && <a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}><img src={adViewed?.profile_image} alt={adViewed?.full_name} /></a>}
                                                   {adViewed?.full_name && <h5>{adViewed?.full_name}</h5>}

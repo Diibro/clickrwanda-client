@@ -7,7 +7,7 @@ import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
 import {  FaLongArrowAltRight } from "react-icons/fa";
 import { formatTimeAgo } from '../../utils/dateFunctions';
 // import { LoadingImage } from './LoadinComponents';
-import { AnyImage, CImage } from '../static/Image';
+import { AnyImage, CImage, MyImage } from '../static/Image';
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { useContext } from 'react';
 import AppData from '../../Contexts/AppContext';
@@ -41,7 +41,8 @@ export const AdvertCardVertical = ({ad}) => {
                <div className="ad-image">
                     <div className='background-img' style={{backgroundImage:`url(${ad.ad_image})`}} ></div>
                     {/* <img src={image} alt={title} onClick={action} loading='lazy' /> */}
-                    <CImage image={{src:ad.ad_image, alt:ad.ad_name, action:() => ViewAd()}}  />
+                    {/* <CImage image={{src:ad.ad_image, alt:ad.ad_name, action:() => ViewAd()}}  /> */}
+                    <MyImage image={ad.ad_image} action={ViewAd} />
                </div>
                <div className='content'>
                     <h5 onClick={ViewAd}><span>{capitalizeString(ad.ad_name)}</span>{ad.verified ? <i className='verified-ad-text'><VscVerifiedFilled /></i> : null}</h5>

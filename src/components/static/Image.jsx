@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { ImageLoader, ImageNotFound } from "../../assets/assets";
 import { useEffect, useRef, useState } from "react";
 
-
 export const CImage = ({image}) => {
      const [imageUrl, setImageUrl] = useState(ImageLoader);
   const [isLoading, setIsLoading] = useState(true);
@@ -101,30 +100,44 @@ export const CImage = ({image}) => {
 
 export const AnyImage = ({image}) => {
   const [imageUrl, setImageUrl] = useState(ImageLoader);
-const imgRef = useRef();
+  const imgRef = useRef();
 
-const imageStyle = {
-  maxWidth: "auto",  
-  maxHeight: "auto",
-  zIndex: "1"
-};
+  const imageStyle = {
+    maxWidth: "auto",  
+    maxHeight: "auto",
+    zIndex: "1"
+  };
 
-return (
-  <>
-    <img
-          ref={imgRef}
-          src={imageUrl}
-          alt={image.alt}
-          style={imageStyle}
-          onClick={image.action}
-          onError={() => {
-            setImageUrl(ImageNotFound);
-          }}
-        />
-    </>
-);
+  return (
+    <>
+      <img
+            ref={imgRef}
+            src={imageUrl}
+            alt={image.alt}
+            style={imageStyle}
+            onClick={image.action}
+            onError={() => {
+              setImageUrl(ImageNotFound);
+            }}
+          />
+      </>
+  );
 
 }
+
+
+export const MyImage = ({image, width="100%", height="100%", action=() => {}}) => {
+  const styles = {
+    backgroundImage: `url(${image})`,
+    width,
+    height
+  }
+  return(
+    <div className="my-image-container" style={styles} onClick={action} ></div>
+  )
+}
+
+
 CImage.propTypes = {
      image: PropTypes.any
 }
@@ -132,4 +145,11 @@ CImage.propTypes = {
 
 AnyImage.propTypes = {
      image: PropTypes.any
+}
+
+MyImage.propTypes = {
+  image: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  action: PropTypes.func
 }

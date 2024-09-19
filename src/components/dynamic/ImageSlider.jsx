@@ -65,17 +65,17 @@ export const ImageViewer = ({images}) => {
 
      return(
           <div className="image-viewer">
-               <div className="side-images hide-scroll">
-                    {images.map((image, index) => 
-                         <img key={index} src={image} loading="lazy" className={image === inView ? "active-image" : null} onMouseEnter={() => changeImage(image)} />
-                    )}
-               </div>
+               
                <div className="main-image">
                     <i className='product-share-icon' onClick={() => showButtons(urlLink,images[0], "Advert")}><FaShareAlt/></i>
                     <img src={inView} alt="advert images" loading="lazy" />
                     {/* <img image={{src:inView}} src={inView} /> */}
                </div>
-               
+               <div className="side-images hide-scroll">
+                    {images.map((image, index) => 
+                         <img key={index} src={image} loading="lazy" className={image === inView ? "active-image" : null} onClick={() => changeImage(image)} />
+                    )}
+               </div>
           </div>
      )
 }
