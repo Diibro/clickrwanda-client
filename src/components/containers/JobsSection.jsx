@@ -46,7 +46,6 @@ const JobsSection = () => {
      },[])
 
      useEffect(() => {
-          console.log(ads);
           const currentRef = adsRef.current;
           currentRef && currentRef.addEventListener('scroll', handleScroll);
       

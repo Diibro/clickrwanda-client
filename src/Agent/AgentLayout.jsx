@@ -8,7 +8,7 @@ import AgentPaymentService from "../services/AgentPayment";
 import UserService from "../services/User";
 import AgentLogout from "./AgentLogout";
 import WebViewService from "../services/WebView";
-import { calculatePackageTotal, calculateRefVisitsTotal, calculateShopTotal, getNotPayed, getValidWebVisits, getVisitIds } from "../utils/agentFunctions";
+import { calculatePackageTotal, calculateRefVisitsTotal,  getNotPayed, getValidWebVisits, getVisitIds } from "../utils/agentFunctions";
 import Tasks from "./Tasks";
 import AgentPlans from "./AgentPlans";
 import PlanSubscriptionService from "../services/PlanSubscription";

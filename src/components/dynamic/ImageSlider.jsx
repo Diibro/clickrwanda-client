@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { FaArrowRight, FaArrowLeft, FaShareAlt } from "react-icons/fa";
+import { FaArrowRight, FaArrowLeft, FaShareAlt, FaRegHeart, FaHeart } from "react-icons/fa";
 import PropTypes from 'prop-types';
 import AppData from "../../Contexts/AppContext";
 import { useLocation } from "react-router-dom";
@@ -44,6 +44,7 @@ export const ImageViewer = ({images}) => {
      const [imageCount, setImageCount] = useState(0);
      const [,setData] = useContext(AppData);
      const location = useLocation();
+     const [liked, setLiked] = useState(false)
      
      const urlLink = "https://share.clickrwanda.com/advert/"+location.search.split('?=')[1]
      const changeImage = image => {
@@ -67,15 +68,26 @@ export const ImageViewer = ({images}) => {
           <div className="image-viewer">
                
                <div className="main-image">
-                    <i className='product-share-icon' onClick={() => showButtons(urlLink,images[0], "Advert")}><FaShareAlt/></i>
+                    <div className="review-icons">
+                         {
+                         !liked ? 
+                              <i onClick={() => setLiked(true)}><FaRegHeart /></i> :
+                              <i onClick={() => setLiked(false)}><FaHeart /></i>
+                         }
+                         <i className='' onClick={() => showButtons(urlLink,images[0], "Advert")}><FaShareAlt/></i>
+                    </div>
                     <img src={inView} alt="advert images" loading="lazy" />
                     {/* <img image={{src:inView}} src={inView} /> */}
                </div>
-               <div className="side-images hide-scroll">
+               {
+                    images && images.length > 1 ?
+                    <div className="side-images hide-scroll">
                     {images.map((image, index) => 
                          <img key={index} src={image} loading="lazy" className={image === inView ? "active-image" : null} onClick={() => changeImage(image)} />
                     )}
                </div>
+                    :null
+               }
           </div>
      )
 }

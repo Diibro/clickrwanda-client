@@ -90,24 +90,62 @@ export const getNotPayed = (arr, date_key, last_pay_date) => {
      }
 } 
 
+// export const getValidWebVisits = (arr, tasks, last_pay_date) => {
+//      const validWebVisits = [];
+//      if (arr && arr.length && tasks && tasks.length) {
+
+//           return arr.filter(visit => {
+//                return tasks.some(task => {
+//                     return isLaterThan(visit.v_date, task.exp_date) && isLaterThan(last_pay_date, visit.v_date) && task.v_ids.includes(visit.v_id);
+//                });
+//           });
+//      }
+
+//      // const commonIps = {};
+
+//      // validWebVisits.forEach(visit => {
+//      //      const baseIpArr = visit.v_ip_address.split('.')
+//      //      const baseIp = baseIpArr[0]+'.'+baseIpArr[1]+'.'+baseIpArr[2];
+//      //      // commonIps[baseIp] = 
+//      // })
+
+//      return validWebVisits;
+// };
+
 export const getValidWebVisits = (arr, tasks, last_pay_date) => {
      const validWebVisits = [];
-     if (arr && arr.length && tasks && tasks.length) {
+     const dateNetworkMap = {}; // Map to track networks for each date
 
+     if (arr && arr.length && tasks && tasks.length) {
           return arr.filter(visit => {
-               return tasks.some(task => {
-                    return isLaterThan(visit.v_date, task.exp_date) && isLaterThan(last_pay_date, visit.v_date) && task.v_ids.includes(visit.v_id);
+             // Extract the base IP network (first three octets)
+               const baseIpArr = visit.v_ip_address.split('.');
+               const baseNetwork = `${baseIpArr[0]}.${baseIpArr[1]}.${baseIpArr[2]}`;
+             // Get the visit date
+             const visitDate = visit.v_date.split('T')[0]; // Assuming ISO date format
+          // Initialize map for this date if not already done
+          if (!dateNetworkMap[visitDate]) {
+               dateNetworkMap[visitDate] = {};
+          }
+             // Check if this network has already been visited on the same date
+               if (dateNetworkMap[visitDate][baseNetwork]) {
+                    return false; // Skip if the network already has a valid visit on this date
+               }
+             // Check if the visit is valid based on tasks and dates
+               const isValidVisit = tasks.some(task => {
+                    return (
+                         isLaterThan(visit.v_date, task.exp_date) &&
+                         isLaterThan(last_pay_date, visit.v_date) &&
+                         task.v_ids.includes(visit.v_id)
+                    );
                });
+               // If valid, store the network for this date and allow the visit
+               if (isValidVisit) {
+                    dateNetworkMap[visitDate][baseNetwork] = true;
+                    return true;
+               }
+               return false;
           });
      }
-
-     // const commonIps = {};
-
-     // validWebVisits.forEach(visit => {
-     //      const baseIpArr = visit.v_ip_address.split('.')
-     //      const baseIp = baseIpArr[0]+'.'+baseIpArr[1]+'.'+baseIpArr[2];
-     //      // commonIps[baseIp] = 
-     // })
-
      return validWebVisits;
 };

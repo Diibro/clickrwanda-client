@@ -27,5 +27,40 @@ export default  {
                console.log(error);
                return null
           }
-     } 
+     },
+     patch: async(endpoint, data) => {
+          try {
+               const res = await axios.patch(endpoint, data, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
+               if(res  && res.data){
+                    return res.data;
+               }else {
+                    return null;
+               }
+
+          } catch (error) {
+               console.log(error);
+               return null
+          }
+     },
+     delete: async (endpoint) => {
+          try {
+               const res = await axios.delete(endpoint, {
+                    headers: {
+                         'x-api-key': serverKey
+                    }
+               });
+               if(res && res.data){
+                    return res.data;
+               }else {
+                    return null;
+               }
+          } catch (error) {
+               console.log(error);
+               return null
+          }
+     }
 }

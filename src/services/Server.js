@@ -120,5 +120,6 @@ export default {
           update: `${serverUrl}/api/commission-ads-clients/update`,
           findAll: `${serverUrl}/api/commission-ads-clients/find-all`,
           findByAgent: `${serverUrl}/api/commission-ads-clients/find-by-agent`,
-     }
+     },
+     blog: `${serverUrl}/api/blog`
 }

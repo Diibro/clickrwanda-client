@@ -16,6 +16,7 @@ import JobSeekersSection from '../components/containers/JobSeekersSection';
 import HomeCommissionAds from '../components/containers/HomeCommissionAds';
 import HomeHotCategories from '../components/containers/HomeHotCategories';
 import JobsSection from '../components/containers/JobsSection';
+import HomeShopContainer from '../components/containers/HomeShopContainer';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -80,6 +81,8 @@ const Home = () => {
           <ExploreHotDeals />
           <HomeCommissionAds />
           {/* <HomeHotCategories /> */}
+          
+
           {/* ads websites section */}
           <AdWebsites />
 
@@ -94,6 +97,8 @@ const Home = () => {
 
           {/* make money section */}
           <MakeMoneySection />
+          {/* our shop */}
+          <HomeShopContainer/>
           </div>
           <div className="side right-side"><RightBanner items={Banners}/></div>
         </div>

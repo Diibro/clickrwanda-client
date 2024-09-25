@@ -61,7 +61,7 @@
                "name": "Companies & Venues",
                "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best service.png",
                "subs": [
-                    {"sub_name": "Best services", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best service.png"},
+                    {"sub_name": "Best services", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best-service.png"},
                     {"sub_name": "Best Suppliers", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best-suppliers.png"},
                     {"sub_name": "Best Companies", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best-companies.png"},
                     {"sub_name": "Best wedding venues", "id":"", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/best-wedding-venues.png"}
@@ -100,11 +100,12 @@
           },
           {
                "name":"Investment opportunities &Things to do in Rwanda",
-               "image": "Investment opportunities", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/investment-opportunities.png",
+               "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/investment-opportunities.png",
                "subs": [
                     {"sub_name": "Investment opportunities", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/investment-opportunities.png"},
-                    {"sub_name": "Things to do in Rwanda", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/things-to-do-in rwanda.png"}
+                    {"sub_name": "Things to do in Rwanda", "id": "", "image": "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/hot-categories/things-to-do-in+rwanda.png"}
                ]
           }
      ]
 }
+

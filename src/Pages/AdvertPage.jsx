@@ -33,7 +33,7 @@ const AdvertPage = () => {
      const [adViewed, setAdViewed] = useState(null);
      const [sameVendorAds, setSameVendorsAds] = useState([]);
      const [samecategoryAds, setSameCategoryAds] = useState([]);
-     const images = jsonParserV1(adViewed?.ad_images || null);
+     const [images, setImages] = useState([]);
      const [mainImage, setMainImage] = useState(null);
      const [adDescription,setAdDescription] = useState(null);
      const [totalVendorViews, setTotalVendorviews] = useState(0);
@@ -54,6 +54,16 @@ const AdvertPage = () => {
                }
                
           });
+     }
+
+     const updateImages = () => {
+          const otherImages =  jsonParserV1(adViewed?.ad_images || null);
+          Object.entries(adDescription).forEach(([,value]) => {
+               if(value.type === 'file' && value.fileType === 'image/*'){
+                    otherImages.push(value.value);
+               }
+          })
+          return setImages(otherImages);
      }
 
      const{ v_id:adId} = fetchIds(location);
@@ -102,12 +112,12 @@ const AdvertPage = () => {
      useEffect(() => {
           if(adViewed){
                (async() => await updateSimilarAds())();
-               console.log(adDescription);
           }
      },[adViewed]);
 
      useEffect(() => {
           if(adDescription){
+               updateImages();
                return updateDescription();
           }
      }, [adDescription])
@@ -177,7 +187,7 @@ const AdvertPage = () => {
                                                                            }
                                                                       </div>
                                                                  : value.type === 'htmlValue' ? 
-                                                                           <div className="group  description-container" >
+                                                                           <div className="group  description-container"  >
                                                                                 <b>{key}:</b>
                                                                                 <div className="html-value-container" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(value.value)}} ></div>
                                                                            </div>

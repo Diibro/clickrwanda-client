@@ -54,7 +54,8 @@
           justify-content: center;
           margin: 0;
      }
-     .advert-page-mainAdvert .col{
+     .advert-page-mainAdvert .col:nth-child(1),
+     .advert-page-mainAdvert .col:nth-child(2){
           width: 100%;
      }
 

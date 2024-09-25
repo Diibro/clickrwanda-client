@@ -11,7 +11,6 @@ const HomeCommissionAds = () => {
 
      const fetchAds = async() => {
           const res = await AdvertService.getClientApprovedCommissionAds({limit: 20, offset:0});
-          console.log(res);
           if(res){
                setAds(res.data);
           }

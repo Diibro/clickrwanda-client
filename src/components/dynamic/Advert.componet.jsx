@@ -12,6 +12,7 @@ import { VscVerifiedFilled } from "react-icons/vsc";
 import { useContext } from 'react';
 import AppData from '../../Contexts/AppContext';
 import JobCard from '../cards/JobCard';
+import JobSeekerCard from '../cards/JobSeekerCard';
 
 
 export const Advert = () => {
@@ -35,13 +36,13 @@ export const AdvertCardVertical = ({ad}) => {
 
      return(
           <div className={`product-square-container ${ad.plan_name === 'VIP' ? "premium" : ad.plan_name === "VVIP" ? "enterprise" : ad.plan_name}-ad ${ad.commission ? 'deal-ad' : ''}`}>
-               <span className={ad.plan_name === "urgent" ? "pay-plan urgent" : ad.plan_name === "VIP" ? "pay-plan premium" : ad.plan_name === "basic" ? "pay-plan basic" : ad.plan_name === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{ad.plan_name === 'VVIP' || ad.plan_name === 'VIP' ? ad.plan_name : capitalizeString(ad.plan_name) }</span>
-               {ad.commission ? <span className='pay-plan deal'>Deal</span> : null}
-               {ad.ad_discount ? <span className='advert-discount'>- {ad.ad_discount}%</span> : null}
+               {ad.commission ? 
+                    <span className='pay-plan deal'>Deal</span> : 
+                    <span className={ad.plan_name === "urgent" ? "pay-plan urgent" : ad.plan_name === "VIP" ? "pay-plan premium" : ad.plan_name === "basic" ? "pay-plan basic" : ad.plan_name === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{ad.plan_name === 'VVIP' || ad.plan_name === 'VIP' ? ad.plan_name : capitalizeString(ad.plan_name) }</span>
+               }
+               {ad.ad_discount && ad.ad_discount > 0 && ad.ad_discount <= 100 && +ad.ad_price > 0 ? <span className='advert-discount'>- {ad.ad_discount}%</span> : null}
                <div className="ad-image">
                     <div className='background-img' style={{backgroundImage:`url(${ad.ad_image})`}} ></div>
-                    {/* <img src={image} alt={title} onClick={action} loading='lazy' /> */}
-                    {/* <CImage image={{src:ad.ad_image, alt:ad.ad_name, action:() => ViewAd()}}  /> */}
                     <MyImage image={ad.ad_image} action={ViewAd} />
                </div>
                <div className='content'>
@@ -55,7 +56,14 @@ export const AdvertCardVertical = ({ad}) => {
                     </div>
                     <div className="row">
                          {
-                              ad.category_name === 'Job Seekers CVs' || +ad.ad_price <= 0  ? <span className='ad-price'>Negotiable</span> :<span className='ad-price' >{`${currency} ${formatPrice(ad.ad_price)}`}</span> 
+                              +ad.ad_price <= 0  ? <span className='ad-price'>Negotiable</span> :<span className='ad-price' >
+                                   {
+                                        ad.ad_discount && ad.ad_discount <= 100 && ad.ad_discount > 0 ?
+                                        <>{`${currency} ${formatPrice(+ad.ad_price - ((+ad.ad_price * ad.ad_discount)/100))}`} <span className="original-price">{`${currency} ${formatPrice(ad.ad_price)}`}</span> </>:
+                                        <>{`${currency} ${formatPrice(ad.ad_price)}`} </>
+                                   }
+                                   
+                                   </span> 
                          }
                          
                     </div>
@@ -129,7 +137,10 @@ const AdvertRenderer = ({item}) => {
      return(
           item.category_id === "b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7" ?
                <JobCard ad={item} />
-          :<AdvertCardVertical ad={item} />
+          :
+          item.category_name === 'Job Seekers CVs'? 
+          <JobSeekerCard ad={item} />:
+          <AdvertCardVertical ad={item} />
      )
 }
 

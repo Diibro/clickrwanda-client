@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { FaLocationDot } from 'react-icons/fa6'
 import { capitalizeString } from '../../utils/otherFunctions'
 import { useNavigate } from 'react-router-dom'
 import { getItemUrl } from '../../utils/urlFunctions'

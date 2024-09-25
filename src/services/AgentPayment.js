@@ -63,7 +63,6 @@ export default {
                               'x-api-key': serverKey
                          }
                     });
-                    console.log(res);
                     return res.data
                }
           } catch (error) {
