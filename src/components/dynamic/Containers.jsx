@@ -52,9 +52,9 @@ export const CategoryContainerSquare = ({image, title, ads_no, view }) => {
                     {/* <AnyImage image={{src:image, alt: title, action: () => {}}} /> */}
                </div>
                <div className="content">
-                    <p>{title}</p>
                     <p>
-                         <span className='small-paragraph'>{formatPrice(ads_no)}</span>
+                         {title}
+                         <span className='small-paragraph'> {formatPrice(ads_no)}</span>
                     </p>
                     
                </div>
