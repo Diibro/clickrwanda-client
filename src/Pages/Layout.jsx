@@ -112,7 +112,7 @@ const Layout = () => {
                <Route path='/location/*' element={<LocationPage />} />
                <Route path='/forms/*' element={<Forms />} />
                <Route path='/market/*' element={<MarketPage />}/>
-               <Route path='/our-shop' element={<OurShopPage />} />
+               <Route path='/our-shop/*' element={<OurShopPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import {
      EmailShareButton,
      FacebookShareButton,
-     InstapaperShareButton,
+     // InstapaperShareButton,
      LinkedinShareButton,
      PinterestShareButton,
      TelegramShareButton,
@@ -13,7 +13,7 @@ import {
      WhatsappShareButton,
      EmailIcon,
      FacebookIcon,
-     InstapaperIcon,
+     // InstapaperIcon,
      LinkedinIcon,
      PinterestIcon,
      TelegramIcon,
@@ -25,7 +25,7 @@ import AppData from '../../Contexts/AppContext';
 import { ImCross } from 'react-icons/im';
 import { ActionBtn } from './Buttons';
 import { copyToClipboard, formatPrice } from '../../utils/otherFunctions';
-import { AnyImage } from '../static/Image';
+// import { AnyImage } from '../static/Image';
 
 export const SectionContainer = ({content, title, sectionType}) => {
      return(
@@ -52,8 +52,8 @@ export const CategoryContainerSquare = ({image, title, ads_no, view }) => {
                     {/* <AnyImage image={{src:image, alt: title, action: () => {}}} /> */}
                </div>
                <div className="content">
+                    <p>{title}</p>
                     <p>
-                         {title}
                          <span className='small-paragraph'>{formatPrice(ads_no)}</span>
                     </p>
                     

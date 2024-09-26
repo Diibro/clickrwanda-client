@@ -39,7 +39,7 @@ const HomeShopContainer = () => {
 const HotSubcategoryCard = ({category,sub}) => {
      const navigate = useNavigate();
      return (
-          <div className="home-hot-category-card" onClick={() => navigate(`/our-shop?=${sub.sub_name}`)}>
+          <div className="home-hot-category-card" onClick={() => navigate(`/our-shop/${getItemUrl(sub.sub_name, sub.id)}`)}>
                <MyImage image={sub.image} />
                {/* <img src={sub.image || category.image} alt={`${sub.sub_name}`} loading="lazy" /> */}
                <div className="content">

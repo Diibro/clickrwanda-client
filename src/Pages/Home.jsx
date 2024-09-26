@@ -14,7 +14,7 @@ import AllCategoriesSection from '../components/containers/AllCategoriesSection'
 import { BecomeSeller, ExploreHotDeals, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
 import JobSeekersSection from '../components/containers/JobSeekersSection';
 import HomeCommissionAds from '../components/containers/HomeCommissionAds';
-import HomeHotCategories from '../components/containers/HomeHotCategories';
+// import HomeHotCategories from '../components/containers/HomeHotCategories';
 import JobsSection from '../components/containers/JobsSection';
 import HomeShopContainer from '../components/containers/HomeShopContainer';
 
@@ -80,9 +80,9 @@ const Home = () => {
           {/* hot deals section */}
           <ExploreHotDeals />
           <HomeCommissionAds />
-          {/* <HomeHotCategories /> */}
           
-
+          {/* our shop */}
+          <HomeShopContainer/>
           {/* ads websites section */}
           <AdWebsites />
 
@@ -97,8 +97,7 @@ const Home = () => {
 
           {/* make money section */}
           <MakeMoneySection />
-          {/* our shop */}
-          <HomeShopContainer/>
+          
           </div>
           <div className="side right-side"><RightBanner items={Banners}/></div>
         </div>
