@@ -5,7 +5,7 @@ export const Banners = [
                hr:"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/visa-pop.gif",
                vr:"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/aska-vr.png"
           },
-          link: "https://clickrwanda.com/"
+          link: "https://wa.me/message/ATUUNFXHTEMWM1"
      },
      {
           name:"Visit My Venue",
