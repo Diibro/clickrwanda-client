@@ -2,7 +2,7 @@ export const Banners = [
      {
           name:"Green Application open",
           images:{
-               hr:"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/visa-pop.gif",
+               hr:"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/vis-pop.gif",
                vr:"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/aska-vr.png"
           },
           link: "https://wa.me/message/ATUUNFXHTEMWM1"
