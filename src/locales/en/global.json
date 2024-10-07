@@ -7,7 +7,7 @@
                     "link":"/forms/login"
                },
                {
-                    "name": "Post Free Ad",
+                    "name": "Post Ad",
                     "link": "/forms/add-advert"
                }
           ]
@@ -67,7 +67,7 @@
      },
      "homePage":{
           "heroSection":{
-               "heroMessage": "Sell, Buy, Rent and Advertise in Rwanda for Free",
+               "heroMessage": "Sell, Buy, Rent and Advertise in Rwanda",
                "searchBar":{
                     "search":"Search Anything...",
                     "category": "All Categories",

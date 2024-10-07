@@ -17,9 +17,10 @@
      }
      .product-square-container{
           min-width: 45%;
-          width: 46%;
-          max-width: 46%;
-          margin: 0 1.5% 20px;
+          width: 48%;
+          max-width: 48%;
+          margin: 0 0.75% 20px;
+          aspect-ratio: 100/150;
      }
      .desktop-header{
           padding: 5px 2%;

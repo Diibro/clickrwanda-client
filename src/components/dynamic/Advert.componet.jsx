@@ -40,7 +40,7 @@ export const AdvertCardVertical = ({ad}) => {
                     <span className='pay-plan deal'>Deal</span> : 
                     <span className={ad.plan_name === "urgent" ? "pay-plan urgent" : ad.plan_name === "VIP" ? "pay-plan premium" : ad.plan_name === "basic" ? "pay-plan basic" : ad.plan_name === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{ad.plan_name === 'VVIP' || ad.plan_name === 'VIP' ? ad.plan_name : capitalizeString(ad.plan_name) }</span>
                }
-               {ad.ad_discount && ad.ad_discount > 0 && ad.ad_discount <= 100 && +ad.ad_price > 0 ? <span className='advert-discount'>- {ad.ad_discount}%</span> : null}
+               {/* {ad.ad_discount && ad.ad_discount > 0 && ad.ad_discount <= 100 && +ad.ad_price > 0 ? <span className='advert-discount'>- {ad.ad_discount}%</span> : null} */}
                <div className="ad-image">
                     <div className='background-img' style={{backgroundImage:`url(${ad.ad_image})`}} ></div>
                     <MyImage image={ad.ad_image} action={ViewAd} />

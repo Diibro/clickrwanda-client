@@ -4480,7 +4480,8 @@ textarea{
      border: 1px solid var(--gray-text);
      overflow: hidden;
      flex: 1;
-     border-radius: 3px;
+     border-radius: 5px;
+     aspect-ratio: 100/120;
 }
 
 .product-square-container:hover{
@@ -4512,10 +4513,6 @@ textarea{
      width: 95%;
      border-radius: 5px;
      transition: all 0.2s;
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-     gap: 3px;
 }
 
 .product-square-container h5 span{
@@ -4523,9 +4520,10 @@ textarea{
      font-weight: 700;
      color: var(--text-color-title);
      max-width: 95%;
-     text-overflow: ellipsis;
+     /* text-overflow: ellipsis;
      white-space: nowrap;
-     overflow: hidden;
+     overflow: hidden; */
+     word-break: keep-all;
      transition: all 0.5s ease;
 }
 
@@ -4544,7 +4542,7 @@ textarea{
      margin: 2.5px auto;
      padding:  0px 2.5px;
      flex-wrap: wrap;
-     gap: 5px;
+     gap: 2px;
 } 
 .product-square-container .content .row{
      width: 100%;
@@ -4556,7 +4554,7 @@ textarea{
 }
 
 .product-square-container .content .row .ad-price{
-     font-size: 1.1rem;
+     font-size: 1rem;
      color: var(--back-color-red1);
      display: flex;
      flex-direction: row;
@@ -4627,9 +4625,6 @@ textarea{
      font-size: 0.95rem;
      font-weight: 700;
      color: var(--featured-plan) !important;
-     display: flex;
-     flex-direction: row;
-     align-items: center;
 
 }
 
@@ -4649,8 +4644,8 @@ textarea{
 }
 .ad-image {
      width: 100%;
+     height: 100%;
      margin: 0 auto;
-     height: 150px;
      border-radius: 0px;
      display: flex;
      flex-direction: row;
