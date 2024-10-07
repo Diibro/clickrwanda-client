@@ -4520,10 +4520,15 @@ textarea{
      font-weight: 700;
      color: var(--text-color-title);
      max-width: 95%;
-     /* text-overflow: ellipsis;
-     white-space: nowrap;
-     overflow: hidden; */
-     word-break: keep-all;
+     display: -webkit-box;           /* Use flexbox container */
+     -webkit-line-clamp: 2;
+     line-clamp: 2;/* Limit to 2 lines */
+     -webkit-box-orient: vertical;   /* Make the box vertical */
+     overflow: hidden;               /* Hide overflow content */
+     text-overflow: ellipsis;
+     -webkit-hyphens: auto;        /* Show ellipsis */
+     hyphens: auto;                  /* Automatically break words with hyphens */
+     word-break: break-word;         /* Break words when necessary */
      transition: all 0.5s ease;
 }
 
@@ -4626,6 +4631,12 @@ textarea{
      font-weight: 700;
      color: var(--featured-plan) !important;
 
+}
+
+.verified-ad-text-paragraph {
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--featured-plan);
 }
 
 .verified-ad-text i {

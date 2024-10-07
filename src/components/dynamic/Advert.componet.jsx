@@ -46,7 +46,8 @@ export const AdvertCardVertical = ({ad}) => {
                     <MyImage image={ad.ad_image} action={ViewAd} />
                </div>
                <div className='content'>
-                    <h5 onClick={ViewAd}><span>{capitalizeString(ad.ad_name)}</span>{ad.verified ? <i className='verified-ad-text'><VscVerifiedFilled /></i> : null}</h5>
+                    <h5 onClick={ViewAd}><span>{capitalizeString(ad.ad_name)}</span></h5>
+                    {ad.verified ? <p className='verified-ad-text-paragraph' >Verified<i className='verified-ad-text'><VscVerifiedFilled /></i></p> : null}
                     <div className="row">
                          <b>
                               <i>{formatTimeAgo(ad.ad_date)},</i>
