@@ -1115,6 +1115,13 @@ textarea{
 
 }
 
+.payment-plan-card .body .detailed-description ul li,
+.payment-plan-card .body .detailed-description ol li{
+     width: 100%;
+     overflow: hidden;
+     word-break: normal;
+}
+
 .payment-plan-card .body .detailed-description ul li::before,
 .payment-plan-card .body .detailed-description ol li::before {
      content: '\f058'; /* Unicode for FaCheckCircle */
