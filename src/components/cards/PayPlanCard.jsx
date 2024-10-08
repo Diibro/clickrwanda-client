@@ -3,6 +3,8 @@ import { parseString } from '../../utils/jsonFunctions';
 import { TickIcon } from '../static/Icons';
 import { ActionBtn } from '../dynamic/Buttons';
 
+import DOMPurify from 'dompurify';
+
 const PayPlanCard = ({plan, action, btnTitle, extra}) => {
      const planDescription = parseString(plan.description);
      return (
@@ -15,7 +17,12 @@ const PayPlanCard = ({plan, action, btnTitle, extra}) => {
                {
                     planDescription ? 
                          <div className="body">
-                              <ul>
+                              {
+                                   planDescription.detailedDescription ? 
+                                        <div className='detailed-description' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(planDescription.detailedDescription)}}>
+                                        </div>
+                                   :
+                                   <ul>
                                    {
                                         planDescription.allowed ? 
                                              planDescription.allowed.map((item, index) => <li className='' key={`plan-allowed-${index}`}><TickIcon />{item}</li>) 
@@ -28,6 +35,7 @@ const PayPlanCard = ({plan, action, btnTitle, extra}) => {
                                         : null
                                    }
                               </ul>
+                              }
                          </div>
                     : null
                }

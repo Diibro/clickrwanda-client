@@ -24,33 +24,46 @@ const AgentPlansContainer = ({agent}) => {
 
      const updateCatPlans = () => {
           if(paymentPlans && paymentPlans[0]){
+               // const dividedPlans = {
+               //      "Individual":[], "Small Business": [], 
+               //      "Large Business": [], "Extra Boost": [], 
+               //      "Commissions": [], "Fixed Ads": [],
+               //      "Banner Ads": [], "Urgent Ads": [],
+               //      "Article": []
+                    
+               // };
+
                const dividedPlans = {
-                    "Individual":[], "Small Business": [], 
-                    "Large Business": [], "Extra Boost": [], 
-                    "Commissions": [], "Fixed Ads": [],
-                    "Banner Ads": [], "Urgent Ads": [],
-                    "Article": []
+                    "Ads Packages":[], "Banner Packages": [], 
+                    "Shop Packages": []
                };
                for(const plan of paymentPlans){
-                    if(plan.plan_type === "Individual"){
-                         dividedPlans["Individual"].push(plan);
-                    }else if (plan.plan_type === "Small Business"){
-                         dividedPlans["Small Business"].push(plan);
-                    }else if(plan.plan_type === "Large Business"){
-                         dividedPlans["Large Business"].push(plan);
-                    }else if(plan.plan_type === "Extra Boost"){
-                         dividedPlans["Extra Boost"].push(plan)
-                    }else if(plan.plan_type === "Commissions"){
-                         dividedPlans["Commissions"].push(plan);
-                    }else if(plan.plan_type === "Fixed Ads"){
-                         dividedPlans["Fixed Ads"].push(plan);
-                    }else if(plan.plan_type === "Banner Ads"){
-                         dividedPlans["Banner Ads"].push(plan);
-                    }else if(plan.plan_type === "Urgent Ads"){
-                         dividedPlans["Urgent Ads"].push(plan);
-                    }else if(plan.plan_type === "Article Package"){
-                         dividedPlans["Article"].push();
+                    if(plan.plan_type === "Ads Package" ){
+                         dividedPlans["Ads Packages"].push(plan);
+                    }else if(plan.plan_type === "Banner Package") {
+                         dividedPlans["Banner Packages"].push(plan);
+                    }else if(plan.plan_type === "Shop Package"){
+                         dividedPlans["Shop Packages"].push(plan);
                     }
+                    // if(plan.plan_type === "Individual"){
+                    //      dividedPlans["Individual"].push(plan);
+                    // }else if (plan.plan_type === "Small Business"){
+                    //      dividedPlans["Small Business"].push(plan);
+                    // }else if(plan.plan_type === "Large Business"){
+                    //      dividedPlans["Large Business"].push(plan);
+                    // }else if(plan.plan_type === "Extra Boost"){
+                    //      dividedPlans["Extra Boost"].push(plan)
+                    // }else if(plan.plan_type === "Commissions"){
+                    //      dividedPlans["Commissions"].push(plan);
+                    // }else if(plan.plan_type === "Fixed Ads"){
+                    //      dividedPlans["Fixed Ads"].push(plan);
+                    // }else if(plan.plan_type === "Banner Ads"){
+                    //      dividedPlans["Banner Ads"].push(plan);
+                    // }else if(plan.plan_type === "Urgent Ads"){
+                    //      dividedPlans["Urgent Ads"].push(plan);
+                    // }else if(plan.plan_type === "Article Package"){
+                    //      dividedPlans["Article"].push();
+                    // }
                }
                for (const category in dividedPlans) {
                     dividedPlans[category].sort((a, b) => a.plan_amount - b.plan_amount);

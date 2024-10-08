@@ -1103,6 +1103,27 @@ textarea{
      width: 95%;
 }
 
+.payment-plan-card .body .detailed-description {
+     width: 90%;
+     margin: 5px auto;
+}
+
+.payment-plan-card .body .detailed-description ul,
+.payment-plan-card .body .detailed-description ol {
+     font-size: 0.9rem;
+     list-style: none;
+
+}
+
+.payment-plan-card .body .detailed-description ul li::before,
+.payment-plan-card .body .detailed-description ol li::before {
+     content: '\f058'; /* Unicode for FaCheckCircle */
+     font-family: 'Font Awesome 5 Free'; /* Make sure this is included */
+     font-weight: 900;
+     color: #4caf50; /* Change to your desired color */
+     margin-right: 5px;
+}
+
 .payment-plan-card .head .title{  
      font-size: 1.5rem;
      font-weight: 800;
@@ -4621,7 +4642,7 @@ textarea{
      background-color: var(--text-color-title);
 }
 
-.product-square-container .content .row button.contact-btn:hover{
+.product-square-conimage-uploader-containertainer .content .row button.contact-btn:hover{
      background-color: var(--white-text);
      color:var(--text-color-title);
      border-color: var(--text-color-title);
@@ -7432,6 +7453,7 @@ textarea{
      flex-direction: row;
      align-items: flex-start;
      justify-content: flex-start;
+     flex-wrap:wrap;
      overflow-x: auto;
      gap: 10px;
 }

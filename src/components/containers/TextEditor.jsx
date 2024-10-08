@@ -8,7 +8,7 @@ const TextEditor = ({cb}) => {
 
      const handleChange = (value) => {
           setEditorContent(value);
-          cb(value)
+          cb(value);
      }    
      return (
           <div className='text-editor-container'>

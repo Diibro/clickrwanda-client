@@ -23,34 +23,48 @@ const UserPlansContainer = () => {
      }
 
      const updateCatPlans = () => {
+          console.log(payPlans);
           if(payPlans && payPlans[0]){
+               // const dividedPlans = {
+               //      "Individual":[], "Small Business": [], 
+               //      "Large Business": [], "Extra Boost": [], 
+               //      "Commission Ads": [], "Fixed Ads": [],
+               //      "Banner Ads": [], "Urgent Ads": [],
+               //      "Article": []
+               // };
+
                const dividedPlans = {
-                    "Individual":[], "Small Business": [], 
-                    "Large Business": [], "Extra Boost": [], 
-                    "Commission Ads": [], "Fixed Ads": [],
-                    "Banner Ads": [], "Urgent Ads": [],
-                    "Article": []
+                    "Ads Packages":[], "Banner Packages": [], 
+                    "Shop Packages": []
                };
                for(const plan of payPlans){
-                    if(plan.plan_type === "Individual"){
-                         dividedPlans["Individual"].push(plan);
-                    }else if (plan.plan_type === "Small Business"){
-                         dividedPlans["Small Business"].push(plan);
-                    }else if(plan.plan_type === "Large Business"){
-                         dividedPlans["Large Business"].push(plan);
-                    }else if(plan.plan_type === "Extra Boost"){
-                         dividedPlans["Extra Boost"].push(plan)
-                    }else if(plan.plan_type === "Commission Ads"){
-                         dividedPlans["Commission Ads"].push(plan);
-                    }else if(plan.plan_type === "Fixed Ads"){
-                         dividedPlans["Fixed Ads"].push(plan);
-                    }else if(plan.plan_type === "Banner Ads"){
-                         dividedPlans["Banner Ads"].push(plan);
-                    }else if(plan.plan_type === "Urgent Ads"){
-                         dividedPlans["Urgent Ads"].push(plan);
-                    }else if(plan.plan_type === "Article Package"){
-                         dividedPlans["Article"].push();
+                    if(plan.plan_type === "Ads Package" ){
+                         dividedPlans["Ads Packages"].push(plan);
+                    }else if(plan.plan_type === "Banner Package") {
+                         dividedPlans["Banner Packages"].push(plan);
+                    }else if(plan.plan_type === "Shop Package"){
+                         dividedPlans["Shop Packages"].push(plan);
                     }
+                    // if(plan.plan_type === "Individual"){
+                    //      dividedPlans["Individual"].push(plan);
+                    // }else if (plan.plan_type === "Small Business"){
+                    //      dividedPlans["Small Business"].push(plan);
+                    // }else if(plan.plan_type === "Large Business"){
+                    //      dividedPlans["Large Business"].push(plan);
+                    // }else if(plan.plan_type === "Extra Boost"){
+                    //      dividedPlans["Extra Boost"].push(plan)
+                    // }else if(plan.plan_type === "Commission Ads"){
+                    //      dividedPlans["Commission Ads"].push(plan);
+                    // }else if(plan.plan_type === "Fixed Ads"){
+                    //      dividedPlans["Fixed Ads"].push(plan);
+                    // }else if(plan.plan_type === "Banner Ads"){
+                    //      dividedPlans["Banner Ads"].push(plan);
+                    // }else if(plan.plan_type === "Urgent Ads"){
+                    //      dividedPlans["Urgent Ads"].push(plan);
+                    // }else if(plan.plan_type === "Article Package"){
+                    //      dividedPlans["Article"].push();
+                    
+                    // }
                }
                setCatPlans(dividedPlans);
           }
@@ -67,6 +81,7 @@ const UserPlansContainer = () => {
           }
           
      }, [payPlans]);
+
      return (
           <div className="admin-plans-container">
                {
