@@ -12,7 +12,7 @@ const PayPlanCard = ({plan, action, btnTitle, extra}) => {
                <div className="head">
                     {/* <img width={60} src={plan?.plan_icon} alt="plan icon" /> */}
                     <h2 className='title'>{plan?.plan_name}</h2>
-                    <p className='price'><span>Rwf</span> {plan.plan_amount} <span>/month</span></p>
+                    <p className='price'><span>Rwf</span> { plan.plan_name === "Simple Ads" ? `2000 - 10000` : plan.plan_amount} <span>/month</span></p>
                </div>
                {
                     planDescription ? 
