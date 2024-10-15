@@ -674,6 +674,15 @@
      .job-card{
           width: 95%;
      }
+
+     .home-blogs-section .main-blog,
+     .home-blogs-section .other-blogs {
+          width: 98%;
+     }
+
+     .home-blogs-section .main-blog {
+          aspect-ratio: 100/100;
+     }
 }
 
 

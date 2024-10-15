@@ -8147,6 +8147,186 @@ textarea{
 
 /* end oflocation page styles  */
 
+/* blogs page */
+
+.blogs-page {
+     width: 100%;
+     padding: 10px 2%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 20px;
+}
+
+.home-blogs-section {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     background-color: var(--white-text);
+     padding: 10px;
+     border-radius: 10px;
+}
+
+.home-blogs-section .blog-section-title {
+     width: 100%; 
+     margin-block: 0;
+     padding: 0;
+}
+
+.home-blogs-section .blog-section-title h2{
+     color: var(--text-color-title);
+     font-size: 1.6rem;
+     font-weight: 800;
+     width: 100%;
+     margin: 0;
+}
+
+.home-blogs-section .main-blog {
+     width: 55%;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+     align-items: start;
+     gap:10px;
+     border: 1.4px solid var(--gray-text);
+     border-radius: 10px;
+     padding: 5px;
+     aspect-ratio: 100/80;
+}
+
+.home-blogs-section .main-blog .image-container {
+     width: 100%;
+     height: 100%;
+} 
+
+.home-blogs-section .main-blog .image-container .my-image-container {
+     
+     border-radius: 10px;
+}
+
+.home-blogs-section .main-blog .content {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     gap:5px;
+}
+
+.home-blogs-section .main-blog .content h3{
+     font-size: 1.4rem;
+     font-weight: 800;
+     color: var(--text-color-title);
+}
+
+.home-blogs-section .main-blog .content p{
+     font-size: 0.8rem;
+     color: var(--text-color-para1);
+     display: -webkit-box; /* Fallback for older browsers */
+     -webkit-line-clamp: 3;
+     line-clamp: 3; /* Limit to 3 lines */
+     -webkit-box-orient: vertical; /* Sets the box to vertical orientation */
+     overflow: hidden; /* Hides overflowing content */
+     text-overflow: ellipsis;
+}
+.home-blogs-section .main-blog .content a{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color:var(--back-color-blue1);
+}
+
+.home-blogs-section .other-blogs {
+     width: 42.5%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     overflow: hidden;
+     gap: 5px;
+}
+
+.home-blogs-section .other-blogs .title {
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+}
+
+.home-blogs-section .other-blogs .title h4 {
+     font-size: 1.4rem;
+     font-weight: 700;
+     color: var(--text-color-para1);
+}
+
+.home-blogs-section .other-blogs .title a{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--back-color-blue1);
+}
+
+.blog-row-card {
+     width: 100%;
+     border: 1.3px solid var(--gray-text);
+     border-radius: 5px;
+     padding: 2.5px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+     aspect-ratio: 100/20;
+}
+
+.blog-row-card .image-container {
+     width: 45%;
+     height: 100%;
+
+}
+
+.blog-row-card .image-container .my-image-container{
+     border-radius: 5px;
+}
+
+.blog-row-card .content {
+     width: 55%;
+     display: flex;
+     flex-direction: column;
+     padding: 2.5px
+}
+
+.blog-row-card .content h4{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color: var(--text-color-title);
+}
+
+.blog-row-card .content .row {
+     width: 100%;
+     display: flex ;
+     flex-direction: column;
+     align-items: flex-start;
+}
+
+.blog-row-card .content .row p{
+     font-size: 0.8rem;
+     color: var(--text-color-para1);
+     display: -webkit-box; /* Fallback for older browsers */
+     -webkit-line-clamp: 3;
+     line-clamp: 3; /* Limit to 3 lines */
+     -webkit-box-orient: vertical; /* Sets the box to vertical orientation */
+     overflow: hidden; /* Hides overflowing content */
+     text-overflow: ellipsis;
+}
+
+.blog-row-card .content .row a{
+     font-size: 0.8rem;
+     font-weight: 600;
+     color:var(--back-color-blue1);
+}
+
+/* end of blogs page */
+
 /* end of addition client pages */
 
 

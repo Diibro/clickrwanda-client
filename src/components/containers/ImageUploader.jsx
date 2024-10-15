@@ -5,6 +5,7 @@ import { s3Folders } from '../../config/s3Config';
 import { showMainNotification } from '../../utils/AdminFunctions';
 import uploadFile from '../../utils/aws-upload-functions';
 
+
 const ImageUploader = ({content}) => {
      const [imageFile, setImageFile] = useState(null);
      const [uploadProgress, setUploadProgress] = useState(0);

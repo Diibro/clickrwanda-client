@@ -169,7 +169,6 @@ export const AddAdvertForm = () => {
       }
       
       const res = await server.addAdvert(newAd);
-      console.log(res);
       if(res.status === "pass"){
         return showMainNotification('pass', `${res.message} as ${adInfo.ad_name}`, () => navigate("/user-dashboard/user-adverts"));
       }else{

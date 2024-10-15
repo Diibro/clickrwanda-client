@@ -17,6 +17,7 @@ import HomeCommissionAds from '../components/containers/HomeCommissionAds';
 // import HomeHotCategories from '../components/containers/HomeHotCategories';
 import JobsSection from '../components/containers/JobsSection';
 import HomeShopContainer from '../components/containers/HomeShopContainer';
+import { HomeBlogsSection } from './BlogsPage';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
@@ -83,6 +84,9 @@ const Home = () => {
           
           {/* our shop */}
           <HomeShopContainer/>
+
+          {/* blogs */}
+          <HomeBlogsSection showTitle={true} />
           {/* ads websites section */}
           <AdWebsites />
 

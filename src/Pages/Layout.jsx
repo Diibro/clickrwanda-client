@@ -46,6 +46,7 @@ import JobSeekerLayout from '../jobSeeker/Layout';
 import LocationPage from './LocationPage';
 import MarketPage from './MarketPage';
 import OurShopPage from './OurShopPage';
+import BlogsPage from './BlogsPage';
 
 
 const Layout = () => {
@@ -113,6 +114,7 @@ const Layout = () => {
                <Route path='/forms/*' element={<Forms />} />
                <Route path='/market/*' element={<MarketPage />}/>
                <Route path='/our-shop/*' element={<OurShopPage />} />
+               <Route path='/blogs/*' element={<BlogsPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 
