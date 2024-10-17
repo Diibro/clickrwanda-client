@@ -8273,9 +8273,8 @@ textarea{
      padding: 2.5px;
      display: flex;
      flex-direction: row;
-     align-items: center;
+     align-items: flex-start;
      justify-content: space-between;
-     aspect-ratio: 100/20;
 }
 
 .blog-row-card .image-container {
@@ -8284,8 +8283,10 @@ textarea{
 
 }
 
-.blog-row-card .image-container .my-image-container{
+.blog-row-card .image-container img{
      border-radius: 5px;
+     width: 100%;
+     height: auto;
 }
 
 .blog-row-card .content {
@@ -8341,18 +8342,19 @@ textarea{
      display: flex;
      align-items: flex-end;
      justify-content: space-between;
+     flex-wrap: wrap;
 }
 
 .blog-page .title h1 {
-     font-size: 2.2rem;
+     font-size: 28px;
      color: var(--text-color-title);
-     max-width: 70%;
+     max-width: 100%;
      word-break: normal;
 }
 
 .blog-page .title p {
-     font-size: 1rem;
-     color: var(--gray-text);
+     font-size: 16px;
+     color: var(--text-color-para1);
 }
 
 .blog-page .image-container {
@@ -8378,8 +8380,10 @@ textarea{
 
 .blog-page .description-container .summary {
      font-style: italic;
-     font-size: 0.8rem;
+     font-size: 16px;
+     font-weight: 500;
      color: var(--text-color-para1);
+     letter-spacing: 0.56px;
 }
 
 .blog-page .html-value-container {
@@ -8394,18 +8398,20 @@ textarea{
 
 .blog-page  .html-value-container p,
 .blog-page  .html-value-container li {
-     font-size: 0.85rem;
-     color: var(--text-color-para1);
+     font-size: 16px;
+     color: var(--text-color-black);
+     font-weight: 400;
+     letter-spacing: 0.5px;
 }
 
 .html-value-container h1 {
-     font-size: 1.4rem;
-     color: var(--text-color-para1);
+     font-size: 24px;
+     color: var(--text-color-black);
 }
 
 .html-value-container h2 {
      font-size: 1.2rem;
-     color: var(--text-color-para1);
+     color: var(--text-color-black);
 }
 
 /* end of blogs page */

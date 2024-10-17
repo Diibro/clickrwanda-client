@@ -8,8 +8,8 @@ export const BlogCardRowView = ({blog}) => {
      return (
           <div className="blog-row-card">
                <div className="image-container">
-                    {/* <img src={blog.content.featuredImage} alt="" /> */}
-                    <MyImage image={blog.content.featuredImage} />
+                    <img src={blog.content.featuredImage} alt="" />
+                    {/* <MyImage image={blog.content.featuredImage} /> */}
                </div>
                <div className="content">
                     <h4>{blog.title}</h4>

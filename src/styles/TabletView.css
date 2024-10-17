@@ -676,13 +676,16 @@
      }
 
      .home-blogs-section .main-blog,
-     .home-blogs-section .other-blogs,
-     .blog-page {
+     .home-blogs-section .other-blogs{
           width: 98%;
      }
 
      .home-blogs-section .main-blog {
           aspect-ratio: 100/100;
+     }
+
+     .blog-page  {
+          width: 90%;
      }
 }
 
