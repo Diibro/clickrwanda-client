@@ -42,7 +42,7 @@ export const HomeBlogsSection = ({showTitle=false}) => {
 
      const fetchBlogs = async (ops) => {
           const res = await Service.get(`${Server.blog}?limit=${ops.limit}&offset=${ops.offset}`);
-          if(res) {
+          if(res && res.data && typeof(res.data) !== "string") {
                setBlogs(res.data);
           }
      }
