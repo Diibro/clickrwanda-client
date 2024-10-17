@@ -69,7 +69,7 @@ export const HomeBlogsSection = ({showTitle=false}) => {
                                    <h3>{blogs[0].title} </h3>
                                    <p>Posted on: {extractDateOnly(blogs[0].publication_date)}</p>
                                    <p>{blogs[0].content.description}</p>
-                                   <Link to={'/blogs'}>Read More...</Link>
+                                   <Link to={`/blogs/blog?=${blogs[0].id}`}>Read More...</Link>
                               </div>
                          </div>
                          }

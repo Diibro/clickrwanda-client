@@ -8325,6 +8325,89 @@ textarea{
      color:var(--back-color-blue1);
 }
 
+.blog-page{
+     width: 70%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-start;
+     gap: 10px;
+     margin-inline: auto;
+     padding-block: 10px;
+}
+
+.blog-page .title{
+     width: 100%;
+     display: flex;
+     align-items: flex-end;
+     justify-content: space-between;
+}
+
+.blog-page .title h1 {
+     font-size: 2.2rem;
+     color: var(--text-color-title);
+     max-width: 70%;
+     word-break: normal;
+}
+
+.blog-page .title p {
+     font-size: 1rem;
+     color: var(--gray-text);
+}
+
+.blog-page .image-container {
+     width: 100%;
+}
+
+.blog-page .image-container img {
+     width: 100%;
+}
+
+.blog-page .description-container {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+}
+
+.blog-page .image-container .category {
+     font-size: 0.9rem;
+     color: var(--text-color-para2);
+}
+
+.blog-page .description-container .summary {
+     font-style: italic;
+     font-size: 0.8rem;
+     color: var(--text-color-para1);
+}
+
+.blog-page .html-value-container {
+     width: 100%;
+}
+
+.blog-page .html-value-container ul,
+.blog-page .html-value-container ol {
+     width: 95%;
+     margin-inline: auto;
+}
+
+.blog-page  .html-value-container p,
+.blog-page  .html-value-container li {
+     font-size: 0.85rem;
+     color: var(--text-color-para1);
+}
+
+.html-value-container h1 {
+     font-size: 1.4rem;
+     color: var(--text-color-para1);
+}
+
+.html-value-container h2 {
+     font-size: 1.2rem;
+     color: var(--text-color-para1);
+}
+
 /* end of blogs page */
 
 /* end of addition client pages */
