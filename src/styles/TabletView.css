@@ -676,7 +676,8 @@
      }
 
      .home-blogs-section .main-blog,
-     .home-blogs-section .other-blogs {
+     .home-blogs-section .other-blogs,
+     .blog-page {
           width: 98%;
      }
 
