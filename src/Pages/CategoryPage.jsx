@@ -63,7 +63,6 @@ const CategoryPage = () => {
       let maxPrice = +filterData.min + +filterData.change;
       const filteredAds = filterByPrice(ads, {min:filterData.min, max: maxPrice});
       setCategoryAds(filteredAds);
-      console.log(categoryAds);
     } catch (error) {
       console.error(error);
     }
@@ -77,6 +76,7 @@ const CategoryPage = () => {
       try {
         setLoading(true);
         const categoryDatas = await server.searchAdverts('category', {category_id: id});
+        console.log(categoryDatas);
         if(categoryDatas !== "no data found"){
           const {categoryData, subCategories, adverts} = categoryDatas;
           setCategoryAds(adverts);
