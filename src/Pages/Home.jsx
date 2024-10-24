@@ -51,9 +51,9 @@ const Home = () => {
           </div>
           {/* <img src={HelloImage} alt="hello section image" /> */}
         </div>
-        <div className="page-main">
-          <div className="side"><LeftBanner items={Banners} /></div>
-          <div className="page-content">
+        <div className="w-full flex flex-row items-start justify-start gap-[5px] p-[5px] relative ">
+          <div className="hidden"><LeftBanner items={Banners} /></div>
+          <div className="w-full lg:w-[85%] flex flex-col gap-[10px]">
             {/** top deals section */}
           <TodayDeals />
 
@@ -95,7 +95,7 @@ const Home = () => {
           {/* best sellers section */}
           <BoostedSellers />
            {/* get started as seller page break */}
-           <BecomeSeller />
+          <BecomeSeller />
           {/* All categories with sub categories */}
           <AllCategoriesSection />
 
@@ -103,7 +103,7 @@ const Home = () => {
           <MakeMoneySection />
           
           </div>
-          <div className="side right-side"><RightBanner items={Banners}/></div>
+          <div className="w-0 lg:w-[15%]"><RightBanner items={Banners}/></div>
         </div>
       </div>
       </>

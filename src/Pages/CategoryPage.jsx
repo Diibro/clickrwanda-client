@@ -6,13 +6,15 @@ import PropTypes from 'prop-types'
 import Loading from "../components/static/Loading";
 import { CategoryAdverts} from "../components/dynamic/Adverts.component";
 import { Helmet } from "react-helmet";
-import { filterByPrice, filterPrices } from "../utils/filterFunctions";
+import { filterPrices } from "../utils/filterFunctions";
 import AdvertService from '../services/Advert';
-// import { formatPrice } from "../utils/otherFunctions";
+import Server from "../services/Server";
+import Service from "../services/Service";
+import { GeneralAdsContainer } from "../components/containers/AdsContainer";
 
 const CategoryPage = () => {
   const [categoryAds, setCategoryAds] = useState(null);
-  const [ads, setAds] = useState(null);
+  const [ads,setAds] = useState(null);
   const [subCategories, setSubCategories] = useState(null);
   const [category, setCategory] = useState(null);
   const [subViewed, setSubViewed] = useState({id: 'all'}); 
@@ -20,22 +22,6 @@ const CategoryPage = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   
-  // const fetchCategoryAds = async (category_id, limit, offset) => {
-  //   try {
-  //     setLoading(true);
-  //     const res = await AdvertService.getByCategory({category_id, limit, offset});
-  //     if(res){
-  //       const {data} = res;
-  //       if(data){
-  //         setAds(data);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }finally{
-  //     setLoading(false);
-  //   }
-  // }
 
   const fetchSubAdverts = async (sub_id, limit, offset) => {
     try {
@@ -58,60 +44,27 @@ const CategoryPage = () => {
     (async () => await fetchSubAdverts(item.sub_id, 48,0) )();
   }
 
-  const viewAdsByPrice = (filterData) => {
+  const fetchAds = async () => {
     try {
-      let maxPrice = +filterData.min + +filterData.change;
-      const filteredAds = filterByPrice(ads, {min:filterData.min, max: maxPrice});
-      setCategoryAds(filteredAds);
+      setLoading(true);
+      const {v_id:categoryId} = fetchIds(location);
+      const res = await Service.post(Server.advert.getApprovedAdsByCategory, {ids: [categoryId], limit: 50, offset: 0})
+      if(res && res.data && res.data.length && Array.isArray(res.data)){
+        setAds(res.data);
+      }
     } catch (error) {
-      console.error(error);
+      console.log(error);
+    }finally{
+      setLoading(false);
     }
+    
   }
 
+
   useEffect(() => {
-    const {v_id:categoryId} = fetchIds(location);
-    const categoryViewStored = sessionStorage.getItem('categoryViewed');
-    let check = 0;
-    const fetchData = async(id) => {
-      try {
-        setLoading(true);
-        const categoryDatas = await server.searchAdverts('category', {category_id: id});
-        console.log(categoryDatas);
-        if(categoryDatas !== "no data found"){
-          const {categoryData, subCategories, adverts} = categoryDatas;
-          setCategoryAds(adverts);
-          setAds(adverts);
-          setSubCategories(subCategories);
-          setCategory(categoryData)
-        }else{
-          console.log("no data found");
-        }
-      } catch (error) {
-        console.log(error);
-      }finally{
-        setLoading(false)
-      }
-
-      
-    }
-    if(categoryViewStored && categoryViewStored !== 'no data found') {
-      const categoryDataStored =  JSON.parse(categoryViewStored);
-      const {categoryData} = categoryDataStored;
-      if(categoryData?.category_id === categoryId){
-        const {subCategories, adverts} = categoryDataStored
-        setCategoryAds(adverts);
-        setAds(adverts);
-        setSubCategories(subCategories);
-        setCategory(categoryData)
-        check = 1;
-      }
-    }
-
-    if(check === 0) {
-      (async() => {
-        await fetchData(categoryId);
-      })(); 
-    }
+    (async() => {
+      await fetchAds();
+    })(); 
   },[location.search]);
 
   return (
@@ -121,7 +74,7 @@ const CategoryPage = () => {
         <meta name="description" content={`Best and trusted ${category?.category_name} in Rwanda`} />
         <title>{`${category?.category_name || 'Category'}`} | Click Rwanda</title>
       </Helmet>
-      <div className="category-page">
+      <div className="w-full flex flex-col gap-[20px] items-center justify-start py-[10px]">
           <div className="category-page-nav">
             <div className="name" onClick={() => window.location.reload()}>
               {category?.category_name}
@@ -132,12 +85,9 @@ const CategoryPage = () => {
             </div>
             }
           </div>
-          <div className="category-page-content">
-            {subCategories ? <CategoryHeader subViewed={
-              {id: subViewed.id, action: viewSubCategory, data: ads, filterByPrice: viewAdsByPrice}
-              } /> : null }
+          <div className="w-[95%] md:w-[90%]">
             {!loading ? <>
-            {categoryAds && categoryAds.length ? <CategoryAdverts adverts={categoryAds} /> : <p className="no-ads-found">No Ads found</p>}
+            {ads && Array.isArray(ads) && ads.length ? <GeneralAdsContainer ads={ads} /> : <p className="font-semibold text-gray-600 text-[0.9rem]">No Ads found</p>}
             </> : <Loading />}
           </div>
       </div>

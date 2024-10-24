@@ -18,6 +18,7 @@ const JobsSection = () => {
           if(res){
                const {data} = res;
                if(data && data.length){
+                    console.log(data);
                     setAds(data);
                }
           }
@@ -67,7 +68,7 @@ const JobsSection = () => {
                </div>
                <div className="ads-container-wrapped">
                     {
-                              ads && ads.length && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} /> )
+                              ads && ads.length && Array.isArray(ads) && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} /> )
                     }
                </div>
           </div>

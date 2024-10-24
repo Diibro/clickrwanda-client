@@ -4,7 +4,7 @@ import AppData from "../../Contexts/AppContext";
 import Loading from "../static/Loading";
 import AdvertService from "../../services/Advert";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import AdsContainer from "./AdsContainer";
+import { GeneralAdsContainer } from "./AdsContainer";
 
 const FreeAdsSection = () => {
      const [loading, setLoading] = useState(false);
@@ -55,7 +55,7 @@ const FreeAdsSection = () => {
                {
                     loading ? <Loading /> :
                     <>
-                         {ads && ads.length  ? <AdsContainer adverts={ads} /> : null}
+                         {ads && ads.length > 0 && <GeneralAdsContainer ads={ads} containerId={"Home-general-ads-container"} /> }
                          <div className="pagination">
                               <i onClick={() => changePage(currentPage - 1)} className="nav">
                               <GrFormPrevious />

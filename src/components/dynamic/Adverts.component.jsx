@@ -18,13 +18,12 @@ import { getRwandaTime } from "../../utils/dateFunctions";
 // import Banner728x90 from "../../AdSterra/Banner728x90";
 import { parseString} from "../../utils/jsonFunctions";
 import { showMainNotification } from "../../utils/AdminFunctions";
-import uploadFile, { uploadMany } from "../../utils/aws-upload-functions";
-import { s3Folders } from "../../config/s3Config";
 import UserContext from "../../Contexts/UserContext";
 import FreeAdsSection from "../containers/FreeAdsSection";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import ImageUploader from "../containers/ImageUploader";
 import TextEditor from "../containers/TextEditor";
+import { GeneralAdsContainer, SlideAdsContainers } from "../containers/AdsContainer";
 
 export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
@@ -84,12 +83,12 @@ export const Adverts = ({eleId,limit}) => {
 export const AdvertsContainer = ({content}) => {
   const {title, containerId} =  content;
   return (
-    <>
-      <InnerSection type="title" eleId={containerId} >
-        {title}
-      </InnerSection>
+    <div className="w-full flex flex-col items-center gap-[10px] pt-[5px] pb-[10px] px-[1%] rounded-[5px] bg-white ">
+      <div className="w-full flex items-center justify-between">
+        <h2 className="text-main-blue-700 text-[1.6rem] font-extrabold " id={containerId}>{title}</h2>
+      </div>
       <FreeAdsSection  />
-    </>
+    </div>
   )
 }
 
@@ -359,58 +358,13 @@ export const BoostedAds = ({params}) => {
   const {t} = useTranslation("global");
   const content = t("homePage.premiumAdsSection", {returnObjects:true})
   const [data] = useContext(AppData);
-  const adsRef = useRef(null);
   const {boosted} = data;
-  const [scrollPos, setScrollPos] = useState({atLeft: false});
   const ads  = params?.ads || boosted;
 
-  const scrollHandle = (check) => {
-    if(check === 1){
-      adsRef.current.scrollBy({left: 300, behavior: 'smooth'});
-    }else if(check === -1){
-      adsRef.current.scrollBy({left: -300, behavior: 'smooth'})
-    }
-  }
-
-  const handleScroll = () => {
-    const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
-    setScrollPos({
-      atLeft: scrollLeft === 0,
-      atRight: scrollLeft + clientWidth >= scrollWidth,
-    });
-  };
-
-  useEffect(() => {
-    const currentRef = adsRef.current;
-    currentRef && currentRef.addEventListener('scroll', handleScroll);
-
-    return () => {
-      currentRef ? currentRef.removeEventListener('scroll', handleScroll) : null;
-    };
-  }, [boosted]);
-
   return(
-    <div className="container">
-     
-      <div className="ads-section-title">
-        <div className="title">
-          <h3 className="main-title">{content.title}</h3>
-          <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
-        </div>
-        <div className="section-navigation">
-          <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft && !params?.wrap ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
-          <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight && !params?.wrap ? '' : 'inactive'}`}><RiArrowRightSLine/></i>
-        </div>
-      </div>
-      <div className="home-boosted-ads " >
-          <div className={`ads-container hide-scroll  ${params?.wrap  && 'wrap-scroll'} `} ref={adsRef}>
-            {
-              ads && ads[0] && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item}/>
-              )
-            }
-          </div>
-        </div>
-    </div>
+    <section className="w-full pt-[5px] pb-[10px] px-[1%] rounded-[5px] bg-white">
+      { ads && Array.isArray(ads) && ads.length > 0 && <SlideAdsContainers ads={ads} containerId={"home-top-deals"} content={{title: content.title, viewAll: content.viewAllLink.title, viewAllLink: content.viewAllLink.link }} />}
+    </section>
     
   )
 }
@@ -458,12 +412,13 @@ export const VerticalAds = ({ ads, adsNo, eleId }) => {
   };
 
   return (
-    <div className="ads-container">
+    <div className=" w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[10px] ">
       {adsViewed && adsViewed[0] && !loading ? (
         <>
-          {adsViewed.map(item => (
+          {/* {adsViewed.map(item => (
             <AdvertRenderer item={item} key={item.ad_id} />
-          ))}
+          ))} */}
+          {adsViewed && adsViewed.length > 0 &&  <GeneralAdsContainer ads={adsViewed} containerId={"home-simple-ads-container"} />}
           <div className="pagination">
             <i onClick={() => changePage(currentPage - 1)} className="nav">
               <GrFormPrevious />
@@ -480,60 +435,74 @@ export const VerticalAds = ({ ads, adsNo, eleId }) => {
 };
 
 
+// export const TodayDeals = ({params}) => {
+//   const {t} = useTranslation("global");
+//   const content = t("homePage.topDealsSection", {returnObjects:true});
+//   const [data] = useContext(AppData);
+//   const {todayDeals} = data;
+//   const adsRef = useRef(null);
+//   const [scrollPos, setScrollPos] = useState({atLeft: false});
+//   const ads = params?.ads || todayDeals;
+
+//   const scrollHandle = (check) => {
+//     if(check === 1){
+//       adsRef.current.scrollBy({left: 300, behavior: 'smooth'});
+//     }else if(check === -1){
+//       adsRef.current.scrollBy({left: -300, behavior: 'smooth'})
+//     }
+//   }
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
+//       setScrollPos({
+//         atLeft: scrollLeft === 0,
+//         atRight: scrollLeft + clientWidth >= scrollWidth,
+//       });
+//     };
+//     const currentRef = adsRef.current;
+//     currentRef &&  currentRef.addEventListener('scroll', handleScroll);
+//     return () => {
+//       currentRef ?  currentRef.removeEventListener('scroll', handleScroll) : null;
+//     };
+//   }, [todayDeals]);
+
+//   return (
+//     <div className="container">
+//       <div className="ads-section-title">
+//         <div className="title">
+//           <h3 className="main-title">{content.title}</h3>
+//           <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
+//         </div>
+//         <div className="section-navigation">
+//           <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft && !params?.wrap ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
+//           <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight && !params?.wrap ? '' : 'inactive'}`}><RiArrowRightSLine/></i>
+//         </div>
+//       </div>
+//       <div className="home-boosted-ads " >
+//       <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
+//           {
+//             ads && ads[0]  && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
+//             )
+//           }
+//       </div>
+//      </div>
+//     </div>
+    
+//   ) 
+// }
+
 export const TodayDeals = ({params}) => {
   const {t} = useTranslation("global");
   const content = t("homePage.topDealsSection", {returnObjects:true});
   const [data] = useContext(AppData);
   const {todayDeals} = data;
-  const adsRef = useRef(null);
-  const [scrollPos, setScrollPos] = useState({atLeft: false});
   const ads = params?.ads || todayDeals;
 
-  const scrollHandle = (check) => {
-    if(check === 1){
-      adsRef.current.scrollBy({left: 300, behavior: 'smooth'});
-    }else if(check === -1){
-      adsRef.current.scrollBy({left: -300, behavior: 'smooth'})
-    }
-  }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
-      setScrollPos({
-        atLeft: scrollLeft === 0,
-        atRight: scrollLeft + clientWidth >= scrollWidth,
-      });
-    };
-    const currentRef = adsRef.current;
-    currentRef &&  currentRef.addEventListener('scroll', handleScroll);
-    return () => {
-      currentRef ?  currentRef.removeEventListener('scroll', handleScroll) : null;
-    };
-  }, [todayDeals]);
-
   return (
-    <div className="container">
-      <div className="ads-section-title">
-        <div className="title">
-          <h3 className="main-title">{content.title}</h3>
-          <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
-        </div>
-        <div className="section-navigation">
-          <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft && !params?.wrap ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
-          <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight && !params?.wrap ? '' : 'inactive'}`}><RiArrowRightSLine/></i>
-        </div>
-      </div>
-      <div className="home-boosted-ads " >
-      <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
-          {
-            ads && ads[0]  && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
-            )
-          }
-      </div>
-     </div>
-    </div>
-    
+    <section className="w-full pt-[5px] pb-[10px] px-[1%] rounded-[5px] bg-white ">
+    { ads && Array.isArray(ads) && ads.length > 0 && <SlideAdsContainers ads={ads} containerId={"home-top-deals"} content={{title: content.title, viewAll: content.viewAllLink.title, viewAllLink: content.viewAllLink.link }} />}
+    </section>
   ) 
 }
 
@@ -557,8 +526,8 @@ export const AdWebsites = () => {
 }
 
 Adverts.propTypes = {
-     limit: PropTypes.number,
-     eleId: PropTypes.any
+  limit: PropTypes.number,
+  eleId: PropTypes.any
 }
 
 SimilarAds.propTypes = {

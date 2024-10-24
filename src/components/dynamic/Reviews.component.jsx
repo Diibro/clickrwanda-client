@@ -51,26 +51,26 @@ export const RateAdvert = ({item}) => {
      }
      return(
           !responce ?
-          <div className="message-review-container">
+          <div className="w-full">
                <div className="rate-review-header">
                     <h4>Rate {item.full_name}</h4>
                </div>
                {
                     !loading ?
-                    <div className="message-review-body">
-                         <div className="row">
-                         <div className="rating-div">
-                                   <div className="rating-icons">
-                                   {[1, 2, 3, 4, 5].map((starValue) => (
-                                   <FaStar
-                                        key={starValue}
-                                        onClick={() => handleStarClick(starValue)}
-                                        style={{ cursor: 'pointer', fontSize: "1.2rem",color: starValue <= rating ? '#E5931D' : 'gray' }}
-                                   />
-                                   ))}
-                                   <b> : {`${rating}/5`}</b>
+                    <div className="w-full p-[10px]">
+                         <div className="w-full flex items-center justify-center gap-[10px]">
+                              <div className="w-auto flex items-center gap-[5px]">
+                                   <div className="w-auto flex items-center ga-[4px]">
+                                        {[1, 2, 3, 4, 5].map((starValue) => (
+                                        <FaStar
+                                             key={starValue}
+                                             onClick={() => handleStarClick(starValue)}
+                                             style={{ cursor: 'pointer', fontSize: "1.2rem",color: starValue <= rating ? '#E5931D' : 'gray' }}
+                                        />
+                                        ))}
+                                        <b className="text-[0.9rem] text-gray-600 "> : {`${rating}/5`}</b>
+                                   </div>
                               </div>
-                         </div>
                               <ActionBtn action={async() => await submitRating()} title="Rate Ad"/>
                          </div>
                     </div>

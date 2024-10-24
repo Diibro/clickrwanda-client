@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { capitalizeString } from '../../utils/otherFunctions'
 import { useNavigate } from 'react-router-dom'
 import { getItemUrl } from '../../utils/urlFunctions'
@@ -11,6 +11,11 @@ const JobCard = ({ad}) => {
      const ViewAd = () => {
           navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
      }
+
+     useEffect(() => {
+          console.log(ad.description);
+          setDescription(ad.description);
+     },[ad])
      return (
           <div className="job-card">
                <div className="content">
@@ -30,7 +35,7 @@ const JobCard = ({ad}) => {
 }
 
 JobCard.propTypes = {
-     ad: PropTypes.object
+     ad: PropTypes.object.isRequired
 }
 
 export default JobCard
