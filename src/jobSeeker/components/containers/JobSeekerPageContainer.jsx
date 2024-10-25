@@ -17,8 +17,8 @@ const JobSeekerPageContainer = ({user}) => {
                               <p><b>Phone:</b> <span>{user?.user_phone}</span></p>
                               <p><b>Field of Work:</b> <span>{user?.sub_name}</span></p>
                               {
-                                   user?.description.userCv.value ? 
-                                   <p><b>User CV: </b><a href={user.description.userCv.value} target='_blank' rel='noopener noreferrer'>View Document</a></p>
+                                   user?.description?.userCv?.value ? 
+                                   <p><b>User CV: </b><a href={user?.description?.userCv.value} target='_blank' rel='noopener noreferrer'>View Document</a></p>
                                    : null
                               }
                          </div>
