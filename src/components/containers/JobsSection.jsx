@@ -55,20 +55,14 @@ const JobsSection = () => {
           };
         }, [ads]);
      return (
-          <div className="container">
-               <div className="ads-section-title">
-                    <div className="title">
-                         <h3 className="main-title">Available Jobs</h3>
-                         <Link to='/category/Jobs?=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7'>View All</Link>
-                    </div>
-                    <div className="section-navigation">
-                    <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft  ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
-                    <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight ? '' : 'inactive'}`}><RiArrowRightSLine /></i>
-                    </div>
+          <div className="w-full bg-white flex flex-col items-center justify-start gap-[10px] rounded-[5px] p-[5px] pb-[20px] md:px-[10px]">
+               <div className="w-full py-[10px] flex items-center justify-start gap-[5px] ">
+                    <h3 className="text-main-blue-700 text-[1.4rem] md:tex-[1.6rem] font-extrabold ">Available Jobs</h3>
+                    <Link to='/category/Jobs?=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7' className="text-[0.7rem] md:text-[0.9rem] text-main-green-600 font-bold">View All</Link>
                </div>
-               <div className="ads-container-wrapped">
+               <div className="w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-[10px] ">
                     {
-                              ads && ads.length && Array.isArray(ads) && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} /> )
+                         ads && ads.length && Array.isArray(ads) && ads.map((item) => <AdvertRenderer key={item.ad_id} item={item} /> )
                     }
                </div>
           </div>

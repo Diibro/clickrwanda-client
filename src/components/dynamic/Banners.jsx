@@ -63,15 +63,13 @@ export const RightBanner = ({items}) => {
 export const HorizontalBanner = ({items, upper, lower}) => {
      
      return(
-          <div className="banner horizontal-banner hide-scroll">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[10px] hide-scroll relative">
                {items?.map((banner, index) => (
                     index >= lower && index <= upper ?
-                    <div className="hr-banner" key={index} onClick={() => openNewTab(banner.link)}>
-                         <div className="hover-content">
-                              {/* <h3>{banner.name}</h3> */}
-                              <a href={banner.link} rel="noreferrer" target="_blank">Click Here</a>
-                         </div>
-                         <img src={banner.images?.hr} alt={banner.name} />
+                    <div className="w-full relative rounded-[5px] overflow-hidden " key={index} onClick={() => openNewTab(banner.link)}>
+                         <a className="w-full h-auto" href={banner.link} rel="noreferrer" target="_blank">
+                              <img className="w-full h-auto cursor-pointer" src={banner.images?.hr} alt={banner.name} />
+                         </a>
                     </div>
                : null) )}
           </div>
@@ -103,7 +101,7 @@ export const HeroSectionBanner = ({items}) => {
              };
      }, [active])
      return (
-          <div className="banner hero-section-banner">
+          <div className="w-full px-[5px] flex flex-col items-center">
                {items?.map((banner, index) => (
                     <div className="hero-banner-container" key={index} onClick={() => openNewTab(banner.link)}>
                          <div className="hover-content">

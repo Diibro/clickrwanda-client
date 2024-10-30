@@ -9,6 +9,7 @@ import server from "../config/Server";
 import SearchBar from "../components/static/SearchBar";
 import { Helmet } from "react-helmet";
 import { BestSellerSquare } from "./BestSellers";
+import { GeneralAdsContainer } from "../components/containers/AdsContainer";
 
 const SearchPage = () => {
      const location = useLocation();
@@ -65,7 +66,7 @@ const SearchPage = () => {
                     </div>
                     <h3>Showing search results for {searched.search || "All"}..</h3>
                     {!loading ? 
-                         <SearchAdverts content={{ads, option}} />
+                         <GeneralAdsContainer ads={ads} containerId={'search-ads'} />
                     : <Loading />}
                </div>
                <div className="side right-side" ></div>

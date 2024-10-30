@@ -77,12 +77,6 @@ html{
      width: 100vw;
 }
 
-body{
-     background-color:  var(--light-gray);
-     margin: 0 auto;
-     max-width: 1400px;
-}
-
 *{
      margin: 0;
      padding: 0;
@@ -151,25 +145,6 @@ textarea{
 .extra-large-title{
      font-weight: 900;
      font-size: 2.6rem;
-}
-
-.free-plan{
-     display: none;
-}
-
-.pay-plan{
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: auto;
-     text-align: center;
-     color: var(--back-color-gold1);
-     background-color: var(--text-color-para1);
-     font-size: 0.9rem;
-     font-weight: 600;
-     border-radius: 0 0 5px 0;
-     padding: 2.5px 10px;
-     z-index: 2;
 }
 
 .advert-discount{
@@ -1448,41 +1423,7 @@ textarea{
      width: auto;
      margin: 0 5px 0 0;
 }
-.home .hello-section{
-     width: 100%;
-     /* background-color: var(--back-color-blue2); */
-     background-color: var(--text-color-title);
-     position: relative;
-     display: flex;
-     flex-direction: row;
-     justify-content: center;
-     padding: 10px 1% 25px 1%;
-}
 
-.home .hello-section .sec-1{
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: flex-start;
-     width: 50%;
-}
-
-.home .hello-section .col{
-     display: flex;
-     flex-direction: column;
-     border-radius: 15px;
-     padding: 0% 0% 1% 2%  ;
-     /* background-color: var(--back-color-red1); */
-
-     width: 100%;
-}
-
-.home .hello-section .col h1{
-     color: white;
-     font-size: 2.6rem;
-     font-weight: 800;
-     margin: 0 0 10px;
-} 
 
 .home-request-quote-header{
      width: 97%;
@@ -1543,7 +1484,6 @@ textarea{
      align-items: flex-start;
      justify-content: space-between;
      position: relative;
-     background-color: var(--light-gray);
      padding-inline: 1%;
      height: auto;
 }
@@ -4333,87 +4273,6 @@ textarea{
 /* end of user dashboard components */
 
 /* small container styles */
-.category-square{
-     width: 18%;
-     min-width: 150px;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: flex-start;
-     padding-bottom:5px;
-     border-radius: 2px;
-     transition: all 0.5s;
-     margin: 5px 3px;
-     overflow: hidden;
-     cursor: pointer;
-     box-shadow: 0.5px 0.5px 4px var(--gray-text);
-     border-radius: 5px;
-     padding: 5px;
-     aspect-ratio: 100/85;
-     gap: 5px;
-     text-wrap: pretty;
-     
-}
-
-.category-square:hover {
-     box-shadow: 0.5px 0.5px 4px var(--text-color-para1);
-}
-
-
-.category-square:hover .img img{
-     filter: drop-shadow(1px 1px 3px #000000);
-}
-
-.category-square .img{
-     position: relative;
-     width: 100%;
-     height: 100%;
-     padding: 15px;
-     mix-blend-mode: multiply;
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-     justify-content: center;
-     padding: 5px;
-     border: 1px solid #00000010;
-     
-     border-radius: 5px;
-}
-
-.category-square .img img{
-     width: 100%;
-     height: auto; 
-     transition: all 0.4s ease; 
-}
-
-.category-square .content{
-     width: 100%;
-     display: flex;
-     flex-direction: column;
-     justify-content: flex-start;
-     gap: 2px;
-     align-items: flex-start;
-     padding: 2px 2%;
-     flex-wrap: wrap;
-}
-
-.category-square p{
-     font-size: 0.85rem;
-     color: var(--text-color-para1);
-     font-weight: 700;
-     text-align: left;
-     /* text-overflow: ellipsis; */
-     white-space: wrap;
-     /* overflow: hidden; */
-}
-.category-square p .small-paragraph{
-     font-size: 0.65rem;
-     /* color: var(--text-color-para1); */
-     color: var(--back-color-blue2);
-     letter-spacing: 0.45px;
-     font-weight: 600;
-}
-
 .home-hot-category-card{
      width: 22.5%;
      aspect-ratio: 100/70;
@@ -8610,51 +8469,6 @@ textarea{
 
 .align-right{
      justify-content: flex-end !important;
-}
-
-.premium{
-     background-color: var(--featured-plan);
-}
-
-.premium-ad{
-     border: 1.2px solid var(--featured-plan);
-     border-radius: 5px;
-}
-
-.basic{
-     background-color: var(--basic-plan-color);
-}
-
-.basic-ad{
-     border: 1.2px solid var(--basic-plan-color);
-     border-radius: 5px;
-}
-
-
-.urgent{
-     background-color: var(--back-color-red1);
-}
-
-.deal{
-     background-color: var(--back-color-gold2);
-}
-
-.deal-ad{
-     border: 1.2px solid var(--back-color-gold2);
-     border-radius: 5px;
-}
-
-.urgent-ad{
-     border: 1.2px solid var(--back-color-red1);
-     border-radius: 5px;
-}
-
-.enterprise{
-     background-color: var(--back-color-blue2);
-}
-.enterprise-ad{
-     border: 1.2px solid var(--back-color-blue2);
-     border-radius: 5px;
 }
 
 

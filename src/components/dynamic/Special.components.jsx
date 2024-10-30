@@ -160,8 +160,10 @@ export const RequestQuoteHeader = () => {
      const {t} = useTranslation("global");
      const content = t("homePage.heroSection.buttons", {returnObjects:true});
      return(
-          <div className="home-request-quote-header hide-scroll">
-               {content.map((item,index) => <Link to={item.link} key={`hero-btn-${index}`}>{item.name}</Link>)}
+          <div className="w-[97%] flex items-center overflow-x-auto gap-[5px] justify-between hide-scroll">
+               {content.map((item,index) => <Link
+                    className="text-gray-100 text-[0.7rem]  md:text-[0.8rem] border-[1px] border-main-gold-600 py-[5px] px-[10px] rounded-[5px] text-nowrap hover:bg-gray-50 hover:text-main-gold-500 transition-all duration-150 flex-1 text-center "
+                    to={item.link} key={`hero-btn-${index}`}>{item.name}</Link>)}
           </div>
      )
 }

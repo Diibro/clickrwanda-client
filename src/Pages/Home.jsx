@@ -5,7 +5,7 @@ import SearchBar from '../components/static/SearchBar';
 import DeviceView from '../Contexts/ViewContext';
 import { BoostedSellers, RequestQuoteHeader } from '../components/dynamic/Special.components';
 import { Helmet } from 'react-helmet';
-import { HeroSectionBanner, HorizontalBanner, LeftBanner, RightBanner } from '../components/dynamic/Banners';
+import { HeroSectionBanner, HorizontalBanner} from '../components/dynamic/Banners';
 import { Banners } from '../config/banners';
 import { useTranslation } from 'react-i18next';
 import AppData from '../Contexts/AppContext';
@@ -36,24 +36,22 @@ const Home = () => {
         <meta name="keywords" content="clickrwanda, sell in Rwanda,buy and sell anything in Rwanda, rent in rwanda, buy in rwanda, advertise in rwanda, rwanda marketplace, buy, rent, advertise" />
         <title>Sell, Buy, Rent & Advertise in Rwanda</title>
       </Helmet>
-      <div className="page home">
-        <div className="hello-section">
-          <div className="sec-1">
-            <div className='col'>
+      <div className="w-full flex flex-col items-center gap-[10px]">
+        <div className="w-full rounded-[5px] py-[10px] flex items-start bg-main-blue-700  ">
+          <div className="w-full lg:w-[60%] py-[10px] px-[5px] flex flex-col gap-[5px]">
+            <div className='w-full flex flex-col'>
               {/* <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1> */}
-              <h1>{content.heroSection.heroMessage}</h1>
+              <h1 className='text-white text-[1.8rem] lg:text-[2.4rem] font-extrabold text-center md:text-start  '>{content.heroSection.heroMessage}</h1>
               <SearchBar />
             </div>
             <RequestQuoteHeader />
           </div>
-          <div className="sec-banner">
+          <div className=" hidden lg:flex w-50% lg:w-[40%]">
               {isMobile ? null : <HeroSectionBanner items={Banners} />}
           </div>
           {/* <img src={HelloImage} alt="hello section image" /> */}
         </div>
-        <div className="w-full flex flex-row items-start justify-start gap-[5px] p-[5px] relative ">
-          <div className="hidden"><LeftBanner items={Banners} /></div>
-          <div className="w-full lg:w-[85%] flex flex-col gap-[10px]">
+        <div className="w-full flex flex-col items-center justify-start gap-[20px] py-[5px] relative ">
             {/** top deals section */}
           <TodayDeals />
 
@@ -101,9 +99,6 @@ const Home = () => {
 
           {/* make money section */}
           <MakeMoneySection />
-          
-          </div>
-          <div className="w-0 lg:w-[15%]"><RightBanner items={Banners}/></div>
         </div>
       </div>
       </>

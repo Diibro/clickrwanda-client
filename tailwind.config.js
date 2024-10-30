@@ -20,7 +20,8 @@ export default {
           "gold-500":"#E5931D",
           "gold-100": "#FFF6E8",
           "red-500" : "#FA3C53",
-          "green-600":"#28C238"
+          "green-600":"#28C238",
+          "purple-600": "#4515ad"
         }
       }
     }

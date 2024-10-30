@@ -20,7 +20,7 @@ const AdsContainer = ({adverts}) => {
 
 export const GeneralAdsContainer = ({ads, containerId}) => {
      return (
-          <div className='w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[5px] md:gap-[10px]'>
+          <div className='w-full h-full  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[5px] md:gap-[10px]  '>
                {ads.map((item, index) => <AdvertCard ad={item} key={`ads-container-${containerId}-${index}`} />)}
           </div>
      )
@@ -77,8 +77,8 @@ export const SlideAdsContainers = ({ads, containerId, content}) => {
           <div className='w-full flex flex-col items-center gap-[10px] '>
                <div className='w-full flex items-center justify-between'>
                     <div className='w-auto flex gap-[10px] items-center ' >
-                         <h2 className='text-main-blue-700 text-[1.6rem] font-extrabold '>{content.title}</h2>
-                         <Link to={content.viewAllLink} className='text-[0.9rem] text-main-green-600 font-bold' >View All</Link>
+                         <h2 className='text-main-blue-700 text-[1.4rem] md:tex-[1.6rem] font-extrabold '>{content.title}</h2>
+                         <Link to={content.viewAllLink} className='text-[0.7rem] md:text-[0.9rem] text-main-green-600 font-bold' >View All</Link>
                     </div>
                     <div className='w-auto flex items-center gap-[5px] '>
                          <i onClick={() => viewNextAds(-1)} className={`text-[1.4rem] text-gray-800 cursor-pointer`} ><RiArrowLeftSLine /></i>

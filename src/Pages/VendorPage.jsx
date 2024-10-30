@@ -6,12 +6,12 @@ import server from '../config/Server';
 import { getItemUrlId } from '../utils/urlFunctions';
 import { dateFormatMonth } from '../utils/dateFunctions';
 import UserRating from '../components/dynamic/Rating.component';
-import {  VerticalAds } from '../components/dynamic/Adverts.component';
 import { IoMdCall } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { getData, saveData } from '../utils/storageFunctions';
 import { Helmet } from 'react-helmet';
 import { VscVerifiedFilled } from 'react-icons/vsc';
+import { GeneralAdsContainer } from '../components/containers/AdsContainer';
 
 const VendorPage = () => {
   const location = useLocation();
@@ -67,9 +67,8 @@ const VendorPage = () => {
       :
       <>
         {vendorInfo ? <VendorHeader title={vendorInfo.username} image={vendorInfo?.profile_image} /> : null}
-        <div className='page-main'>
-          <div className="side left-side"></div>
-          <div className="page-content">
+        <div className='w-full '>
+          <div className="w-full">
             {vendorInfo ? 
               <>
                 <div className='vendor-page-title'>
@@ -127,13 +126,12 @@ const VendorPage = () => {
                     <h3>Vendor Adverts ({`${vendorAds.length} ad${vendorAds.length > 1 ?'s': ''}`})</h3>
                   </div>
                   <div id="vendor-page-view-id"></div>
-                  <VerticalAds ads={vendorAds} adsNo={50} eleId={"vendor-page-view-id"} />
+                  <GeneralAdsContainer ads={vendorAds} containerId={"vendor-page-view-id"} />
                 </div>
               : 
               <div><p>No adverts found for this vendor</p></div>
             }
           </div>
-          <div className='side'></div>
         </div>
 
       </>
@@ -148,9 +146,9 @@ const VendorPage = () => {
 
 const VendorHeader = ({image}) => {
   return(
-    <div className="vendor-page-header">
+    <div className="w-full rounded-[5px] flex items-center justify-center h-[80px] bg-cover bg-main-blue-700 mb-[50px] bg-no-repeat relative ">
       {/* <h1>{title}</h1> */}
-      <img src={image} alt="vendor profile" />
+      <img src={image} alt="vendor profile" className='absolute max-w-[80px] rounded-[10px] -bottom-[40px] max-h-[80px] w-auto h-auto border-[1.5px] border-main-gold-500  ' />
     </div>
   )
 }

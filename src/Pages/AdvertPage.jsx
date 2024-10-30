@@ -15,7 +15,7 @@ import {  ImageViewer } from "../components/dynamic/ImageSlider";
 import { AdvertReview, RateAdvert } from "../components/dynamic/Reviews.component";
 // import { Helmet } from "react-helmet";
 import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
-import { Banners } from "../config/banners";
+import { Banners, TopDealsSidebanners } from "../config/banners";
 import { VscVerifiedFilled } from "react-icons/vsc";
 // import AppData from "../Contexts/AppContext";
 import { Helmet } from 'react-helmet-async';
@@ -25,6 +25,8 @@ import JobSeekerPageContainer from "../jobSeeker/components/containers/JobSeeker
 import { ActionBtn } from "../components/dynamic/Buttons";
 import AppData from "../Contexts/AppContext";
 import DOMPurify from 'dompurify';
+import { SideBannerContainer } from "../components/banners/SideBanners";
+import { GeneralAdsContainer } from "../components/containers/AdsContainer";
 
 const AdvertPage = () => {
      const [ , setData ] = useContext(AppData);
@@ -133,9 +135,8 @@ const AdvertPage = () => {
                <meta property="og:type" content="website" />
                <title>{`${adViewed?.ad_name || 'Advert'} | Click Rwanda`}</title>
           </Helmet>
-          <div className="page-main">
-               <div className="side"><LeftBanner items={Banners} /></div>
-               <div className="page-content">
+          <div className="w-full flex justify-between  items-start gap-[5px]">
+               <div className="w-full lg:w-[85%] " id="ad-main-page-content">
                     <div className="advert-page">
                     {
                          !loading ?
@@ -209,10 +210,10 @@ const AdvertPage = () => {
                                    </div>
                                    <div className="col">
                                         <div className="vendor">
-                                        {adViewed?.full_name && <div className="vendor-info-header"><h4>{adViewed?.category_name === "Jobs" ? "Employer Information" : "Seller Information"}</h4></div>}
+                                        {adViewed?.full_name && <div className="vendor-info-header"><h4 className="">{adViewed?.category_name === "Jobs" ? "Employer Information" : "Seller Information"}</h4></div>}
                                              <div className="vendor-col-left">
                                                   {adViewed?.profile_image && <a href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}><img src={adViewed?.profile_image} alt={adViewed?.full_name} /></a>}
-                                                  {adViewed?.full_name && <h5>{adViewed?.full_name}</h5>}
+                                                  {adViewed?.full_name && <h5 className="text-[0.9rem]" >{adViewed?.full_name}</h5>}
                                                   <UserRating rating={adViewed?.rating} />
                                              </div>
                                              <div className="vendor-col-right">
@@ -256,19 +257,19 @@ const AdvertPage = () => {
                               </div>
                          }
                          
-                         <div className="advert-page-others">
+                         <div className="w-full p-[10px] flex flex-col gap-[20px] ">
                               {sameVendorAds && sameVendorAds[0] ? 
-                                   <>
-                                        <h3>More Ads from {adViewed?.username} shop <Link to={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}>View All</Link></h3>
-                                        <AdvertsContainer adverts={sameVendorAds} />
-                                   </>
+                                   <div className="w-full flex flex-col items-center justify-start gap-[5px] ">
+                                        <h3 className="bg-main-blue-700 text-white text-[0.9rem] md:text-[1.1rem] font-bold w-full rounded-[5px] py-[10px] px-[5px] " >More Ads from {adViewed?.username} shop <Link className="text-[0.7rem] md:text-[0.9rem] text-main-green-600 font-bold" to={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}>View All</Link></h3>
+                                        <GeneralAdsContainer ads={sameVendorAds} containerId={'advert-page-same-vendor-ads'} />
+                                   </div>
                               : null}
                               
                               {samecategoryAds && samecategoryAds[0] ? 
-                                   <>
-                                        <h3>More {adViewed?.category_name} Ads <Link to={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}>View All</Link></h3>
-                                        <AdvertsContainer adverts={samecategoryAds} />
-                                   </>
+                                   <div className="w-full flex flex-col items-center justify-start gap-[5px] ">
+                                        <h3 className="bg-main-blue-700 text-white text-[0.9rem] md:text-[1.1rem] font-bold w-full rounded-[5px] py-[10px] px-[5px] " >More {adViewed?.category_name} Ads <Link className="text-[0.7rem] md:text-[0.9rem] text-main-green-600 font-bold" to={`/category/${getItemUrl(adViewed?.category_name, adViewed?.category_id)}`}>View All</Link></h3>
+                                        <GeneralAdsContainer  ads={samecategoryAds} containerId={'advert-page-same-category-ads'} />
+                                   </div>
                               :null}
                          </div>
                          </>
@@ -277,7 +278,9 @@ const AdvertPage = () => {
                     
                     </div>
                </div>
-               <div className="side"><RightBanner items={Banners} /></div>
+               <div className="hidden lg:flex lg:w-[15%] bg-white rounded-[5px] h-auto">
+               <SideBannerContainer banners={TopDealsSidebanners} containerId={"ad-main-page-content"} changeArr={[adViewed,samecategoryAds, sameVendorAds]} />
+               </div>
           </div>
     </>
   )

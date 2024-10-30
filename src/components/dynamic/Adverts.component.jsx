@@ -24,6 +24,8 @@ import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import ImageUploader from "../containers/ImageUploader";
 import TextEditor from "../containers/TextEditor";
 import { GeneralAdsContainer, SlideAdsContainers } from "../containers/AdsContainer";
+import { SideBannerContainer } from "../banners/SideBanners";
+import { FeaturedAdsSidebanners, TopDealsSidebanners } from "../../config/banners";
 
 export const Adverts = ({eleId,limit}) => {
       const {t} = useTranslation("global");
@@ -362,8 +364,13 @@ export const BoostedAds = ({params}) => {
   const ads  = params?.ads || boosted;
 
   return(
-    <section className="w-full pt-[5px] pb-[10px] px-[1%] rounded-[5px] bg-white">
-      { ads && Array.isArray(ads) && ads.length > 0 && <SlideAdsContainers ads={ads} containerId={"home-top-deals"} content={{title: content.title, viewAll: content.viewAllLink.title, viewAllLink: content.viewAllLink.link }} />}
+    <section className="w-full flex items-center gap-[5px]  rounded-[5px]">
+      <div className="w-full h-full lg:[85%] bg-white rounded-[5px] p-[10px]" id="home-featured-ads-container">
+        { ads && Array.isArray(ads) && ads.length > 0 && <SlideAdsContainers ads={ads} containerId={"home-featured-ads"} content={{title: content.title, viewAll: content.viewAllLink.title, viewAllLink: content.viewAllLink.link }} />}
+      </div>
+      <div className="hidden lg:flex lg:w-[15%] bg-white rounded-[5px] h-auto">
+        <SideBannerContainer banners={FeaturedAdsSidebanners} containerId={"home-featured-ads-container"} changeArr={[boosted,ads]} />
+      </div>
     </section>
     
   )
@@ -434,64 +441,6 @@ export const VerticalAds = ({ ads, adsNo, eleId }) => {
   );
 };
 
-
-// export const TodayDeals = ({params}) => {
-//   const {t} = useTranslation("global");
-//   const content = t("homePage.topDealsSection", {returnObjects:true});
-//   const [data] = useContext(AppData);
-//   const {todayDeals} = data;
-//   const adsRef = useRef(null);
-//   const [scrollPos, setScrollPos] = useState({atLeft: false});
-//   const ads = params?.ads || todayDeals;
-
-//   const scrollHandle = (check) => {
-//     if(check === 1){
-//       adsRef.current.scrollBy({left: 300, behavior: 'smooth'});
-//     }else if(check === -1){
-//       adsRef.current.scrollBy({left: -300, behavior: 'smooth'})
-//     }
-//   }
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const { scrollLeft, scrollWidth, clientWidth } = adsRef.current;
-//       setScrollPos({
-//         atLeft: scrollLeft === 0,
-//         atRight: scrollLeft + clientWidth >= scrollWidth,
-//       });
-//     };
-//     const currentRef = adsRef.current;
-//     currentRef &&  currentRef.addEventListener('scroll', handleScroll);
-//     return () => {
-//       currentRef ?  currentRef.removeEventListener('scroll', handleScroll) : null;
-//     };
-//   }, [todayDeals]);
-
-//   return (
-//     <div className="container">
-//       <div className="ads-section-title">
-//         <div className="title">
-//           <h3 className="main-title">{content.title}</h3>
-//           <Link to={content.viewAllLink.link}>{content.viewAllLink.title}</Link>
-//         </div>
-//         <div className="section-navigation">
-//           <i  onClick={()=>scrollHandle(-1)} className={`${!scrollPos.atLeft && !params?.wrap ? '' : 'inactive'}`} ><RiArrowLeftSLine/></i>
-//           <i onClick={()=>scrollHandle(1)} className={`${!scrollPos.atRight && !params?.wrap ? '' : 'inactive'}`}><RiArrowRightSLine/></i>
-//         </div>
-//       </div>
-//       <div className="home-boosted-ads " >
-//       <div className={`ads-container hide-scroll ${params?.wrap && 'wrap-scroll'} `} ref={adsRef}>
-//           {
-//             ads && ads[0]  && ads.map((item) =><AdvertRenderer key={item.ad_id} item={item}/>
-//             )
-//           }
-//       </div>
-//      </div>
-//     </div>
-    
-//   ) 
-// }
-
 export const TodayDeals = ({params}) => {
   const {t} = useTranslation("global");
   const content = t("homePage.topDealsSection", {returnObjects:true});
@@ -500,8 +449,13 @@ export const TodayDeals = ({params}) => {
   const ads = params?.ads || todayDeals;
 
   return (
-    <section className="w-full pt-[5px] pb-[10px] px-[1%] rounded-[5px] bg-white ">
-    { ads && Array.isArray(ads) && ads.length > 0 && <SlideAdsContainers ads={ads} containerId={"home-top-deals"} content={{title: content.title, viewAll: content.viewAllLink.title, viewAllLink: content.viewAllLink.link }} />}
+    <section className="w-full flex items-center gap-[5px]  rounded-[5px] ">
+      <div className="w-full lg:[85%] bg-white rounded-[5px] p-[10px] " id="top-deals-ads">
+        { ads && Array.isArray(ads) && ads.length > 0 && <SlideAdsContainers ads={ads} containerId={"home-top-deals"} content={{title: content.title, viewAll: content.viewAllLink.title, viewAllLink: content.viewAllLink.link }} />}
+      </div>
+      <div className="hidden lg:flex lg:w-[15%] bg-white rounded-[5px] h-auto">
+        <SideBannerContainer banners={TopDealsSidebanners} containerId={"top-deals-ads"} changeArr={[todayDeals,ads]} />
+      </div>
     </section>
   ) 
 }
