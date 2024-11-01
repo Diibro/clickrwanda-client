@@ -3,7 +3,6 @@ import Categories from '../../data/HotCategories.json';
 import {  useNavigate } from "react-router-dom";
 import { getItemUrl } from "../../utils/urlFunctions";
 import PropTypes from 'prop-types';
-import { MyImage } from "../static/Image";
 
 const HomeShopContainer = () => {
      const [categories,setCategories] = useState(null);
@@ -36,8 +35,12 @@ const HomeShopContainer = () => {
 
 const HotSubcategoryCard = ({category,sub}) => {
      const navigate = useNavigate();
+     const viewItem = () => {
+          return navigate(`/our-shop/${getItemUrl(sub.sub_name, sub.id)}`);
+          
+     }
      return (
-          <div className="w-full aspect-[100/80] flex flex-col items-center justify-start rounded-[5px] overflow-hidden relative transition-all duration-150 p-[5px] shadow-md shadow-gray-300 " onClick={() => navigate(`/our-shop/${getItemUrl(sub.sub_name, sub.id)}`)}>
+          <div className="w-full aspect-[100/80] flex flex-col items-center justify-start rounded-[5px] overflow-hidden relative transition-all duration-150 p-[5px] shadow-md shadow-gray-300 " onClick={viewItem}>
                {/* <MyImage image={sub.image} /> */}
                <img src={sub.image} alt={`${sub.sub_name}`} loading="lazy" className="w-full h-full object-fill rounded-[5px] cursor-pointer " />
                <div className="w-full py-[10px] flex flex-col items-center justify-center">

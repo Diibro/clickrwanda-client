@@ -6,19 +6,19 @@ import { MyImage } from "../static/Image"
 
 export const BlogCardRowView = ({blog}) => {
      return (
-          <div className="blog-row-card">
-               <div className="image-container">
-                    <img src={blog.content.featuredImage} alt="" />
+          <div className="w-full flex items-start border-[1.3px] border-gray-500 justify-between p-[2.5px] rounded-[5px] ">
+               <div className="w-[30%] md:w-[35%] lg:w-[25%] h-full ">
+                    <img src={blog.content.featuredImage} alt="blog image" className="rounded-[5px] w-full h-auto " />
                     {/* <MyImage image={blog.content.featuredImage} /> */}
                </div>
-               <div className="content">
-                    <h4>{blog.title}</h4>
-                    <div className="row">
-                         <p>Published On: {extractDateOnly(blog.publication_date)}</p>
+               <div className="w-[68%] md:w-[65%] lg:w-[74%]  flex flex-col p-[2.5px] gap-[5px] ">
+                    <h4 className="text-[0.9rem] text-main-blue-700 font-bold">{blog.title}</h4>
+                    <div className="w-full flex flex-col items-start  ">
+                         <p className="text-[0.8rem] font-mono text-gray-500 ">Published On: {extractDateOnly(blog.publication_date)}</p>
                     </div>
-                    <div className="row">
-                         <p>{blog.content.description}</p>
-                         <Link to={`/blogs/blog?=${blog.id}`}>Read More</Link>
+                    <div className="w-full flex flex-col items-start">
+                         <p className="text-[0.8rem] text-gray-500 line-clamp-2">{blog.content.description}</p>
+                         <Link className="text-[0.8rem] text-green-500 w-full text-right " to={`/blogs/blog?=${blog.id}`}>Read More...</Link>
                     </div>
                </div>
           </div>
@@ -27,7 +27,7 @@ export const BlogCardRowView = ({blog}) => {
 
 export const BLogCardVerticalView = ({blog}) => {
      return (
-          <div className="blog-vertical-card"></div>
+          <div className=""></div>
      )
 }
 
