@@ -18,28 +18,35 @@ const Home = () => {
   return (
     <DashboardContainer>
       <DashboardRow>
-        <h2>Welcome  {userInfo?.username}</h2>
-        <div className="user-dash-content-container">
-          <p>Advertise with Click Rwanda by posting your products. <ActionBtn action={() => navigate('/forms/add-advert')} title="Post New Ad" /></p>
+        <h2 className="w-full text-[1.4rem] text-main-blue-700 font-bold px-[10px] ">Welcome  {userInfo?.username}</h2>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[10px] px-[10px] ">
+          <div className="w-full flex flex-col p-[20px] rounded-[5px] bg-main-blue-700 items-center gap-[10px] ">
+            <p className="text-[0.9rem] text-center text-white flex flex-wrap w-full ">Advertise with Click Rwanda by posting your products.</p>
+              <ActionBtn action={() => navigate('/forms/add-advert')} title="Post New Ad" />
+          </div>
+          <div className="w-full flex flex-col p-[20px] rounded-[5px] bg-main-blue-700 items-center gap-[10px] ">
+            <p className="text-[0.9rem] text-center text-white flex flex-wrap w-full ">At Click Rwanda we sell your products on your behalf. Click here to add commission products.</p>
+            <ActionBtn title="Add product" action={() => navigate('/forms/add-advert?=commission')} />
+          </div>
+          <div className="w-full flex flex-col p-[20px] rounded-[5px] bg-main-blue-700 items-center gap-[10px] ">
+            <p className="text-[0.9rem] text-center text-white flex flex-wrap w-full ">Currently subscribed in <i> {activePlan?.plan_name} plan</i>. Upgrade to increase your sales.</p>
+            <ActionBtn action={() => navigate("/user-dashboard/user-plans")} title="Upgrade" />
+          </div>
         </div>
-        <div className="user-dash-content-container">
-          <p>At Click Rwanda we sell your products on your behalf. Click here to add commission products.</p>
-          <ActionBtn title="Add product" action={() => navigate('/forms/add-advert?=commission')} />
-        </div>
-        <div className="user-dash-content-container">
-          <p>Currently subscribed in <i>{activePlan?.plan_name} plan</i>. Upgrade to increase your sales.</p>
-          <ActionBtn action={() => navigate("/user-dashboard/user-plans")} title="Upgrade" />
-        </div>
+        
       </DashboardRow>
       <DashboardRow>
-        <h3>Shop Statistics</h3>
-        <DashHomeCard content={{name:"Total Ads", count: userAdverts?.length || 0, action: () => navigate("/user-dashboard/user-adverts")}} />
-        <DashHomeCard content={{name:"Reviews", count:reviews?.length || 0, action: () => navigate("/user-dashboard/user-reviews")} } />
-        <DashHomeCard content={{name:"Visits", count:shopVisits?.length || 0, action: () => navigate("/user-dashboard/statistics")}} />
-        <DashHomeCard content={{name:"Rejected Ads", count:0, classname:"reported"}} />
+        <h3 className="w-full text-[1.2rem] font-bold text-gray-800 px-[10px] ">Shop Statistics</h3>
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[10px] p-[10px]">
+          <DashHomeCard content={{name:"Total Ads", count: userAdverts?.length || 0, action: () => navigate("/user-dashboard/user-adverts")}} />
+          <DashHomeCard content={{name:"Reviews", count:reviews?.length || 0, action: () => navigate("/user-dashboard/user-reviews")} } />
+          <DashHomeCard content={{name:"Visits", count:shopVisits?.length || 0, action: () => navigate("/user-dashboard/statistics")}} />
+          <DashHomeCard content={{name:"Rejected Ads", count:0, classname:"reported"}} />
+        </div>
+        
       </DashboardRow>
       <DashboardRow>
-        <h2>Membership Plans</h2>
+        <h2 className="w-full text-[1.2rem] font-bold text-gray-800 px-[10px] ">Membership Plans</h2>
         <ParagraphCard>
           <p>Boost the viwers of your products by subscribing to our membership plans. With our membership plans, you get more shop views, product views form potential customers plus agent promotion of your shop and products.</p>
         </ParagraphCard>

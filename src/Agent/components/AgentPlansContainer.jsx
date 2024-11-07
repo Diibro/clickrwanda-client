@@ -45,25 +45,6 @@ const AgentPlansContainer = ({agent}) => {
                     }else if(plan.plan_type === "Shop Package"){
                          dividedPlans["Shop Packages"].push(plan);
                     }
-                    // if(plan.plan_type === "Individual"){
-                    //      dividedPlans["Individual"].push(plan);
-                    // }else if (plan.plan_type === "Small Business"){
-                    //      dividedPlans["Small Business"].push(plan);
-                    // }else if(plan.plan_type === "Large Business"){
-                    //      dividedPlans["Large Business"].push(plan);
-                    // }else if(plan.plan_type === "Extra Boost"){
-                    //      dividedPlans["Extra Boost"].push(plan)
-                    // }else if(plan.plan_type === "Commissions"){
-                    //      dividedPlans["Commissions"].push(plan);
-                    // }else if(plan.plan_type === "Fixed Ads"){
-                    //      dividedPlans["Fixed Ads"].push(plan);
-                    // }else if(plan.plan_type === "Banner Ads"){
-                    //      dividedPlans["Banner Ads"].push(plan);
-                    // }else if(plan.plan_type === "Urgent Ads"){
-                    //      dividedPlans["Urgent Ads"].push(plan);
-                    // }else if(plan.plan_type === "Article Package"){
-                    //      dividedPlans["Article"].push();
-                    // }
                }
                for (const category in dividedPlans) {
                     dividedPlans[category].sort((a, b) => a.plan_amount - b.plan_amount);
@@ -73,26 +54,25 @@ const AgentPlansContainer = ({agent}) => {
           }
      }
 
-
      useEffect(() => {
           updateCatPlans();
      }, [data])
      return (
-          <div className="admin-plans-container">
+          <div className="w-full flex flex-col items-center justify-start gap-[20px]">
                {
                     catPlans ? 
                     Object.entries(catPlans).map(([key, value], index) => 
                          value.length > 0 ? 
                               <div className="admin-plans-container" key={`admin-plans-row-${key}-${index}`}>
-                              <div className={`title-row ${activePlans === key ? "active-plans-title" : ""}`} onClick={() => updateActivePlans(key)}><h3>{key}</h3></div>
-                              <div className={`plans-container-row ${activePlans === key ? "active-plans" : ""} `}>
-                                   <div className="content">
-                                        {
-                                             value.map(item => item.plan_name !== "Free"  ?<PayPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} action={() => copyToClipboard(`https://clickrwanda.com/plan-payment?=${item.plan_id}?=${agent?.agent_id}`)} btnTitle={"Sell Package"} /> :null)
-                                        }
+                                   <div className={`title-row ${activePlans === key ? "bg-main-gold-600" : "bg-main-blue-700"}`} onClick={() => updateActivePlans(key)}><h3>{key}</h3></div>
+                                   <div className={`w-full transition-all duration-300 ${activePlans === key ? "h-auto" : "h-0"} overflow-hidden `}>
+                                        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                                             {
+                                                  value.map(item => item.plan_name !== "Free"  ?<PayPlanCard key={`admin-plans-card-${item.plan_id}`} plan={item} action={() => copyToClipboard(`https://clickrwanda.com/plan-payment?=${item.plan_id}?=${agent?.agent_id}`)} btnTitle={"Sell Package"} /> :null)
+                                             }
+                                        </div>
                                    </div>
                               </div>
-                         </div>
                     : null
                     )
                     : <p>No plans found</p>

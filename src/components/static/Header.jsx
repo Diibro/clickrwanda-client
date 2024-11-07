@@ -54,7 +54,7 @@ const DesktopHeader = () => {
      },[user]);
 
      return (
-          <header className="static top-0 bg-main-blue-700 px-[0.5%] py-[5px] flex items-center justify-between  rounded-[5px] my-[5px] ">
+          <header className="sticky top-0 bg-main-blue-700 px-[0.5%] py-[5px] flex items-center justify-between  rounded-[5px] my-[5px] z-50 ">
                <Link to='/'><img src={Logo} alt="clickrwanda" className="w-[100px] " /></Link>
                <div className="flex items-center gap-[10px]">
                     {/* <LanguageChanger /> */}

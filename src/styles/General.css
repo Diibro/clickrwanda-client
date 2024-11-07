@@ -965,27 +965,6 @@ textarea{
      border: 1.2px solid var(--back-color-gold2);
 }
 
-.payment-plans-page-header{
-     width: 80%;
-     background-color: var(--text-color-title);
-     color: var(--white-text);
-     display: flex;
-     flex-direction: column;
-     align-items: center ;
-     justify-content: center;
-     padding: 10px 0;
-     margin: 10px auto;
-     border-radius: 5px;
-     box-sizing: border-box;
-}
-
-.payment-plans-page-body{
-     width: 80%;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-}
 
 .pay-plans-container {
      display: flex;
@@ -1074,31 +1053,37 @@ textarea{
      flex-direction: column;
      align-items: center;
 }
-.payment-plan-card .body{
+.payplan-body{
      width: 95%;
 }
 
-.payment-plan-card .body .detailed-description {
+.payplan-body .detailed-description {
      width: 90%;
      margin: 5px auto;
 }
 
-.payment-plan-card .body .detailed-description ul,
-.payment-plan-card .body .detailed-description ol {
+.payplan-body .detailed-description ul,
+.payplan-body .detailed-description ol {
      font-size: 0.9rem;
      list-style: none;
 
 }
 
-.payment-plan-card .body .detailed-description ul li,
-.payment-plan-card .body .detailed-description ol li{
+.payplan-body .detailed-description ul li,
+.payplan-body .detailed-description ol li{
      width: 100%;
      overflow: hidden;
      word-break: normal;
+     font-weight: 600;
 }
 
-.payment-plan-card .body .detailed-description ul li::before,
-.payment-plan-card .body .detailed-description ol li::before {
+.payplan-body .detailed-description ul li strong,
+.payplan-body .detailed-description ol li strong{
+     font-weight: 600;
+}
+
+.payplan-body .detailed-description ul li::before,
+.payplan-body .detailed-description ol li::before {
      content: '\f058'; /* Unicode for FaCheckCircle */
      font-family: 'Font Awesome 5 Free'; /* Make sure this is included */
      font-weight: 900;
@@ -1144,12 +1129,12 @@ textarea{
      margin: 5px auto;
 }
 
-.payment-plan-card .body ul{
+.payplan-body ul{
      list-style-type: none;
      width: 100%;
 }
 
-.payment-plan-card .body ul li{
+.payplan-body ul li{
      width: 96%;
      margin: 2.5px auto;
      font-size: 0.8rem;
@@ -1325,16 +1310,7 @@ textarea{
 .gray-back{
      background-color:var(--back-color-gold1) ;
 }
-.payment-plans-page-header h3{
-     font-size: 1.5rem;
-     font-weight: 800;
-     margin:  5px auto;
-}
 
-.payment-plans-page-header p{
-     color: var(--gray-text);
-     font-size: 0.85rem;
-}
 .password-reset-page{
      background-color: var(--text-color-title);
      width: 100%;
@@ -8611,4 +8587,27 @@ hide scroll bars
      flex-wrap: wrap !important;
      overflow-x: visible;
      justify-content: center !important;
+}
+
+.custom-scroll-bar::-webkit-scrollbar{
+     width: 5px;
+}
+.custom-scroll-bar::-webkit-scrollbar-track {
+
+     border-radius: 5px;
+     background: transparent; /* Background color of the scrollbar track */
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+     background-color: #888; 
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb:hover {
+     background-color: #555; 
+}
+
+/* For Firefox (Custom styling is limited to width and color) */
+.custom-scroll-bar {
+     scrollbar-width: thin; 
+     scrollbar-color: #888 #f1f1f1; 
 }

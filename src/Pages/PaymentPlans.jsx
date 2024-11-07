@@ -9,14 +9,14 @@ const PaymentPlans = () => {
     <Helmet>
       <title>Membership Plans | Click Rwanda</title>
     </Helmet>
-    <div className="page gray-back">
+    <div className="w-full flex flex-col items-center gap-[10px]">
           <Routes>
             <Route path="/" element={<>
-              <div className="payment-plans-page-header">
-                  <h3>Our Packages</h3>
-                  <p>Increase your sales and visibility with our boost packages.</p>
+              <div className="w-full rounded-[5px] py-[10px] flex flex-col items-center justify-center gap-[5px]  bg-main-blue-700 ">
+                  <h3 className="text-[1.5rem] text-white font-bold ">Our Packages</h3>
+                  <p className="text-gray-200 text-[0.8rem] md:text-[0.85rem] ">Increase your sales and visibility with our boost packages.</p>
               </div>
-              <div className="payment-plans-page-body">
+              <div className="w-full flex flex-col items-center justify-start ">
                 {/* <PaymentPlansContainer /> */}
                 <UserPlansContainer />
               </div>

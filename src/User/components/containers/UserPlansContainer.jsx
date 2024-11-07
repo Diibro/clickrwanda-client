@@ -83,15 +83,15 @@ const UserPlansContainer = () => {
      }, [payPlans]);
 
      return (
-          <div className="admin-plans-container">
+          <div className="w-full flex flex-col items-center justify-start mx-auto transition-all duration-100 gap-[10px] bg-white ">
                {
                     catPlans ? 
                     Object.entries(catPlans).map(([key, value], index) => 
                          value.length ?
-                         <div className="admin-plans-container" key={`admin-plans-row-${key}-${index}`}>
-                              <div className={`title-row ${activePlans === key ? "active-plans-title" : ""}`} onClick={() => updateActivePlans(key)}><h3>{key}</h3></div>
-                              <div className={`plans-container-row ${activePlans === key ? "active-plans" : ""} `}>
-                                   <div className="content">
+                         <div className="w-full flex flex-col gap-[5px] items-center justify-start " key={`admin-plans-row-${key}-${index}`}>
+                              <div className={`w-full flex items-center justify-start p-[10px] rounded-[5px] cursor-pointer transition-all duration-150  ${activePlans === key ? "bg-main-gold-600" : "bg-main-blue-700"}`} onClick={() => updateActivePlans(key)}><h3 className=" text-[1.2rem] text-white font-bold " >{key}</h3></div>
+                              <div className={`w-full overflow-hidden flex items-start justify-center transition-all duration-300   ${activePlans === key ? "h-auto" : "h-0"} `}>
+                                   <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[10px]  bg-white p-[5px] ">
                                         {
                                              value.map(item => item?.plan_id === activePlan?.plan_id ? <PayPlanCard btnTitle="Choose Plan" key={`user-dashboard-plans-card-${item?.plan_id}`} extra={{view_type: "current-plan-view", currentName: "Current Plan"}} plan={item}  /> : <PayPlanCard btnTitle={"Choose Plan"} key={`user-dashboard-plans-card-${item?.plan_id}`} plan={item} action={() => navigate(`/plan-payment?=${item.plan_id}`)} extra={{view_type: `${item.plan_plan_name}`}} />)
                                         }

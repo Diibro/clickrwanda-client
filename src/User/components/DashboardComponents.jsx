@@ -11,7 +11,7 @@ import { FcStatistics } from "react-icons/fc";
 
 export const  MainContainer = ({children}) => {
      return(
-          <div className="dashboard-main-container">
+          <div className="w-full flex items-start justify-between gap-[10px]">
                {children}
           </div>
      )
@@ -19,7 +19,7 @@ export const  MainContainer = ({children}) => {
 
 export const DashboardContainer = ({children}) => {
      return (
-          <div className='dashboard-container'>
+          <div className='w-full flex flex-col items-center justify-center gap-[10px]'>
                {children}
           </div>
      )
@@ -73,7 +73,7 @@ export const ContentContainer = ({children}) => {
           }
      }
      return(
-          <div className='dashboard-content' onClick={showHeader}>
+          <div className='w-[90%] lg:w-[80%] bg-white rounded-[5px] flex flex-col items-center justify-center ' onClick={showHeader}>
                {children}
           </div>
      )
@@ -81,7 +81,7 @@ export const ContentContainer = ({children}) => {
 
 export const DashboardRow = ({children}) => {
      return(
-          <div className="dashboard-row">
+          <div className="w-full flex items-start justify-evenly py-[10px] flex-wrap ">
                {children}
           </div>
      )
