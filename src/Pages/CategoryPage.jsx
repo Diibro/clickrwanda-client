@@ -19,7 +19,6 @@ const CategoryPage = () => {
   
 
   const fetchSubAds = async (sub_id, limit, offset) => {
-    
     if(sub_id === "all") return await fetchAds();
 
     try {

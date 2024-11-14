@@ -18,7 +18,6 @@ const JobsSection = () => {
           if(res){
                const {data} = res;
                if(data && data.length){
-                    console.log(data);
                     setAds(data);
                }
           }

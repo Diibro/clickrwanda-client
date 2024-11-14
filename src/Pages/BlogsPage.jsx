@@ -49,11 +49,8 @@ export const HomeBlogsSection = ({showTitle=false}) => {
 
      useEffect(() => {
           (async () => await fetchBlogs({limit:10,offset:0}))(); 
-     }, [])
-
-     useEffect(() => {
-          console.log(blogs);
-     },[blogs])
+     }, []);
+     
      return (
           <>
                {blogs && blogs.length && 

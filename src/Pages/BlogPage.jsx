@@ -17,7 +17,6 @@ const BlogPage = () => {
           try {
                setLoading(true)
                const res = await Service.get(`${Server.blog}?id=${blogId}`);
-               console.log(res);
           if(res && res.data) setBlog(res.data);
           } catch (error) {
                console.log(error);

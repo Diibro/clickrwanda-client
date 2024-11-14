@@ -13,7 +13,6 @@ const JobCard = ({ad}) => {
      }
 
      useEffect(() => {
-          console.log(ad.description);
           setDescription(ad.description);
      },[ad])
      return (

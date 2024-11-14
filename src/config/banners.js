@@ -1,11 +1,11 @@
 export const Banners = [
      {
-          name:"Green Application open",
+          name:"Car Rental",
           images:{
-               hr:"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/vis-pop.gif",
+               hr:"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/Need-car.gif",
                vr:"https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/aska-vr.png"
           },
-          link: "https://wa.me/message/ATUUNFXHTEMWM1"
+          link: "https://wa.me/+250727559173"
      },
      {
           name:"Visit My Venue",
