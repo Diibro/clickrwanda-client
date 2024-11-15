@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
 import { getLocations } from "../utils/locations";
 import AdvertService from '../services/Advert';
-import AdsContainer from "../components/containers/AdsContainer";
+import AdsContainer, { GeneralAdsContainer } from "../components/containers/AdsContainer";
 import Loading from "../components/static/Loading";
 import { formatPrice } from "../utils/otherFunctions";
+import { VerticalAds } from "../components/dynamic/Adverts.component";
 const  SampleImage = "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/kigali-img.jpg";
 
 
@@ -69,7 +70,8 @@ const LocationPage = () => {
               loading ? <Loading /> 
               : ads && ads.length ? 
               <>
-                <AdsContainer adverts={ads} />
+                {/* <AdsContainer adverts={ads} /> */}
+                <GeneralAdsContainer ads={ads} containerId={"Location-page-ads"} />
               </>
               : <p className="no-ads-found">No ads found in {locality}</p>
             }

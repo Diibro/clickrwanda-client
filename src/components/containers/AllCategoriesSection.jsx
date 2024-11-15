@@ -28,17 +28,19 @@ const AllCategoriesSection = () => {
           <>
                {
                     content ? 
-                    <div className="home-categories-section">
-                         <div className="title">
-                              <h3>All Categories</h3>
+                    <div className="w-full bg-white rounded-[10px] flex flex-col items-center gap-[20px] p-[10px]">
+                         <div className="w-full">
+                              <h3 className="text-[1.4rem] font-extrabold text-main-blue-700  ">All Categories</h3>
                          </div>
-                         <div className="content hide-scroll">
+                         <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-[10px] ">
                               {
                                    content.map((item, index) => index < catCount ? <CategoryCard category={item} key={`home-all-categories-${item.category_id}`} /> : null)
                               }
                          </div>
                          {
-                              catCount < content.length ? <p className="view-expan-section" onClick={() => setCatCount(content.length)}>View More</p> : <p className="view-expan-section" onClick={() => setCatCount(12)}>View Less</p>
+                              catCount < content.length 
+                              ? <p className="text-[0.8rem] font-mono text-gray-800 cursor-pointer hover:text-main-blue-500 " onClick={() => setCatCount(content.length)}>View More</p> 
+                              : <p className="text-[0.8rem] font-mono text-gray-800 cursor-pointer hover:text-main-blue-500 " onClick={() => setCatCount(12)}>View Less</p>
                          }
                     </div>
                     :null
@@ -50,17 +52,16 @@ const AllCategoriesSection = () => {
 const CategoryCard = ({category}) => {
      const navigate = useNavigate();
      return (
-          <div className="home-categories-subcard">
-               <div className="title">
-                    <h5>{category.category_name} <span>{`${category.total_adverts} ads`}</span></h5>
-                    
-                    </div>
-               <div className="sub-categories">
+          <div className="w-full flex flex-col gap-[5px] ">
+               <div className="w-full">
+                    <h5 className="text-[0.8rem] text-gray-800 font-semibold underline underline-offset-1 ">{category.category_name} <span>{`${category.total_adverts} ads`}</span></h5>
+               </div>
+               <div className="w-full flex flex-col gap-[2.5px]">
                     {
-                         category.subCategories.map((item,index) => index <= 4 ? <span key={item.sub_id} onClick={() => navigate(`/category/${getItemUrl(category.category_name, category.category_id)}`)}>{item.sub_name} {`(${item.total_ads})`}</span> : null)
+                         category.subCategories.map((item,index) => index <= 4 ? <span className="text-[0.7rem] text-gray-700 cursor-pointer hover:text-main-blue-600 transition-all duration-150" key={item.sub_id} onClick={() => navigate(`/category/${getItemUrl(category.category_name, category.category_id)}`)}>{item.sub_name} <b className="text-[0.65rem] font-mono ">{`(${item.total_ads})`}</b></span> : null)
                     }
                     {
-                         category.subCategories.length > 4 ? <span onClick={() => navigate(`/category/${getItemUrl(category.category_name, category.category_id)}`)}>View All...</span> :null
+                         category.subCategories.length > 4 ? <span className="text-[0.7rem] font-mono text-main-blue-700 hover:text-main-blue-600 cursor-pointer" onClick={() => navigate(`/category/${getItemUrl(category.category_name, category.category_id)}`)}>View All...</span> :null
                     }
                </div>
           </div>

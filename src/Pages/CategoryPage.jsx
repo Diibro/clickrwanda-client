@@ -107,7 +107,7 @@ const CategoryPage = () => {
       </Helmet>
       <div className="w-full flex flex-col gap-[20px] items-center justify-start py-[10px]">
           <CategoryPageHeader content={{category, subCategories, fetchSubAdverts: (id) => handleSubCategoryChange(id)}} />
-          <div className="w-[95%] md:w-[90%]">
+          <div className="w-full">
             {!loading ? <>
             {ads && Array.isArray(ads) && ads.length ? <GeneralAdsContainer ads={ads} /> : <p className="font-semibold text-gray-600 text-[0.9rem]">No Ads found</p>}
             </> : <Loading />}
@@ -125,7 +125,7 @@ const CategoryPageHeader = ({content}) => {
     return fetchSubAdverts(e.target.value);
   }
   return (
-    <div className="w-[95%] md:w-[90%] bg-white  flex items-center justify-between rounded-[5px] p-[10px] " >
+    <div className="w-full bg-white  flex items-center justify-between rounded-[5px] p-[10px] " >
       <div className="w-auto flex flex-col md:flex-row items-start justify-start gap-[5px] md:gap-[10px] ">
         <div className="w-auto flex items-center gap-[5px]">
           <p className="text-[0.9rem] text-gray-600 ">Category:</p>
