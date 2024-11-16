@@ -38,7 +38,7 @@ const HomeLocationsSection = () => {
                               <div className="w-full grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[20px]  ">
                                    {
                                         newLocations ? 
-                                        newLocations.map((location, index) => <span className="w-full flex gap-[5px] text-[0.8rem] text-gray-100  cursor-pointer group" key={`home-section-location-${index}`} onClick={() => navigate(`/location?=${location?.name}`)}><i className="text-main-blue-600 group-hover:animate-spin"><FaLocationCrosshairs /></i> {location.name} <b className="text-[0.7rem] font-mono text-main-blue-600 ">({location.count} ads)</b></span>)
+                                        newLocations.map((location, index) => <span className="w-full flex gap-[5px] text-[0.8rem] text-gray-100  cursor-pointer group" key={`home-section-location-${index}`} onClick={() => navigate(`/location?=${location?.name}`)}><i className="text-main-blue-600 group-hover:animate-spin"><FaLocationCrosshairs /></i> {location.name} <b className="text-[0.6rem] md:text-[0.7rem] font-mono text-main-blue-600 ">({location.count} ads)</b></span>)
                                         :locations.map((location, index) => <span className="text-[0.8rem] text-gray-100  " key={`home-section-location-${index}`} onClick={() => navigate(`/location?=${location}`)}>{location}</span>)
                                    }
                               </div>
