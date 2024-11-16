@@ -117,9 +117,9 @@ const SelectedOption = ({option}) => {
                          option.services.map((service, index) => <p key={`support-card-${option.name}-${index}`} className="text-[0.8rem] text-gray-700 ">{index + 1}. {service}</p> )
                     }
                </div>
-               <div className="w-full flex items-center gap-[10px] ">
+               <div className="w-full flex items-center gap-[10px]">
                     <a href={`tel:${option.phone}`} className="flex items-center gap-[5px] p-[5px] rounded-[30px] w-auto text-gray-700 border-[1.2px] border-main-blue-700 text-[0.8rem]"><i className="w-[30px] h-[30px]  text-main-blue-700 text-[24px] p-[5px] border-[1.2px] border-main-blue-700 rounded-full flex items-center justify-center "><MdCall/></i> Direct Call</a>
-                    <a href={`https://wa.me/${option.whatsapp}`} className="flex items-center gap-[5px] p-[5px] rounded-[30px] w-auto text-gray-700 border-[1.2px] border-main-blue-700 text-[0.8rem]"><i className="w-[30px] h-[30px]  text-main-green-600 text-[24px] p-[5px] border-[1.2px] border-main-green-600 rounded-full flex items-center justify-center " ><MdWhatsapp/></i> Whatsapp</a>
+                    <a href={`https://wa.me/${option.whatsapp}?text=${encodeURIComponent(`Hello Click Rwanda ${option.name}.`)}`} className="flex items-center gap-[5px] p-[5px] rounded-[30px] w-auto text-gray-700 border-[1.2px] border-main-blue-700 text-[0.8rem]"><i className="w-[30px] h-[30px]  text-main-green-600 text-[24px] p-[5px] border-[1.2px] border-main-green-600 rounded-full flex items-center justify-center " ><MdWhatsapp/></i> Whatsapp</a>
                </div>
           </div>
      )
