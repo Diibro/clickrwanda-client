@@ -47,6 +47,7 @@ import LocationPage from './LocationPage';
 import MarketPage from './MarketPage';
 import OurShopPage from './OurShopPage';
 import BlogsPage from './BlogsPage';
+import SupportCard from '../components/cards/SupportCard';
 
 
 const Layout = () => {
@@ -124,7 +125,7 @@ const Layout = () => {
           <ContactSeller />
           <Footer /> 
           </ViewProvider>
-           
+          {/* <SupportCard/> */}
      </FilterProvider>
      )
 }
