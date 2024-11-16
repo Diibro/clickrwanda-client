@@ -125,7 +125,7 @@ const Layout = () => {
           <ContactSeller />
           <Footer /> 
           </ViewProvider>
-          {/* <SupportCard/> */}
+          <SupportCard/>
      </FilterProvider>
      )
 }
