@@ -93,7 +93,7 @@ const ItemsPage = () => {
                               }
                          </div>
                     }
-                    {(!ads || !ads.length) && (!blogs || !blogs.length) && <p className="no-ads-found">No {searched.sub_name} found!!!</p>}
+                    {(!ads || !ads.length) && (!blogs || !blogs.length) && !loading && <p className="no-ads-found">No {searched.sub_name} found!!!</p>}
                </div>
                <div className="hidden lg:flex lg:w-[15%] rounded-[5px] h-auto py-[10px]">
                     <SideBannerContainer banners={TopDealsSidebanners} changeArr={[ads]} containerId={"our-shop-page-id"} />

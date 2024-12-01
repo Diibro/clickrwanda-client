@@ -48,6 +48,7 @@ import MarketPage from './MarketPage';
 import OurShopPage from './OurShopPage';
 import BlogsPage from './BlogsPage';
 import SupportCard from '../components/cards/SupportCard';
+import TopBanners from '../components/banners/TopBanners';
 
 
 const Layout = () => {
@@ -80,6 +81,7 @@ const Layout = () => {
           <ViewProvider>
           <AlertView />
           <ContactBar />
+          <TopBanners />
           <DesktopHeader />
           <Routes>
                <Route index path='/' element={<Home />} />
@@ -121,7 +123,7 @@ const Layout = () => {
           <AdvertView /> 
           <ShareButtons />
           {/* <Loadingv2 /> */}
-          <LoadingV1 />
+          {/* <LoadingV1 /> */}
           <ContactSeller />
           <Footer /> 
           </ViewProvider>

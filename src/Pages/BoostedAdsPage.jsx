@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import server from "../config/Server";
+// import server from "../config/Server";
 import Loading from "../components/static/Loading";
-import { BoostedAds } from "../components/dynamic/Adverts.component";
-import { LeftBanner, RightBanner } from "../components/dynamic/Banners";
-import { Banners } from "../config/banners";
+import { GeneralAdsContainer } from "../components/containers/AdsContainer";
+import AdvertService from '../services/Advert';
 
 const BoostedAdsPage = () => {
      const [ads, setAds] = useState([]);
@@ -12,8 +11,12 @@ const BoostedAdsPage = () => {
      const fetchData = async() => {
           try {
                setLoading(true);
-               const {boostedAds} = await server.get('adverts', {boost:100});
+               const {data} = await AdvertService.getAllApproved({listingAds:{limit: 100,offset:0}});
+               if(data){
+                    const {listingAds:boostedAds} = data;
                setAds(boostedAds);
+               }
+               
           } catch (error) {
                console.log(error);
           }finally{
@@ -24,24 +27,14 @@ const BoostedAdsPage = () => {
           (async () => await fetchData())();
      }, [])
   return (
-    <div className="page">
+    <div className="w-full flex flex-col items-center gap-[10px]">
           <div className="best-sellers-header">
                <h3>Featured Ads</h3>
                <p>Discover the best ads choosen for you on Click Rwanda</p>
           </div>
-          <div className="page-main">
-               <div className="side">
-                    <LeftBanner items={Banners} />
-               </div>
-               <div className="page-content">
-                    {loading ? <Loading /> : 
-                    <BoostedAds params={{wrap: true, ads}} />
-                    }
-               </div>
-               <div className="side">
-                    <RightBanner items={Banners} />
-               </div>
-          </div>
+          {loading ? <Loading /> : 
+               <GeneralAdsContainer ads={ads} containerId={'featured-ads page-container'} />
+          }
     </div>
   )
 }

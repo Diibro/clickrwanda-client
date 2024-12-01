@@ -21,6 +21,9 @@ export const ViewProvider = ({children}) => {
      useEffect(()=> {
           updateView();
           window.addEventListener('resize', updateView);
+          return () => {
+               window.removeEventListener('resize', updateView);
+          };
      }, []);
 
      return(
@@ -33,4 +36,5 @@ export const ViewProvider = ({children}) => {
 ViewProvider.propTypes = {
      children: PropTypes.node.isRequired,
 }
+
 export default DeviceView;

@@ -19,7 +19,7 @@ export const Banners = [
 
 export const TopDealsSidebanners = [
      {
-          name: 'banner',
+          name: 'aska logistics',
           image: 'https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/aska-vr.png',
           link: 'https.//wa.me/message/ATUUNFXHTEMWM1'
      },
@@ -49,3 +49,20 @@ export const DefaultSideBanner = {
      image: "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/asideAd.png",
      link: "https://www.clickrwanda.com/payment-plans/banners"
 }
+
+export const TopBanners = [
+     {
+          id:1,
+          name:"Ds Correct",
+          type:'top-banner',
+          srcLink: "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/dscorreect-banner.gif",
+          destLink: "https://wa.me/+250781491210",
+     },
+     {
+          id:2,
+          name:"ClickRwanda jobs",
+          type:'top-banner',
+          srcLink: "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/get-job-cickrwanda.gif",
+          destLink: "https://clickrwanda.com/forms/job-seeker-signup",
+     }
+]
