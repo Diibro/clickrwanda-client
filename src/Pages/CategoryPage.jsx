@@ -154,13 +154,13 @@ const CategoryPageHeader = ({content}) => {
     // return fetchSubAdverts(e.target.value);
   }
   return (
-    <div className="w-full bg-white  flex items-center justify-between rounded-[5px] p-[10px] " >
+    <div className="w-full bg-white  flex flex-wrap items-start mditems-center justify-between rounded-[5px] p-[10px] " >
       <div className="w-auto flex flex-col md:flex-row items-start justify-start gap-[5px] md:gap-[10px] ">
-        <div className="w-auto flex items-center gap-[5px]">
+        <div className="w-full  md:w-auto flex flex-row items-center gap-[5px]">
           <p className="text-[0.9rem] text-gray-600 ">Category:</p>
           <h3 className="text-[1rem] text-main-blue-700 font-bold ">{category?.category_name}</h3>
         </div>
-        <div className="w-auto flex items-center gap-[5px]">
+        <div className="w-full  md:w-auto flex flex-row items-start gap-[5px]">
           <label htmlFor="category-page-subCategory-selector" className="text-[0.9rem] text-gray-600 " >Sub-Category:</label>
           <select name="category-page-subCategory-selector" id="category-page-subCategory-selector" onChange={handleSubCategoryChange} className="text-[0.8rem] font-semibold text-main-blue-700 w-auto max-w[150px] border-[1.3px] rounded-[5px] p-[2.5px] border-gray-300 cursor-pointer outline-none ">
             <option value="all">All</option>
@@ -170,7 +170,7 @@ const CategoryPageHeader = ({content}) => {
           </select>
         </div>
       </div>
-      <div className="w-auto flex items-center gap-[5px]">
+      <div className="w-full  md:w-auto flex items-center gap-[5px]">
         <p className="text-[0.9rem] text-gray-600 ">Total Ads:</p>
         <p className="text-[1rem] text-main-blue-700 font-bold ">{totalAds}</p>
       </div>
