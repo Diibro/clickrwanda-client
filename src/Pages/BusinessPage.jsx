@@ -13,16 +13,16 @@ const BusinessPage = () => {
                     </div>
                </div>
                <div className="w-full flex flex-col gap-[10px] p-[30px] items-center justify-center bg-gray-100">
-                    <h2 className='text-[2rem] font-bold text-main-gold-600'>Enjoy Various benefits working with us</h2>
-                    <div className='w-full p-[20px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[10px] '>
+                    <h2 className='lg:text-[2rem] text-[1.8rem] font-bold text-main-gold-600 text-center '>Enjoy Various benefits working with us</h2>
+                    <div className='w-full p-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[10px] '>
                          <BenefitCard title=' Increased Market Visibility' content="ClickRwanda.com provides a platform to showcase your products and services to a large, targeted audience within Rwanda. Businesses can leverage the sites traffic to increase brand awareness and visibility" />
                          <BenefitCard title='Cost-Effective Advertising' content="Advertising on ClickRwanda.com is more affordable compared to traditional methods like TV or radio ads. Businesses can effectively promote their offerings without a significant marketing budget." />
                          <BenefitCard title='24/7 Accessibility' content='An online shop on ClickRwanda ensures that customers can access your products and services at any time, providing convenience and potentially boosting sales.' />
                          <BenefitCard title="Enhanced Credibility" content="Being featured on ClickRwanda enhances a business's credibility and trustworthiness among local consumers who recognize and trust the platform." />
                     </div>
                </div>
-               <div className='w-full flex items-center justify-center gap-[20px] p-[40px]'>
-                    <p className='text-[1.2rem] font-extrabold text-main-blue-700'>Get your Business listed on ClickRwanda by Payment only 10,000 Rwf</p>
+               <div className='w-full flex flex-col  items-center justify-center gap-[10px] p-[40px]'>
+                    <p className='md:text-[1.2rem] text-center text-[0.9rem] font-extrabold text-main-blue-700'>Get your Business listed on ClickRwanda by Payment only 10,000 Rwf</p>
                     <Link to={'/forms/signup'} className='w-auto text-[0.9rem] font-bold py-[7.5px] px-[10px] rounded-[40px] text-white bg-main-gold-500 hover:bg-main-blue-700 transition-all duration-200'>Get Started</Link>
                </div>
           </div>
