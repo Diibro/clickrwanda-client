@@ -14,7 +14,6 @@ import { ViewProvider } from '../Contexts/ViewContext';
 import { AlertView } from '../views/AlertsViews';
 import NotFound from './NotFound';
 import AdvertPage from './AdvertPage';
-import { LoadingV1 } from '../components/static/Loading';
 import SearchPage from './SearchPage';
 import VendorPage from './VendorPage';
 import CategoryPage from './CategoryPage';
@@ -49,6 +48,7 @@ import OurShopPage from './OurShopPage';
 import BlogsPage from './BlogsPage';
 import SupportCard from '../components/cards/SupportCard';
 import TopBanners from '../components/banners/TopBanners';
+import BusinessPage from './BusinessPage';
 
 
 const Layout = () => {
@@ -118,6 +118,7 @@ const Layout = () => {
                <Route path='/market/*' element={<MarketPage />}/>
                <Route path='/our-shop/*' element={<OurShopPage />} />
                <Route path='/blogs/*' element={<BlogsPage />} />
+               <Route path='/business' element={<BusinessPage />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

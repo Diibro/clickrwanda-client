@@ -4,20 +4,22 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
 import { getLocations } from "../utils/locations";
 import AdvertService from '../services/Advert';
-import AdsContainer, { GeneralAdsContainer } from "../components/containers/AdsContainer";
+import { GeneralAdsContainer } from "../components/containers/AdsContainer";
 import Loading from "../components/static/Loading";
 import { formatPrice } from "../utils/otherFunctions";
-import { VerticalAds } from "../components/dynamic/Adverts.component";
+import Pagination from "../components/Pagination";
 const  SampleImage = "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/temp/kigali-img.jpg";
 
 
 const LocationPage = () => {
+  const adsLimit = 48;
   const location = useLocation();
   const [locality, setLocality] = useState('Rwanda');
   const [locations, setLocations] = useState(null);
   const navigate = useNavigate();
   const [ads,setAds] = useState([]);
   const [loading,setLoading] = useState(false);
+  const [currentPage,setCurrentPage] = useState(1); 
   const [totalAds,setTotalAds] = useState(0);
 
   const fetchAds = async(ops) => {
@@ -41,14 +43,19 @@ const LocationPage = () => {
     if(location.search){
       const arr = location.search.split('?=');
       setLocality(arr[1]);
+      let currentPageTemp = currentPage;
+      if(locality !== arr[1]) {
+        setCurrentPage(1);
+        currentPageTemp = 1;
+      }
       (async() => {
             const {districts} = getLocations();
             setLocations(districts);
-            await fetchAds({location: arr[1], limit: 48, offset: 0});
+            await fetchAds({location: arr[1], limit: adsLimit, offset: (currentPageTemp - 1 )* adsLimit });
       })();
     }
 
-  }, [location.search]);
+  }, [location.search, currentPage]);
   return (
     <>
       <Helmet>
@@ -70,8 +77,9 @@ const LocationPage = () => {
               loading ? <Loading /> 
               : ads && ads.length ? 
               <>
-                {/* <AdsContainer adverts={ads} /> */}
+                <Pagination content={{perPage: adsLimit, total: totalAds, currentPage, fetchMore: (page) => setCurrentPage(page)}} />
                 <GeneralAdsContainer ads={ads} containerId={"Location-page-ads"} />
+                <Pagination content={{perPage: adsLimit, total: totalAds, currentPage, fetchMore: (page) => setCurrentPage(page)}} />
               </>
               : <p className="no-ads-found">No ads found in {locality}</p>
             }

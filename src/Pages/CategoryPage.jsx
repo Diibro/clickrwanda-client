@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import {  useLocation } from "react-router-dom";
-import { fetchIds} from "../utils/urlFunctions";
+import {  useLocation, useNavigate } from "react-router-dom";
+import { getItemUrl} from "../utils/urlFunctions";
 import PropTypes from 'prop-types'
 import Loading from "../components/static/Loading";
 import { Helmet } from "react-helmet";
@@ -8,24 +8,27 @@ import AdvertService from '../services/Advert';
 import Server from "../services/Server";
 import Service from "../services/Service";
 import { GeneralAdsContainer } from "../components/containers/AdsContainer";
+import Pagination from "../components/Pagination";
 
 const CategoryPage = () => {
+  const adsLimit = 40;
+  const [totalAds,setTotalAds] = useState(0);
   const [ads,setAds] = useState(null);
   const [subCategories, setSubCategories] = useState(null);
   const [subCategory,setSubCategory] = useState(null);
   const [category, setCategory] = useState(null);
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [currentPage,setCurrentPage] = useState(1);
   
 
   const fetchSubAds = async (sub_id, limit, offset) => {
-    if(sub_id === "all") return await fetchAds();
-
     try {
       setLoading(true);
-      const res = await AdvertService.getBySubCategory({sub_id, limit: limit || 40, offset: offset || 0});
+      const res = await AdvertService.getBySubCategory({sub_id, limit: limit, offset: offset});
       if(res) {
-        const {data} = res;
+        const {data, pagination} = res;
+        setTotalAds(pagination.total);
         setAds(data);
       }
     } catch (error) {
@@ -35,10 +38,18 @@ const CategoryPage = () => {
     }
   }
 
+  const getSearchParams = () => {
+    const searchId = location.search;
+    const idArr = searchId.split("?=");
+    console.log(idArr);
+    return idArr;
+  }
+
   const fetchCategory = async () => {
     try {
       setLoading(true);
-      const {v_id:categoryId} = fetchIds(location);
+      const ids = getSearchParams();
+      const categoryId = ids[1];
       const res = await Service.post(Server.category.search, {category_id:categoryId});
       const subsRes = await Service.post(Server.subCategory.category, {category_id: categoryId});
 
@@ -58,11 +69,17 @@ const CategoryPage = () => {
 
   const fetchAds = async () => {
     try {
-      setLoading(true);
-      const {v_id:categoryId} = fetchIds(location);
-      const res = await Service.post(Server.advert.getApprovedAdsByCategory, {ids: [categoryId], limit: 40, offset: 0})
+      setLoading(true);const ids = getSearchParams();
+      if(ids.length > 2){
+        const subId = ids[2];
+        return await fetchSubAds(subId, adsLimit, (currentPage - 1) * adsLimit);
+      }
+      const categoryId = ids[1];
+      const res = await Service.post(Server.advert.getApprovedAdsByCategory, {ids: [categoryId], limit: adsLimit, offset: (currentPage - 1) * adsLimit});
       if(res && res.data && res.data.length && Array.isArray(res.data)){
-        setAds(res.data);
+        const {data, pagination} = res;
+        setAds(data);
+        setTotalAds(pagination.total);
       }
     } catch (error) {
       console.log(error);
@@ -81,6 +98,19 @@ const CategoryPage = () => {
     }
   }
 
+  const fetchMoreAds = (page) => {
+    const idsArr = getSearchParams();
+    setCurrentPage(page);
+    if(idsArr.length > 2){
+      const subId = idsArr[2];
+      return fetchSubAds(subId, adsLimit, (page - 1) * adsLimit);
+    }
+    const categoryId = idsArr[1];
+    setCurrentPage(page);
+    return fetchAds(categoryId, adsLimit, (page - 1) * adsLimit);
+
+  }
+
 
   useEffect(() => {
     (async() => {
@@ -88,15 +118,6 @@ const CategoryPage = () => {
       await fetchAds();
     })(); 
   },[location.search]);
-
-  useEffect(() => {
-    (
-      async () => {
-        if(subCategory) return await fetchSubAds(subCategory.sub_id, 40, 0);
-        else return await fetchAds();
-      }
-    )();
-  },[subCategory]);
 
   return (
     <>
@@ -106,12 +127,14 @@ const CategoryPage = () => {
         <title>{`${category?.category_name || 'Category'}`} | Click Rwanda</title>
       </Helmet>
       <div className="w-full flex flex-col gap-[20px] items-center justify-start py-[10px]">
-          <CategoryPageHeader content={{category, subCategories, fetchSubAdverts: (id) => handleSubCategoryChange(id)}} />
+          <CategoryPageHeader content={{category, subCategories, subCategory, totalAds, fetchSubAdverts: (id) => handleSubCategoryChange(id)}} />
+          <Pagination content={{total: totalAds, currentPage, perPage: adsLimit,fetchMore: (page) => fetchMoreAds(page)}} />
           <div className="w-full">
             {!loading ? <>
             {ads && Array.isArray(ads) && ads.length ? <GeneralAdsContainer ads={ads} /> : <p className="font-semibold text-gray-600 text-[0.9rem]">No Ads found</p>}
             </> : <Loading />}
           </div>
+          <Pagination content={{total: totalAds, currentPage, perPage: adsLimit,fetchMore: (page) => fetchMoreAds(page)}} />
       </div>
     </>
     
@@ -119,10 +142,16 @@ const CategoryPage = () => {
 }
 
 const CategoryPageHeader = ({content}) => {
-  const {category, subCategories, fetchSubAdverts} = content;
+  const {category, subCategory, subCategories, totalAds} = content;
+  const navigate = useNavigate();
 
   const handleSubCategoryChange = (e) => {
-    return fetchSubAdverts(e.target.value);
+    const subCategoryId = e.target.value;
+    if(subCategoryId === "all") {
+      return navigate(`/category/${getItemUrl(category.category_name, category.category_id)}`);
+    }
+    return navigate(`/category/${getItemUrl(category.category_name, category.category_id)}?=${e.target.value}`);
+    // return fetchSubAdverts(e.target.value);
   }
   return (
     <div className="w-full bg-white  flex items-center justify-between rounded-[5px] p-[10px] " >
@@ -136,10 +165,14 @@ const CategoryPageHeader = ({content}) => {
           <select name="category-page-subCategory-selector" id="category-page-subCategory-selector" onChange={handleSubCategoryChange} className="text-[0.8rem] font-semibold text-main-blue-700 w-auto max-w[150px] border-[1.3px] rounded-[5px] p-[2.5px] border-gray-300 cursor-pointer outline-none ">
             <option value="all">All</option>
             {subCategories && subCategories.length && Array.isArray(subCategories) && 
-              subCategories.map((sub, index) => <option key={`sub-category-category-page-${index}`} value={sub.sub_id} >{sub.sub_name}</option>)
+              subCategories.map((sub, index) => <option selected={sub.sub_id === subCategory?.sub_id} key={`sub-category-category-page-${index}`} value={sub.sub_id} >{sub.sub_name}</option>)
             }
           </select>
         </div>
+      </div>
+      <div className="w-auto flex items-center gap-[5px]">
+        <p className="text-[0.9rem] text-gray-600 ">Total Ads:</p>
+        <p className="text-[1rem] text-main-blue-700 font-bold ">{totalAds}</p>
       </div>
     </div>
   )
@@ -150,6 +183,8 @@ CategoryPageHeader.propTypes = {
     category: PropTypes.object,
     subCategories: PropTypes.array,
     fetchSubAdverts: PropTypes.func,
+    subCategory: PropTypes.object,
+    totalAds: PropTypes.number,
     cb: PropTypes.func
   })
 }

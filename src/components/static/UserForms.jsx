@@ -223,73 +223,75 @@ export const SignUpForm = () => {
           })()
      }, [])
      return(
-          <div className="form-container hide-scroll">
-               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Sign Up for Seller Account"}} />
+          <div className="w-full md:w-[90%] lg:w-[80%] flex flex-col items-center gap-[10px] shadow-md rounded-[20px] px-[10px] py-[20px] ">
+               <Title content={{type: "medium", color:textColors.blue, size: titleSize.medium, name:"Add your business"}} />
                {loading ? <Loading /> : 
-               <form onSubmit={handleSubmit(submitForm, onErrors)}>
-               {/* <div className="group">
-                    <label htmlFor="name_01">Full name: </label>
-                    <input type="text" name="name" id="name_01" {...register('name', {required: true})} placeholder="Ex: Adms Johns..."  />
-               </div> */}
-               <div className="group">
-                    <label htmlFor="business-type-01">Business Size: </label>
-                    <select name="business-type-01" id="business-type-01" {...register('business_type', {required:'Please choose business type!'})}>
-                         <option value="" disabled selected>Select Business size...</option>
-                         <option value="Individual">Individual</option>
-                         <option value="Small Business">Small Business</option>
-                         <option value="Large Business">Large Business</option>
-                    </select>
-               </div>
-               {errors.business_type ? <p className="form-errors">{errors.business_type.message}</p> : null}
-               <div className="group">
-                    <label htmlFor="username_01">Username: </label>
-                    <input type="text" name="username" id="username_01" {...register('username', {required: "Pleas enter a username or business name!"})} placeholder="username..."  />
-               </div>
-               {errors.username ? <p className="form-errors">{errors.username.message}</p> :null}
-               <div className="group">
-                    <label htmlFor="email_01">Email: </label>
-                    <input type="email" name="email" id="email_01" {...register('email', {required: "Please enter email!"})} placeholder="User email..."  />
-               </div>
-               {errors.email ? <p className="form-errors">{errors.email.message}</p> : null}
-               <div className="group">
-                    <label htmlFor="phone_01">Phone: </label>
-                    <input type="phone" name="phone" id="phone_01" {...register('phone', {required: "Please enter you phone number"})} placeholder="Ex: +25078..."  />
-               </div>
-               {errors.phone ? <p className="form-errors">{errors.phone.message}</p> : null}
-               <div className="group">
-                    <label htmlFor="password">Password: </label>
-                    <input type="password" id="password" name="password" {...register('password', {required: "Please enter a password", minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
-               </div>
-               {errors.password ? <p className="form-errors">{errors.password.message}</p> :null}
-               <div className="group">
-                    <label htmlFor="location01">Location: </label>
-                    {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
-                    <select name="location" id="location01"  {...register('location', {required: "Please select your location"})}>
-                         {locations[0] ? <option value="" selected  >Business location</option> : null}
-                         {locations[0] ? <option value="Kigali" >Kigali</option> : null}
-                         {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
-                    </select>
-               </div>
-               {errors.location ? <p className="form-errors">{errors.location.message}</p> : null}
-               <div className="group">
-                    <label htmlFor="profile_image">Business Logo:</label>
-                    <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} required />
-                    {
-                         profileImage && profileImage instanceof File ? <img width={100} src={URL.createObjectURL(profileImage)}  /> : null
-                    }
-               </div>
-               {errors.logo ? <p className="form-errors">{errors.logo.message}</p> :null}
-               <div className="terms-group">
-                    <input type="checkbox" name="terms-check-box" id="terms-check-box" required/>
-                    <label htmlFor="terms-check-box">I accept the <Link to="/terms-&-conditions">Terms and Conditions</Link></label>
-               </div>
-               <div className="group align-right">
-                    <SubmitButton content={{title: "Sign Up", type: 'submit'}} />
-               </div>
-          </form>
+               <form className="w-full grid grid-cols-1 md:grid-cols-2 gap-[10px] shadow-sm rounded-[20px] p-[10px]" onSubmit={handleSubmit(submitForm, onErrors)}>
+                    <div className="w-full flex flex-col items-start gap-[5px]">
+                         <label htmlFor="business-type-01" className="text-[0.9rem] font-semibold text-main-blue-700">Business Size: </label>
+                         <select className="w-[90%] py-[7.5px] px-[10px] text-[0.8rem] text-main-blue-700 border-gray-300 border bg-gray-50 rounded-[5px] outline-none " name="business-type-01" id="business-type-01" {...register('business_type', {required:'Please choose business type!'})}>
+                              <option value="" disabled selected>Select Business size...</option>
+                              <option value="Individual">Individual</option>
+                              <option value="Small Business">Small Business</option>
+                              <option value="Large Business">Large Business</option>
+                         </select>
+                         {errors.business_type ? <p className="form-errors">{errors.business_type.message}</p> : null}
+                    </div>
+                    <div className="w-full flex flex-col items-start gap-[5px]">
+                         <label htmlFor="username_01" className="text-[0.9rem] font-semibold text-main-blue-700">Business Name: </label>
+                         <input type="text" name="username" id="username_01" className="w-[90%] py-[7.5px] px-[10px] text-[0.8rem] text-main-blue-700 outline-none border-gray-300 border bg-gray-50 rounded-[5px]  " {...register('username', {required: "Pleas enter a username or business name!"})} placeholder="username..."  />
+                    {errors.username ? <p className="form-errors">{errors.username.message}</p> :null}
+                    </div>
+                    <div className="w-full flex flex-col items-start gap-[5px]">
+                         <label htmlFor="email_01" className="text-[0.9rem] font-semibold text-main-blue-700">Email: </label>
+                         <input type="email" name="email" id="email_01" className="w-[90%] py-[7.5px] px-[10px] text-[0.8rem] text-main-blue-700 outline-none border-gray-300 border bg-gray-50 rounded-[5px]  " {...register('email', {required: "Please enter email!"})} placeholder="User email..."  />
+                    {errors.email ? <p className="form-errors">{errors.email.message}</p> : null}
+                    </div>
+                    <div className="w-full flex flex-col items-start gap-[5px]">
+                         <label htmlFor="phone_01" className="text-[0.9rem] font-semibold text-main-blue-700">Phone: </label>
+                         <input type="phone" name="phone" id="phone_01" className="w-[90%] py-[7.5px] px-[10px] text-[0.8rem] text-main-blue-700 border-gray-300 outline-none border bg-gray-50 rounded-[5px]  " {...register('phone', {required: "Please enter you phone number"})} placeholder="Ex: +25078..."  />
+                    {errors.phone ? <p className="form-errors">{errors.phone.message}</p> : null}
+                    </div>
+                    <div className="w-full flex flex-col items-start gap-[5px]">
+                         <label htmlFor="password" className="text-[0.9rem] font-semibold text-main-blue-700">Password: </label>
+                         <input type="password" id="password" className="w-[90%] py-[7.5px] px-[10px] text-[0.8rem] text-main-blue-700 border-gray-300 border outline-none bg-gray-50 rounded-[5px]  " name="password" {...register('password', {required: "Please enter a password", minLength: {value:6, message:"password is short"}, maxLength: {value:12, message:"password is too long"}})} placeholder="User Password" />
+                    {errors.password ? <p className="form-errors">{errors.password.message}</p> :null}
+                    </div>
+                    <div className="w-full flex flex-col items-start gap-[5px]">
+                         <label htmlFor="location01" className="text-[0.9rem] font-semibold text-main-blue-700">Location: </label>
+                         {/* <input type="text" name="location" id="location01" {...register('location', {required: true})} placeholder="City..."  /> */}
+                         <select className="w-[90%] py-[7.5px] px-[10px] text-[0.8rem] text-main-blue-700 border-gray-300 border bg-gray-50 rounded-[5px] outline-none  " name="location" id="location01"  {...register('location', {required: "Please select your location"})}>
+                              {locations[0] ? <option value="" selected  >Business location</option> : null}
+                              {locations[0] ? <option value="Kigali" >Kigali</option> : null}
+                              {locations[0] ? locations.map((item) => <option key={item}>{item}</option>) : <option value="" disabled>Loading...</option>}
+                         </select>
+                         {errors.location ? <p className="form-errors">{errors.location.message}</p> : null}
+                    </div>
+                    <div className="w-full flex flex-col items-start gap-[5px]">
+                         <label htmlFor="profile_image" className="text-[0.9rem] font-semibold text-main-blue-700">Business Logo:</label>
+                         <input type="file" onChange={(e) => setProfileImage(e.target.files[0])} className="w-[90%] py-[7.5px] px-[10px] outline-none text-[0.8rem] text-main-blue-700 border-gray-300 border bg-gray-50 rounded-[5px]  " required />
+                         {
+                              profileImage && profileImage instanceof File ? <img width={100} src={URL.createObjectURL(profileImage)}  /> : null
+                         }
+                         {errors.logo ? <p className="form-errors">{errors.logo.message}</p> :null}
+                    </div>
+                    
+                    <div className="w-[90%] flex flex-col items-start gap-[5px] p-[10px] border border-gray-600 rounded-[10px]">
+                         <h4 className="text-[1rem] font-semibold text-main-blue-700">Complete Payment: 10,000 Rwf</h4>
+                         <p className="text-[0.8rem] font-medium text-gray-600">Mobile Money: <a href="tel: *182*8*1*058698*10000#" className="text-[0.9rem] font-bold text-main-blue-600 hover:text-main-blue-700">*182*8*1*058698*10000# </a> </p>
+                         <p className="text-[0.8rem] text-orange-600 font-bold">You will able to login after your payment is verified</p>
+                    </div>
+                    <div className="w-full flex items-center justify-start gap-[10px]">
+                         <input  type="checkbox" name="terms-check-box" id="terms-check-box" required/>
+                         <label htmlFor="terms-check-box" className="text-[0.9rem] font-semibold text-main-blue-700">I accept the <Link to="/terms-&-conditions">Terms and Conditions</Link></label>
+                    </div>
+                    <div className="w-full flex items-center justify-start md:col-span-2">
+                         <SubmitButton content={{title: "Sign Up", type: 'submit'}} />
+                    </div>
+               </form>
                }
-               <div className="line-divider"><p>Or</p></div>
-               <p className="other-link">Have account <b onClick={() => navigate("/forms/login")}>Login</b></p>
+               <div className="line-divider "><p>Or</p></div>
+               <p className="text-[0.9rem] text-gray-600 w-full text-right px-[20px]">Have account <b className="text-[1rem] font-size text-main-blue-600 cursor-pointer px-[20px] py-[5px] rounded-[30px] border border-main-blue-600 mx-[5px] hover:bg-gray-200 transition-all duration-300 " onClick={() => navigate("/forms/login")}>Login</b></p>
                
           </div>
      )
