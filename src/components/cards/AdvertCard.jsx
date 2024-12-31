@@ -49,7 +49,7 @@ const DefaultAdvertCard = ({ad}) => {
                          <h5 onClick={ViewAd} className='w-full text-[0.7rem] md:text-[0.8rem] lg:text-[0.9rem] font-bold text-main-blue-700 line-clamp-2 '>{capitalizeString(ad.ad_name)}</h5>
                     </div>
                     <div className="w-full flex items-center gap-[2.5px] flex-wrap ">
-                              <span className=' text-[0.65rem] md:text-[0.7rem] text-gray-600'>{formatTimeAgo(ad.ad_date)},</span>
+                              {/* <span className=' text-[0.65rem] md:text-[0.7rem] text-gray-600'>{formatTimeAgo(ad.ad_date)},</span> */}
                               <a className=' text-[0.65rem] md:text-[0.7rem] text-gray-600 inline-flex items-center gap-[2.5px]' href={`https://www.google.com/maps/place/${capitalizeString(ad.user_location?.location)}`} target="_blank" rel="noopener noreferrer"><i><FaLocationDot /></i>{ad.user_location?.location}, </a>
                               {ad.verified ? <p className='flex items-center  text-[0.65rem] md:text-[0.7rem] text-green-600 rounded-[4px] font-bold ' >Verified<i className='text-green-600 text-[14px] md:text-[18px] '><VscVerifiedFilled /></i></p> : null}
                     </div>

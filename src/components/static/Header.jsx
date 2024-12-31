@@ -14,7 +14,11 @@ const navLinks = [
      {name:"Cars", subs: [], image:"", link:"/category/Vehicles?=a0d3db43-94f4-47d0-bf3d-2dab7abcb128"},
      {name:"Real Estate", subs: [], image:"", link:"/category/Property?=2187ea54-acbe-4bad-872f-40c4f8d14a09"},
      {name:"Marketplace", subs: [], image:"", link:"/market"},
-     {name:"Advertise", subs: [], image:"", link:"/payment-plans"}
+     {name:"Vacation Rentals", subs: [], image:"", link:"/"},
+     {name:"Services", subs: [], image:"", link:"/"},
+     {name: "Study and work abroad", image: "", link:'/'},
+     {name: "Trainings & Scholarships", image: "", link: '/'},
+     // {name:"Advertise", subs: [], image:"", link:"/payment-plans"}
 ]
 
 const DesktopHeader = () => {
@@ -29,10 +33,10 @@ const DesktopHeader = () => {
 const DeskNavbar = () => {
      const navigate = useNavigate();
      return (
-          <nav className="w-auto flex items-center justify-between gap-[30px]">
+          <nav className="w-auto flex items-center justify-between gap-[10px]">
                {
                     navLinks.map((link, index) => 
-                         <span onClick={() => navigate(link.link)} key={`desk-navbar-${index}`} className="text-[0.8rem] text-gray-300 font-medium cursor-pointer group py-[5px] px-[10px] hover:bg-gray-700 rounded-[5px] transition-all duration-200 " >{link.name}</span>
+                         <span onClick={() => navigate(link.link)} key={`desk-navbar-${index}`} className="text-[0.7rem] text-gray-300 font-medium cursor-pointer group py-[5px] px-[10px] hover:bg-gray-700 rounded-[5px] transition-all duration-200 " >{link.name}</span>
                     )
                }
           </nav>

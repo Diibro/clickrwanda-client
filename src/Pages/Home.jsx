@@ -10,13 +10,13 @@ import { Banners } from '../config/banners';
 import { useTranslation } from 'react-i18next';
 import AppData from '../Contexts/AppContext';
 import HomeLocationsSection from '../components/containers/HomeLocationsSection';
-import AllCategoriesSection from '../components/containers/AllCategoriesSection';
+// import AllCategoriesSection from '../components/containers/AllCategoriesSection';
 import { BecomeSeller, ExploreHotDeals, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
-import JobSeekersSection from '../components/containers/JobSeekersSection';
+// import JobSeekersSection from '../components/containers/JobSeekersSection';
 import HomeCommissionAds from '../components/containers/HomeCommissionAds';
 // import HomeHotCategories from '../components/containers/HomeHotCategories';
 import JobsSection from '../components/containers/JobsSection';
-import HomeShopContainer from '../components/containers/HomeShopContainer';
+// import HomeShopContainer from '../components/containers/HomeShopContainer';
 import { HomeBlogsSection } from './BlogsPage';
 
 const Home = () => {
@@ -71,7 +71,7 @@ const Home = () => {
           {/* jobs section */}
           <JobsSection />
           {/* Job Seekers section */}
-          <JobSeekersSection />
+          {/* <JobSeekersSection /> */}
 
           {/* new ads section */}
           <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 12}} />
@@ -81,7 +81,7 @@ const Home = () => {
           <HomeCommissionAds />
           
           {/* our shop */}
-          <HomeShopContainer/>
+          {/* <HomeShopContainer/> */}
 
           {/* blogs */}
           <HomeBlogsSection showTitle={true} />
@@ -95,7 +95,7 @@ const Home = () => {
            {/* get started as seller page break */}
           <BecomeSeller />
           {/* All categories with sub categories */}
-          <AllCategoriesSection />
+          {/* <AllCategoriesSection /> */}
 
           {/* make money section */}
           <MakeMoneySection />
