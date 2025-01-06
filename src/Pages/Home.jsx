@@ -3,7 +3,7 @@ import { AdWebsites, AdvertsContainer, BoostedAds, TodayDeals} from '../componen
 import Categories from '../components/dynamic/Categories';
 import SearchBar from '../components/static/SearchBar';
 import DeviceView from '../Contexts/ViewContext';
-import { BoostedSellers, RequestQuoteHeader } from '../components/dynamic/Special.components';
+import { RequestQuoteHeader } from '../components/dynamic/Special.components';
 import { Helmet } from 'react-helmet';
 import { HeroSectionBanner, HorizontalBanner} from '../components/dynamic/Banners';
 import { Banners } from '../config/banners';
@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import AppData from '../Contexts/AppContext';
 import HomeLocationsSection from '../components/containers/HomeLocationsSection';
 // import AllCategoriesSection from '../components/containers/AllCategoriesSection';
-import { BecomeSeller, ExploreHotDeals, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
+import {  ExploreHotDeals, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
 // import JobSeekersSection from '../components/containers/JobSeekersSection';
 import HomeCommissionAds from '../components/containers/HomeCommissionAds';
 // import HomeHotCategories from '../components/containers/HomeHotCategories';
@@ -52,33 +52,38 @@ const Home = () => {
           {/* <img src={HelloImage} alt="hello section image" /> */}
         </div>
         <div className="w-full flex flex-col items-center justify-start gap-[20px] py-[5px] relative ">
+            {/* Sponsored ads section */}
+            <BoostedAds />
+            {/* hot deals section */}
+          <ExploreHotDeals />
+
             {/** top deals section */}
           <TodayDeals />
+
+          {/* hot deals section */}
+          <HomeCommissionAds />
 
           {/* first banner */}
           <HorizontalBanner items={Banners} upper={smallDevice ? 0 : 1} lower={0} />
 
-          {/* Categories section */}
-          <Categories limit={0} />
-
-          {/* Premium ads section */}
-          <BoostedAds />
-
-          {/* {company advertisement} */}
-          <SubscribeToPlans />
-          {/* Second home page banner */}
 
           {/* jobs section */}
           <JobsSection />
-          {/* Job Seekers section */}
-          {/* <JobSeekersSection /> */}
+
+          {/* {company advertisement} */}
+          <SubscribeToPlans />
 
           {/* new ads section */}
           <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 12}} />
 
-          {/* hot deals section */}
-          <ExploreHotDeals />
-          <HomeCommissionAds />
+          {/* Categories section */}
+          <Categories limit={0} />
+
+          {/* Second home page banner */}
+
+          
+          {/* Job Seekers section */}
+          {/* <JobSeekersSection /> */}
           
           {/* our shop */}
           {/* <HomeShopContainer/> */}
@@ -90,10 +95,11 @@ const Home = () => {
 
           {/* Locations section */}
           <HomeLocationsSection />
+          {/* get started as seller page break */}
+          {/* <BecomeSeller /> */}
           {/* best sellers section */}
-          <BoostedSellers />
-           {/* get started as seller page break */}
-          <BecomeSeller />
+          {/* <BoostedSellers /> */}
+           
           {/* All categories with sub categories */}
           {/* <AllCategoriesSection /> */}
 

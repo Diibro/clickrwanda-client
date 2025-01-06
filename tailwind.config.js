@@ -7,6 +7,12 @@ export default {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        'auto-fit-200': 'repeat(auto-fit, minmax(200px, 1fr))',
+        'auto-fill-200': 'repeat(auto-fill, minmax(200px, 1fr))',
+        'auto-fit-250': 'repeat(auto-fit, minmax(250px, 1fr))',
+        'auto-fill-250': 'repeat(auto-fill, minmax(250px, 1fr))',
+      },
       fontFamily: {
         sans: ['Open Sans', 'sans-serif'],
       },

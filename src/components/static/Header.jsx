@@ -3,7 +3,7 @@ import UserContext from "../../Contexts/UserContext";
 import { ActionBtn } from "../dynamic/Buttons";
 import { Link, useNavigate } from "react-router-dom";
 import DeviceView from "../../Contexts/ViewContext";
-import AppData from "../../Contexts/AppContext";
+// import AppData from "../../Contexts/AppContext";
 const profileImage = 'https://res.cloudinary.com/dyjahjf1p/image/upload/v1700982042/clickrwanda/logos/account_msinv8.png';
 import Logo from '../../assets/logo/clickrwanda.png';
 import { useTranslation } from "react-i18next";
@@ -15,7 +15,7 @@ const navLinks = [
      {name:"Real Estate", subs: [], image:"", link:"/category/Property?=2187ea54-acbe-4bad-872f-40c4f8d14a09"},
      {name:"Marketplace", subs: [], image:"", link:"/market"},
      {name:"Vacation Rentals", subs: [], image:"", link:"/"},
-     {name:"Services", subs: [], image:"", link:"/"},
+     {name:"Services", subs: [], image:"", link:"/category/Services?=213cf0e5-453b-4d61-aded-14adcec79f37"},
      {name: "Study and work abroad", image: "", link:'/'},
      {name: "Trainings & Scholarships", image: "", link: '/'},
      // {name:"Advertise", subs: [], image:"", link:"/payment-plans"}
