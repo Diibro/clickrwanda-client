@@ -22,7 +22,7 @@ const HomeCommissionAds = () => {
           <section className="w-full pt-[5px] pb-[10px] px-[1%] rounded-[5px] bg-white ">
                {
                     ads && Array.isArray(ads) && ads.length > 0 &&
-                    <SlideAdsContainers ads={ads} containerId={"home-commission-ads-container"} content={{title: "Hot Deals", viewAll: "View All", viewAllLink: "/market"}} />
+                    <SlideAdsContainers ads={ads} containerId={"home-commission-ads-container"} content={{title: "Today deals", viewAll: "View All", viewAllLink: "/market"}} />
                }
           </section>
      )

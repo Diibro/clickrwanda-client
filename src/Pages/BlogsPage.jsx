@@ -55,7 +55,7 @@ export const HomeBlogsSection = ({showTitle=false}) => {
           <>
                {blogs && blogs.length && 
                     <section className="home-blogs-section">
-                         {showTitle && <div className="blog-section-title"><h2>Top Stories</h2></div>}
+                         {showTitle && <div className="blog-section-title"><h2>Featured Stories</h2></div>}
                          {blogs[0] && 
                          <div className="main-blog">
                               <div className="image-container">
