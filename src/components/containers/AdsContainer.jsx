@@ -45,7 +45,7 @@ export const SlideAdsContainers = ({ads, containerId, content}) => {
      }
 
      useEffect(() => {
-          if (isMobile) setScrollAmount(200);
+          if (isMobile) setScrollAmount(180);
           else if (isTablet) setScrollAmount(250);
           else if (isDesktop) setScrollAmount(250);
      }, [isMobile, isTablet, isDesktop]); 
@@ -64,7 +64,7 @@ export const SlideAdsContainers = ({ads, containerId, content}) => {
                     </div>
                </div>
                <div id={`slide-container-${containerId}`} className='w-full overflow-hidden overflow-x-auto scroll-smooth hide-scroll'>
-                    <div className='w-auto grid gap-[10px] grid-flow-col auto-cols-[220px] md:auto-cols-[250px]'>
+                    <div className='w-auto grid gap-[10px] grid-flow-col auto-cols-[180px] md:auto-cols-[250px]'>
                          {
                               ads && ads.length > 0 ? ads.map((ad) =><AdvertCard ad={ad} key={`${containerId}-${ad.ad_id}`} /> ) :
                               <p className='text-gray-600 text-[0.8rem]'>No ads found</p>
