@@ -54,24 +54,24 @@ export const HomeBlogsSection = ({showTitle=false}) => {
      return (
           <>
                {blogs && blogs.length && 
-                    <section className="home-blogs-section">
-                         {showTitle && <div className="blog-section-title"><h2>Featured Stories</h2></div>}
+                    <section className="w-full flex items-start justify-between flex-wrap bg-white p-[10px] rounded-[10px] gap-[10px] ">
+                         {showTitle && <h2 className="w-full text-main-blue-700 font-extrabold text-[1.6rem]">Featured Stories</h2>}
                          {blogs[0] && 
-                         <div className="main-blog">
-                              <div className="image-container">
+                         <div className="w-full lg:w-[55%] overflow-hidden flex flex-col items-start gap-[10px] border-[1.4px] border-gray-400 rounded-[10px] p-[5px] aspect-[100/80]  ">
+                              <div className="w-full h-auto">
                                    {/* <img src={blogs[0].content.featuredImage} alt="feature image" /> */}
-                                   <MyImage image={blogs[0].content.featuredImage} />
+                                   <img src={blogs[0].content.featuredImage} width={800} height={800} className="w-full rounded-[10px]"/>
                               </div>
-                              <div className="content">
-                                   <h3>{blogs[0].title} </h3>
-                                   <p>Posted on: {extractDateOnly(blogs[0].publication_date)}</p>
-                                   <p>{blogs[0].content.description}</p>
-                                   <Link to={`/blogs/blog?=${blogs[0].id}`}>Read More...</Link>
+                              <div className="w-full flex flex-col items-start gap-[5px]">
+                                   <h3 className="text-[1.2rem] md:text-[1.4rem] text-main-blue-700 line-clamp-2 font-extrabold" >{blogs[0].title} </h3>
+                                   <p className="text-[0.8rem] text-gray-700 ">Posted on: {extractDateOnly(blogs[0].publication_date)}</p>
+                                   <p className="text-[0.85rem] font-medium line-clamp-3">{blogs[0].content.description}</p>
+                                   <Link className="text-[0.8rem] font-bold text-blue-600" to={`/blogs/blog?=${blogs[0].id}`}>Read More...</Link>
                               </div>
                          </div>
                          }
-                         <div className="other-blogs">
-                              <div className="title"><h4>Other Stories</h4> {showTitle && <Link to="/blogs">View All Stories</Link>}</div>
+                         <div className="w-full lg:w-[42.5%] flex flex-col gap-[5px] overflow-hidden items-center">
+                              <div className="w-full flex items-center justify-between"><h4 className="text-[1.4rem] font-extrabold text-gray-800 ">Other Stories</h4> {showTitle && <Link className="text-[0.8rem] font-bold text-blue-600" to="/blogs">View All Stories</Link>}</div>
                               {
                                    blogs && blogs.length > 1 && blogs.map((blog, index) => index > 0 && index < 5 && <BlogCardRowView key={`home-section-blog-row-card-${index}`} blog={blog} />)
                               }

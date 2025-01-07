@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import AppData from '../Contexts/AppContext';
 import HomeLocationsSection from '../components/containers/HomeLocationsSection';
 // import AllCategoriesSection from '../components/containers/AllCategoriesSection';
-import {  ExploreHotDeals, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
+import {  ExploreHotDeals, FindJobBreakSection, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
 // import JobSeekersSection from '../components/containers/JobSeekersSection';
 import HomeCommissionAds from '../components/containers/HomeCommissionAds';
 // import HomeHotCategories from '../components/containers/HomeHotCategories';
@@ -41,7 +41,7 @@ const Home = () => {
           <div className="w-full lg:w-[60%] py-[10px] px-[5px] flex flex-col gap-[5px]">
             <div className='w-full flex flex-col'>
               {/* <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1> */}
-              <h1 className='text-white text-[1.8rem] lg:text-[2.4rem] font-extrabold text-center md:text-start  '>{content.heroSection.heroMessage}</h1>
+              <h1 className='text-white text-[2.2rem] lg:text-[3rem] font-extrabold text-center md:text-start  '>{content.heroSection.heroMessage}</h1>
               <SearchBar />
             </div>
             <RequestQuoteHeader />
@@ -59,14 +59,14 @@ const Home = () => {
 
             {/** top deals section */}
           <TodayDeals />
-
+          <HorizontalBanner items={Banners} upper={smallDevice ? 0 : 1} lower={0} />
           {/* hot deals section */}
           <HomeCommissionAds />
 
           {/* first banner */}
           <HorizontalBanner items={Banners} upper={smallDevice ? 0 : 1} lower={0} />
 
-
+          <FindJobBreakSection />
           {/* jobs section */}
           <JobsSection />
 

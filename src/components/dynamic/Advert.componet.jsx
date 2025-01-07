@@ -4,7 +4,6 @@ import { getItemUrl } from '../../utils/urlFunctions';
 import { FaLocationDot } from "react-icons/fa6";
 import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
 // import { SubmitButton } from './Buttons';
-import {  FaLongArrowAltRight } from "react-icons/fa";
 import { formatTimeAgo } from '../../utils/dateFunctions';
 // import { LoadingImage } from './LoadinComponents';
 import { AnyImage, CImage, MyImage } from '../static/Image';
@@ -176,21 +175,18 @@ export const DashAdvert = ({item}) => {
 
 export const AdvertRow = ({item}) => {
      return(
-          <div className="advert-row">
-               <p className='ad-plan'>{item.plan_name !== "freemium" ? item.plan_name : null}</p>
-               <div className="row">
-                    <img src={item.ad_image} alt={item.ad_name} loading='lazy' />
-                    <div className='col'>
-                         <h3>{item.ad_name}</h3>
-                         <p className='website'>
+          <div className="w-full flex flex-col p-[5px] shadow-sm shadow-gray-300 rounded-[5px] bg-white ">
+               <div className="w-full flex items-start justify-between gap-[5px]">
+                    <img src={item.ad_image} alt={item.ad_name} loading='lazy' className='w-[7.5%] min-w-[50px]' />
+                    <div className='w-[90%]'>
+                         <h3 className='text-[0.95rem] font-extrabold text-main-blue-700'>{item.ad_name}</h3>
+                         <p className='text-[0.8rem] text-gray-700'>
                               <a href={item.website} target='_blank' rel="noreferrer" >{item.website}</a>
                          </p>
                     </div>
                </div>
-               <p className='desc'>
-                    <span>{item?.description?.desc?.value || item?.description?.desc }</span>
-                    <span><a href={item.website} target='_blank' rel="noreferrer" > Visit Website <i><FaLongArrowAltRight /></i> </a></span>
-                    
+               <p className='w-full text-[0.85rem] text-gray-700 text-justify line-clamp-3'>
+                    {item?.description?.desc?.value || item?.description?.desc }
                </p>
           </div>
      )

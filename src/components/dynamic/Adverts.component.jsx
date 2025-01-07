@@ -465,11 +465,9 @@ export const AdWebsites = () => {
   const [data] = useContext(AppData);
   const {websiteAds } = data;
   return Array.isArray(websiteAds) && websiteAds[0] ? (
-    <div className="container">
-          <InnerSection type="title" >
-            {content.title}
-          </InnerSection>
-          <div className="home-ad-websites">
+    <div className="w-full flex flex-col bg-white rounded-[5px] p-[5px] gap-[10px] ">
+          <h2 className="w-full  text-[1.6rem] font-extrabold text-main-blue-700">Sponsored Ads</h2>
+          <div className="w-full flex flex-col items-center justify-start gap-[5px]">
             {
               websiteAds.map((ad) => <AdvertRow key={ad.ad_id} item={ad} />)
             }
