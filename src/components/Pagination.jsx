@@ -13,7 +13,7 @@ const Pagination = ({content}) => {
 
 
      return (
-          <div className='w-full flex items-center justify-center gap-[5px] bg-white p-[2.5px] my-[5px] rounded-[5px] '>
+          <div className='w-full flex items-center justify-center gap-[5px] bg-white p-[2.5px] rounded-[5px] '>
                { currentPage > 1 ?
                     <i className='text-[22px] cursor-pointer text-gray-600 p-[2.5px] bg-gray-100 rounded-[2px] hover:text-orange-800 hover:bg-orange-200 ' onClick={() => fetchMore(currentPage - 1)}><GrFormPrevious /></i> : 
                     <i className='text-[22px] cursor-pointer text-gray-300 p-[2.5px] bg-gray-100 rounded-[2px] '><GrFormPrevious /></i>

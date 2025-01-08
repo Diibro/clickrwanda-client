@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import AdvertRenderer from '../dynamic/Advert.componet';
-import AdvertCard from '../cards/AdvertCard';
+import AdvertCard, { DefaultAdvertCard } from '../cards/AdvertCard';
 import { Link} from 'react-router-dom';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
@@ -20,7 +20,7 @@ const AdsContainer = ({adverts}) => {
 
 export const GeneralAdsContainer = ({ads, containerId}) => {
      return (
-          <div className='w-full h-full  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[5px] md:gap-[10px]  '>
+          <div className='w-full h-full  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[5px] md:gap-[10px]  '>
                {ads.map((item, index) => <AdvertCard ad={item} key={`ads-container-${containerId}-${index}`} />)}
           </div>
      )
@@ -66,7 +66,7 @@ export const SlideAdsContainers = ({ads, containerId, content}) => {
                <div id={`slide-container-${containerId}`} className='w-full overflow-hidden overflow-x-auto scroll-smooth hide-scroll'>
                     <div className='w-auto grid gap-[10px] grid-flow-col auto-cols-[180px] md:auto-cols-[250px]'>
                          {
-                              ads && ads.length > 0 ? ads.map((ad) =><AdvertCard ad={ad} key={`${containerId}-${ad.ad_id}`} /> ) :
+                              ads && ads.length > 0 ? ads.map((ad) =><DefaultAdvertCard ad={ad} key={`${containerId}-${ad.ad_id}`} /> ) :
                               <p className='text-gray-600 text-[0.8rem]'>No ads found</p>
                          }
                     </div>

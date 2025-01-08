@@ -134,8 +134,8 @@ const AdvertPage = () => {
                <title>{`${adViewed?.ad_name || 'Advert'} | Click Rwanda`}</title>
           </Helmet>
           <div className="w-full flex justify-between  items-start gap-[5px]">
-               <div className="w-full lg:w-[85%] " id="ad-main-page-content">
-                    <div className="advert-page">
+               <div className="w-full" id="ad-main-page-content">
+                    <div className="w-full flex flex-col items-center justify-center">
                     {
                          !loading ?
                          <>
@@ -276,9 +276,9 @@ const AdvertPage = () => {
                     
                     </div>
                </div>
-               <div className="hidden lg:flex lg:w-[15%] bg-white rounded-[5px] h-auto">
+               {/* <div className="hidden lg:flex lg:w-[15%] bg-white rounded-[5px] h-auto">
                <SideBannerContainer banners={TopDealsSidebanners} containerId={"ad-main-page-content"} changeArr={[adViewed,samecategoryAds, sameVendorAds]} />
-               </div>
+               </div> */}
           </div>
     </>
   )

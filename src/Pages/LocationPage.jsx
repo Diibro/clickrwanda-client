@@ -78,7 +78,7 @@ const LocationPage = () => {
               : ads && ads.length ? 
               <>
                 <Pagination content={{perPage: adsLimit, total: totalAds, currentPage, fetchMore: (page) => setCurrentPage(page)}} />
-                <GeneralAdsContainer ads={ads} containerId={"Location-page-ads"} />
+                <GeneralAdsContainer ads={ads.filter(ad => ad.ad_id !== 'bed1566b-5901-4af9-ae80-708c293aa925' && ad.category_name !== 'Job Seekers CVs' )} containerId={"Location-page-ads"} />
                 <Pagination content={{perPage: adsLimit, total: totalAds, currentPage, fetchMore: (page) => setCurrentPage(page)}} />
               </>
               : <p className="no-ads-found">No ads found in {locality}</p>

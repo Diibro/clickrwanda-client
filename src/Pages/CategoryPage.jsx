@@ -126,7 +126,7 @@ const CategoryPage = () => {
         <meta name="description" content={`Best and trusted ${category?.category_name} in Rwanda`} />
         <title>{`${category?.category_name || 'Category'}`} | Click Rwanda</title>
       </Helmet>
-      <div className="w-full flex flex-col gap-[20px] items-center justify-start py-[10px]">
+      <div className="w-full flex flex-col gap-[10px] items-center justify-start py-[10px]">
           <CategoryPageHeader content={{category, subCategories, subCategory, totalAds, fetchSubAdverts: (id) => handleSubCategoryChange(id)}} />
           <Pagination content={{total: totalAds, currentPage, perPage: adsLimit,fetchMore: (page) => fetchMoreAds(page)}} />
           <div className="w-full">
