@@ -53,7 +53,7 @@ export const DefaultAdvertCard = ({ad}) => {
                }
                <div className="w-full rounded-[2.5px] overflow-hidden relative cursor-pointer">
                     {/* <MyImage image={ad.ad_image} action={ViewAd} /> */}
-                    <img src={ad.ad_image} alt={ad.ad_name} className='w-full aspect-[100/80] object-cover' />
+                    <img src={ad.ad_image} alt={ad.ad_name} onClick={ViewAd} className='w-full aspect-[100/80] object-cover' />
                </div>
                <div className='w-full flex flex-col gap-[2px]'>
                     <div className='w-full relative'>
