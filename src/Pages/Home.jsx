@@ -38,10 +38,10 @@ const Home = () => {
       </Helmet>
       <div className="w-full flex flex-col items-center gap-[10px]">
         <div className="w-full rounded-[5px] py-[10px] flex items-start bg-main-blue-700  ">
-          <div className="w-full lg:w-[60%] py-[10px] px-[5px] flex flex-col gap-[5px]">
-            <div className='w-full flex flex-col'>
+          <div className="w-full lg:w-[60%] py-[10px] px-[5px] flex flex-col gap-[10px]">
+            <div className='w-full flex flex-col gap-[10px]'>
               {/* <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1> */}
-              <h1 className='text-white text-[2.2rem] lg:text-[3rem] font-extrabold text-center md:text-start  '>{content.heroSection.heroMessage}</h1>
+              <h1 className='text-white text-[2.1rem] lg:text-[3rem] font-extrabold text-center md:text-start  '>{content.heroSection.heroMessage}</h1>
               <SearchBar />
             </div>
             <RequestQuoteHeader />

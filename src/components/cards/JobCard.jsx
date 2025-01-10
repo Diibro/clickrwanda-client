@@ -34,8 +34,9 @@ const JobCard = ({ad}) => {
                          <span className='text-[0.8rem] text-gray-600 font-bold'>|</span>
                          Deadline on {description['Deadline'] ? description['Deadline'].value : 'Not specified'}
                     </p>
-                    <div className='w-full flex items-center justify-start'>
+                    <div className='w-full flex items-center justify-start gap-[5px]'>
                          <p className='text-[0.8rem] font-semibold text-white bg-gray-700 p-[2.5px] px-[10px] rounded-[2.5px] w-auto '>{description['Type'] ? description['Type'].value : 'Job'}</p>
+                         <span className='text-[0.8rem] font-semibold text-white bg-main-gold-500 hover:bg-main-gold-600 p-[2.5px] px-[10px] rounded-[2.5px] w-auto transition-all duration-300' onClick={ViewAd}>Apply Now</span>
                     </div>
                </div>
           </div>

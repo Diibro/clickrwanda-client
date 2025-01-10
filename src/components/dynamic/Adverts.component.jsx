@@ -365,7 +365,7 @@ export const BoostedAds = ({params}) => {
   return(
     <section className="w-full flex items-center gap-[5px]  rounded-[5px]">
       <div className="w-full h-full lg:[85%] bg-white rounded-[5px] p-[10px]" id="home-featured-ads-container">
-        { ads && Array.isArray(ads) && ads.length > 0 && <SlideAdsContainers ads={ads} containerId={"home-featured-ads"} content={{title: "Sponsored Ads", viewAll: content.viewAllLink.title, viewAllLink: content.viewAllLink.link }} />}
+        { ads && Array.isArray(ads) && ads.length > 0 && <SlideAdsContainers ads={ads} containerId={"home-featured-ads"} content={{title: "Featured Ads", viewAll: content.viewAllLink.title, viewAllLink: content.viewAllLink.link }} />}
       </div>
       <div className="hidden lg:flex lg:w-[15%] bg-white rounded-[5px] h-auto">
         <SideBannerContainer banners={FeaturedAdsSidebanners} containerId={"home-featured-ads-container"} changeArr={[boosted,ads]} />
