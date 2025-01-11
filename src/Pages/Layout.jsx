@@ -49,6 +49,8 @@ import BlogsPage from './BlogsPage';
 import SupportCard from '../components/cards/SupportCard';
 import TopBanners from '../components/banners/TopBanners';
 import BusinessPage from './BusinessPage';
+import StudyWorkAbroad from './StudyWorkAbroad';
+import TrainingsScholarships from './TrainingsScholarships';
 
 
 const Layout = () => {
@@ -119,6 +121,8 @@ const Layout = () => {
                <Route path='/our-shop/*' element={<OurShopPage />} />
                <Route path='/blogs/*' element={<BlogsPage />} />
                <Route path='/business' element={<BusinessPage />} />
+               <Route path='/study-&-work-abroad' element={<StudyWorkAbroad />} />
+               <Route path='/trainings-&-scholarships' element={<TrainingsScholarships />} />
                <Route path='*' element={<NotFound />}/>
           </Routes> 
           <AdvertView /> 

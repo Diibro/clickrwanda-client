@@ -16,8 +16,8 @@ const navLinks = [
      {name:"Marketplace", subs: [], image:"", link:"/market"},
      {name:"Vacation Rentals", subs: [], image:"", link:"/"},
      {name:"Services", subs: [], image:"", link:"/category/Services?=213cf0e5-453b-4d61-aded-14adcec79f37"},
-     {name: "Study and work abroad", image: "", link:'/'},
-     {name: "Trainings & Scholarships", image: "", link: '/'},
+     {name: "Study and work abroad", image: "", link:'/study-&-work-abroad'},
+     {name: "Trainings & Scholarships", image: "", link: '/trainings-&-scholarships'},
      // {name:"Advertise", subs: [], image:"", link:"/payment-plans"}
 ]
 

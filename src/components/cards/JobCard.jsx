@@ -25,7 +25,7 @@ const JobCard = ({ad}) => {
                <div className="w-[78%] flex flex-col gap-[5px] ">
                     <h4 className='text-[0.9rem] font-semibold line-clamp-1 cursor-pointer hover:text-blue-600 ' onClick={ViewAd} >{ad.ad_name}</h4>
                     <p className='flex items-center flex-wrap gap-[5px]  font-semibold text-gray-600 whitespace-pre-wrap text-[0.85rem] '>
-                         {description['Company/Institution'] ? description['Company/Institution'].value.split(' ').join("") : 'Compny not specified'}
+                         {description['Company/Institution'] ? description['Company/Institution'].value.split(' ').join(" ") : 'Company not specified'}
                          <span className='text-[0.8rem] text-gray-600 font-bold'>|</span>
                          <span className='flex items-center justify-start gap-[2px]'>
                               <i><FaLocationDot/></i>
