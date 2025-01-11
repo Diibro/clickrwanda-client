@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import {FiSearch} from 'react-icons/fi';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getSearchUrl } from '../../utils/urlFunctions';
 import AppData from '../../Contexts/AppContext';
