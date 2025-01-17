@@ -3,20 +3,22 @@ import { getLocations, locationImages } from "../../utils/locations";
 import { useNavigate } from "react-router-dom";
 import { FaArrowRight, FaPlus, } from "react-icons/fa6";
 import PropTypes from "prop-types";
+import advertService from "../../services/Advert";
 
 const HomeLocationsSection = () => {
      const [locations, setLocations] = useState(null);
      const [locsNo, setLocsNo]= useState(6);
-     // const [newLocations,setNewLocations] = useState(null);
-     // const fetchLocationCounts = async(locations) => {
-     //      const res = await advertService.getCountsByLocation(locations);
-     //      if(res){
-     //           const data = res.data;
-     //           if(data && data.length){
-     //                setNewLocations(data);
-     //           }
-     //      }
-     // }
+     const [newLocations,setNewLocations] = useState(null);
+
+     const fetchLocationCounts = async(locations) => {
+          const res = await advertService.getCountsByLocation(locations);
+          if(res){
+               const data = res.data;
+               if(data && data.length){
+                    setNewLocations(data);
+               }
+          }
+     }
 
      const updateLocsNumber = () => {
           return setLocsNo(prev => {
@@ -27,10 +29,10 @@ const HomeLocationsSection = () => {
      useEffect(() => {
           (async() => {
                const {districts} = getLocations();
-               // const {data} = districts;
-               // setLocations(data);
+               const {data} = districts;
+               setLocations(data);
                setLocations(districts);
-               // await fetchLocationCounts(districts);
+               await fetchLocationCounts(districts);
           })();
      },[])
      return (
@@ -50,7 +52,11 @@ const HomeLocationsSection = () => {
                                    } */}
 
                                    {
-                                        locations.map((location, index) => locsNo >= index + 1 && <PopularLocationCard location={{name:location, image: locationImages[`${location.toLowerCase()}`]}} key={`home-location-card-${index}`} />)
+
+                                        newLocations && newLocations.length > 0 ? 
+                                        newLocations.map((location, index) => locsNo >= index + 1 && <PopularLocationCard location={{name:location?.name, ads: location.count,image: locationImages[`${location?.name.toLowerCase()}`]}} key={`home-location-card-${index}`} />)
+                                        :
+                                        locations.map((location, index) => locsNo >= index + 1 && <PopularLocationCard location={{name:location,image: locationImages[`${location.toLowerCase()}`]}} key={`home-location-card-${index}`} />)
                                    }
                               </div>
                               <div className="w-full flex items-center justify-end">
@@ -72,7 +78,7 @@ const PopularLocationCard = ({location}) => {
                </div>
                <div className="w-full h-full flex flex-col items-center justify-center p-[5px] ">
                     <h4 className="text-[1rem] text-main-blue-700 font-bold ">{location.name}</h4>
-                    <span onClick={() => navigate(`/location?=${location?.name}`)} className="text-[0.8rem] cursor-pointer text-blue-600 flex items-center gap-[3px]"><b>View ads</b> <i className="text-[18px]"><FaArrowRight /></i></span>
+                    <span onClick={() => navigate(`/location?=${location?.name}`)} className="text-[0.8rem] cursor-pointer text-blue-600 flex items-center gap-[3px] font-normal"><b>View {location?.ads} ads</b> <i className="text-[18px]"><FaArrowRight /></i></span>
                </div>
           </div>
      )
@@ -81,7 +87,8 @@ const PopularLocationCard = ({location}) => {
 PopularLocationCard.propTypes = {
      location: PropTypes.shape ({
           name: PropTypes.string,
-          image: PropTypes.string
+          image: PropTypes.string,
+          ads: PropTypes.any
      })
 }
 
