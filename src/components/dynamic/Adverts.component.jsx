@@ -460,8 +460,6 @@ export const TodayDeals = ({params}) => {
 }
 
 export const AdWebsites = () => {
-  const {t} = useTranslation("global");
-  const content = t("homePage.sponsoredAdsSection", {returnObjects:true});
   const [data] = useContext(AppData);
   const {websiteAds } = data;
   return Array.isArray(websiteAds) && websiteAds[0] ? (

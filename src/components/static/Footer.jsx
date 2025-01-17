@@ -1,6 +1,4 @@
 import { Link, useNavigate } from "react-router-dom"
-import Title from "../dynamic/TitleComponents";
-import { textColors, titleSize } from "../styles";
 import { MdCall, MdEmail } from "react-icons/md";
 import { FaLocationArrow } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
@@ -50,7 +48,7 @@ const Footer = () => {
                     <p className="text-gray-400 text-[0.8rem]">{content.advertiseHere.message2}</p>
                     <a className="text-gray-400 text-[0.8rem]" href="https://wa.me/+250 727 559 173" rel="noreferrer" target="_blank"><i className="icon whatsapp-icon"><FaWhatsapp /></i> Whatsapp: +250 727 559 173 </a>
                </div>
-               <div className="w-full md:w-[80%] grid grid-cols-2 gap-[5px] px-[10px] ">
+               <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[5px]">
                     {!loggedIn ? <ActionBtn title={content.advertiseHere.getStarted.name} action={getStarted} /> : null } 
                     <ActionBtn title={content.advertiseHere.plansButton.name}  action={viewPlans}/>
                </div>

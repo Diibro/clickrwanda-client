@@ -10,7 +10,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import { NavLinks } from "../static/Header";
+import { NavLinks } from "../../data/navlinks";
 
 export const BoostedSellers = () => {
      const {t} = useTranslation("global");
@@ -157,28 +157,62 @@ export const GetStartedV1 = () => {
      )
 }
 
+// export const RequestQuoteHeader = () => {
+//      const {t} = useTranslation("global");
+//      const content = t("homePage.heroSection.buttons", {returnObjects:true});
+//      const navigate = useNavigate();
+//      return(
+//           <div className="w-[97%] flex items-center overflow-x-auto gap-[5px] justify-between hide-scroll">
+//                <div className="w-auto hidden lg:flex items-center justify-start gap-[10px]">
+//                     {content.map((item,index) => <Link
+//                          className="text-gray-100 text-[0.7rem]  md:text-[0.8rem] border-[1px] border-main-gold-600 py-[5px] px-[10px] rounded-[5px] text-nowrap hover:bg-gray-50 hover:text-main-gold-500 transition-all duration-150 flex-1 text-center "
+//                          to={item.link} key={`hero-btn-${index}`}>{item.name}</Link>)
+//                     }
+//                </div>
+//                <nav className="flex lg:hidden w-auto p-[5px] z-10 items-center justify-start gap-[2.5px] transition-all duration-300 ">
+//                     {
+//                          NavLinks.map((link, index) => 
+//                               <span onClick={() => navigate(link.link)} key={`desk-navbar-${index}`} className="text-[0.9rem] leading-3 w-auto text-gray-100 whitespace-nowrap font-medium cursor-pointer group py-[5px] px-[10px] hover:bg-gray-200 rounded-[5px] transition-all duration-200 " >{link.name}</span>
+//                          )
+//                     }
+//                </nav>
+//           </div>
+//      )
+// }
+
 export const RequestQuoteHeader = () => {
-     const {t} = useTranslation("global");
-     const content = t("homePage.heroSection.buttons", {returnObjects:true});
+     const { t } = useTranslation("global");
+     const content = t("homePage.heroSection.buttons", { returnObjects: true });
      const navigate = useNavigate();
-     return(
-          <div className="w-[97%] flex items-center overflow-x-auto gap-[5px] justify-between hide-scroll">
-               <div className="w-auto hidden lg:flex items-center justify-start gap-[10px]">
-                    {content.map((item,index) => <Link
-                         className="text-gray-100 text-[0.7rem]  md:text-[0.8rem] border-[1px] border-main-gold-600 py-[5px] px-[10px] rounded-[5px] text-nowrap hover:bg-gray-50 hover:text-main-gold-500 transition-all duration-150 flex-1 text-center "
-                         to={item.link} key={`hero-btn-${index}`}>{item.name}</Link>)
-                    }
+     const containerRef = useRef(null);
+
+     return (
+       <div className="relative w-[97%] flex items-center gap-[5px] justify-between overflow-x-auto md:hide-scroll">
+          <div className="w-auto hidden lg:flex items-center justify-start gap-[10px] overflow-x-auto "  ref={containerRef}>
+               {content.map((item, index) => (
+                    <Link
+                         className="text-gray-100 text-[0.7rem] md:text-[0.8rem] border-[1px] border-main-gold-600 py-[5px] px-[10px] rounded-[5px] text-nowrap hover:bg-gray-50 hover:text-main-gold-500 transition-all duration-150 flex-1 text-center"
+                         to={item.link}
+                         key={`hero-btn-${index}`}
+                    >
+                    {item.name}
+                    </Link>
+               ))}
                </div>
-               <nav className="flex lg:hidden w-auto p-[5px] z-10 items-center justify-start gap-[2.5px] transition-all duration-300 ">
-                    {
-                         NavLinks.map((link, index) => 
-                              <span onClick={() => navigate(link.link)} key={`desk-navbar-${index}`} className="text-[0.9rem] leading-3 w-auto text-gray-100 whitespace-nowrap font-medium cursor-pointer group py-[5px] px-[10px] hover:bg-gray-200 rounded-[5px] transition-all duration-200 " >{link.name}</span>
-                         )
-                    }
+               <nav className="flex lg:hidden w-auto p-[5px] z-10 items-center justify-start gap-[2.5px] transition-all duration-300">
+                    {NavLinks.map((link, index) => (
+                    <span
+                         onClick={() => navigate(link.link)}
+                         key={`desk-navbar-${index}`}
+                         className="text-[0.9rem] leading-3 w-auto text-gray-100 whitespace-nowrap font-medium cursor-pointer group py-[2px] px-[7px] hover:bg-main-gold-600 rounded-[5px] transition-all duration-200"
+                    >
+                         {link.name}
+                    </span>
+                    ))}
                </nav>
           </div>
-     )
-}
+     );
+   };
 
 
 BesterSellerCard.propTypes = {

@@ -8,7 +8,7 @@ import { FaStar } from "react-icons/fa";
 export const AdvertReview = ({item}) => {
      const [active, setActive] = useState("message");
      return(
-          <div className="advert-review-container">
+          <div className="w-full flex flex-col items-center gap-[5px] ">
                {active === "message" && <MessageReview item={item} />}
                {active === "comment" && <CommentReview item={item} />}
                {active === "report" && <ReportReview item={item} />}
@@ -52,8 +52,8 @@ export const RateAdvert = ({item}) => {
      return(
           !responce ?
           <div className="w-full">
-               <div className="rate-review-header">
-                    <h4>Rate {item.full_name}</h4>
+               <div className="w-full rounded-[5px] px-[5px] ">
+                    <h4 className="text-[1.2] font-bold text-main-blue-700">Rate {item.full_name}</h4>
                </div>
                {
                     !loading ?
@@ -80,8 +80,8 @@ export const RateAdvert = ({item}) => {
                     </div>
                }
           </div>
-          : <div className="message-review-body">
-               <p>Rating has been recorded successfully!</p>
+          : <div className="w-full flex items-center justify-center p-[5px]">
+               <p className="text-[0.9rem] text-green-700 font-semibold">Rating has been recorded successfully!</p>
           </div>
      )
 }
@@ -116,9 +116,9 @@ export const MessageReview = ({item}) => {
      }   
      return(
           !responce ? 
-          <div className="message-review-container">
-               <div className="message-review-header">
-                    <h4>Chat with {item.full_name}</h4>
+          <div className="message-review-container p-[2.5px]">
+               <div className="w-full bg-main-blue-700 rounded-[5px] py-[5px] ">
+                    <h4 className="text-[1.3rem] font-bold text-center text-white">Chat with {item.full_name}</h4>
                </div>
                {
                     !loading ? 
@@ -179,9 +179,9 @@ export const CommentReview = ({item}) => {
      }   
      return(
           !responce ?
-          <div className="message-review-container">
-               <div className="message-review-header">
-                    <h4>Add a comment</h4>
+          <div className="message-review-container p-[2.5px]">
+               <div className="w-full bg-main-blue-700 rounded-[5px] py-[5px]">
+                    <h4 className="text-[1.3rem] font-bold text-center text-white">Add a comment</h4>
                </div>
                {
                     !loading ? 
@@ -242,8 +242,8 @@ export const ReportReview = ({item}) => {
      return(
           !responce ? 
           <div className="message-review-container">
-               <div className="report-review-header">
-                    <h4>Report this ad -- {item.ad_name}</h4>
+               <div className="w-full bg-red-700 rounded-[5px] py-[5px]">
+                    <h4 className="text-[1.3rem] font-bold text-center text-white">Report this ad</h4>
                </div>
                {
                     !loading ? 
