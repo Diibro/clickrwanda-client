@@ -33,19 +33,23 @@ const BlogPage = () => {
           {
                loading ? <Loading /> :
                blog ? 
-                    <div className="blog-page">
-                         <div className="title">
-                              <h1>{blog.title}</h1>
-                              <p>Posted on: {getDateOnly(blog.publication_date)}</p>
+                    <div className="w-full flex flex-col gap-[20px] py-[10px]  ">
+                         <div className="w-full max-w-[1000px] px-[2%] rounded-[5px] bg-white mx-auto grid grid-cols-1 gap-[10px]">
+                              <div className="w-full col-span-2 rounded-[5px] p-[10px]  flex flex-col items-start gap-[10px]">
+                                   <div className="w-full flex flex-col items-start gap-[5px]">
+                                        <h1 className="text-[1.2rem] md:text-[1.6rem] font-extrabold text-main-blue-700">{blog.title}</h1>
+                                        <p className="text-[0.9rem] text-gray-700">{blog.category} | Posted on: {getDateOnly(blog.publication_date)} </p>
+                                   </div>
+                                   <div className="w-full flex flex-col items-start gap-[5px]"> 
+                                        <img className="w-auto min-w-[400px] aspect-video object-cover shadow-sm rounded-[5px]" src={blog.content.featuredImage} alt="Blog image" />
+                                   </div>
+                                   <div className="w-full h-auto rounded-[10px] bg-white p-[5px]">
+                                        <i className="text-[0.9rem] font-semibold text-gray-700">{blog.content.description}</i>
+                                   </div>
+                                   <div className="w-full px-[5px] text-[0.9rem] text-gray-700 flex flex-col items-start gap-[5px] bg-white p-[10px] rounded-[5px] " dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blog.content.detailedDescription)}} ></div>
+                              </div>
+                              
                          </div>
-                         <div className="image-container"> 
-                              <img src={blog.content.featuredImage} alt="Blog image" />
-                              <p className="category">{blog.category}</p>
-                         </div>
-                         <div className="description-container">
-                              <p className="summary">{blog.content.description}</p>
-                         </div>
-                         <div className="html-value-container" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blog.content.detailedDescription)}} ></div>
                     </div>
                : <p>Blog not found.</p>
           }

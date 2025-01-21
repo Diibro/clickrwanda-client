@@ -39,7 +39,7 @@ const WelcomeSection = () => {
      }
 
      useEffect(() => {
-          (async () => await fetchBlogs({limit:20,offset:0}))(); 
+          (async () => await fetchBlogs({limit:10,offset:0}))(); 
      }, []);
      
      return (
