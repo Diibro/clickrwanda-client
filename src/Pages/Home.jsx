@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import AppData from '../Contexts/AppContext';
 import HomeLocationsSection from '../components/containers/HomeLocationsSection';
 // import AllCategoriesSection from '../components/containers/AllCategoriesSection';
-import {  ExploreHotDeals, FindJobBreakSection, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
+// import {  ExploreHotDeals, FindJobBreakSection, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
 // import JobSeekersSection from '../components/containers/JobSeekersSection';
 import HomeCommissionAds from '../components/containers/HomeCommissionAds';
 // import HomeHotCategories from '../components/containers/HomeHotCategories';
@@ -55,7 +55,7 @@ const Home = () => {
             {/* Sponsored ads section */}
             <BoostedAds />
             {/* hot deals section */}
-          <ExploreHotDeals />
+          {/* <ExploreHotDeals /> */}
 
             {/** top deals section */}
           <TodayDeals />
@@ -66,12 +66,12 @@ const Home = () => {
           {/* first banner */}
           <HorizontalBanner items={Banners} upper={smallDevice ? 0 : 1} lower={0} />
 
-          <FindJobBreakSection />
+          {/* <FindJobBreakSection /> */}
           {/* jobs section */}
           <JobsSection />
 
           {/* {company advertisement} */}
-          <SubscribeToPlans />
+          {/* <SubscribeToPlans /> */}
 
           {/* new ads section */}
           <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 12}} />
@@ -104,7 +104,7 @@ const Home = () => {
           {/* <AllCategoriesSection /> */}
 
           {/* make money section */}
-          <MakeMoneySection />
+          {/* <MakeMoneySection /> */}
         </div>
       </div>
       </>
