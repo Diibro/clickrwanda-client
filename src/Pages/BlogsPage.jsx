@@ -51,7 +51,7 @@ const WelcomeSection = () => {
                               <div className="w-full lg:w-[55%] flex flex-col items-start gap-[10px] border-[1.4px] border-gray-400 rounded-[10px] p-[5px] ">
                                    <div className="w-full">
                                         {/* <img src={blogs[0].content.featuredImage} alt="feature image" /> */}
-                                        <img src={blogs[0].content.featuredImage} width={800} height={800} className="w-full rounded-[10px]"/>
+                                        <img src={blogs[0].content.featuredImage} width={800} height={800} className="w-full rounded-[10px] max-h-[500px] object-fill"/>
                                    </div>
                                    <div className="w-full flex flex-col items-start gap-[5px]">
                                         <h3 className="text-[1.2rem] md:text-[1.4rem] text-main-blue-700 line-clamp-2 font-extrabold" >{blogs[0].title} </h3>
@@ -125,10 +125,10 @@ export const HomeBlogsSection = ({showTitle=false}) => {
                          :<h2 className="w-full text-main-blue-700 font-extrabold text-[1.6rem]">Best Stories</h2>
                          }
                          {blogs && blogs[0] && 
-                         <div className="w-full lg:w-[55%] flex flex-col items-start gap-[10px] border-[1.4px] border-gray-400 rounded-[10px] p-[5px] ">
+                         <div className="w-full lg:w-[55%] flex flex-col items-start gap-[10px] rounded-[10px]">
                               <div className="w-full">
                                    {/* <img src={blogs[0].content.featuredImage} alt="feature image" /> */}
-                                   <img src={blogs[0].content.featuredImage} width={800} height={800} className="w-full rounded-[10px]"/>
+                                   <img src={blogs[0].content.featuredImage} width={800} height={800} className="w-full max-h-[400px] object-fill rounded-[10px]"/>
                               </div>
                               <div className="w-full flex flex-col items-start gap-[5px]">
                                    <h3 className="text-[1.2rem] md:text-[1.4rem] text-main-blue-700 line-clamp-2 font-extrabold" >{blogs[0].title} </h3>
@@ -138,7 +138,7 @@ export const HomeBlogsSection = ({showTitle=false}) => {
                               </div>
                          </div>
                          }
-                         <div className="w-full lg:w-[42.5%] flex flex-col gap-[5px] overflow-hidden items-center max-h-[500px] overflow-y-auto">
+                         <div className="w-full lg:w-[42.5%] flex flex-col gap-[5px] overflow-hidden items-center h-[600px] overflow-y-auto">
                               <div className="w-full flex items-center justify-between"><h4 className="text-[1.4rem] font-extrabold text-gray-800 ">Other Stories</h4> {showTitle && <Link className="text-[0.8rem] font-bold text-blue-600" to="/blogs">View All Stories</Link>}</div>
                               {
                                    blogs && blogs.length > 1 && blogs.map((blog, index) => index > 0 && <BlogCardRowView key={`home-section-blog-row-card-${index}`} blog={blog} />)
