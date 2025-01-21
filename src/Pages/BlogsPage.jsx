@@ -4,7 +4,6 @@ import { extractDateOnly } from "../utils/dateFunctions"
 import PropTypes from 'prop-types';
 import { BlogCardRowView } from "../components/cards/BlogCard";
 import Service from "../services/Service";
-import { MyImage } from "../components/static/Image";
 import { Link, Route, Routes } from "react-router-dom";
 import BlogPage from "./BlogPage";
 
@@ -57,8 +56,8 @@ export const HomeBlogsSection = ({showTitle=false}) => {
                     <section className="w-full flex items-start justify-between flex-wrap bg-white p-[10px] rounded-[10px] gap-[10px] ">
                          {showTitle && <h2 className="w-full text-main-blue-700 font-extrabold text-[1.6rem]">Featured Stories</h2>}
                          {blogs[0] && 
-                         <div className="w-full lg:w-[55%] overflow-hidden flex flex-col items-start gap-[10px] border-[1.4px] border-gray-400 rounded-[10px] p-[5px] aspect-[100/80]  ">
-                              <div className="w-full h-auto">
+                         <div className="w-full lg:w-[55%] flex flex-col items-start gap-[10px] border-[1.4px] border-gray-400 rounded-[10px] p-[5px] ">
+                              <div className="w-full">
                                    {/* <img src={blogs[0].content.featuredImage} alt="feature image" /> */}
                                    <img src={blogs[0].content.featuredImage} width={800} height={800} className="w-full rounded-[10px]"/>
                               </div>
