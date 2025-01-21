@@ -1,5 +1,7 @@
 import { useContext } from 'react';
-import { AdWebsites, AdvertsContainer, BoostedAds, TodayDeals} from '../components/dynamic/Adverts.component';
+import {
+//  AdWebsites,
+   AdvertsContainer, BoostedAds, TodayDeals} from '../components/dynamic/Adverts.component';
 import Categories from '../components/dynamic/Categories';
 import SearchBar from '../components/static/SearchBar';
 import DeviceView from '../Contexts/ViewContext';
@@ -91,7 +93,7 @@ const Home = () => {
           {/* blogs */}
           <HomeBlogsSection showTitle={true} />
           {/* ads websites section */}
-          <AdWebsites />
+          {/* <AdWebsites /> */}
 
           {/* Locations section */}
           <HomeLocationsSection />

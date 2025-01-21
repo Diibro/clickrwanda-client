@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"
 import { TBlog } from "../../common/Entities"
 import { extractDateOnly } from "../../utils/dateFunctions"
-import { ActionBtn } from "../dynamic/Buttons"
-import { MyImage } from "../static/Image"
 
 export const BlogCardRowView = ({blog}) => {
      return (
@@ -27,7 +25,16 @@ export const BlogCardRowView = ({blog}) => {
 
 export const BLogCardVerticalView = ({blog}) => {
      return (
-          <div className=""></div>
+          <div className="w-full flex flex-col items-center justify-between gap-[10px] bg-white rounded-[5px] p-[7px] border border-gray-300">
+               <div className="w-full">
+                    <img src={blog.content.featuredImage} alt={blog.title} className="w-full aspect-video object-cover rounded-[5px]" />
+               </div>
+               <div className="w-full flex flex-col gap-[5px]">
+                    <h3 className="text-[1.4rem] text-main-blue-700 font-bold line-clamp-2 ">{blog.title}</h3>
+                    <p className="text-[0.8rem] text-gray-600 line-clamp-3">{blog.content.description}</p>
+               </div>
+               <Link to={`/blogs/blog?=${blog.id}`} className="text-blue-600 text-[0.8rem] font-bold rounded-[5px] w-full text-center py-[5px] border border-blue-600 hover:bg-gray-100">Read more...</Link>
+          </div>
      )
 }
 
