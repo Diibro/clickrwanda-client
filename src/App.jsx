@@ -37,6 +37,9 @@ function App() {
       <AppProvider>
         <UserProvider>
           <ViewProvider>
+          <div>
+            <div id="google_translate_element"></div>
+          </div>
             <Routes>
               <Route path="/*" index element={<Layout />} />
               <Route path="/admin/*" element={<AdminLayout />} />

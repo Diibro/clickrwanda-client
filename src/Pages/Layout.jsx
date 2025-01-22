@@ -94,7 +94,7 @@ const Layout = () => {
                <Route path='/user-dashboard/*' element={<UserLayout />} />
                <Route path='/terms-&-conditions' element={<TermsPage />} />
                <Route path='/privacy-policy' element={<PrivacyPage/>} />
-               <Route path='/ad/:name' element={<AdvertPage />}/>
+               <Route path='/ad/:id' element={<AdvertPage />}/>
                <Route path='/search' element={<SearchPage />} />
                <Route path='/vendor/:params'  element={<VendorPage/>}/>
                <Route path='/category/:params' element={<CategoryPage />} />

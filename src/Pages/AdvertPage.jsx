@@ -1,9 +1,9 @@
-import { Link, useLocation } from "react-router-dom"
-import {  fetchIds, getItemUrl } from "../utils/urlFunctions";
+import { Link, useParams } from "react-router-dom"
+import {  getItemUrl } from "../utils/urlFunctions";
 import { useContext, useEffect, useState } from "react";
 import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunctions";
 import { jsonParserV1, parseString } from "../utils/jsonFunctions";
-import { FaEye, FaLocationDot} from "react-icons/fa6";
+import { FaEye, FaLocationDot, FaWhatsapp} from "react-icons/fa6";
 import Loading from "../components/static/Loading";
 import server from "../config/Server";
 import UserRating from "../components/dynamic/Rating.component";
@@ -20,17 +20,18 @@ import JobSeekerPageContainer from "../jobSeeker/components/containers/JobSeeker
 import AppData from "../Contexts/AppContext";
 import DOMPurify from 'dompurify';
 import { GeneralAdsContainer } from "../components/containers/AdsContainer";
+import { MdCall } from "react-icons/md";
 
 const AdvertPage = () => {
+     const {id} = useParams();
+
      const [ , setData ] = useContext(AppData);
-     const location = useLocation();
      const [loading, setLoading] = useState(false);
      const [adViewed, setAdViewed] = useState(null);
      const [sameVendorAds, setSameVendorsAds] = useState([]);
      const [samecategoryAds, setSameCategoryAds] = useState([]);
      const [images, setImages] = useState([]);
      const [mainImage, setMainImage] = useState(null);
-     const [adDescription,setAdDescription] = useState(null);
      const [totalVendorViews, setTotalVendorviews] = useState(0);
      const [totalVendorAds,setTotalVendorAds] = useState(0); 
      const [shortDesc, setShortDesc] = useState(null);
@@ -39,84 +40,77 @@ const AdvertPage = () => {
      const showContactSeller = () => {
           setData((prev) => ({...prev, contactAd: adViewed}));
      }
-
-     const updateDescription = () => {
-          Object.entries(adDescription).forEach(([key,value])=> {
-               if(key === 'desc' || value.type === 'textarea' || value.type === 'file' || value.type === "htmlValue") {
-                    setLongDesc(prev => ({...prev, [key]: value}));
-               }else{
-                    setShortDesc(prev => ({...prev, [key]: value}));
-               }
-               
-          });
-     }
-
-     const updateImages = () => {
-          const otherImages =  jsonParserV1(adViewed?.ad_images || null);
-          Object.entries(adDescription).forEach(([,value]) => {
-               if(value.type === 'file' && value.fileType === 'image/*'){
-                    otherImages.push(value.value);
-               }
-          })
-          return setImages(otherImages);
-     }
-
-     const{ v_id:adId} = fetchIds(location);
-
-     const updateSimilarAds = async() => {
-          const similarAds = await AdvertService.getSimilarAds({
-               sameVendor: {user_id: adViewed.user_id, limit:8,offset:0, ad_id: adViewed.ad_id}, 
-               similarCategory:{category_id:adViewed.category_id, limit:8, offset:0, ad_id: adViewed.ad_id}
-          })
-          if(similarAds){
-               const {vendorAds, similarCategory} = similarAds.data;
-               setSameVendorsAds(vendorAds);
-               setSameCategoryAds(similarCategory);
-          }
-     }
      
-     const updateAdViewed = async () => {
-          let check = 0;
-          try {
+     
 
-               if(check === 0){
-                    setLoading(true);
-                    const res = await server.searchAd({ad_id:adId});
-                    // saveData("adViewed",res.data, 10);
-                    const adData = res.data;
-                    const extraData = res.extraData;
-                    setTotalVendorAds(extraData.totalAds);
-                    setTotalVendorviews(extraData.visits);
-                    setAdViewed(adData);
-                    setMainImage(adData.ad_image);
-                    setAdDescription(parseString(adData.description));
-               }
-          } catch (error) {
-               console.log(`"Advert page error: "${error}`);
-          }finally {
-               setLoading(false);
-               
-          }
-          
-     }
      useEffect(() => {
                window.scrollTo(0,0);
+               const updateImages = (ad) => {
+                    const otherImages =  jsonParserV1(ad?.ad_images || null);
+                    Object.entries(parseString(ad.description)).forEach(([,value]) => {
+                         if(value.type === 'file' && value.fileType === 'image/*'){
+                              otherImages.push(value.value);
+                         }
+                    })
+                    return setImages(otherImages);
+               }
+               const updateDescription = (description) => {
+                    Object.entries(description).forEach(([key,value])=> {
+                         if(key === 'desc' || value.type === 'textarea' || value.type === 'file' || value.type === "htmlValue") {
+                              setLongDesc(prev => ({...prev, [key]: value}));
+                         }else{
+                              setShortDesc(prev => ({...prev, [key]: value}));
+                         }
+                         
+                    });
+               }
+
+               const updateAdViewed = async () => {
+                    let check = 0;
+                    try {
+          
+                         if(check === 0){
+                              setLoading(true);
+                              const res = await server.searchAd({ad_id:id});
+                              // saveData("adViewed",res.data, 10);
+                              const adData = res.data;
+                              console.log(adData);
+                              const extraData = res.extraData;
+                              setTotalVendorAds(extraData.totalAds);
+                              setTotalVendorviews(extraData.visits);
+                              setAdViewed(adData);
+                              setMainImage(adData?.ad_image);
+                              updateImages(adData);
+                              updateDescription(parseString(adData.description));
+                         }
+                    } catch (error) {
+                         console.log(`"Advert page error: "${error}`);
+                    }finally {
+                         setLoading(false);
+                         
+                    }
+                    
+               }
                (async () => await updateAdViewed())();
-     }, [location.search]);
+     },[id]);
 
      useEffect(() => {
           console.log(adViewed);
+          const updateSimilarAds = async() => {
+               const similarAds = await AdvertService.getSimilarAds({
+                    sameVendor: {user_id: adViewed.user_id, limit:8,offset:0, ad_id: adViewed.ad_id}, 
+                    similarCategory:{category_id:adViewed.category_id, limit:8, offset:0, ad_id: adViewed.ad_id}
+               })
+               if(similarAds){
+                    const {vendorAds, similarCategory} = similarAds.data;
+                    setSameVendorsAds(vendorAds);
+                    setSameCategoryAds(similarCategory);
+               }
+          }
           if(adViewed){
                (async() => await updateSimilarAds())();
           }
      },[adViewed]);
-
-     useEffect(() => {
-          if(adDescription){
-               updateImages();
-               return updateDescription();
-          }
-     }, [adDescription])
   return (
      <>
           <Helmet>
@@ -141,9 +135,9 @@ const AdvertPage = () => {
                               <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-[10px]">
                                    <div className="w-full lg:col-span-2 flex flex-col gap-[10px] items-center justify-start">
                                         <ImageViewer images={[mainImage, ...images]} />
-                                        <div className="w-full grid grid-cols-1 gap-[2.5px] bg-white border p-[5px] border-gray-300 rounded-[5px]">
-                                             <h2 className="text-[1.4rem] font-bold line-clamp-3 text-main-blue-700">{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""} {adViewed?.verified ? <i className="verified"><VscVerifiedFilled /></i> : null}</h2>
-                                              
+                                        <div className="w-full grid grid-cols-1 gap-[2.5px] bg-white border p-[10px] border-gray-300 rounded-[5px]">
+                                             <h2 className="text-[1.2rem] font-bold line-clamp-3 text-main-blue-700 flex items-center justify-start">{adViewed?.ad_name ? capitalizeString(adViewed?.ad_name) : ""} {adViewed?.verified ? <i className="verified"><VscVerifiedFilled /></i> : null}</h2>
+                                             
                                                   <div className="w-full flex items-center justify-start gap-[2.5px]">
                                                   {adViewed?.category_name &&
                                                        <>
@@ -154,14 +148,19 @@ const AdvertPage = () => {
                                                   </div>
                                              
                                              {adViewed && adViewed?.ad_price > 0 &&
-                                                  <h3 className="text-[1.2rem] font-bold text-gray-700">{adViewed?.category_name === "Jobs" ? "Salary" : "Price"}: {<b className="text-bold text-orange-800">Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b>} </h3>}
+                                                  <h3 className="text-[1.2rem] font-bold text-gray-700">{adViewed?.category_name === "Jobs" ? "Salary" : "Price"}: {<b className="text-bold text-orange-800">Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b>} </h3>
+                                             }
+                                             <div className="w-full flex items-center justify-between md:justify-start gap-[10px] mt-[10px]">
+                                                  <a href={`https://wa.me/${adViewed?.user_phone}`} rel="noreferrer" target="_blank" className="w-[50%] md:w-auto md:px-[20px] flex items-center gap-[5px] py-[7.5px] border border-green-700 rounded-[5px] hover:bg-green-100 text-[0.9rem] justify-center text-green-800 font-semibold text-center"><i className="text-[22px]"><FaWhatsapp /></i> Chat on Whatsapp</a>
+                                                  <a href={`tel:${adViewed?.user_phone}`} rel="noreferrer" target="_blank" className="w-[50%] md:w-auto md:px-[20px] flex items-center gap-[5px] py-[7.5px] bg-blue-600 hover:bg-blue-800 rounded-[5px] text-[0.9rem] text-white justify-center font-semibold text-center" ><i className="text-[22px]"><MdCall /></i> Contact Us</a>
+                                             </div>
                                         </div>
                                         {
                                              shortDesc ? 
                                                   <div className="w-full flex items-center justify-start gap-[5px] flex-wrap">
                                                        {
                                                             Object.entries(shortDesc).map(([key,value], index) => 
-                                                                 <div className="w-auto bg-white p-[5px] px-[10px] rounded-[5px] flex flex-col items-center justify-start gap-[2.5px] border border-gray-300" key={`ad-desc-view-${key}-${index}`}>
+                                                                 <div className="w-auto bg-white p-[5px] px-[20px] rounded-[5px] flex flex-col items-center justify-start gap-[2.5px] border border-gray-300" key={`ad-desc-view-${key}-${index}`}>
                                                                       <b className="text-[0.8rem] whitespace-nowrap text-gray-700">{key}</b>
                                                                       <span className="text-[0.8rem] whitespace-nowrap text-gray-800 font-semibold">{value.value}</span>
                                                                  </div> 

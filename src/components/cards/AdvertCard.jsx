@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { MyImage } from '../static/Image';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getItemUrl } from '../../utils/urlFunctions';
 import AppData from '../../Contexts/AppContext';
 import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
 import { formatTimeAgo } from '../../utils/dateFunctions';
@@ -38,7 +37,7 @@ export const DefaultAdvertCard = ({ad}) => {
      const navigate = useNavigate();
      // const categoryLink = `/category/${getItemUrl(ad.category_name, ad.category_id)}`;
      const ViewAd = () => {
-          navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
+          navigate(`/ad/${ad.ad_id}`);
      }
 
      const showContactSeller = () => {
@@ -101,7 +100,7 @@ export const DefaultHAdvertCard = ({ad}) => {
      const navigate = useNavigate();
      // const categoryLink = `/category/${getItemUrl(ad.category_name, ad.category_id)}`;
      const ViewAd = () => {
-          navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
+          navigate(`/ad/${ad.ad_id}`);
      }
 
      const showContactSeller = () => {
@@ -163,7 +162,7 @@ const JobSeekerCard = ({ad}) => {
      const navigate = useNavigate();
      // const categoryLink = `/category/${getItemUrl(ad.category_name, ad.category_id)}`;
      const ViewAd = () => {
-          navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
+          navigate(`/ad/${ad.ad_id}`);
      }
 
      const showContactSeller = () => {
@@ -207,7 +206,7 @@ const JobCard = ({ad}) => {
      const navigate = useNavigate();
      // const categoryLink = `/category/${getItemUrl(ad.category_name, ad.category_id)}`;
      const ViewAd = () => {
-          navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
+          navigate(`/ad/${ad.ad_id}`);
      }
 
      return(
