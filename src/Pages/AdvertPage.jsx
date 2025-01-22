@@ -21,6 +21,7 @@ import AppData from "../Contexts/AppContext";
 import DOMPurify from 'dompurify';
 import { GeneralAdsContainer } from "../components/containers/AdsContainer";
 import { MdCall } from "react-icons/md";
+import { standardizePhoneNumber } from "../utils/stringfunctions";
 
 const AdvertPage = () => {
      const {id} = useParams();
@@ -151,8 +152,8 @@ const AdvertPage = () => {
                                                   <h3 className="text-[1.2rem] font-bold text-gray-700">{adViewed?.category_name === "Jobs" ? "Salary" : "Price"}: {<b className="text-bold text-orange-800">Rwf {adViewed?.ad_price ? formatPrice(adViewed.ad_price) : "-"}</b>} </h3>
                                              }
                                              <div className="w-full flex items-center justify-between md:justify-start gap-[10px] mt-[10px]">
-                                                  <a href={`https://wa.me/${adViewed?.user_phone}`} rel="noreferrer" target="_blank" className="w-[50%] md:w-auto md:px-[20px] flex items-center gap-[5px] py-[7.5px] border border-green-700 rounded-[5px] hover:bg-green-100 text-[0.9rem] justify-center text-green-800 font-semibold text-center"><i className="text-[22px]"><FaWhatsapp /></i> Chat on Whatsapp</a>
-                                                  <a href={`tel:${adViewed?.user_phone}`} rel="noreferrer" target="_blank" className="w-[50%] md:w-auto md:px-[20px] flex items-center gap-[5px] py-[7.5px] bg-blue-600 hover:bg-blue-800 rounded-[5px] text-[0.9rem] text-white justify-center font-semibold text-center" ><i className="text-[22px]"><MdCall /></i> Contact Us</a>
+                                                  <a href={`https://wa.me/${standardizePhoneNumber(adViewed?.user_phone, "+25")}`} rel="noreferrer" target="_blank" className="w-[50%] md:w-auto md:px-[20px] flex items-center gap-[5px] py-[7.5px] border border-green-700 rounded-[5px] hover:bg-green-100 text-[0.9rem] justify-center text-green-800 font-semibold text-center"><i className="text-[22px]"><FaWhatsapp /></i> Chat on Whatsapp</a>
+                                                  <a href={`tel:${standardizePhoneNumber(adViewed?.user_phone, "+25")}`} rel="noreferrer" target="_blank" className="w-[50%] md:w-auto md:px-[20px] flex items-center gap-[5px] py-[7.5px] bg-blue-600 hover:bg-blue-800 rounded-[5px] text-[0.9rem] text-white justify-center font-semibold text-center" ><i className="text-[22px]"><MdCall /></i> Contact Us</a>
                                              </div>
                                         </div>
                                         {
