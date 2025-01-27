@@ -3,11 +3,12 @@ import { Link } from "react-router-dom"
 import { MainServer } from "../../../services/beta/server";
 import { BetaEndpoints } from "../../../services/beta/endpoints";
 import AdvertRenderer from "../../dynamic/Advert.componet";
+import LoadingJobs from "./LoadingJobs";
 
 
 const TopJobsSection = () => {
      const {data,isLoading, error} = useQuery({queryKey:["topJobsAds"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&by-date=desc&take=20&category-id=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7`)});
-     if(isLoading) return <div>Loading...</div>
+     if(isLoading) return <LoadingJobs/>
      if(error instanceof Error) return <div>Error: {error.message}</div>
      const ads = data ? data.data : null
      return (

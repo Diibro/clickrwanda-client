@@ -3,10 +3,11 @@ import { MainServer } from "../../../services/beta/server";
 import { BetaEndpoints } from "../../../services/beta/endpoints";
 import { getItemUrl } from "../../../utils/urlFunctions";
 import { CategoryContainerSquare } from "../../dynamic/Containers";
+import CategoriesLoader from "./CategoriesLoader";
 
 const CategoriesSection = () => {
      const {data,isLoading, error} = useQuery({queryKey:["categories"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.category}`)});
-     if(isLoading) return <div>Loading...</div>
+     if(isLoading) return <CategoriesLoader />
      if(error instanceof Error) return <div>Error: {error.message}</div>
      const categories = data ? data.data : null
      return (
