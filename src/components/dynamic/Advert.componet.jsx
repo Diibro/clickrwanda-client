@@ -8,7 +8,7 @@ import { formatTimeAgo } from '../../utils/dateFunctions';
 // import { LoadingImage } from './LoadinComponents';
 import { AnyImage, CImage, MyImage } from '../static/Image';
 import { VscVerifiedFilled } from "react-icons/vsc";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import AppData from '../../Contexts/AppContext';
 import JobCard from '../cards/JobCard';
 import JobSeekerCard from '../cards/JobSeekerCard';
@@ -33,11 +33,13 @@ export const AdvertCardVertical = ({ad}) => {
           setData((prev) => ({...prev, contactAd: ad}))
      }
 
+     const plan_name = ad.payment_plan ? ad.payment_plan.plan_name : ""
+     useEffect(() => {console.log(plan_name)}, []);
      return(
-          <div className={`product-square-container ${ad.plan_name === 'VIP' ? "premium" : ad.plan_name === "VVIP" ? "enterprise" : ad.plan_name}-ad ${ad.commission ? 'deal-ad' : ''}`}>
+          <div className={`product-square-container ${plan_name === 'VIP' ? "premium" : plan_name === "VVIP" ? "enterprise" : plan_name}-ad ${ad.commission_ads ? 'deal-ad' : ''}`}>
                {ad.commission ? 
                     <span className='pay-plan deal'>Deal</span> : 
-                    <span className={ad.plan_name === "urgent" ? "pay-plan urgent" : ad.plan_name === "VIP" ? "pay-plan premium" : ad.plan_name === "basic" ? "pay-plan basic" : ad.plan_name === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{ad.plan_name === 'VVIP' || ad.plan_name === 'VIP' ? ad.plan_name : capitalizeString(ad.plan_name) }</span>
+                    <span className={plan_name === "urgent" ? "pay-plan urgent" : plan_name === "VIP" ? "pay-plan premium" : plan_name === "basic" ? "pay-plan basic" : plan_name === "VVIP" ? "pay-plan enterprise" : "free-plan"}>{plan_name === 'VVIP' || plan_name === 'VIP' ? plan_name : capitalizeString(plan_name) }</span>
                }
                {/* {ad.ad_discount && ad.ad_discount > 0 && ad.ad_discount <= 100 && +ad.ad_price > 0 ? <span className='advert-discount'>- {ad.ad_discount}%</span> : null} */}
                <div className="ad-image">
@@ -135,10 +137,10 @@ export const ServiceSquare = ({image, title, plan, price, action, category,categ
 const AdvertRenderer = ({item}) => {
      
      return(
-          item.category_id === "b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7" ?
+          item.sub_category.parent_id === "b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7" ?
                <JobCard ad={item} />
           :
-          item.category_name === 'Job Seekers CVs'? 
+          item.sub_category.category.category_name === 'Job Seekers CVs'? 
           <JobSeekerCard ad={item} />:
           <AdvertCardVertical ad={item} />
      )

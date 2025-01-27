@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { capitalizeString } from '../../utils/otherFunctions'
 import { useNavigate } from 'react-router-dom'
-import { getItemUrl } from '../../utils/urlFunctions'
 import { FaLocationDot } from 'react-icons/fa6'
 // import { formatTimeAgo } from '../../utils/dateFunctions'
 const JobCard = ({ad}) => {
@@ -10,7 +9,7 @@ const JobCard = ({ad}) => {
      const [description, setDescription] = useState(ad.description);
 
      const ViewAd = () => {
-          navigate(`/ad/${getItemUrl(ad.ad_name, ad.ad_id)}`);
+          navigate(`/ad/${ad.ad_id}`);
      }
 
      useEffect(() => {

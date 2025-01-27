@@ -1,8 +1,5 @@
 import { useContext } from 'react';
-import {
-//  AdWebsites,
-   AdvertsContainer, BoostedAds, TodayDeals} from '../components/dynamic/Adverts.component';
-import Categories from '../components/dynamic/Categories';
+// import Categories from '../components/dynamic/Categories';
 import SearchBar from '../components/static/SearchBar';
 import DeviceView from '../Contexts/ViewContext';
 import { RequestQuoteHeader } from '../components/dynamic/Special.components';
@@ -10,21 +7,23 @@ import { Helmet } from 'react-helmet';
 import { HeroSectionBanner, HorizontalBanner} from '../components/dynamic/Banners';
 import { Banners } from '../config/banners';
 import { useTranslation } from 'react-i18next';
-import AppData from '../Contexts/AppContext';
-import HomeLocationsSection from '../components/containers/HomeLocationsSection';
+import HomeLocationsSection from '../components/layout/home/HomeLocationsSection';
 // import AllCategoriesSection from '../components/containers/AllCategoriesSection';
 // import {  ExploreHotDeals, FindJobBreakSection, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
 // import JobSeekersSection from '../components/containers/JobSeekersSection';
-import HomeCommissionAds from '../components/containers/HomeCommissionAds';
 // import HomeHotCategories from '../components/containers/HomeHotCategories';
-import JobsSection from '../components/containers/JobsSection';
+// import JobsSection from '../components/containers/JobsSection';
 // import HomeShopContainer from '../components/containers/HomeShopContainer';
 import { HomeBlogsSection } from './BlogsPage';
+import NewFreeAdsSection from '../components/layout/home/NewFreeAdsSection';
+import UrgentAdsSection from '../components/layout/home/UrgentAdsSection';
+import FeaturedAdsSection from '../components/layout/home/FeaturedAdsSection';
+import TopDealsSection from '../components/layout/home/TopDealsSection';
+import TopJobsSection from '../components/layout/home/TopJobsSection';
+import CategoriesSection from '../components/layout/home/CategoriesSection';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
-  const [data] = useContext(AppData);
-  const {adverts} = data;
   const {isMobile, isTablet} = deviceView;
   const smallDevice = isMobile || isTablet;
 
@@ -55,31 +54,29 @@ const Home = () => {
         </div>
         <div className="w-full flex flex-col items-center justify-start gap-[20px] py-[5px] relative ">
             {/* Sponsored ads section */}
-            <BoostedAds />
+            <FeaturedAdsSection />
             {/* hot deals section */}
           {/* <ExploreHotDeals /> */}
 
             {/** top deals section */}
-          <TodayDeals />
+          <UrgentAdsSection />
           <HorizontalBanner items={Banners} upper={smallDevice ? 0 : 1} lower={0} />
           {/* hot deals section */}
-          <HomeCommissionAds />
-
+          <TopDealsSection />
           {/* first banner */}
           <HorizontalBanner items={Banners} upper={smallDevice ? 0 : 1} lower={0} />
 
           {/* <FindJobBreakSection /> */}
           {/* jobs section */}
-          <JobsSection />
+          <TopJobsSection />
 
           {/* {company advertisement} */}
           {/* <SubscribeToPlans /> */}
 
           {/* new ads section */}
-          <AdvertsContainer content={{title: content.newAdsSection.title, containerId: "new-ads-home-page-section", adverts: adverts, adsNo: 12}} />
-
+          <NewFreeAdsSection />
           {/* Categories section */}
-          <Categories limit={0} />
+          <CategoriesSection />
 
           {/* Second home page banner */}
 

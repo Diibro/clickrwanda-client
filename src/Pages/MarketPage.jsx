@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
 import {  Route, Routes,   } from 'react-router-dom';
-import AdvertService from '../services/Advert'
-// import { VerticalAds } from '../components/dynamic/Adverts.component';
-// import { RightBanner } from '../components/dynamic/Banners';
-// import { Banners } from '../config/banners';
 import { GeneralAdsContainer } from '../components/containers/AdsContainer';
+import { useQuery } from '@tanstack/react-query';
+import { MainServer } from '../services/beta/server';
+import { BetaEndpoints } from '../services/beta/endpoints';
 
 const MarketPage = () => {
      
@@ -36,29 +34,16 @@ const MarketPageHeader = () => {
 
 
 const AdsContainer = () => {
-     
-     const [ads,setAds] = useState(null);
-     const [loading,setLoading] = useState(false);
-
-     const fetchAds = async () => {
-          setLoading(true);
-          const res = await AdvertService.getClientApprovedCommissionAds({limit:200, offset:0});
-          if(res && res.data){
-               setAds(res.data);
-          }
-          setLoading(false);
-     }
-
-
-     useEffect(() => {
-          (async() => await fetchAds())();
-     },[]);
+     const {data,isLoading, error} = useQuery({queryKey:["topDealsAdsPage"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&take=40&by-date=desc&is-commission-ad=true&by-date=desc&except-categories=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7,bed1566b-5901-4af9-ae80-708c293aa925`)});
+     if(isLoading) return <div>Loading...</div>
+     if(error instanceof Error) return <div>Error: {error.message}</div>
+     const ads = data ? data.data : null
 
      
      return(
           <div className="w-full flex flex-col items-center gap-[10px]">
                {
-                    loading ? <p className='text-[0.9rem] font-mono text-gray-800'>Loading...</p> :
+                    isLoading ? <p className='text-[0.9rem] font-mono text-gray-800'>Loading...</p> :
                     ads && ads.length ? 
                     <GeneralAdsContainer ads={ads} containerId={'commission-ads-container'}  />
                     :

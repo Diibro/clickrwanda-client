@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
-import { MyImage } from '../static/Image';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppData from '../../Contexts/AppContext';
 import { capitalizeString, formatPrice } from '../../utils/otherFunctions';
-import { formatTimeAgo } from '../../utils/dateFunctions';
 import { VscVerifiedFilled } from 'react-icons/vsc';
 import { FaLocationDot } from 'react-icons/fa6';
 import {default as JobCardRow} from "./JobCard"
@@ -44,11 +42,12 @@ export const DefaultAdvertCard = ({ad}) => {
           setData((prev) => ({...prev, contactAd: ad}))
      }
 
+     const plan_name = ad.payment_plan ? ad.payment_plan.plan_name : "freemium";
      return(
-          <div className={`w-full border-[1.3px] rounded-[5px] p-[2.5px] relative h-auto flex flex-col gap-[4px] overflow-hidden ${ad.plan_name === 'VIP' ? "border-green-500" : ad.plan_name === "VVIP" ? "border-green-600" : ad.plan_name}-ad ${ad.commission ? 'border-main-primary-gold-500' : 'border-gray-400'}`}>
-               {ad.commission ? 
+          <div className={`w-full border-[1.3px] rounded-[5px] p-[2.5px] relative h-auto flex flex-col gap-[4px] overflow-hidden ${plan_name == 'VIP' ? "border-green-500" : plan_name == "VVIP" ? "border-green-600" : plan_name}-ad ${ad.commission_ads ? 'border-main-primary-gold-500' : 'border-gray-400'}`}>
+               {ad.commission_ads ? 
                     <span className='absolute top-[2.5px] left-[2.5px] bg-main-gold-500 rounded-[2.5px] px-[10px] py-[5px] font-bold text-[0.7rem]  md:text-[0.8rem] text-white z-20 '>Deal</span> : 
-                    <span className={`absolute top-[2.5px] left-[2.5] rounded-[2.5px] px-[10px] py-[5px] text-[0.7rem]  md:text-[0.8rem] font-bold text-white z-20 ${ad.plan_name === "urgent" ? "bg-main-red-500" : ad.plan_name === "VIP" ? "bg-main-green-600" : ad.plan_name === "basic" ? "bg-main-purple-600" : ad.plan_name === "VVIP" ? "bg-main-blue-500" : "bg-main-purple-600 hidden"}`}>{ad.plan_name === 'VVIP' || ad.plan_name === 'VIP' ? ad.plan_name : capitalizeString(ad.plan_name) }</span>
+                    <span className={`absolute top-[2.5px] left-[2.5] rounded-[2.5px] px-[10px] py-[5px] text-[0.7rem]  md:text-[0.8rem] font-bold text-white z-20 ${plan_name == "urgent" ? "bg-main-red-500" : plan_name == "VIP" ? "bg-main-green-600" : plan_name == "basic" ? "bg-main-purple-600" : plan_name == "VVIP" ? "bg-main-blue-500" : "bg-main-purple-600 hidden"}`}>{plan_name == 'VVIP' || plan_name == 'VIP' ? plan_name : capitalizeString(plan_name) }</span>
                }
                <div className="w-full rounded-[2.5px] overflow-hidden relative cursor-pointer">
                     {/* <MyImage image={ad.ad_image} action={ViewAd} /> */}

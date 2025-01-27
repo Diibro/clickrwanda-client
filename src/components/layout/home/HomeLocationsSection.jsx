@@ -1,24 +1,19 @@
-import { useEffect, useState } from "react"
-import { getLocations, locationImages } from "../../utils/locations";
+import { useState } from "react"
+import { locationImages } from "../../../utils/locations";
 import { useNavigate } from "react-router-dom";
 import { FaArrowRight, FaPlus, } from "react-icons/fa6";
 import PropTypes from "prop-types";
-import advertService from "../../services/Advert";
+// import advertService from "../../../services/Advert";
+import { useQuery } from "@tanstack/react-query";
+import { MainServer } from "../../../services/beta/server";
+import { BetaEndpoints } from "../../../services/beta/endpoints";
+import locationsData from "../../../data/Location.json";
 
 const HomeLocationsSection = () => {
-     const [locations, setLocations] = useState(null);
+     const locations = locationsData.districts;
+     const locationStr = locations.join(',')
+     const {data, isLoading, error} = useQuery({queryKey: "adsByLocation", queryFn: async() => await MainServer.fetch(`${BetaEndpoints.advert}/locations?locations=${locationStr}`) })
      const [locsNo, setLocsNo]= useState(6);
-     const [newLocations,setNewLocations] = useState(null);
-
-     const fetchLocationCounts = async(locations) => {
-          const res = await advertService.getCountsByLocation(locations);
-          if(res){
-               const data = res.data;
-               if(data && data.length){
-                    setNewLocations(data);
-               }
-          }
-     }
 
      const updateLocsNumber = () => {
           return setLocsNo(prev => {
@@ -26,15 +21,10 @@ const HomeLocationsSection = () => {
                else return prev + 6;
           })
      }
-     useEffect(() => {
-          (async() => {
-               const {districts} = getLocations();
-               const {data} = districts;
-               setLocations(data);
-               setLocations(districts);
-               await fetchLocationCounts(districts);
-          })();
-     },[])
+
+     if(isLoading) return <div>Loading...</div>
+     if(error instanceof Error) return <div>Error: {error.message}</div>
+     const newLocations = data ? data.data : null
      return (
           <>
                {
@@ -45,12 +35,6 @@ const HomeLocationsSection = () => {
                                    <p className="text-[0.8rem] text-gray-200   ">Discover products, services, best shops, and promotions in your locality!</p>
                               </div>
                               <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-[10px]  ">
-                                   {/* {
-                                        newLocations ? 
-                                        newLocations.map((location, index) => <span className="w-full flex items-center gap-[5px] text-[0.8rem] text-gray-100  cursor-pointer group" key={`home-section-location-${index}`} onClick={() => navigate(`/location?=${location?.name}`)}><i className="text-main-gold-500 group-hover:animate-spin"><FaLocationCrosshairs /></i> {location.name} <b className="text-[0.7rem] font-mono text-main-gold-500 ">({location.count} ads)</b></span>)
-                                        :locations.map((location, index) => <span className="text-[0.8rem] text-gray-100  " key={`home-section-location-${index}`} onClick={() => navigate(`/location?=${location}`)}>{location}</span>)
-                                   } */}
-
                                    {
 
                                         newLocations && newLocations.length > 0 ? 

@@ -7,13 +7,18 @@ import {BrowserRouter } from 'react-router-dom';
 import ErrorFallback from './error/ErrorFallback.jsx';
 import { HelmetProvider } from 'react-helmet-async';
 import axios from 'axios'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 axios.defaults.withCredentials = true;
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+
     <HelmetProvider>
       <BrowserRouter FallbackComponent={ErrorFallback}>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </BrowserRouter>
     </HelmetProvider>
       ,
