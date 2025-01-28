@@ -71,7 +71,7 @@ const Footer = () => {
                          <p className="text-gray-400 font-medium text-[0.9rem] ">All rights reserved &copy; 2025</p>
                     </div>
                     <div className="w-full flex items-center justify-start md:justify-end gap-[10px]">
-                         <FooterLink name="Terms & Conditions" path="/terms"/>
+                         <FooterLink name="Terms & Conditions" path="/terms-&-conditions"/>
                          <FooterLink name="Privacy Policy" path="/privacy-policy"/>
                     </div>
                </div>

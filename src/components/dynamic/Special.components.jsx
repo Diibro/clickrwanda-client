@@ -199,7 +199,7 @@ export const RequestQuoteHeader = () => {
                     </Link>
                ))}
                </div>
-               <nav className="flex lg:hidden w-auto p-[5px] z-10 items-center justify-start gap-[2.5px] transition-all duration-300">
+               <nav className="flex lg:hidden w-auto p-[5px] z-10 items-center justify-start gap-[2.5px] hide-scroll transition-all duration-300">
                     {NavLinks.map((link, index) => (
                     <span
                          onClick={() => navigate(link.link)}
