@@ -12,6 +12,7 @@ const FeaturedAdsSection = () => {
           staleTime: 120000, // Data is considered fresh for 2 minutes
           refetchInterval: 120000,
           refetchIntervalInBackground: false,
+          refetchOnReconnect: true,
 });
      if(isLoading) return <LoadingAds />
      if(error instanceof Error) return <div>Error: {error.message}</div>

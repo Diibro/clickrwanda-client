@@ -7,7 +7,7 @@ import LoadingJobs from "./LoadingJobs";
 
 
 const TopJobsSection = () => {
-     const {data,isLoading, error} = useQuery({queryKey:["topJobsAds"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&by-date=desc&take=20&category-id=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7`),  staleTime: 120000, refetchInterval: 120000,refetchIntervalInBackground: false,});
+     const {data,isLoading, error} = useQuery({queryKey:["topJobsAds"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&by-date=desc&take=20&category-id=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7`),  staleTime: 120000, refetchInterval: 120000,refetchIntervalInBackground: false,refetchOnReconnect: true,});
      if(isLoading) return <LoadingJobs/>
      if(error instanceof Error) return <div>Error: {error.message}</div>
      const ads = data ? data.data : null
