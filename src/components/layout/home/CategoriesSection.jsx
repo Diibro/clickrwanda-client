@@ -6,7 +6,7 @@ import { CategoryContainerSquare } from "../../dynamic/Containers";
 import CategoriesLoader from "./CategoriesLoader";
 
 const CategoriesSection = () => {
-     const {data,isLoading, error} = useQuery({queryKey:["categories"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.category}`)});
+     const {data,isLoading, error} = useQuery({queryKey:["categories"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.category}`), staleTime: 120000, refetchInterval: 120000,});
      if(isLoading) return <CategoriesLoader />
      if(error instanceof Error) return <div>Error: {error.message}</div>
      const categories = data ? data.data : null
