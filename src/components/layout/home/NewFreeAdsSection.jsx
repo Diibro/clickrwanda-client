@@ -5,7 +5,7 @@ import { GeneralAdsContainer } from "../../containers/AdsContainer";
 import LoadingAds from "./LoadingAds";
 
 const NewFreeAdsSection = () => {
-     const {data,isLoading, error} = useQuery({queryKey:["newFreeAds"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&take=12&plan-id=plan_001&by-date=desc&except-categories=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7,bed1566b-5901-4af9-ae80-708c293aa925`),  staleTime: 120000, refetchInterval: 120000,});
+     const {data,isLoading, error} = useQuery({queryKey:["newFreeAds"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&take=12&plan-id=plan_001&by-date=desc&except-categories=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7,bed1566b-5901-4af9-ae80-708c293aa925`),  staleTime: 120000, refetchInterval: 120000,refetchIntervalInBackground: false,});
      if(isLoading) return <LoadingAds />
      if(error instanceof Error) return <div>Error: {error.message}</div>
      const ads = data ? data.data : null

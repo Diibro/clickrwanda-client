@@ -12,7 +12,7 @@ import locationsData from "../../../data/Location.json";
 const HomeLocationsSection = () => {
      const locations = locationsData.districts;
      const locationStr = locations.join(',')
-     const {data, isLoading, error} = useQuery({queryKey: "adsByLocation", queryFn: async() => await MainServer.fetch(`${BetaEndpoints.advert}/locations?locations=${locationStr}`),  staleTime: 120000, refetchInterval: 120000, })
+     const {data, isLoading, error} = useQuery({queryKey: "adsByLocation", queryFn: async() => await MainServer.fetch(`${BetaEndpoints.advert}/locations?locations=${locationStr}`),  staleTime: 120000, refetchInterval: 120000,refetchIntervalInBackground: false, })
      const [locsNo, setLocsNo]= useState(6);
 
      const updateLocsNumber = () => {
