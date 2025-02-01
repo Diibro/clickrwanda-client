@@ -4,8 +4,9 @@ export const NavLinks = [
      {name:"Real Estate", subs: [], image:"", link:"/category/Property?=2187ea54-acbe-4bad-872f-40c4f8d14a09"},
      {name:"Marketplace", subs: [], image:"", link:"/market"},
      {name:"Services", subs: [], image:"", link:"/category/Services?=213cf0e5-453b-4d61-aded-14adcec79f37"},
-     {name:"Vacation Rentals", subs: [], image:"", link:"/"},
+     {name:"Vacation Rentals", subs: [], image:"", link:"/category/Hotels,-Restaurants-&-Travels-?=5da3442b-43dd-44c8-874d-2a5bfedfd0d0"},
      {name: "Study and work abroad", image: "", link:'/study-&-work-abroad'},
-     {name: "Trainings & Scholarships", image: "", link: '/trainings-&-scholarships'},
+     {name: "Trainings", image: "", link: '/Education?=0ae8228c-7f5d-48fd-a2dc-89cdc08b3417?=a9c2fc1c-a32a-42d9-b771-83f5c9cd4398'},
+     {name: "Scholarships", image: "", link: '/trainings-&-scholarships'},
      // {name:"Advertise", subs: [], image:"", link:"/payment-plans"}
 ]
