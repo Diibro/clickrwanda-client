@@ -103,7 +103,7 @@ const VendorHeader = ({image, vendorInfo}) => {
             <h3 className='text-[1rem] font-bold text-main-blue-700 '>{vendorInfo?.full_name}</h3>
             <p className='text-[0.8rem] font-semibold text-gray-600 flex items-center justify-start gap-[2.5px]'><i><FaLocationDot /></i> {vendorInfo.user_location.location} </p>
             <div className='w-auto flex items-center justify-start gap-[10px]'>
-              <Link className='text-[0.8rem] font-semibold p-[2.5px] border border-gray-400 rounded-[5px] hover:bg-white px-[10px] text-gray-600 flex items-center justify-start gap-[2.5px]' to={`tel:${standardizePhoneNumber(vendorInfo.user_phone)}`} target='_blank'><i><MdCall /></i> Call Us </Link>
+              <Link className='text-[0.8rem] font-semibold p-[2.5px] border border-gray-400 rounded-[5px] hover:bg-white px-[10px] text-gray-600 flex items-center justify-start gap-[2.5px]' to={`tel:${vendorInfo.user_phone}`} target='_blank'><i><MdCall /></i> Call Us </Link>
               <Link className='text-[0.8rem] font-semibold p-[2.5px] border border-gray-400 rounded-[5px] hover:bg-white px-[10px] text-gray-600 flex items-center justify-start gap-[2.5px]' to={`mailto:${vendorInfo.user_email}`} target='_blank'><i><MdEmail /></i>Email Us </Link>
             </div>
           </div>
