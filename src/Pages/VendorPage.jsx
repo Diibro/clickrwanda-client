@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Loading from '../components/static/Loading';
 import server from '../config/Server';
 import { getItemUrlId } from '../utils/urlFunctions';
-import { dateFormatMonth } from '../utils/dateFunctions';
-import UserRating from '../components/dynamic/Rating.component';
-import { IoMdCall } from "react-icons/io";
-import { MdEmail } from "react-icons/md";
+// import { dateFormatMonth } from '../utils/dateFunctions';
+// import UserRating from '../components/dynamic/Rating.component';
+import { MdCall, MdEmail } from "react-icons/md";
 import { getData, saveData } from '../utils/storageFunctions';
 import { Helmet } from 'react-helmet';
-import { VscVerifiedFilled } from 'react-icons/vsc';
 import { GeneralAdsContainer } from '../components/containers/AdsContainer';
+import { FaLocationDot } from 'react-icons/fa6';
+import { standardizePhoneNumber } from '../utils/stringfunctions';
 
 const VendorPage = () => {
   const location = useLocation();
@@ -62,76 +62,24 @@ const VendorPage = () => {
         <meta name='description' content={`Products and services of ${vendorInfo?.full_name}. Contact: Phone -- ${vendorInfo?.user_phone}`} /> 
         <title>{`${vendorInfo?.full_name || 'Vendor'} | Click Rwanda `}</title>
       </Helmet>
-      <div className="vendor-page">
+      <div className="w-full flex flex-col items-center gap-[10px] justify-start bg-white rounded-[5px] py-[10px] px-[1%]">
       {loading ? <Loading/>
       :
       <>
-        {vendorInfo ? <VendorHeader title={vendorInfo.username} image={vendorInfo?.profile_image} /> : null}
-        <div className='w-full '>
-          <div className="w-full">
-            {vendorInfo ? 
-              <>
-                <div className='vendor-page-title'>
-                  <h2>Welcome to the {vendorInfo.full_name} Shop</h2>
+        {vendorInfo ? <VendorHeader vendorInfo={vendorInfo} title={vendorInfo.username} image={vendorInfo?.profile_image} /> : null}
+        <div className="w-full">
+          {
+            vendorAds && vendorAds !== "no data found" ? 
+              <div className='w-full flex flex-col items-center justify-start gap-[5px] '>
+                <div className="w-full" id='vendor-page-title-id'>
+                  <h3 className='text-[1.2rem] font-bold text-gray-800 w-full text-center'>Our Ads ({`${vendorAds.length} ad${vendorAds.length > 1 ?'s': ''}`})</h3>
                 </div>
-                <div className="vendor-page-info">
-                  <div className="col">
-                    <div className="row">
-                      <span>Business: </span>
-                      <p>{vendorInfo.full_name}</p>
-                    </div>
-                    <div className="row">
-                      <span>Email: </span>
-                      <p>{vendorInfo.user_email}</p>
-                    </div>
-                    <div className="row">
-                      <span>Phone: </span>
-                      <p>{vendorInfo.user_phone}</p>
-                    </div>
-                    <div className="row">
-                      <span>Joined Date:</span>
-                      <p>{dateFormatMonth(vendorInfo.reg_date)}</p>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className='row'>
-                      <span>Location:</span>
-                      <p>{vendorInfo.user_location.location}</p>
-                    </div>
-                    <div className="row">
-                      <span>Verification:</span>
-                      {vendorInfo?.verified ? <p className='verified-ad-text'>Verified<i><VscVerifiedFilled /></i></p> : <p className='unverified-ad-text'>Unverified</p> }
-                    </div>
-                    <div className="row">
-                      <span>Rating:</span>
-                      <div className='contact'><UserRating rating={vendorInfo.rating}/></div>
-                      
-                    </div>
-                    <div className='row'>
-                      <span>Contact:</span>
-                      <div className='contact'>
-                        <a href={`tel:${vendorInfo.user_phone}`}><i><IoMdCall /></i></a>
-                        <a href={`mailto:${vendorInfo.user_email}`}><i><MdEmail /></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            : null}
-
-            {
-              vendorAds && vendorAds !== "no data found" ? 
-                <div className='page'>
-                  <div className="vendor-page-title" id='vendor-page-title-id'>
-                    <h3>Vendor Adverts ({`${vendorAds.length} ad${vendorAds.length > 1 ?'s': ''}`})</h3>
-                  </div>
-                  <div id="vendor-page-view-id"></div>
-                  <GeneralAdsContainer ads={vendorAds} containerId={"vendor-page-view-id"} />
-                </div>
-              : 
-              <div><p>No adverts found for this vendor</p></div>
-            }
-          </div>
+                <div id="vendor-page-view-id"></div>
+                <GeneralAdsContainer ads={vendorAds} containerId={"vendor-page-view-id"} />
+              </div>
+            : 
+            <div><p>No adverts found for this vendor</p></div>
+          }
         </div>
 
       </>
@@ -144,11 +92,25 @@ const VendorPage = () => {
   )
 }
 
-const VendorHeader = ({image}) => {
+const VendorHeader = ({image, vendorInfo}) => {
   return(
-    <div className="w-full rounded-[5px] flex items-center justify-center h-[80px] bg-cover bg-main-blue-700 mb-[50px] bg-no-repeat relative ">
-      {/* <h1>{title}</h1> */}
-      <img src={image} alt="vendor profile" className='absolute max-w-[80px] rounded-[10px] -bottom-[40px] max-h-[80px] w-auto h-auto border-[1.5px] border-main-gold-500  ' />
+    <div className="w-full rounded-[5px] flex items-center justify-between flex-wrap p-[10px] bg-cover bg-gray-100 bg-no-repeat relative ">
+      <div className='w-auto max-w-full flex items-start justify-start gap-[10px]'>
+        <img src={image} alt="vendor profile" className='w-[60px] aspect-square object-fill rounded-full max-h-[80px] h-auto border-[1.5px] border-green-600  ' />
+        {
+          vendorInfo ? 
+          <div className='w-auto flex flex-col items-start justify-start gap-[2.5px]'>
+            <h3 className='text-[1rem] font-bold text-main-blue-700 '>{vendorInfo?.full_name}</h3>
+            <p className='text-[0.8rem] font-semibold text-gray-600 flex items-center justify-start gap-[2.5px]'><i><FaLocationDot /></i> {vendorInfo.user_location.location} </p>
+            <div className='w-auto flex items-center justify-start gap-[10px]'>
+              <Link className='text-[0.8rem] font-semibold p-[2.5px] border border-gray-400 rounded-[5px] hover:bg-white px-[10px] text-gray-600 flex items-center justify-start gap-[2.5px]' to={`tel:${standardizePhoneNumber(vendorInfo.user_phone)}`} target='_blank'><i><MdCall /></i> Call Us </Link>
+              <Link className='text-[0.8rem] font-semibold p-[2.5px] border border-gray-400 rounded-[5px] hover:bg-white px-[10px] text-gray-600 flex items-center justify-start gap-[2.5px]' to={`mailto:${vendorInfo.user_email}`} target='_blank'><i><MdEmail /></i>Email Us </Link>
+            </div>
+          </div>
+          : null 
+        }
+        
+      </div>
     </div>
   )
 }
@@ -156,6 +118,7 @@ const VendorHeader = ({image}) => {
 VendorHeader.propTypes = {
   image : PropTypes.any,
   title : PropTypes.any,
+  vendorInfo: PropTypes.object
 }
 
 export default VendorPage
