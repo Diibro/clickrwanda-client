@@ -11,7 +11,6 @@ import { getData, saveData } from '../utils/storageFunctions';
 import { Helmet } from 'react-helmet';
 import { GeneralAdsContainer } from '../components/containers/AdsContainer';
 import { FaLocationDot } from 'react-icons/fa6';
-import { standardizePhoneNumber } from '../utils/stringfunctions';
 
 const VendorPage = () => {
   const location = useLocation();

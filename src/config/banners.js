@@ -53,7 +53,7 @@ export const DefaultSideBanner = {
 export const TopBanners = [
      {
           id:1,
-          name:"Ds Correct",
+          name:"Kigali Job",
           type:'top-banner',
           srcLink: "https://s3.eu-north-1.amazonaws.com/clickrwanda.s3.com/banners/dscorreect-banner.gif",
           destLink: `https://wa.me/+250782257866?text=${encodeURIComponent("Hello Dscorrect I saw your advert on Clickrwanda and I am interested in your service")}`,

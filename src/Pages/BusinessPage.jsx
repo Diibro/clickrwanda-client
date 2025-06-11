@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 const BusinessPage = () => {
      return (
           <div className="w-full flex flex-col items-center gap-[40px] bg-white rounded-[5px]">
-               <div className='w-full flex flex-col  items-center justify-center gap-[10px] p-[40px] bg-gray-100'>
+               {/* <div className='w-full flex flex-col  items-center justify-center gap-[10px] p-[40px] bg-gray-100'>
                     <p className='md:text-[1.2rem] text-center text-[0.9rem] font-extrabold text-main-blue-700'>Get your Business listed on ClickRwanda by Payment only 10,000 Rwf</p>
                     <Link to={'/forms/signup'} className='w-auto text-[0.9rem] font-bold py-[7.5px] px-[10px] rounded-[40px] text-white bg-main-gold-500 hover:bg-main-blue-700 transition-all duration-200'>Get Started</Link>
-               </div>
+               </div> */}
                <div className="rounded-[10px] py-[20px] grid grid-cols-1 md:grid-cols-2 gap-[5px] w-full items-center justify-center ">
                     <div className="w-full flex flex-col items-start justify-center gap-[10px] p-[20px]">
                          <h2 className="lg:text-[2.4rem] text-[2rem] font-extrabold text-main-blue-700 text-center">Add Your Business on Clickrwanda Today</h2>
@@ -25,10 +25,10 @@ const BusinessPage = () => {
                          <BenefitCard title="Enhanced Credibility" content="Being featured on ClickRwanda enhances a business's credibility and trustworthiness among local consumers who recognize and trust the platform." />
                     </div>
                </div>
-               <div className='w-full flex flex-col  items-center justify-center gap-[10px] p-[40px]'>
+               {/* <div className='w-full flex flex-col  items-center justify-center gap-[10px] p-[40px]'>
                     <p className='md:text-[1.2rem] text-center text-[0.9rem] font-extrabold text-main-blue-700'>Get your Business listed on ClickRwanda by Payment only 10,000 Rwf</p>
                     <Link to={'/forms/signup'} className='w-auto text-[0.9rem] font-bold py-[7.5px] px-[10px] rounded-[40px] text-white bg-main-gold-500 hover:bg-main-blue-700 transition-all duration-200'>Get Started</Link>
-               </div>
+               </div> */}
           </div>
      )
 }

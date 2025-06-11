@@ -8,7 +8,7 @@ const TopBanners = () => {
 
      useEffect(() => {
           if(isMobile || isTablet){
-               setActiveBanners([Banners[0]]);
+               setActiveBanners([Banners[1]]);
           }else {
                setActiveBanners([Banners[0], Banners[1]]);
           }

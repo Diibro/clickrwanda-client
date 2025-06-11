@@ -52,18 +52,18 @@ export const SlideAdsContainers = ({ads, containerId, content}) => {
 
      
      return(
-          <div className='w-full flex flex-col items-center gap-[10px] '>
+          <div className='w-full flex flex-col items-center gap-[10px]  '>
                <div className='w-full flex items-center justify-between'>
-                    <div className='w-auto flex gap-[10px] items-center ' >
+                    <div className='w-auto flex gap-[8px] items-center flex-wrap ' >
                          <h2 className='text-main-blue-700 text-[1.4rem] md:tex-[1.6rem] font-extrabold '>{content.title}</h2>
-                         <Link to={content.viewAllLink} className='text-[0.7rem] md:text-[0.9rem] text-main-green-600 font-bold' >View All</Link>
+                         <Link to={content.viewAllLink} className='text-[0.9rem] text-main-green-600 font-bold' >View All</Link>
                     </div>
                     <div className='w-auto hidden  lg:flex items-center gap-[5px]  '>
                          <i onClick={() => viewNextAds(-1)} className={`text-[1.4rem] text-gray-800 cursor-pointer`} ><RiArrowLeftSLine /></i>
                          <i onClick={() => viewNextAds(1)} className={`text-[1.4rem] text-gray-800 cursor-pointer`} ><RiArrowRightSLine /></i>
                     </div>
                </div>
-               <div id={`slide-container-${containerId}`} className='w-full overflow-hidden overflow-x-auto scroll-smooth hide-scroll'>
+               <div id={`slide-container-${containerId}`} className='w-full overflow-hidden py-[8px] px-[4px] overflow-x-auto scroll-smooth hide-scroll'>
                     <div className='w-auto grid gap-[10px] grid-flow-col auto-cols-[180px] md:auto-cols-[250px]'>
                          {
                               ads && ads.length > 0 ? ads.map((ad) =><DefaultAdvertCard ad={ad} key={`${containerId}-${ad.ad_id}`} /> ) :
