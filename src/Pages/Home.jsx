@@ -39,11 +39,10 @@ const Home = () => {
       </Helmet>
       <div className="w-full flex flex-col items-center gap-[10px]">
         <div className="w-full rounded-[5px] py-[10px] flex items-start bg-main-blue-700  ">
-          <div className="w-full lg:w-[60%] py-[10px] px-[5px] flex flex-col gap-[10px]">
-            <div className='w-full flex flex-col gap-[10px] items-center'>
+          <div className="w-full lg:w-[60%] py-[22px] px-[2%] flex flex-col gap-[20px] ">
+            <div className='w-full flex flex-col gap-[20px]'>
               {/* <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1> */}
-              <h1 className='text-white text-[1.6rem] lg:text-[2rem] font-extrabold text-center md:text-start  '>Time to <b className='text-main-gold-500'>advertise</b> your business for <b className='text-main-gold-500'>free </b></h1>
-              <h1 className='text-white text-[1.4rem] lg:text-[1.6rem] font-extrabold text-center md:text-start  '><b className='text-main-gold-500'>Start selling</b> everything now!</h1>
+              <h1 className='text-white text-[1.6rem] lg:text-[2rem] font-extrabold text-center md:text-start  '>Advertise Here for Free, <b className='text-main-gold-500'>Sell Everywhere!</b></h1>
               <SearchBar />
             </div>
             <RequestQuoteHeader />
