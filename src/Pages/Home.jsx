@@ -6,10 +6,10 @@ import { RequestQuoteHeader } from '../components/dynamic/Special.components';
 import { Helmet } from 'react-helmet';
 import { HeroSectionBanner, HorizontalBanner} from '../components/dynamic/Banners';
 import { Banners } from '../config/banners';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import HomeLocationsSection from '../components/layout/home/HomeLocationsSection';
 // import AllCategoriesSection from '../components/containers/AllCategoriesSection';
-// import {  ExploreHotDeals, FindJobBreakSection, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
+// import {ExploreHotDeals, FindJobBreakSection, MakeMoneySection, SubscribeToPlans } from '../components/containers/PageBreaks';
 // import JobSeekersSection from '../components/containers/JobSeekersSection';
 // import HomeHotCategories from '../components/containers/HomeHotCategories';
 // import JobsSection from '../components/containers/JobsSection';
@@ -21,14 +21,22 @@ import FeaturedAdsSection from '../components/layout/home/FeaturedAdsSection';
 import TopDealsSection from '../components/layout/home/TopDealsSection';
 import TopJobsSection from '../components/layout/home/TopJobsSection';
 import CategoriesSection from '../components/layout/home/CategoriesSection';
+import UserContext from '../Contexts/UserContext';
+import { ActionBtn } from '../components/dynamic/Buttons';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [deviceView] = useContext(DeviceView);
   const {isMobile, isTablet} = deviceView;
   const smallDevice = isMobile || isTablet;
+  const [user] = useContext(UserContext);
+     // const [,setData] = useContext(AppData);
+     const {loggedIn} = user;
+     const navigate = useNavigate();
+     const agentToken = sessionStorage.getItem("agentToken");
 
-  const [t] = useTranslation("global");
-  const content = t("homePage", {returnObjects:true});
+  // const [t] = useTranslation("global");
+  // const content = t("homePage", {returnObjects:true});
 
   return (
     <>
@@ -40,9 +48,10 @@ const Home = () => {
       <div className="w-full flex flex-col items-center gap-[10px]">
         <div className="w-full rounded-[5px] py-[10px] flex items-start bg-main-blue-700  ">
           <div className="w-full lg:w-[60%] py-[22px] px-[2%] flex flex-col gap-[20px] ">
-            <div className='w-full flex flex-col gap-[20px]'>
+            <div className='w-full flex flex-col gap-[20px] items-center lg:items-start'>
               {/* <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1> */}
-              <h1 className='text-white text-[1.6rem] lg:text-[2rem] font-extrabold text-center md:text-start  '>Advertise Here for Free, <b className='text-main-gold-500'>Sell Everywhere!</b></h1>
+              <h1 className='text-white text-[1.8rem] lg:text-[2rem] font-extrabold text-center  lg:text-start '>Post Your Business for <br className="inline-flex lg:hidden"/> <b className='text-main-gold-500'>Free & Sell Everywhere!</b></h1>
+              {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/business')} title={isTablet || isMobile ? "List Your Business / AD": "List Your Business / AD" } /> : null}
               <SearchBar />
             </div>
             <RequestQuoteHeader />

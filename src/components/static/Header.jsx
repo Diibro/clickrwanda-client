@@ -76,7 +76,7 @@ const DesktopView = () => {
                     {/* <LanguageChanger /> */}
                     {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/forms')} title={"Login"} /> : null}
                     {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'seller' ? "/user-dashboard" : userInfo?.user_type === 'job-seeker' ? "/job-seeker" : agentToken ? "/agent" : "/admin"} className="w-[40px] aspect-square rounded-full p-[2px] border-[1px] border-blue-300 "><img className="w-full h-full rounded-full" src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
-                    {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/business')} title={isTablet || isMobile ? "LIST YOU BUSINESS / AD": "LIST YOU BUSINESS / AD" } /> : null}
+                    
                </div>
                
           </header>
@@ -113,7 +113,7 @@ const MobileView = () => {
                     {/* <LanguageChanger /> */}
                     <i className="text-gray-100 text-[36px] cursor-pointer group-hover:text-main-gold-500 transition-all duration-300" onClick={() => setShowNav(prev => !prev)} >{showNav ? <IoClose /> :<LuMenu />}</i>
                     {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'seller' ? "/user-dashboard" : userInfo?.user_type === 'job-seeker' ? "/job-seeker" : agentToken ? "/agent" : "/admin"} className="w-[40px] aspect-square rounded-full p-[2px] border-[1px] border-blue-300 "><img className="w-full h-full rounded-full" src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
-                    {!loggedIn || !agentToken ? <ActionBtn action={() => navigate('/business')} title={isTablet || isMobile ? "LIST YOUR BUSINESS / AD": "LIST YOUR BUSINESS / AD" } /> : null}
+                    {/* {!loggedIn || !agentToken ? <ActionBtn action={() => navigate('/business')} title={isTablet || isMobile ? "LIST YOUR BUSINESS / AD": "LIST YOUR BUSINESS / AD" } /> : null} */}
                </div>
 
                {
