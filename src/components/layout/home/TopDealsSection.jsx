@@ -5,7 +5,7 @@ import { SlideAdsContainers } from "../../containers/AdsContainer";
 import LoadingAds from "./LoadingAds";
 
 const TopDealsSection = () => {
-     const {data,isLoading, error} = useQuery({queryKey:["topDealsAds"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&take=20&by-date=desc&is-commission-ad=true&by-date=desc&except-categories=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7,bed1566b-5901-4af9-ae80-708c293aa925`),  staleTime: 120000, refetchInterval: 120000,refetchIntervalInBackground: false,refetchOnReconnect: true,});
+     const {data,isLoading, error} = useQuery({queryKey:["topDealsAds"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&take=20&by-date=desc&is-commission-ad=true&by-date=desc&except-categories=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7,bed1566b-5901-4af9-ae80-708c293aa925`),  staleTime: 0, refetchInterval: 0,refetchOnMount: "always",refetchOnReconnect: true,});
      if(isLoading) return <LoadingAds />
      if(error instanceof Error) return <div>Error: {error.message}</div>
      const ads = data ? data.data : null

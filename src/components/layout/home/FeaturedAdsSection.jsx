@@ -9,11 +9,8 @@ import LoadingAds from "./LoadingAds";
 const FeaturedAdsSection = () => {
      const {data,isLoading, error} = useQuery({
           queryKey:["featuredAds"],queryFn:async () => await MainServer.fetch(`${BetaEndpoints.advert}?status=approved&take=20&plan-ids=plan_002,plan_004,plan_009,plan_12,plan_13,plan_14,plan_16,plan_17,plan_18,plan_19&by-date=desc&except-categories=b6b8d2d5-476d-48a3-beb0-93f01ecc4ef7,bed1566b-5901-4af9-ae80-708c293aa925`),
-          staleTime: 120000, // Data is considered fresh for 2 minutes
-          refetchInterval: 120000,
-          refetchIntervalInBackground: false,
-          refetchOnReconnect: true,
-});
+          staleTime: 0, refetchInterval: 0,refetchOnMount: "always",refetchOnReconnect: true,
+     });
      if(isLoading) return <LoadingAds />
      if(error instanceof Error) return <div>Error: {error.message}</div>
      const ads = data ? data.data : null
