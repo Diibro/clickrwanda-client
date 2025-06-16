@@ -26,7 +26,7 @@ const GoogleTranslate = () => {
     addGoogleTranslateScript();
   }, []);
 
-  return <div id="google_translate_element" className="inline-flex relative" />;
+  return <div id="google_translate_element" className="inline-flex relative z-0" />;
 };
 
 export default GoogleTranslate;
