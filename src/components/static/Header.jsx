@@ -10,6 +10,7 @@ import Logo from '../../assets/logo/clickrwanda.png';
 import { LuMenu } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 import { NavLinks } from "../../data/navlinks";
+import GoogleTranslate from "../GoogleTranslate";
 // import LanguageChanger from "./LanguageChanger";
 
 const DesktopHeader = () => {
@@ -73,6 +74,7 @@ const DesktopView = () => {
                <Link to='/'><img src={Logo} alt="clickrwanda" className="w-[100px] " /></Link>
                <DeskNavbar />
                <div className="flex items-center gap-[10px]">
+                    <GoogleTranslate />
                     {/* <LanguageChanger /> */}
                     {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/forms')} title={"Login"} /> : null}
                     {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'seller' ? "/user-dashboard" : userInfo?.user_type === 'job-seeker' ? "/job-seeker" : agentToken ? "/agent" : "/admin"} className="w-[40px] aspect-square rounded-full p-[2px] border-[1px] border-blue-300 "><img className="w-full h-full rounded-full" src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
@@ -111,6 +113,7 @@ const MobileView = () => {
                <Link to='/'><img src={Logo} alt="clickrwanda" className="w-[100px] " /></Link>
                <div className="flex items-center gap-[2.5px]">
                     {/* <LanguageChanger /> */}
+                    <GoogleTranslate />
                     <i className="text-gray-100 text-[36px] cursor-pointer group-hover:text-main-gold-500 transition-all duration-300" onClick={() => setShowNav(prev => !prev)} >{showNav ? <IoClose /> :<LuMenu />}</i>
                     {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'seller' ? "/user-dashboard" : userInfo?.user_type === 'job-seeker' ? "/job-seeker" : agentToken ? "/agent" : "/admin"} className="w-[40px] aspect-square rounded-full p-[2px] border-[1px] border-blue-300 "><img className="w-full h-full rounded-full" src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
                     {/* {!loggedIn || !agentToken ? <ActionBtn action={() => navigate('/business')} title={isTablet || isMobile ? "LIST YOUR BUSINESS / AD": "LIST YOUR BUSINESS / AD" } /> : null} */}

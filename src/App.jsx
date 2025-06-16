@@ -38,7 +38,7 @@ function App() {
         <UserProvider>
           <ViewProvider>
           <div>
-            {/* <div id="google_translate_element"></div> */}
+            <div id="google_translate_element"></div>
           </div>
             <Routes>
               <Route path="/*" index element={<Layout />} />

@@ -6,3 +6,7 @@
 @import "./styles/SpecialDevices.css";
 @import "./styles/TabletView.css";
 @import "./styles/MobileView.css";
+
+.goog-logo-link, .goog-te-gadget span, .VIpgJd-ZVi9od-ORHb {
+  display: none !important;
+}
