@@ -55,8 +55,8 @@ export const TopBanners = [
           id:1,
           name:"Kigali Job",
           type:'top-banner',
-          srcLink: "/banners/kigali-job-gif.gif",
-          destLink: `https://wa.me/+250795015204?text=${encodeURIComponent("Hello Kigali Job Support, I saw your advert on Clickrwanda and I am interested in your service")}`,
+          srcLink: "/banners/kigali-job.gif",
+          destLink: `https://kigalijob.com`,
      },
      {
           id:2,
