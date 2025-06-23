@@ -19,7 +19,6 @@ import NewFreeAdsSection from '../components/layout/home/NewFreeAdsSection';
 import UrgentAdsSection from '../components/layout/home/UrgentAdsSection';
 import FeaturedAdsSection from '../components/layout/home/FeaturedAdsSection';
 import TopDealsSection from '../components/layout/home/TopDealsSection';
-import TopJobsSection from '../components/layout/home/TopJobsSection';
 import CategoriesSection from '../components/layout/home/CategoriesSection';
 import UserContext from '../Contexts/UserContext';
 import { ActionBtn } from '../components/dynamic/Buttons';
@@ -77,7 +76,7 @@ const Home = () => {
 
           {/* <FindJobBreakSection /> */}
           {/* jobs section */}
-          <TopJobsSection />
+          {/* <TopJobsSection /> */}
 
           {/* {company advertisement} */}
           {/* <SubscribeToPlans /> */}

@@ -8,7 +8,7 @@ const GoogleTranslate = () => {
       const script = document.createElement("script");
       script.id = "google-translate-script";
       script.src =
-        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       document.body.appendChild(script);
 
       window.googleTranslateElementInit = () => {
@@ -26,7 +26,7 @@ const GoogleTranslate = () => {
     addGoogleTranslateScript();
   }, []);
 
-  return <div id="google_translate_element" className="hidden" />;
+  return <div id="google_translate_element"/>;
 };
 
 export default GoogleTranslate;

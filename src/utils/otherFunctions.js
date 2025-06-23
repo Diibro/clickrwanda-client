@@ -75,43 +75,11 @@ export const openNewTab = (url) => {
   window.open(url, "_blank", "noopener, noreferrer")
 }
 
-export const getParagraphs = (text, wordsPerParagraph) => {
+export const getParagraphs = (text) => {
   try {
-    let words = text.split(/\s+/);
-    let sentences = text.split(". ");
+    const paragraphs = text.split(/\r?\n\s*\r?\n/);
 
-
-    let paragraphs = [];
-    let paragraphs2 =[];
-    let currentParagraph = '';
-    let currentParagraph2 = '';
-
-    words.forEach(word => {
-      if (currentParagraph.split(/\s+/).length > wordsPerParagraph) {
-        paragraphs.push(currentParagraph.trim());
-        currentParagraph = ''; 
-      }
-
-      currentParagraph += word + ' ';
-    });
-
-    sentences.forEach(sentence => {
-      if(currentParagraph2.split(". ").length > 4){
-        paragraphs2.push(currentParagraph2);
-        currentParagraph2 = "";
-      }
-      currentParagraph2 += sentence + ". ";
-    })
-
-    if (currentParagraph.trim() !== '') {
-      paragraphs.push(currentParagraph.trim());
-    }
-
-    if (currentParagraph2.trim() !== '') {
-      paragraphs2.push(currentParagraph2);
-    }
-
-    return paragraphs2;
+    return paragraphs;
   } catch (error) {
     console.log(error);
     return [text];

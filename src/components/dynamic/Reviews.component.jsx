@@ -53,7 +53,7 @@ export const RateAdvert = ({item}) => {
           !responce ?
           <div className="w-full">
                <div className="w-full rounded-[5px] px-[5px] ">
-                    <h4 className="text-[1.2] font-bold text-main-blue-700">Rate {item.full_name}</h4>
+                    <h4 className="text-[1.2] font-bold text-main-blue-700">Rate {item.users.full_name}</h4>
                </div>
                {
                     !loading ?

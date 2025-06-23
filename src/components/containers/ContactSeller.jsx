@@ -65,7 +65,7 @@ const ContactSeller = () => {
                               <div onClick={closeForm} className="contact-seller-close-icon"><i><ImCross /></i></div>
                               <div className="contact-seller-container">
                                    <div className="seller-profile">
-                                        <img src={contactAd.profile_image} alt={`${contactAd.username}-user-image`} />
+                                        <img src={contactAd.users.profile_image} alt={`${contactAd.username}-user-image`} className="aspect-square object-cover" />
                                         <div className="profile">
                                              <b>{contactAd.username || contactAd.full_name}</b>
                                              {

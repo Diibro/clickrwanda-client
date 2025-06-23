@@ -1,6 +1,6 @@
 export async function fetchWrapper(url, options) {
      try {
-          const response = await fetch(url,{ cache: "force-cache",...options}, );
+          const response = await fetch(url,{...options}, );
 
           if (!response.ok) {
                throw new Error(`HTTP error! status: ${response.status}`);

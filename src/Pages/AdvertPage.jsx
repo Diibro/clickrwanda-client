@@ -5,7 +5,6 @@ import { capitalizeString, formatPrice, getParagraphs } from "../utils/otherFunc
 import { jsonParserV1, parseString } from "../utils/jsonFunctions";
 import { FaEye, FaLocationDot, FaWhatsapp} from "react-icons/fa6";
 import Loading from "../components/static/Loading";
-import server from "../config/Server";
 import UserRating from "../components/dynamic/Rating.component";
 import { RiAdvertisementFill } from "react-icons/ri";
 import {  ImageViewer } from "../components/dynamic/ImageSlider";
@@ -22,6 +21,8 @@ import DOMPurify from 'dompurify';
 import { GeneralAdsContainer } from "../components/containers/AdsContainer";
 import { MdCall } from "react-icons/md";
 import { standardizePhoneNumber } from "../utils/stringfunctions";
+import { MainServer } from "../services/beta/server";
+import { BetaEndpoints } from "../services/beta/endpoints";
 
 const AdvertPage = () => {
      const {id} = useParams();
@@ -37,6 +38,10 @@ const AdvertPage = () => {
      const [totalVendorAds,setTotalVendorAds] = useState(0); 
      const [shortDesc, setShortDesc] = useState(null);
      const [longDesc, setLongDesc ] = useState(null);
+
+     // important
+     const [subCategory,setSubCategory] = useState(null);
+     const [vendor,setVendor] = useState(null); 
 
      const showContactSeller = () => {
           setData((prev) => ({...prev, contactAd: adViewed}));
@@ -72,17 +77,21 @@ const AdvertPage = () => {
           
                          if(check === 0){
                               setLoading(true);
-                              const res = await server.searchAd({ad_id:id});
+                              const res = await MainServer.fetch(`${BetaEndpoints.advert}/${id}`);
                               // saveData("adViewed",res.data, 10);
-                              const adData = res.data;
-                              console.log(adData);
-                              const extraData = res.extraData;
-                              setTotalVendorAds(extraData.totalAds);
-                              setTotalVendorviews(extraData.visits);
-                              setAdViewed(adData);
-                              setMainImage(adData?.ad_image);
-                              updateImages(adData);
-                              updateDescription(parseString(adData.description));
+                                   const adData = res.data;
+                                   console.log(adData);
+                                   // const extraData = res.extraData;
+                                   setTotalVendorAds(adData.users._count.adverts);
+                                   setVendor(adData.users);
+                                   console.log(adData.users);
+                                   setSubCategory(adData.sub_category);
+                                   // setTotalVendorviews(extraData.visits);
+                                   setAdViewed(adData);
+                                   setMainImage(adData?.ad_image);
+                                   updateImages(adData);
+                                   updateDescription(parseString(adData.description));
+                              
                          }
                     } catch (error) {
                          console.log(`"Advert page error: "${error}`);
@@ -158,12 +167,12 @@ const AdvertPage = () => {
                                         </div>
                                         {
                                              shortDesc ? 
-                                                  <div className="w-full flex items-center justify-start gap-[5px] flex-wrap">
+                                                  <div className="w-full flex items-center justify-start gap-[5px] flex-wrap ">
                                                        {
                                                             Object.entries(shortDesc).map(([key,value], index) => 
                                                                  <div className="w-auto bg-white p-[5px] px-[20px] rounded-[5px] flex flex-col items-center justify-start gap-[2.5px] border border-gray-300" key={`ad-desc-view-${key}-${index}`}>
                                                                       <b className="text-[0.8rem] whitespace-nowrap text-gray-700">{key}</b>
-                                                                      <span className="text-[0.8rem] whitespace-nowrap text-gray-800 font-semibold">{value.value}</span>
+                                                                      <span className="text-[0.8rem] text-gray-800 font-semibold whitespace-pre-line">{value.value}</span>
                                                                  </div> 
                                                             )
                                                        }
@@ -175,16 +184,17 @@ const AdvertPage = () => {
                                              {
                                                   longDesc ? 
                                                        Object.entries(longDesc)?.map(([key,value], index) => 
-                                                            key === "desc" ? 
-                                                            <div className="w-full" key={`ad-desc-view-${key}-${index}`}>
-                                                                 {
-                                                                      getParagraphs(value.value || value, 50).map((text, count) => <p className="text-[0.8rem] text-gray-700" key={`ad-view-paragraph-${count}`}>{text}</p>)
-                                                                 }
-                                                            </div>
-                                                            : value.type === 'textarea' ? 
+                                                            key === "desc" ? () => {
+                                                                 return( 
+                                                                      <div className="w-full" key={`ad-desc-view-${key}-${index}`}>
+                                                                           {
+                                                                                getParagraphs(value.value || value).map((text, count) => <p className="text-[0.9rem] text-gray-700 whitespace-pre-line" key={`ad-view-paragraph-${count}`}>{text}</p>)
+                                                                           }
+                                                                      </div>)
+                                                            }: value.type === 'textarea' ? 
                                                                  <div className="w-full">
                                                                       {
-                                                                           getParagraphs(value.value || value, 50).map((text, count) => <p className="text-[0.8rem] text-gray-700 " key={`${key}-paragraph-advert-page-${count}`}>{text}</p>)
+                                                                           getParagraphs(value.value || value, 50).map((text, count) => <p className="text-[0.9rem] text-gray-700 " key={`${key}-paragraph-advert-page-${count}`}>{text}</p>)
                                                                       }
                                                                  </div>
                                                             : value.type === 'htmlValue' ? 
@@ -208,12 +218,12 @@ const AdvertPage = () => {
                                    </div>
                                    <div className="w-full flex flex-col items-center justify-start gap-[10px]">
                                         <div className="w-full flex flex-col items-center bg-white border border-gray-300 rounded-[5px] p-[5px] gap-[5px]">
-                                             {adViewed?.full_name && <div className="w-full flex items-center justify-center bg-gray-100 py-[5px] rounded-[5px]"><h4 className="text-[1.4rem] font-bold text-main-blue-700">{adViewed?.category_name === "Jobs" ? "About  Employer" : "About Vendor"}</h4></div>}
+                                             {vendor && <div className="w-full flex items-center justify-center bg-gray-100 py-[5px] rounded-[5px]"><h4 className="text-[1.4rem] font-bold text-main-blue-700">{subCategory && subCategory.category.category_name === "Jobs" ? "About  Employer" : "About Vendor"}</h4></div>}
                                              <div className="w-full flex items-start justify-start gap-[10px]">
-                                                  {adViewed?.profile_image && <a className="w-auto p-[2.5px] border border-green-600 rounded-[5px]" href={`/vendor/${getItemUrl(adViewed?.full_name, adViewed.user_id)}`}><img className="w-[60px] rounded-[5px]" src={adViewed?.profile_image} alt={adViewed?.full_name} /></a>}
+                                                  {vendor && vendor.profile_image && <a className="w-auto p-[2.5px] border border-green-600 rounded-[5px]" href={`/vendor/${getItemUrl(vendor.full_name, vendor.user_id)}`}><img className="w-[60px] rounded-[5px] aspect-square object-cover object-center" src={vendor.profile_image} alt={vendor.full_name} /></a>}
                                                   <div className="w-auto flex flex-col items-start justify-start gap-[4px]">
-                                                       {adViewed?.full_name && <h5 className="text-[1.2rem] font-bold text-main-blue-700" >{adViewed?.full_name}</h5>}
-                                                       <UserRating rating={adViewed?.rating} />
+                                                       {vendor?.full_name && <h5 className="text-[1.2rem] font-bold text-main-blue-700" >{vendor?.full_name}</h5>}
+                                                       <UserRating rating={vendor?.rating || 0} />
                                                        <div className="w-full grid grid-cols-2 gap-[5px]">
                                                             {
                                                                  adViewed && adViewed.user_id &&
