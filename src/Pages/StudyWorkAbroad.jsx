@@ -3,7 +3,7 @@ const StudyWorkAbroad = () => {
      return (
           <div className="w-full flex flex-col items-center justify-start">
                <section className="w-full bg-gray-200 px-[2%] py-16">
-                    <div className="container mx-auto text-center">
+                    <div className="container mx-auto text-center bg-transparent ">
                          <h1 className="text-4xl font-extrabold text-gray-800 mb-4">Study and Work Abroad with ClickRwanda</h1>
                          <p className="text-[0.9rem] font-semibold text-gray-600">
                          Unlock global opportunities! Let us guide you through your journey to study or work abroad with ease and confidence.
@@ -44,7 +44,7 @@ const StudyWorkAbroad = () => {
                </section>
 
                <section className="bg-blue-50 py-16 w-full px-[2%]">
-                    <div className="container mx-auto">
+                    <div className="container mx-auto p-8">
                          <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">Success Stories</h2>
                          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                                    <div className="p-6 bg-white rounded-lg shadow-md">
@@ -65,12 +65,12 @@ const StudyWorkAbroad = () => {
 
 
                <section className="w-full bg-gray-200 py-16 px-[2%]">
-                    <div className="container mx-auto text-center">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">Ready to Start?</h2>
-                    <p className="text-lg text-gray-600 mb-6">Our specialist is here to help you every step of the way.</p>
-                    <a target="_blank" rel="noreferrer"  href={`https://wa.me/+250795015120?text=${encodeURIComponent("Hello clickrwanda work and study abroad specialist. I would like to get started with program.")}`} className="w-auto inline-block bg-main-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-main-blue-500">
-                         Contact Our Specialist
-                    </a>
+                    <div className="container mx-auto text-center bg-transparent flex flex-col items-center justify-start gap-1">
+                         <h2 className="text-3xl font-bold text-gray-800 mb-4">Ready to Start?</h2>
+                         <p className="text-lg text-gray-600 mb-6">Our specialist is here to help you every step of the way.</p>
+                         <a target="_blank" rel="noreferrer"  href={`https://wa.me/+250795015120?text=${encodeURIComponent("Hello clickrwanda work and study abroad specialist. I would like to get started with program.")}`} className="w-auto inline-block bg-main-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-main-blue-500">
+                              Contact Our Specialist
+                         </a>
                     </div>
                </section>
 
