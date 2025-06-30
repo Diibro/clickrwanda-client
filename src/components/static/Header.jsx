@@ -29,8 +29,8 @@ const DeskNavbar = () => {
                {
                     NavLinks.map((link, index) =>
                          link.link.startsWith('https://')? 
-                         <a key={`desk-navbar-${index}`} rel="noreferrer" target="_blank" className="text-sm text-gray-300 font-medium cursor-pointer group py-[5px] px-[10px] hover:bg-gray-700 rounded-[5px] transition-all duration-200" href={link.link}>{link.name}</a>     : 
-                         <span onClick={() => navigate(link.link)} key={`desk-navbar-${index}`} className="text-sm text-gray-300 font-medium cursor-pointer group py-[5px] px-[10px] hover:bg-gray-700 rounded-[5px] transition-all duration-200 " >{link.name}</span>
+                         <a key={`desk-navbar-${index}`} rel="noreferrer" target="_blank" className="text-[0.7rem] xl:text-sm text-gray-300 font-medium cursor-pointer group py-[5px] px-[10px] hover:bg-gray-700 rounded-[5px] transition-all duration-200" href={link.link}>{link.name}</a>     : 
+                         <span onClick={() => navigate(link.link)} key={`desk-navbar-${index}`} className="text-[0.7rem] xl:text-sm text-gray-300 font-medium cursor-pointer group py-[5px] px-[10px] hover:bg-gray-700 rounded-[5px] transition-all duration-200 " >{link.name}</span>
                     )
                }
           </nav>
