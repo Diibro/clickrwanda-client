@@ -50,7 +50,7 @@ const Home = () => {
             <div className='w-full flex flex-col gap-[20px] items-center lg:items-center'>
               {/* <h1>Sell, Buy, Rent & Advertise <br />in Rwanda</h1> */}
               <h1 className='text-white text-[1.8rem] lg:text-[2rem] font-extrabold text-center  lg:text-center '>Post Your Business for <br className="inline-flex lg:hidden"/> <b className='text-main-gold-500'>Free & Sell Everywhere!</b></h1>
-              {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/payment-plans')} title={isTablet || isMobile ? "Get Started": "Get Started" } /> : null}
+              {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/payment-plans')} title={isTablet || isMobile ? "List Your Business / AD": "List Your Business / AD" } /> : null}
               <SearchBar />
             </div>
             <RequestQuoteHeader />
