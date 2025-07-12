@@ -10,7 +10,7 @@ import Logo from '../../assets/logo/clickrwanda.png';
 import { LuMenu } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 import { NavLinks } from "../../data/navlinks";
-import GoogleTranslate from "../GoogleTranslate";
+// import GoogleTranslate from "../GoogleTranslate";
 // import LanguageChanger from "./LanguageChanger";
 
 const DesktopHeader = () => {
@@ -63,10 +63,10 @@ const DesktopView = () => {
      return (
           <header className="sticky top-0 bg-main-blue-700 px-[0.5%] py-[5px]  hidden lg:flex items-center justify-between  rounded-[5px] my-[5px] z-50 ">
                <Link to='/'><img src={Logo} alt="clickrwanda" className="w-[100px] " /></Link>
-               <DeskNavbar />
+               <DeskNavbar />  
                <div className="flex items-center gap-[10px]">
-                    <div id="google_translate_element" className="rounded-full cursor-pointer border border-gray-200 overflow-hidden flex items-center justify-center aspect-square bg-gray-100 p-1"></div>
-                    <GoogleTranslate />
+                  
+                    {/* <GoogleTranslate /> */}
                     {/* <LanguageChanger /> */}
                     {!loggedIn && !agentToken ? <ActionBtn action={() => navigate('/forms')} title={"Login"} /> : null}
                     {loggedIn || agentToken ? <Link onClick={showHeader} to={ userInfo?.user_type === 'seller' ? "/user-dashboard" : userInfo?.user_type === 'job-seeker' ? "/job-seeker" : agentToken ? "/agent" : "/admin"} className="w-[40px] aspect-square rounded-full p-[2px] border-[1px] border-blue-300 "><img className="w-full h-full rounded-full" src={userInfo?.profile_image || profileImage} alt="" /></Link> : null}
@@ -111,7 +111,7 @@ const MobileView = () => {
       </Link>
 
       <div className="flex items-center gap-2">
-        <GoogleTranslate />
+        {/* <GoogleTranslate /> */}
         <i
           className="text-white text-[30px] cursor-pointer"
           onClick={() => setShowNav(!showNav)}
